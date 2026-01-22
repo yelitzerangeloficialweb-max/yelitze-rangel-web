@@ -4,7 +4,7 @@ import { Instagram, Mail, MessageCircle } from 'lucide-react';
 
 export default function Footer() {
     return (
-        <footer className="bg-[#5d4037] text-white py-16 border-t border-white/10">
+        <footer className="bg-[var(--color-secondary)] text-white py-16 border-t border-white/10">
             <div className="container mx-auto px-4">
                 <div className="grid md:grid-cols-4 gap-12 mb-12">
                     {/* Brand */}

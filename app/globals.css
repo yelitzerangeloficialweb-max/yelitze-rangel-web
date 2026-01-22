@@ -6,22 +6,22 @@
 @tailwind utilities;
 
 :root {
-  /* Earth & Dust Palette - No Orange */
-  --color-primary: #5D4037;
-  /* Deep Earth Brown */
-  --color-primary-light: #795548;
-  /* Medium Brown */
+  /* Earth & Dust Palette - Updated */
+  --color-primary: #EBA100;
+  /* Gold / Mustard */
+  --color-primary-light: #FFC107;
+  /* Light Gold */
 
-  --color-secondary: #A1887F;
-  /* Taupe / Dusty Brown */
-  --color-secondary-light: #BCAAA4;
-  /* Mushroom */
+  --color-secondary: #994200;
+  /* Deep Earth Brown */
+  --color-secondary-light: #BF5E1A;
+  /* Light Brown */
 
   --color-accent: #D7CCC8;
   /* Pale Sand / Bone */
 
-  --color-neutral: #9E9E9E;
-  /* Neutral Grey */
+  --color-neutral: #B3B3B3;
+  /* Grey */
 
   --color-background: #FAF9F6;
   /* Off-White / Alabaster */
@@ -29,8 +29,8 @@
 
   --color-text: #3E2723;
   /* Very Dark Brown */
-  --color-text-light: #5D4037;
-  /* Medium Earth */
+  --color-text-light: #994200;
+  /* Medium Brown */
 
   /* Base Variables */
   --background: var(--color-background);
