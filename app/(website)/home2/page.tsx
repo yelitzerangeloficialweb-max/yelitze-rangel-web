@@ -1,16 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Playfair_Display, Montserrat, WindSong } from 'next/font/google';
+import { Playfair_Display, Montserrat, Whisper } from 'next/font/google';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
 // Fonts configuration
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-serif' });
 const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-sans' });
-const windsong = WindSong({ weight: ['400', '500'], subsets: ['latin'], variable: '--font-script' });
+const whisper = Whisper({ weight: ['400'], subsets: ['latin'], variable: '--font-script' });
 
 export default function Home2() {
     return (
-        <main className={`${playfair.variable} ${montserrat.variable} ${windsong.variable} font-sans bg-[#FEFAF6] min-h-screen text-[#4A4A4A]`}>
+        <main className={`${playfair.variable} ${montserrat.variable} ${whisper.variable} font-sans bg-[#FEFAF6] min-h-screen text-[#4A4A4A]`}>
 
             {/* --- HERO SECTION --- */}
             <section className="relative h-screen flex items-center justify-center overflow-hidden">
