@@ -1,0 +1,78 @@
+export interface EventData {
+    id: number;
+    slug: string;
+    title: string;
+    type: 'Gratuito' | 'Pago';
+    date: string;
+    time?: string;
+    location: string;
+    image: string;
+    aida: {
+        attention: string;
+        interest: string;
+        desire: string;
+        action: string;
+    };
+    fullDescription: string[]; // Array of paragraphs for the detailed view
+}
+
+export const EVENTS_DATA: EventData[] = [
+    {
+        id: 1,
+        slug: 'sanate-mujer',
+        title: "Sánate Mujer",
+        type: "Gratuito",
+        date: "22 de Mayo",
+        time: "10:00 AM",
+        location: "Online (Zoom)",
+        image: "/assets/images/img-sanate.jpg",
+        aida: {
+            attention: "¿Te has preguntado por qué repites las mismas historias que vivió tu madre o tu abuela? Si creciste viendo a las mujeres de tu familia sacrificarlo todo y sin darte cuenta estás siguiendo el mismo patrón, hoy puedes detener ese ciclo.",
+            interest: "Dirigido a mujeres que dudan de sí mismas, que sienten que son 'demasiado intensas' y que, por más que intentan, terminan en relaciones que lastiman o trabajos frustrantes.",
+            desire: "Aprenderás a identificar tu herida emocional dominante y cómo se manifiesta. Dejarás de atraer desde la carencia para comenzar a conectar desde la abundancia, la confianza y el amor propio.",
+            action: "Registrarme Gratis"
+        },
+        fullDescription: [
+            "Desde niña aprendiste a dudar de ti misma, a creer que eras demasiado sensible, demasiado emocional, demasiado intensa o que nunca era suficiente.",
+            "Pero déjame decirte algo, no naciste sintiéndote así. Todas esas emociones son producto de una herida que se sembró en ti hace tanto tiempo que hoy está afectando tu autoestima, tus relaciones y tu capacidad de recibir amor y abundancia.",
+            "Ahora dime, ¿Quieres identificar la herida emocional que te impide vivir con paz y en conexión contigo misma?",
+            "Entonces, acompáñame el 22 de mayo en mi próximo encuentro online gratuito Sánate Mujer.",
+            "Allí te enseñaré a identificar tu herida emocional dominante, comprender cómo se manifiesta en tu vida y reconocer el primer paso de tu proceso de sanación interior.",
+            "Matrimonio fallido, compañeros tóxicos, socios desleales. Siempre atraes personas que te lastiman.",
+            "¿Sabes por qué? Porque aunque no las ves, hay heridas del pasado que están eligiendo por ti a quienes dejas entrar a tu vida.",
+            "Cuando no sanas, atraes desde la carencia, desde la herida, desde el miedo. Pero cuando sanas, todo cambia y atraes desde la abundancia, la confianza y el amor."
+        ]
+    },
+    {
+        id: 2,
+        slug: 'sanando-linaje-femenino',
+        title: "Sanando el Linaje Femenino",
+        type: "Pago",
+        date: "Inscripciones Abiertas",
+        location: "Formación Online (3 Etapas)",
+        image: "/assets/images/img-linaje.jpg",
+        aida: {
+            attention: "¿Sientes que estás viviendo una historia que no te pertenece? Esa sensación de vacío no es falta de esfuerzo; es el eco de heridas emocionales heredadas. No tienes que cargar con el peso de las generaciones que te precedieron.",
+            interest: "Para mujeres profesionales, madres o buscadoras espirituales que sienten un cansancio emocional inexplicable, les cuesta poner límites y buscan sanar su relación con la abundancia sin procesos eternos.",
+            desire: "Rompe el ciclo. Suelta cargas ajenas, recupera tu energía vital y transforma el dolor en una confianza inquebrantable. Al finalizar, te sentirás reconciliada con tu historia y lista para manifestar la vida que mereces.",
+            action: "Quiero Inscribirme Ahora"
+        },
+        fullDescription: [
+            "**[Encabezado Magnético] Sanando el Linaje Femenino: Rompe el ciclo y recupera tu poder. Inscripciones Abiertas | Formación Online de 3 Etapas**",
+            "Existe un dolor silencioso que no nació contigo. Se manifiesta en esa voz interna que te hace dudar de tu valor, en las relaciones donde repites patrones que te lastiman y en ese techo de cristal que bloquea tu abundancia y tu capacidad de amar.",
+            "Esa sensación de vacío no es falta de esfuerzo; es el eco de heridas emocionales heredadas que echaron raíces en tu historia.",
+            "No tienes que cargar con el peso de las generaciones que te precedieron. Cuando sanas tú, el camino se despeja para las que vienen.",
+            "He creado la **Inmersión: Sanando el Linaje Femenino**, un viaje profundo diseñado para que logres en semanas lo que a muchas les toma años de terapia tradicional.",
+            "A través de un método de 3 etapas, aprenderás a identificar, comprender y soltar las lealtades invisibles que te atan al pasado. Sin saturarte de teoría, nos enfocamos en prácticas reales y efectivas que te devuelven a tu centro.",
+            "Este no es solo un curso, es el cierre de un ciclo de dolor y el inicio de tu libertad:",
+            "- Sueltas cargas ajenas: Libérate del miedo y la culpa que heredaste de tu árbol genealógico.",
+            "- Recuperas tu energía vital: Deja de invertir tu fuerza en sostener heridas del pasado y úsala para crear tu futuro.",
+            "- Paz y claridad emocional: Transforma el dolor en fuerza y la duda en una confianza inquebrantable.",
+            "- Escribe tu propio destino: Al finalizar, te sentirás ligera, reconciliada con tu historia y lista para manifestar la vida que mereces."
+        ]
+    }
+];
+
+export function getEventBySlug(slug: string) {
+    return EVENTS_DATA.find(event => event.slug === slug);
+}

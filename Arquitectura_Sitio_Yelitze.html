@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arquitectura de Información - Sitio Web Yelitzé Rangel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #f5f1ed 0%, #efe8e2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 3px solid #D4AF37;
+            padding-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.8em;
+            color: #8B4513;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            color: #666;
+            font-style: italic;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            font-size: 2em;
+            color: #8B4513;
+            margin-bottom: 20px;
+            border-left: 5px solid #D4AF37;
+            padding-left: 20px;
+        }
+
+        .section h3 {
+            font-size: 1.5em;
+            color: #2C3E50;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            color: #555;
+            text-align: justify;
+        }
+
+        .diagram {
+            background: #f9f7f4;
+            border: 2px solid #D4AF37;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            overflow-x: auto;
+            text-align: center;
+        }
+
+        .diagram-box {
+            display: inline-block;
+            background: white;
+            border: 2px solid #8B4513;
+            padding: 15px 25px;
+            margin: 10px 5px;
+            border-radius: 6px;
+            color: #8B4513;
+            font-weight: bold;
+        }
+
+        .arrow {
+            color: #D4AF37;
+            font-weight: bold;
+            margin: 0 8px;
+        }
+
+        .page-card {
+            background: linear-gradient(135deg, #f9f7f4 0%, #ffffff 100%);
+            border-left: 5px solid #D4AF37;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .page-card h4 {
+            color: #8B4513;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .page-card .purpose {
+            background: #efe8e2;
+            padding: 12px;
+            border-radius: 4px;
+            margin: 10px 0;
+            border-left: 3px solid #8B4513;
+        }
+
+        .page-card .elements {
+            margin-top: 15px;
+            padding-left: 20px;
+        }
+
+        .page-card .elements li {
+            margin: 8px 0;
+            color: #555;
+        }
+
+        .flow-chart {
+            background: #f9f7f4;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 2px dashed #D4AF37;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 12px;
+            background: white;
+            border-radius: 6px;
+        }
+
+        .step-number {
+            background: #8B4513;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-weight: bold;
+            color: #8B4513;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .step-description {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .highlight {
+            background: #FFF8DC;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 4px solid #D4AF37;
+        }
+
+        .highlight strong {
+            color: #8B4513;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .section h2 {
+                font-size: 1.5em;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #D4AF37;
+            color: #888;
+            font-size: 0.95em;
+        }
+
+        .icon {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #D4AF37;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th {
+            background: #8B4513;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+        }
+
+        table tr:nth-child(even) {
+            background: #f9f7f4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>🌿 Arquitectura de Información</h1>
+            <p>Sitio Web de Yelitzé Rangel - Sanación Ancestral</p>
+            <p style="margin-top: 15px; font-size: 1em;">Un mapa completo de cómo funciona tu presencia digital</p>
+        </div>
+
+        <!-- INTRODUCCIÓN -->
+        <div class="section">
+            <h2>¿Qué es la Arquitectura de Información?</h2>
+            <p>
+                La arquitectura de información es el "plano" de tu sitio web. Define cómo se organizan y se conectan todas las páginas, 
+                cómo el usuario navega de un lugar a otro, y cómo la información fluye para llevar a tus visitantes hacia la acción 
+                que deseas (capturar su email, que realicen un test, que reserver una sesión o que realicen una compra).
+            </p>
+            <p>
+                En tu caso, el sitio está diseñado para ser un <strong>embudo de conversión espiritual</strong>: 
+                lleva a las personas desde Instagram a través de una experiencia transformadora, hasta que están listas 
+                para invertir en tus servicios de sanación.
+            </p>
+        </div>
+
+        <!-- FLUJO PRINCIPAL -->
+        <div class="section">
+            <h2>El Viaje del Usuario (Flujo Principal)</h2>
+            <p>Este es el camino que recorre cada visitante a través de tu sitio:</p>
+            
+            <div class="flow-chart">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">🔗 Descubrimiento en Instagram/Beacons</div>
+                        <div class="step-description">
+                            El usuario ve tu contenido en Instagram o hace clic en un enlace en tu Beacons que lo lleva a tu sitio web.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">🏠 Llega a la Página Principal</div>
+                        <div class="step-description">
+                            Ve un resumen atractivo de quién eres, qué ofreces, y es invitado a hacer algo inmediato (test gratuito, descargar guía, etc.)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">✨ Realiza un Test Interactivo</div>
+                        <div class="step-description">
+                            Participa en uno de tus tests psicológicos (Heridas de Infancia, Creencias sobre Amor, Creencias sobre Dinero). 
+                            Este es su primer contacto transformador, un momento de autoconocimiento.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">📧 Comparte su Email</div>
+                        <div class="step-description">
+                            Para recibir sus resultados personalizados, debe proporcionar su email y nombre. 
+                            Así ingresan a tu lista de contactos automáticamente.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <div class="step-title">📊 Recibe Resultados Personalizados</div>
+                        <div class="step-description">
+                            Ve la interpretación de su test, escrita en tu voz espiritual. Los resultados incluyen insights 
+                            y una invitación a explorar más (comprar tu libro o reservar una sesión).
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <div class="step-title">📚 Explora tus Servicios</div>
+                        <div class="step-description">
+                            Navega a una página de servicios donde ve todas tus opciones: sesiones 1:1, paquetes, capacitaciones, 
+                            tu libro disponible en Amazon, etc.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <div class="step-title">📅 Reserva una Sesión</div>
+                        <div class="step-description">
+                            Selecciona el tipo de sesión, la fecha que desea, completa su información de contacto y elige 
+                            método de pago (PayPal o Zelle).
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">8</div>
+                    <div class="step-content">
+                        <div class="step-title">💳 Realiza el Pago</div>
+                        <div class="step-description">
+                            Completa la transacción segura. Recibe confirmación automática y datos para conectar contigo 
+                            antes de la sesión.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">9</div>
+                    <div class="step-content">
+                        <div class="step-title">🌟 Conexión Continua</div>
+                        <div class="step-description">
+                            Recibe seguimiento por email, recordatorios, contenido exclusivo, y está en tu comunidad 
+                            de clientes y alumnos.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ESTRUCTURA GENERAL -->
+        <div class="section">
+            <h2>Estructura General del Sitio</h2>
+            <p>Tu sitio web estará organizado en estas secciones principales:</p>
+
+            <div class="diagram">
+                <div style="margin-bottom: 15px;">
+                    <strong>INICIO</strong>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <span class="diagram-box">SOBRE MÍ</span>
+                    <span class="arrow">→</span>
+                    <span class="diagram-box">SERVICIOS</span>
+                    <span class="arrow">→</span>
+                    <span class="diagram-box">TESTS</span>
+                    <span class="arrow">→</span>
+                    <span class="diagram-box">RESERVAS</span>
+                </div>
+                <div>
+                    <span class="diagram-box">LIBRO</span>
+                    <span class="arrow">→</span>
+                    <span class="diagram-box">CONTACTO</span>
+                </div>
+            </div>
+
+            <h3>Las 7 Páginas Principales</h3>
+            <p>Tu sitio contiene estas páginas fundamentales que trabajan juntas:</p>
+        </div>
+
+        <!-- PÁGINA POR PÁGINA -->
+        <div class="section">
+            <h2>Descripción Detallada de Cada Página</h2>
+
+            <!-- PÁGINA 1 -->
+            <div class="page-card">
+                <h4>📍 1. PÁGINA PRINCIPAL (INICIO)</h4>
+                <div class="purpose">
+                    <strong>Propósito:</strong> Cautivar al visitante, establecer quién eres, y hacer que tome 
+                    su primer acción (generalmente acceder a un test gratuito o descarga de contenido).
+                </div>
+                <p>
+                    Esta es la primera impresión. Debe transmitir tu esencia espiritual y profesional.
+                </p>
+                <div class="elements">
+                    <strong>Elementos que contiene:</strong>
+                    <ul>
+                        <li><strong>Hero Section (Imagen + Mensaje Principal):</strong> Una foto tuya hermosa y un mensaje que resuene emocionalmente. Algo como "Sana tus raíces ancestrales" o "Transforma el dolor en sabiduría"</li>
+                        <li><strong>Proposición de Valor Clara:</strong> En 2-3 líneas, qué haces y para quién. Por ejemplo: "Ayudo a personas a sanar heridas ancestrales y transformar el dolor en sabiduría a través de sesiones personalizadas y capacitaciones"</li>
+                        <li><strong>Call to Action Principal:</strong> Un botón destacado que dice "Haz El Test Gratuito" o "Descubre Tu Primer Paso"</li>
+                        <li><strong>Testimonios Destacados:</strong> 3-4 testimonios de clientes que han trabajado contigo. Deben sentirse auténticos y transformadores</li>
+                        <li><strong>Vista Previa de Servicios:</strong> Tarjetas bonitas mostrando brevemente tus 3 principales servicios (sesiones 1:1, capacitaciones, tu libro)</li>
+                        <li><strong>Preguntas Frecuentes (FAQ):</strong> Las 5-6 preguntas que más reciben. Esto aumenta la confianza</li>
+                        <li><strong>Invitación a Conectar:</strong> "Sígueme en Instagram" o "Únete a mi comunidad"</li>
+                    </ul>
+                </div>
+                <p style="margin-top: 15px; font-style: italic; color: #666;">
+                    <strong>Sensación:</strong> Cálida, acogedora, profesional, pero profundamente espiritual. El usuario debe sentir que está en el lugar correcto.
+                </p>
+            </div>
+
+            <!-- PÁGINA 2 -->
+            <div class="page-card">
+                <h4>💫 2. SOBRE MÍ (QUIÉN SOY)</h4>
+                <div class="purpose">
+                    <strong>Propósito:</strong> Construir conexión y credibilidad. Que el cliente te conozca más profundamente 
+                    y entienda tu experiencia y filosofía.
+                </div>
+                <p>
+                    Muchas personas que llegan a tu sitio no te conocen. Esta página es tu oportunidad de contar tu historia 
+                    de una forma que genere confianza y resonancia emocional.
+                </p>
+                <div class="elements">
+                    <strong>Estructura recomendada:</strong>
+                    <ul>
+                        <li><strong>Historia Personal:</strong> ¿De dónde vienes? ¿Qué te llevó a este trabajo? Incluye un momento de transformación o crisis que te llevó a la sanación ancestral</li>
+                        <li><strong>Mi Filosofía:</strong> ¿Qué crees sobre la sanación? ¿Cómo ves el trabajo con ancestros? ¿Cuál es tu enfoque único?</li>
+                        <li><strong>Credenciales y Formación:</strong> Tu titulo en Psicología, tu especialización en Tanatología, tus certificaciones espirituales, etc.</li>
+                        <li><strong>El Viaje Continuo:</strong> Qué te sigue motivando a crecer y aprender. Esto muestra que sigues evolucionando</li>
+                        <li><strong>Foto Profesional Hermosa:</strong> Una foto que transmita calidez, sabiduría y autenticidad</li>
+                        <li><strong>Conexión Emocional:</strong> Un párrafo que hable directamente al corazón. Algo que diga "entiendo por qué estás aquí, entiendo tu dolor"</li>
+                    </ul>
+                </div>
+                <p style="margin-top: 15px; font-style: italic; color: #666;">
+                    <strong>Tono:</strong> Íntimo, vulnerable en los lugares correctos, pero seguro. Queremos que sientan "ella entiende mi mundo".
+                </p>
+            </div>
+
+            <!-- PÁGINA 3 -->
+            <div class="page-card">
+                <h4>🎁 3. TESTS INTERACTIVOS (3 Tests Psicológicos Gratuitos)</h4>
+                <div class="purpose">
+                    <strong>Propósito:</strong> Ser tu principal herramienta de captura de leads. Que el visitante tenga una experiencia 
+                    transformadora ANTES de comprar, demostrando el valor que ofreces.
+                </div>
+                <p>
+                    Los tests son el corazón de tu estrategia de conversión. Son gratuitos para que todos accedan, pero requieren 
+                    que dejen su email para recibir resultados personalizados.
+                </p>
+
+                <h4 style="margin-top: 25px; font-size: 1.1em;">Test 1: Heridas de la Infancia</h4>
+                <div class="elements">
+                    <strong>¿Qué evalúa?</strong>
+                    <ul>
+                        <li>Patrones de apego con figuras paternas</li>
+                        <li>Seguridad emocional en infancia</li>
+                        <li>Impacto en relaciones actuales</li>
+                    </ul>
+                </div>
+                <div class="elements">
+                    <strong>Estructura del Test:</strong>
+                    <ul>
+                        <li>8-10 preguntas sobre infancia y familia</li>
+                        <li>Cada pregunta tiene 3 opciones de respuesta</li>
+                        <li>Tono cálido y reconfortante en cada pregunta</li>
+                        <li>Tiempo de completación: 3-5 minutos</li>
+                    </ul>
+                </div>
+                <div class="elements">
+                    <strong>Después de responder:</strong>
+                    <ul>
+                        <li>Ven una puntuación personalizada</li>
+                        <li>Reciben una interpretación escrita en tu voz (profunda, compasiva, esperanzadora)</li>
+                        <li>Se les invita a una sesión 1:1 para trabajar más profundamente</li>
+                        <li>Se les da acceso a un recurso gratis (como tu guía de 3 páginas del libro)</li>
+                    </ul>
+                </div>
+
+                <h4 style="margin-top: 25px; font-size: 1.1em;">Test 2: Creencias sobre Amor y Pareja</h4>
+                <div class="elements">
+                    <strong>¿Qué evalúa?</strong>
+                    <ul>
+                        <li>Patrones de relacionamiento</li>
+                        <li>Creencias limitantes sobre el amor</li>
+                        <li>Heridas ancestrales en relaciones</li>
+                    </ul>
+                </div>
+
+                <h4 style="margin-top: 25px; font-size: 1.1em;">Test 3: Creencias Limitantes sobre Dinero</h4>
+                <div class="elements">
+                    <strong>¿Qué evalúa?</strong>
+                    <ul>
+                        <li>Patrones heredados sobre prosperidad</li>
+                        <li>Bloqueos relacionados con dinero</li>
+                        <li>Conexión entre creencias y abundancia</li>
+                    </ul>
+                </div>
+
+                <p style="margin-top: 20px; font-style: italic; color: #666;">
+                    <strong>Por qué funcionan:</strong> Los tests dan valor ANTES de pedir dinero. El usuario siente que ya ha tenido 
+                    una experiencia transformadora pequeña, lo que les hace más dispuestos a invertir en sesiones completas.
+                </p>
+            </div>
+
+            <!-- PÁGINA 4 -->
+            <div class="page-card">
+                <h4>💎 4. SERVICIOS (MIS OFERTAS)</h4>
+                <div class="purpose">
+                    <strong>Propósito:</strong> Presentar claramente qué ofreces, para quién, por cuánto, y por qué vale la pena.
+                </div>
+                <p>
+                    Esta página es donde el visitante ve todas tus opciones de una forma clara y ordenada. No debe ser abrumadora, 
+                    sino invitadora.
+                </p>
+                <div class="elements">
+                    <strong>Servicios a mostrar:</strong>
+                    <ul>
+                        <li><strong>Sesiones 1:1 (Asesorías Personalizadas):</strong> 
+                            <br/>60 minutos de trabajo profundo individual. Incluye: evaluación inicial, trabajo con heridas ancestrales, 
+                            ejercicios prácticos, recomendaciones personalizadas.
+                            <br/>💰 Precio ejemplo: $97/sesión o $270 por paquete de 3
+                        </li>
+                        <li><strong>Capacitaciones Grupales:</strong> 
+                            <br/>Intensivos de grupo reducido. Pueden ser temáticas (Sanación Ancestral, Duelo Consciente, Reconstruyendo el 
+                            Amor Propio, etc.)
+                            <br/>💰 Precio ejemplo: $297/capacitación o precios especiales para paquetes mensuales
+                        </li>
+                        <li><strong>Tu Libro "Hilos de Conexión":</strong> 
+                            <br/>Link directo a Amazon + descuento si compran directamente contigo
+                            <br/>💰 Precio: Según Amazon + opción de venta directa
+                        </li>
+                        <li><strong>Guía Gratuita Descargable:</strong> 
+                            <br/>Las 3 páginas de tu libro + ejercicios complementarios
+                        </li>
+                    </ul>
+                </div>
+                <p style="margin-top: 15px;">
+                    Cada servicio debe mostrarse como una tarjeta atractiva con descripción, beneficios, precio, 
+                    y un botón "Conocer Más" o "Reservar Ahora".
+                </p>
+            </div>
+
+            <!-- PÁGINA 5 -->
+            <div class="page-card">
+                <h4>📅 5. RESERVAS / CALENDARIO</h4>
+                <div class="purpose">
+                    <strong>Propósito:</strong> Permitir que el cliente reserve y pague por tus servicios de forma fácil y segura.
+                </div>
+                <p>
+                    Esta es tu página de venta. Aquí es donde sucede la transacción. Debe ser clara, segura y tranquilizadora.
+                </p>
+                <div class="elements">
+                    <strong>Proceso de Reserva (4 pasos):</strong>
+                    <ul>
+                        <li><strong>Paso 1 - Elegir Servicio:</strong> El usuario selecciona qué sesión o capacitación desea. Cada opción muestra el precio claramente</li>
+                        <li><strong>Paso 2 - Elegir Fecha y Hora:</strong> Calendario interactivo que muestra tus horarios disponibles</li>
+                        <li><strong>Paso 3 - Datos de Contacto:</strong> Nombre, email, WhatsApp, comentarios sobre qué quieren trabajar</li>
+                        <li><strong>Paso 4 - Pago Seguro:</strong> Dos opciones: PayPal (procesamiento automático) o Zelle (transferencia manual con confirmación)</li>
+                    </ul>
+                </div>
+                <div class="elements">
+                    <strong>Después de la compra:</strong>
+                    <ul>
+                        <li>Confirmación automática por email con detalles de la sesión</li>
+                        <li>Recordatorio 24 horas antes de la sesión</li>
+                        <li>Link a WhatsApp para confirmar detalles finales</li>
+                        <li>Posible descuento para próximas sesiones o recomendación de amigos</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- PÁGINA 6 -->
+            <div class="page-card">
+                <h4>📖 6. TU LIBRO (HILOS DE CONEXIÓN)</h4>
+                <div class="purpose">
+                    <strong>Propósito:</strong> Dirigir tráfico a Amazon y posiblemente vender directamente. Mostrar tu credibilidad como autora.
+                </div>
+                <p>
+                    Una página que presenta tu libro de forma hermosa, con descripción, fragmentos principales, foto de portada, 
+                    testimonio de lectores, y links a comprarlo en Amazon o directamente contigo.
+                </p>
+                <div class="elements">
+                    <strong>Elementos:</strong>
+                    <ul>
+                        <li>Portada del libro grande y hermosa</li>
+                        <li>Descripción completa del contenido</li>
+                        <li>Índice de capítulos</li>
+                        <li>2-3 fragmentos destacados del libro</li>
+                        <li>Testimonio de lectores transformados</li>
+                        <li>Link a Amazon</li>
+                        <li>Opción de compra directa contigo (con envío)</li>
+                        <li>Opción de descarga en digital/PDF</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- PÁGINA 7 -->
+            <div class="page-card">
+                <h4>✉️ 7. CONTACTO</h4>
+                <div class="purpose">
+                    <strong>Propósito:</strong> Para personas que tienen preguntas específicas que no encajan en las demás páginas.
+                </div>
+                <div class="elements">
+                    <strong>Contiene:</strong>
+                    <ul>
+                        <li>Formulario de contacto simple (Nombre, Email, Asunto, Mensaje)</li>
+                        <li>Tus canales de contacto directo (WhatsApp, email, Instagram)</li>
+                        <li>Tiempo de respuesta esperado ("Responderé en 24-48 horas")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIONES ADICIONALES -->
+        <div class="section">
+            <h2>Secciones que Aparecen en TODAS las Páginas</h2>
+            <p>Independientemente de dónde esté el visitante, encontrará estos elementos:</p>
+
+            <div class="page-card">
+                <h4>📌 Encabezado (Header)</h4>
+                <div class="elements">
+                    <ul>
+                        <li>Logo/Nombre "Yelitzé Rangel"</li>
+                        <li>Menú de navegación con links a todas las páginas principales</li>
+                        <li>Botón CTA destacado (Ej: "Reservar Sesión" o "Haz el Test")</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="page-card">
+                <h4>🔗 Pie de Página (Footer)</h4>
+                <div class="elements">
+                    <ul>
+                        <li>Links a redes sociales (Instagram, Facebook, LinkedIn, etc.)</li>
+                        <li>Información de contacto (email, teléfono WhatsApp)</li>
+                        <li>Links a páginas legales (Privacidad, Términos de Servicio)</li>
+                        <li>Suscripción a newsletter ("Recibe mis reflexiones semanales")</li>
+                        <li>Copyright y créditos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- FLUJO DE CONVERSIÓN -->
+        <div class="section">
+            <h2>¿Cómo se Conectan Todas las Páginas?</h2>
+            <p>La magia está en cómo guiamos al visitante de un lugar a otro:</p>
+
+            <div class="highlight">
+                <strong>El Embudo de Conversión:</strong>
+                <br/><br/>
+                <strong>1. CONCIENCIA (Página Principal)</strong>
+                <br/>→ El visitante descubre quién eres y qué haces. Ve testimonios. Empieza a sentir que es posible.
+                <br/><br/>
+                <strong>2. INTERÉS (Tests)</strong>
+                <br/>→ Hace un test gratuito. Ya está invirtiendo su tiempo y emoción. Tiene una experiencia transformadora.
+                <br/><br/>
+                <strong>3. CONSIDERACIÓN (Sobre Mí + Servicios)</strong>
+                <br/>→ Lee más sobre ti, ve tus credenciales. Explora tus opciones de servicio.
+                <br/><br/>
+                <strong>4. DECISIÓN (Reservas + Checkout)</strong>
+                <br/>→ Elige, reserva, paga. Se convierte en cliente.
+                <br/><br/>
+                <strong>5. LEALTAD (Seguimiento)</strong>
+                <br/>→ Después de su sesión, recibe follow-up, descuentos, invitaciones a otros servicios.
+            </div>
+
+            <p>Cada página tiene "puertas" (botones y links) que llevan al visitante hacia adelante en este viaje:</p>
+            <ul>
+                <li><strong>Desde Inicio:</strong> "Haz el Test" → Página de Tests</li>
+                <li><strong>Desde Tests (después de resultados):</strong> "Conoce a Yelitzé" → Página Sobre Mí</li>
+                <li><strong>Desde Sobre Mí:</strong> "Explora mis Servicios" → Página de Servicios</li>
+                <li><strong>Desde Servicios:</strong> "Reservar Ahora" → Página de Calendario/Checkout</li>
+                <li><strong>Desde cualquier página:</strong> "Contáctame con preguntas" → Contacto</li>
+            </ul>
+        </div>
+
+        <!-- EXPERIENCIA VISUAL -->
+        <div class="section">
+            <h2>Experiencia Visual y Diseño</h2>
+            <p>Aunque los detalles técnicos no son importantes para ti, la sensación general del sitio es crucial:</p>
+
+            <div class="page-card">
+                <h4>🎨 Identidad Visual</h4>
+                <div class="elements">
+                    <ul>
+                        <li><strong>Colores:</strong> Tonos cálidos y naturales (marrones, dorados, beige). Esto refleja la sanación ancestral y lo terrenal</li>
+                        <li><strong>Tipografía:</strong> Elegante y legible. Las letras grandes y claras para títulos (tipo "Playfair Display") y un tipo más simple para textos</li>
+                        <li><strong>Imágenes:</strong> Fotos tuyas, símbolos ancestrales, naturaleza, elementos que evoquen sanación y espiritualidad</li>
+                        <li><strong>Espacios en Blanco:</strong> Mucho espacio respirable. No abrumador. Tranquilo</li>
+                        <li><strong>Energía:</strong> El sitio debe sentirse como un espacio sagrado donde alguien puede respirar, reflexionar, y transformarse</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- INTEGRACIÓN CON N8N -->
+        <div class="section">
+            <h2>Automatización (Behind the Scenes)</h2>
+            <p>Mientras el visitante ve páginas bonitas, hay "magia" ocurriendo en el fondo:</p>
+
+            <div class="page-card">
+                <h4>🤖 Lo que Pasa Automáticamente</h4>
+                <div class="elements">
+                    <ul>
+                        <li><strong>Cuando alguien hace un test:</strong> Su respuesta se guarda en una base de datos. Su email se agrega a una lista. Se envía un email automático con sus resultados</li>
+                        <li><strong>Cuando alguien reserva:</strong> Se crea una transacción segura. Si es PayPal, se procesa inmediatamente. Si es Zelle, recibes una notificación</li>
+                        <li><strong>Cuando alguien compra:</strong> Recibe confirmación automática. Tú recibes una notificación. Se agrega a una lista de "clientes pagados" para seguimiento especial</li>
+                        <li><strong>Cada 24 horas:</strong> Se envían recordatorios automáticos a clientes con sesiones próximas</li>
+                        <li><strong>Cada semana:</strong> Pueden recibir un email inspiracional o una reflexión tuya si se suscriben al newsletter</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- TABLA RESUMEN -->
+        <div class="section">
+            <h2>Resumen: Todas las Páginas de un Vistazo</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Página</th>
+                        <th>Propósito Principal</th>
+                        <th>Visitante Aprende</th>
+                        <th>Acción Principal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Inicio</strong></td>
+                        <td>Atraer y cautivar</td>
+                        <td>Quién eres y qué cambios ofreces</td>
+                        <td>Hace clic en "Test Gratuito"</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sobre Mí</strong></td>
+                        <td>Construir confianza y conexión</td>
+                        <td>Tu historia, formación, filosofía</td>
+                        <td>Siente conexión contigo</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tests</strong></td>
+                        <td>Capturar leads + dar valor</td>
+                        <td>Autoconocimiento transformador</td>
+                        <td>Comparte email para resultados</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Servicios</strong></td>
+                        <td>Mostrar opciones de compra</td>
+                        <td>Qué ofreces y a qué precio</td>
+                        <td>Decide qué servicio quiere</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Reservas</strong></td>
+                        <td>Procesar venta</td>
+                        <td>Cómo reservar y pagar</td>
+                        <td>Completa la compra</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tu Libro</strong></td>
+                        <td>Vender libro + credibilidad</td>
+                        <td>Contenido y valor del libro</td>
+                        <td>Va a Amazon o compra directo</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Contacto</strong></td>
+                        <td>Responder preguntas específicas</td>
+                        <td>Formas de contactarte</td>
+                        <td>Envía un mensaje directo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- MÉTRICAS -->
+        <div class="section">
+            <h2>Métricas Importantes a Seguir</h2>
+            <p>Una vez que el sitio esté vivo, estos números te dirán si funciona:</p>
+
+            <div class="page-card">
+                <div class="elements">
+                    <ul>
+                        <li><strong>Visitantes al Inicio:</strong> ¿Cuánta gente llega?</li>
+                        <li><strong>Test Completados:</strong> ¿Qué porcentaje de visitantes hace un test?</li>
+                        <li><strong>Emails Capturados:</strong> ¿Cuántos emails recopilas cada semana?</li>
+                        <li><strong>Tasa de Conversión:</strong> ¿Qué porcentaje de visitantes se convierte en clientes pagados?</li>
+                        <li><strong>Valor Promedio de Sesión:</strong> ¿Cuál es el ingreso promedio por cliente?</li>
+                        <li><strong>Tiempo en Sitio:</strong> ¿Cuánto tiempo pasan explorando?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRÓXIMOS PASOS -->
+        <div class="section">
+            <h2>Próximos Pasos</h2>
+            
+            <div class="flow-chart">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Preparar Contenido</div>
+                        <div class="step-description">Recopilar fotos hermosas, testimonios de clientes, descripciones de servicios, contenido para tests</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Finalizar Detalles</div>
+                        <div class="step-description">Precios finales, horarios disponibles, descripción exacta de cada servicio, política de cancelación</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Construcción Técnica</div>
+                        <div class="step-description">El equipo técnico desarrolla el sitio usando esta arquitectura. Tú podrás revisar versiones preliminares</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Pruebas y Ajustes</div>
+                        <div class="step-description">Probamos todo. Haces un test tú misma. Hacemos una "compra de prueba". Ajustamos lo que no funcione</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <div class="step-title">Lanzamiento</div>
+                        <div class="step-description">¡El sitio está vivo! Comienzas a dirigir tráfico desde Instagram y tus otros canales</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <div class="step-title">Optimización Continua</div>
+                        <div class="step-description">Monitoreamos métricas. Hacemos pequeños ajustes. Observamos qué funciona y qué no</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONCLUSIÓN -->
+        <div class="section">
+            <h2>En Resumen</h2>
+            <div class="highlight">
+                <p>
+                    Tu sitio web es un <strong>instrumento de transformación</strong> que funciona mientras tú duermes. 
+                </p>
+                <p style="margin-top: 15px;">
+                    Alguien en Argentina descubre tu Instagram a las 3 AM, hace un test, recibe resultados transformadores, 
+                    y se siente inspirado a reservar una sesión. Todo sucede automáticamente, 24/7.
+                </p>
+                <p style="margin-top: 15px;">
+                    Este documento describe exactamente cómo funciona ese proceso. Cada página tiene un propósito claro. 
+                    Cada página conecta con la siguiente. Todo conduce hacia la transformación: primero la transformación 
+                    emocional/espiritual del cliente (el verdadero regalo), y luego su transformación en cliente pagado 
+                    (que financia más sesiones, más capacitaciones, más alcance).
+                </p>
+                <p style="margin-top: 15px;">
+                    <strong>Tu misión es sanación. La arquitectura del sitio es el vehículo que llevar esa sanación a más personas.</strong>
+                </p>
+            </div>
+        </div>
+
+        <!-- PREGUNTAS -->
+        <div class="section">
+            <h2>¿Preguntas?</h2>
+            <p>
+                Este documento describe la "visión global" del sitio. Si en cualquier momento tienes preguntas 
+                sobre cómo funciona algo, por qué está diseñado de cierta manera, o quieres cambiar algo, 
+                ¡por favor comunícalo! Este es TU sitio. Queremos que se sienta como una extensión auténtica de ti.
+            </p>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p>Documento preparado para Yelitzé Rangel - Sanación Ancestral</p>
+            <p>Diciembre 2025</p>
+        </div>
+    </div>
+</body>
+</html>
