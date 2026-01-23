@@ -186,7 +186,7 @@ export default function CoachingAncestralPage() {
                                     "Ansiedad constante por lo cambiante de la vida.",
                                     "Miedo a perder lo que tienes o repetir patrones familiares.",
                                     "Sensación de 'ceguera' ante tus propios bloqueos.",
-                                    "Dolores de cabeza, fatiga mental o apatía.",
+                                    "Saturación energética, fatiga mental o apatía.",
                                     "Vivir en 'modo supervivencia' sin disfrutar tus logros."
                                 ].map((item, i) => (
                                     <li key={i} className="flex gap-4 text-gray-400 items-start group">
