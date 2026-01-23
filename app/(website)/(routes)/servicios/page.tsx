@@ -88,9 +88,14 @@ export default function ServicesPage() {
                                     ))}
                                 </ul>
                                 {service.title === "Sesiones Íntimas" && (
-                                    <p className="text-sm italic font-medium text-[var(--color-secondary)] border-t border-[var(--color-primary)]/5 pt-4 mt-2">
-                                        Este es un espacio seguro, consciente y transformador.
-                                    </p>
+                                    <div className="border-t border-[var(--color-primary)]/5 pt-4 mt-2">
+                                        <p className="text-sm italic font-medium text-[var(--color-secondary)]">
+                                            Este es un espacio seguro, consciente y transformador.
+                                        </p>
+                                        <p className="text-xs text-[var(--color-text-light)] mt-1 italic">
+                                            Gracias por confiar en tu proceso.
+                                        </p>
+                                    </div>
                                 )}
                             </div>
 
