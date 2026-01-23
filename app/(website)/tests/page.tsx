@@ -123,7 +123,7 @@ export default function TestsHubPage() {
                         {/* Image */}
                         <div className="relative min-h-[400px]">
                             <Image
-                                src="/assets/images/tests/test_arquitectura_vida.png"
+                                src="/assets/images/tests/test_arquitectura_lifestyle.png"
                                 alt="Arquitectura de Vida Intencional 2026"
                                 fill
                                 className="object-cover"
