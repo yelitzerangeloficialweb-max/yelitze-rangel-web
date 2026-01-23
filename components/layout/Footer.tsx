@@ -10,12 +10,12 @@ export default function Footer() {
                     {/* Brand */}
                     <div className="col-span-1 md:col-span-1">
                         <div className="mb-6">
-                            <div className="relative w-20 h-20">
+                            <div className="relative w-48 h-16">
                                 <Image
-                                    src="/assets/images/logo-white.png"
+                                    src="/assets/images/logo-yelitze-new.png"
                                     alt="Yelitzé Rangel Logo"
                                     fill
-                                    className="object-contain"
+                                    className="object-contain object-left"
                                 />
                             </div>
                         </div>
