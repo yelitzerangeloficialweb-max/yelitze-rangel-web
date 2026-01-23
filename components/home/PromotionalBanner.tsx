@@ -18,9 +18,9 @@ export default function PromotionalBanner() {
 
                     {/* Text Content */}
                     <div className="text-center lg:text-left space-y-8 animate-fade-in">
-                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans font-bold leading-tight text-[#E0C097] drop-shadow-sm">
+                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans font-bold leading-tight text-white drop-shadow-sm">
                             Descubre tu <br />
-                            <span className="text-white">Arquitectura de Vida</span> <br />
+                            <span className="text-[var(--color-accent-light)]">Arquitectura de Vida</span> <br />
                             <span>Intencional 2026</span>
                         </h2>
 

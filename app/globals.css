@@ -13,6 +13,9 @@
   --color-primary-light: #7b5735;
   /* Strict adherence */
 
+  --color-accent-light: #C19A6B;
+  /* Camel/Gold for highlights on dark backgrounds */
+
   --color-secondary: #7b5735;
   /* Merging secondary into primary */
   --color-secondary-light: #7b5735;
