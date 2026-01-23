@@ -247,23 +247,45 @@ export default function CoachingAncestralPage() {
                                     <Users className="w-8 h-8 text-[var(--color-secondary)]" />
                                 </div>
                                 <h3 className="text-3xl font-heading text-white mb-2">Ceremonia Online</h3>
-                                <p className="text-[var(--color-secondary)] uppercase tracking-widest text-xs mb-6 font-bold">Coaching Ancestral</p>
-                                <p className="text-gray-400 mb-8 italic">
-                                    "Lo que se mueve aquí es profundo, sutil y verdadero. Una explosión silenciosa que ordena tu presente."
-                                </p>
-                                <ul className="space-y-6 flex-grow font-light">
+                                <p className="text-[var(--color-secondary)] uppercase tracking-widest text-xs mb-4 font-bold italic">"Una explosión silenciosa que ordena tu presente."</p>
+
+                                <div className="mb-8">
+                                    <p className="text-gray-400 text-sm leading-relaxed">
+                                        Un espacio sagrado de 3 horas donde la distancia desaparece para dar paso a una transformación profunda, sutil y verdadera.
+                                    </p>
+                                </div>
+
+                                <ul className="space-y-6 flex-grow mb-8 font-light">
                                     {[
-                                        { icon: Clock, text: "Un espacio íntimo de 3 horas donde la presencia terapéutica y la sabiduría ancestral se encuentran." },
-                                        { icon: Sparkles, text: "Incluye recursos antes y después de la sesión para acompañar tu proceso." },
-                                        { icon: Heart, text: "Acompañamiento profundo, sutil y verdadero." },
-                                        { icon: Anchor, text: "Ordena tu presente con una toma de conciencia real." },
+                                        { title: "Presencia Terapéutica", text: "Conexión íntima y personalizada guiada por la sabiduría ancestral." },
+                                        { title: "Recursos de Acompañamiento", text: "Herramientas exclusivas antes y después de la sesión para sostener tu evolución." },
+                                        { title: "Claridad Profunda", text: "Una toma de consciencia real diseñada para ordenar tu realidad inmediata." },
+                                        { title: "Entrenamiento Energético", text: "Trabajo sistémico para liberar cargas y recuperar tu poder personal." },
                                     ].map((item, i) => (
                                         <li key={i} className="flex items-start gap-4 text-gray-300">
-                                            <item.icon className="w-5 h-5 text-[var(--color-secondary)] mt-1 flex-shrink-0" />
-                                            <span className="leading-relaxed">{item.text}</span>
+                                            <CheckCircle2 className="w-5 h-5 text-[var(--color-secondary)] mt-1 flex-shrink-0" />
+                                            <span className="text-sm leading-relaxed">
+                                                <strong className="text-white block mb-0.5">{item.title}</strong>
+                                                {item.text}
+                                            </span>
                                         </li>
                                     ))}
                                 </ul>
+
+                                <div className="mt-auto pt-6 border-t border-white/5">
+                                    <p className="text-gray-400 text-sm italic mb-6">
+                                        "No es una sesión más, es el inicio de tu nueva narrativa."
+                                    </p>
+                                    <a
+                                        href="https://wa.me/17867268717"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 text-[var(--color-secondary)] hover:text-white transition-colors font-medium group/btn"
+                                    >
+                                        👉 Si sientes el llamado, inicia tu viaje aquí
+                                        <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                                    </a>
+                                </div>
                             </div>
                         </StaggerItem>
 
