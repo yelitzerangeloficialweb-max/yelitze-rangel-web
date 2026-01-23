@@ -57,7 +57,7 @@ export default function AboutPage() {
                     <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto items-center">
                         <div className="space-y-8">
                             <p className="text-2xl font-serif italic text-[var(--color-secondary)]">
-                                "¿Quién soy yo para acompañarte?"
+                                ¿Quién soy yo para acompañarte?
                             </p>
                             <ul className="space-y-6">
                                 {[
