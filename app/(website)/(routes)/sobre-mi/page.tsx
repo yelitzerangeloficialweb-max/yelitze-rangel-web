@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MoveRight, Star, Heart, Brain, Anchor, Sparkles } from "lucide-react";
+import TypewriterText from "@/components/ui/TypewriterText";
 
 export default function AboutPage() {
     return (
@@ -61,7 +62,7 @@ export default function AboutPage() {
                             </p>
                             <ul className="space-y-6">
                                 {[
-                                    { icon: Sparkles, text: "Sanadora ancestral por linaje y memoria." },
+                                    { icon: Sparkles, text: "Sanadora ancestral por linaje and memoria." },
                                     { icon: Anchor, text: "Administradora de empresas por estructura y orden." },
                                     { icon: Brain, text: "Psicóloga por vocación de comprender la mente." },
                                     { icon: Heart, text: "Terapeuta en duelo y tanatóloga por respeto." },
@@ -79,8 +80,8 @@ export default function AboutPage() {
 
                         <div className="relative p-8 border border-white/10 rounded-2xl bg-white/5 backdrop-blur-sm">
                             <p className="text-lg leading-relaxed text-gray-300 italic">
-                                "No elegí todos estos caminos al azar. Cada uno me enseñó algo distinto sobre el ser humano: cómo piensa, cómo siente, cómo se protege y cómo, cuando es escuchado con verdad, sana. <br /><br />
-                                <span className="font-semibold text-[var(--color-secondary)] not-italic">Hoy integro todo eso en un solo método.</span> Uno que honra la ciencia sin olvidar el espíritu. Uno que acompaña sin imponer. Uno que devuelve soberanía interior."
+                                No elegí todos estos caminos al azar. Cada uno me enseñó algo distinto sobre el ser humano: cómo piensa, cómo siente, cómo se protege y cómo, cuando es escuchado con verdad, sana. <br /><br />
+                                <span className="font-semibold text-[var(--color-secondary)] not-italic">Hoy integro todo eso en un solo método.</span> Uno que honra la ciencia sin olvidar el espíritu. Uno que acompaña sin imponer. Uno que devuelve soberanía interior.
                             </p>
                         </div>
                     </div>
@@ -191,7 +192,7 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* 5. Experience Section (New) */}
+            {/* 5. Experience Section (Environmental) */}
             <section className="py-24 bg-[#0a0a0a] px-4 relative overflow-hidden">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[var(--color-secondary)]/5 rounded-full blur-[120px]" />
 
@@ -212,7 +213,7 @@ export default function AboutPage() {
                                 ⸻
                             </span>
 
-                            <h3 className="text-3xl lg:text-4xl font-heading text-white mb-8">
+                            <h3 className="text-3xl lg:text-4xl font-heading text-white mb-8 italic">
                                 La experiencia que sostiene
                             </h3>
 
@@ -240,14 +241,17 @@ export default function AboutPage() {
             {/* 6. Closing Quotes / Footer */}
             <section className="py-32 bg-gradient-to-b from-black to-stone-950 text-center px-4">
                 <div className="container mx-auto max-w-4xl">
-                    <div className="mb-20">
-                        <h2 className="text-3xl lg:text-4xl font-serif italic text-white mb-6">
-                            "Cuando el cuerpo recuerda, <br /> la vida encuentra una nueva dirección."
+                    <div className="mb-20 min-h-[120px]">
+                        <h2 className="text-3xl lg:text-5xl font-serif italic text-white mb-6">
+                            <TypewriterText
+                                text="Cuando el cuerpo recuerda, la vida encuentra una nueva dirección."
+                                delay={0.5}
+                            />
                         </h2>
                         <div className="w-16 h-[1px] bg-[var(--color-secondary)] mx-auto" />
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-8 text-sm uppercase tracking-widest font-medium text-gray-500">
+                    <div className="grid md:grid-cols-3 gap-8 text-sm uppercase tracking-widest font-medium text-gray-500 mt-12">
                         <div className="p-8 border border-white/5 hover:border-[var(--color-secondary)] hover:text-white transition-all duration-300 rounded-xl bg-white/5 cursor-default">
                             El cuerpo guarda la memoria.
                         </div>
