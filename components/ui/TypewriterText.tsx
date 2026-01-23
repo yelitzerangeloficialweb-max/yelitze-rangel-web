@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, Variants } from "framer-motion";
 import { useRef } from "react";
 
 interface TypewriterTextProps {
@@ -15,7 +15,7 @@ export default function TypewriterText({ text, className = "", delay = 0 }: Type
 
     const characters = Array.from(text);
 
-    const container = {
+    const container: Variants = {
         hidden: { opacity: 0 },
         visible: (i = 1) => ({
             opacity: 1,
@@ -23,7 +23,7 @@ export default function TypewriterText({ text, className = "", delay = 0 }: Type
         }),
     };
 
-    const child = {
+    const child: Variants = {
         visible: {
             opacity: 1,
             y: 0,
