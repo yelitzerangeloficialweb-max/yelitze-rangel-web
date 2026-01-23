@@ -123,12 +123,12 @@ export default function TestsHubPage() {
                         {/* Image */}
                         <div className="relative min-h-[400px]">
                             <Image
-                                src="/assets/images/tests/yelitze-vortex.png"
+                                src="/assets/images/tests/test_arquitectura_lifestyle.png"
                                 alt="Arquitectura de Vida Intencional 2026"
                                 fill
                                 className="object-contain"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-primary)] to-transparent" />
+                            <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-primary)] via-transparent to-[var(--color-primary)]" />
                         </div>
                     </div>
                 </div>
