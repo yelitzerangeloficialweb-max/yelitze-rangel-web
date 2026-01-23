@@ -69,6 +69,59 @@ export const EVENTS_DATA: EventData[] = [
             "- Recuperas tu energía vital: Deja de invertir tu fuerza en sostener heridas del pasado y úsala para crear tu futuro.",
             "- Paz y claridad emocional: Transforma el dolor en fuerza y la duda en una confianza inquebrantable.",
             "- Escribe tu propio destino: Al finalizar, te sentirás ligera, reconciliada con tu historia y lista para manifestar la vida que mereces."
+            "- Paz y claridad emocional: Transforma el dolor en fuerza y la duda en una confianza inquebrantable.",
+            "- Escribe tu propio destino: Al finalizar, te sentirás ligera, reconciliada con tu historia y lista para manifestar la vida que mereces."
+        ]
+    },
+    {
+        id: 3,
+        slug: 'diplomado-coaching-ancestral',
+        title: "Diplomado de Coaching Ancestral",
+        type: "Pago",
+        date: "Por Definir",
+        time: "9:00 - 16:30",
+        location: "Muro de la paz, Caracas",
+        image: "/assets/images/diplomado-ancestral.png",
+        aida: {
+            attention: "“Los Órdenes del Chamanismo en la Terapia Sistémica”. Un viaje profundo donde el Chamanismo y las Constelaciones Familiares se encuentran para sanar el alma.",
+            interest: "Una formación intensiva de 3 módulos para terapeutas, psicólogos y buscadores que desean integrar herramientas chamánicas y sistémicas en sus procesos de sanación propios y con clientes.",
+            desire: "Aprende a trabajar con las capas del alma, rituales de paso, el campo de los ancestros y representaciones arquetípicas. Certifícate en Reconexión Sistémica® y lleva tu práctica terapéutica a un nuevo nivel de profundidad.",
+            action: "Solicitar Información"
+        },
+        fullDescription: [
+            "**Diplomado de Coaching Ancestral: 'Los Órdenes del Chamanismo en la Terapia Sistémica'**",
+            "La madre del Coaching Ancestral es el Chamanismo, el padre es el trabajo de Constelaciones Familiares al viejo estilo. El niño tiene características de ambos, pero como cualquier otro niño de dos padres, se para por sí mismo.",
+            "En el Coaching Ancestral puedes reconocer elementos del Chamanismo y de Constelaciones, pero es un método en sí mismo. Puede ser usado para dar al cliente un sentido de pertenencia, de ser una parte bienvenida dentro de una unidad mayor, atendido y apoyado en su salud y bienestar.",
+            "De acuerdo con las Tradiciones Chamánicas, el alma tiene diferentes elementos o capas. Algunas son individuales, pero otros aspectos los compartimos con la familia u otros grupos.",
+            "**Trabajamos con diferentes capas del alma como un soporte para la sanación de los enredos sistémicos**, explorando en cada constelación la relación entre el alma y el campo de los ancestros.",
+            "---",
+            "**ESTRUCTURA DE LA CAPACITACIÓN**",
+            "**Módulo I: EMPRENDIENDO EL VUELO**",
+            "- Las 4 Capas del Alma y cómo trabajar en consulta privada y grupal.",
+            "- La familia y los ancestros: Reconociendo y buscando su medicina.",
+            "- Rituales sistémicos vs Constelaciones Chamánicas.",
+            "- Traumas transgeneracionales: Ubicarlos, resolución y práctica.",
+            "- El círculo de la vida, muerte, pareja y despedidas.",
+            "- Diferencia entre ritual y ceremonia, y el permiso para entrar al alma de los ancestros.",
+            "**Módulo II: SURCANDO LOS CIELOS**",
+            "- Diferencia entre constelaciones familiares, de trauma y Chamánicas.",
+            "- Constelaciones Chamánicas en el tablero y el uso de objetos (tótems).",
+            "- Uso de recursos: sonaja, tambor, abanicos de pluma, medicinas ancestrales y música.",
+            "- Estructura y tiempo de una Constelación Chamánica.",
+            "- El círculo de las 4 direcciones.",
+            "**Módulo III: ATERRIZANDO EL VUELO**",
+            "- Anclando el trabajo personal a la tierra.",
+            "- Masaje Chamánico, el cuerpo y la familia.",
+            "- Desprogramación de la personalidad y descongelamiento de trauma.",
+            "- Prácticas con clientes dentro de la capacitación.",
+            "- Toma de Medicina (ayahuasca, yopo o rapé) y Temazcal para anclar el trabajo.",
+            "---",
+            "**INFORMACIÓN GENERAL**",
+            "Este método llamado **Coaching Ancestral®** fue creado por Yelitze Rangel, uniendo 14 años de conocimiento en psicofisiología corporal, trauma, principios chamánicos y constelaciones sistémicas.",
+            "**Para quién:** Formación de aprox. 95 horas en 9 días continuos. Diseñada para profesionales (psicoterapeutas, consteladores, trabajadores sociales) y personas comprometidas con su crecimiento personal que deseen ampliar sus herramientas de sanación.",
+            "**Certificación:** Al completar el entrenamiento, recibirás un certificado que te autoriza a utilizar el nombre de **Reconexión Sistémica®** (marca registrada).",
+            "**Lugar:** Muro de la paz. Monumento a la paz, Luis Roche Caracas, Colina de Bello Monte.",
+            "**Mayor Información:** 0414-6180005 (Whatsapp)"
         ]
     }
 ];
