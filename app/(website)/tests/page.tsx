@@ -7,7 +7,7 @@ const TESTS = [
         id: 'heridas-infancia',
         title: 'Heridas de la Infancia',
         description: 'Descubre qué herida emocional (Abandono, Rechazo, Humillación, Traición, Injusticia) influye en tu vida.',
-        image: '/assets/images/tests/childhood.png',
+        image: '/assets/images/tests/test_childhood_wounds.png',
         icon: <Baby className="w-6 h-6" />,
         color: 'from-amber-500/20 to-orange-500/20',
         href: '/tests/heridas-infancia'
@@ -16,7 +16,7 @@ const TESTS = [
         id: 'creencias-amor',
         title: 'Creencias sobre el Amor',
         description: 'Identifica los bloqueos inconscientes que te impiden vivir una relación de pareja plena y consciente.',
-        image: '/assets/images/tests/love.png',
+        image: '/assets/images/tests/test_love_beliefs.png',
         icon: <Heart className="w-6 h-6" />,
         color: 'from-pink-500/20 to-rose-500/20',
         href: '/tests/creencias-amor'
@@ -25,7 +25,7 @@ const TESTS = [
         id: 'creencias-dinero',
         title: 'Creencias sobre el Dinero',
         description: 'Explora tu relación con la abundancia y detecta lealtades familiares que limitan tu prosperidad.',
-        image: '/assets/images/tests/money.png',
+        image: '/assets/images/tests/test_money_beliefs.png',
         icon: <DollarSign className="w-6 h-6" />,
         color: 'from-emerald-500/20 to-teal-500/20',
         href: '/tests/creencias-dinero'

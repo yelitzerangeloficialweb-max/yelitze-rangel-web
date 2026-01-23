@@ -7,8 +7,11 @@ import { notFound } from 'next/navigation';
 
 export default function EventPage({ params }: { params: { slug: string } }) {
     const event = getEventBySlug(params.slug);
+    console.log('DEBUG: EventPage called. Slug:', params.slug);
+    console.log('DEBUG: Event found:', event ? event.title : 'null');
 
     if (!event) {
+        console.log('DEBUG: Event not found for slug:', params.slug);
         notFound();
     }
 
