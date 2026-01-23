@@ -6,12 +6,11 @@ import { FadeIn, ScaleIn } from "@/components/ui/motion";
 export default function HomeGallery() {
     // Using available assets to simulate a gallery
     const galleryImages = [
-        { src: "/assets/images/img-sanate.jpg", alt: "Círculo de mujeres", className: "h-64 md:h-80" },
-        { src: "/assets/images/casual-portrait.jpg", alt: "Sesión individual", className: "h-64 md:h-80" },
-        { src: "/assets/images/img-linaje.jpg", alt: "Taller presencial", className: "h-64 md:h-80" },
-        { src: "/assets/images/hero-portrait.png", alt: "Conferencia", className: "h-64 md:h-80 bg-[var(--color-primary)]/10" },
-        { src: "/assets/images/hero-background-new.jpg", alt: "Retiro natural", className: "h-64 md:h-80" },
-        { src: "/assets/images/portrait-creative.png", alt: "Encuentro de Almas", className: "h-64 md:h-80" }
+        { src: "/assets/images/gallery/gallery-1.jpg", alt: "Círculo de Mujeres", className: "h-64 md:h-80" },
+        { src: "/assets/images/gallery/gallery-2.jpg", alt: "Taller Vivencial", className: "h-64 md:h-80" },
+        { src: "/assets/images/gallery/gallery-3.jpg", alt: "Constelaciones Familiares", className: "h-64 md:h-80" },
+        { src: "/assets/images/gallery/gallery-4.jpg", alt: "Conexión con la Naturaleza", className: "h-64 md:h-80" },
+        { src: "/assets/images/gallery/gallery-5.jpg", alt: "Herramientas de Sanación", className: "h-64 md:h-80" }
     ];
 
     return (
