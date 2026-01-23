@@ -242,10 +242,15 @@ export default function AboutPage() {
             <section className="py-32 bg-gradient-to-b from-black to-stone-950 text-center px-4">
                 <div className="container mx-auto max-w-4xl">
                     <div className="mb-20 min-h-[120px]">
-                        <h2 className="text-3xl lg:text-5xl font-serif italic text-white mb-6">
+                        <h2 className="text-3xl lg:text-5xl font-serif italic text-white mb-6 leading-tight">
                             <TypewriterText
-                                text="Cuando el cuerpo recuerda, la vida encuentra una nueva dirección."
+                                text="Cuando el cuerpo recuerda,"
                                 delay={0.5}
+                            />
+                            <br />
+                            <TypewriterText
+                                text="la vida encuentra una nueva dirección."
+                                delay={2.0}
                             />
                         </h2>
                         <div className="w-16 h-[1px] bg-[var(--color-secondary)] mx-auto" />
