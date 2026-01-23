@@ -168,13 +168,20 @@ export default function CoachingAncestralPage() {
                         <div className="w-24 h-1 bg-[var(--color-secondary)] mx-auto" />
                     </FadeIn>
 
-                    <div className="grid md:grid-cols-2 gap-12">
+                    <div className="grid md:grid-cols-2 gap-8 lg:gap-12 relative">
+                        {/* Decorative glow */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[var(--color-secondary)]/5 blur-[120px] rounded-full pointer-events-none" />
+
                         {/* Pain Points */}
-                        <FadeIn className="bg-zinc-900/30 p-10 rounded-3xl border border-red-500/10 hover:border-red-500/30 transition-colors">
-                            <h3 className="text-2xl font-bold text-red-400 mb-8 flex items-center gap-3">
-                                <AlertCircle className="w-6 h-6" /> ¿Te sientes así?
+                        <FadeIn className="bg-stone-900/40 p-10 lg:p-12 rounded-[2rem] border border-white/5 hover:border-white/10 transition-all duration-500 backdrop-blur-sm self-stretch">
+                            <h3 className="text-2xl font-heading text-white mb-8 flex items-center gap-4 opacity-90">
+                                <div className="p-2 rounded-lg bg-white/5">
+                                    <AlertCircle className="w-6 h-6 text-gray-400" />
+                                </div>
+                                ¿Te sientes así?
+                                <div className="h-px flex-grow bg-white/10 ml-2" />
                             </h3>
-                            <ul className="space-y-4">
+                            <ul className="space-y-6">
                                 {[
                                     "Ansiedad constante por lo cambiante de la vida.",
                                     "Miedo a perder lo que tienes o repetir patrones familiares.",
@@ -182,20 +189,24 @@ export default function CoachingAncestralPage() {
                                     "Dolores de cabeza, fatiga mental o apatía.",
                                     "Vivir en 'modo supervivencia' sin disfrutar tus logros."
                                 ].map((item, i) => (
-                                    <li key={i} className="flex gap-4 text-gray-400 items-start">
-                                        <span className="text-red-500/50 mt-1">•</span>
-                                        {item}
+                                    <li key={i} className="flex gap-4 text-gray-400 items-start group">
+                                        <span className="text-[var(--color-secondary)]/40 mt-1.5 h-1.5 w-1.5 rounded-full bg-current flex-shrink-0" />
+                                        <span className="leading-relaxed group-hover:text-gray-300 transition-colors font-light">{item}</span>
                                     </li>
                                 ))}
                             </ul>
                         </FadeIn>
 
                         {/* Benefits */}
-                        <FadeIn delay={0.2} className="bg-zinc-900/30 p-10 rounded-3xl border border-green-500/10 hover:border-green-500/30 transition-colors">
-                            <h3 className="text-2xl font-bold text-green-400 mb-8 flex items-center gap-3">
-                                <Sparkles className="w-6 h-6" /> Lo que lograrás
+                        <FadeIn delay={0.2} className="bg-[#1a1a1a] p-10 lg:p-12 rounded-[2rem] border border-[var(--color-secondary)]/20 shadow-2xl backdrop-blur-md self-stretch">
+                            <h3 className="text-2xl font-heading text-[var(--color-secondary)] mb-8 flex items-center gap-4">
+                                <div className="p-2 rounded-lg bg-[var(--color-secondary)]/10 text-[var(--color-secondary)]">
+                                    <Sparkles className="w-6 h-6" />
+                                </div>
+                                Lo que lograrás
+                                <div className="h-px flex-grow bg-[var(--color-secondary)]/20 ml-2" />
                             </h3>
-                            <ul className="space-y-4">
+                            <ul className="space-y-6">
                                 {[
                                     "Mejora tu percepción del éxito y reduce la ansiedad.",
                                     "Recupera tu sueño y paz mental.",
@@ -203,9 +214,11 @@ export default function CoachingAncestralPage() {
                                     "Claridad inmediata: 70% de la batalla ganada con la toma de conciencia.",
                                     "Mejora en relaciones de pareja, familia y laborales."
                                 ].map((item, i) => (
-                                    <li key={i} className="flex gap-4 text-gray-400 items-start">
-                                        <CheckCircle2 className="w-5 h-5 text-green-500/50 flex-shrink-0 mt-1" />
-                                        {item}
+                                    <li key={i} className="flex gap-4 text-gray-300 items-start group">
+                                        <div className="mt-1 flex-shrink-0">
+                                            <CheckCircle2 className="w-5 h-5 text-[var(--color-secondary)]" />
+                                        </div>
+                                        <span className="leading-relaxed font-medium group-hover:text-white transition-colors">{item}</span>
                                     </li>
                                 ))}
                             </ul>
