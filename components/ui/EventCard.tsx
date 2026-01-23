@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 interface EventProps {
     title: string;
-    type: 'Gratuito' | 'Pago';
+    type: 'Semillas de consciencia' | 'Círculo de expansión';
     date: string;
     time?: string;
     location: string;
@@ -19,7 +19,7 @@ interface EventProps {
 }
 
 export default function EventCard({ event }: { event: EventProps }) {
-    const isFree = event.type === 'Gratuito';
+    const isFree = event.type === 'Semillas de consciencia';
 
     return (
         <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group flex flex-col h-full">
@@ -37,7 +37,7 @@ export default function EventCard({ event }: { event: EventProps }) {
                         ? 'bg-[var(--color-secondary)] text-white'
                         : 'bg-[var(--color-primary)] text-white'
                         }`}>
-                        {event.type}
+                        {event.type === 'Semillas de consciencia' ? 'Gratuito' : 'Pago'}
                     </span>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 pt-24">
