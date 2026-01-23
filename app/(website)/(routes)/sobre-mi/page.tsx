@@ -107,16 +107,16 @@ export default function AboutPage() {
                             Mi Historia
                         </h2>
                         <div className="prose prose-lg text-gray-300">
-                            <p>
+                            <p className="mb-8">
                                 Después de la pérdida de dos bebés y de un divorcio, mi vida quedó en pausa. No sabía cómo reiniciar ni desde dónde volver a empezar.
                             </p>
-                            <p>
+                            <p className="mb-8">
                                 Ese quiebre me llevó a la India, donde inicié lo que llamo mi <strong className="text-white">camino de fuego</strong>: un proceso de transformación que marcó un giro profundo en mi vida y me reconectó con mis dones, mis raíces y mis recursos internos.
                             </p>
-                            <p>
+                            <p className="mb-8">
                                 Allí comprendí que la sanación no ocurre cuando mente, cuerpo y alma caminan separados. <strong className="text-white">El equilibrio nace cuando se integran.</strong>
                             </p>
-                            <p>
+                            <p className="mb-8">
                                 Desde ese despertar comencé a dar forma a una nueva vida y a un método que une ciencia, experiencia terapéutica y sabiduría ancestral para acompañar procesos de duelo, trauma y reconexión interior, dándole una mirada circular a tu destino.
                             </p>
                         </div>
