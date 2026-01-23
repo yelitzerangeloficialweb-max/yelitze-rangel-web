@@ -6,31 +6,30 @@
 @tailwind utilities;
 
 :root {
-  /* Earth & Dust Palette - Updated */
-  --color-primary: #EBA100;
-  /* Gold / Mustard */
-  --color-primary-light: #FFC107;
-  /* Light Gold */
+  /* Strict 2-Color Palette */
 
-  --color-secondary: #994200;
-  /* Deep Earth Brown */
-  --color-secondary-light: #BF5E1A;
-  /* Light Brown */
+  /* Primary Color (Brown) */
+  --color-primary: #7b5735;
+  --color-primary-light: #7b5735;
+  /* Strict adherence */
 
-  --color-accent: #D7CCC8;
-  /* Pale Sand / Bone */
+  --color-secondary: #7b5735;
+  /* Merging secondary into primary */
+  --color-secondary-light: #7b5735;
 
-  --color-neutral: #B3B3B3;
-  /* Grey */
+  /* Accent - using Primary for consistency */
+  --color-accent: #7b5735;
 
-  --color-background: #FAF9F6;
-  /* Off-White / Alabaster */
-  --color-surface: #FFFFFF;
+  /* Neutral - using Primary or Background */
+  --color-neutral: #7b5735;
 
-  --color-text: #3E2723;
-  /* Very Dark Brown */
-  --color-text-light: #994200;
-  /* Medium Brown */
+  /* Background (Off-White) */
+  --color-background: #fafcfe;
+  --color-surface: #fafcfe;
+
+  /* Typography */
+  --color-text: #7b5735;
+  --color-text-light: #7b5735;
 
   /* Base Variables */
   --background: var(--color-background);
