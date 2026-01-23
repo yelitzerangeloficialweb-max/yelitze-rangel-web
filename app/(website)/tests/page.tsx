@@ -71,7 +71,7 @@ export default function TestsHubPage() {
                                 {/* Centered Content Overlay */}
                                 <div className="absolute inset-0 z-30 flex flex-col items-center justify-center text-center p-6 space-y-4">
                                     <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full text-white shadow-sm ring-1 ring-white/30 group-hover:scale-110 transition-transform duration-300">
-                                        {React.cloneElement(test.icon as React.ReactElement, { className: "w-8 h-8 stroke-[1.5]" })}
+                                        {React.cloneElement(test.icon as React.ReactElement<{ className?: string }>, { className: "w-8 h-8 stroke-[1.5]" })}
                                     </div>
                                     <h3 className="text-2xl font-heading text-white drop-shadow-md px-2 leading-tight">
                                         {test.title}
