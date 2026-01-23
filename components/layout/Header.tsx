@@ -120,7 +120,12 @@ export default function Header() {
                                             <Link
                                                 key={child.href}
                                                 href={child.href}
-                                                className="block px-4 py-3 text-sm text-primary hover:bg-background hover:text-secondary transition-colors border-b border-primary/5 last:border-0"
+                                                className={cn(
+                                                    "block px-4 py-3 text-sm text-primary hover:bg-background transition-colors border-b border-primary/5 last:border-0",
+                                                    child.href === '/experiencia-guiada'
+                                                        ? "hover:text-[var(--color-accent-light)] font-medium"
+                                                        : "hover:text-secondary"
+                                                )}
                                             >
                                                 {child.name}
                                             </Link>

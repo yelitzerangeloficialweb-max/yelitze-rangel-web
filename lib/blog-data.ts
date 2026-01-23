@@ -17,7 +17,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: '¿Por qué repetimos patrones? Sanando las Heridas de la Infancia',
         excerpt: 'Descubre cómo las experiencias no resueltas de tu niñez moldean tus relaciones actuales y aprende el primer paso para liberarte.',
         date: '28 de Diciembre, 2025',
-        image: '/assets/images/tests/blog_childhood_wounds.png',
+        image: '/assets/images/tests/childhood.png', // Reusing assets for now
         category: 'Sanación Interior',
         author: 'Yelitzé Rangel',
         content: `
@@ -38,7 +38,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: 'El Amor Ciego vs. El Amor Consciente',
         excerpt: 'Las constelaciones familiares nos enseñan que a veces sufrimos por lealtad a nuestros ancestros. ¿Cómo podemos amar con los ojos abiertos?',
         date: '20 de Diciembre, 2025',
-        image: '/assets/images/tests/blog_blind_vs_conscious_love.png',
+        image: '/assets/images/tests/love.png',
         category: 'Relaciones',
         author: 'Yelitzé Rangel',
         content: `
@@ -54,7 +54,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: 'El Dinero es Energía: Desbloquea tu Abundancia',
         excerpt: 'Tu cuenta bancaria es un reflejo de tu energía vital. Analizamos los bloqueos sistémicos más comunes que impiden el flujo del dinero.',
         date: '15 de Diciembre, 2025',
-        image: '/assets/images/tests/blog_money_energy.png',
+        image: '/assets/images/tests/money.png',
         category: 'Abundancia',
         author: 'Yelitzé Rangel',
         content: `
