@@ -41,7 +41,7 @@ export default function Footer() {
                         <ul className="space-y-3 text-white/70 text-sm">
                             <li><Link href="/sobre-mi" className="hover:text-[var(--color-secondary)] transition-colors">Sobre Mí</Link></li>
                             <li><Link href="/servicios" className="hover:text-[var(--color-secondary)] transition-colors">Servicios</Link></li>
-                            <li><Link href="/tests/heridas-infancia" className="hover:text-[var(--color-secondary)] transition-colors">Tests Gratuitos</Link></li>
+                            <li><Link href="/tests" className="hover:text-[var(--color-secondary)] transition-colors">Tests Gratuitos</Link></li>
                             <li><Link href="/blog" className="hover:text-[var(--color-secondary)] transition-colors">Blog</Link></li>
                         </ul>
                     </div>
