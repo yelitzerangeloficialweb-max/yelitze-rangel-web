@@ -5,13 +5,14 @@ import { ArrowLeft, Clock, MapPin, Calendar, Share2 } from 'lucide-react';
 import { getEventBySlug } from '@/lib/events';
 import { notFound } from 'next/navigation';
 
-export default function EventPage({ params }: { params: { slug: string } }) {
-    const event = getEventBySlug(params.slug);
-    console.log('DEBUG: EventPage called. Slug:', params.slug);
+export default async function EventPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
+    const event = getEventBySlug(slug);
+    console.log('DEBUG: EventPage called. Slug:', slug);
     console.log('DEBUG: Event found:', event ? event.title : 'null');
 
     if (!event) {
-        console.log('DEBUG: Event not found for slug:', params.slug);
+        console.log('DEBUG: Event not found for slug:', slug);
         notFound();
     }
 
