@@ -10,7 +10,8 @@ export default function HomeGallery() {
         { src: "/assets/images/gallery/gallery-2.jpg", alt: "Taller Vivencial", className: "h-64 md:h-80" },
         { src: "/assets/images/gallery/gallery-3.jpg", alt: "Constelaciones Familiares", className: "h-64 md:h-80" },
         { src: "/assets/images/gallery/gallery-4.jpg", alt: "Conexión con la Naturaleza", className: "h-64 md:h-80" },
-        { src: "/assets/images/gallery/gallery-5.jpg", alt: "Herramientas de Sanación", className: "h-64 md:h-80" }
+        { src: "/assets/images/gallery/gallery-5.jpg", alt: "Herramientas de Sanación", className: "h-64 md:h-80" },
+        { src: "/assets/images/gallery/gallery-6.jpg", alt: "Sesiones Terapéuticas", className: "h-64 md:h-80" }
     ];
 
     return (
