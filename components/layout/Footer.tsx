@@ -23,13 +23,13 @@ export default function Footer() {
                             Acompañándote a sanar tus raíces para que florezcas en tu propio destino. Terapia Sistémica y Sanación Ancestral.
                         </p>
                         <div className="flex gap-4">
-                            <a href="https://www.instagram.com/yelitzerangeloficial/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 rounded-full hover:bg-[var(--color-secondary)] transition-colors text-white">
+                            <a href="https://www.instagram.com/yelitzerangeloficial/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 rounded-full hover:bg-white hover:text-[var(--color-secondary)] transition-colors text-white">
                                 <Instagram className="w-5 h-5" />
                             </a>
-                            <a href="#" className="p-2 bg-white/10 rounded-full hover:bg-[var(--color-secondary)] transition-colors text-white">
+                            <a href="#" className="p-2 bg-white/10 rounded-full hover:bg-white hover:text-[var(--color-secondary)] transition-colors text-white">
                                 <MessageCircle className="w-5 h-5" />
                             </a>
-                            <a href="#" className="p-2 bg-white/10 rounded-full hover:bg-[var(--color-secondary)] transition-colors text-white">
+                            <a href="#" className="p-2 bg-white/10 rounded-full hover:bg-white hover:text-[var(--color-secondary)] transition-colors text-white">
                                 <Mail className="w-5 h-5" />
                             </a>
                         </div>
@@ -39,10 +39,10 @@ export default function Footer() {
                     <div>
                         <h4 className="text-lg font-heading mb-6 text-white">Explora</h4>
                         <ul className="space-y-3 text-white/70 text-sm">
-                            <li><Link href="/sobre-mi" className="hover:text-[var(--color-secondary)] transition-colors">Sobre Mí</Link></li>
-                            <li><Link href="/servicios" className="hover:text-[var(--color-secondary)] transition-colors">Servicios</Link></li>
-                            <li><Link href="/tests" className="hover:text-[var(--color-secondary)] transition-colors">Tests Gratuitos</Link></li>
-                            <li><Link href="/blog" className="hover:text-[var(--color-secondary)] transition-colors">Blog</Link></li>
+                            <li><Link href="/sobre-mi" className="hover:text-white transition-colors">Sobre Mí</Link></li>
+                            <li><Link href="/servicios" className="hover:text-white transition-colors">Servicios</Link></li>
+                            <li><Link href="/tests" className="hover:text-white transition-colors">Tests Gratuitos</Link></li>
+                            <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
                         </ul>
                     </div>
 
@@ -50,9 +50,9 @@ export default function Footer() {
                     <div>
                         <h4 className="text-lg font-heading mb-6 text-white">Legal</h4>
                         <ul className="space-y-3 text-white/70 text-sm">
-                            <li><Link href="/privacidad" className="hover:text-[var(--color-secondary)] transition-colors">Política de Privacidad</Link></li>
-                            <li><Link href="/terminos" className="hover:text-[var(--color-secondary)] transition-colors">Términos y Condiciones</Link></li>
-                            <li><Link href="/contacto" className="hover:text-[var(--color-secondary)] transition-colors">Contacto</Link></li>
+                            <li><Link href="/privacidad" className="hover:text-white transition-colors">Política de Privacidad</Link></li>
+                            <li><Link href="/terminos" className="hover:text-white transition-colors">Términos y Condiciones</Link></li>
+                            <li><Link href="/contacto" className="hover:text-white transition-colors">Contacto</Link></li>
                         </ul>
                     </div>
 
