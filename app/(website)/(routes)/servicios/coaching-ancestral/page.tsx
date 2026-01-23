@@ -49,16 +49,29 @@ export default function CoachingAncestralPage() {
                         </div>
                         <div className="max-w-3xl mx-auto">
                             <p className="text-xl text-gray-300 mb-12 leading-relaxed">
-                                Bienvenido/a a este espacio íntimo de Coaching Ancestral – Anatomía del Alma. Un encuentro 1:1 donde lo invisible cobra voz y tu alma puede expresarse con verdad. Este es un espacio seguro, consciente y transformador. Gracias por confiar en tu proceso.
+                                Bienvenido/a a este espacio íntimo de Coaching Ancestral – Anatomía del Alma. Un encuentro 1:1 donde lo invisible cobra voz y tu alma puede expresarse con verdad.<br />
+                                <strong>• Modalidad online o presencial • Tablero terapéutico • Seguimiento personalizado</strong><br />
+                                Este es un espacio seguro, consciente y transformador. Gracias por confiar en tu proceso.
                             </p>
                         </div>
-                        <Link
-                            href="/reservas"
-                            className="btn-premium text-lg px-10 py-4 shadow-2xl hover:shadow-[var(--color-secondary)]/20 transform hover:-translate-y-1 transition-all"
-                        >
-                            Agendar Mi Ceremonia
-                            <ArrowRight className="w-5 h-5 ml-2" />
-                        </Link>
+                        <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
+                            <Link
+                                href="/reservas"
+                                className="btn-premium text-lg px-10 py-4 shadow-2xl hover:shadow-[var(--color-secondary)]/20 transform hover:-translate-y-1 transition-all"
+                            >
+                                Reservar Sesión
+                                <ArrowRight className="w-5 h-5 ml-2" />
+                            </Link>
+                            <a
+                                href="https://wa.me/584146180005"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 px-10 py-4 rounded-full border border-white/20 text-white hover:bg-white/10 transition-all font-medium"
+                            >
+                                Iniciar por WhatsApp
+                                <span className="text-xl">📲</span>
+                            </a>
+                        </div>
                     </FadeIn>
                 </div>
             </section>
@@ -222,15 +235,19 @@ export default function CoachingAncestralPage() {
                                 <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:bg-[var(--color-secondary)]/10 transition-colors">
                                     <Users className="w-8 h-8 text-[var(--color-secondary)]" />
                                 </div>
-                                <h3 className="text-3xl font-heading text-white mb-6">Online (Global)</h3>
-                                <ul className="space-y-5 flex-grow">
+                                <h3 className="text-3xl font-heading text-white mb-2">Ceremonia Online</h3>
+                                <p className="text-[var(--color-secondary)] uppercase tracking-widest text-xs mb-6 font-bold">Coaching Ancestral</p>
+                                <p className="text-gray-400 mb-8 italic">
+                                    "Lo que se mueve aquí es profundo, sutil y verdadero. Una explosión silenciosa que ordena tu presente."
+                                </p>
+                                <ul className="space-y-5 flex-grow font-light">
                                     {[
-                                        { icon: Calendar, text: "Duración: 3 Horas intensivas." },
-                                        { icon: Brain, text: "Video de comprensiones post-sesión vía WhatsApp." },
-                                        { icon: Sparkles, text: "Documento PDF con lo vivido, ejercicios y herramientas." },
+                                        { icon: Clock, text: "Espacio íntimo de 3 horas de presencia terapéutica." },
+                                        { icon: Anchor, text: "Fusión de sabiduría ancestral y recursos modernos." },
+                                        { icon: Sparkles, text: "Incluye recursos antes y después para acompañar tu proceso." },
                                     ].map((item, i) => (
-                                        <li key={i} className="flex items-center gap-4 text-gray-400">
-                                            <item.icon className="w-5 h-5 text-[var(--color-secondary)]/50" />
+                                        <li key={i} className="flex items-center gap-4 text-gray-300">
+                                            <item.icon className="w-5 h-5 text-[var(--color-secondary)]" />
                                             <span>{item.text}</span>
                                         </li>
                                     ))}
@@ -288,7 +305,15 @@ export default function CoachingAncestralPage() {
                                 Agendar Sesión Ahora
                                 <ArrowRight className="w-5 h-5 ml-2" />
                             </Link>
-                            <p className="text-gray-500 text-sm italic">
+                            <a
+                                href="https://wa.me/584146180005"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 text-white hover:text-[var(--color-secondary)] transition-colors text-lg italic"
+                            >
+                                📲 Inicia tu viaje por WhatsApp y te damos más detalles.
+                            </a>
+                            <p className="text-gray-500 text-sm italic mt-4">
                                 Inversión en tu paz y futuro.
                             </p>
                         </div>
