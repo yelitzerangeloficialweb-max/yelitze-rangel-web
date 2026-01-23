@@ -42,10 +42,10 @@ export default function PromotionalBanner() {
                             <div className="absolute inset-0 bg-secondary/20 blur-2xl transform scale-90 translate-y-4 rounded-full -z-10" />
 
                             <Image
-                                src="/assets/images/manual-2026.jpg"
-                                alt="Manual de Manifestación 2026"
+                                src="/assets/images/tests/test_arquitectura_lifestyle.png"
+                                alt="Arquitectura de Vida Intencional 2026"
                                 fill
-                                className="object-cover"
+                                className="object-contain object-right"
                             />
                         </div>
                     </div>
