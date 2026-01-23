@@ -21,10 +21,7 @@ export default function AboutPage() {
                     </h1>
                     <div className="space-y-6 max-w-xl">
                         <p className="text-xl text-gray-300 italic border-l-4 border-[var(--color-secondary)] pl-6">
-                            "Mi misión es ser el puente. Unir la ciencia que estudia la mente con la sabiduría antigua que sana el alma."
-                        </p>
-                        <p className="text-lg text-gray-300 leading-relaxed font-light">
-                            Cuando la ciencia ya explicó el dolor y el alma aún pide ser escuchada… <strong className="text-white font-medium">ahí comienza mi trabajo.</strong>
+                            "Mi misión es ser el puente, cuando la ciencia ya explicó el dolor y el alma aún pide ser escuchada… ahí comienza mi trabajo."
                         </p>
                     </div>
                 </div>
@@ -93,14 +90,14 @@ export default function AboutPage() {
             {/* 3. My Story (Narrative) */}
             <section className="py-24 lg:py-32 px-4 container mx-auto">
                 <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-                    <div className="lg:col-span-5 relative h-[500px] lg:h-[700px] rounded-t-full overflow-hidden border border-white/10 shadow-2xl grayscale hover:grayscale-0 transition-all duration-700">
+                    <div className="lg:col-span-5 relative h-[500px] lg:h-[700px] rounded-2xl overflow-hidden shadow-2xl transition-all duration-700">
                         <Image
-                            src="/assets/images/about-portrait-tan.jpg"
-                            alt="Mi Historia"
+                            src="/assets/images/about-story-portrait.jpg"
+                            alt="Mi Historia - Yelitze Rangel"
                             fill
                             className="object-cover"
                         />
-                        <div className="absolute inset-0 bg-black/20" />
+                        <div className="absolute inset-0 bg-black/10" />
                     </div>
                     <div className="lg:col-span-7 flex flex-col justify-center space-y-8">
                         <span className="text-sm font-bold tracking-widest text-[var(--color-secondary)] uppercase">
