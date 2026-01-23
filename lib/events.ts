@@ -2,7 +2,7 @@ export interface EventData {
     id: number;
     slug: string;
     title: string;
-    type: 'Gratuito' | 'Pago';
+    type: 'Semillas de consciencia' | 'Círculo de expansión';
     date: string;
     time?: string;
     location: string;
@@ -21,7 +21,7 @@ export const EVENTS_DATA: EventData[] = [
         id: 1,
         slug: 'sanate-mujer',
         title: "Sánate Mujer",
-        type: "Gratuito",
+        type: "Semillas de consciencia",
         date: "22 de Mayo",
         time: "10:00 AM",
         location: "Online (Zoom)",
@@ -47,7 +47,7 @@ export const EVENTS_DATA: EventData[] = [
         id: 2,
         slug: 'sanando-linaje-femenino',
         title: "Sanando el Linaje Femenino",
-        type: "Pago",
+        type: "Círculo de expansión",
         date: "Inscripciones Abiertas",
         location: "Formación Online (3 Etapas)",
         image: "/assets/images/img-linaje.jpg",
@@ -75,10 +75,10 @@ export const EVENTS_DATA: EventData[] = [
         id: 3,
         slug: 'diplomado-coaching-ancestral',
         title: "Diplomado de Coaching Ancestral",
-        type: "Pago",
+        type: "Círculo de expansión",
         date: "Por Definir",
         time: "9:00 - 16:30",
-        location: "Muro de la paz, Caracas",
+        location: "Maracaibo",
         image: "/assets/images/diplomado-ancestral.png",
         aida: {
             attention: "“Los Órdenes del Chamanismo en la Terapia Sistémica”. Un viaje profundo donde el Chamanismo y las Constelaciones Familiares se encuentran para sanar el alma.",
@@ -118,7 +118,7 @@ export const EVENTS_DATA: EventData[] = [
             "Este método llamado **Coaching Ancestral®** fue creado por Yelitze Rangel, uniendo 14 años de conocimiento en psicofisiología corporal, trauma, principios chamánicos y constelaciones sistémicas.",
             "**Para quién:** Formación de aprox. 95 horas en 9 días continuos. Diseñada para profesionales (psicoterapeutas, consteladores, trabajadores sociales) y personas comprometidas con su crecimiento personal que deseen ampliar sus herramientas de sanación.",
             "**Certificación:** Al completar el entrenamiento, recibirás un certificado que te autoriza a utilizar el nombre de **Reconexión Sistémica®** (marca registrada).",
-            "**Lugar:** Muro de la paz. Monumento a la paz, Luis Roche Caracas, Colina de Bello Monte.",
+            "**Lugar:** Maracaibo.",
             "**Mayor Información:** 0414-6180005 (Whatsapp)"
         ]
     }
