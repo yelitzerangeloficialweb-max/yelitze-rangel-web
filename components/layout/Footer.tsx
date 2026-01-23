@@ -66,7 +66,7 @@ export default function Footer() {
                                 placeholder="Tu email aquí..."
                                 className="px-4 py-2 rounded bg-white/10 border border-white/20 focus:border-[var(--color-secondary)] outline-none text-white placeholder:text-white/40"
                             />
-                            <button className="btn-premium w-full justify-center">
+                            <button className="w-full bg-white text-[var(--color-secondary)] hover:bg-stone-100 px-6 py-3 rounded-full font-bold transition-all uppercase tracking-widest text-xs shadow-lg">
                                 Suscribirme
                             </button>
                         </form>
