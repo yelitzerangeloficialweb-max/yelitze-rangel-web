@@ -40,24 +40,24 @@ export default function BooksBanner() {
                     </div>
 
                     {/* Book Covers */}
-                    <div className="order-1 lg:order-2 flex justify-center lg:justify-end gap-x-6 lg:gap-x-10 perspective-1000">
-                        {/* Book 1: Chamana */}
-                        <ScaleIn delay={0.2} className="relative w-[160px] md:w-[200px] aspect-[2/3] transform rotate-y-[-15deg] hover:rotate-y-0 transition-transform duration-500 shadow-2xl z-10">
+                    <div className="order-1 lg:order-2 flex justify-center lg:justify-end gap-x-2 md:gap-x-8 perspective-1000 items-end">
+                        {/* Book 1: Chamana (Stack) */}
+                        <ScaleIn delay={0.2} className="relative w-[180px] md:w-[240px] aspect-[4/5] transform hover:scale-105 transition-transform duration-500 z-10">
                             <Image
-                                src="/assets/images/books/book-chamana.jpg"
+                                src="/assets/images/books/chamana-stack.png"
                                 alt="Libro Conversaciones con mi Chamana"
                                 fill
-                                className="object-cover rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+                                className="object-contain drop-shadow-2xl"
                             />
                         </ScaleIn>
 
-                        {/* Book 2: Hilos */}
-                        <ScaleIn delay={0.4} className="relative w-[160px] md:w-[200px] aspect-[2/3] transform translate-y-12 rotate-y-15 hover:rotate-y-0 transition-transform duration-500 shadow-2xl z-20">
+                        {/* Book 2: Hilos (Mockup) */}
+                        <ScaleIn delay={0.4} className="relative w-[160px] md:w-[220px] aspect-[4/6] transform hover:scale-105 transition-transform duration-500 z-20">
                             <Image
-                                src="/assets/images/books/book-hilos.jpg"
+                                src="/assets/images/books/hilos-mockup.png"
                                 alt="Libro Hilos de Conexión"
                                 fill
-                                className="object-cover rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+                                className="object-contain drop-shadow-2xl"
                             />
                         </ScaleIn>
                     </div>
