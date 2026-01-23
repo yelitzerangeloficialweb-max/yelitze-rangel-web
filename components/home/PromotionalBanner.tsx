@@ -45,7 +45,7 @@ export default function PromotionalBanner() {
                                 src="/assets/images/tests/test_arquitectura_lifestyle.png"
                                 alt="Arquitectura de Vida Intencional 2026"
                                 fill
-                                className="object-contain object-right"
+                                className="object-cover object-top"
                             />
                         </div>
                     </div>
