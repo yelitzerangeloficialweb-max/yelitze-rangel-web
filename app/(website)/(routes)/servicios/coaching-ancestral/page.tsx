@@ -248,18 +248,16 @@ export default function CoachingAncestralPage() {
                                 </div>
                                 <h3 className="text-3xl font-heading text-white mb-2">Ceremonia Online</h3>
                                 <p className="text-[var(--color-secondary)] uppercase tracking-widest text-xs mb-6 font-bold">Coaching Ancestral</p>
-                                <p className="text-gray-400 mb-8 italic">
-                                    "Lo que se mueve aquí es profundo, sutil y verdadero. Una explosión silenciosa que ordena tu presente."
-                                </p>
-                                <ul className="space-y-5 flex-grow font-light">
+                                <ul className="space-y-6 flex-grow font-light mt-4">
                                     {[
-                                        { icon: Clock, text: "Espacio íntimo de 3 horas de presencia terapéutica." },
-                                        { icon: Anchor, text: "Fusión de sabiduría ancestral y recursos modernos." },
-                                        { icon: Sparkles, text: "Incluye recursos antes y después para acompañar tu proceso." },
+                                        { icon: Clock, text: "Un espacio íntimo de 3 horas donde la presencia terapéutica y la sabiduría ancestral se encuentran." },
+                                        { icon: Sparkles, text: "Incluye recursos antes y después de la sesión para acompañar tu proceso." },
+                                        { icon: Heart, text: "Lo que se mueve aquí es profundo, sutil y verdadero." },
+                                        { icon: Anchor, text: "Una explosión silenciosa que ordena tu presente." },
                                     ].map((item, i) => (
-                                        <li key={i} className="flex items-center gap-4 text-gray-300">
-                                            <item.icon className="w-5 h-5 text-[var(--color-secondary)]" />
-                                            <span>{item.text}</span>
+                                        <li key={i} className="flex items-start gap-4 text-gray-300">
+                                            <item.icon className="w-5 h-5 text-[var(--color-secondary)] mt-1 flex-shrink-0" />
+                                            <span className="leading-relaxed">{item.text}</span>
                                         </li>
                                     ))}
                                 </ul>
