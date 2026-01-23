@@ -85,7 +85,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <FadeIn className="text-center mb-16">
             <h2 className="text-3xl font-heading text-[var(--color-primary)] mb-4">¿Cómo puedo acompañarte?</h2>
-            <p className="text-[var(--color-text-light)]">Diferentes caminos para tu proceso de sanación</p>
+            <p className="text-[var(--color-text-light)]">ALQUIMIA PERSONAL Y ORGANIZACIONAL</p>
           </FadeIn>
 
           <StaggerContainer className="grid md:grid-cols-3 gap-8">

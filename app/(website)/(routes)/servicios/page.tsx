@@ -41,8 +41,8 @@ export default function ServicesPage() {
                 <span className="uppercase tracking-widest text-sm font-semibold text-[var(--color-secondary)] mb-2 block animate-fade-in">
                     Mis Propuestas
                 </span>
-                <h1 className="text-4xl md:text-5xl font-heading text-[var(--color-primary)] mb-6 animate-fade-in-up">
-                    Servicios de Sanación
+                <h1 className="text-4xl md:text-5xl font-heading text-[var(--color-primary)] mb-6 animate-fade-in-up uppercase">
+                    ALQUIMIA PERSONAL Y ORGANIZACIONAL
                 </h1>
                 <p className="max-w-2xl mx-auto text-xl text-[var(--color-text-light)] animate-fade-in-up delay-100">
                     Herramientas y espacios sagrados diseñados para acompañarte en cada etapa de tu proceso de evolución.
@@ -70,7 +70,7 @@ export default function ServicesPage() {
                                 {service.icon}
                             </div>
 
-                            <h3 className="text-2xl font-heading text-[var(--color-primary)] mb-4 text-center group-hover:text-[var(--color-secondary)] transition-colors">
+                            <h3 className="text-2xl lg:text-3xl font-heading text-[var(--color-primary)] mb-4 text-center group-hover:text-[var(--color-secondary)] transition-colors">
                                 {service.title}
                             </h3>
 
