@@ -8,6 +8,7 @@ import HeroSlider from '@/components/home/HeroSlider';
 import BooksBanner from '@/components/home/BooksBanner';
 import HomeEvents from '@/components/home/HomeEvents';
 import HomeGallery from '@/components/home/HomeGallery';
+import NewsletterSection from '@/components/home/NewsletterSection';
 import { FadeIn, ScaleIn, StaggerContainer, StaggerItem, HoverCard } from "@/components/ui/motion";
 
 export default function Home() {
@@ -247,6 +248,9 @@ export default function Home() {
           </StaggerContainer>
         </div>
       </section>
+
+      {/* Newsletter Section */}
+      <NewsletterSection />
 
       {/* Instagram Grid */}
       <InstagramFeed />
