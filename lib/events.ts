@@ -69,8 +69,6 @@ export const EVENTS_DATA: EventData[] = [
             "- Recuperas tu energía vital: Deja de invertir tu fuerza en sostener heridas del pasado y úsala para crear tu futuro.",
             "- Paz y claridad emocional: Transforma el dolor en fuerza y la duda en una confianza inquebrantable.",
             "- Escribe tu propio destino: Al finalizar, te sentirás ligera, reconciliada con tu historia y lista para manifestar la vida que mereces."
-            "- Paz y claridad emocional: Transforma el dolor en fuerza y la duda en una confianza inquebrantable.",
-            "- Escribe tu propio destino: Al finalizar, te sentirás ligera, reconciliada con tu historia y lista para manifestar la vida que mereces."
         ]
     },
     {
