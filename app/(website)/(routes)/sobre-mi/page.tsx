@@ -192,34 +192,48 @@ export default function AboutPage() {
             </section>
 
             {/* 5. Experience Section (New) */}
-            <section className="py-24 bg-[#0a0a0a] text-center px-4 relative overflow-hidden">
+            <section className="py-24 bg-[#0a0a0a] px-4 relative overflow-hidden">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[var(--color-secondary)]/5 rounded-full blur-[120px]" />
 
-                <div className="container mx-auto max-w-4xl relative z-10">
-                    <span className="text-[var(--color-secondary)] text-4xl mb-6 block font-serif">
-                        ⸻
-                    </span>
+                <div className="container mx-auto max-w-6xl relative z-10">
+                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                        <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl order-2 lg:order-1">
+                            <Image
+                                src="/assets/images/about-experience.jpg"
+                                alt="Danza Lunar y Solar - Yelitze Rangel"
+                                fill
+                                className="object-cover"
+                            />
+                            <div className="absolute inset-0 bg-black/20" />
+                        </div>
 
-                    <h3 className="text-3xl lg:text-4xl font-heading text-white mb-8">
-                        La experiencia que sostiene
-                    </h3>
+                        <div className="text-center lg:text-left order-1 lg:order-2">
+                            <span className="text-[var(--color-secondary)] text-4xl mb-6 block font-serif">
+                                ⸻
+                            </span>
 
-                    <div className="text-lg lg:text-xl text-gray-300 leading-relaxed space-y-6">
-                        <p>
-                            La Danza Lunar, la Danza del Sol en México y muchas otras experiencias fueron dando forma a grandes experiencias que hoy comparto.
-                        </p>
-                        <p className="italic text-white font-light text-2xl">
-                            No como una verdad única, <br />
-                            sino como un camino posible
-                        </p>
-                        <p>
-                            para volver al cuerpo, a la energía, al linaje <br /> y a la coherencia interior.
-                        </p>
+                            <h3 className="text-3xl lg:text-4xl font-heading text-white mb-8">
+                                La experiencia que sostiene
+                            </h3>
+
+                            <div className="text-lg lg:text-xl text-gray-300 leading-relaxed space-y-6">
+                                <p>
+                                    La Danza Lunar, la Danza del Sol en México y muchas otras experiencias fueron dando forma a grandes experiencias que hoy comparto.
+                                </p>
+                                <p className="italic text-white font-light text-2xl">
+                                    No como una verdad única, <br />
+                                    sino como un camino posible
+                                </p>
+                                <p>
+                                    para volver al cuerpo, a la energía, al linaje <br /> y a la coherencia interior.
+                                </p>
+                            </div>
+
+                            <span className="text-[var(--color-secondary)] text-4xl mt-8 block font-serif lg:hidden">
+                                ⸻
+                            </span>
+                        </div>
                     </div>
-
-                    <span className="text-[var(--color-secondary)] text-4xl mt-8 block font-serif">
-                        ⸻
-                    </span>
                 </div>
             </section>
 
