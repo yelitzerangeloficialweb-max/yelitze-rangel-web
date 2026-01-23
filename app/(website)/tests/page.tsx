@@ -1,3 +1,4 @@
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, Sparkles, Heart, DollarSign, Baby } from 'lucide-react';
@@ -59,32 +60,36 @@ export default function TestsHubPage() {
                             className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-[var(--color-primary)]/5 flex flex-col"
                         >
                             {/* Image Container */}
-                            <div className="relative h-64 overflow-hidden">
-                                <div className={`absolute inset-0 bg-gradient-to-br ${test.color} z-10 opacity-60 group-hover:opacity-40 transition-opacity`} />
+                            <div className="relative h-72 overflow-hidden">
+                                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors z-20" />
                                 <Image
                                     src={test.image}
                                     alt={test.title}
                                     fill
                                     className="object-cover transform group-hover:scale-105 transition-transform duration-700"
                                 />
-                                {/* Icon Badge */}
-                                <div className="absolute top-4 right-4 z-20 bg-white p-3 rounded-full shadow-md text-[var(--color-primary)]">
-                                    {test.icon}
+                                {/* Centered Content Overlay */}
+                                <div className="absolute inset-0 z-30 flex flex-col items-center justify-center text-center p-6 space-y-4">
+                                    <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full text-white shadow-sm ring-1 ring-white/30 group-hover:scale-110 transition-transform duration-300">
+                                        {React.cloneElement(test.icon as React.ReactElement, { className: "w-8 h-8 stroke-[1.5]" })}
+                                    </div>
+                                    <h3 className="text-2xl font-heading text-white drop-shadow-md px-2 leading-tight">
+                                        {test.title}
+                                    </h3>
                                 </div>
                             </div>
 
                             {/* Content */}
                             <div className="p-8 flex flex-col flex-grow">
-                                <h3 className="text-2xl font-heading text-[var(--color-primary)] mb-3 group-hover:text-[var(--color-secondary)] transition-colors">
-                                    {test.title}
-                                </h3>
-                                <p className="text-[var(--color-text-light)] mb-8 flex-grow">
+                                <p className="text-[var(--color-text-light)] mb-8 flex-grow text-sm leading-relaxed text-center">
                                     {test.description}
                                 </p>
 
-                                <div className="inline-flex items-center font-semibold text-[var(--color-primary)] group-hover:translate-x-2 transition-transform">
-                                    Iniciar Test
-                                    <ArrowRight className="w-5 h-5 ml-2" />
+                                <div className="flex justify-center">
+                                    <div className="inline-flex items-center text-sm font-semibold text-[var(--color-primary)] group-hover:text-[var(--color-secondary)] transition-colors">
+                                        Iniciar Test
+                                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                                    </div>
                                 </div>
                             </div>
                         </Link>
