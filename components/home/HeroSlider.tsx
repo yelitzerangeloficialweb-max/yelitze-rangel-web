@@ -48,7 +48,7 @@ export default function HeroSlider() {
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % slides.length);
-        }, 8000); // Increased duration for readability of animations
+        }, 12000); // Increased duration to 12 seconds for better readability of poetic text and animations
         return () => clearInterval(timer);
     }, []);
 
