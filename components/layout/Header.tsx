@@ -55,7 +55,7 @@ export default function Header() {
             href: '/tests',
             children: [
                 { name: 'Ver Todos', href: '/tests' },
-                { name: 'ARQUITECTURA DE VIDA INTENCIONAL 2026', href: '/experiencia-guiada' },
+                { name: 'Arquitectura de Vida Intencional 2026', href: '/experiencia-guiada' },
                 { name: 'Heridas de la Infancia', href: '/tests/heridas-infancia' },
                 { name: 'Creencias sobre el Amor', href: '/tests/creencias-amor' },
                 { name: 'Creencias sobre el Dinero', href: '/tests/creencias-dinero' }

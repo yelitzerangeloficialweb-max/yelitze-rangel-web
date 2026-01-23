@@ -90,47 +90,47 @@ export default function TestsHubPage() {
                                         Iniciar Test
                                         <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                                     </div>
-
-                                    {/* Arquitectura de Vida Section */}
-                                    <div className="my-20 relative rounded-3xl overflow-hidden shadow-2xl">
-                                        <div className="absolute inset-0 bg-[var(--color-primary)] z-0" />
-                                        <div className="grid md:grid-cols-2 relative z-10">
-                                            {/* Content */}
-                                            <div className="p-12 flex flex-col justify-center text-white space-y-6">
-                                                <div className="bg-white/10 w-fit p-3 rounded-xl backdrop-blur-sm border border-white/20">
-                                                    <Compass className="w-8 h-8 text-[var(--color-accent-light)]" />
-                                                </div>
-                                                <h2 className="text-3xl md:text-4xl font-heading leading-tight">
-                                                    Arquitectura de Vida <br />
-                                                    <span className="text-[var(--color-accent-light)]">Intencional 2026</span>
-                                                </h2>
-                                                <p className="text-white/80 text-lg leading-relaxed">
-                                                    No dejes tu futuro al azar. Diseña una vida alineada con tu propósito, sanando el pasado para construir un mañana consciente.
-                                                </p>
-                                                <Link
-                                                    href="/experiencia-guiada"
-                                                    className="inline-flex items-center gap-2 bg-[var(--color-accent-light)] text-[var(--color-primary)] px-8 py-3 rounded-full font-bold hover:bg-white transition-all transform hover:translate-x-1 w-fit mt-4"
-                                                >
-                                                    Comenzar Diseño
-                                                    <ArrowRight className="w-5 h-5" />
-                                                </Link>
-                                            </div>
-                                            {/* Image */}
-                                            <div className="relative min-h-[400px]">
-                                                <Image
-                                                    src="/assets/images/tests/test_arquitectura_vida.png"
-                                                    alt="Arquitectura de Vida Intencional"
-                                                    fill
-                                                    className="object-cover"
-                                                />
-                                                <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-primary)] to-transparent" />
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </Link>
                     ))}
+                </div>
+
+                {/* Arquitectura de Vida Section */}
+                <div className="my-20 relative rounded-3xl overflow-hidden shadow-2xl">
+                    <div className="absolute inset-0 bg-[var(--color-primary)] z-0" />
+                    <div className="grid md:grid-cols-2 relative z-10">
+                        {/* Content */}
+                        <div className="p-12 flex flex-col justify-center text-white space-y-6">
+                            <div className="bg-white/10 w-fit p-3 rounded-xl backdrop-blur-sm border border-white/20">
+                                <Compass className="w-8 h-8 text-[var(--color-accent-light)]" />
+                            </div>
+                            <h2 className="text-3xl md:text-4xl font-heading leading-tight">
+                                Arquitectura de Vida <br />
+                                <span className="text-[var(--color-accent-light)]">Intencional 2026</span>
+                            </h2>
+                            <p className="text-white/80 text-lg leading-relaxed">
+                                No dejes tu futuro al azar. Diseña una vida alineada con tu propósito, sanando el pasado para construir un mañana consciente.
+                            </p>
+                            <Link
+                                href="/experiencia-guiada"
+                                className="inline-flex items-center gap-2 bg-[var(--color-accent-light)] text-[var(--color-primary)] px-8 py-3 rounded-full font-bold hover:bg-white transition-all transform hover:translate-x-1 w-fit mt-4"
+                            >
+                                Comenzar Diseño
+                                <ArrowRight className="w-5 h-5" />
+                            </Link>
+                        </div>
+                        {/* Image */}
+                        <div className="relative min-h-[400px]">
+                            <Image
+                                src="/assets/images/tests/test_arquitectura_vida.png"
+                                alt="Arquitectura de Vida Intencional"
+                                fill
+                                className="object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-primary)] to-transparent" />
+                        </div>
+                    </div>
                 </div>
 
                 {/* Banner Footer */}
