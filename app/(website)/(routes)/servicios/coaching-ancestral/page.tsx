@@ -6,6 +6,7 @@ import {
     ArrowRight, Clock, Star, Users, Heart, AlertCircle,
     Calendar, CheckCircle2, ShieldCheck, Sparkles, Anchor, Brain
 } from "lucide-react";
+import TypewriterText from "@/components/ui/TypewriterText";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 
 export default function CoachingAncestralPage() {
