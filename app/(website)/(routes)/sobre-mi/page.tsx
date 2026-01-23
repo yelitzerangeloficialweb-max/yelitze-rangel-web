@@ -171,8 +171,8 @@ export default function AboutPage() {
 
                         {/* The Expansion */}
                         <FadeIn delay={0.4} className="bg-[#1a1a1a] p-10 lg:p-14 rounded-3xl shadow-2xl relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500 border border-white/5">
-                            <div className="absolute inset-0 bg-[url('/assets/images/tablero-terapeutico-new.jpg')] bg-cover bg-center opacity-30 group-hover:opacity-30 transition-opacity duration-700 mix-blend-overlay" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+                            <div className="absolute inset-0 bg-[url('/assets/images/coaching-ancestral-new.jpg')] bg-cover bg-center opacity-40 group-hover:opacity-50 transition-opacity duration-700" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
 
                             <div className="relative z-10 flex flex-col h-full justify-between">
                                 <div>
@@ -255,10 +255,15 @@ export default function AboutPage() {
             <section className="py-32 bg-gradient-to-b from-black to-stone-950 text-center px-4">
                 <div className="container mx-auto max-w-4xl">
                     <div className="mb-20 min-h-[160px] flex flex-col justify-center items-center">
-                        <h2 className="text-3xl lg:text-6xl font-serif italic text-white mb-10 leading-tight">
+                        <h2 className="text-3xl lg:text-5xl font-serif italic text-white mb-10 leading-tight">
                             <TypewriterText
-                                text="Cuando el cuerpo recuerda, la vida encuentra una nueva dirección."
+                                text="Cuando el cuerpo recuerda,"
                                 delay={0.5}
+                            />
+                            <br />
+                            <TypewriterText
+                                text="la vida encuentra una nueva dirección."
+                                delay={2.0}
                             />
                         </h2>
                         <div className="w-16 h-[1px] bg-[var(--color-secondary)] mx-auto" />
