@@ -5,10 +5,10 @@ export default function ServicesPage() {
     const services = [
         {
             title: "Sesiones Íntimas",
-            description: "Bienvenida/o a este espacio íntimo de Coaching Ancestral – Anatomía del Alma. Un encuentro 1:1 donde lo invisible cobra voz y tu alma puede expresarse con verdad. Este es un espacio seguro, consciente y transformador.",
+            description: "Bienvenida/o a este espacio íntimo de Coaching Ancestral – Anatomía del Alma. Un encuentro 1:1 donde lo invisible cobra voz y tu alma puede expresarse con verdad.",
             price: "Desde $197 USD",
             icon: <Users className="w-8 h-8 text-[var(--color-secondary)]" />,
-            features: ["Modalidad Online o Presencial", "Tablero Terapéutico", "Seguimiento Personalizado", "Espacio seguro, consciente y transformador"],
+            features: ["Modalidad Online o Presencial", "Tablero Terapéutico", "Seguimiento Personalizado"],
             link: "/servicios/coaching-ancestral",
             cta: "Ver Todos los Detalles",
             highlight: true
@@ -78,8 +78,8 @@ export default function ServicesPage() {
                                 {service.description}
                             </p>
 
-                            <div className="bg-[var(--color-background)] rounded-xl p-6 mb-8">
-                                <ul className="space-y-3">
+                            <div className="bg-[var(--color-background)] rounded-xl p-6 mb-8 text-center">
+                                <ul className="space-y-3 inline-block text-left mb-4">
                                     {service.features.map((feat, i) => (
                                         <li key={i} className="flex items-center text-sm text-[var(--color-text)]">
                                             <span className={`w-1.5 h-1.5 rounded-full mr-3 ${service.highlight ? 'bg-[var(--color-secondary)]' : 'bg-[var(--color-primary)]/40'}`} />
@@ -87,6 +87,11 @@ export default function ServicesPage() {
                                         </li>
                                     ))}
                                 </ul>
+                                {service.title === "Sesiones Íntimas" && (
+                                    <p className="text-sm italic font-medium text-[var(--color-secondary)] border-t border-[var(--color-primary)]/5 pt-4 mt-2">
+                                        Este es un espacio seguro, consciente y transformador.
+                                    </p>
+                                )}
                             </div>
 
                             <div className="text-center mt-auto">
