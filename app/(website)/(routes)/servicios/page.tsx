@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { ArrowRight, Calendar, Users, BookOpen } from "lucide-react";
+import { ArrowRight, Calendar, Users, BookOpen, Building2, HeartHandshake } from "lucide-react";
 
 export default function ServicesPage() {
     const services = [
@@ -21,6 +20,26 @@ export default function ServicesPage() {
             features: ["Encuentros en vivo", "Cuaderno de trabajo PDF", "Acceso a comunidad"],
             link: "/eventos", // Linking to events for now as these are usually dated
             cta: "Ver Próximos Talleres",
+            highlight: false
+        },
+        {
+            title: "Sesiones Corporativas",
+            description: "Impulsa el potencial de tu equipo a través de la visión sistémica. Sanamos la cultura organizacional para alcanzar objetivos extraordinarios.",
+            price: "Consultar presupuesto",
+            icon: <Building2 className="w-8 h-8 text-[var(--color-secondary)]" />,
+            features: ["Coaching para líderes", "Dinámicas de equipo", "Visión sistémica empresarial"],
+            link: "https://wa.me/17867268717",
+            cta: "Solicitar Propuesta",
+            highlight: false
+        },
+        {
+            title: "Sesiones Corporales",
+            description: "Reconexión profunda a través del cuerpo. Libera memorias celulares y restaura tu equilibrio vital con técnicas de sanación física.",
+            price: "Desde $150 USD",
+            icon: <HeartHandshake className="w-8 h-8 text-[var(--color-secondary)]" />,
+            features: ["Masaje de descongelamiento", "Armonización energética", "Liberación de traumas físicos"],
+            link: "https://wa.me/17867268717",
+            cta: "Reservar Mi Sesión",
             highlight: false
         },
         {
