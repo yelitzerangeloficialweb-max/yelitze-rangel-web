@@ -32,7 +32,7 @@ export default function HomeEvents() {
                     </p>
                 </FadeIn>
 
-                <StaggerContainer className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
                     {events.map((event) => (
                         <StaggerItem key={event.id} className="h-full">
                             <Link href={`/eventos/${event.slug}`} className="block h-full">

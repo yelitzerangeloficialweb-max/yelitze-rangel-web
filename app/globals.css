@@ -57,9 +57,9 @@ body {
 h1,
 h2,
 h3 {
-  font-family: 'Dancing Script', cursive;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  font-family: 'Ranade', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 h4,
@@ -70,7 +70,7 @@ h6 {
 }
 
 .font-script {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Ranade', sans-serif;
 }
 
 /* Smooth Scrolling */

@@ -20,9 +20,9 @@ const config: Config = {
                 neutral: "var(--color-neutral)",
             },
             fontFamily: {
-                heading: ["'Dancing Script'", "cursive"],
+                heading: ["'Ranade'", "sans-serif"],
                 body: ["'Ranade'", "sans-serif"],
-                script: ["'Dancing Script'", "cursive"],
+                script: ["'Ranade'", "sans-serif"],
                 sans: ["'Ranade'", "sans-serif"],
             },
         },

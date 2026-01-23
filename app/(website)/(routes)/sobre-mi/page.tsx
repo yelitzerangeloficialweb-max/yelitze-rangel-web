@@ -18,13 +18,13 @@ export default function AboutPage() {
                         <span className="text-[var(--color-secondary)] uppercase tracking-[0.2em] text-sm font-medium mb-6 block">
                             Sobre Mi
                         </span>
-                        <h1 className="text-4xl lg:text-6xl font-heading text-white mb-8 leading-tight">
+                        <h1 className="text-4xl lg:text-7xl font-heading text-white mb-8 leading-tight font-bold">
                             Donde la mente comprende <br />
-                            <span className="italic font-light text-[var(--color-secondary)]">el cuerpo y el alma recuerdan.</span>
+                            <span className="italic font-light text-[var(--color-secondary)] opacity-90">el cuerpo y el alma recuerdan.</span>
                         </h1>
                         <div className="space-y-6 max-w-xl">
                             <p className="text-xl text-gray-300 italic border-l-4 border-[var(--color-secondary)] pl-6">
-                                "Mi misión es ser el puente, cuando la ciencia ya explicó el dolor y el alma aún pide ser escuchada… ahí comienza mi trabajo."
+                                Mi misión es ser el puente, cuando la ciencia ya explicó el dolor y el alma aún pide ser escuchada… ahí comienza mi trabajo.
                             </p>
                         </div>
                     </FadeIn>
@@ -39,6 +39,7 @@ export default function AboutPage() {
                         fill
                         className="object-cover object-top"
                         priority
+                        quality={100}
                     />
                 </div>
             </section>
@@ -49,11 +50,11 @@ export default function AboutPage() {
 
                 <div className="container mx-auto relative z-10">
                     <FadeIn className="max-w-5xl mx-auto text-center mb-16">
-                        <h2 className="text-3xl lg:text-5xl font-heading mb-6 text-white">
+                        <h2 className="text-3xl lg:text-5xl font-heading mb-6 text-white font-bold">
                             Soy Yelitze Rangel
                         </h2>
                         <div className="w-24 h-1 bg-[var(--color-secondary)] mx-auto mb-6" />
-                        <p className="text-xl lg:text-2xl font-light text-gray-300">
+                        <p className="text-xl lg:text-2xl font-light text-gray-300 tracking-widest">
                             TU COACH ANCESTRAL
                         </p>
                     </FadeIn>
@@ -101,7 +102,7 @@ export default function AboutPage() {
                             src="/assets/images/about-story-portrait.jpg"
                             alt="Mi Historia - Yelitze Rangel"
                             fill
-                            className="object-cover"
+                            className="object-cover object-top"
                         />
                         <div className="absolute inset-0 bg-black/10" />
                     </FadeIn>
@@ -110,7 +111,7 @@ export default function AboutPage() {
                             <span className="text-sm font-bold tracking-widest text-[var(--color-secondary)] uppercase">
                                 El Camino
                             </span>
-                            <h2 className="text-4xl lg:text-6xl font-heading text-white">
+                            <h2 className="text-4xl lg:text-7xl font-heading text-white font-bold">
                                 Mi Historia
                             </h2>
                         </FadeIn>
@@ -122,7 +123,7 @@ export default function AboutPage() {
                                 Ese quiebre me llevó a la India, donde inicié lo que llamo mi <strong className="text-white">camino de fuego</strong>: un proceso de transformación que marcó un giro profundo en mi vida y me reconectó con mis dones, mis raíces y mis recursos internos.
                             </StaggerItem>
                             <StaggerItem className="mb-8">
-                                Allí comprendí que la sanación no ocurre cuando mente, cuerpo y alma caminan separados. <strong className="text-white">El equilibrio nace when se integran.</strong>
+                                Allí comprendí que la sanación no ocurre cuando mente, cuerpo y alma caminan separados. <strong className="text-white">El equilibrio nace cuando se integran.</strong>
                             </StaggerItem>
                             <StaggerItem className="mb-8">
                                 Desde ese despertar comencé a dar forma a una nueva vida y a un método que une ciencia, experiencia terapéutica y sabiduría ancestral para acompañar procesos de duelo, trauma y reconexión interior, dándole una mirada circular a tu destino.
@@ -130,7 +131,7 @@ export default function AboutPage() {
                         </StaggerContainer>
                         <FadeIn delay={0.4} className="bg-white/5 p-8 rounded-xl border-l-2 border-[var(--color-secondary)] mt-4">
                             <p className="text-xl font-light italic text-white m-0">
-                                "Hoy acompaño desde la presencia, la integración y el respeto profundo por cada historia."
+                                Hoy acompaño desde la presencia, la integración y el respeto profundo por cada historia.
                             </p>
                         </FadeIn>
                     </div>
@@ -149,7 +150,7 @@ export default function AboutPage() {
                         {/* The Shift */}
                         <div className="space-y-8">
                             <FadeIn>
-                                <h3 className="text-3xl font-heading text-white">
+                                <h3 className="text-3xl lg:text-4xl font-heading text-white font-bold">
                                     Cuando todo cambió
                                 </h3>
                                 <p className="text-lg text-gray-400 leading-relaxed">
@@ -159,7 +160,7 @@ export default function AboutPage() {
                             </FadeIn>
 
                             <FadeIn delay={0.2} className="mt-12 pt-12 border-t border-white/10">
-                                <h3 className="text-3xl font-heading text-white mb-4">
+                                <h3 className="text-3xl lg:text-4xl font-heading text-white mb-4 font-bold">
                                     Inteligencia Corporal System
                                 </h3>
                                 <p className="text-lg text-gray-400 leading-relaxed">
@@ -178,14 +179,14 @@ export default function AboutPage() {
                                     <span className="inline-block px-4 py-1 rounded-full border border-[var(--color-secondary)]/30 text-[var(--color-secondary)] text-xs font-bold tracking-widest uppercase mb-6">
                                         Evolución
                                     </span>
-                                    <h3 className="text-3xl lg:text-4xl font-heading text-white mb-6">
+                                    <h3 className="text-3xl lg:text-4xl font-heading text-white mb-6 font-bold">
                                         Coaching Ancestral
                                     </h3>
                                     <p className="text-xl text-gray-300 leading-relaxed font-light">
                                         Un sistema terapéutico donde, a través de un tablero, <strong className="text-white">la anatomía del alma —lo invisible— cobra voz</strong> y una nueva dirección comienza a cambiar el rumbo de la vida.
                                     </p>
                                     <p className="mt-6 text-[var(--color-secondary)] font-medium italic">
-                                        "Esto no es motivación. Es entrenamiento energético."
+                                        Esto no es motivación. Es entrenamiento energético.
                                     </p>
                                 </div>
 
@@ -207,12 +208,13 @@ export default function AboutPage() {
 
                 <div className="container mx-auto max-w-6xl relative z-10">
                     <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                        <FadeIn className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl order-2 lg:order-1">
+                        <FadeIn className="relative h-[650px] lg:h-[700px] rounded-2xl overflow-hidden shadow-2xl order-2 lg:order-1">
                             <Image
                                 src="/assets/images/about-experience.jpg"
                                 alt="Danza Lunar y Solar - Yelitze Rangel"
                                 fill
-                                className="object-cover"
+                                className="object-cover object-top"
+                                quality={100}
                             />
                             <div className="absolute inset-0 bg-black/20" />
                         </FadeIn>
@@ -223,7 +225,7 @@ export default function AboutPage() {
                                     ⸻
                                 </span>
 
-                                <h3 className="text-3xl lg:text-4xl font-heading text-white mb-8 italic">
+                                <h3 className="text-3xl lg:text-5xl font-heading text-white mb-8 italic font-bold">
                                     La experiencia que sostiene
                                 </h3>
 
@@ -252,16 +254,11 @@ export default function AboutPage() {
             {/* 6. Closing Quotes / Footer */}
             <section className="py-32 bg-gradient-to-b from-black to-stone-950 text-center px-4">
                 <div className="container mx-auto max-w-4xl">
-                    <div className="mb-20 min-h-[120px]">
-                        <h2 className="text-3xl lg:text-5xl font-serif italic text-white mb-6 leading-tight">
+                    <div className="mb-20 min-h-[160px] flex flex-col justify-center items-center">
+                        <h2 className="text-3xl lg:text-6xl font-serif italic text-white mb-10 leading-tight">
                             <TypewriterText
-                                text="Cuando el cuerpo recuerda,"
+                                text="Cuando el cuerpo recuerda, la vida encuentra una nueva dirección."
                                 delay={0.5}
-                            />
-                            <br />
-                            <TypewriterText
-                                text="la vida encuentra una nueva dirección."
-                                delay={2.0}
                             />
                         </h2>
                         <div className="w-16 h-[1px] bg-[var(--color-secondary)] mx-auto" />
