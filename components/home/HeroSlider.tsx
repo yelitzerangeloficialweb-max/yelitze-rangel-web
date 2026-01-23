@@ -17,7 +17,7 @@ const slides = [
         description: "Sana tu linaje y libera tu presente. Reconecta con la fuerza de tus raíces.",
         link: "/servicios/coaching-ancestral",
         cta: "Conocer el Camino",
-        bgImage: "/assets/images/hero-bg-coaching.png",
+        bgImage: "/assets/images/hero/hero-fusion-lineage.jpg",
     },
     {
         id: 2,
@@ -27,7 +27,7 @@ const slides = [
         description: "Identifica bloqueos y lealtades invisibles con nuestras herramientas de autoconocimiento.",
         link: "/tests",
         cta: "Iniciar mi Exploración",
-        bgImage: "/assets/images/hero-background-new.jpg", // Placeholder until generation quota resets
+        bgImage: "/assets/images/hero/hero-fusion-self.jpg",
     },
     {
         id: 3,
@@ -37,7 +37,7 @@ const slides = [
         description: "Formaciones profundas que transforman vidas y despiertan tu potencial sanador.",
         link: "/servicios",
         cta: "Caminos de Expansión",
-        bgImage: "/assets/images/hero-background-new.jpg", // Placeholder until generation quota resets
+        bgImage: "/assets/images/hero/hero-fusion-group.jpg",
     },
 ];
 
@@ -164,8 +164,8 @@ export default function HeroSlider() {
                             key={idx}
                             onClick={() => setCurrentSlide(idx)}
                             className={`h-2 rounded-full transition-all duration-500 ${idx === currentSlide
-                                    ? "bg-[var(--color-secondary)] w-12"
-                                    : "bg-white/30 w-2 hover:bg-white/60"
+                                ? "bg-[var(--color-secondary)] w-12"
+                                : "bg-white/30 w-2 hover:bg-white/60"
                                 }`}
                             aria-label={`Go to slide ${idx + 1}`}
                         />
