@@ -276,20 +276,48 @@ export default function CoachingAncestralPage() {
                                 <div className="w-16 h-16 rounded-2xl bg-[var(--color-secondary)]/10 flex items-center justify-center mb-8">
                                     <Heart className="w-8 h-8 text-[var(--color-secondary)]" />
                                 </div>
-                                <h3 className="text-3xl font-heading text-white mb-4">Presencial (Íntimo)</h3>
-                                <p className="text-sm italic text-gray-500 mb-8">"Más que una sesión, una celebración de tu sanación."</p>
-                                <ul className="space-y-5 flex-grow">
+                                <h3 className="text-3xl font-heading text-white mb-2">Presencial (Íntimo)</h3>
+                                <p className="text-[var(--color-secondary)] uppercase tracking-widest text-xs mb-4 font-bold italic">"Más que una sesión, una celebración de tu sanación."</p>
+
+                                <div className="mb-8">
+                                    <p className="text-white font-medium mb-2">Tu vida ordenada desde la raíz.</p>
+                                    <p className="text-gray-400 text-sm leading-relaxed">
+                                        Una inmersión de 4 horas diseñada para detenerte, mirarte y transformar tu realidad a través de un entrenamiento energético profundo y confidencial.
+                                    </p>
+                                </div>
+
+                                <ul className="space-y-6 flex-grow mb-8 font-light">
                                     {[
-                                        { text: "Bienvenida de Celebración: brindamos por tu decisión." },
-                                        { text: "Almuerzo incluido: compartimos alimentos tras la sesión." },
-                                        { text: "Masaje de Liberación: armonización corporal para cerrar." },
+                                        { title: "Diagnóstico Ancestral", text: "Una mirada circular a tu destino para identificar bloqueos de linaje." },
+                                        { title: "Liberación Corporal", text: "Masaje de \"descongelamiento\" para soltar memorias atrapadas en la psique física." },
+                                        { title: "Inmersión Medicinal", text: "Rituales de paso con aceites y hierbas que sanan el inconsciente." },
+                                        { title: "Oráculo Corazón Chamánico", text: "Consultoría para descubrir la voz de tu propia sabiduría interna." },
+                                        { title: "Almuerzo de Celebración", text: "Espacio para integrar la experiencia y nutrir el cuerpo." },
                                     ].map((item, i) => (
-                                        <li key={i} className="flex items-center gap-4 text-gray-300">
-                                            <CheckCircle2 className="w-5 h-5 text-[var(--color-secondary)]" />
-                                            <span>{item.text}</span>
+                                        <li key={i} className="flex items-start gap-4 text-gray-300">
+                                            <CheckCircle2 className="w-5 h-5 text-[var(--color-secondary)] mt-1 flex-shrink-0" />
+                                            <span className="text-sm leading-relaxed">
+                                                <strong className="text-white block mb-0.5">{item.title}</strong>
+                                                {item.text}
+                                            </span>
                                         </li>
                                     ))}
                                 </ul>
+
+                                <div className="mt-auto pt-6 border-t border-white/5">
+                                    <p className="text-gray-400 text-sm italic mb-6">
+                                        "No es motivación, es transformación real y silenciosa."
+                                    </p>
+                                    <a
+                                        href="https://wa.me/17867268717"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 text-[var(--color-secondary)] hover:text-white transition-colors font-medium group/btn"
+                                    >
+                                        👉 Si sientes el llamado, inicia tu viaje aquí
+                                        <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                                    </a>
+                                </div>
                             </div>
                         </StaggerItem>
                     </StaggerContainer>
