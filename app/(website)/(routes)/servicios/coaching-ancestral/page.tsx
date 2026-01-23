@@ -63,7 +63,7 @@ export default function CoachingAncestralPage() {
                                 <ArrowRight className="w-5 h-5 ml-2" />
                             </Link>
                             <a
-                                href="https://wa.me/584146180005"
+                                href="https://wa.me/17867268717"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 px-10 py-4 rounded-full border border-white/20 text-white hover:bg-white/10 transition-all font-medium"
@@ -306,7 +306,7 @@ export default function CoachingAncestralPage() {
                                 <ArrowRight className="w-5 h-5 ml-2" />
                             </Link>
                             <a
-                                href="https://wa.me/584146180005"
+                                href="https://wa.me/17867268717"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 text-white hover:text-[var(--color-secondary)] transition-colors text-lg italic"

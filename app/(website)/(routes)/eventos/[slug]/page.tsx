@@ -225,7 +225,7 @@ export default function EventPage({ params }: { params: { slug: string } }) {
                             </div>
 
                             <a
-                                href={event.aida.action.includes("Información") ? "https://wa.me/584146180005" : "#"}
+                                href={event.aida.action.includes("Información") ? "https://wa.me/17867268717" : "#"}
                                 target="_blank"
                                 className="btn-premium w-full justify-center text-center py-4 mb-4"
                             >
