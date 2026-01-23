@@ -101,7 +101,7 @@ export default function HeroSlider() {
                                     </span>
                                 </div>
 
-                                <h1 className="text-5xl md:text-7xl font-bold mb-6 font-heading leading-tight text-white drop-shadow-lg">
+                                <h1 className="text-5xl md:text-7xl font-bold mb-6 font-sans leading-tight text-white drop-shadow-lg">
                                     {slides[currentSlide].heading} <br />
                                     <span className="text-[var(--color-secondary)]">
                                         {slides[currentSlide].subheading}
