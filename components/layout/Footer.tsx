@@ -9,8 +9,8 @@ export default function Footer() {
                 <div className="grid md:grid-cols-4 gap-12 mb-12">
                     {/* Brand */}
                     <div className="col-span-1 md:col-span-1">
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="relative w-12 h-12">
+                        <div className="mb-6">
+                            <div className="relative w-20 h-20">
                                 <Image
                                     src="/assets/images/logo-white.png"
                                     alt="Yelitzé Rangel Logo"
@@ -18,7 +18,6 @@ export default function Footer() {
                                     className="object-contain"
                                 />
                             </div>
-                            <h3 className="text-2xl font-heading text-[var(--color-secondary)]">Yelitzé Rangel</h3>
                         </div>
                         <p className="text-white/80 text-sm leading-relaxed mb-6">
                             Acompañándote a sanar tus raíces para que florezcas en tu propio destino. Terapia Sistémica y Sanación Ancestral.
