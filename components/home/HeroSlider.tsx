@@ -13,7 +13,7 @@ const slides = [
         id: 1,
         title: "Coaching Ancestral",
         heading: "Anatomía del Alma",
-        subheading: "donde lo invisible cobra voz y tu alma puede expresarse con verdad",
+        subheading: "donde lo invisible cobra voz\ny tu alma puede expresarse con verdad",
         description: "Sana tu linaje y libera tu presente. Reconecta con la fuerza de tus raíces.",
         link: "/servicios/coaching-ancestral",
         cta: "Conocer el Camino",
@@ -110,12 +110,12 @@ export default function HeroSlider() {
 
                         {/* Heading with Typewriter Effect */}
                         <div className="min-h-[120px] md:min-h-[160px] flex flex-col items-center justify-center">
-                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading text-white drop-shadow-2xl leading-tight">
-                                <TypewriterText text={slides[currentSlide].heading} delay={0.1} /> <br />
-                                <span className="text-[var(--color-secondary)] mt-2 block">
-                                    <TypewriterText text={slides[currentSlide].subheading} delay={1.5} className="font-light italic" />
-                                </span>
+                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading text-white drop-shadow-2xl leading-tight mb-4">
+                                <TypewriterText text={slides[currentSlide].heading} delay={0.1} />
                             </h1>
+                            <div className="text-[var(--color-secondary)] text-2xl md:text-4xl lg:text-5xl font-light italic leading-tight max-w-4xl mx-auto">
+                                <TypewriterText text={slides[currentSlide].subheading} delay={1.5} />
+                            </div>
                         </div>
 
                         {/* Description */}

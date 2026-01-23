@@ -55,7 +55,7 @@ export default function TypewriterText({ text, className = "", delay = 0 }: Type
         >
             {characters.map((char, index) => (
                 <motion.span variants={child} key={index}>
-                    {char === " " ? "\u00A0" : char}
+                    {char === "\n" ? <br /> : char === " " ? "\u00A0" : char}
                 </motion.span>
             ))}
         </motion.span>
