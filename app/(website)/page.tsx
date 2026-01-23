@@ -128,8 +128,13 @@ export default function Home() {
       {/* Events Section */}
       <HomeEvents />
 
+      {/* Newsletter Section */}
+      <NewsletterSection />
+
       {/* Gallery Section */}
       <HomeGallery />
+
+      {/* Testimonials Section */}
 
       {/* Testimonials Section */}
       <section className="py-24 bg-[var(--color-primary)]/5 relative overflow-hidden">
@@ -248,9 +253,6 @@ export default function Home() {
           </StaggerContainer>
         </div>
       </section>
-
-      {/* Newsletter Section */}
-      <NewsletterSection />
 
       {/* Instagram Grid */}
       <InstagramFeed />
