@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowRight, Calendar, Users, BookOpen, Building2, HeartHandshake } from "lucide-react";
 
 export default function ServicesPage() {
