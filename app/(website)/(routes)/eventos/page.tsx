@@ -6,7 +6,7 @@ import EventCard from '@/components/ui/EventCard';
 import { EVENTS_DATA } from '@/lib/events';
 
 export default function EventsPage() {
-    const [filter, setFilter] = useState<'Todos' | 'Gratuito' | 'Pago'>('Todos');
+    const [filter, setFilter] = useState<'Todos' | 'Semillas de consciencia' | 'Círculo de expansión'>('Todos');
 
     const filteredEvents = EVENTS_DATA.filter(event =>
         filter === 'Todos' ? true : event.type === filter
@@ -35,17 +35,21 @@ export default function EventsPage() {
 
                 {/* Filters */}
                 <div className="flex justify-center mb-16">
-                    <div className="bg-white p-1.5 rounded-full shadow-sm border border-gray-100 flex gap-2">
-                        {['Todos', 'Gratuito', 'Pago'].map((f) => (
+                    <div className="bg-white p-1.5 rounded-full shadow-sm border border-gray-100 flex flex-wrap gap-2 justify-center">
+                        {[
+                            { id: 'Todos', label: 'Todos' },
+                            { id: 'Semillas de consciencia', label: 'Semillas de Consciencia' },
+                            { id: 'Círculo de expansión', label: 'Círculos de Expansión' }
+                        ].map((f) => (
                             <button
-                                key={f}
-                                onClick={() => setFilter(f as any)}
-                                className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${filter === f
+                                key={f.id}
+                                onClick={() => setFilter(f.id as any)}
+                                className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${filter === f.id
                                     ? 'bg-[var(--color-primary)] text-white shadow-md'
                                     : 'text-[var(--color-text-light)] hover:bg-gray-50'
                                     }`}
                             >
-                                {f}s
+                                {f.label}
                             </button>
                         ))}
                     </div>

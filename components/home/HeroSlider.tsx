@@ -15,7 +15,7 @@ const slides = [
         subheading: "donde lo invisible cobra voz",
         description: "Sana tu linaje y libera tu presente.",
         link: "/servicios/coaching-ancestral",
-        cta: "Descubrir Más",
+        cta: "Conocer el Camino",
         image: "/assets/images/hero-portrait.png", // Using existing portrait
         bgImage: "/assets/images/hero-background-new.jpg", // Using existing background
     },
@@ -26,7 +26,7 @@ const slides = [
         subheading: "Los patrones que guían tu vida",
         description: "Identifica bloqueos y lealtades invisibles con nuestros tests.",
         link: "/tests",
-        cta: "Realizar Tests",
+        cta: "Iniciar mi Exploración",
         image: "/assets/images/hero-portrait.png", // Placeholder, ideally specific to tests
         bgImage: "/assets/images/hero-background-new.jpg",
     },
@@ -37,7 +37,7 @@ const slides = [
         subheading: "Caminos de aprendizaje",
         description: "Formaciones que transforman vidas y despiertan tu potencial.",
         link: "/servicios",
-        cta: "Ver Programas",
+        cta: "Caminos de Expansión",
         image: "/assets/images/hero-portrait.png", // Placeholder
         bgImage: "/assets/images/hero-background-new.jpg",
     },

@@ -32,7 +32,7 @@ export default function BooksBanner() {
                                     href="/libros"
                                     className="btn-premium inline-flex items-center gap-2 group"
                                 >
-                                    Explorar Librería
+                                    Recibir Sabiduría
                                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                 </Link>
                             </div>

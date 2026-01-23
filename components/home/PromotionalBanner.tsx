@@ -29,7 +29,7 @@ export default function PromotionalBanner() {
                                 href="/experiencia-guiada"
                                 className="px-8 py-4 bg-[var(--color-primary)] hover:bg-[var(--color-primary-light)] text-white rounded-full font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2 shadow-xl"
                             >
-                                Experiencia Guiada
+                                Iniciar mi Transformación
                                 <ArrowRight className="w-5 h-5" />
                             </Link>
                         </div>

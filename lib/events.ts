@@ -30,7 +30,7 @@ export const EVENTS_DATA: EventData[] = [
             attention: "¿Te has preguntado por qué repites las mismas historias que vivió tu madre o tu abuela? Si creciste viendo a las mujeres de tu familia sacrificarlo todo y sin darte cuenta estás siguiendo el mismo patrón, hoy puedes detener ese ciclo.",
             interest: "Dirigido a mujeres que dudan de sí mismas, que sienten que son 'demasiado intensas' y que, por más que intentan, terminan en relaciones que lastiman o trabajos frustrantes.",
             desire: "Aprenderás a identificar tu herida emocional dominante y cómo se manifiesta. Dejarás de atraer desde la carencia para comenzar a conectar desde la abundancia, la confianza y el amor propio.",
-            action: "Registrarme Gratis"
+            action: "Recibir este recurso de luz"
         },
         fullDescription: [
             "Desde niña aprendiste a dudar de ti misma, a creer que eras demasiado sensible, demasiado emocional, demasiado intensa o que nunca era suficiente.",
@@ -55,7 +55,7 @@ export const EVENTS_DATA: EventData[] = [
             attention: "¿Sientes que estás viviendo una historia que no te pertenece? Esa sensación de vacío no es falta de esfuerzo; es el eco de heridas emocionales heredadas. No tienes que cargar con el peso de las generaciones que te precedieron.",
             interest: "Para mujeres profesionales, madres o buscadoras espirituales que sienten un cansancio emocional inexplicable, les cuesta poner límites y buscan sanar su relación con la abundancia sin procesos eternos.",
             desire: "Rompe el ciclo. Suelta cargas ajenas, recupera tu energía vital y transforma el dolor en una confianza inquebrantable. Al finalizar, te sentirás reconciliada con tu historia y lista para manifestar la vida que mereces.",
-            action: "Quiero Inscribirme Ahora"
+            action: "Siento el llamado"
         },
         fullDescription: [
             "**[Encabezado Magnético] Sanando el Linaje Femenino: Rompe el ciclo y recupera tu poder. Inscripciones Abiertas | Formación Online de 3 Etapas**",
@@ -84,7 +84,7 @@ export const EVENTS_DATA: EventData[] = [
             attention: "“Los Órdenes del Chamanismo en la Terapia Sistémica”. Un viaje profundo donde el Chamanismo y las Constelaciones Familiares se encuentran para sanar el alma.",
             interest: "Una formación intensiva de 3 módulos para terapeutas, psicólogos y buscadores que desean integrar herramientas chamánicas y sistémicas en sus procesos de sanación propios y con clientes.",
             desire: "Aprende a trabajar con las capas del alma, rituales de paso, el campo de los ancestros y representaciones arquetípicas. Certifícate en Reconexión Sistémica® y lleva tu práctica terapéutica a un nuevo nivel de profundidad.",
-            action: "Solicitar Información"
+            action: "Iniciar conversación"
         },
         fullDescription: [
             "**Diplomado de Coaching Ancestral: 'Los Órdenes del Chamanismo en la Terapia Sistémica'**",
