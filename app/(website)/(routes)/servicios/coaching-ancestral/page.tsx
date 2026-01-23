@@ -30,13 +30,22 @@ export default function CoachingAncestralPage() {
 
                 <div className="container mx-auto px-4 relative z-10 text-center">
                     <FadeIn>
-                        <span className="text-[var(--color-secondary)] uppercase tracking-[0.3em] text-sm font-bold mb-6 block">
-                            Coaching Ancestral
-                        </span>
-                        <h1 className="text-4xl lg:text-7xl font-heading text-white mb-8 leading-tight font-bold">
-                            Anatomía del Alma: <br />
-                            <span className="italic font-light text-[var(--color-secondary)]">Donde lo invisible cobra voz y tu alma puede expresarse con verdad.</span>
+                        <div className="inline-block mb-10">
+                            <span className="px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs md:text-sm font-light tracking-[0.2em] uppercase">
+                                Coaching Ancestral
+                            </span>
+                        </div>
+                        <h1 className="text-4xl lg:text-7xl font-heading text-white mb-6 leading-tight font-bold">
+                            Anatomía del Alma:
                         </h1>
+                        <div className="inline-block bg-[#7b5735] px-6 py-2 mb-12 shadow-xl transform skew-x-[-2deg]">
+                            <h2 className="text-xl md:text-3xl text-white font-light italic m-0 skew-x-[2deg]">
+                                <TypewriterText
+                                    text="Donde lo invisible cobra voz y tu alma puede expresarse con verdad."
+                                    delay={0.5}
+                                />
+                            </h2>
+                        </div>
                         <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
                             Un sistema terapéutico único para identificar en qué parte del círculo de la vida se encuentra tu bloqueo. Rompe la ceguera involuntaria y recupera tu poder personal.
                         </p>
@@ -58,16 +67,23 @@ export default function CoachingAncestralPage() {
                 <div className="container mx-auto relative z-10">
                     <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
                         <FadeIn>
-                            <div className="relative group">
-                                <div className="absolute -inset-4 bg-[var(--color-secondary)]/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                                <Image
-                                    src="/assets/images/tablero-terapeutico-new.jpg"
-                                    alt="Tablero Terapéutico - Anatomía del Alma"
-                                    width={600}
-                                    height={800}
-                                    className="relative rounded-2xl shadow-2xl border border-white/10 grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
-                                />
-                                <div className="absolute -bottom-6 -right-6 bg-stone-900/90 backdrop-blur-md p-6 rounded-xl border border-white/10 shadow-xl max-w-xs hidden md:block">
+                            <div className="relative group max-w-md mx-auto lg:mx-0 -rotate-2 hover:rotate-0 transition-transform duration-500">
+                                <div className="bg-white p-4 pb-20 shadow-2xl rounded-sm transform transition-all duration-300">
+                                    <div className="relative aspect-[3/4] w-full overflow-hidden bg-gray-100">
+                                        <Image
+                                            src="/assets/images/tablero-terapeutico-new.jpg"
+                                            alt="Tablero Terapéutico - Anatomía del Alma"
+                                            fill
+                                            className="object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
+                                        />
+                                    </div>
+                                    <div className="absolute bottom-6 left-0 right-0 text-center">
+                                        <span className="font-handwriting text-2xl text-gray-600 opacity-80 transform -rotate-2 inline-block">
+                                            Anatomía del Alma
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className="absolute -bottom-6 -right-6 bg-stone-900/90 backdrop-blur-md p-6 rounded-xl border border-white/10 shadow-xl max-w-xs hidden md:block z-20">
                                     <p className="text-sm italic text-gray-300 m-0">
                                         "No es ajedrez, no es Jumanji, ni una ouija. Es el protagonista de mi coaching ancestral: la anatomía del alma."
                                     </p>
