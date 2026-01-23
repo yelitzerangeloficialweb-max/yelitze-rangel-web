@@ -160,7 +160,7 @@ export default function AboutPage() {
 
                         {/* The Expansion */}
                         <div className="bg-[#1a1a1a] p-10 lg:p-14 rounded-3xl shadow-2xl relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500 border border-white/5">
-                            <div className="absolute inset-0 bg-[url('/assets/images/tablero-terapeutico-new.jpg')] bg-cover bg-center opacity-30 group-hover:opacity-40 transition-opacity duration-700 mix-blend-overlay" />
+                            <div className="absolute inset-0 bg-[url('/assets/images/tablero-terapeutico-new.jpg')] bg-cover bg-center opacity-30 group-hover:opacity-30 transition-opacity duration-700 mix-blend-overlay" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
 
                             <div className="relative z-10 flex flex-col h-full justify-between">
@@ -191,7 +191,39 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* 5. Closing Quotes / Footer */}
+            {/* 5. Experience Section (New) */}
+            <section className="py-24 bg-[#0a0a0a] text-center px-4 relative overflow-hidden">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[var(--color-secondary)]/5 rounded-full blur-[120px]" />
+
+                <div className="container mx-auto max-w-4xl relative z-10">
+                    <span className="text-[var(--color-secondary)] text-4xl mb-6 block font-serif">
+                        ⸻
+                    </span>
+
+                    <h3 className="text-3xl lg:text-4xl font-heading text-white mb-8">
+                        La experiencia que sostiene
+                    </h3>
+
+                    <div className="text-lg lg:text-xl text-gray-300 leading-relaxed space-y-6">
+                        <p>
+                            La Danza Lunar, la Danza del Sol en México y muchas otras experiencias fueron dando forma a grandes experiencias que hoy comparto.
+                        </p>
+                        <p className="italic text-white font-light text-2xl">
+                            No como una verdad única, <br />
+                            sino como un camino posible
+                        </p>
+                        <p>
+                            para volver al cuerpo, a la energía, al linaje <br /> y a la coherencia interior.
+                        </p>
+                    </div>
+
+                    <span className="text-[var(--color-secondary)] text-4xl mt-8 block font-serif">
+                        ⸻
+                    </span>
+                </div>
+            </section>
+
+            {/* 6. Closing Quotes / Footer */}
             <section className="py-32 bg-gradient-to-b from-black to-stone-950 text-center px-4">
                 <div className="container mx-auto max-w-4xl">
                     <div className="mb-20">
