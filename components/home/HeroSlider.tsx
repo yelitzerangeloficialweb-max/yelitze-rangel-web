@@ -13,7 +13,7 @@ const slides = [
         id: 1,
         title: "Coaching Ancestral",
         heading: "Anatomía del Alma",
-        subheading: "donde lo invisible cobra voz",
+        subheading: "donde lo invisible cobra voz y tu alma puede expresarse con verdad",
         description: "Sana tu linaje y libera tu presente. Reconecta con la fuerza de tus raíces.",
         link: "/servicios/coaching-ancestral",
         cta: "Conocer el Camino",

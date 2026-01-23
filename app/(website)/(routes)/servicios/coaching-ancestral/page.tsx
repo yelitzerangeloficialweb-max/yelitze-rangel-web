@@ -35,7 +35,7 @@ export default function CoachingAncestralPage() {
                         </span>
                         <h1 className="text-4xl lg:text-7xl font-heading text-white mb-8 leading-tight font-bold">
                             Anatomía del Alma: <br />
-                            <span className="italic font-light text-[var(--color-secondary)]">Donde lo invisible cobra voz.</span>
+                            <span className="italic font-light text-[var(--color-secondary)]">Donde lo invisible cobra voz y tu alma puede expresarse con verdad.</span>
                         </h1>
                         <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
                             Un sistema terapéutico único para identificar en qué parte del círculo de la vida se encuentra tu bloqueo. Rompe la ceguera involuntaria y recupera tu poder personal.

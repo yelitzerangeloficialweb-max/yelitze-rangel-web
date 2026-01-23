@@ -92,7 +92,7 @@ export default function Home() {
             {[
               {
                 title: "Sesiones Íntimas",
-                desc: "Un viaje profundo de 'Anatomía del Alma' donde lo invisible cobra voz.",
+                desc: "Un viaje profundo de 'Anatomía del Alma' donde lo invisible cobra voz y tu alma puede expresarse con verdad.",
                 link: "/servicios/coaching-ancestral",
                 cta: "Solicitar Acompañamiento"
               },

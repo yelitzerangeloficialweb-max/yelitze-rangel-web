@@ -5,7 +5,7 @@ export default function ServicesPage() {
     const services = [
         {
             title: "Sesiones Íntimas",
-            description: "Un viaje profundo de 'Anatomía del Alma' donde lo invisible cobra voz. Identifica bloqueos y reconecta con tu poder personal.",
+            description: "Un viaje profundo de 'Anatomía del Alma' donde lo invisible cobra voz y tu alma puede expresarse con verdad. Identifica bloqueos y reconecta con tu poder personal.",
             price: "Desde $197 USD",
             icon: <Users className="w-8 h-8 text-[var(--color-secondary)]" />,
             features: ["Modalidad Online o Presencial", "Tablero Terapéutico Único", "Seguimiento Personalizado"],
