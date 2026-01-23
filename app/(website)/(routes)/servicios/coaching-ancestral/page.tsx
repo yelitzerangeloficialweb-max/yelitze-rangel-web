@@ -47,9 +47,11 @@ export default function CoachingAncestralPage() {
                                 />
                             </h2>
                         </div>
-                        <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
-                            Un sistema terapéutico único para identificar en qué parte del círculo de la vida se encuentra tu bloqueo. Rompe la ceguera involuntaria y recupera tu poder personal.
-                        </p>
+                        <div className="max-w-3xl mx-auto">
+                            <p className="text-xl text-gray-300 mb-12 leading-relaxed">
+                                Bienvenido/a a este espacio íntimo de Coaching Ancestral – Anatomía del Alma. Un encuentro 1:1 donde lo invisible cobra voz y tu alma puede expresarse con verdad. Este es un espacio seguro, consciente y transformador. Gracias por confiar en tu proceso.
+                            </p>
+                        </div>
                         <Link
                             href="/reservas"
                             className="btn-premium text-lg px-10 py-4 shadow-2xl hover:shadow-[var(--color-secondary)]/20 transform hover:-translate-y-1 transition-all"
