@@ -115,6 +115,22 @@ export const BLOG_POSTS: BlogPost[] = [
             <p class="mb-6 text-lg">El Coaching Ancestral® añade una dimensión crucial: el "de dónde vengo". Entendemos que muchas veces no podemos avanzar no por falta de herramientas, sino porque estamos mirando hacia el pasado, sosteniendo algo por alguien más.</p>
             <p class="mb-6 text-lg">Mi enfoque une la estructura del coaching con la profundidad de la sistémica, permitiendo que la persona no solo logre sus metas, sino que lo haga desde un lugar de paz interna y orden familiar.</p>
         `
+    },
+    {
+        id: '7',
+        slug: 'proposito-de-vida-sistemico',
+        title: 'Tu Propósito de Vida: Más allá del Ego',
+        excerpt: '¿Sientes que lo tienes todo pero te falta algo? El propósito no es una meta, es un lugar de servicio dentro de tu sistema.',
+        date: '25 de Noviembre, 2025',
+        image: '/assets/images/about-experience.jpg',
+        category: 'Evolución',
+        author: 'Yelitzé Rangel',
+        content: `
+            <p class="mb-6 text-lg">A menudo confundimos el propósito con el éxito profesional o el reconocimiento. Sin embargo, el verdadero propósito surge cuando ocupamos nuestro lugar correcto en el sistema y permitimos que la Vida fluya a través de nosotros.</p>
+            <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">El Servicio a algo Mayor</h3>
+            <p class="mb-6 text-lg">Desde las Constelaciones Familiares, vemos que el propósito es un movimiento hacia afuera, hacia los demás, pero que nace de estar bien anclados en nuestras raíces. Si no estamos en paz con nuestra historia, nuestro "Hacer" en el mundo será una huida en lugar de un propósito.</p>
+            <p class="mb-6 text-lg">Cuando sanas el vínculo con tus ancestros, descubres que tus talentos no son solo tuyos, sino que son la culminación de los sueños de quienes vinieron antes. Poner esos talentos al servicio es tu propósito más elevado.</p>
+        `
     }
 ];
 
