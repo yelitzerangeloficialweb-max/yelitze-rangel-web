@@ -238,11 +238,27 @@ export default function SesionesCorporalesPage() {
                                 </p>
                             </FadeIn>
                             <div className="grid grid-cols-2 gap-4">
-                                <div className="aspect-square bg-white/5 rounded-2xl flex items-center justify-center p-6 text-center">
-                                    <p className="text-xs text-gray-300">Resuelve dolores de cabeza, migrañas y fatiga crónica.</p>
+                                <div className="relative aspect-square rounded-2xl overflow-hidden border border-white/10 group">
+                                    <Image
+                                        src="/assets/images/relief-mental.png"
+                                        alt="Alivio Mental"
+                                        fill
+                                        className="object-cover opacity-50 group-hover:opacity-80 transition-opacity"
+                                    />
+                                    <div className="absolute inset-0 flex items-center justify-center p-4 md:p-6 text-center bg-black/40">
+                                        <p className="text-[10px] md:text-xs text-white font-medium drop-shadow-lg leading-relaxed">Resuelve dolores de cabeza, migrañas y fatiga crónica.</p>
+                                    </div>
                                 </div>
-                                <div className="aspect-square bg-white/5 rounded-2xl flex items-center justify-center p-6 text-center">
-                                    <p className="text-xs text-gray-300">Mejora la circulación y la toma de oxígeno celular.</p>
+                                <div className="relative aspect-square rounded-2xl overflow-hidden border border-white/10 group">
+                                    <Image
+                                        src="/assets/images/circulation-vital.png"
+                                        alt="Oxigenación Vital"
+                                        fill
+                                        className="object-cover opacity-50 group-hover:opacity-80 transition-opacity"
+                                    />
+                                    <div className="absolute inset-0 flex items-center justify-center p-4 md:p-6 text-center bg-black/40">
+                                        <p className="text-[10px] md:text-xs text-white font-medium drop-shadow-lg leading-relaxed">Mejora la circulación y la toma de oxígeno celular.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
