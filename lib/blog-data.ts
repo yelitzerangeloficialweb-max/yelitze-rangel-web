@@ -74,7 +74,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: 'El Padre: Estructura, Orden y Vuelo',
         excerpt: 'Tomar al padre es tomar la capacidad de poner límites, tener éxito en el mundo y lanzarse a lo nuevo con seguridad.',
         date: '10 de Diciembre, 2025',
-        image: '/assets/images/coaching-bg-new.jpg',
+        image: '/assets/images/coaching-ancestral-new.jpg',
         category: 'Ancestralidad',
         author: 'Yelitzé Rangel',
         content: `
@@ -90,7 +90,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: 'La Medicina del Cacao: Un Viaje Sistémico del Corazón',
         excerpt: 'Cómo los rituales ancestrales potencian el trabajo de constelaciones al abrir el espacio sagrado del sentir.',
         date: '05 de Diciembre, 2025',
-        image: '/assets/images/about-ritual.jpg',
+        image: '/assets/images/tablero-sesion.png',
         category: 'Rituales',
         author: 'Yelitzé Rangel',
         content: `
@@ -106,7 +106,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: 'Coaching Tradicional vs. Ancestral: ¿Cuál es la diferencia?',
         excerpt: 'Más allá de los objetivos y la acción, el Coaching Ancestral busca el origen sistémico de lo que te detiene.',
         date: '01 de Diciembre, 2025',
-        image: '/assets/images/vortex-hero-clean.png',
+        image: '/assets/images/corporate-vortex.png',
         category: 'Metodología',
         author: 'Yelitzé Rangel',
         content: `
@@ -122,7 +122,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: 'Tu Propósito de Vida: Más allá del Ego',
         excerpt: '¿Sientes que lo tienes todo pero te falta algo? El propósito no es una meta, es un lugar de servicio dentro de tu sistema.',
         date: '25 de Noviembre, 2025',
-        image: '/assets/images/about-experience.jpg',
+        image: '/assets/images/trauma-peace.png',
         category: 'Evolución',
         author: 'Yelitzé Rangel',
         content: `
