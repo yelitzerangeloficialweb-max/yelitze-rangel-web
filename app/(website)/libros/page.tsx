@@ -13,15 +13,15 @@ const books = [
         title: "Hilos de Conexión",
         subtitle: "Un viaje curativo a la memoria del origen",
         slug: "hilos-de-conexion",
-        cover: "/assets/images/manual-2026.jpg", // Using professional asset
+        cover: "/assets/images/books/hilos-conexion-3d.png",
         description: "Una invitación a recordar, a sanar y a reconectar con esa memoria sagrada que habita en tu ADN. Un manual para quienes buscan su origen.",
-        amazonLink: "https://www.amazon.com/dp/B0CSXW7R2J"
+        amazonLink: "https://www.amazon.com/dp/B0CKW6595M"
     },
     {
         title: "Conversaciones con mi Chamana",
         subtitle: "107 pláticas para despertar tu medicina interior",
         slug: "conversaciones-con-mi-chamana",
-        cover: "/assets/images/about-book.jpg", // Using professional asset
+        cover: "/assets/images/books/conversaciones-chamana-3d.png",
         description: "Reflexiones, meditaciones y diálogos internos para acompañarte en tu día a día y despertar tu sabiduría interior más profunda.",
         amazonLink: "https://www.amazon.com/dp/B0CSXW7R2J"
     }
