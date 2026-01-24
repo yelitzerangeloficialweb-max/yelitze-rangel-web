@@ -49,7 +49,7 @@ export const EVENTS_DATA: EventData[] = [
         title: "Sanando el Linaje Femenino",
         type: "Círculo de expansión",
         date: "Inscripciones Abiertas",
-        location: "Formación Online (3 Etapas)",
+        location: "Formación Online",
         image: "/assets/images/img-linaje.jpg",
         aida: {
             attention: "¿Sientes que estás viviendo una historia que no te pertenece? Esa sensación de vacío no es falta de esfuerzo; es el eco de heridas emocionales heredadas. No tienes que cargar con el peso de las generaciones que te precedieron.",

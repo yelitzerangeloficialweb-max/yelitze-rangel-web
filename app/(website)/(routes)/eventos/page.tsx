@@ -87,7 +87,7 @@ export default function EventsPage() {
                     </FadeIn>
 
                     {/* Events Narrative Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12 lg:gap-16">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
                         {filteredEvents.map((event, idx) => (
                             <FadeIn key={event.id} delay={idx * 0.1}>
                                 <div className="group relative bg-white rounded-[2.5rem] overflow-hidden border border-stone-100 shadow-sm hover:shadow-2xl transition-all duration-700">

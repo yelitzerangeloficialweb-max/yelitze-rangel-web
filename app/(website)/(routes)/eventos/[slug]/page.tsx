@@ -1,34 +1,37 @@
-import React from 'react';
+"use client";
+
+import React, { use } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, Clock, MapPin, Calendar, Share2 } from 'lucide-react';
+import {
+    ArrowLeft, Clock, MapPin, Calendar,
+    Share2, ArrowRight, Sparkles, Star
+} from 'lucide-react';
 import { getEventBySlug } from '@/lib/events';
 import { notFound } from 'next/navigation';
+import { FadeIn, StaggerContainer, StaggerItem } from '@/components/ui/motion';
 
-export default function EventPage({ params }: { params: { slug: string } }) {
-    const event = getEventBySlug(params.slug);
-    console.log('DEBUG: EventPage called. Slug:', params.slug);
-    console.log('DEBUG: Event found:', event ? event.title : 'null');
+export default function EventPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = use(params);
+    const event = getEventBySlug(slug);
 
     if (!event) {
-        console.log('DEBUG: Event not found for slug:', params.slug);
         notFound();
     }
 
-    // Function to process text: remove ** and make bold
     const formatText = (text: string) => {
         const parts = text.split(/(\*\*.*?\*\*)/g);
         return parts.map((part, index) => {
             if (part.startsWith('**') && part.endsWith('**')) {
-                return <strong key={index} className="font-bold text-[var(--color-primary)]">{part.slice(2, -2)}</strong>;
+                return (
+                    <strong key={index} className="font-bold text-[var(--color-primary)]">
+                        {part.slice(2, -2)}
+                    </strong>
+                );
             }
             return part;
         });
     };
-
-    // Grouping content into sections logic
-    // We want to detect "Módulo" to start an accordion.
-    // General text before modules stays as paragraphs.
 
     const renderContent = () => {
         const sections: React.ReactNode[] = [];
@@ -37,28 +40,27 @@ export default function EventPage({ params }: { params: { slug: string } }) {
         let isCollectingModule = false;
 
         event.fullDescription.forEach((line, index) => {
-            // Check if line indicates a new Module or Section that should be an accordion
-            const isModuleHeader = line.startsWith("**Módulo") || line.includes("ESTRUCTURA DE LA CAPACITACIÓN") || line.includes("INFORMACIÓN GENERAL");
+            const isModuleHeader = line.startsWith("**Módulo") ||
+                line.includes("ESTRUCTURA DE LA CAPACITACIÓN") ||
+                line.includes("INFORMACIÓN GENERAL");
 
-            // If we hit a new module header or special section
             if (isModuleHeader) {
-                // If we were already collecting a module, push the previous one
                 if (isCollectingModule && currentModuleTitle) {
                     sections.push(
-                        <details key={`module-${index}-prev`} className="group bg-white rounded-xl shadow-sm border border-[var(--color-primary)]/10 mb-4 overflow-hidden">
-                            <summary className="flex cursor-pointer items-center justify-between p-6 bg-[var(--color-background)] hover:bg-[var(--color-secondary)]/5 transition-colors">
-                                <h3 className="text-lg font-heading text-[var(--color-primary)] group-open:text-[var(--color-secondary)] font-bold">
+                        <details key={`module-${index}-prev`} className="group bg-white rounded-3xl shadow-sm border border-stone-100 mb-4 overflow-hidden">
+                            <summary className="flex cursor-pointer items-center justify-between p-8 bg-[#fafcfe] hover:bg-white transition-all">
+                                <h3 className="text-xl font-heading text-[var(--color-primary)] group-open:text-[var(--color-secondary)]">
                                     {formatText(currentModuleTitle)}
                                 </h3>
-                                <span className="shrink-0 ml-4 p-1.5 rounded-full bg-white text-[var(--color-secondary)] shadow-sm group-hover:bg-[var(--color-secondary)] group-hover:text-white transition-all">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="size-5 shrink-0 transition duration-300 group-open:-rotate-180" viewBox="0 0 20 20" fill="currentColor">
+                                <span className="shrink-0 ml-4 p-2 rounded-full border border-stone-200 text-stone-400 group-open:rotate-180 transition-transform duration-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="size-5" viewBox="0 0 20 20" fill="currentColor">
                                         <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                                     </svg>
                                 </span>
                             </summary>
-                            <div className="p-6 text-[var(--color-text-light)] leading-relaxed border-t border-[var(--color-primary)]/5">
+                            <div className="p-8 text-[var(--color-text-light)] leading-relaxed border-t border-stone-50 space-y-4">
                                 {currentModuleContent.map((l, i) => (
-                                    <p key={i} className="mb-2">{formatText(l)}</p>
+                                    <p key={i}>{formatText(l)}</p>
                                 ))}
                             </div>
                         </details>
@@ -66,59 +68,47 @@ export default function EventPage({ params }: { params: { slug: string } }) {
                     currentModuleContent = [];
                 }
 
-                // If it's "ESTRUCTURA", just print it as a header? Or treat as start of modules?
-                // The user specifically wants "Módulos" to be accordions.
-                // Let's treat lines starting with "**Módulo" as the trigger.
-                if (line.includes("Módulo")) {
+                if (line.includes("Módulo") || line.includes("INFORMACIÓN GENERAL")) {
                     isCollectingModule = true;
                     currentModuleTitle = line;
                 } else {
-                    // For "ESTRUCTURA..." or "INFORMACIÓN...", we can just render them as titles if they are not modules but dividers
-                    // But user asked "la parte de los modulos".
-                    if (isCollectingModule) {
-                        // We were collecting a module, but hit a non-module header (e.g. Info General). 
-                        // Close previous module (handled above).
-                    }
-
-                    // If it's not a module header but arguably a section header, we might want to display it
-                    // For now, if it's not "Módulo", just render as text, unless we want Info General to be an accordion too.
-                    // Let's make "INFORMACIÓN GENERAL" an accordion too as it contains logistics.
-                    if (line.includes("INFORMACIÓN GENERAL")) {
-                        isCollectingModule = true;
-                        currentModuleTitle = line;
-                    } else {
-                        isCollectingModule = false;
-                        sections.push(<p key={index} className="mb-4 text-lg text-[var(--color-text-light)]">{formatText(line)}</p>);
-                    }
+                    isCollectingModule = false;
+                    sections.push(
+                        <h4 key={index} className="text-2xl font-heading text-[var(--color-primary)] mt-12 mb-6 border-b border-stone-100 pb-4">
+                            {formatText(line)}
+                        </h4>
+                    );
                 }
 
             } else {
-                // Not a header line
                 if (isCollectingModule) {
                     currentModuleContent.push(line);
                 } else {
-                    sections.push(<p key={index} className="mb-4 text-lg text-[var(--color-text-light)]">{formatText(line)}</p>);
+                    sections.push(
+                        <p key={index} className="mb-6 text-lg text-[var(--color-text-light)] leading-relaxed">
+                            {formatText(line)}
+                        </p>
+                    );
                 }
             }
         });
 
-        // Push the last collected module if exists
         if (isCollectingModule && currentModuleTitle) {
             sections.push(
-                <details key={`module-last`} className="group bg-white rounded-xl shadow-sm border border-[var(--color-primary)]/10 mb-4 overflow-hidden">
-                    <summary className="flex cursor-pointer items-center justify-between p-6 bg-[var(--color-background)] hover:bg-[var(--color-secondary)]/5 transition-colors">
-                        <h3 className="text-lg font-heading text-[var(--color-primary)] group-open:text-[var(--color-secondary)] font-bold">
+                <details key={`module-last`} className="group bg-white rounded-3xl shadow-sm border border-stone-100 mb-4 overflow-hidden">
+                    <summary className="flex cursor-pointer items-center justify-between p-8 bg-[#fafcfe] hover:bg-white transition-all">
+                        <h3 className="text-xl font-heading text-[var(--color-primary)] group-open:text-[var(--color-secondary)]">
                             {formatText(currentModuleTitle)}
                         </h3>
-                        <span className="shrink-0 ml-4 p-1.5 rounded-full bg-white text-[var(--color-secondary)] shadow-sm group-hover:bg-[var(--color-secondary)] group-hover:text-white transition-all">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="size-5 shrink-0 transition duration-300 group-open:-rotate-180" viewBox="0 0 20 20" fill="currentColor">
+                        <span className="shrink-0 ml-4 p-2 rounded-full border border-stone-200 text-stone-400 group-open:rotate-180 transition-transform duration-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="size-5" viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                             </svg>
                         </span>
                     </summary>
-                    <div className="p-6 text-[var(--color-text-light)] leading-relaxed border-t border-[var(--color-primary)]/5">
+                    <div className="p-8 text-[var(--color-text-light)] leading-relaxed border-t border-stone-50 space-y-4">
                         {currentModuleContent.map((l, i) => (
-                            <p key={i} className="mb-2">{formatText(l)}</p>
+                            <p key={i}>{formatText(l)}</p>
                         ))}
                     </div>
                 </details>
@@ -129,116 +119,134 @@ export default function EventPage({ params }: { params: { slug: string } }) {
     };
 
     return (
-        <main className="min-h-screen bg-gray-50 pb-20">
-            {/* Header Image */}
-            <div className="relative h-[50vh] w-full">
-                <Image
-                    src={event.image}
-                    alt={event.title}
-                    fill
-                    className="object-cover"
-                    priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                <div className="absolute bottom-0 left-0 w-full p-8 md:p-12 text-white z-10">
-                    <div className="container mx-auto">
-                        <Link href="/eventos" className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-6 transition-colors">
+        <main className="bg-[#fafcfe] min-h-screen pb-20">
+            {/* Split-Panel Header */}
+            <section className="relative min-h-[70vh] flex flex-col lg:flex-row overflow-hidden pt-20">
+                {/* Left Panel: Breadcrumbs & Title */}
+                <div className="lg:w-[45%] bg-white p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
+                    {/* Subtle Watermark */}
+                    <div className="absolute -left-32 -bottom-32 w-[800px] h-[800px] opacity-[0.02] pointer-events-none">
+                        <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
+                    </div>
+
+                    <FadeIn>
+                        <Link href="/eventos" className="inline-flex items-center gap-2 text-stone-400 hover:text-[var(--color-secondary)] mb-12 transition-colors uppercase text-xs tracking-widest font-bold">
                             <ArrowLeft className="w-4 h-4" />
-                            Volver a Eventos
+                            Volver a la Agenda
                         </Link>
-                        <span className="block text-[var(--color-secondary)] font-semibold tracking-wider uppercase mb-2">
-                            {event.type}
-                        </span>
-                        <h1 className="text-4xl md:text-6xl font-heading mb-6 max-w-4xl leading-tight">
+
+                        <div className="inline-block mb-8">
+                            <span className="px-6 py-2 rounded-full border border-[var(--color-secondary)]/20 bg-[var(--color-secondary)]/[0.03] text-[var(--color-secondary)] text-[10px] font-bold tracking-[0.2em] uppercase">
+                                {event.type}
+                            </span>
+                        </div>
+
+                        <h1 className="text-[var(--color-primary)] text-4xl md:text-5xl lg:text-7xl font-heading mb-10 leading-tight">
                             {event.title}
                         </h1>
-                        <div className="flex flex-wrap gap-6 text-sm md:text-base text-white/90">
+
+                        <div className="flex flex-wrap gap-8 text-sm text-stone-400">
                             <div className="flex items-center gap-2">
                                 <Calendar className="w-5 h-5 text-[var(--color-secondary)]" />
-                                {event.date}
+                                <span className="font-medium">{event.date}</span>
                             </div>
                             {event.time && (
                                 <div className="flex items-center gap-2">
                                     <Clock className="w-5 h-5 text-[var(--color-secondary)]" />
-                                    {event.time}
+                                    <span className="font-medium">{event.time}</span>
                                 </div>
                             )}
                             <div className="flex items-center gap-2">
                                 <MapPin className="w-5 h-5 text-[var(--color-secondary)]" />
-                                {event.location}
+                                <span className="font-medium">{event.location}</span>
                             </div>
+                        </div>
+                    </FadeIn>
+                </div>
+
+                {/* Right Panel: Hero Image */}
+                <div className="lg:w-[55%] relative min-h-[400px] lg:min-h-full">
+                    <Image
+                        src={event.image}
+                        alt={event.title}
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+                    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent hidden lg:block" />
+                </div>
+            </section>
+
+            {/* Content Section */}
+            <section className="py-24 px-4 overflow-hidden">
+                <div className="container mx-auto max-w-7xl">
+                    <div className="grid lg:grid-cols-12 gap-16 lg:gap-24">
+                        {/* Main Body */}
+                        <div className="lg:col-span-8 space-y-12">
+                            <FadeIn>
+                                <div className="p-12 bg-white rounded-[3rem] shadow-sm border border-stone-100 relative overflow-hidden group">
+                                    <div className="absolute -right-20 -top-20 w-80 h-80 opacity-[0.02] pointer-events-none rotate-12 group-hover:rotate-45 transition-transform duration-1000">
+                                        <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
+                                    </div>
+                                    <p className="text-2xl md:text-3xl text-[var(--color-primary)] font-light leading-relaxed italic relative z-10">
+                                        “{event.aida.attention}”
+                                    </p>
+                                </div>
+                            </FadeIn>
+
+                            <FadeIn delay={0.2} className="prose prose-stone max-w-none">
+                                <div className="space-y-4">
+                                    {renderContent()}
+                                </div>
+                            </FadeIn>
+                        </div>
+
+                        {/* Sidebar / CTA */}
+                        <div className="lg:col-span-4">
+                            <FadeIn className="sticky top-32">
+                                <div className="p-10 bg-stone-900 rounded-[3rem] shadow-2xl text-white relative overflow-hidden">
+                                    {/* Background decoration */}
+                                    <div className="absolute top-0 right-0 p-10 opacity-10">
+                                        <Sparkles className="w-20 h-20" />
+                                    </div>
+
+                                    <h3 className="text-2xl font-heading mb-8 relative z-10">Reserva tu Lugar</h3>
+
+                                    <div className="space-y-6 mb-12 relative z-10">
+                                        <div className="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
+                                            <Calendar className="w-5 h-5 text-[var(--color-secondary)] mt-1" />
+                                            <div>
+                                                <span className="block text-[10px] uppercase tracking-widest text-white/40 mb-1">Fecha</span>
+                                                <span className="text-lg font-medium">{event.date}</span>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
+                                            <MapPin className="w-5 h-5 text-[var(--color-secondary)] mt-1" />
+                                            <div>
+                                                <span className="block text-[10px] uppercase tracking-widest text-white/40 mb-1">Lugar</span>
+                                                <span className="text-lg font-medium">{event.location}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <a
+                                        href="https://wa.me/17867268717"
+                                        target="_blank"
+                                        className="btn-premium w-full bg-white !text-stone-950 hover:!bg-stone-200 shadow-xl py-5 group"
+                                    >
+                                        {event.aida.action || "Solicitar Información"}
+                                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                    </a>
+
+                                    <p className="text-center text-xs text-white/40 mt-8 font-light italic">
+                                        * Cupos limitados para garantizar un espacio de contención e intimidad.
+                                    </p>
+                                </div>
+                            </FadeIn>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div className="container mx-auto px-4 -mt-10 relative z-20">
-                <div className="grid lg:grid-cols-3 gap-8">
-                    {/* Main Content */}
-                    <div className="lg:col-span-2 space-y-8">
-                        {/* Intro Card */}
-                        <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-                            <p className="text-xl text-[var(--color-primary)] font-medium leading-relaxed italic">
-                                "{event.aida.attention}"
-                            </p>
-                        </div>
-
-                        {/* Dynamic Content Rendering */}
-                        <div className="space-y-4">
-                            {renderContent()}
-                        </div>
-                    </div>
-
-                    {/* Sidebar */}
-                    <div className="lg:col-span-1 space-y-6">
-                        <div className="bg-white rounded-2xl p-8 shadow-lg border border-[var(--color-secondary)]/20 sticky top-24">
-                            <h3 className="text-xl font-heading text-[var(--color-primary)] mb-6">Detalles del Encuentro</h3>
-
-                            <div className="space-y-4 mb-8">
-                                <div className="flex items-start gap-3">
-                                    <span className="p-2 bg-[var(--color-background)] rounded-full text-[var(--color-secondary)]">
-                                        <Calendar className="w-5 h-5" />
-                                    </span>
-                                    <div>
-                                        <span className="block text-sm text-gray-500">Fecha</span>
-                                        <span className="font-semibold text-[var(--color-primary)]">{event.date}</span>
-                                    </div>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                    <span className="p-2 bg-[var(--color-background)] rounded-full text-[var(--color-secondary)]">
-                                        <Clock className="w-5 h-5" />
-                                    </span>
-                                    <div>
-                                        <span className="block text-sm text-gray-500">Horario</span>
-                                        <span className="font-semibold text-[var(--color-primary)]">{event.time || "Por confirmar"}</span>
-                                    </div>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                    <span className="p-2 bg-[var(--color-background)] rounded-full text-[var(--color-secondary)]">
-                                        <MapPin className="w-5 h-5" />
-                                    </span>
-                                    <div>
-                                        <span className="block text-sm text-gray-500">Ubicación</span>
-                                        <span className="font-semibold text-[var(--color-primary)]">{event.location}</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <a
-                                href={event.aida.action.includes("Información") ? "https://wa.me/17867268717" : "#"}
-                                target="_blank"
-                                className="btn-premium w-full justify-center text-center py-4 mb-4"
-                            >
-                                {event.aida.action}
-                            </a>
-
-                            <p className="text-center text-sm text-gray-400">
-                                Cupos limitados para preservar la intimidad del espacio.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </section>
         </main>
     );
 }
