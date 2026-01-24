@@ -66,6 +66,8 @@ export default function ServicesPage() {
                         className="object-cover"
                         priority
                     />
+                    {/* Soft gradient transition from the color panel */}
+                    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[var(--color-secondary)] to-transparent hidden lg:block" />
                     <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[var(--color-secondary)]/10 lg:to-transparent" />
                 </div>
             </section>
@@ -185,14 +187,14 @@ export default function ServicesPage() {
                         {/* Libros (Combined Image logic in section) */}
                         <FadeIn delay={0.2}>
                             <div className="group space-y-8">
-                                <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl border border-stone-100">
+                                <Link href="/libros" className="block relative aspect-video rounded-3xl overflow-hidden shadow-2xl border border-stone-100">
                                     <div className="grid grid-cols-2 h-full">
                                         <div className="relative h-full border-r border-white/10">
                                             <Image
                                                 src="/assets/images/chamana-bg.png"
                                                 alt="Conversaciones con mi Chamana"
                                                 fill
-                                                className="object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
+                                                className="object-cover group-hover:scale-110 transition-transform duration-1000"
                                             />
                                         </div>
                                         <div className="relative h-full">
@@ -200,19 +202,18 @@ export default function ServicesPage() {
                                                 src="/assets/images/hilos-bg.png"
                                                 alt="Hilos de Conexión"
                                                 fill
-                                                className="object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
+                                                className="object-cover group-hover:scale-110 transition-transform duration-1000"
                                             />
                                         </div>
                                     </div>
-                                    <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors" />
-                                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/40" />
-                                </div>
+                                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
+                                    <div className="absolute inset-0 flex items-center justify-center">
+                                        <span className="px-8 py-3 rounded-full border border-white/40 bg-white/10 text-white text-xs uppercase tracking-[0.2em] backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity">Ver Librería</span>
+                                    </div>
+                                </Link>
                                 <div className="space-y-4 text-left">
                                     <h3 className="text-3xl font-heading text-[var(--color-primary)]">Libros y Recursos</h3>
                                     <p className="text-[var(--color-text-light)] leading-relaxed text-lg">'Hilos de Conexión' y 'Conversaciones con mi Chamana': herramientas para tu viaje de autodescubrimiento.</p>
-                                    <Link href="/libros" className="text-[var(--color-secondary)] font-bold flex items-center gap-2 hover:translate-x-2 transition-transform text-lg pt-4">
-                                        Explorar Librería <ArrowRight className="w-5 h-5" />
-                                    </Link>
                                 </div>
                             </div>
                         </FadeIn>
