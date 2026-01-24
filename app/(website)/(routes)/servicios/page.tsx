@@ -22,9 +22,6 @@ export default function ServicesPage() {
                     <Star className="absolute bottom-8 right-8 text-white/40 w-8 h-8 font-light" />
 
                     <FadeIn direction="right">
-                        <h2 className="text-white text-3xl md:text-5xl font-heading mb-12 leading-tight uppercase tracking-tighter">
-                            Entrar en <br /> el Vórtice
-                        </h2>
                         <div className="space-y-8 mb-16">
                             <h3 className="text-white text-4xl md:text-5xl lg:text-6xl font-light italic leading-none">
                                 No es magia. <br /> Es alineación.
@@ -59,7 +56,7 @@ export default function ServicesPage() {
                 {/* Right Panel: Ethereal Image */}
                 <div className="lg:w-[55%] relative min-h-[500px] lg:min-h-full">
                     <Image
-                        src="/assets/images/vortex-hero.png"
+                        src="/assets/images/vortex-hero-clean.png"
                         alt="Alineación y Vórtice"
                         fill
                         className="object-cover"
