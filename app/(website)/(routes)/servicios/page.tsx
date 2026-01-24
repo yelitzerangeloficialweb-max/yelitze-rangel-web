@@ -149,6 +149,7 @@ export default function ServicesPage() {
                         fill
                         className="object-cover"
                     />
+                    <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-stone-950 to-transparent hidden lg:block" />
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent to-stone-950 lg:to-stone-950/20" />
                 </div>
             </section>
