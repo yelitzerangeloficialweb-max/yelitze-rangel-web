@@ -130,15 +130,17 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
                     </div>
 
                     <FadeIn>
-                        <Link href="/eventos" className="inline-flex items-center gap-2 text-stone-400 hover:text-[var(--color-secondary)] mb-12 transition-colors uppercase text-xs tracking-widest font-bold">
-                            <ArrowLeft className="w-4 h-4" />
-                            Volver a la Agenda
-                        </Link>
+                        <div className="flex flex-col items-start gap-4 mb-12">
+                            <Link href="/eventos" className="inline-flex items-center gap-2 text-stone-400 hover:text-[var(--color-secondary)] transition-colors uppercase text-xs tracking-widest font-bold">
+                                <ArrowLeft className="w-4 h-4" />
+                                Volver a la Agenda
+                            </Link>
 
-                        <div className="inline-block mb-8">
-                            <span className="px-6 py-2 rounded-full border border-[var(--color-secondary)]/20 bg-[var(--color-secondary)]/[0.03] text-[var(--color-secondary)] text-[10px] font-bold tracking-[0.2em] uppercase">
-                                {event.type}
-                            </span>
+                            <div className="inline-block">
+                                <span className="px-6 py-2 rounded-full border border-[var(--color-secondary)]/20 bg-[var(--color-secondary)]/[0.03] text-[var(--color-secondary)] text-[10px] font-bold tracking-[0.2em] uppercase">
+                                    {event.type}
+                                </span>
+                            </div>
                         </div>
 
                         <h1 className="text-[var(--color-primary)] text-4xl md:text-5xl lg:text-7xl font-heading mb-10 leading-tight">
