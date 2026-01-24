@@ -1,88 +1,194 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { ArrowRight } from 'lucide-react';
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import {
+    ArrowRight, ShoppingBag, BookOpen,
+    Sparkles, Star, ArrowDown, ExternalLink
+} from "lucide-react";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 
 const books = [
     {
         title: "Hilos de Conexión",
         subtitle: "Un viaje curativo a la memoria del origen",
         slug: "hilos-de-conexion",
-        cover: "/assets/images/books/hilos-cover.jpg",
-        description: "Una invitación a recordar, a sanar y a reconectar con esa memoria sagrada que habita en tu ADN."
+        cover: "/assets/images/manual-2026.jpg", // Using professional asset
+        description: "Una invitación a recordar, a sanar y a reconectar con esa memoria sagrada que habita en tu ADN. Un manual para quienes buscan su origen.",
+        amazonLink: "https://www.amazon.com/dp/B0CSXW7R2J"
     },
     {
         title: "Conversaciones con mi Chamana",
         subtitle: "107 pláticas para despertar tu medicina interior",
         slug: "conversaciones-con-mi-chamana",
-        cover: "/assets/images/books/chamana-cover.jpg",
-        description: "Reflexiones, meditaciones y diálogos internos para acompañarte en tu día a día y despertar tu sabiduría interior."
+        cover: "/assets/images/about-book.jpg", // Using professional asset
+        description: "Reflexiones, meditaciones y diálogos internos para acompañarte en tu día a día y despertar tu sabiduría interior más profunda.",
+        amazonLink: "https://www.amazon.com/dp/B0CSXW7R2J"
     }
 ];
 
-export default function BooksIndexPage() {
+export default function BooksPage() {
     return (
-        <main className="min-h-screen bg-background pt-32 pb-20">
-            <div className="container mx-auto px-4">
-                <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-                    <span className="text-secondary font-medium tracking-widest text-sm uppercase">Mis Libros</span>
-                    <h1 className="text-4xl md:text-5xl font-heading text-primary">Sabiduría para el Alma</h1>
-                    <p className="text-lg text-primary-light">
-                        Herramientas escritas desde el corazón para acompañar tu proceso de sanación y autodescubrimiento.
-                    </p>
-                </div>
+        <main className="bg-[#fafcfe] min-h-screen selection:bg-[var(--color-secondary)] selection:text-white pb-20">
 
-                <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-                    {books.map((book) => (
-                        <div key={book.slug} className="group bg-surface rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-primary/5 hover:border-secondary/20 flex flex-col items-center p-8 text-center">
+            {/* 1. HERO SECTION: COFRE DE SABIDURÍA */}
+            <section className="relative min-h-[80vh] flex flex-col lg:flex-row overflow-hidden pt-20">
+                {/* Left Panel: Luminous Obsidian */}
+                <div className="lg:w-[45%] bg-stone-950 p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
+                    {/* Subtle Watermark */}
+                    <div className="absolute -left-32 -bottom-32 w-[900px] h-[900px] opacity-[0.05] pointer-events-none">
+                        <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
+                    </div>
 
-                            {/* Cover Container with Hover Effect */}
-                            <div className="relative w-48 h-72 mb-8 perspective-1000">
-                                <div className="relative w-full h-full transform group-hover:rotate-y-6 transition-transform duration-700 ease-out preserve-3d shadow-2xl rounded-lg">
-                                    {/* Fallback color if image missing */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-primary-light to-primary rounded-lg flex items-center justify-center text-white/20">
-                                        <span className="sr-only">Cover Placeholder</span>
-                                    </div>
-                                    <Image
-                                        src={book.cover}
-                                        alt={book.title}
-                                        fill
-                                        className="object-cover rounded-lg"
-                                    />
-                                </div>
-                            </div>
-
-                            <h2 className="text-2xl font-heading text-primary mb-2 group-hover:text-secondary transition-colors">
-                                {book.title}
-                            </h2>
-                            <p className="text-sm font-medium text-secondary mb-4 italic">
-                                {book.subtitle}
-                            </p>
-                            <p className="text-primary-light mb-8 leading-relaxed max-w-sm">
-                                {book.description}
-                            </p>
-
-                            <div className="flex flex-col sm:flex-row gap-4 w-full max-w-sm justify-center">
-                                <Link
-                                    href={`/libros/${book.slug}`}
-                                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white rounded-full hover:bg-secondary transition-all transform hover:scale-105 flex-1 shadow-md"
-                                >
-                                    Ver Detalles
-                                    <ArrowRight className="w-4 h-4" />
-                                </Link>
-                                <a
-                                    href={`https://wa.me/584141234567?text=Hola Yelitzé, estoy interesada en comprar tu libro "${book.title}" desde Venezuela.`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-primary text-primary rounded-full hover:bg-indigo-50 transition-all transform hover:scale-105 flex-1"
-                                >
-                                    Compra en Venezuela
-                                </a>
-                            </div>
-
+                    <FadeIn>
+                        {/* Pill Badge Style */}
+                        <div className="inline-block mb-10">
+                            <span className="px-8 py-3 rounded-full border border-[var(--color-secondary)]/20 bg-[var(--color-secondary)]/[0.05] text-[var(--color-secondary)] text-sm md:text-base font-light tracking-[0.2em] uppercase backdrop-blur-sm shadow-sm">
+                                Letras con Propósito
+                            </span>
                         </div>
-                    ))}
+
+                        <h1 className="text-white text-4xl md:text-5xl lg:text-7xl font-heading mb-8 leading-tight">
+                            Cofre de <br /> Sabiduría
+                        </h1>
+                        <p className="text-gray-400 text-lg md:text-xl font-light italic leading-relaxed max-w-md">
+                            Libros diseñados para ser espejos de tu alma y guías en tu viaje de retorno a la esencia.
+                        </p>
+
+                        <Link
+                            href="#biblioteca"
+                            className="inline-flex items-center gap-4 text-white group border-b border-white/10 pb-2 w-fit hover:border-[var(--color-secondary)] transition-all text-lg font-medium mt-12"
+                        >
+                            Explorar los Libros
+                            <ArrowDown className="w-5 h-5 group-hover:translate-y-1 transition-transform text-[var(--color-secondary)]" />
+                        </Link>
+                    </FadeIn>
                 </div>
-            </div>
+
+                {/* Right Panel: Ethereal Image */}
+                <div className="lg:w-[55%] relative min-h-[500px] lg:min-h-full">
+                    {/* Placeholder for the Book/Candle Image until Reset */}
+                    <Image
+                        src="/assets/images/about-ritual.jpg"
+                        alt="Sabiduría Ancestral"
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+                    {/* Soft gradient transition */}
+                    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-stone-950 to-transparent hidden lg:block" />
+                </div>
+            </section>
+
+            {/* 2. BOOKS SHOWCASE GRID */}
+            <section id="biblioteca" className="py-32 px-4 relative overflow-hidden">
+                {/* Background Watermark */}
+                <div className="absolute -right-40 -top-40 w-[800px] h-[800px] opacity-[0.02] pointer-events-none">
+                    <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
+                </div>
+
+                <div className="container mx-auto max-w-7xl">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24">
+                        {books.map((book, idx) => (
+                            <FadeIn key={book.slug} delay={idx * 0.1}>
+                                <div className="group relative flex flex-col items-center">
+                                    {/* 3D Book Display Experience */}
+                                    <div className="relative w-64 h-96 mb-12 perspective-1000">
+                                        <div className="relative w-full h-full transform-gpu group-hover:rotate-y-12 group-hover:-rotate-x-6 transition-all duration-700 ease-out shadow-[-20px_20px_60px_rgba(0,0,0,0.2)] rounded-lg overflow-hidden border border-stone-100">
+                                            <Image
+                                                src={book.cover}
+                                                alt={book.title}
+                                                fill
+                                                className="object-cover"
+                                            />
+                                            {/* Spine Detail Effect */}
+                                            <div className="absolute inset-y-0 left-0 w-4 bg-black/10 shadow-inner z-10" />
+                                        </div>
+                                    </div>
+
+                                    {/* Content Details */}
+                                    <div className="text-center space-y-6 max-w-md">
+                                        <div className="space-y-2">
+                                            <span className="text-[var(--color-secondary)] font-bold tracking-[0.2em] uppercase text-[10px]">Edición Impresa & Digital</span>
+                                            <h2 className="text-3xl md:text-4xl font-heading text-[var(--color-primary)] leading-tight">
+                                                {book.title}
+                                            </h2>
+                                            <p className="text-stone-400 italic text-lg">{book.subtitle}</p>
+                                        </div>
+
+                                        <p className="text-[var(--color-text-light)] leading-relaxed">
+                                            {book.description}
+                                        </p>
+
+                                        <div className="flex flex-col gap-4 pt-6">
+                                            {/* Amazon Button with Logo Concept */}
+                                            <a
+                                                href={book.amazonLink}
+                                                target="_blank"
+                                                className="btn-premium bg-[#131921] !text-white hover:bg-black w-full justify-center flex items-center gap-3 py-5"
+                                            >
+                                                {/* Amazon Logo Representation */}
+                                                <div className="flex flex-col items-center">
+                                                    <span className="text-[10px] uppercase tracking-widest opacity-70">Disponible en</span>
+                                                    <span className="font-bold flex items-center gap-1 leading-none">
+                                                        amazon <span className="text-[#FF9900]">.com</span>
+                                                    </span>
+                                                </div>
+                                                <ExternalLink className="w-5 h-5 opacity-40" />
+                                            </a>
+
+                                            {/* Local Purchase */}
+                                            <a
+                                                href="https://wa.me/17867268717"
+                                                target="_blank"
+                                                className="px-10 py-5 rounded-full border border-stone-200 text-stone-600 hover:bg-white hover:shadow-xl transition-all font-medium text-sm tracking-widest uppercase"
+                                            >
+                                                Adquirir en Venezuela
+                                            </a>
+
+                                            <Link
+                                                href={`/libros/${book.slug}`}
+                                                className="text-[var(--color-secondary)] font-bold text-xs tracking-widest uppercase hover:underline underline-offset-8 mt-4"
+                                            >
+                                                Ver Detalles del Libro
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </FadeIn>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* 3. SECTION: EL VALOR DE LA PALABRA */}
+            <section className="py-32 bg-stone-950 relative overflow-hidden">
+                <div className="container mx-auto px-4 text-center">
+                    <FadeIn>
+                        <Star className="w-12 h-12 text-[var(--color-secondary)] mx-auto mb-10 opacity-50" />
+                        <h2 className="text-white text-4xl md:text-5xl font-heading mb-12 italic max-w-4xl mx-auto leading-tight">
+                            "A veces, una frase leída en el momento justo es el inicio de una sanación para toda la vida."
+                        </h2>
+                        <div className="w-20 h-px bg-[var(--color-secondary)]/30 mx-auto" />
+                    </FadeIn>
+                </div>
+            </section>
+
+            {/* FINAL CTA */}
+            <section className="py-24 bg-white border-t border-stone-100">
+                <div className="container mx-auto px-4 text-center">
+                    <FadeIn>
+                        <h2 className="text-3xl md:text-5xl font-heading text-[var(--color-primary)] mb-12">¿Quieres recibir un fragmento cada mes?</h2>
+                        <Link
+                            href="/newsletter"
+                            className="inline-flex items-center gap-4 px-12 py-5 bg-[var(--color-secondary)] text-white rounded-full text-xl font-medium hover:scale-105 transition-transform shadow-2xl"
+                        >
+                            Suscríbete a la Bitácora
+                            <Sparkles className="w-5 h-5" />
+                        </Link>
+                    </FadeIn>
+                </div>
+            </section>
         </main>
     );
 }
