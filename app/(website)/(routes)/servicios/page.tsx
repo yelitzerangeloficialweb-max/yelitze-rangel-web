@@ -21,7 +21,10 @@ export default function ServicesPage() {
                     <Star className="absolute top-8 left-8 text-white/40 w-8 h-8 font-light" />
                     <Star className="absolute bottom-8 right-8 text-white/40 w-8 h-8 font-light" />
 
-                    <FadeIn direction="right">
+                    <FadeIn>
+                        <h2 className="text-white text-3xl md:text-5xl font-heading mb-12 leading-tight uppercase tracking-tighter">
+                            Coaching <br /> Ancestral
+                        </h2>
                         <div className="space-y-8 mb-16">
                             <h3 className="text-white text-4xl md:text-5xl lg:text-6xl font-light italic leading-none">
                                 No es magia. <br /> Es alineación.
@@ -71,7 +74,7 @@ export default function ServicesPage() {
                 <div className="container mx-auto">
                     <div className="flex flex-col lg:flex-row-reverse gap-16 items-center">
                         <div className="lg:w-1/2 space-y-8">
-                            <FadeIn direction="left">
+                            <FadeIn>
                                 <span className="text-[var(--color-secondary)] font-bold tracking-[0.3em] uppercase text-xs">Alquimia del Tacto</span>
                                 <h2 className="text-4xl md:text-6xl font-heading text-[var(--color-primary)] leading-tight">Sesiones Corporales</h2>
                                 <p className="text-xl text-[var(--color-text-light)] leading-relaxed italic border-l-2 border-[var(--color-secondary)] pl-6">
