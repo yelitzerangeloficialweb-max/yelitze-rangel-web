@@ -12,7 +12,7 @@ export default function ConversacionesPage() {
                     "Una recopilación de 107 reflexiones, meditaciones y diálogos internos para acompañarte en tu día a día."
                 ]}
                 price="$16.99"
-                coverImage="/assets/images/books/chamana-cover.jpg"
+                coverImage="/assets/images/books/conversaciones-chamana-3d.png"
                 amazonLink="https://www.amazon.com/dp/B0CSXW7R2J" // Verify Link
                 features={[
                     "Sabiduría Femenina",

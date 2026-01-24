@@ -12,7 +12,7 @@ export default function HilosDeConexionPage() {
                     "Este libro es una invitación a recordar, a sanar y a reconectar con esa memoria sagrada que habita en tu ADN."
                 ]}
                 price="$19.99"
-                coverImage="/assets/images/books/hilos-cover.jpg"
+                coverImage="/assets/images/books/hilos-conexion-3d.png"
                 amazonLink="https://www.amazon.com/dp/B0CKW6595M" // Verify Link
                 kindleLink="https://www.amazon.com/dp/B0CKW6595M"
                 features={[
