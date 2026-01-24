@@ -33,31 +33,31 @@ export default function BooksPage() {
 
             {/* 1. HERO SECTION: COFRE DE SABIDURÍA */}
             <section className="relative min-h-[80vh] flex flex-col lg:flex-row overflow-hidden pt-20">
-                {/* Left Panel: Luminous Obsidian */}
-                <div className="lg:w-[45%] bg-stone-950 p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
+                {/* Left Panel: Luminous Beige */}
+                <div className="lg:w-[45%] bg-[#fdfcf6] p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
                     {/* Subtle Watermark */}
-                    <div className="absolute -left-32 -bottom-32 w-[900px] h-[900px] opacity-[0.05] pointer-events-none">
+                    <div className="absolute -left-32 -bottom-32 w-[900px] h-[900px] opacity-[0.03] pointer-events-none">
                         <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
                     </div>
 
                     <FadeIn>
                         {/* Pill Badge Style */}
                         <div className="inline-block mb-10">
-                            <span className="px-8 py-3 rounded-full border border-[var(--color-secondary)]/20 bg-[var(--color-secondary)]/[0.05] text-[var(--color-secondary)] text-sm md:text-base font-light tracking-[0.2em] uppercase backdrop-blur-sm shadow-sm">
+                            <span className="px-8 py-3 rounded-full border border-[var(--color-secondary)]/20 bg-[var(--color-secondary)]/[0.03] text-[var(--color-secondary)] text-sm md:text-base font-light tracking-[0.2em] uppercase backdrop-blur-sm shadow-sm">
                                 Letras con Propósito
                             </span>
                         </div>
 
-                        <h1 className="text-white text-4xl md:text-5xl lg:text-7xl font-heading mb-8 leading-tight">
+                        <h1 className="text-[var(--color-primary)] text-4xl md:text-5xl lg:text-7xl font-heading mb-8 leading-tight">
                             Cofre de <br /> Sabiduría
                         </h1>
-                        <p className="text-gray-400 text-lg md:text-xl font-light italic leading-relaxed max-w-md">
+                        <p className="text-[var(--color-text-light)] text-lg md:text-xl font-light italic leading-relaxed max-w-md">
                             Libros diseñados para ser espejos de tu alma y guías en tu viaje de retorno a la esencia.
                         </p>
 
                         <Link
                             href="#biblioteca"
-                            className="inline-flex items-center gap-4 text-white group border-b border-white/10 pb-2 w-fit hover:border-[var(--color-secondary)] transition-all text-lg font-medium mt-12"
+                            className="inline-flex items-center gap-4 text-[var(--color-primary)] group border-b border-[var(--color-primary)]/10 pb-2 w-fit hover:border-[var(--color-secondary)] transition-all text-lg font-medium mt-12"
                         >
                             Explorar los Libros
                             <ArrowDown className="w-5 h-5 group-hover:translate-y-1 transition-transform text-[var(--color-secondary)]" />
@@ -76,7 +76,7 @@ export default function BooksPage() {
                         priority
                     />
                     {/* Soft gradient transition */}
-                    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-stone-950 to-transparent hidden lg:block" />
+                    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#fdfcf6] to-transparent hidden lg:block" />
                 </div>
             </section>
 
