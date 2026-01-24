@@ -39,8 +39,8 @@ export default function ServicesPage() {
             price: "Desde $150 USD",
             icon: <HeartHandshake className="w-8 h-8 text-[var(--color-secondary)]" />,
             features: ["Masaje de descongelamiento", "Armonización energética", "Liberación de traumas físicos"],
-            link: "https://wa.me/17867268717",
-            cta: "Reservar Mi Sesión",
+            link: "/servicios/sesiones-corporales",
+            cta: "Explorar Todas las Técnicas",
             highlight: false
         },
         {
