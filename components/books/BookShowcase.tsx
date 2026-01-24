@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {
     ShoppingCart, Star, BookOpen,
-    ArrowLeft, ExternalLink, Sparkles
+    ArrowLeft, ExternalLink, Sparkles, ArrowRight
 } from 'lucide-react';
 import { FadeIn } from '@/components/ui/motion';
 
