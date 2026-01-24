@@ -17,8 +17,8 @@ export default function ServicesPage() {
             <section className="relative min-h-[90vh] flex flex-col lg:flex-row overflow-hidden pt-20">
                 {/* Left Panel: Brand Color */}
                 <div className="lg:w-[45%] bg-[var(--color-secondary)] p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
-                    {/* Subtle Watermark */}
-                    <div className="absolute -left-20 -bottom-20 w-96 h-96 opacity-[0.03] pointer-events-none">
+                    {/* Subtle Watermark - Larger & More Transparent */}
+                    <div className="absolute -left-32 -bottom-32 w-[1000px] h-[1000px] opacity-[0.015] pointer-events-none">
                         <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
                     </div>
 
@@ -77,8 +77,8 @@ export default function ServicesPage() {
             </section>
 
             <section className="py-32 px-4 bg-white relative overflow-hidden">
-                {/* Subtle Watermark */}
-                <div className="absolute -left-20 -bottom-20 w-80 h-80 opacity-[0.03] pointer-events-none rotate-12">
+                {/* Subtle Watermark - Larger & More Transparent */}
+                <div className="absolute -left-32 -bottom-32 w-[900px] h-[900px] opacity-[0.015] pointer-events-none rotate-12">
                     <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
                 </div>
                 <div className="container mx-auto relative">
@@ -122,8 +122,8 @@ export default function ServicesPage() {
             <section className="relative min-h-[80vh] flex flex-col lg:flex-row-reverse overflow-hidden">
                 {/* Right Panel (Content in Obsidian) */}
                 <div className="lg:w-1/2 bg-stone-950 p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
-                    {/* Subtle Watermark */}
-                    <div className="absolute -right-20 -bottom-20 w-80 h-80 opacity-[0.06] pointer-events-none rotate-[-12deg]">
+                    {/* Subtle Watermark - Larger & More Transparent */}
+                    <div className="absolute -right-32 -bottom-32 w-[800px] h-[800px] opacity-[0.025] pointer-events-none rotate-[-12deg]">
                         <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
                     </div>
                     <FadeIn>
@@ -167,8 +167,8 @@ export default function ServicesPage() {
 
             {/* 4. SECTION: GRUPALES & LIBROS */}
             <section className="py-32 bg-[#fafcfe] relative overflow-hidden">
-                {/* Subtle Watermark */}
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-[0.02] pointer-events-none">
+                {/* Subtle Watermark - Larger & More Transparent */}
+                <div className="absolute -left-40 -bottom-40 w-[1200px] h-[1200px] opacity-[0.01] pointer-events-none rotate-[-6deg]">
                     <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
                 </div>
                 <div className="container mx-auto px-4 relative">
