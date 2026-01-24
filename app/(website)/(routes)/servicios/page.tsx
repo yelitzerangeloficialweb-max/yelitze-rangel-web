@@ -13,23 +13,24 @@ export default function ServicesPage() {
     return (
         <main className="bg-[#fafcfe] min-h-screen selection:bg-[var(--color-secondary)] selection:text-white pb-20">
 
-            {/* 1. SECTION: COACHING ANCESTRAL (EL VÓRTICE) */}
+            {/* 1. SECTION: COACHING ANCESTRAL */}
             <section className="relative min-h-[90vh] flex flex-col lg:flex-row overflow-hidden pt-20">
                 {/* Left Panel: Brand Color */}
                 <div className="lg:w-[45%] bg-[var(--color-secondary)] p-8 md:p-16 lg:p-24 flex flex-col justify-center relative">
-                    {/* Star Accents */}
-                    <Star className="absolute top-8 left-8 text-white/40 w-8 h-8 font-light" />
-                    <Star className="absolute bottom-8 right-8 text-white/40 w-8 h-8 font-light" />
 
                     <FadeIn>
-                        <h2 className="text-white text-3xl md:text-5xl font-heading mb-12 leading-tight uppercase tracking-tighter">
-                            Coaching <br /> Ancestral
-                        </h2>
+                        {/* Pill Badge Style */}
+                        <div className="inline-block mb-12">
+                            <span className="px-8 py-3 rounded-full border border-white/30 bg-white/5 text-white text-sm md:text-base font-light tracking-[0.2em] uppercase backdrop-blur-sm shadow-xl">
+                                Coaching Ancestral
+                            </span>
+                        </div>
+
                         <div className="space-y-8 mb-16">
-                            <h3 className="text-white text-4xl md:text-5xl lg:text-6xl font-light italic leading-none">
+                            <h3 className="text-white text-4xl md:text-5xl lg:text-7xl font-light italic leading-none">
                                 No es magia. <br /> Es alineación.
                             </h3>
-                            <p className="text-white/80 text-lg md:text-xl font-light tracking-wide">
+                            <p className="text-white/80 text-lg md:text-xl font-light tracking-wide max-w-md leading-relaxed">
                                 Activación consciente del creador deliberado a través de la Anatomía del Alma.
                             </p>
                         </div>
@@ -65,11 +66,11 @@ export default function ServicesPage() {
                         className="object-cover"
                         priority
                     />
-                    <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[var(--color-secondary)]/20 lg:to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[var(--color-secondary)]/10 lg:to-transparent" />
                 </div>
             </section>
 
-            {/* 2. SECTION: SESIONES CORPORALES (LUMINOUS) */}
+            {/* 2. SECTION: SESIONES CORPORALES */}
             <section className="py-32 px-4 bg-white">
                 <div className="container mx-auto">
                     <div className="flex flex-col lg:flex-row-reverse gap-16 items-center">
@@ -80,7 +81,7 @@ export default function ServicesPage() {
                                 <p className="text-xl text-[var(--color-text-light)] leading-relaxed italic border-l-2 border-[var(--color-secondary)] pl-6">
                                     “El lenguaje más antiguo que hace vibrar la piel, nutre el corazón y acaricia el alma.”
                                 </p>
-                                <p className="text-lg text-[var(--color-text-light)]">
+                                <p className="text-lg text-[var(--color-text-light)] leading-relaxed">
                                     Reconexión profunda a través del santuario del cuerpo. Liberamos memorias estancadas para que el alma pueda expresarse con libertad.
                                 </p>
                                 <div className="pt-8">
@@ -112,13 +113,9 @@ export default function ServicesPage() {
             <section className="relative min-h-[80vh] flex flex-col lg:flex-row-reverse overflow-hidden">
                 {/* Right Panel (Content in Obsidian) */}
                 <div className="lg:w-1/2 bg-stone-950 p-8 md:p-16 lg:p-24 flex flex-col justify-center relative">
-                    <Star className="absolute top-8 right-8 text-white/20 w-8 h-8" />
-                    <FadeIn direction="left">
+                    <FadeIn>
                         <span className="text-[var(--color-secondary)] font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Liderazgo & Origen</span>
                         <h2 className="text-white text-4xl md:text-6xl font-heading mb-8 leading-tight">Sesiones Corporativas</h2>
-                        <p className="text-gray-400 text-lg md:text-xl mb-12 font-light italic">
-                            Sanamos la cultura organizacional desde la visión sistémica para alcanzar objetivos extraordinarios.
-                        </p>
                         <ul className="space-y-6 mb-16">
                             {["Coaching para líderes y alta gerencia", "Dinámicas de equipo con mirada circular", "Resolución de conflictos sistémicos"].map((item, i) => (
                                 <li key={i} className="flex items-center gap-4 text-gray-300">
@@ -131,7 +128,7 @@ export default function ServicesPage() {
                             href="https://wa.me/17867268717"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="btn-premium px-10 py-4 group bg-white !text-stone-900 hover:!bg-stone-200"
+                            className="btn-premium px-10 py-4 group bg-white !text-stone-900 hover:!bg-stone-200 shadow-xl"
                         >
                             Solicitar Propuesta
                             <ArrowRight className="w-5 h-5" />
@@ -151,52 +148,69 @@ export default function ServicesPage() {
                 </div>
             </section>
 
-            {/* 4. SECTION: GRUPALES & LIBROS (EDITORIAL) */}
+            {/* 4. SECTION: GRUPALES & LIBROS */}
             <section className="py-32 bg-[#fafcfe]">
                 <div className="container mx-auto px-4">
                     <FadeIn className="text-center mb-24">
                         <h2 className="text-4xl md:text-6xl font-heading text-[var(--color-primary)] mb-6">Sabiduría & Legado</h2>
-                        <p className="text-xl text-[var(--color-text-light)] italic italic">Espacios para sanar en tribu y herramientas para tu propio ritmo.</p>
+                        <p className="text-xl text-[var(--color-text-light)] italic">Espacios para sanar en tribu y herramientas para tu propio ritmo.</p>
                     </FadeIn>
 
-                    <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-                        {/* Eventos */}
+                    <div className="grid lg:grid-cols-2 gap-16 max-w-7xl mx-auto items-start">
+                        {/* Eventos / Grupales */}
                         <FadeIn>
-                            <div className="group cursor-pointer">
-                                <div className="relative aspect-video rounded-3xl overflow-hidden mb-8 border border-stone-100 shadow-xl">
+                            <div className="group space-y-8">
+                                <Link href="/eventos" className="block relative aspect-video rounded-3xl overflow-hidden shadow-2xl border border-stone-100">
                                     <Image
-                                        src="/assets/images/about-playing.jpg"
+                                        src="/assets/images/group-vortex.png"
                                         alt="Capacitaciones Grupales"
                                         fill
-                                        className="object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700"
+                                        className="object-cover group-hover:scale-110 transition-transform duration-1000"
                                     />
-                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
-                                </div>
-                                <h3 className="text-3xl font-heading text-[var(--color-primary)] mb-4">Capacitaciones Grupales</h3>
-                                <p className="text-[var(--color-text-light)] mb-6 leading-relaxed">Talleres intensivos para sanar en tribu. La energía del grupo potencia el trabajo individual mediante espejos sistémicos.</p>
-                                <Link href="/eventos" className="text-[var(--color-secondary)] font-bold flex items-center gap-2 hover:translate-x-2 transition-transform">
-                                    Ver Próximos Talleres <ArrowRight className="w-4 h-4" />
+                                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
+                                    <div className="absolute inset-0 flex items-center justify-center">
+                                        <span className="px-8 py-3 rounded-full border border-white/40 bg-white/10 text-white text-xs uppercase tracking-[0.2em] backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity">Ver Talleres</span>
+                                    </div>
                                 </Link>
+                                <div className="space-y-4">
+                                    <h3 className="text-3xl font-heading text-[var(--color-primary)]">Capacitaciones Grupales</h3>
+                                    <p className="text-[var(--color-text-light)] leading-relaxed text-lg">Talleres intensivos para sanar en tribu. La energía del grupo potencia el trabajo individual mediante espejos sistémicos.</p>
+                                </div>
                             </div>
                         </FadeIn>
 
-                        {/* Libros */}
+                        {/* Libros (Combined Image logic in section) */}
                         <FadeIn delay={0.2}>
-                            <div className="group cursor-pointer">
-                                <div className="relative aspect-video rounded-3xl overflow-hidden mb-8 border border-stone-100 shadow-xl">
-                                    <Image
-                                        src="/assets/images/manual-2026.jpg"
-                                        alt="Libros y Recursos"
-                                        fill
-                                        className="object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700"
-                                    />
-                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
+                            <div className="group space-y-8">
+                                <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl border border-stone-100">
+                                    <div className="grid grid-cols-2 h-full">
+                                        <div className="relative h-full border-r border-white/10">
+                                            <Image
+                                                src="/assets/images/chamana-bg.png"
+                                                alt="Conversaciones con mi Chamana"
+                                                fill
+                                                className="object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
+                                            />
+                                        </div>
+                                        <div className="relative h-full">
+                                            <Image
+                                                src="/assets/images/hilos-bg.png"
+                                                alt="Hilos de Conexión"
+                                                fill
+                                                className="object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors" />
+                                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/40" />
                                 </div>
-                                <h3 className="text-3xl font-heading text-[var(--color-primary)] mb-4">Libros y Recursos</h3>
-                                <p className="text-[var(--color-text-light)] mb-6 leading-relaxed">'Hilos de Conexión' y otras herramientas para empezar tu viaje de autodescubrimiento a tu propio ritmo.</p>
-                                <Link href="/libros" className="text-[var(--color-secondary)] font-bold flex items-center gap-2 hover:translate-x-2 transition-transform">
-                                    Explorar Librería <ArrowRight className="w-4 h-4" />
-                                </Link>
+                                <div className="space-y-4 text-left">
+                                    <h3 className="text-3xl font-heading text-[var(--color-primary)]">Libros y Recursos</h3>
+                                    <p className="text-[var(--color-text-light)] leading-relaxed text-lg">'Hilos de Conexión' y 'Conversaciones con mi Chamana': herramientas para tu viaje de autodescubrimiento.</p>
+                                    <Link href="/libros" className="text-[var(--color-secondary)] font-bold flex items-center gap-2 hover:translate-x-2 transition-transform text-lg pt-4">
+                                        Explorar Librería <ArrowRight className="w-5 h-5" />
+                                    </Link>
+                                </div>
                             </div>
                         </FadeIn>
                     </div>
@@ -208,12 +222,11 @@ export default function ServicesPage() {
                 <div className="container mx-auto px-4 text-center">
                     <FadeIn>
                         <h2 className="text-3xl md:text-5xl font-heading text-[var(--color-primary)] mb-10">¿Buscas una solución a medida?</h2>
-                        <p className="text-xl text-[var(--color-text-light)] mb-12 max-w-2xl mx-auto">Conversemos sobre tu proceso y encontremos el espacio que mejor se alinee con tu alma y tus objetivos.</p>
                         <a
                             href="https://wa.me/17867268717"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="btn-premium px-12 py-5 text-xl"
+                            className="btn-premium px-12 py-5 text-xl shadow-2xl"
                         >
                             Agenda una Llamada de Claridad
                             <ArrowRight className="w-6 h-6 ml-2" />
