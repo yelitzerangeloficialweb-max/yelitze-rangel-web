@@ -16,7 +16,11 @@ export default function ServicesPage() {
             {/* 1. SECTION: COACHING ANCESTRAL */}
             <section className="relative min-h-[90vh] flex flex-col lg:flex-row overflow-hidden pt-20">
                 {/* Left Panel: Brand Color */}
-                <div className="lg:w-[45%] bg-[var(--color-secondary)] p-8 md:p-16 lg:p-24 flex flex-col justify-center relative">
+                <div className="lg:w-[45%] bg-[var(--color-secondary)] p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
+                    {/* Subtle Watermark */}
+                    <div className="absolute -left-20 -bottom-20 w-96 h-96 opacity-[0.03] pointer-events-none">
+                        <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
+                    </div>
 
                     <FadeIn>
                         {/* Pill Badge Style */}
@@ -72,9 +76,12 @@ export default function ServicesPage() {
                 </div>
             </section>
 
-            {/* 2. SECTION: SESIONES CORPORALES */}
-            <section className="py-32 px-4 bg-white">
-                <div className="container mx-auto">
+            <section className="py-32 px-4 bg-white relative overflow-hidden">
+                {/* Subtle Watermark */}
+                <div className="absolute -left-20 -bottom-20 w-80 h-80 opacity-[0.03] pointer-events-none rotate-12">
+                    <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
+                </div>
+                <div className="container mx-auto relative">
                     <div className="flex flex-col lg:flex-row-reverse gap-16 items-center">
                         <div className="lg:w-1/2 space-y-8">
                             <FadeIn>
@@ -114,7 +121,11 @@ export default function ServicesPage() {
             {/* 3. SECTION: CORPORATIVO (OBSIDIAN) */}
             <section className="relative min-h-[80vh] flex flex-col lg:flex-row-reverse overflow-hidden">
                 {/* Right Panel (Content in Obsidian) */}
-                <div className="lg:w-1/2 bg-stone-950 p-8 md:p-16 lg:p-24 flex flex-col justify-center relative">
+                <div className="lg:w-1/2 bg-stone-950 p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
+                    {/* Subtle Watermark */}
+                    <div className="absolute -right-20 -bottom-20 w-80 h-80 opacity-[0.06] pointer-events-none rotate-[-12deg]">
+                        <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
+                    </div>
                     <FadeIn>
                         <span className="text-[var(--color-secondary)] font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Liderazgo & Origen</span>
                         <h2 className="text-white text-4xl md:text-6xl font-heading mb-8 leading-tight">Sesiones Corporativas</h2>
@@ -155,8 +166,12 @@ export default function ServicesPage() {
             </section>
 
             {/* 4. SECTION: GRUPALES & LIBROS */}
-            <section className="py-32 bg-[#fafcfe]">
-                <div className="container mx-auto px-4">
+            <section className="py-32 bg-[#fafcfe] relative overflow-hidden">
+                {/* Subtle Watermark */}
+                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-[0.02] pointer-events-none">
+                    <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
+                </div>
+                <div className="container mx-auto px-4 relative">
                     <FadeIn className="text-center mb-24">
                         <h2 className="text-4xl md:text-6xl font-heading text-[var(--color-primary)] mb-6">Sabiduría & Legado</h2>
                         <p className="text-xl text-[var(--color-text-light)] italic">Espacios para sanar en tribu y herramientas para tu propio ritmo.</p>
