@@ -1,17 +1,18 @@
-import { notFound } from 'next/navigation';
+"use client";
+
+import React, { use } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import {
+    ArrowLeft, Calendar, User,
+    Share2, ArrowRight, Sparkles, Star
+} from 'lucide-react';
 import { BLOG_POSTS } from '@/lib/blog-data';
-import { ArrowLeft, Calendar, User, Facebook, Twitter, Linkedin, Link as LinkIcon } from 'lucide-react';
+import { notFound } from 'next/navigation';
+import { FadeIn } from '@/components/ui/motion';
 
-interface BlogPostPageProps {
-    params: Promise<{
-        slug: string;
-    }>;
-}
-
-export default async function BlogPostPage({ params }: BlogPostPageProps) {
-    const { slug } = await params;
+export default function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = use(params);
     const post = BLOG_POSTS.find((p) => p.slug === slug);
 
     if (!post) {
@@ -19,114 +20,136 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     }
 
     return (
-        <div className="min-h-screen bg-[var(--color-background)] pt-36 pb-20">
-            {/* Hero Image */}
-            <div className="absolute top-0 left-0 w-full h-[50vh] z-0">
-                <Image
-                    src={post.image}
-                    alt={post.title}
-                    fill
-                    className="object-cover opacity-20"
-                    priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[var(--color-background)]" />
-            </div>
+        <main className="bg-[#fafcfe] min-h-screen pb-20">
+            {/* Split-Panel Header */}
+            <section className="relative min-h-[70vh] flex flex-col lg:flex-row overflow-hidden pt-20">
+                {/* Left Panel: Content & Title */}
+                <div className="lg:w-[45%] bg-white p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
+                    {/* Subtle Watermark */}
+                    <div className="absolute -left-32 -bottom-32 w-[800px] h-[800px] opacity-[0.02] pointer-events-none">
+                        <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
+                    </div>
 
-            <article className="container mx-auto px-4 relative z-10">
-                <div className="max-w-3xl mx-auto">
-                    {/* Back Link */}
-                    <Link
-                        href="/blog"
-                        className="inline-flex items-center text-[var(--color-text-light)] hover:text-[var(--color-primary)] transition-colors mb-8"
-                    >
-                        <ArrowLeft className="w-4 h-4 mr-2" />
-                        Volver al Blog
-                    </Link>
+                    <FadeIn>
+                        <Link href="/blog" className="inline-flex items-center gap-2 text-stone-400 hover:text-[var(--color-secondary)] mb-12 transition-colors uppercase text-xs tracking-widest font-bold">
+                            <ArrowLeft className="w-4 h-4" />
+                            Volver a la Bitácora
+                        </Link>
 
-                    {/* Header */}
-                    <div className="text-center mb-12">
-                        <span className="inline-block bg-[var(--color-secondary)]/10 text-[var(--color-secondary)] px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide uppercase mb-6">
-                            {post.category}
-                        </span>
-                        <h1 className="text-4xl md:text-5xl font-heading text-[var(--color-primary)] mb-6 leading-tight">
+                        <div className="inline-block mb-8">
+                            <span className="px-6 py-2 rounded-full border border-[var(--color-secondary)]/20 bg-[var(--color-secondary)]/[0.03] text-[var(--color-secondary)] text-[10px] font-bold tracking-[0.2em] uppercase">
+                                {post.category}
+                            </span>
+                        </div>
+
+                        <h1 className="text-[var(--color-primary)] text-4xl md:text-5xl lg:text-7xl font-heading mb-10 leading-tight">
                             {post.title}
                         </h1>
-                        <div className="flex items-center justify-center gap-6 text-sm text-[var(--color-text-light)]">
+
+                        <div className="flex flex-wrap gap-8 text-sm text-stone-400">
                             <div className="flex items-center gap-2">
-                                <Calendar className="w-4 h-4" />
-                                {post.date}
+                                <Calendar className="w-5 h-5 text-[var(--color-secondary)]" />
+                                <span className="font-medium">{post.date}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <User className="w-4 h-4" />
-                                {post.author}
+                                <User className="w-5 h-5 text-[var(--color-secondary)]" />
+                                <span className="font-medium">{post.author}</span>
                             </div>
                         </div>
-                    </div>
-
-                    {/* Main Image */}
-                    <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-lg mb-12">
-                        <Image
-                            src={post.image}
-                            alt={post.title}
-                            fill
-                            className="object-cover"
-                            priority
-                        />
-                    </div>
-
-                    {/* Content */}
-                    <div
-                        className="prose prose-lg max-w-none text-[var(--color-text)] mb-12 prose-headings:font-heading prose-headings:text-[var(--color-primary)] prose-a:text-[var(--color-secondary)] prose-strong:text-[var(--color-primary)]"
-                        dangerouslySetInnerHTML={{ __html: post.content }}
-                    />
-
-                    {/* Share / Tags Placeholder */}
-                    <div className="border-t border-b border-[var(--color-primary)]/10 py-8 my-12 flex flex-col md:flex-row items-center justify-between gap-6">
-                        <p className="font-heading text-[var(--color-primary)] text-lg">
-                            ¿Te resonó este artículo? ¡Compártelo!
-                        </p>
-                        <div className="flex items-center gap-4">
-                            <button className="p-3 bg-white rounded-full shadow-sm hover:shadow-md hover:text-[var(--color-secondary)] transition-all">
-                                <Facebook className="w-5 h-5" />
-                            </button>
-                            <button className="p-3 bg-white rounded-full shadow-sm hover:shadow-md hover:text-[var(--color-secondary)] transition-all">
-                                <Twitter className="w-5 h-5" />
-                            </button>
-                            <button className="p-3 bg-white rounded-full shadow-sm hover:shadow-md hover:text-[var(--color-secondary)] transition-all">
-                                <Linkedin className="w-5 h-5" />
-                            </button>
-                            <button className="p-3 bg-white rounded-full shadow-sm hover:shadow-md hover:text-[var(--color-secondary)] transition-all">
-                                <LinkIcon className="w-5 h-5" />
-                            </button>
-                        </div>
-                    </div>
-
-                    {/* CTA */}
-                    <div className="bg-[var(--color-primary)]/5 rounded-3xl p-8 md:p-12 text-center">
-                        <h3 className="text-2xl font-heading text-[var(--color-primary)] mb-4">
-                            ¿Quieres profundizar más?
-                        </h3>
-                        <p className="text-[var(--color-text-light)] mb-8 max-w-xl mx-auto">
-                            Si este tema movió algo en ti, te invito a explorar mis servicios o reservar una sesión para mirarlo juntas en constelación.
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Link
-                                href="/reservas"
-                                className="px-8 py-3 bg-[var(--color-primary)] text-white rounded-full font-semibold hover:bg-[var(--color-primary-light)] transition-colors"
-                            >
-                                Reservar Sesión
-                            </Link>
-                            <Link
-                                href="/tests"
-                                className="px-8 py-3 border border-[var(--color-primary)] text-[var(--color-primary)] rounded-full font-semibold hover:bg-[var(--color-primary)]/5 transition-colors"
-                            >
-                                Hacer un Test
-                            </Link>
-                        </div>
-                    </div>
-
+                    </FadeIn>
                 </div>
-            </article>
-        </div>
+
+                {/* Right Panel: Feature Image */}
+                <div className="lg:w-[55%] relative min-h-[400px] lg:min-h-full">
+                    <Image
+                        src={post.image}
+                        alt={post.title}
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+                    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent hidden lg:block" />
+                </div>
+            </section>
+
+            {/* Article Content Section */}
+            <section className="py-24 px-4 overflow-hidden">
+                <div className="container mx-auto max-w-7xl">
+                    <div className="grid lg:grid-cols-12 gap-16 lg:gap-24">
+                        {/* Main Article Body */}
+                        <div className="lg:col-span-8">
+                            <FadeIn>
+                                <div className="p-10 md:p-14 bg-white rounded-[3rem] shadow-sm border border-stone-100 relative overflow-hidden group mb-16">
+                                    <div className="absolute -right-20 -top-20 w-80 h-80 opacity-[0.02] pointer-events-none rotate-12 group-hover:rotate-45 transition-transform duration-1000">
+                                        <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
+                                    </div>
+                                    <p className="text-2xl md:text-3xl text-[var(--color-primary)] font-light leading-relaxed italic relative z-10">
+                                        “{post.excerpt}”
+                                    </p>
+                                </div>
+                            </FadeIn>
+
+                            <article
+                                className="prose prose-lg md:prose-xl max-w-none prose-stone prose-headings:font-heading prose-headings:text-[var(--color-primary)] prose-strong:text-[var(--color-primary)] prose-p:text-stone-600 prose-p:leading-relaxed"
+                                dangerouslySetInnerHTML={{ __html: post.content }}
+                            />
+
+                            {/* Share & Feedback */}
+                            <div className="mt-20 pt-12 border-t border-stone-100 flex flex-col md:flex-row items-center justify-between gap-8">
+                                <div className="flex items-center gap-4">
+                                    <span className="text-sm font-bold uppercase tracking-widest text-stone-400">Compártelo</span>
+                                    <div className="flex gap-2">
+                                        {[1, 2, 3].map(i => (
+                                            <button key={i} className="w-10 h-10 rounded-full border border-stone-100 flex items-center justify-center hover:bg-(--color-secondary) hover:text-white transition-all text-stone-400">
+                                                <Share2 className="w-4 h-4" />
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className="text-stone-400 italic text-sm">
+                                    Publicado por {post.author} • Letras con propósito
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Sidebar CTAs */}
+                        <div className="lg:col-span-4 space-y-8">
+                            <FadeIn className="sticky top-32">
+                                <div className="p-10 bg-stone-900 rounded-[3rem] shadow-2xl text-white relative overflow-hidden mb-8">
+                                    <div className="absolute top-0 right-0 p-10 opacity-10">
+                                        <Sparkles className="w-20 h-20" />
+                                    </div>
+                                    <h3 className="text-2xl font-heading mb-6 relative z-10">¿Te resonó esta lectura?</h3>
+                                    <p className="text-gray-400 mb-10 font-light leading-relaxed">
+                                        Te invito a profundizar en este tema a través de una sesión personalizada de Alquimia Ancestral.
+                                    </p>
+                                    <Link
+                                        href="/reservas"
+                                        className="btn-premium w-full bg-white !text-stone-900 hover:!bg-stone-200 shadow-xl py-5 group"
+                                    >
+                                        Inicia tu Proceso
+                                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                    </Link>
+                                </div>
+
+                                <div className="p-10 bg-[var(--color-secondary)]/10 rounded-[3rem] border border-[var(--color-secondary)]/20 relative overflow-hidden">
+                                    <h4 className="text-xl font-heading text-[var(--color-primary)] mb-6">Bitácora Mensual</h4>
+                                    <p className="text-stone-600 text-sm mb-8 leading-relaxed">
+                                        Suscríbete para recibir reflexiones sobre sanación sistémica en tu buzón.
+                                    </p>
+                                    <Link
+                                        href="/newsletter"
+                                        className="inline-flex items-center gap-2 text-[var(--color-primary)] font-bold text-sm tracking-wide group"
+                                    >
+                                        Unirme a la Tribu
+                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                    </Link>
+                                </div>
+                            </FadeIn>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
     );
 }
