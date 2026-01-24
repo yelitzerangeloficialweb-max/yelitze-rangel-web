@@ -24,15 +24,19 @@ export default function EventsPage() {
             <section className="relative min-h-[80vh] flex flex-col lg:flex-row overflow-hidden pt-20">
                 {/* Left Panel: Luminous Ivory */}
                 <div className="lg:w-[45%] bg-white p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
-                    {/* Subtle Watermark */}
-                    <div className="absolute -left-32 -bottom-32 w-[800px] h-[800px] opacity-[0.02] pointer-events-none">
+                    {/* Subtle Watermark - Brand Beige Feel */}
+                    <div className="absolute -left-32 -bottom-32 w-[900px] h-[900px] opacity-[0.04] pointer-events-none">
                         <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
                     </div>
 
                     <FadeIn>
-                        <span className="text-[var(--color-secondary)] font-bold tracking-[0.3em] uppercase text-xs mb-6 block">
-                            Experiencias & Encuentros
-                        </span>
+                        {/* Pill Badge Style */}
+                        <div className="inline-block mb-10">
+                            <span className="px-8 py-3 rounded-full border border-[var(--color-secondary)]/20 bg-[var(--color-secondary)]/[0.03] text-[var(--color-secondary)] text-sm md:text-base font-light tracking-[0.2em] uppercase backdrop-blur-sm shadow-sm">
+                                Experiencias & Encuentros
+                            </span>
+                        </div>
+
                         <h1 className="text-[var(--color-primary)] text-4xl md:text-5xl lg:text-7xl font-heading mb-8 leading-tight">
                             Agenda del <br /> Alma
                         </h1>
@@ -72,8 +76,8 @@ export default function EventsPage() {
                                     key={f.id}
                                     onClick={() => setFilter(f.id as any)}
                                     className={`px-8 py-3 rounded-full text-xs md:text-sm tracking-widest uppercase transition-all duration-500 font-medium ${filter === f.id
-                                            ? 'bg-[var(--color-primary)] text-white shadow-xl scale-105'
-                                            : 'text-[var(--color-text-light)] hover:bg-white hover:text-[var(--color-primary)]'
+                                        ? 'bg-[var(--color-primary)] text-white shadow-xl scale-105'
+                                        : 'text-[var(--color-text-light)] hover:bg-white hover:text-[var(--color-primary)]'
                                         }`}
                                 >
                                     {f.label}
@@ -116,7 +120,7 @@ export default function EventsPage() {
                                         </div>
 
                                         <p className="text-[var(--color-text-light)] leading-relaxed line-clamp-2">
-                                            {event.description}
+                                            {event.aida.attention}
                                         </p>
 
                                         <div className="flex items-center justify-between pt-4 border-t border-stone-50">
