@@ -13,9 +13,14 @@ import { FadeIn, StaggerContainer, StaggerItem } from '@/components/ui/motion';
 
 export default function EventPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = use(params);
+
+    console.log(`DEBUG: EventPage called. Slug: ${slug}`);
+
     const event = getEventBySlug(slug);
 
     if (!event) {
+        console.log(`DEBUG: Event found: ${event}`);
+        console.log(`DEBUG: Event not found for slug: ${slug}`);
         notFound();
     }
 
