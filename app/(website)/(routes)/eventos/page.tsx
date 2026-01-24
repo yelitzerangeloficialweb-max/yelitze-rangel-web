@@ -43,6 +43,13 @@ export default function EventsPage() {
                         <p className="text-[var(--color-text-light)] text-lg md:text-xl font-light italic leading-relaxed max-w-md">
                             Espacios sagrados diseñados para tu sanación, expansión y reconexión con tu poder ancestral en comunidad.
                         </p>
+                        <Link
+                            href="#agenda"
+                            className="inline-flex items-center gap-4 text-[var(--color-primary)] group border-b border-[var(--color-primary)]/10 pb-2 w-fit hover:border-[var(--color-secondary)] transition-all text-lg font-medium mt-10"
+                        >
+                            Ver toda la Agenda
+                            <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform text-[var(--color-secondary)]" />
+                        </Link>
                     </FadeIn>
                 </div>
 
@@ -61,7 +68,7 @@ export default function EventsPage() {
             </section>
 
             {/* 2. FILTERS & AGENDA */}
-            <section className="py-24 px-4 relative overflow-hidden">
+            <section id="agenda" className="py-24 px-4 relative overflow-hidden">
                 <div className="container mx-auto max-w-7xl">
 
                     {/* Minimalist Filters */}
