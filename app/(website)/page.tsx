@@ -13,76 +13,14 @@ import InstagramFeed from "@/components/ui/InstagramFeed";
 import NewsletterSection from "@/components/home/NewsletterSection";
 import HomeEvents from "@/components/home/HomeEvents";
 import HomeGallery from "@/components/home/HomeGallery";
+import HeroSlider from "@/components/home/HeroSlider";
 
 export default function HomePage() {
   return (
     <main className="bg-[#fafcfe] min-h-screen selection:bg-[var(--color-secondary)] selection:text-white pb-20">
 
-      {/* 1. HERO SECTION: EDITORIAL SPLIT-PANEL */}
-      <section className="relative min-h-screen flex flex-col lg:flex-row overflow-hidden pt-20">
-        {/* Left Panel: Luminous Obsidian */}
-        <div className="lg:w-[45%] bg-stone-950 p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
-          {/* Subtle Watermark */}
-          <div className="absolute -left-32 -bottom-32 w-[900px] h-[900px] opacity-[0.05] pointer-events-none">
-            <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
-          </div>
-
-          <FadeIn>
-            {/* Pill Badge Style */}
-            <div className="inline-block mb-10">
-              <span className="px-8 py-3 rounded-full border border-[var(--color-secondary)]/20 bg-[var(--color-secondary)]/[0.05] text-[var(--color-secondary)] text-sm md:text-base font-light tracking-[0.2em] uppercase backdrop-blur-sm shadow-sm">
-                Alquimia Personal & Sistémica
-              </span>
-            </div>
-
-            <h1 className="text-white text-4xl md:text-6xl lg:text-7xl font-heading mb-8 leading-[1.1]">
-              El Orden de <br />
-              <span className="text-[var(--color-secondary)] italic">Tu Verdad</span>
-            </h1>
-
-            <div className="bg-[#7b5735]/10 border-l-4 border-[#7b5735] px-6 py-4 mb-10 backdrop-blur-sm">
-              <p className="text-gray-300 text-lg md:text-xl font-light italic leading-relaxed max-w-md">
-                <TypewriterText
-                  text="Acompañerarte a mirar con amor lo que fue, para que el alma recupere su lugar y la vida recupere su flujo."
-                  delay={0.5}
-                />
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-6 mt-4">
-              <Link
-                href="/reservas"
-                className="btn-premium px-12 py-5 text-xl shadow-[0_20px_50px_rgba(var(--color-primary-rgb),0.3)]"
-              >
-                Reservar Sesión
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-            </div>
-
-            <Link
-              href="#manifiesto"
-              className="inline-flex items-center gap-4 text-white/50 group border-b border-white/5 pb-2 w-fit hover:border-[var(--color-secondary)] transition-all text-sm font-medium mt-16 tracking-widest uppercase"
-            >
-              Descubrir el Camino
-              <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform text-[var(--color-secondary)]" />
-            </Link>
-          </FadeIn>
-        </div>
-
-        {/* Right Panel: Cinematic Masterpiece */}
-        <div className="lg:w-[55%] relative min-h-[500px] lg:min-h-full">
-          <Image
-            src="/assets/images/vortex-hero.png"
-            alt="Yelitzé Rangel - Portal de Sanación"
-            fill
-            className="object-cover"
-            priority
-            quality={100}
-          />
-          {/* Soft gradient transition */}
-          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-stone-950 to-transparent hidden lg:block" />
-        </div>
-      </section>
+      {/* 1. HERO SECTION: RESTORED SLIDER */}
+      <HeroSlider />
 
       {/* 2. MANIFIESTO SECTION: BEIGE NARRATIVE */}
       <section id="manifiesto" className="py-32 bg-[#fdf8f3] relative overflow-hidden border-b border-stone-100">
