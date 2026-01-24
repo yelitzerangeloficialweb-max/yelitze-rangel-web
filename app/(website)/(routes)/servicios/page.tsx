@@ -116,6 +116,9 @@ export default function ServicesPage() {
                     <FadeIn>
                         <span className="text-[var(--color-secondary)] font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Liderazgo & Origen</span>
                         <h2 className="text-white text-4xl md:text-6xl font-heading mb-8 leading-tight">Sesiones Corporativas</h2>
+                        <p className="text-gray-400 text-lg md:text-xl mb-12 font-light italic">
+                            Impulsa el potencial de tu equipo a través de la visión sistémica. Sanamos la cultura organizacional para alcanzar objetivos extraordinarios.
+                        </p>
                         <ul className="space-y-6 mb-16">
                             {["Coaching para líderes y alta gerencia", "Dinámicas de equipo con mirada circular", "Resolución de conflictos sistémicos"].map((item, i) => (
                                 <li key={i} className="flex items-center gap-4 text-gray-300">
