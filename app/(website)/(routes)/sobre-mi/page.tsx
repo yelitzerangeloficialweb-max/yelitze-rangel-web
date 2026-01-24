@@ -68,7 +68,7 @@ export default function AboutPage() {
                             </FadeIn>
                             <StaggerContainer className="space-y-6">
                                 {[
-                                    { icon: Sparkles, text: "Sanadora ancestral por linaje and memoria." },
+                                    { icon: Sparkles, text: "Sanadora ancestral por linaje y memoria." },
                                     { icon: Anchor, text: "Administradora de empresas por estructura y orden." },
                                     { icon: Brain, text: "Psicóloga por vocación de comprender la mente." },
                                     { icon: Heart, text: "Terapeuta en duelo y tanatóloga por respeto." },
