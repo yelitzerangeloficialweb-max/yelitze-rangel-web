@@ -355,8 +355,8 @@ export default function SesionesCorporalesPage() {
                         <FadeIn className="lg:w-1/2">
                             <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden border border-white/20 shadow-2xl group">
                                 <Image
-                                    src="/assets/images/trauma-peace.png"
-                                    alt="Somatic Peace"
+                                    src="/assets/images/trauma-woman.png"
+                                    alt="Liberación de Trauma"
                                     fill
                                     className="object-cover group-hover:scale-105 transition-transform duration-1000"
                                 />
