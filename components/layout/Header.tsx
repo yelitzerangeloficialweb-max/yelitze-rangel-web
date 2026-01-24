@@ -36,8 +36,8 @@ export default function Header() {
             href: '/eventos',
             children: [
                 { name: 'Ver Todos', href: '/eventos' },
-                { name: 'Sánate Mujer (Gratuito)', href: '/eventos/sanate-mujer' },
-                { name: 'Sanando el Linaje (Pago)', href: '/eventos/sanando-linaje-femenino' }
+                { name: 'Sánate Mujer', href: '/eventos/sanate-mujer' },
+                { name: 'Sanando el Linaje', href: '/eventos/sanando-linaje-femenino' }
             ]
         },
         { name: 'Blog', href: '/blog' },

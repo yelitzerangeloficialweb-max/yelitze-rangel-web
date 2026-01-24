@@ -32,14 +32,7 @@ export default function EventCard({ event }: { event: EventProps }) {
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                     unoptimized
                 />
-                <div className="absolute top-4 right-4">
-                    <span className={`px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase ${isFree
-                        ? 'bg-[var(--color-secondary)] text-white'
-                        : 'bg-[var(--color-primary)] text-white'
-                        }`}>
-                        {event.type === 'Semillas de consciencia' ? 'Gratuito' : 'Pago'}
-                    </span>
-                </div>
+
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 pt-24">
                     <h3 className="text-2xl font-heading text-white mb-2 leading-tight">{event.title}</h3>
                     <div className="flex flex-wrap items-center gap-4 text-white/90 text-sm">
