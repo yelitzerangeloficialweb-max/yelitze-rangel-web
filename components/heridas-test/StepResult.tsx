@@ -43,11 +43,19 @@ export default function StepResult({ resultData, userName, onFinalize }: StepRes
             element.style.display = 'none';
 
             const imgData = canvas.toDataURL('image/jpeg', 0.9);
-            const pdf = new jsPDF('p', 'mm', 'a4');
-            const pdfWidth = pdf.internal.pageSize.getWidth();
-            const imgHeight = (canvas.height * pdfWidth) / canvas.width;
 
-            pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, imgHeight);
+            // Calculate height based on aspect ratio
+            const imgWidth = canvas.width;
+            const imgHeight = canvas.height;
+
+            // Create PDF based on the image size (custom format) rather than fixed A4
+            const pdf = new jsPDF({
+                orientation: 'p',
+                unit: 'px',
+                format: [imgWidth, imgHeight]
+            });
+
+            pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
             pdf.save(`Heridas_Infancia_YelitzeRangel.pdf`);
 
         } catch (error) {
