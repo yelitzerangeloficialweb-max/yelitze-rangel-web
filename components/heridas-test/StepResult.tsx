@@ -202,7 +202,7 @@ export default function StepResult({ resultData, userName, onFinalize }: StepRes
                         {/* Booking CTA (Visual Button for PDF) */}
                         <div className="mt-16 mb-8 text-center p-8 border border-dashed border-[#D4AF37]/50 rounded-xl bg-[#FFFBF0]">
                             <p className="text-lg text-[var(--color-primary)] font-medium mb-4">¿Sientes el llamado a profundizar en tu sanación?</p>
-                            <div className="inline-block bg-[var(--color-secondary)] text-white px-8 py-3 rounded-full font-bold uppercase tracking-wider text-sm shadow-md">
+                            <div className="inline-flex items-center justify-center bg-[var(--color-secondary)] text-white px-10 py-4 rounded-full font-bold uppercase tracking-wider text-sm shadow-md">
                                 Reservar Sesión de Acompañamiento
                             </div>
                             <p className="text-xs text-gray-500 mt-3 font-mono">Agenda tu espacio en: <span className="text-[var(--color-primary)]">www.yelitzerangeloficial.com/reservas</span></p>
