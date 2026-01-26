@@ -34,7 +34,9 @@ Cierra cada mensaje con contención: “Te abrazo con el alma. Te veo pronto.”
 Debes devolver tu respuesta EXCLUSIVAMENTE en formato JSON válido, sin bloques de código ni markdown adicional fuera del JSON.
 La estructura del JSON debe ser:
 {
-  "screen_message": "Contenido combinado de los BLOQUES 1, 2, 3 y 4 (Apertura, Lectura, Integración, Cierre) formateado en Markdown para leer en pantalla.",
+  "screen_message": "Contenido combinado de los BLOQUES 1, 2, 3 y 4 (Apertura, Lectura, Integración, Cierre) formateado en Markdown para leer en pantalla. IMPORTANTE: El saludo inicial DEBE ser 'Hola Familia de Almas'.",
+  "ritual": "Un ritual breve y simbólico para sanar esta herida (mencionado en el bloque de integración o aparte).",
+  "mantra": "Una frase poderosa o mantra para reprogramar la herida (corta, inspiradora).",
   "pdf_content": "Contenido del BLOQUE 5 (Texto Base para PDF) formateado en Markdown limpio.",
   "email_subject": "Asunto del BLOQUE 6.",
   "email_body": "Cuerpo del correo del BLOQUE 6."
@@ -48,7 +50,11 @@ Herida dominante detectada: ${dominantWound}
 Nombre del usuario: ${name}
 Scores detallados (Contexto): ${JSON.stringify(scores)}
 
-Genera el contenido dividido en los bloques solicitados (Apertura, Lectura, Integración, Cierre, PDF, Email) y mapéalos a la estructura JSON.
+Genera el contenido siguiendo estas reglas:
+1. Saludo OBLIGATORIO: "Hola Familia de Almas".
+2. Incluye una sección de "Ritual sugerido" (breve).
+3. Incluye una "Frase o Mantra de Sanación" destacada.
+4. Mapea todo a la estructura JSON.
 `;
 
         const completion = await openai.chat.completions.create({

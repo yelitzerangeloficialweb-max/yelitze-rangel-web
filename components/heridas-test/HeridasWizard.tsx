@@ -26,6 +26,8 @@ export default function HeridasWizard() {
     const [dominantWound, setDominantWound] = useState<WoundType | null>(null);
     const [resultData, setResultData] = useState<any>({
         screen_message: '',
+        ritual: '',
+        mantra: '',
         pdf_content: '',
         email_subject: '',
         email_body: ''
