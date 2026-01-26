@@ -37,7 +37,7 @@ La estructura del JSON debe ser:
   "screen_message": "Contenido combinado de los BLOQUES 1, 2, 3 y 4 (Apertura, Lectura, Integración, Cierre) formateado en Markdown para leer en pantalla. IMPORTANTE: El saludo inicial DEBE ser 'Hola Familia de Almas'.",
   "ritual": "Un ritual breve y simbólico para sanar esta herida (mencionado en el bloque de integración o aparte).",
   "mantra": "Una frase poderosa o mantra para reprogramar la herida (corta, inspiradora).",
-  "pdf_content": "Contenido del BLOQUE 5 (Texto Base para PDF) formateado en Markdown limpio.",
+  "pdf_content": "Contenido del BLOQUE 5 (Texto Base para PDF) formateado en Markdown limpio. IMPORTANTE: NO incluyas aquí el título 'Ritual' ni 'Mantra' ni sus contenidos, ya que estos se mostrarán en cajas de diseño separadas usando los campos anteriores.",
   "email_subject": "Asunto del BLOQUE 6.",
   "email_body": "Cuerpo del correo del BLOQUE 6."
 }
