@@ -38,13 +38,25 @@ export default function StepProcessing({ onComplete }: StepProcessingProps) {
     return (
         <div className="flex flex-col items-center justify-center min-h-[50vh] text-center">
             <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                className="mb-8 relative"
+                animate={{
+                    scale: [1, 1.1, 1],
+                    opacity: [0.8, 1, 0.8]
+                }}
+                transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                }}
+                className="mb-10 relative w-32 h-32"
             >
-                <div className="w-20 h-20 border-4 border-[var(--color-secondary)]/20 border-t-[var(--color-primary)] rounded-full" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                    <Loader2 className="w-8 h-8 text-[var(--color-primary)] animate-pulse" />
+                <div className="absolute inset-0 bg-[var(--color-secondary)]/10 rounded-full blur-2xl animate-pulse delay-100" />
+                <div className="relative w-full h-full">
+                    {/* Using img for direct asset, or next/image if configured */}
+                    <img
+                        src="/assets/images/loading-logo.png"
+                        alt="Cargando..."
+                        className="w-full h-full object-contain"
+                    />
                 </div>
             </motion.div>
 
