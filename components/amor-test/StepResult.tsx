@@ -43,9 +43,21 @@ export default function StepResult({ resultData, userName, onFinalize }: StepRes
             element.style.display = 'none';
 
             const imgData = canvas.toDataURL('image/jpeg', 0.9);
-            const pdf = new jsPDF('p', 'mm', 'a4');
-            const pdfWidth = pdf.internal.pageSize.getWidth();
-            const imgHeight = (canvas.height * pdfWidth) / canvas.width;
+            const imgData = canvas.toDataURL('image/jpeg', 0.9);
+
+            // Calculate height based on aspect ratio
+            const imgWidth = canvas.width;
+            const imgHeight = canvas.height;
+
+            // Create PDF based on the image size (custom format) rather than fixed A4
+            // This creates one long seamless page, which is often better for digital reading of generated content
+            const pdf = new jsPDF({
+                orientation: 'p',
+                unit: 'px',
+                format: [imgWidth, imgHeight]
+            });
+
+            pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
 
             pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, imgHeight);
             pdf.save(`Creencias_Amor_YelitzeRangel.pdf`);
