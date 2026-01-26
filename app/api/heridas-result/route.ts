@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import OpenAI from 'openai';
 
-// Initialize Gemini
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API_KEY || '');
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+});
 
 export async function POST(req: Request) {
     try {
@@ -13,7 +14,7 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: 'Faltan datos' }, { status: 400 });
         }
 
-        // System Prompt adapted for Gemini (system instructions are supported or we can just prepend)
+        // System Prompt
         const systemPrompt = `
 Eres Yelitze Rangel.
 Hablas desde un lugar cálido, humano y terapéutico.
@@ -47,22 +48,26 @@ Mis puntajes fueron: ${JSON.stringify(scores)}.
 ¿Qué mensaje tienes para mí?
 `;
 
-        // Use standard model
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        const completion = await openai.chat.completions.create({
+            model: "gpt-4o-mini", // Or gpt-3.5-turbo if 4o-mini not available
+            messages: [
+                { role: "system", content: systemPrompt },
+                { role: "user", content: userPrompt }
+            ],
+            temperature: 0.7,
+        });
 
-        const result = await model.generateContent([
-            systemPrompt, // Prepending system prompt as context since simple API usage
-            userPrompt
-        ]);
+        const result = completion.choices[0].message.content;
 
-        const response = await result.response;
-        const text = response.text();
+        // In a real app, here we would save the contact to DB/CRM (e.g. Resend, Mailchimp)
+        // saveContact(email, name, dominantWound, ...);
 
-        return NextResponse.json({ result: text });
+        return NextResponse.json({ result });
 
     } catch (error: any) {
         console.error('API Error:', error);
         return NextResponse.json({ error: 'Error interno', details: error.message }, { status: 500 });
     }
 }
+
 
