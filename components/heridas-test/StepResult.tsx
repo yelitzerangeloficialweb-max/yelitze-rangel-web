@@ -158,26 +158,53 @@ export default function StepResult({ resultData, onFinalize }: StepResultProps) 
 
             {/* HIDDEN PDF TEMPLATE (Kept simple/clean for print) */}
             <div className="absolute top-0 left-[-9999px]">
-                <div ref={pdfRef} className="w-[800px] bg-white p-20 text-[#2C3E50] font-serif relative">
-                    <div className="text-center mb-12 border-b border-[#D4AF37]/30 pb-8">
-                        <h1 className="text-4xl font-heading text-[var(--color-primary)] mb-2">Carta de Tu Niño Interior</h1>
-                        <p className="text-sm uppercase tracking-[0.3em] text-[#D4AF37]">Heridas de la Infancia</p>
+                <div ref={pdfRef} className="w-[800px] bg-white p-20 text-[#2C3E50] font-sans relative">
+                    {/* Header */}
+                    <div className="border-b-2 border-[#D4AF37]/20 pb-8 mb-12 flex justify-between items-center">
+                        <div className="flex-1">
+                            <h1 className="text-4xl font-heading text-[var(--color-primary)] mb-2">Heridas de la Infancia</h1>
+                            <p className="text-xs uppercase tracking-[0.3em] text-[#D4AF37] font-bold">Informe de Autoconocimiento</p>
+                        </div>
+                        <div className="w-48">
+                            <img
+                                src="/assets/images/logo-color-scroll.png"
+                                alt="Yelitze Rangel"
+                                className="w-full h-auto object-contain"
+                            />
+                        </div>
                     </div>
 
-                    <div className="prose prose-xl max-w-none text-gray-700 leading-relaxed space-y-6">
+                    {/* Content */}
+                    <div className="prose prose-xl max-w-none text-gray-700 leading-relaxed space-y-6 font-serif">
                         <ReactMarkdown>{resultData.pdf_content}</ReactMarkdown>
                     </div>
 
                     {resultData.mantra && (
-                        <div className="mt-12 p-8 bg-[#FAF9F6] border-l-4 border-[#D4AF37] text-center">
-                            <p className="text-sm uppercase tracking-widest text-gray-400 mb-2">Mantra de Sanación</p>
+                        <div className="mt-12 p-8 bg-[#FAF9F6] border-l-4 border-[#D4AF37] text-center rounded-r-xl">
+                            <p className="text-sm uppercase tracking-widest text-gray-400 mb-3">Mantra de Sanación</p>
                             <p className="text-2xl font-heading text-[var(--color-primary)] italic">"{resultData.mantra}"</p>
                         </div>
                     )}
 
-                    <div className="mt-20 pt-8 border-t border-gray-100 text-center">
-                        <p className="text-base font-bold text-[var(--color-secondary)]">Yelitzé Rangel</p>
-                        <p className="text-xs uppercase tracking-widest text-gray-400 mt-1">www.yelitzerangel.com</p>
+                    {/* Booking CTA (Visual Button for PDF) */}
+                    <div className="mt-16 mb-8 text-center p-8 border border-dashed border-[#D4AF37]/50 rounded-xl bg-[#FFFBF0]">
+                        <p className="text-lg text-[var(--color-primary)] font-medium mb-4">¿Sientes el llamado a profundizar en tu sanación?</p>
+                        <div className="inline-block bg-[var(--color-secondary)] text-white px-8 py-3 rounded-full font-bold uppercase tracking-wider text-sm shadow-md">
+                            Reservar Sesión de Acompañamiento
+                        </div>
+                        <p className="text-xs text-gray-500 mt-3 font-mono">Agenda tu espacio en: <span className="text-[var(--color-primary)]">www.yelitzerangel.com/reservas</span></p>
+                    </div>
+
+                    {/* Footer */}
+                    <div className="mt-12 pt-8 border-t border-gray-100 flex justify-between items-end">
+                        <div>
+                            <p className="text-xs text-gray-400 uppercase tracking-[0.2em] mb-1">Anatomía del Alma</p>
+                            <p className="text-[10px] text-gray-300">Guía espiritual · No sustituye terapia clínica</p>
+                        </div>
+                        <div className="text-right">
+                            <p className="text-base font-bold text-[var(--color-secondary)] font-heading">Yelitzé Rangel</p>
+                            <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">www.yelitzerangel.com</p>
+                        </div>
                     </div>
                 </div>
             </div>
