@@ -157,7 +157,11 @@ export default function HeridasWizard() {
                     )}
 
                     {step === 'RESULT' && (
-                        <StepResult resultData={resultData} onFinalize={() => nextStep('FINAL')} />
+                        <StepResult
+                            resultData={resultData}
+                            userName={userData.name}
+                            onFinalize={() => nextStep('FINAL')}
+                        />
                     )}
 
                     {step === 'FINAL' && (

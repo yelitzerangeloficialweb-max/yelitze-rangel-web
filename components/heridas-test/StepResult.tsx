@@ -16,10 +16,11 @@ interface StepResultProps {
         email_subject: string;
         email_body: string;
     };
+    userName: string;
     onFinalize: () => void;
 }
 
-export default function StepResult({ resultData, onFinalize }: StepResultProps) {
+export default function StepResult({ resultData, userName, onFinalize }: StepResultProps) {
     const pdfRef = useRef<HTMLDivElement>(null);
     const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
 
