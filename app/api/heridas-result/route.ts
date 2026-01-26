@@ -17,52 +17,68 @@ export async function POST(req: Request) {
         // System Prompt
         const systemPrompt = `
 Eres Yelitze Rangel.
-Hablas desde un lugar cálido, humano y terapéutico.
-No diagnosticas. No patologizas. No usas lenguaje clínico.
-Acompañas con compasión y claridad.
-Hablas al sistema nervioso, no al ego.
-Usas frases cortas, respirables y profundas.
+Coach Ancestral y creadora de un método que integra psicología, sistema nervioso, trabajo corporal y sabiduría ancestral.
+Tu voz es cálida, humana, empática y profundamente acompañante.
+No diagnósticas.
+No patologizas.
+No das consejos clínicos.
+No prometes resultados inmediatos.
+Hablas desde el cuerpo, la emoción y el alma, con pausas y frases respirables.
+Tu intención es acompañar, crear seguridad interna y facilitar que la persona reconozca y comprenda su herida emocional.
+Tu lenguaje incluye metáforas suaves, referencias al vuelo, liberación, la niña interior y la sensación de contención.
+Tus mensajes inspiran autoconocimiento, amor propio y curiosidad, como si estuvieras hablando directamente a la persona que está frente a ti.
+Incluye siempre una invitación suave y afectuosa a la acción (comentar, recibir PDF, test, dar un primer paso).
+Cierra cada mensaje con contención: “Te abrazo con el alma. Te veo pronto.” o variantes coherentes.
 
-Tu tarea es interpretar el resultado de un test de heridas de la infancia.
-La herida dominante es: ${dominantWound}.
-El usuario se llama: ${name}.
-
-Estructura tu respuesta en markdown con el siguiente formato, pero que fluya como una conversación:
-
-1. **Un saludo cálido y validación.** (Reconoce su valentía por mirar esto).
-2. **La revelación amorosa.** Explica qué significa que la herida de ${dominantWound} esté activa hoy. No digas "tienes esta herida", di "tu niña/o interior está protegiéndose desde la memoria de..."
-3. **Un consejo somático/práctico.** Algo que pueda hacer hoy (respirar, poner límites, abrazarse).
-4. **Cierre esperanzador.**
-
-IMPORTANTE:
-- Sé breve pero profunda.
-- Usa negritas para resaltar ideas clave.
-- No menciones scores ni números.
-- Tono: Alquimia emocional, sanación sistémica.
+*** INSTRUCCIÓN TÉCNICA OBLIGATORIA ***
+Debes devolver tu respuesta EXCLUSIVAMENTE en formato JSON válido, sin bloques de código ni markdown adicional fuera del JSON.
+La estructura del JSON debe ser:
+{
+  "screen_message": "Contenido combinado de los BLOQUES 1, 2, 3 y 4 (Apertura, Lectura, Integración, Cierre) formateado en Markdown para leer en pantalla.",
+  "pdf_content": "Contenido del BLOQUE 5 (Texto Base para PDF) formateado en Markdown limpio.",
+  "email_subject": "Asunto del BLOQUE 6.",
+  "email_body": "Cuerpo del correo del BLOQUE 6."
+}
 `;
 
         const userPrompt = `
-Hola Yelitze, soy ${name}.
-Acabo de hacer el test y mi herida dominante salió: ${dominantWound}.
-Mis puntajes fueron: ${JSON.stringify(scores)}.
-¿Qué mensaje tienes para mí?
+Resultado del test de heridas emocionales:
+
+Herida dominante detectada: ${dominantWound}
+Nombre del usuario: ${name}
+Scores detallados (Contexto): ${JSON.stringify(scores)}
+
+Genera el contenido dividido en los bloques solicitados (Apertura, Lectura, Integración, Cierre, PDF, Email) y mapéalos a la estructura JSON.
 `;
 
         const completion = await openai.chat.completions.create({
-            model: "gpt-4o-mini", // Or gpt-3.5-turbo if 4o-mini not available
+            model: "gpt-4o-mini",
             messages: [
                 { role: "system", content: systemPrompt },
                 { role: "user", content: userPrompt }
             ],
             temperature: 0.7,
+            response_format: { type: "json_object" } // Force JSON mode
         });
 
-        const result = completion.choices[0].message.content;
+        const resultContent = completion.choices[0].message.content;
 
-        // In a real app, here we would save the contact to DB/CRM (e.g. Resend, Mailchimp)
-        // saveContact(email, name, dominantWound, ...);
+        // Parse JSON to ensure validity before sending
+        let parsedResult;
+        try {
+            parsedResult = JSON.parse(resultContent || '{}');
+        } catch (e) {
+            console.error("Error parsing AI JSON", e);
+            // Fallback
+            parsedResult = {
+                screen_message: resultContent,
+                pdf_content: "Error generando PDF.",
+                email_subject: "Tu resultado",
+                email_body: "Hola..."
+            };
+        }
 
-        return NextResponse.json({ result });
+        return NextResponse.json({ ...parsedResult });
 
     } catch (error: any) {
         console.error('API Error:', error);

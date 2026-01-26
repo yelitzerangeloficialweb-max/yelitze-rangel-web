@@ -24,7 +24,12 @@ export default function HeridasWizard() {
         Injusticia: 0
     });
     const [dominantWound, setDominantWound] = useState<WoundType | null>(null);
-    const [resultText, setResultText] = useState<string>('');
+    const [resultData, setResultData] = useState<any>({
+        screen_message: '',
+        pdf_content: '',
+        email_subject: '',
+        email_body: ''
+    });
     const [isLoading, setIsLoading] = useState(false);
 
     // User Data
@@ -88,13 +93,31 @@ export default function HeridasWizard() {
             if (!response.ok) throw new Error("Error en API");
 
             const data = await response.json();
-            setResultText(data.result);
+
+            // Handle both structured JSON (new) and fallback string (if API old cached)
+            if (typeof data.result === 'string') {
+                // Fallback if API returns old format
+                setResultData({
+                    screen_message: data.result,
+                    pdf_content: data.result,
+                    email_subject: "Tu Resultado",
+                    email_body: "..."
+                });
+            } else {
+                setResultData(data); // Expects { screen_message, pdf_content, ... }
+            }
+
             nextStep('RESULT');
 
         } catch (error) {
             console.error(error);
             // Fallback text if API fails
-            setResultText(`**La energía está densa...**\n\nHubo un error al conectar. Tu herida dominante parece ser **${dominantWound}**. Por favor intenta de nuevo.`);
+            setResultData({
+                screen_message: `**La energía está densa...**\n\nHubo un error al conectar. Tu herida dominante parece ser **${dominantWound}**. Por favor intenta de nuevo.`,
+                pdf_content: "Error de conexión.",
+                email_subject: "Error",
+                email_body: ""
+            });
             nextStep('RESULT');
         } finally {
             setIsLoading(false);
@@ -132,7 +155,7 @@ export default function HeridasWizard() {
                     )}
 
                     {step === 'RESULT' && (
-                        <StepResult resultText={resultText} onFinalize={() => nextStep('FINAL')} />
+                        <StepResult resultData={resultData} onFinalize={() => nextStep('FINAL')} />
                     )}
 
                     {step === 'FINAL' && (
