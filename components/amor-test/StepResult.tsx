@@ -43,7 +43,6 @@ export default function StepResult({ resultData, userName, onFinalize }: StepRes
             element.style.display = 'none';
 
             const imgData = canvas.toDataURL('image/jpeg', 0.9);
-            const imgData = canvas.toDataURL('image/jpeg', 0.9);
 
             // Calculate height based on aspect ratio
             const imgWidth = canvas.width;
@@ -58,8 +57,6 @@ export default function StepResult({ resultData, userName, onFinalize }: StepRes
             });
 
             pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
-
-            pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, imgHeight);
             pdf.save(`Creencias_Amor_YelitzeRangel.pdf`);
 
         } catch (error) {
