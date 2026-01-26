@@ -174,7 +174,7 @@ export default function StepResult({ resultData, userName, onFinalize }: StepRes
                         {/* Header */}
                         <div className="border-b-2 border-[#D4AF37]/20 pb-8 mb-12 flex justify-between items-center">
                             <div className="flex-1">
-                                <h1 className="text-4xl font-heading text-[var(--color-primary)] mb-2">Heridas de la Infancia</h1>
+                                <h1 className="text-4xl font-heading text-[var(--color-primary)] mb-2">Carta del Alma</h1>
                                 <p className="text-xs uppercase tracking-[0.3em] text-[#D4AF37] font-bold mb-2">Informe de Autoconocimiento</p>
                                 <p className="text-sm text-gray-400 font-serif italic">Preparado con amor para: <strong className="text-[var(--color-primary)]">{userName}</strong></p>
                             </div>
@@ -191,6 +191,16 @@ export default function StepResult({ resultData, userName, onFinalize }: StepRes
                         <div className="prose prose-xl max-w-none text-gray-700 leading-relaxed space-y-6 font-serif">
                             <ReactMarkdown>{resultData.pdf_content}</ReactMarkdown>
                         </div>
+
+                        {/* Ritual Box (Added to match Web View) */}
+                        {resultData.ritual && (
+                            <div className="my-8 p-8 bg-[var(--color-primary)]/5 rounded-xl border border-[var(--color-primary)]/10">
+                                <h3 className="font-heading text-xl text-[var(--color-primary)] mb-4 text-center">Ritual Sugerido</h3>
+                                <p className="text-gray-600 italic text-center leading-relaxed">
+                                    {resultData.ritual}
+                                </p>
+                            </div>
+                        )}
 
                         {resultData.mantra && (
                             <div className="mt-12 p-8 bg-[#FAF9F6] border-l-4 border-[#D4AF37] text-center rounded-r-xl">
