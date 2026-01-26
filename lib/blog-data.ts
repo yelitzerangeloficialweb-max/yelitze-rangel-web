@@ -12,6 +12,89 @@ export interface BlogPost {
 
 export const BLOG_POSTS: BlogPost[] = [
     {
+        id: '8',
+        slug: 'liberate-de-tus-patrones',
+        title: 'Libérate de tus Patrones: La Ciencia de la Decisión',
+        excerpt: '¿Por qué sentimos que estamos "cableados" para el autosabotaje? Entiende cómo tu cerebro y tu sistema familiar trabajan juntos y cómo empezar a elegir diferente.',
+        date: '24 de Enero, 2026',
+        image: '/assets/images/blog/liberate-patrones.jpg',
+        category: 'Mentalidad',
+        author: 'Yelitzé Rangel',
+        content: `
+            <p class="mb-6 text-lg">Nuestros patrones de comportamiento no son fallos de fábrica, son estrategias de supervivencia que un día aprendimos para pertenecer a nuestro sistema familiar. Sin embargo, lo que antes nos protegió, hoy puede ser la jaula que nos impide crecer.</p>
+            <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">El mapa mental de tu historia</h3>
+            <p class="mb-6">La neurociencia nos dice que el cerebro crea "autopistas" de pensamiento. Si siempre has reaccionado desde el miedo o la carencia, esa autopista está muy bien pavimentada. El trabajo sistémico ayuda a identificar el origen de ese cableado para poder empezar a construir nuevos caminos.</p>
+            <div class="my-12 p-10 bg-[#fafcfe] rounded-3xl border border-stone-100 italic text-xl text-[var(--color-primary)]">
+                "No estás roto, solo estás siendo leal a una historia que ya no necesitas cargar."
+            </div>
+            <p class="mb-6 text-lg leading-relaxed">Liberarse de los patrones requiere consciencia, pero sobre todo, el permiso interno para ser diferente a quienes vinieron antes. Es el acto más valiente de amor propio y respeto hacia tus ancestros: florecer allí donde ellos solo pudieron sobrevivir.</p>
+        `
+    },
+    {
+        id: '9',
+        slug: 'transforma-tu-miedo-en-exito',
+        title: 'Transforma tu Miedo en Éxito: El Salto de la Valiente',
+        excerpt: 'El miedo no es una señal de que debas detenerte, sino el combustible que necesitas para el siguiente nivel de tu evolución.',
+        date: '24 de Enero, 2026',
+        image: '/assets/images/blog/miedo-exito.jpg',
+        category: 'Empoderamiento',
+        author: 'Yelitzé Rangel',
+        content: `
+            <p class="mb-6 text-lg">El miedo suele ser la sombra de nuestro potencial. Cuando estamos ante un gran cambio o un nuevo desafío, es natural que las alarmas internas se enciendan. El secreto no es dejar de tener miedo, sino aprender a caminar con él.</p>
+            <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">La sombra del éxito</h3>
+            <p class="mb-6">Muchas veces el miedo al éxito es, en realidad, un miedo a la exclusión. Inconscientemente pensamos: "Si soy muy exitosa, ¿seguiré perteneciendo a mi familia?". Entender esto nos permite darnos el permiso sistémico para brillar, sabiendo que nuestro éxito honra a todo nuestro linaje.</p>
+            <p class="mb-6 text-lg">Cada vez que eliges atravesar el miedo, estás reclamando una parte de tu poder que estaba dormida. El éxito no es la ausencia de miedo, sino la victoria sobre él.</p>
+        `
+    },
+    {
+        id: '10',
+        slug: 'tu-energia-tu-destino',
+        title: 'Tu Energía, tu Destino: La Alquimia del Ser',
+        excerpt: 'No atraes lo que quieres, atraes lo que eres. Descubre cómo tu campo vibratorio moldea las experiencias que llegan a tu vida.',
+        date: '24 de Enero, 2026',
+        image: '/assets/images/blog/energia-destino.jpg',
+        category: 'Espiritualidad',
+        author: 'Yelitzé Rangel',
+        content: `
+            <p class="mb-6 text-lg">Vivimos en un universo de frecuencias. Todo lo que pensamos, sentimos y sostenemos en nuestro interior emite una vibración que resuena con el mundo exterior. Tu destino no está escrito en las estrellas, se escribe cada día en tu campo energético.</p>
+            <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">Limpieza y Alineación</h3>
+            <p class="mb-6">Para cambiar tu destino, primero debes cambiar tu estado interno. Si tu energía está anclada en quejas, deudas emocionales o resentimientos del pasado, continuarás proyectando el mismo futuro. La alquimia personal consiste en transformar ese plomo emocional en oro espiritual.</p>
+            <p class="mb-6 text-lg">Cuando alineas tu intención con tu corazón y te liberas de las cargas densas, las oportunidades comienzan a aparecer de forma sincrónica. Eres el arquitecto de tu propia realidad energética.</p>
+        `
+    },
+    {
+        id: '11',
+        slug: 'clave-del-exito-sistemica',
+        title: 'La Clave del Éxito: Una Mirada Sistémica',
+        excerpt: 'Desde las figuras de los ancestros hasta la toma del lugar correcto: el éxito tiene reglas que van más allá del esfuerzo personal.',
+        date: '24 de Enero, 2026',
+        image: '/assets/images/blog/exito-sistemico.jpg',
+        category: 'Sabiduría Ancestral',
+        author: 'Yelitzé Rangel',
+        content: `
+            <p class="mb-6 text-lg">A menudo buscamos el éxito fuera: en estrategias, marketing o contactos. Pero en el mundo sistémico, el éxito tiene la cara de la madre y la fuerza del padre. Si estás peleado con tus raíces, estarás peleado con tus resultados.</p>
+            <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">Ocupar el lugar correcto</h3>
+            <p class="mb-6">El éxito llega cuando estamos en nuestro lugar de "pequeños" frente a nuestros padres y de "grandes" frente a nuestras metas. Cuando intentamos salvar a nuestros ancestros o cargar sus dolores, perdemos la fuerza necesaria para construir lo propio.</p>
+            <p class="mb-6 text-lg">La clave del éxito reside en la gratitud y la humildad de reconocer que somos el resultado de miles de vidas que nos precedieron. Solo desde ahí, la vida nos sonríe con abundancia.</p>
+        `
+    },
+    {
+        id: '12',
+        slug: 'tu-cuerpo-tiene-la-clave',
+        title: '¡Tu Cuerpo tiene la Clave! Escuchando lo Invisible',
+        excerpt: 'El cuerpo no miente. Cada síntoma, tensión o cansancio es un mensaje del alma tratando de ser escuchado.',
+        date: '24 de Enero, 2026',
+        image: '/assets/images/blog/cuerpo-clave.jpg',
+        category: 'Consciencia Corporal',
+        author: 'Yelitzé Rangel',
+        content: `
+            <p class="mb-6 text-lg">Nuestro cuerpo es el mapa más preciso de nuestra historia no resuelta. Lo que no podemos expresar con palabras, el cuerpo lo expresa a través de sensaciones, molestias o síntomas.</p>
+            <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">El lenguaje de la piel</h3>
+            <p class="mb-6">Aprender a escuchar al cuerpo es la herramienta de sanación más poderosa que existe. Cuando sentimos una opresión en el pecho o un nudo en la garganta, en lugar de ignorarlo, debemos preguntarle: "¿Qué estás intentando decirme?". A menudo, es un ancestro pidiendo ser visto o una emoción olvidada reclamando su lugar.</p>
+            <p class="mb-6 text-lg">Tu cuerpo es tu santuario y tu mejor guía. Haz una pausa, respira y permite que él te revele la clave de tu libertad.</p>
+        `
+    },
+    {
         id: '1',
         slug: 'sanar-heridas-infancia',
         title: '¿Por qué repetimos patrones? Sanando las Heridas de la Infancia',

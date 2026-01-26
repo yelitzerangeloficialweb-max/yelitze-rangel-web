@@ -40,6 +40,7 @@ export default function Header() {
                 { name: 'Sanando el Linaje', href: '/eventos/sanando-linaje-femenino' }
             ]
         },
+        { name: 'Galería', href: '/galeria' },
         { name: 'Blog', href: '/blog' },
         {
             name: 'Libros',

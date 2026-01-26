@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 import { EVENTS_DATA } from "@/lib/events";
+import DynamicExperienceGallery from "@/components/home/DynamicExperienceGallery";
 
 export default function EventsPage() {
     const [filter, setFilter] = useState<'Todos' | 'Semillas de consciencia' | 'Círculo de expansión'>('Todos');
@@ -21,9 +22,9 @@ export default function EventsPage() {
         <main className="bg-[#fafcfe] min-h-screen selection:bg-[var(--color-secondary)] selection:text-white pb-20">
 
             {/* 1. HERO SECTION: AGENDA DEL ALMA */}
-            <section className="relative min-h-[80vh] flex flex-col lg:flex-row overflow-hidden pt-20">
-                {/* Left Panel: Luminous Ivory */}
-                <div className="lg:w-[45%] bg-white p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
+            <section className="relative min-h-[80vh] flex flex-col lg:flex-row overflow-hidden pt-20 bg-stone-950">
+                {/* Left Panel: Midnight Burst */}
+                <div className="lg:w-[45%] bg-stone-950 p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
                     {/* Subtle Watermark - Brand Beige Feel */}
                     <div className="absolute -left-32 -bottom-32 w-[900px] h-[900px] opacity-[0.04] pointer-events-none">
                         <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
@@ -32,20 +33,20 @@ export default function EventsPage() {
                     <FadeIn>
                         {/* Pill Badge Style */}
                         <div className="inline-block mb-10">
-                            <span className="px-8 py-3 rounded-full border border-[var(--color-secondary)]/20 bg-[var(--color-secondary)]/[0.03] text-[var(--color-secondary)] text-sm md:text-base font-light tracking-[0.2em] uppercase backdrop-blur-sm shadow-sm">
+                            <span className="px-8 py-3 rounded-full border border-[var(--color-secondary)]/20 bg-[var(--color-secondary)]/[0.05] text-[var(--color-secondary)] text-sm md:text-base font-light tracking-[0.2em] uppercase backdrop-blur-sm shadow-sm">
                                 Experiencias & Encuentros
                             </span>
                         </div>
 
-                        <h1 className="text-[var(--color-primary)] text-4xl md:text-5xl lg:text-7xl font-heading mb-8 leading-tight">
-                            Agenda del <br /> Alma
+                        <h1 className="text-white text-4xl md:text-5xl lg:text-7xl font-heading mb-8 leading-tight">
+                            Agenda del <br /> <span className="opacity-40">Alma</span>
                         </h1>
-                        <p className="text-[var(--color-text-light)] text-lg md:text-xl font-light italic leading-relaxed max-w-md">
+                        <p className="text-stone-400 text-lg md:text-xl font-light italic leading-relaxed max-w-md">
                             Espacios sagrados diseñados para tu sanación, expansión y reconexión con tu poder ancestral en comunidad.
                         </p>
                         <Link
                             href="#agenda"
-                            className="inline-flex items-center gap-4 text-[var(--color-primary)] group border-b border-[var(--color-primary)]/10 pb-2 w-fit hover:border-[var(--color-secondary)] transition-all text-lg font-medium mt-10"
+                            className="inline-flex items-center gap-4 text-white group border-b border-white/10 pb-2 w-fit hover:border-[var(--color-secondary)] transition-all text-lg font-medium mt-10"
                         >
                             Ver toda la Agenda
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform text-[var(--color-secondary)]" />
@@ -63,7 +64,7 @@ export default function EventsPage() {
                         priority
                     />
                     {/* Soft gradient transition */}
-                    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent hidden lg:block" />
+                    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-stone-950 to-transparent hidden lg:block" />
                 </div>
             </section>
 
@@ -175,27 +176,7 @@ export default function EventsPage() {
                             </p>
                         </FadeIn>
                     </div>
-
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-                        {[
-                            { img: "/assets/images/about-ritual.jpg", span: "md:col-span-2 md:row-span-2" },
-                            { img: "/assets/images/img-sanate.jpg", span: "" },
-                            { img: "/assets/images/img-linaje.jpg", span: "" },
-                            { img: "/assets/images/about-experience.jpg", span: "md:col-span-2" }
-                        ].map((item, i) => (
-                            <FadeIn key={i} className={item.span}>
-                                <div className="relative h-64 md:h-full min-h-[250px] rounded-3xl overflow-hidden group">
-                                    <Image
-                                        src={item.img}
-                                        alt="Gathering Moment"
-                                        fill
-                                        className="object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110"
-                                    />
-                                    <div className="absolute inset-0 bg-[var(--color-primary)]/20 group-hover:bg-transparent transition-colors" />
-                                </div>
-                            </FadeIn>
-                        ))}
-                    </div>
+                    <DynamicExperienceGallery />
                 </div>
             </section>
 
@@ -238,8 +219,8 @@ export default function EventsPage() {
                             <FadeIn>
                                 <div className="relative aspect-[16/10] lg:aspect-square rounded-[3rem] overflow-hidden shadow-2xl group">
                                     <Image
-                                        src="/assets/images/about-playing.jpg"
-                                        alt="Custom Retreats"
+                                        src="/assets/images/gallery/custom-retreat-group.jpg"
+                                        alt="Sesión Grupal de Sanación"
                                         fill
                                         className="object-cover group-hover:scale-105 transition-transform duration-1000"
                                     />
@@ -270,6 +251,6 @@ export default function EventsPage() {
                     </FadeIn>
                 </div>
             </section>
-        </main>
+        </main >
     );
 }

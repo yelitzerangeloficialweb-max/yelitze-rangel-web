@@ -1,0 +1,20 @@
+export const GALLERY_IMAGES = [
+    { src: '/assets/images/gallery/gallery-1.jpg', alt: 'Sesión Alquimia' },
+    { src: '/assets/images/gallery/gallery-2.jpg', alt: 'Transformación' },
+    { src: '/assets/images/gallery/gallery-12.jpg', alt: 'Visión' },
+    { src: '/assets/images/gallery/gallery-13.jpg', alt: 'Claridad Solucionada' },
+    { src: '/assets/images/gallery/gallery-4.jpg', alt: 'Círculo Sagrado' },
+    { src: '/assets/images/gallery/gallery-5.jpg', alt: 'Taller Grupal' },
+    { src: '/assets/images/gallery/gallery-14.jpg', alt: 'Conexión Grupal' },
+    { src: '/assets/images/gallery/gallery-15.jpg', alt: 'Ritual de Cierre' },
+    { src: '/assets/images/gallery/gallery-6.jpg', alt: 'Lectura Intuitiva' },
+    { src: '/assets/images/gallery/gallery-23.jpg', alt: 'Legado Escrito' },
+    { src: '/assets/images/gallery/gallery-22.jpg', alt: 'Sabiduría en Papel' },
+    { src: '/assets/images/gallery/gallery-16.jpg', alt: 'Naturaleza' },
+    { src: '/assets/images/gallery/gallery-17.jpg', alt: 'Viaje del Alma' },
+    { src: '/assets/images/gallery/gallery-18.jpg', alt: 'Esencia' },
+    { src: '/assets/images/gallery/gallery-19.jpg', alt: 'Paz' },
+    { src: '/assets/images/gallery/gallery-20.jpg', alt: 'Luz' },
+    { src: '/assets/images/gallery/gallery-21.jpg', alt: 'Reflejos' },
+    { src: '/assets/images/gallery/custom-retreat-group.jpg', alt: 'Encuentro de Almas' }
+];

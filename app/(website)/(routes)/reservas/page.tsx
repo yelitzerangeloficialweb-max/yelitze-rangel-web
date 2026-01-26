@@ -9,7 +9,7 @@ export default function ReservationsPage() {
                     Agenda tu Sesión
                 </span>
                 <h1 className="text-4xl md:text-5xl font-heading text-[var(--color-primary)] mb-6">
-                    Reserva tu Espacio de Sanación
+                    Reserva tu Espacio de Alquimia
                 </h1>
                 <p className="max-w-2xl mx-auto text-xl text-[var(--color-text-light)]">
                     Elige el momento perfecto para iniciar tu transformación.
@@ -25,8 +25,8 @@ export default function ReservationsPage() {
                         <div className="space-y-6">
                             <div className="p-4 rounded-xl bg-[var(--color-background)] border border-[var(--color-secondary)]/20 hover:border-[var(--color-secondary)] transition-colors cursor-pointer group">
                                 <div className="flex justify-between items-start mb-2">
-                                    <h4 className="font-bold text-[var(--color-primary)]">Sesión Íntima Sanación Ancestral</h4>
-                                    <span className="text-[var(--color-secondary)] font-bold">$97 USD</span>
+                                    <h4 className="font-bold text-[var(--color-primary)]">Sesión Íntima Alquimia Ancestral</h4>
+                                    {/* <span className="text-[var(--color-secondary)] font-bold">$97 USD</span> */}
                                 </div>
                                 <p className="text-sm text-[var(--color-text-light)] mb-3">60 minutos de trabajo profundo individual por Zoom.</p>
                                 <div className="flex items-center text-xs text-[var(--color-text-light)] gap-4">
@@ -38,7 +38,7 @@ export default function ReservationsPage() {
                             <div className="p-4 rounded-xl bg-white border border-gray-100 hover:border-[var(--color-secondary)]/50 transition-colors cursor-pointer opacity-75 hover:opacity-100">
                                 <div className="flex justify-between items-start mb-2">
                                     <h4 className="font-bold text-[var(--color-primary)]">Capacitación Grupal</h4>
-                                    <span className="text-[var(--color-secondary)] font-bold">Desde $47 USD</span>
+                                    {/* <span className="text-[var(--color-secondary)] font-bold">Desde $47 USD</span> */}
                                 </div>
                                 <p className="text-sm text-[var(--color-text-light)]">Próximas fechas por anunciar.</p>
                             </div>

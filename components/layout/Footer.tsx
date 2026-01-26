@@ -20,7 +20,7 @@ export default function Footer() {
                             </div>
                         </div>
                         <p className="text-white/80 text-sm leading-relaxed mb-6">
-                            Acompañándote a sanar tus raíces para que florezcas en tu propio destino. Terapia Sistémica y Sanación Ancestral.
+                            Acompañándote a honrar tus raíces para que florezcas en tu propio destino. Terapia Sistémica y Alquimia Ancestral.
                         </p>
                         <div className="flex gap-4">
                             <a href="https://www.instagram.com/yelitzerangeloficial/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 rounded-full hover:bg-white hover:text-[var(--color-secondary)] transition-colors text-white">

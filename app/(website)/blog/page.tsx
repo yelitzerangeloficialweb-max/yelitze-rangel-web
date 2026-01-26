@@ -54,8 +54,8 @@ export default function BlogPage() {
                 {/* Right Panel: Ethereal Image */}
                 <div className="lg:w-[55%] relative min-h-[500px] lg:min-h-full">
                     <Image
-                        src="/assets/images/chamana-bg.png"
-                        alt="Inspiración y Bitácora"
+                        src="/assets/images/blog-hero-new.png"
+                        alt="Crónicas del Alma - Inspiración y Sabiduría"
                         fill
                         className="object-cover"
                         priority

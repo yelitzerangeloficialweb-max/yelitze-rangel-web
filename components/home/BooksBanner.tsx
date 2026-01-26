@@ -51,7 +51,7 @@ export default function BooksBanner() {
                             </h2>
                             <p className="text-xl text-gray-200 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
                                 Descubre mis libros y herramientas escritas, diseñados para acompañarte
-                                en tu proceso de sanación y autodescubrimiento.
+                                en tu proceso de evolución y autodescubrimiento.
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
