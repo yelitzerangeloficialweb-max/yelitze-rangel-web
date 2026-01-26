@@ -64,7 +64,7 @@ export default function ServicesPage() {
                 {/* Right Panel: Ethereal Image */}
                 <div className="lg:w-[55%] relative min-h-[500px] lg:min-h-full">
                     <Image
-                        src="/assets/images/vortex-hero-clean.png"
+                        src="/assets/images/coaching-ancestral-hero-new.jpg"
                         alt="Alineación y Vórtice"
                         fill
                         className="object-cover"
