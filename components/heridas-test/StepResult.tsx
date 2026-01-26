@@ -164,7 +164,8 @@ export default function StepResult({ resultData, userName, onFinalize }: StepRes
                     <div className="border-b-2 border-[#D4AF37]/20 pb-8 mb-12 flex justify-between items-center">
                         <div className="flex-1">
                             <h1 className="text-4xl font-heading text-[var(--color-primary)] mb-2">Heridas de la Infancia</h1>
-                            <p className="text-xs uppercase tracking-[0.3em] text-[#D4AF37] font-bold">Informe de Autoconocimiento</p>
+                            <p className="text-xs uppercase tracking-[0.3em] text-[#D4AF37] font-bold mb-2">Informe de Autoconocimiento</p>
+                            <p className="text-sm text-gray-400 font-serif italic">Preparado con amor para: <strong className="text-[var(--color-primary)]">{userName}</strong></p>
                         </div>
                         <div className="w-48">
                             <img
