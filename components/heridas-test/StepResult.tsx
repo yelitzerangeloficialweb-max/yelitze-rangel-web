@@ -205,7 +205,7 @@ export default function StepResult({ resultData, userName, onFinalize }: StepRes
                             <div className="inline-block bg-[var(--color-secondary)] text-white px-8 py-3 rounded-full font-bold uppercase tracking-wider text-sm shadow-md">
                                 Reservar Sesión de Acompañamiento
                             </div>
-                            <p className="text-xs text-gray-500 mt-3 font-mono">Agenda tu espacio en: <span className="text-[var(--color-primary)]">www.yelitzerangel.com/reservas</span></p>
+                            <p className="text-xs text-gray-500 mt-3 font-mono">Agenda tu espacio en: <span className="text-[var(--color-primary)]">www.yelitzerangeloficial.com/reservas</span></p>
                         </div>
 
                         {/* Footer */}
@@ -216,7 +216,7 @@ export default function StepResult({ resultData, userName, onFinalize }: StepRes
                             </div>
                             <div className="text-right">
                                 <p className="text-base font-bold text-[var(--color-secondary)] font-heading">Yelitzé Rangel</p>
-                                <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">www.yelitzerangel.com</p>
+                                <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">www.yelitzerangeloficial.com</p>
                             </div>
                         </div>
                     </div>
