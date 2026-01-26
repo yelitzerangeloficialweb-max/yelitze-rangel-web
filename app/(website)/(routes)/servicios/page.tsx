@@ -15,8 +15,8 @@ export default function ServicesPage() {
 
             {/* 1. SECTION: COACHING ANCESTRAL */}
             <section className="relative min-h-[90vh] flex flex-col lg:flex-row overflow-hidden pt-20">
-                {/* Left Panel: Brand Color */}
-                <div className="lg:w-[45%] bg-[var(--color-secondary)] p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
+                {/* Left Panel: BRAND NEW BLACK BACKGROUND */}
+                <div className="lg:w-[45%] bg-black p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
                     {/* Subtle Watermark - Larger & More Transparent */}
                     <div className="absolute -left-32 -bottom-32 w-[1000px] h-[1000px] opacity-[0.015] pointer-events-none">
                         <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
@@ -71,8 +71,8 @@ export default function ServicesPage() {
                         priority
                     />
                     {/* Soft gradient transition from the color panel */}
-                    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[var(--color-secondary)] to-transparent hidden lg:block" />
-                    <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[var(--color-secondary)]/10 lg:to-transparent" />
+                    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent hidden lg:block" />
+                    <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-black/10 lg:to-transparent" />
                 </div>
             </section>
 
