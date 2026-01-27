@@ -107,6 +107,7 @@ export default function DineroWizard() {
                     dominantBelief,
                     secondaryBelief,
                     nervousSystem,
+                    email, // Added email
                     scores
                 })
             });

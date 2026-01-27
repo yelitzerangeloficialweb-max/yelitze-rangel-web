@@ -168,6 +168,26 @@ Datos detectados del test de dinero:
         const resultContent = completion.choices[0].message.content;
         const parsedResult = JSON.parse(resultContent || '{}');
 
+        // SAVE TO DATABASE
+        try {
+            const { db } = await import('@/lib/db');
+            await db.testResult.create({
+                data: {
+                    testTitle: 'Test Relación con el Dinero',
+                    score: 0, // Or calculate a total score if applicable
+                    maxScore: 0,
+                    answers: JSON.stringify(scores), // Store raw scores/answers
+                    aiAnalysis: parsedResult.screen_message, // Store the summary or full content
+                    userName: name || 'Anónimo',
+                    userEmail: body.email || '', // Ensure email is passed in body
+                },
+            });
+            console.log("Result saved to DB successfully");
+        } catch (dbError) {
+            console.error("Error saving to DB:", dbError);
+            // Don't fail the request if DB save fails, just log it
+        }
+
         return NextResponse.json({ ...parsedResult });
 
     } catch (error: any) {
