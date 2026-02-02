@@ -1,16 +1,21 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+    const searchRef = useRef<HTMLDivElement>(null);
     const pathname = usePathname();
+    const router = useRouter();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -20,6 +25,28 @@ export default function Header() {
         handleScroll(); // Check on mount
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+                setIsSearchOpen(false);
+            }
+        };
+        if (isSearchOpen) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, [isSearchOpen]);
+
+    const handleSearch = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            router.push(`/buscar?q=${encodeURIComponent(searchQuery.trim())}`);
+            setIsSearchOpen(false);
+            setSearchQuery('');
+            setMobileMenuOpen(false);
+        }
+    };
 
     // Logic: Show "Scrolled" style (White BG, Dark Text) if:
     // 1. We differ from Home page (internal pages usually have light bg)
@@ -136,6 +163,52 @@ export default function Header() {
                             )}
                         </div>
                     ))}
+                    <div className="flex items-center" ref={searchRef}>
+                        <AnimatePresence mode="wait">
+                            {isSearchOpen ? (
+                                <motion.form
+                                    initial={{ width: 0, opacity: 0 }}
+                                    animate={{ width: "240px", opacity: 1 }}
+                                    exit={{ width: 0, opacity: 0 }}
+                                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                                    onSubmit={handleSearch}
+                                    className="relative flex items-center overflow-hidden"
+                                >
+                                    <input
+                                        type="text"
+                                        placeholder="Buscar..."
+                                        autoFocus
+                                        value={searchQuery}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                        className={cn(
+                                            "w-full h-10 pl-4 pr-10 rounded-full text-sm border focus:outline-none focus:ring-2 focus:ring-secondary/50",
+                                            showScrolled ? "bg-background border-primary/10 text-primary" : "bg-white/10 backdrop-blur-md border-white/20 text-white placeholder:text-white/60"
+                                        )}
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => setIsSearchOpen(false)}
+                                        className="absolute right-3 text-current opacity-60 hover:opacity-100 transition-opacity"
+                                    >
+                                        <X size={16} />
+                                    </button>
+                                </motion.form>
+                            ) : (
+                                <motion.button
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    onClick={() => setIsSearchOpen(true)}
+                                    className={cn(
+                                        "p-2 rounded-full transition-colors hover:bg-primary/5",
+                                        showScrolled ? "text-primary" : "text-white/90"
+                                    )}
+                                >
+                                    <Search size={20} />
+                                </motion.button>
+                            )}
+                        </AnimatePresence>
+                    </div>
                     <Link
                         href="/reservas"
                         className="btn-premium px-6 py-2 text-sm"
@@ -183,6 +256,23 @@ export default function Header() {
                             )}
                         </div>
                     ))}
+                    <form onSubmit={handleSearch} className="px-4 mb-2">
+                        <div className="relative flex items-center">
+                            <input
+                                type="text"
+                                placeholder="Buscar..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                className="w-full h-11 pl-4 pr-11 rounded-xl bg-background border border-primary/10 text-primary text-sm focus:outline-none focus:ring-2 focus:ring-secondary/20"
+                            />
+                            <button
+                                type="submit"
+                                className="absolute right-3 p-1 text-primary/60"
+                            >
+                                <Search size={18} />
+                            </button>
+                        </div>
+                    </form>
                     <Link
                         href="/reservas"
                         onClick={() => setMobileMenuOpen(false)}
