@@ -94,14 +94,36 @@ export function getAllSearchableContent(): SearchResult[] {
     return results;
 }
 
+function normalize(text: string): string {
+    return text
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim();
+}
+
 export function searchContent(query: string): SearchResult[] {
-    const all = getAllSearchableContent();
     if (!query) return [];
 
-    const lowerQuery = query.toLowerCase();
+    const all = getAllSearchableContent();
+    const normalizedQuery = normalize(query);
 
-    return all.filter(item =>
-        item.title.toLowerCase().includes(lowerQuery) ||
-        item.description.toLowerCase().includes(lowerQuery)
-    );
+    if (normalizedQuery === "") return [];
+
+    return all.filter(item => {
+        const normalizedTitle = normalize(item.title);
+        const normalizedDesc = normalize(item.description);
+        const normalizedType = normalize(item.type);
+
+        return normalizedTitle.includes(normalizedQuery) ||
+            normalizedDesc.includes(normalizedQuery) ||
+            normalizedType.includes(normalizedQuery);
+    });
+}
+
+// Para depuración: permite ver cuántos items hay en total
+export function getSearchStats() {
+    return {
+        total: getAllSearchableContent().length
+    };
 }

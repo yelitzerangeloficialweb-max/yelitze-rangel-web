@@ -5,13 +5,14 @@ import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Search, ArrowRight, BookOpen, Calendar, Star, FileText } from 'lucide-react';
-import { searchContent } from '@/lib/search-data';
+import { searchContent, getSearchStats } from '@/lib/search-data';
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/ui/motion';
 
 function SearchResults() {
     const searchParams = useSearchParams();
     const query = searchParams.get('q') || '';
     const results = searchContent(query);
+    const stats = getSearchStats();
 
     return (
         <div className="container mx-auto px-4 py-32">
@@ -27,6 +28,10 @@ function SearchResults() {
                             "Ingresa un término para buscar."
                         )}
                     </p>
+                    {/* Debug Info: Sólo visible durante desarrollo/depuración */}
+                    <div className="mt-4 text-[10px] text-stone-300">
+                        Índice de búsqueda: {stats.total} elementos | Resultados: {results.length}
+                    </div>
                 </div>
             </FadeIn>
 
