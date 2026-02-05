@@ -1,10 +1,23 @@
 'use client';
 
-import { useState } from 'react';
-import { PRODUCTS, CATEGORY_LABELS, ProductCategory } from '@/lib/products-data';
+import { useState, useEffect } from 'react';
 import ProductCard from '@/components/shop/ProductCard';
 import { FadeIn, StaggerContainer } from '@/components/ui/motion';
-import { Sparkles, BookOpen, Gem, Star } from 'lucide-react';
+import { Sparkles, BookOpen, Gem, Star, Loader2 } from 'lucide-react';
+import { PRODUCTS as STATIC_PRODUCTS, CATEGORY_LABELS, ProductCategory } from '@/lib/products-data';
+
+interface Product {
+    id: string;
+    slug: string;
+    name: string;
+    subtitle?: string;
+    description: string;
+    price: number;
+    image: string;
+    category: ProductCategory;
+    stock: number;
+    featured?: boolean;
+}
 
 const CATEGORY_ICONS: Record<ProductCategory, typeof BookOpen> = {
     libro: BookOpen,
@@ -14,10 +27,33 @@ const CATEGORY_ICONS: Record<ProductCategory, typeof BookOpen> = {
 
 export default function TiendaPage() {
     const [activeCategory, setActiveCategory] = useState<ProductCategory | 'all'>('all');
+    const [products, setProducts] = useState<Product[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        async function fetchProducts() {
+            try {
+                const res = await fetch('/api/products');
+                if (res.ok) {
+                    const dbProducts = await res.json();
+                    // Use DB products if available, otherwise fall back to static
+                    setProducts(dbProducts.length > 0 ? dbProducts : STATIC_PRODUCTS);
+                } else {
+                    setProducts(STATIC_PRODUCTS);
+                }
+            } catch {
+                // Fall back to static products on error
+                setProducts(STATIC_PRODUCTS);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchProducts();
+    }, []);
 
     const filteredProducts = activeCategory === 'all'
-        ? PRODUCTS
-        : PRODUCTS.filter(p => p.category === activeCategory);
+        ? products
+        : products.filter(p => p.category === activeCategory);
 
     const categories: (ProductCategory | 'all')[] = ['all', 'libro', 'oraculo', 'accesorio'];
 
@@ -79,18 +115,26 @@ export default function TiendaPage() {
             {/* Products Grid */}
             <section className="py-16">
                 <div className="container mx-auto px-4">
-                    <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {filteredProducts.map(product => (
-                            <ProductCard key={product.id} product={product} />
-                        ))}
-                    </StaggerContainer>
-
-                    {filteredProducts.length === 0 && (
-                        <div className="text-center py-20">
-                            <p className="text-stone-500 text-lg italic">
-                                No hay productos en esta categoría todavía.
-                            </p>
+                    {loading ? (
+                        <div className="flex items-center justify-center py-20">
+                            <Loader2 className="w-8 h-8 animate-spin text-[var(--color-secondary)]" />
                         </div>
+                    ) : (
+                        <>
+                            <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                {filteredProducts.map(product => (
+                                    <ProductCard key={product.id} product={product} />
+                                ))}
+                            </StaggerContainer>
+
+                            {filteredProducts.length === 0 && (
+                                <div className="text-center py-20">
+                                    <p className="text-stone-500 text-lg italic">
+                                        No hay productos en esta categoría todavía.
+                                    </p>
+                                </div>
+                            )}
+                        </>
                     )}
                 </div>
             </section>
