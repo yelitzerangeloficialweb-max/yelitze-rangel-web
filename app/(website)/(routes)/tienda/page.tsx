@@ -13,6 +13,7 @@ interface Product {
     subtitle?: string;
     description: string;
     price: number;
+    currency?: 'USD';
     image: string;
     category: ProductCategory;
     stock: number;
