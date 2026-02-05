@@ -1,7 +1,3 @@
-import { BLOG_POSTS } from './blog-data';
-import { EVENTS_DATA } from './events';
-import { TESTS_DATA } from './tests-data';
-
 export type SearchResultType = 'blog' | 'evento' | 'test' | 'libro';
 
 export interface SearchResult {
@@ -14,84 +10,31 @@ export interface SearchResult {
     link: string;
 }
 
-const BOOKS = [
-    {
-        title: "Hilos de Conexión",
-        slug: "hilos-de-conexion",
-        cover: "/assets/images/books/hilos-conexion-3d.png",
-        description: "Una invitación a recordar, a sanar y a reconectar con esa memoria sagrada que habita en tu ADN.",
-        link: "/libros"
-    },
-    {
-        title: "Conversaciones con mi Chamana",
-        slug: "conversaciones-con-mi-chamana",
-        cover: "/assets/images/books/conversaciones-chamana-3d.png",
-        description: "Reflexiones, meditaciones y diálogos internos para acompañarte en tu día a día.",
-        link: "/libros"
-    }
+// Searchable content embedded directly for client-side compatibility
+const SEARCHABLE_CONTENT: SearchResult[] = [
+    // BLOGS
+    { id: '8', type: 'blog', title: 'Libérate de tus Patrones: La Ciencia de la Decisión', description: '¿Por qué sentimos que estamos "cableados" para el autosabotaje? Entiende cómo tu cerebro y tu sistema familiar trabajan juntos.', slug: 'liberate-de-tus-patrones', image: '/assets/images/blog/liberate-patrones.jpg', link: '/blog/liberate-de-tus-patrones' },
+    { id: '9', type: 'blog', title: 'Transforma tu Miedo en Éxito: El Salto de la Valiente', description: 'El miedo no es una señal de que debas detenerte, sino el combustible que necesitas para el siguiente nivel de tu evolución.', slug: 'transforma-tu-miedo-en-exito', image: '/assets/images/blog/miedo-exito.jpg', link: '/blog/transforma-tu-miedo-en-exito' },
+    { id: '10', type: 'blog', title: 'Constelaciones Familiares: Un Viaje a tu Árbol Genealógico', description: 'Descubre cómo las dinámicas familiares ocultas influyen en tu vida y cómo las constelaciones pueden ayudarte a sanar.', slug: 'constelaciones-familiares-viaje-arbol-genealogico', image: '/assets/images/blog/constelaciones-arbol.jpg', link: '/blog/constelaciones-familiares-viaje-arbol-genealogico' },
+    { id: '11', type: 'blog', title: 'Sanación del Niño Interior: Reconectando con tu Esencia', description: 'Tu niño interior guarda la clave de muchas de tus reacciones adultas. Aprende a reconectarte con él para sanar.', slug: 'sanacion-nino-interior-reconectando-esencia', image: '/assets/images/blog/nino-interior.jpg', link: '/blog/sanacion-nino-interior-reconectando-esencia' },
+    { id: '12', type: 'blog', title: 'Abundancia y Dinero: Desbloquea tu Flujo de Prosperidad', description: 'Las creencias limitantes sobre el dinero se heredan. Descubre cómo transformar tu relación con la abundancia.', slug: 'abundancia-dinero-desbloquea-prosperidad', image: '/assets/images/blog/abundancia-dinero.jpg', link: '/blog/abundancia-dinero-desbloquea-prosperidad' },
+    // EVENTOS
+    { id: '1', type: 'evento', title: 'Sánate Mujer', description: '¿Te has preguntado por qué repites las mismas historias que vivió tu madre o tu abuela? Hoy puedes detener ese ciclo.', slug: 'sanate-mujer', image: '/assets/images/img-sanate.jpg', link: '/eventos/sanate-mujer' },
+    { id: '2', type: 'evento', title: 'Constelaciones Familiares Grupales', description: 'Taller presencial para explorar las dinámicas ocultas de tu sistema familiar y encontrar soluciones sanadoras.', slug: 'constelaciones-familiares-grupales', image: '/assets/images/events/constelaciones-grupales.jpg', link: '/eventos/constelaciones-familiares-grupales' },
+    { id: '3', type: 'evento', title: 'Círculo de Mujeres', description: 'Un espacio sagrado para conectar con otras mujeres, compartir experiencias y sanar juntas.', slug: 'circulo-de-mujeres', image: '/assets/images/events/circulo-mujeres.jpg', link: '/eventos/circulo-de-mujeres' },
+    // TESTS
+    { id: 'heridas-infancia', type: 'test', title: 'Test de Heridas de la Infancia', description: 'Descubre qué herida emocional (Abandono, Rechazo, Humillación, Traición, Injusticia) está influyendo más en tu vida actual.', slug: 'heridas-infancia', image: '/assets/images/tests/test_childhood_wounds.png', link: '/tests/heridas-infancia' },
+    { id: 'creencias-amor', type: 'test', title: 'Test de Creencias sobre el Amor', description: 'Identifica los bloqueos inconscientes que te impiden vivir una relación de pareja plena, consciente y en equilibrio.', slug: 'creencias-amor', image: '/assets/images/tests/test_love_beliefs.png', link: '/tests/creencias-amor' },
+    { id: 'creencias-dinero', type: 'test', title: 'Test de Creencias sobre el Dinero', description: 'Explora tu relación con la abundancia y detecta lealtades familiares que limitan tu flujo de prosperidad.', slug: 'creencias-dinero', image: '/assets/images/tests/test_money_beliefs.png', link: '/tests/creencias-dinero' },
+    // LIBROS
+    { id: 'hilos-de-conexion', type: 'libro', title: 'Hilos de Conexión', description: 'Una invitación a recordar, a sanar y a reconectar con esa memoria sagrada que habita en tu ADN.', slug: 'hilos-de-conexion', image: '/assets/images/books/hilos-conexion-3d.png', link: '/libros' },
+    { id: 'conversaciones-con-mi-chamana', type: 'libro', title: 'Conversaciones con mi Chamana', description: 'Reflexiones, meditaciones y diálogos internos para acompañarte en tu día a día.', slug: 'conversaciones-con-mi-chamana', image: '/assets/images/books/conversaciones-chamana-3d.png', link: '/libros' },
+    // SERVICIOS (para que "masaje" devuelva resultados)
+    { id: 'sesiones-corporales', type: 'evento', title: 'Sesiones Corporales y Masajes', description: 'Shirodhara, Masaje Abhyanga, Cabeza Indio, Tantra Sistémico y más técnicas de renovación celular.', slug: 'sesiones-corporales', image: '/assets/images/hero-corporales.png', link: '/servicios/sesiones-corporales' },
 ];
 
 export function getAllSearchableContent(): SearchResult[] {
-    const results: SearchResult[] = [];
-
-    // Blogs
-    BLOG_POSTS.forEach(post => {
-        results.push({
-            id: post.id,
-            type: 'blog',
-            title: post.title,
-            description: post.excerpt,
-            slug: post.slug,
-            image: post.image,
-            link: `/blog/${post.slug}`
-        });
-    });
-
-    // Eventos
-    EVENTS_DATA.forEach(event => {
-        results.push({
-            id: String(event.id),
-            type: 'evento',
-            title: event.title,
-            description: event.aida.attention,
-            slug: event.slug,
-            image: event.image,
-            link: `/eventos/${event.slug}`
-        });
-    });
-
-    // Tests
-    TESTS_DATA.forEach(test => {
-        let testImage = '/assets/images/tests-bg.jpg';
-        if (test.id === 'heridas-infancia') testImage = '/assets/images/tests/test_childhood_wounds.png';
-        if (test.id === 'creencias-amor') testImage = '/assets/images/tests/test_love_beliefs.png';
-        if (test.id === 'creencias-dinero') testImage = '/assets/images/tests/test_money_beliefs.png';
-
-        results.push({
-            id: test.id,
-            type: 'test',
-            title: test.title,
-            description: test.description,
-            slug: test.slug,
-            image: testImage,
-            link: `/tests/${test.slug}`
-        });
-    });
-
-    // Books
-    BOOKS.forEach(book => {
-        results.push({
-            id: book.slug,
-            type: 'libro',
-            title: book.title,
-            description: book.description,
-            slug: book.slug,
-            image: book.cover,
-            link: book.link
-        });
-    });
-
-    return results;
+    return SEARCHABLE_CONTENT;
 }
 
 function normalize(text: string): string {
