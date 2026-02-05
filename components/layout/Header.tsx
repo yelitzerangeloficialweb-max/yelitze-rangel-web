@@ -7,6 +7,7 @@ import { Menu, X, Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
+import CartButton from '@/components/shop/CartButton';
 
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -69,6 +70,7 @@ export default function Header() {
         },
         { name: 'Galería', href: '/galeria' },
         { name: 'Blog', href: '/blog' },
+        { name: 'Tienda', href: '/tienda' },
         {
             name: 'Libros',
             href: '/libros',
@@ -209,6 +211,7 @@ export default function Header() {
                             )}
                         </AnimatePresence>
                     </div>
+                    <CartButton iconColor={showScrolled ? 'text-primary' : 'text-white/90'} />
                     <Link
                         href="/reservas"
                         className="btn-premium px-6 py-2 text-sm"
