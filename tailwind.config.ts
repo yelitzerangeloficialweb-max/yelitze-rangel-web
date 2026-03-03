@@ -18,9 +18,11 @@ const config: Config = {
                 text: "var(--color-text)",
                 "text-light": "var(--color-text-light)",
                 neutral: "var(--color-neutral)",
+                white: "#F5EFE6",
+                black: "#2D2926",
             },
             fontFamily: {
-                heading: ["'Ranade'", "sans-serif"],
+                heading: ["'Playfair Display'", "serif"],
                 body: ["'Ranade'", "sans-serif"],
                 script: ["'Ranade'", "sans-serif"],
                 sans: ["'Ranade'", "sans-serif"],

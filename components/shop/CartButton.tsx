@@ -1,6 +1,6 @@
 'use client';
 
-import { ShoppingCart } from 'lucide-react';
+import { CartThinIcon } from '@/components/icons/CustomIcons';
 import { useCart } from '@/context/CartContext';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -18,7 +18,7 @@ export default function CartButton({ className = '', iconColor }: CartButtonProp
             onClick={toggleCart}
             className={`relative p-2 rounded-full transition-colors hover:bg-primary/5 ${className}`}
         >
-            <ShoppingCart className={`w-5 h-5 ${iconColor || ''}`} />
+            <CartThinIcon className={`w-5 h-5 ${iconColor || ''}`} />
 
             <AnimatePresence>
                 {count > 0 && (

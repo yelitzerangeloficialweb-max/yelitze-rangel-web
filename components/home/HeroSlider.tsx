@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronRight, ChevronLeft } from "lucide-react";
+import { EyeGeometricIcon, CloseThinIcon } from "@/components/icons/CustomIcons";
 import { motion, AnimatePresence } from "framer-motion";
 import ParticleBackground from "@/components/ui/ParticleBackground";
 import TypewriterText from "@/components/ui/TypewriterText";
@@ -101,84 +102,93 @@ export default function HeroSlider() {
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 0.3 }}
-                            className="inline-block"
+                            className="inline-block mb-10 md:mb-16"
                         >
-                            <span className="px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs md:text-sm font-light tracking-[0.2em] uppercase">
-                                {slides[currentSlide].title}
-                            </span>
+                            <div className="flex items-center gap-3 px-4 py-2 md:px-6 md:py-3 rounded-md bg-[#F5EFE6] text-[#8C4005] font-bold text-[10px] md:text-xs tracking-[0.1em] uppercase shadow-lg">
+                                <EyeGeometricIcon className="w-3.5 h-3.5 md:w-4 md:h-4 opacity-70" />
+                                <span>{slides[currentSlide].title}</span>
+                                <CloseThinIcon className="w-3 h-3 md:w-3.5 md:h-3.5 opacity-70 ml-2" />
+                            </div>
                         </motion.div>
 
                         {/* Heading with Typewriter Effect */}
-                        <div className="min-h-[120px] md:min-h-[160px] flex flex-col items-center justify-center">
-                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading text-white drop-shadow-2xl leading-tight mb-4">
+                        <div className="flex flex-col items-center justify-center -space-y-2 md:-space-y-6">
+                            <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[130px] font-heading font-normal uppercase tracking-widest text-white drop-shadow-2xl leading-none w-full max-w-[100vw] px-4 break-words">
                                 <TypewriterText text={slides[currentSlide].heading} delay={0.1} />
                             </h1>
-                            <div className="text-[var(--color-secondary)] text-2xl md:text-4xl lg:text-5xl font-light italic leading-tight max-w-4xl mx-auto">
+                            <div className="text-white text-3xl sm:text-5xl md:text-6xl lg:text-[80px] font-light italic lowercase font-heading leading-tight drop-shadow-lg z-10 opacity-90">
                                 <TypewriterText text={slides[currentSlide].subheading} delay={1.5} />
                             </div>
                         </div>
-
-                        {/* Description */}
-                        <motion.p
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 2.5, duration: 1 }}
-                            className="text-lg md:text-2xl text-gray-200 font-light max-w-2xl mx-auto leading-relaxed"
-                        >
-                            {slides[currentSlide].description}
-                        </motion.p>
 
                         {/* CTA */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 3, duration: 0.8 }}
-                            className="pt-8"
+                            className="pt-16 flex flex-col items-center"
                         >
                             <Link
                                 href={slides[currentSlide].link}
-                                className="inline-flex items-center gap-3 px-8 py-4 bg-[var(--color-secondary)] text-white rounded-full font-medium hover:bg-white hover:text-[var(--color-primary)] transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl text-lg tracking-wide group"
+                                className="inline-flex items-center justify-center px-10 py-3 border-[1.5px] border-white text-white rounded-full text-sm md:text-base font-semibold tracking-widest transition-all bg-transparent hover:bg-white hover:text-black group uppercase shadow-lg"
                             >
                                 {slides[currentSlide].cta}
-                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </Link>
+
+                            {/* Line Arrow Detail */}
+                            <div className="mt-8 flex items-center justify-center gap-2 opacity-80">
+                                <div className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+                                <div className="h-px w-32 md:w-48 bg-gradient-to-r from-white/90 to-white/40" />
+                                <ArrowRight className="w-3.5 h-3.5 text-white/50 -ml-2" />
+                            </div>
                         </motion.div>
                     </motion.div>
                 </AnimatePresence>
             </div>
 
-            {/* Navigation Controls */}
-            <div className="absolute bottom-12 w-full z-30 flex justify-between px-8 md:justify-center md:gap-8 pointer-events-none">
+            {/* Absolute Left/Right Navigation */}
+            <div className="absolute inset-y-0 left-4 right-4 z-30 flex justify-between items-center pointer-events-none">
                 <button
                     onClick={prevSlide}
-                    className="pointer-events-auto p-4 rounded-full bg-white/5 hover:bg-white/20 backdrop-blur-sm transition-all text-white border border-white/10 hover:border-white/40 group"
+                    className="pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-md transition-all text-white shadow-xl group"
                     aria-label="Previous slide"
                 >
-                    <ChevronLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" />
+                    <ChevronLeft className="w-6 h-6 group-hover:-translate-x-0.5 transition-transform" />
                 </button>
 
+                <button
+                    onClick={nextSlide}
+                    className="pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-md transition-all text-white shadow-xl group"
+                    aria-label="Next slide"
+                >
+                    <ChevronRight className="w-6 h-6 group-hover:translate-x-0.5 transition-transform" />
+                </button>
+            </div>
+
+            {/* Bottom Section: Logo & Dots */}
+            <div className="absolute bottom-6 w-full z-30 flex flex-col items-center gap-6 pointer-events-none">
+                <Image
+                    src="/assets/images/logo-white.png"
+                    alt="Yelitze Rangel"
+                    width={180}
+                    height={70}
+                    className="opacity-90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] object-contain h-auto w-auto max-w-[140px] md:max-w-[180px]"
+                />
+
                 {/* Dots */}
-                <div className="pointer-events-auto flex items-center gap-3">
+                <div className="pointer-events-auto flex items-center gap-2">
                     {slides.map((_, idx) => (
                         <button
                             key={idx}
                             onClick={() => setCurrentSlide(idx)}
-                            className={`h-2 rounded-full transition-all duration-500 ${idx === currentSlide
-                                ? "bg-[var(--color-secondary)] w-12"
-                                : "bg-white/30 w-2 hover:bg-white/60"
+                            className={`rounded-full transition-all duration-500 shadow-md ${idx === currentSlide
+                                ? "bg-white w-2 h-2 opacity-100"
+                                : "bg-white/50 w-1.5 h-1.5 hover:bg-white/80"
                                 }`}
                             aria-label={`Go to slide ${idx + 1}`}
                         />
                     ))}
                 </div>
-
-                <button
-                    onClick={nextSlide}
-                    className="pointer-events-auto p-4 rounded-full bg-white/5 hover:bg-white/20 backdrop-blur-sm transition-all text-white border border-white/10 hover:border-white/40 group"
-                    aria-label="Next slide"
-                >
-                    <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-                </button>
             </div>
         </section>
     );

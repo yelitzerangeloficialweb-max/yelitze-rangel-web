@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Dancing+Script:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import url('https://api.fontshare.com/v2/css?f[]=ranade@300,400,500,700&display=swap');
 
 @tailwind base;
@@ -6,33 +6,31 @@
 @tailwind utilities;
 
 :root {
-  /* Strict 2-Color Palette */
+  /* Concepto 1: Universo de Colores (Paleta Digital) */
 
-  /* Primary Color (Brown) */
-  --color-primary: #7b5735;
-  --color-primary-light: #7b5735;
-  /* Strict adherence */
+  /* Marrón Arcilla (Color de Logo) - Para títulos y autoridad */
+  --color-primary: #8C4005;
+  --color-primary-light: #8C4005;
 
-  --color-accent-light: #C19A6B;
-  /* Camel/Gold for highlights on dark backgrounds */
+  /* Naranja Óxido (Color de Logo) - Mantenido para otros acentos */
+  /* Dorado Mate - Para todos los botones (según últimas instrucciones) */
+  --color-accent: #B8835A;
 
-  --color-secondary: #7b5735;
-  /* Merging secondary into primary */
-  --color-secondary-light: #7b5735;
+  /* Dorado Mate - Para detalles mínimos y bordes */
+  --color-accent-light: #B8835A;
+  --color-secondary: #B8835A;
+  --color-secondary-light: #B8835A;
 
-  /* Accent - using Primary for consistency */
-  --color-accent: #7b5735;
+  /* Neutral - Uso de gris o dorado para evitar negro en separadores */
+  --color-neutral: #B8835A;
 
-  /* Neutral - using Primary or Background */
-  --color-neutral: #7b5735;
+  /* Crema Orgánico - Para sustituir el blanco y dar calidez */
+  --color-background: #F5EFE6;
+  --color-surface: #F5EFE6;
 
-  /* Background (Off-White) */
-  --color-background: #fafcfe;
-  --color-surface: #fafcfe;
-
-  /* Typography */
-  --color-text: #7b5735;
-  --color-text-light: #7b5735;
+  /* Gris Carbón Profundo - Para bloques de texto largos, evitando el negro puro */
+  --color-text: #2D2926;
+  --color-text-light: #2D2926;
 
   /* Base Variables */
   --background: var(--color-background);
@@ -57,7 +55,7 @@ body {
 h1,
 h2,
 h3 {
-  font-family: 'Ranade', sans-serif;
+  font-family: 'Playfair Display', serif;
   font-weight: 700;
   letter-spacing: -0.01em;
 }
@@ -65,7 +63,7 @@ h3 {
 h4,
 h5,
 h6 {
-  font-family: 'Ranade', sans-serif;
+  font-family: 'Playfair Display', serif;
   font-weight: 500;
 }
 
@@ -101,14 +99,15 @@ html {
 
 @layer components {
   .btn-premium {
-    background-color: var(--color-secondary) !important;
-    color: white !important;
+    background-color: var(--color-accent) !important;
+    color: var(--color-background) !important;
+    /* Crema Orgánico */
     padding: 1rem 2.5rem;
     border-radius: 9999px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    box-shadow: 0 4px 15px rgba(161, 136, 127, 0.3);
+    box-shadow: 0 4px 15px rgba(184, 131, 90, 0.3);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
@@ -117,18 +116,20 @@ html {
     justify-content: center;
     gap: 0.5rem;
     text-decoration: none !important;
+    border: none !important;
   }
 
   .btn-premium:hover {
-    background-color: var(--color-secondary-light) !important;
+    background-color: var(--color-accent) !important;
+    filter: brightness(1.1);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(161, 136, 127, 0.4);
+    box-shadow: 0 8px 20px rgba(184, 131, 90, 0.4);
   }
 
   .btn-outline {
     background-color: transparent !important;
-    border: 2px solid var(--color-primary) !important;
-    color: var(--color-primary) !important;
+    border: 2px solid var(--color-accent) !important;
+    color: var(--color-accent) !important;
     padding: 1rem 2.5rem;
     border-radius: 9999px;
     font-weight: 600;
@@ -141,8 +142,8 @@ html {
   }
 
   .btn-outline:hover {
-    background-color: var(--color-primary) !important;
-    color: white !important;
-    box-shadow: 0 4px 15px rgba(93, 64, 55, 0.2);
+    background-color: var(--color-accent) !important;
+    color: var(--color-background) !important;
+    box-shadow: 0 4px 15px rgba(184, 131, 90, 0.2);
   }
 }

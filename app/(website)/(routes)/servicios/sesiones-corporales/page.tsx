@@ -305,7 +305,7 @@ export default function SesionesCorporalesPage() {
                                     </div>
 
                                     <Link href="/contacto" className="btn-premium px-10 py-4 group">
-                                        Vivir la Maestría Sexual
+                                        Vive la Maestría Tántrica
                                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                     </Link>
                                 </FadeIn>

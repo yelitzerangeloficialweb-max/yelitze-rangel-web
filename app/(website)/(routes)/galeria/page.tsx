@@ -231,7 +231,7 @@ export default function GalleryPage() {
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </Link>
                             <a
-                                href="https://instagram.com/yelitzerangel"
+                                href="https://www.instagram.com/yelitzerangeloficial/"
                                 target="_blank"
                                 className="flex items-center gap-4 px-12 py-5 rounded-full border border-stone-200 text-stone-600 hover:bg-stone-50 transition-all font-bold tracking-widest uppercase text-xs"
                             >

@@ -53,7 +53,7 @@ export const PRODUCTS: Product[] = [
         description: 'Un oráculo diseñado para conectar con la sabiduría de tus ancestros. Cada carta es un portal hacia mensajes profundos que te ayudarán a encontrar claridad en tu camino.',
         price: 34.99,
         currency: 'USD',
-        image: '/assets/images/shop/oraculo-placeholder.jpg',
+        image: '/assets/images/shop/oraculo-ancestral.png',
         category: 'oraculo',
         stock: 30,
         featured: true
@@ -66,7 +66,7 @@ export const PRODUCTS: Product[] = [
         description: 'Baraja intuitiva para el autoconocimiento y la sanación. Cada carta contiene una enseñanza de la chamana interior que todos llevamos dentro.',
         price: 29.99,
         currency: 'USD',
-        image: '/assets/images/shop/oraculo-chamana-placeholder.jpg',
+        image: '/assets/images/shop/oraculo-chamana.png',
         category: 'oraculo',
         stock: 25
     },
@@ -80,7 +80,7 @@ export const PRODUCTS: Product[] = [
         description: 'Vela artesanal con aceites esenciales para acompañar tus meditaciones y rituales. Incluye guía de uso para establecer intenciones poderosas.',
         price: 18.99,
         currency: 'USD',
-        image: '/assets/images/shop/vela-placeholder.jpg',
+        image: '/assets/images/shop/vela-intencion.png',
         category: 'accesorio',
         stock: 40
     },
@@ -92,7 +92,7 @@ export const PRODUCTS: Product[] = [
         description: 'Pulsera tejida a mano con piedras semipreciosas y símbolos sagrados. Un recordatorio físico de tu conexión con el linaje.',
         price: 24.99,
         currency: 'USD',
-        image: '/assets/images/shop/pulsera-placeholder.jpg',
+        image: '/assets/images/shop/pulsera-proteccion.png',
         category: 'accesorio',
         stock: 20
     },
@@ -104,7 +104,7 @@ export const PRODUCTS: Product[] = [
         description: 'Inciensos naturales con mezcla de hierbas sagradas para limpiar espacios y elevar la vibración. Perfecto para ceremonias y meditación.',
         price: 12.99,
         currency: 'USD',
-        image: '/assets/images/shop/incienso-placeholder.jpg',
+        image: '/assets/images/shop/incienso-ritual.png',
         category: 'accesorio',
         stock: 60
     }

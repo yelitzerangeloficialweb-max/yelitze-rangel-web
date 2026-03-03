@@ -210,7 +210,7 @@ export default function AboutPage() {
                     <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                         <FadeIn className="relative h-[650px] lg:h-[700px] rounded-2xl overflow-hidden shadow-2xl order-2 lg:order-1">
                             <Image
-                                src="/assets/images/about-experience.jpg"
+                                src="/assets/images/about-experience-new.jpg"
                                 alt="Danza Lunar y Solar - Yelitze Rangel"
                                 fill
                                 className="object-cover object-top"

@@ -2,6 +2,7 @@
 
 import { useCart } from '@/context/CartContext';
 import { X, Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react';
+import { CartThinIcon, CloseThinIcon, MinusThinIcon, PlusThinIcon } from '@/components/icons/CustomIcons';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -33,7 +34,7 @@ export default function CartDrawer() {
                         {/* Header */}
                         <div className="flex items-center justify-between p-6 border-b border-stone-100">
                             <div className="flex items-center gap-3">
-                                <ShoppingBag className="w-6 h-6 text-[var(--color-secondary)]" />
+                                <CartThinIcon className="w-6 h-6 text-[var(--color-secondary)]" />
                                 <h2 className="text-xl font-heading text-[var(--color-primary)]">
                                     Tu Carrito ({getItemCount()})
                                 </h2>
@@ -42,7 +43,7 @@ export default function CartDrawer() {
                                 onClick={closeCart}
                                 className="p-2 rounded-full hover:bg-stone-100 transition-colors"
                             >
-                                <X className="w-5 h-5" />
+                                <CloseThinIcon className="w-5 h-5" />
                             </button>
                         </div>
 
@@ -50,7 +51,7 @@ export default function CartDrawer() {
                         <div className="flex-1 overflow-y-auto p-6">
                             {items.length === 0 ? (
                                 <div className="h-full flex flex-col items-center justify-center text-center">
-                                    <ShoppingBag className="w-16 h-16 text-stone-200 mb-4" />
+                                    <CartThinIcon className="w-16 h-16 text-stone-200 mb-4" />
                                     <p className="text-stone-500 mb-6">Tu carrito está vacío</p>
                                     <button
                                         onClick={closeCart}
@@ -84,21 +85,21 @@ export default function CartDrawer() {
                                                             onClick={() => updateQuantity(product.id, quantity - 1)}
                                                             className="p-1.5 hover:bg-stone-100 rounded-l-full transition-colors"
                                                         >
-                                                            <Minus className="w-3 h-3" />
+                                                            <MinusThinIcon className="w-3 h-3" />
                                                         </button>
                                                         <span className="px-3 text-sm font-medium">{quantity}</span>
                                                         <button
                                                             onClick={() => updateQuantity(product.id, quantity + 1)}
                                                             className="p-1.5 hover:bg-stone-100 rounded-r-full transition-colors"
                                                         >
-                                                            <Plus className="w-3 h-3" />
+                                                            <PlusThinIcon className="w-3 h-3" />
                                                         </button>
                                                     </div>
                                                     <button
                                                         onClick={() => removeFromCart(product.id)}
                                                         className="p-1.5 text-red-500 hover:bg-red-50 rounded-full transition-colors"
                                                     >
-                                                        <Trash2 className="w-4 h-4" />
+                                                        <CloseThinIcon className="w-4 h-4" />
                                                     </button>
                                                 </div>
                                             </div>
