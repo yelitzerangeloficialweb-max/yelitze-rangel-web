@@ -179,7 +179,7 @@ function HeroSection() {
                         </h1>
                         <p className="text-lg md:text-xl text-[#2D2926]/80 leading-relaxed font-light">
                             Únete a la "Activación Sánate Mujer", la inmersión online gratuita diseñada para mujeres exitosas que están listas para <b>dejar de autosabotearse</b> en sus relaciones y finanzas.
-                            Descubre el Sistema de "Activación del Árbol Florecido" y reclama tu poder de merecimiento en un solo fin de semana, sin costo.
+                            Descubre el Sistema de Expansión y reclama tu poder de merecimiento en un solo fin de semana, sin costo.
                         </p>
                     </motion.div>
 
