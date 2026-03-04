@@ -9,13 +9,13 @@ import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 const slides = [
     {
         id: 1,
-        badge: "COACHING ANCESTRAL",
-        title: "Anatomía del Alma:",
-        subtitle: "Donde lo invisible cobra voz y tu alma puede expresarse con verdad.",
-        description: "Un sistema terapéutico único para identificar en qué parte del círculo de la vida se encuentra tu bloqueo. Rompe la ceguera involuntaria y recupera tu poder personal.",
+        badge: "ACTIVACIÓN SÁNATE MUJER",
+        title: "Deja de Repetir la Historia de Desamor de tu Madre.",
+        subtitle: "Identifica la Herida Raíz.",
+        description: "Únete a la inmersión online gratuita diseñada para mujeres que están listas para romper patrones y reclamar su poder de merecimiento.",
         image: "/assets/images/coaching-ancestral-hero-new.jpg",
-        primaryAction: { text: "RESERVAR SESIÓN", href: "/reservas" },
-        secondaryAction: { text: "Iniciar por WhatsApp", href: "https://wa.me/17867268717" }
+        primaryAction: { text: "UNIRME GRATIS", href: "/sanate-mujer" },
+        secondaryAction: { text: "Ver Detalles", href: "/eventos/sanate-mujer" }
     },
     {
         id: 2,
