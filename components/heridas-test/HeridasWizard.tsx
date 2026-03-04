@@ -7,6 +7,7 @@ import { HeridaOption, WoundType } from '@/lib/heridas-data';
 import StepLanding from './StepLanding';
 import StepContainment from './StepContainment';
 import StepQuiz from './StepQuiz';
+import { QUESTIONS } from '@/lib/heridas-data';
 import StepProcessing from './StepProcessing';
 import StepEmail from './StepEmail';
 import StepResult from './StepResult';
@@ -145,7 +146,7 @@ export default function HeridasWizard() {
                     )}
 
                     {step === 'QUIZ' && (
-                        <StepQuiz onComplete={handleQuizComplete} />
+                        <StepQuiz questions={QUESTIONS} onComplete={handleQuizComplete} />
                     )}
 
                     {step === 'PROCESSING' && (

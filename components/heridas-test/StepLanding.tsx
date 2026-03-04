@@ -6,9 +6,17 @@ import Image from 'next/image';
 
 interface StepLandingProps {
     onNext: () => void;
+    title?: string;
+    subtitle?: string;
+    image?: string;
 }
 
-export default function StepLanding({ onNext }: StepLandingProps) {
+export default function StepLanding({
+    onNext,
+    title = "¿Qué herida de tu infancia sigue hablando en tu vida adulta?",
+    subtitle = "Un test breve, amoroso y revelador.\nNo es diagnóstico. Es conciencia.",
+    image = "/assets/images/tests/test_childhood_wounds.png"
+}: StepLandingProps) {
     return (
         <div className="flex flex-col items-center justify-center min-h-[60vh] text-center space-y-8">
             <motion.div
@@ -19,8 +27,8 @@ export default function StepLanding({ onNext }: StepLandingProps) {
             >
                 <div className="absolute inset-0 bg-amber-100 rounded-full blur-3xl opacity-60 animate-pulse" />
                 <Image
-                    src="/assets/images/tests/test_childhood_wounds.png"
-                    alt="Niño Interior"
+                    src={image}
+                    alt={title}
                     fill
                     className="object-contain drop-shadow-xl relative z-10"
                 />
@@ -33,17 +41,16 @@ export default function StepLanding({ onNext }: StepLandingProps) {
                     transition={{ delay: 0.2 }}
                     className="text-4xl md:text-5xl font-heading text-[var(--color-primary)] leading-tight"
                 >
-                    ¿Qué herida de tu infancia sigue hablando en tu vida adulta?
+                    {title}
                 </motion.h1>
 
                 <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4 }}
-                    className="text-xl text-[var(--color-text-light)] italic"
+                    className="text-xl text-[var(--color-text-light)] italic whitespace-pre-line"
                 >
-                    Un test breve, amoroso y revelador.<br />
-                    No es diagnóstico. Es conciencia.
+                    {subtitle}
                 </motion.p>
             </div>
 

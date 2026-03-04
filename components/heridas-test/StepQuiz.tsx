@@ -3,26 +3,33 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Check } from 'lucide-react';
-import { QUESTIONS, HeridaOption } from '@/lib/heridas-data';
 
-interface StepQuizProps {
-    onComplete: (answers: Record<number, HeridaOption>) => void;
+interface QuizQuestion {
+    id: number;
+    text: string;
+    options: any[];
 }
 
-export default function StepQuiz({ onComplete }: StepQuizProps) {
+interface StepQuizProps {
+    questions: QuizQuestion[];
+    onComplete: (answers: Record<number, any>) => void;
+    title?: string;
+}
+
+export default function StepQuiz({ questions, onComplete, title }: StepQuizProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [answers, setAnswers] = useState<Record<number, HeridaOption>>({});
+    const [answers, setAnswers] = useState<Record<number, any>>({});
     const [direction, setDirection] = useState(1);
 
-    const currentQuestion = QUESTIONS[currentIndex];
-    const progress = ((currentIndex + 1) / QUESTIONS.length) * 100;
+    const currentQuestion = questions[currentIndex];
+    const progress = ((currentIndex + 1) / questions.length) * 100;
 
-    const handleOptionSelect = (option: HeridaOption) => {
+    const handleOptionSelect = (option: any) => {
         const newAnswers = { ...answers, [currentQuestion.id]: option };
         setAnswers(newAnswers);
 
         setTimeout(() => {
-            if (currentIndex < QUESTIONS.length - 1) {
+            if (currentIndex < questions.length - 1) {
                 setDirection(1);
                 setCurrentIndex(prev => prev + 1);
             } else {
@@ -41,8 +48,13 @@ export default function StepQuiz({ onComplete }: StepQuizProps) {
         <div className="w-full max-w-2xl mx-auto px-4 min-h-[500px]">
             {/* Progress Bar */}
             <div className="mb-8">
+                {title && (
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-[var(--color-primary)] mb-4">
+                        {title}
+                    </h3>
+                )}
                 <div className="flex justify-between text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">
-                    <span>Pregunta {currentIndex + 1} de {QUESTIONS.length}</span>
+                    <span>Pregunta {currentIndex + 1} de {questions.length}</span>
                     <span>{Math.round(progress)}%</span>
                 </div>
                 <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">
