@@ -5,10 +5,19 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 });
 
+import { db } from '@/lib/db';
+
 export async function POST(req: Request) {
     try {
+        if (!process.env.OPENAI_API_KEY) {
+            console.error("ERROR: OPENAI_API_KEY no detectada.");
+            return NextResponse.json({ error: "Falta configuración de OpenAI" }, { status: 500 });
+        }
+
         const body = await req.json();
         const { name, dominantBelief, secondaryBelief, scores } = body;
+
+        console.log(`Análisis Amor para ${name} - Detectado: ${dominantBelief}`);
 
         if (!dominantBelief) {
             return NextResponse.json({ error: 'Faltan datos' }, { status: 400 });
@@ -201,10 +210,30 @@ Genera el contenido siguiendo estrictamente la voz de Yelitze y la estructura JS
         const resultContent = completion.choices[0].message.content;
         const parsedResult = JSON.parse(resultContent || '{}');
 
+        // Save to DB
+        try {
+            await db.testResult.create({
+                data: {
+                    testTitle: 'Test Creencias sobre el Amor',
+                    score: 0,
+                    maxScore: 100,
+                    answers: JSON.stringify(scores),
+                    aiAnalysis: parsedResult.screen_message,
+                    userName: name || 'Anónimo',
+                    userEmail: body.email || '',
+                },
+            });
+        } catch (dbError) {
+            console.error("Error guardando en DB (Amor):", dbError);
+        }
+
         return NextResponse.json({ ...parsedResult });
 
     } catch (error: any) {
         console.error('API Amor Error:', error);
-        return NextResponse.json({ error: 'Error interno', details: error.message }, { status: 500 });
+        return NextResponse.json({
+            error: 'Error interno en análisis de amor',
+            details: error.message
+        }, { status: 500 });
     }
 }

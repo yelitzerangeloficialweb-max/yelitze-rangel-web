@@ -14,6 +14,8 @@ export async function POST(req: Request) {
         const body = await req.json();
         const { userInfo, results } = body;
 
+        console.log(`Iniciando análisis unificado para ${userInfo?.email}`);
+
         // Construct context from the 3 current tests
         const context = `
             TEST 1: Relaciones (Patrones de Dolor)
@@ -26,43 +28,53 @@ export async function POST(req: Request) {
             Resultados: ${JSON.stringify(results.heridas_femeninas)}
         `;
 
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
         const prompt = `
-            Actúa como la inteligencia analítica de Yelitze Rangel, Coach Ancestral y Psicóloga. Tu objetivo es recibir las respuestas de 3 tests (Relaciones, Heridas Profundas, Heridas Femeninas) y generar un resumen diagnóstico de 3 párrafos cortos.
+            Actúa como la inteligencia analítica de Yelitze Rangel, Coach Ancestral y Psicóloga. Tu objetivo es recibir las respuestas de 3 tests (Relaciones, Heridas Profundas, Heridas Femeninas) y devolver un resultado en formato JSON.
 
             DATOS DEL USUARIO:
             Nombre: ${userInfo.name}
             Contexto del Test: ${context}
 
-            Tono: Empático, profesional, revelador y premium. Usa el concepto de 'Memorias Congeladas' y 'Lealtades Invisibles'.
+            TONO: Empático, profesional, revelador y premium. Usa el concepto de 'Memorias Congeladas' y 'Lealtades Invisibles'.
 
-            Estructura del Output:
-            1. Identificación de la Herida Raíz: Basado en las respuestas, define cuál es el patrón ancestral predominante.
-            2. Impacto Actual: Cómo esto está bloqueando su abundancia o paz hoy.
-            3. Puente de Poder: Una frase que genere urgencia para asistir a 'Tu Activación de Poder' para transmutar este hallazgo.
+            ESTRUCTURA DEL JSON:
+            {
+              "screen_message": "Un mensaje de 3 párrafos cortos para la pantalla. Resume los hallazgos de los 3 tests. Usa Markdown.",
+              "ritual": "Un ritual breve y simbólico para sanar el conjunto de estas heridas.",
+              "mantra": "Una frase poderosa o mantra global de sanación.",
+              "pdf_content": "El contenido completo en Markdown para un PDF descargable, integrando la visión de los 3 tests."
+            }
 
-            Restricción: No des consejos médicos. Mantén un lenguaje de soberanía y merecimiento. Max 250 palabras.
+            Restricción: No des consejos médicos. Mantén un lenguaje de soberanía y merecimiento. Max 400 palabras totales.
         `;
 
-        const aiResult = await model.generateContent(prompt);
-        const analysis = aiResult.response.text();
+        const aiResult = await model.generateContent({
+            contents: [{ role: 'user', parts: [{ text: prompt }] }],
+            generationConfig: {
+                responseMimeType: "application/json",
+            }
+        });
+
+        const responseText = aiResult.response.text();
+        const parsedData = JSON.parse(responseText);
 
         // Save to DB
         const saved = await db.testResult.create({
             data: {
                 testTitle: "Diagnóstico Unificado - Activación de Poder",
-                score: 0, // Not applicable for unified
+                score: 0,
                 maxScore: 100,
                 answers: JSON.stringify(results),
-                aiAnalysis: analysis,
+                aiAnalysis: parsedData.screen_message,
                 userName: userInfo.name,
                 userEmail: userInfo.email
             }
         });
 
         return NextResponse.json({
-            analysis,
+            ...parsedData,
             id: saved.id,
             success: true
         });

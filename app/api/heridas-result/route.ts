@@ -5,10 +5,19 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 });
 
+import { db } from '@/lib/db';
+
 export async function POST(req: Request) {
     try {
+        if (!process.env.OPENAI_API_KEY) {
+            console.error("ERROR: OPENAI_API_KEY no detectada.");
+            return NextResponse.json({ error: "Falta configuración de OpenAI" }, { status: 500 });
+        }
+
         const body = await req.json();
         const { name, dominantWound, scores } = body;
+
+        console.log(`Análisis Heridas para ${name} - Detectado: ${dominantWound}`);
 
         if (!dominantWound) {
             return NextResponse.json({ error: 'Faltan datos' }, { status: 400 });
@@ -148,27 +157,33 @@ Genera el contenido siguiendo estas reglas:
         });
 
         const resultContent = completion.choices[0].message.content;
+        const parsedResult = JSON.parse(resultContent || '{}');
 
-        // Parse JSON to ensure validity before sending
-        let parsedResult;
+        // Save to DB
         try {
-            parsedResult = JSON.parse(resultContent || '{}');
-        } catch (e) {
-            console.error("Error parsing AI JSON", e);
-            // Fallback
-            parsedResult = {
-                screen_message: resultContent,
-                pdf_content: "Error generando PDF.",
-                email_subject: "Tu resultado",
-                email_body: "Hola..."
-            };
+            await db.testResult.create({
+                data: {
+                    testTitle: 'Test Heridas de la Infancia',
+                    score: 0,
+                    maxScore: 100,
+                    answers: JSON.stringify(scores),
+                    aiAnalysis: parsedResult.screen_message,
+                    userName: name || 'Anónimo',
+                    userEmail: body.email || '',
+                },
+            });
+        } catch (dbError) {
+            console.error("Error guardando en DB (Heridas):", dbError);
         }
 
         return NextResponse.json({ ...parsedResult });
 
     } catch (error: any) {
         console.error('API Error:', error);
-        return NextResponse.json({ error: 'Error interno', details: error.message }, { status: 500 });
+        return NextResponse.json({
+            error: 'Error interno en análisis de heridas',
+            details: error.message
+        }, { status: 500 });
     }
 }
 

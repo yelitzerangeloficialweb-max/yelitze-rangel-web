@@ -12,7 +12,7 @@ import StepContainment from './StepContainment';
 import StepQuiz from './StepQuiz';
 import MagicStepProcessing from './MagicStepProcessing';
 import StepEmail from './StepEmail';
-import UnifiedStepResult from './UnifiedStepResult';
+import StepResult from './StepResult';
 import StepFinal from './StepFinal';
 
 type WizardStep =
@@ -33,7 +33,12 @@ export default function MasterDiagnosticWizard() {
         heridas_profundas: {},
         heridas_femeninas: {}
     });
-    const [analysis, setAnalysis] = useState<string>('');
+    const [resultData, setResultData] = useState<any>({
+        screen_message: '',
+        ritual: '',
+        mantra: '',
+        pdf_content: ''
+    });
     const [isLoading, setIsLoading] = useState(false);
     const [userData, setUserData] = useState({ name: '', email: '' });
 
@@ -81,13 +86,22 @@ export default function MasterDiagnosticWizard() {
                 })
             });
 
-            if (!response.ok) throw new Error("Error en el análisis de IA");
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.details || errorData.error || "Error en el análisis de IA");
+            }
+
             const data = await response.json();
-            setAnalysis(data.analysis);
+            setResultData(data);
             nextStep('RESULT');
-        } catch (error) {
-            console.error(error);
-            setAnalysis("Lo siento, hubo un error al procesar tu linaje ancestral. Tu diagnóstico está en camino por correo.");
+        } catch (error: any) {
+            console.error("DEBUG - Unified Error:", error);
+            setResultData({
+                screen_message: `No pudimos conectar con tu linaje ancestral (${error.message}). Tu diagnóstico está en camino por correo.`,
+                pdf_content: "Error",
+                ritual: "",
+                mantra: ""
+            });
             nextStep('RESULT');
         } finally {
             setIsLoading(false);
@@ -150,8 +164,8 @@ export default function MasterDiagnosticWizard() {
                     )}
 
                     {step === 'RESULT' && (
-                        <UnifiedStepResult
-                            analysis={analysis}
+                        <StepResult
+                            resultData={resultData}
                             userName={userData.name}
                             onFinalize={() => nextStep('FINAL')}
                         />

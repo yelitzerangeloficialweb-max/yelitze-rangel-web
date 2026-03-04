@@ -7,8 +7,15 @@ const openai = new OpenAI({
 
 export async function POST(req: Request) {
     try {
+        if (!process.env.OPENAI_API_KEY) {
+            console.error("ERROR: OPENAI_API_KEY no detectada.");
+            return NextResponse.json({ error: "Falta configuración de OpenAI" }, { status: 500 });
+        }
+
         const body = await req.json();
-        const { name, dominantBelief, secondaryBelief, nervousSystem, scores } = body;
+        const { name, dominantBelief, secondaryBelief, nervousSystem, scores, email } = body;
+
+        console.log(`Análisis Dinero para ${name} - Detectado: ${dominantBelief}`);
 
         if (!dominantBelief) {
             return NextResponse.json({ error: 'Faltan datos' }, { status: 400 });
@@ -174,12 +181,12 @@ Datos detectados del test de dinero:
             await db.testResult.create({
                 data: {
                     testTitle: 'Test Relación con el Dinero',
-                    score: 0, // Or calculate a total score if applicable
-                    maxScore: 0,
-                    answers: JSON.stringify(scores), // Store raw scores/answers
-                    aiAnalysis: parsedResult.screen_message, // Store the summary or full content
+                    score: 0,
+                    maxScore: 100,
+                    answers: JSON.stringify(scores),
+                    aiAnalysis: parsedResult.screen_message,
                     userName: name || 'Anónimo',
-                    userEmail: body.email || '', // Ensure email is passed in body
+                    userEmail: email || body.email || '',
                 },
             });
             console.log("Result saved to DB successfully");
@@ -192,6 +199,9 @@ Datos detectados del test de dinero:
 
     } catch (error: any) {
         console.error('API Dinero Error:', error);
-        return NextResponse.json({ error: 'Error interno', details: error.message }, { status: 500 });
+        return NextResponse.json({
+            error: 'Error interno en análisis de dinero',
+            details: error.message
+        }, { status: 500 });
     }
 }

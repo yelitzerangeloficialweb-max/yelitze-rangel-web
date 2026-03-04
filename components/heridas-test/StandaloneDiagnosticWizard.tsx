@@ -7,7 +7,7 @@ import StepContainment from './StepContainment';
 import StepQuiz from './StepQuiz';
 import MagicStepProcessing from './MagicStepProcessing';
 import StepEmail from './StepEmail';
-import UnifiedStepResult from './UnifiedStepResult';
+import StepResult from './StepResult';
 import StepFinal from './StepFinal';
 
 interface StandaloneDiagnosticWizardProps {
@@ -27,7 +27,12 @@ export default function StandaloneDiagnosticWizard({
 }: StandaloneDiagnosticWizardProps) {
     const [step, setStep] = useState<'LANDING' | 'CONTAINMENT' | 'QUIZ' | 'PROCESSING' | 'EMAIL' | 'RESULT' | 'FINAL'>('LANDING');
     const [answers, setAnswers] = useState<any>({});
-    const [analysis, setAnalysis] = useState<string>('');
+    const [resultData, setResultData] = useState<any>({
+        screen_message: '',
+        ritual: '',
+        mantra: '',
+        pdf_content: ''
+    });
     const [isLoading, setIsLoading] = useState(false);
     const [userData, setUserData] = useState({ name: '', email: '' });
 
@@ -56,13 +61,22 @@ export default function StandaloneDiagnosticWizard({
                 })
             });
 
-            if (!response.ok) throw new Error("Error en el análisis");
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.details || errorData.error || "Error en el servidor");
+            }
+
             const data = await response.json();
-            setAnalysis(data.analysis);
+            setResultData(data);
             nextStep('RESULT');
-        } catch (error) {
-            console.error(error);
-            setAnalysis("Hubo un problema al conectar con tu sabiduría interior. Inténtalo de nuevo.");
+        } catch (error: any) {
+            console.error("DEBUG - Standalone Error:", error);
+            setResultData({
+                screen_message: `Hubo un problema al conectar con tu sabiduría interior (${error.message}). Inténtalo de nuevo.`,
+                pdf_content: "Error",
+                ritual: "",
+                mantra: ""
+            });
             nextStep('RESULT');
         } finally {
             setIsLoading(false);
@@ -91,7 +105,7 @@ export default function StandaloneDiagnosticWizard({
                     {step === 'QUIZ' && <StepQuiz title={title} questions={questions} onComplete={handleQuizComplete} />}
                     {step === 'PROCESSING' && <MagicStepProcessing onComplete={() => nextStep('EMAIL')} />}
                     {step === 'EMAIL' && <StepEmail onSubmit={handleEmailSubmit} isLoading={isLoading} />}
-                    {step === 'RESULT' && <UnifiedStepResult analysis={analysis} userName={userData.name} onFinalize={() => nextStep('FINAL')} />}
+                    {step === 'RESULT' && <StepResult resultData={resultData} userName={userData.name} onFinalize={() => nextStep('FINAL')} />}
                     {step === 'FINAL' && <StepFinal />}
                 </motion.div>
             </AnimatePresence>
