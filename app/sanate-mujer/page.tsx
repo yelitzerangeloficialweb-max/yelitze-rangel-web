@@ -187,22 +187,27 @@ function HeroSection() {
                         {/* Glow Effect */}
                         <div className="absolute inset-0 bg-[#B8835A]/10 rounded-[2.5rem] blur-2xl animate-pulse"></div>
 
-                        {/* Vertical Video Placeholder (Aspect 9:16) */}
-                        <div className="relative w-full aspect-[9/16] bg-[#F5EFE6] rounded-[2.5rem] border-[6px] border-white shadow-2xl overflow-hidden flex flex-col items-center justify-center text-center p-6 group cursor-pointer transition-transform hover:-translate-y-2">
-                            {/* Background image placeholder if needed, or subtle gradient */}
-                            <div className="absolute inset-0 bg-gradient-to-tr from-[#B8835A]/20 to-transparent mix-blend-multiply"></div>
+                        {/* Vertical Video (Aspect 9:16) */}
+                        <div className="relative w-full aspect-[9/16] bg-black rounded-[2.5rem] border-[6px] border-white shadow-2xl overflow-hidden group transition-transform hover:-translate-y-2">
+                            <video
+                                src="/assets/images/landing/sanate-mujer-reel.mp4"
+                                className="w-full h-full object-cover"
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                            />
 
-                            {/* Play Button */}
-                            <div className="w-16 h-16 bg-[#B8835A] rounded-full flex items-center justify-center text-white mb-4 shadow-[0_4px_14px_rgba(184,131,90,0.5)] z-10 group-hover:scale-110 transition-transform">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="ml-1"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                            {/* Overlay Controls */}
+                            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors flex flex-col items-center justify-end pb-12">
+                                <span className="text-white text-[10px] font-bold tracking-widest uppercase px-6 py-2.5 bg-black/40 backdrop-blur-md rounded-full border border-white/20 shadow-xl">
+                                    Mensaje de Yelitze
+                                </span>
                             </div>
-                            <span className="text-[#2D2926] text-xs font-bold tracking-widest uppercase z-10 bg-white/50 px-3 py-1 rounded-full backdrop-blur-sm">
-                                Ver Mensaje
-                            </span>
 
                             {/* UI elements to make it look like a reel/phone */}
                             <div className="absolute top-4 inset-x-0 flex justify-center z-10">
-                                <div className="w-16 h-1.5 bg-black/10 rounded-full"></div>
+                                <div className="w-16 h-1.5 bg-white/30 rounded-full"></div>
                             </div>
                         </div>
                     </motion.div>
