@@ -224,7 +224,7 @@ function HeroSection() {
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 1.5, duration: 1 }}
-                            className="hidden lg:block absolute -right-36 top-1/2 -translate-y-1/2 z-20 pointer-events-none"
+                            className="hidden lg:block absolute -right-48 top-[60%] -translate-y-1/2 z-20 pointer-events-none"
                         >
                             <div className="relative">
                                 {/* SVG Arrow - Organic/Handwritten style */}
@@ -239,7 +239,7 @@ function HeroSection() {
                                     />
                                 </svg>
                                 {/* Handwritten Text Overlay */}
-                                <div className="absolute -bottom-12 -left-12 w-56 rotate-[-12deg]">
+                                <div className="absolute -bottom-12 -left-8 w-64 rotate-[-12deg]">
                                     <span className="text-2xl font-serif text-[#4E342E]/70 italic tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
                                         Inscribirme ahora
                                     </span>
