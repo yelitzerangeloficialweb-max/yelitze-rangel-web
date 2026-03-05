@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { FormEvent } from 'react';
-import { ArrowRight, CheckCircle2, ChevronDown, ChevronUp, X } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronDown, ChevronUp, X, Heart, Activity, ShieldAlert, Sparkles } from 'lucide-react';
 import { motion, Variants, AnimatePresence } from 'framer-motion';
 
 const fadeUpVariant: Variants = {
@@ -44,6 +44,9 @@ export default function SanateMujerLanding() {
 
             {/* SECTION 2: SOCIAL PROOF */}
             <SocialProofSection />
+
+            {/* SECTION 2.5: SEGMENTATION */}
+            <SegmentationSection />
 
             {/* SECTION 3: THE UNIQUE MECHANISM */}
             <MechanismSection />
@@ -266,6 +269,65 @@ function HeroSection() {
                     </motion.div>
                 )}
             </AnimatePresence>
+        </section>
+    );
+}
+
+function SegmentationSection() {
+    const points = [
+        {
+            icon: <Heart className="w-6 h-6 text-[#B8835A]" />,
+            text: "Tus relaciones de pareja siguen un patrón de abandono o traición que no logras romper."
+        },
+        {
+            icon: <Activity className="w-6 h-6 text-[#B8835A]" />,
+            text: "Sientes tensiones físicas o bloqueos en tu cuerpo que el médico no logra explicar (Herida Somática)."
+        },
+        {
+            icon: <ShieldAlert className="w-6 h-6 text-[#B8835A]" />,
+            text: "Te cuesta poner límites y terminas cargando con responsabilidades que no te corresponden."
+        },
+        {
+            icon: <Sparkles className="w-6 h-6 text-[#B8835A]" />,
+            text: "Sientes una desconexión profunda con tu energía femenina y tu capacidad de recibir."
+        }
+    ];
+
+    return (
+        <section className="py-32 bg-white relative overflow-hidden">
+            <div className="container mx-auto px-4 max-w-5xl relative z-10">
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={fadeUpVariant}
+                    className="text-center mb-16"
+                >
+                    <h2 className="text-3xl md:text-5xl font-heading text-[#2D2926] leading-tight mb-4">
+                        Esto es para ti si <span className="text-[#B8835A] italic">sientes que:</span>
+                    </h2>
+                </motion.div>
+
+                <div className="grid md:grid-cols-2 gap-8">
+                    {points.map((point, idx) => (
+                        <motion.div
+                            key={idx}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: idx * 0.1, duration: 0.5 }}
+                            className="flex items-start gap-6 p-8 rounded-2xl bg-[#F5EFE6]/30 border border-[#B8835A]/10 hover:border-[#B8835A]/30 transition-all group"
+                        >
+                            <div className="shrink-0 w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                                {point.icon}
+                            </div>
+                            <p className="text-[#2D2926]/80 text-lg leading-relaxed font-light">
+                                {point.text}
+                            </p>
+                        </motion.div>
+                    ))}
+                </div>
+            </div>
         </section>
     );
 }
