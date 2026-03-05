@@ -520,44 +520,50 @@ function StorytellingSection() {
                     >
                         <motion.div variants={fadeUpVariant}>
                             <h2 className="text-4xl md:text-5xl font-heading text-[#2D2926] leading-tight mb-4">
-                                De la Jaula de Oro al Trono de mi Propia Vida: <i className="text-[#B8835A] font-normal">Por qué puedo guiarte.</i>
+                                De la Jaula de Oro al <i className="text-[#B8835A] font-normal">Trono de mi Propia Vida</i>
                             </h2>
                         </motion.div>
 
                         <div className="space-y-6 text-lg text-[#2D2926] font-light leading-relaxed">
                             <motion.div variants={fadeUpVariant}>
-                                <h3 className="text-2xl font-heading font-medium text-[#B8835A] mb-2">El Quiebre: Donde la mente comprende, pero el alma aún duele.</h3>
                                 <p>
-                                    Hola, soy Yelitze Rangel. Durante años, mi vida parecía un éxito absoluto: una carrera corporativa sólida, viajes y reconocimiento. Pero por dentro, estaba quebrada. Me encontraba repitiendo la historia de mi linaje: un divorcio y una quiebra económica simultánea, sumado al dolor profundo de la pérdida de dos bebés. Me sentía quemada, vacía y con una rabia sorda que la psicología tradicional no lograba explicar.
+                                    Yelitze Rangel vivió un éxito aparente que escondía un vacío profundo. Tras repetir patrones de su linaje (divorcio y quiebra) y enfrentar la pérdida de dos bebés, experimentó una rabia sorda y un agotamiento que la psicología tradicional no lograba sanar.
                                 </p>
                             </motion.div>
 
                             <motion.div variants={fadeUpVariant}>
-                                <h3 className="text-2xl font-heading font-medium text-[#B8835A] mb-2">La Epifanía: El Camino de Fuego.</h3>
                                 <p>
-                                    Ese quiebre me llevó hasta la India, iniciando un proceso de transformación donde comprendí que la sanación no ocurre cuando mente, cuerpo y alma caminan separados. Descubrí que cuando la ciencia explica el dolor, pero el alma sigue pidiendo ser escuchada, es ahí donde comienza el verdadero trabajo: el descongelamiento del trauma y la reconexión ancestral.
+                                    Su búsqueda la llevó a la India, donde entendió que la sanación real exige la unión de mente, cuerpo y alma. Descubrió que el verdadero cambio surge del descongelamiento del trauma y la reconexión ancestral.
                                 </p>
                             </motion.div>
 
                             <motion.div variants={fadeUpVariant}>
-                                <h3 className="text-2xl font-heading font-medium text-[#B8835A] mb-2">La Autoridad: El Puente entre la Ciencia y el Espíritu.</h3>
-                                <p className="mb-3">
-                                    No elegí mis caminos al azar; cada uno me enseñó cómo el ser humano se protege y cómo sana. Hoy, pongo a tu servicio una integración única de estructura y sabiduría:
-                                </p>
-                                <ul className="list-disc pl-5 space-y-2 marker:text-[#B8835A]">
-                                    <li><b>Administradora de Empresas:</b> Para darte orden y estructura.</li>
-                                    <li><b>Psicóloga y Tanatóloga:</b> Para comprender tu mente y honrar tus duelos.</li>
-                                    <li><b>Sanadora Ancestral y Facilitadora de Trauma:</b> Para liberar las memorias atrapadas en tu cuerpo y regenerar tu sistema nervioso.</li>
+                                <h3 className="text-xl font-heading font-medium text-[#B8835A] mb-4">Su metodología integra estructura y sabiduría profunda para regenerar el sistema nervioso:</h3>
+                                <ul className="space-y-4">
+                                    <li className="flex gap-4 items-start">
+                                        <div className="shrink-0 w-6 h-6 rounded-full bg-[#B8835A]/10 flex items-center justify-center mt-1">
+                                            <div className="w-2 h-2 rounded-full bg-[#B8835A]"></div>
+                                        </div>
+                                        <span><b>Orden:</b> Administradora de Empresas.</span>
+                                    </li>
+                                    <li className="flex gap-4 items-start">
+                                        <div className="shrink-0 w-6 h-6 rounded-full bg-[#B8835A]/10 flex items-center justify-center mt-1">
+                                            <div className="w-2 h-2 rounded-full bg-[#B8835A]"></div>
+                                        </div>
+                                        <span><b>Mente y Duelo:</b> Psicóloga y Tanatóloga.</span>
+                                    </li>
+                                    <li className="flex gap-4 items-start">
+                                        <div className="shrink-0 w-6 h-6 rounded-full bg-[#B8835A]/10 flex items-center justify-center mt-1">
+                                            <div className="w-2 h-2 rounded-full bg-[#B8835A]"></div>
+                                        </div>
+                                        <span><b>Cuerpo y Raíz:</b> Sanadora Ancestral y Facilitadora de Trauma.</span>
+                                    </li>
                                 </ul>
                             </motion.div>
 
                             <motion.div variants={fadeUpVariant}>
-                                <h3 className="text-2xl font-heading font-medium text-[#B8835A] mb-2">El Legado: Tu Soberanía Interior.</h3>
                                 <p>
-                                    Tras acompañar a más de 8000 personas con mi método de Coaching Ancestral, he creado la "Activación Sanate Mujer". Esta inmersión gratuita es el primer paso para que dejes de ser una espectadora de tu dolor y reclames, por fin, el trono de tu propia vida.
-                                </p>
-                                <p className="mt-4 font-medium italic">
-                                    No es motivación; es un entrenamiento energético para volver a tu coherencia interior.
+                                    Con más de 8,000 personas guiadas en su método de Coaching Ancestral, ha creado la "Activación Sánate Mujer". No es motivación, es un entrenamiento energético para que reclames tu soberanía interior y vuelvas a tu coherencia.
                                 </p>
                             </motion.div>
 
