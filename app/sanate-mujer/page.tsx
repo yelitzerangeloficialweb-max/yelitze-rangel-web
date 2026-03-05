@@ -3,8 +3,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { FormEvent } from 'react';
-import { ArrowRight, CheckCircle2, ChevronDown, ChevronUp } from 'lucide-react';
-import { motion, Variants } from 'framer-motion';
+import { ArrowRight, CheckCircle2, ChevronDown, ChevronUp, X } from 'lucide-react';
+import { motion, Variants, AnimatePresence } from 'framer-motion';
 
 const fadeUpVariant: Variants = {
     hidden: { opacity: 0, y: 30 },
@@ -157,6 +157,8 @@ function RegistrationForm() {
 // ---------------------------------------------------------
 
 function HeroSection() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     return (
         <section className="relative min-h-screen flex flex-col justify-center items-center py-20 px-4 overflow-hidden bg-white/40">
             {/* Header / Logo (Removido a petición) */}
@@ -187,8 +189,11 @@ function HeroSection() {
                         {/* Glow Effect */}
                         <div className="absolute inset-0 bg-[#B8835A]/10 rounded-[2.5rem] blur-2xl animate-pulse"></div>
 
-                        {/* Vertical Video (Aspect 9:16) */}
-                        <div className="relative w-full aspect-[9/16] bg-black rounded-[2.5rem] border-[6px] border-white shadow-2xl overflow-hidden group transition-transform hover:-translate-y-2">
+                        {/* Interactive Vertical Video (Aspect 9:16) */}
+                        <div
+                            onClick={() => setIsModalOpen(true)}
+                            className="relative w-full aspect-[9/16] bg-black rounded-[2.5rem] border-[6px] border-white shadow-2xl overflow-hidden group transition-transform hover:-translate-y-2 cursor-pointer"
+                        >
                             <video
                                 src="/assets/images/landing/sanate-mujer-reel.mp4"
                                 className="w-full h-full object-cover"
@@ -201,7 +206,7 @@ function HeroSection() {
                             {/* Overlay Controls */}
                             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors flex flex-col items-center justify-end pb-12">
                                 <span className="text-white text-[10px] font-bold tracking-widest uppercase px-6 py-2.5 bg-black/40 backdrop-blur-md rounded-full border border-white/20 shadow-xl">
-                                    Mensaje de Yelitze
+                                    Ver en grande
                                 </span>
                             </div>
 
@@ -223,6 +228,44 @@ function HeroSection() {
                     <RegistrationForm />
                 </motion.div>
             </div>
+
+            {/* VIDEO MODAL */}
+            <AnimatePresence>
+                {isModalOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[100] bg-stone-950/90 backdrop-blur-xl flex items-center justify-center p-4 md:p-10"
+                        onClick={() => setIsModalOpen(false)}
+                    >
+                        {/* Close Button */}
+                        <button
+                            className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors z-[110]"
+                            onClick={() => setIsModalOpen(false)}
+                        >
+                            <X className="w-10 h-10" />
+                        </button>
+
+                        {/* Video Container */}
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                            className="relative w-full max-w-[500px] aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl border border-white/10"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <video
+                                src="/assets/images/landing/sanate-mujer-reel.mp4"
+                                className="w-full h-full object-cover"
+                                autoPlay
+                                controls
+                                playsInline
+                            />
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </section>
     );
 }
