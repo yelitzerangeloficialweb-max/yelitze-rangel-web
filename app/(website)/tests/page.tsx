@@ -110,6 +110,54 @@ export default function TestsHubPage() {
                 </div>
             </section>
 
+            {/* 2. DESCRIPTION & PURPOSE SECTION */}
+            <section className="py-24 bg-white relative overflow-hidden">
+                <div className="container mx-auto px-4 max-w-5xl">
+                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                        <FadeIn className="space-y-8">
+                            <div className="space-y-4">
+                                <span className="text-[var(--color-secondary)] font-bold tracking-[0.3em] uppercase text-xs">Propósito</span>
+                                <h2 className="text-3xl lg:text-5xl font-heading text-[var(--color-primary)] italic leading-tight">
+                                    Hacer consciente <br />
+                                    <span className="text-stone-300">lo inconsciente.</span>
+                                </h2>
+                            </div>
+                            <p className="text-lg text-stone-600 font-light leading-relaxed">
+                                Tu cuerpo es el mapa más preciso de tu historia. Estos diagnósticos no son simples tests, son puertas de entrada al <strong>Sistema de Expansión</strong>.
+                                <br /><br />
+                                Aquí identificamos la <strong>Herida Raíz</strong> y las lealtades invisibles a tu linaje que hoy se manifiestan como bloqueos en tus relaciones, tus finanzas y tu bienestar. Descubrir el origen es el primer paso para reclamar tu soberanía.
+                            </p>
+                            <div className="flex items-center gap-6 pt-4">
+                                <div className="flex flex-col items-center gap-2">
+                                    <div className="w-12 h-12 rounded-full bg-stone-50 flex items-center justify-center border border-stone-100 italic font-serif text-[var(--color-secondary)]">01</div>
+                                    <span className="text-[9px] uppercase tracking-widest text-stone-400 font-bold">Identificar</span>
+                                </div>
+                                <div className="h-[1px] w-12 bg-stone-200"></div>
+                                <div className="flex flex-col items-center gap-2">
+                                    <div className="w-12 h-12 rounded-full bg-stone-50 flex items-center justify-center border border-stone-100 italic font-serif text-[var(--color-secondary)]">02</div>
+                                    <span className="text-[9px] uppercase tracking-widest text-stone-400 font-bold">Integrar</span>
+                                </div>
+                                <div className="h-[1px] w-12 bg-stone-200"></div>
+                                <div className="flex flex-col items-center gap-2">
+                                    <div className="w-12 h-12 rounded-full bg-stone-50 flex items-center justify-center border border-stone-100 italic font-serif text-[var(--color-secondary)]">03</div>
+                                    <span className="text-[9px] uppercase tracking-widest text-stone-400 font-bold">Expandir</span>
+                                </div>
+                            </div>
+                        </FadeIn>
+
+                        <FadeIn delay={0.2} className="relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl border-8 border-stone-50">
+                            <Image
+                                src="/assets/images/about-experience-new.jpg"
+                                alt="Propósito de los Diagnósticos"
+                                fill
+                                className="object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-primary)]/40 to-transparent" />
+                        </FadeIn>
+                    </div>
+                </div>
+            </section>
+
             {/* 2. PREMIUM FEATURE: DIAGNÓSTICO ANCESTRAL */}
             {PREMIUM_TEST && (
                 <section className="py-24 -mt-32 relative z-20">
