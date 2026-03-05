@@ -103,7 +103,7 @@ export default function TestsHubPage() {
                         </Link>
                         <span className="text-[var(--color-secondary)] font-bold tracking-[0.6em] uppercase text-xs mb-8 block">Alquimia Interior</span>
                         <h1 className="text-white text-5xl md:text-8xl font-heading leading-tight mb-12 italic">
-                            Portal de <br />
+                            Portal Test de <br />
                             <span className="opacity-20">Autoconocimiento</span>
                         </h1>
                     </FadeIn>
