@@ -174,7 +174,7 @@ function HeroSection() {
                             ⚡ EVENTO ÚNICO Y GRATUITO: EL DESPERTAR DE LA CONSCIENCIA FEMENINA
                         </span>
                         <h1 className="text-4xl md:text-5xl lg:text-[4rem] font-heading font-medium text-[#2D2926] leading-[1.1] mb-8">
-                            Deja de Repetir la Historia de Desamor de tu Madre.<br />
+                            Tu cuerpo recuerda lo que tu mente intenta olvidar.<br />
                             <span className="text-[#B8835A] italic">Identifica la Herida Raíz.</span>
                         </h1>
                         <p className="text-lg md:text-xl text-[#2D2926]/80 leading-relaxed font-light">
