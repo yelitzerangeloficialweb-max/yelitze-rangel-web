@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { FormEvent } from 'react';
-import { ArrowRight, CheckCircle2, ChevronDown, ChevronUp, X, Heart, Activity, ShieldAlert, Sparkles } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronDown, ChevronUp, X, Heart, Activity, ShieldAlert, Sparkles, Play } from 'lucide-react';
 import { motion, Variants, AnimatePresence } from 'framer-motion';
 
 const fadeUpVariant: Variants = {
@@ -200,16 +200,22 @@ function HeroSection() {
                             <video
                                 src="/assets/images/landing/sanate-mujer-reel.mp4"
                                 className="w-full h-full object-cover"
-                                autoPlay
                                 muted
                                 loop
                                 playsInline
                             />
 
                             {/* Overlay Controls */}
-                            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors flex flex-col items-center justify-end pb-12">
+                            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors flex flex-col items-center justify-center">
+                                <motion.div
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 mb-4"
+                                >
+                                    <Play className="w-8 h-8 text-white fill-white" />
+                                </motion.div>
                                 <span className="text-white text-[10px] font-bold tracking-widest uppercase px-6 py-2.5 bg-black/40 backdrop-blur-md rounded-full border border-white/20 shadow-xl">
-                                    Ver en grande
+                                    Ver Mensaje
                                 </span>
                             </div>
 
@@ -289,7 +295,6 @@ function HeroSection() {
                             <video
                                 src="/assets/images/landing/sanate-mujer-reel.mp4"
                                 className="w-full h-full object-cover"
-                                autoPlay
                                 controls
                                 playsInline
                             />
