@@ -171,7 +171,7 @@ function HeroSection() {
                 >
                     <motion.div variants={fadeUpVariant}>
                         <span className="inline-block text-[#B8835A] font-bold tracking-[0.4em] uppercase text-xs md:text-sm mb-6 border border-[#B8835A]/30 px-4 py-1.5 rounded-full bg-white/50 backdrop-blur-sm shadow-sm">
-                            Evento Online Gratuito - Inmersión de Fin de Semana
+                            ⚡ EVENTO ÚNICO Y GRATUITO: EL DESPERTAR DE LA CONSCIENCIA FEMENINA
                         </span>
                         <h1 className="text-4xl md:text-5xl lg:text-[4rem] font-heading font-medium text-[#2D2926] leading-[1.1] mb-8">
                             Deja de Repetir la Historia de Desamor de tu Madre.<br />
