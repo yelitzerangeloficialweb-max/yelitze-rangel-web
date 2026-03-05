@@ -218,6 +218,34 @@ function HeroSection() {
                                 <div className="w-16 h-1.5 bg-white/30 rounded-full"></div>
                             </div>
                         </div>
+
+                        {/* DIRECTIONAL ARROW (Desktop only) */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 1.5, duration: 1 }}
+                            className="hidden lg:block absolute -right-36 top-1/2 -translate-y-1/2 z-20 pointer-events-none"
+                        >
+                            <div className="relative">
+                                {/* SVG Arrow - Organic/Handwritten style */}
+                                <svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[#4E342E] opacity-70">
+                                    <path
+                                        d="M15 100C40 90 50 45 120 25M120 25L105 23M120 25L112 42"
+                                        stroke="currentColor"
+                                        strokeWidth="3.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        className="animate-pulse"
+                                    />
+                                </svg>
+                                {/* Handwritten Text Overlay */}
+                                <div className="absolute -bottom-12 -left-12 w-56 rotate-[-12deg]">
+                                    <span className="text-2xl font-serif text-[#4E342E]/70 italic tracking-tight" style={{ fontFamily: 'var(--font-playfair)' }}>
+                                        Inscribirme ahora
+                                    </span>
+                                </div>
+                            </div>
+                        </motion.div>
                     </motion.div>
                 </motion.div>
 
@@ -226,7 +254,7 @@ function HeroSection() {
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-                    className="w-full max-w-md mx-auto lg:ml-auto"
+                    className="w-full max-w-md mx-auto lg:ml-auto relative z-10"
                 >
                     <RegistrationForm />
                 </motion.div>
