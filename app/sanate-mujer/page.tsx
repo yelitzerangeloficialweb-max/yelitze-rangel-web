@@ -583,7 +583,7 @@ function StorytellingSection() {
                     >
                         <div className="relative aspect-[3/4] rounded-t-full overflow-hidden shadow-2xl border-b-4 border-[#B8835A]">
                             <Image
-                                src="/assets/images/landing/yelitzeRangel.png"
+                                src="/assets/images/landing/yelitze-story-portrait.png"
                                 alt="Yelitze Rangel"
                                 fill
                                 className="object-cover"
