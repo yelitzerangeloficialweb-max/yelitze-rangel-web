@@ -5,7 +5,7 @@ import StandaloneDiagnosticWizard from '@/components/heridas-test/StandaloneDiag
 import { DIAGNOSTIC_FEMENINA_QUESTIONS } from '@/lib/diagnostic-heridas-femeninas-data';
 
 export const metadata: Metadata = {
-    title: 'Test: Heridas Femeninas | Yelitzé Rangel',
+    title: 'Test: Heridas Femeninas | Yelitze Rangel • Tu coach ancestral',
     description: 'Identifica las heridas de abandono, rechazo e injusticia específicas de la energía femenina.',
 };
 

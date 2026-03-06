@@ -195,7 +195,7 @@ export default function TestRunner({ test }: TestRunnerProps) {
                                 Conectando con tu energía, {userName.split(' ')[0]}...
                             </h2>
                             <p className="text-[var(--color-text-light)] animate-pulse">
-                                Yelitzé está analizando tus respuestas desde el campo sistémico.
+                                Yelitze está analizando tus respuestas desde el campo sistémico.
                             </p>
                         </motion.div>
                     </div>
@@ -253,7 +253,7 @@ export default function TestRunner({ test }: TestRunnerProps) {
                                     <div className="space-y-1">
                                         <p className="text-[10px] uppercase tracking-widest text-[#D4AF37] font-bold">Diagnóstico Energético</p>
                                         <h1 className="text-3xl font-heading text-[#2C3E50]">{test.title}</h1>
-                                        <p className="text-sm font-serif italic text-gray-500">Por Yelitzé Rangel · 2026</p>
+                                        <p className="text-sm font-serif italic text-gray-500">Por Yelitze Rangel · 2026</p>
                                     </div>
                                     <div className="text-right space-y-1">
                                         <p className="text-sm font-bold">{userName}</p>
@@ -295,7 +295,7 @@ export default function TestRunner({ test }: TestRunnerProps) {
 
                                 {/* Footer */}
                                 <div className="text-center pt-8 border-t border-gray-100">
-                                    <p className="text-xs text-gray-400 uppercase tracking-[0.4em]">Anatomía del Alma · Yelitzé Rangel</p>
+                                    <p className="text-xs text-gray-400 uppercase tracking-[0.4em]">Anatomía del Alma · Yelitze Rangel</p>
                                 </div>
                             </div>
                         </div>

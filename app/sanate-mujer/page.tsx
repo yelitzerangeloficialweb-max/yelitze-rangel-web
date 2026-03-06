@@ -777,7 +777,7 @@ function StorytellingSection() {
 
                             <motion.div variants={fadeUpVariant}>
                                 <p>
-                                    Con más de 8,000 personas guiadas en su método de Coaching Ancestral, ha creado la "Activación Sánate Mujer". No es motivación, es un entrenamiento energético para que reclames tu soberanía interior y vuelvas a tu coherencia.
+                                    Con más de 8,000 personas guiadas en su método como Tu coach ancestral, ha creado la "Activación Sánate Mujer". No es motivación, es un entrenamiento energético para que reclames tu soberanía interior y vuelvas a tu coherencia.
                                 </p>
                             </motion.div>
 
@@ -962,7 +962,7 @@ function PodcastSection() {
                             </h2>
                         </motion.div>
                         <motion.p variants={fadeUpVariant} className="text-[#2D2926]/70 leading-relaxed font-light text-lg">
-                            El camino hacia tu soberanía comienza en tus oídos. Escucha historias reales, herramientas de alquimia ancestral y reflexiones profundas para ir calentando motores antes de nuestro evento en vivo.
+                            El camino hacia tu soberanía comienza en tus oídos. Escucha historias reales, herramientas con Tu coach ancestral y reflexiones profundas para ir calentando motores antes de nuestro evento en vivo.
                         </motion.p>
                         <motion.div variants={fadeUpVariant} className="pt-4 flex justify-center lg:justify-start">
                             <button

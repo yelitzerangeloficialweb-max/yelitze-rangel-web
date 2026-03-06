@@ -4,7 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 import MasterDiagnosticWizard from '@/components/heridas-test/MasterDiagnosticWizard';
 
 export const metadata: Metadata = {
-    title: 'Diagnóstico Ancestral Completo | Yelitzé Rangel',
+    title: 'Diagnóstico Ancestral Completo | Yelitze Rangel • Tu coach ancestral',
     description: 'Análisis integral de Relaciones, Heridas Profundas y Linaje Femenino guiado por IA.',
 };
 

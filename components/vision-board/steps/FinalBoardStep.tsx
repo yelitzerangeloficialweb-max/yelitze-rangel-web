@@ -61,7 +61,7 @@ export default function FinalBoardStep({
     };
 
     const getCalendarUrl = () => {
-        const title = encodeURIComponent("Clase en Vivo: Arquitectura de Vida Intencional 2026 con Yelitzé Rangel");
+        const title = encodeURIComponent("Clase en Vivo: Arquitectura de Vida Intencional 2026 con Yelitze Rangel");
         const details = encodeURIComponent("Recuerda tener tu PDF de Arquitectura impreso a la mano. El enlace de Zoom llegará a tu correo.");
         const dates = "20260115T230000Z/20260116T010000Z";
         return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&dates=${dates}`;
@@ -219,7 +219,7 @@ export default function FinalBoardStep({
                     )}
 
                     <div className="text-center mt-12 opacity-50">
-                        <p className="text-[9px] uppercase tracking-[0.3em]">Yelitzé Rangel · Método Ancestral 2026</p>
+                        <p className="text-[9px] uppercase tracking-[0.3em]">Yelitze Rangel • Tu coach ancestral</p>
                     </div>
                 </div>
             </div>
@@ -351,7 +351,7 @@ export default function FinalBoardStep({
                                 PROGRAMA DE ACOMPAÑAMIENTO 2026
                             </p>
                         </div>
-                        <p className="text-[9px] text-gray-500 pt-4 uppercase tracking-[0.3em]">Yelitzé Rangel · Arquitectura de Vida 2026</p>
+                        <p className="text-[9px] text-gray-500 pt-4 uppercase tracking-[0.3em]">Yelitze Rangel • Tu coach ancestral</p>
                     </div>
                 </div>
             </div>

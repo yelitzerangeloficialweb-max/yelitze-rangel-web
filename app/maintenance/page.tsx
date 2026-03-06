@@ -115,7 +115,7 @@ export default function MaintenancePage() {
                 </form>
 
                 <p className="mt-12 text-[#2D2926]/60 text-sm font-medium tracking-wide">
-                    Yelitze Rangel &bull; Alquimia Ancestral
+                    Yelitze Rangel &bull; Tu coach ancestral
                 </p>
             </motion.div>
         </div>

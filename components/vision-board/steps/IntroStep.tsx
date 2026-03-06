@@ -21,7 +21,7 @@ export default function IntroStep({ onNext }: { onNext: () => void }) {
                             <div className="w-full h-full relative rounded-full overflow-hidden bg-stone-50">
                                 <Image
                                     src="/assets/images/hero-portrait-new.png"
-                                    alt="Yelitzé Rangel"
+                                    alt="Yelitze Rangel"
                                     fill
                                     className="object-cover"
                                 />

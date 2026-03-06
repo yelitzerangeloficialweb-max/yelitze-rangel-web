@@ -107,7 +107,7 @@ export default function SessionReportTemplate({
 
             {/* Footer */}
             <div className="bg-[var(--color-primary)] text-white/80 p-6 text-center text-sm">
-                <p>Yelitzé Rangel | Terapia Sistémica y Sanación Ancestral</p>
+                <p>Yelitze Rangel • Tu coach ancestral</p>
                 <div className="flex justify-center gap-4 mt-4 print:hidden">
                     <button className="flex items-center gap-2 hover:text-white transition-colors">
                         <Download className="w-4 h-4" /> Guardar PDF

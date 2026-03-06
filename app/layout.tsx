@@ -3,8 +3,8 @@ import Script from 'next/script';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Yelitzé Rangel | Alquimia Ancestral',
-  description: 'Honra tus raíces, transforma tu vida. Terapias de constelaciones familiares y alquimia ancestral.',
+  title: 'Yelitze Rangel • Tu coach ancestral',
+  description: 'Honra tus raíces, transforma tu vida. Terapias de constelaciones familiares y tu coach ancestral.',
 };
 
 export default function RootLayout({

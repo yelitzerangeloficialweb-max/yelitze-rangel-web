@@ -104,7 +104,7 @@ export default function BioPage() {
                         <div className="relative w-full h-full rounded-full overflow-hidden">
                             <Image
                                 src="/assets/images/yelitze/manifesto-new.jpg"
-                                alt="Yelitzé Rangel"
+                                alt="Yelitze Rangel"
                                 fill
                                 className="object-cover scale-110"
                             />
@@ -113,7 +113,7 @@ export default function BioPage() {
                 </ScaleIn>
 
                 <FadeIn transition={{ delay: 0.2 }}>
-                    <h1 className="text-white text-3xl font-heading mb-2 tracking-tight">Yelitzé Rangel</h1>
+                    <h1 className="text-white text-3xl font-heading mb-2 tracking-tight">Yelitze Rangel</h1>
                     <div className="flex items-center justify-center gap-3 mb-6">
                         <div className="h-px w-6 bg-stone-800" />
                         <p className="text-[var(--color-secondary)] text-[10px] tracking-[0.4em] font-bold uppercase">Espíritu & Cuerpo</p>
@@ -135,8 +135,8 @@ export default function BioPage() {
                         <Link
                             href={link.href}
                             className={`group flex items-center gap-5 p-5 rounded-[2.5rem] border transition-all duration-500 relative overflow-hidden ${link.primary
-                                    ? "bg-gradient-to-r from-[var(--color-secondary)] to-[#994200] border-transparent text-white shadow-[0_15px_35px_rgba(153,66,0,0.25)]"
-                                    : "bg-[#141210]/60 border-stone-800/60 text-stone-300 hover:bg-stone-800/40 hover:border-stone-600 backdrop-blur-xl"
+                                ? "bg-gradient-to-r from-[var(--color-secondary)] to-[#994200] border-transparent text-white shadow-[0_15px_35px_rgba(153,66,0,0.25)]"
+                                : "bg-[#141210]/60 border-stone-800/60 text-stone-300 hover:bg-stone-800/40 hover:border-stone-600 backdrop-blur-xl"
                                 }`}
                         >
                             {/* Shine effect for primary */}

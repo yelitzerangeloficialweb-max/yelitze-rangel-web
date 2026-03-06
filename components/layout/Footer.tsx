@@ -13,14 +13,14 @@ export default function Footer() {
                             <div className="relative w-48 h-16">
                                 <Image
                                     src="/assets/images/logo-yelitze-new.png"
-                                    alt="Yelitzé Rangel Logo"
+                                    alt="Yelitze Rangel Logo"
                                     fill
                                     className="object-contain object-left"
                                 />
                             </div>
                         </div>
                         <p className="text-white/80 text-sm leading-relaxed mb-6">
-                            Acompañándote a honrar tus raíces para que florezcas en tu propio destino. Terapia Sistémica y Alquimia Ancestral.
+                            Acompañándote a honrar tus raíces para que florezcas en tu propio destino. Terapia Sistémica y Tu coach ancestral.
                         </p>
                         <div className="flex gap-4">
                             <a href="https://www.instagram.com/yelitzerangeloficial/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 rounded-full hover:bg-white hover:text-[var(--color-accent)] transition-colors text-white">
@@ -74,7 +74,7 @@ export default function Footer() {
                 </div>
 
                 <div className="pt-8 border-t border-white/10 text-center text-white/40 text-xs">
-                    <p>© {new Date().getFullYear()} Yelitzé Rangel. Todos los derechos reservados. | Desarrollado por Kick-Off Development</p>
+                    <p>© {new Date().getFullYear()} Yelitze Rangel. Todos los derechos reservados. | Desarrollado por Kick-Off Development</p>
                 </div>
             </div>
         </footer>

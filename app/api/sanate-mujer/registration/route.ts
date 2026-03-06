@@ -66,10 +66,15 @@ export async function POST(req: Request) {
         });
 
     } catch (error: any) {
-        console.error('Registration API Error:', error);
+        console.error('CRITICAL: Registration API Failure');
+        console.error('Error Name:', error.name);
+        console.error('Error Message:', error.message);
+        console.error('Error Stack:', error.stack);
+
         return NextResponse.json({
             error: 'Error interno al procesar la inscripción',
-            details: error.message
+            details: error.message,
+            code: error.code || 'UNKNOWN'
         }, { status: 500 });
     }
 }

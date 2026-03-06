@@ -19,7 +19,7 @@ export const BLOG_POSTS: BlogPost[] = [
         date: '24 de Enero, 2026',
         image: '/assets/images/blog/liberate-patrones.jpg',
         category: 'Mentalidad',
-        author: 'Yelitzé Rangel',
+        author: 'Yelitze Rangel',
         content: `
             <p class="mb-6 text-lg">Nuestros patrones de comportamiento no son fallos de fábrica, son estrategias de supervivencia que un día aprendimos para pertenecer a nuestro sistema familiar. Sin embargo, lo que antes nos protegió, hoy puede ser la jaula que nos impide crecer.</p>
             <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">El mapa mental de tu historia</h3>
@@ -38,7 +38,7 @@ export const BLOG_POSTS: BlogPost[] = [
         date: '24 de Enero, 2026',
         image: '/assets/images/blog/miedo-exito.jpg',
         category: 'Empoderamiento',
-        author: 'Yelitzé Rangel',
+        author: 'Yelitze Rangel',
         content: `
             <p class="mb-6 text-lg">El miedo suele ser la sombra de nuestro potencial. Cuando estamos ante un gran cambio o un nuevo desafío, es natural que las alarmas internas se enciendan. El secreto no es dejar de tener miedo, sino aprender a caminar con él.</p>
             <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">La sombra del éxito</h3>
@@ -54,7 +54,7 @@ export const BLOG_POSTS: BlogPost[] = [
         date: '24 de Enero, 2026',
         image: '/assets/images/blog/energia-destino.jpg',
         category: 'Espiritualidad',
-        author: 'Yelitzé Rangel',
+        author: 'Yelitze Rangel',
         content: `
             <p class="mb-6 text-lg">Vivimos en un universo de frecuencias. Todo lo que pensamos, sentimos y sostenemos en nuestro interior emite una vibración que resuena con el mundo exterior. Tu destino no está escrito en las estrellas, se escribe cada día en tu campo energético.</p>
             <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">Limpieza y Alineación</h3>
@@ -70,7 +70,7 @@ export const BLOG_POSTS: BlogPost[] = [
         date: '24 de Enero, 2026',
         image: '/assets/images/blog/exito-sistemico.jpg',
         category: 'Sabiduría Ancestral',
-        author: 'Yelitzé Rangel',
+        author: 'Yelitze Rangel',
         content: `
             <p class="mb-6 text-lg">A menudo buscamos el éxito fuera: en estrategias, marketing o contactos. Pero en el mundo sistémico, el éxito tiene la cara de la madre y la fuerza del padre. Si estás peleado con tus raíces, estarás peleado con tus resultados.</p>
             <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">Ocupar el lugar correcto</h3>
@@ -86,7 +86,7 @@ export const BLOG_POSTS: BlogPost[] = [
         date: '24 de Enero, 2026',
         image: '/assets/images/blog/cuerpo-clave.jpg',
         category: 'Consciencia Corporal',
-        author: 'Yelitzé Rangel',
+        author: 'Yelitze Rangel',
         content: `
             <p class="mb-6 text-lg">Nuestro cuerpo es el mapa más preciso de nuestra historia no resuelta. Lo que no podemos expresar con palabras, el cuerpo lo expresa a través de sensaciones, molestias o síntomas.</p>
             <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">El lenguaje de la piel</h3>
@@ -102,7 +102,7 @@ export const BLOG_POSTS: BlogPost[] = [
         date: '28 de Diciembre, 2025',
         image: '/assets/images/tests/blog_childhood_wounds.png',
         category: 'Sanación Interior',
-        author: 'Yelitzé Rangel',
+        author: 'Yelitze Rangel',
         content: `
             <p class="mb-6 text-lg">Muchas veces nos preguntamos por qué siempre terminamos con el mismo tipo de pareja o por qué ciertas situaciones nos detonan una reacción desproporcionada. La respuesta suele esconderse en nuestra historia temprana.</p>
             <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">El Niño Interior Herido</h3>
@@ -124,7 +124,7 @@ export const BLOG_POSTS: BlogPost[] = [
         date: '20 de Diciembre, 2025',
         image: '/assets/images/tests/blog_blind_vs_conscious_love.png',
         category: 'Relaciones',
-        author: 'Yelitzé Rangel',
+        author: 'Yelitze Rangel',
         content: `
             <p class="mb-6 text-lg">El "Amor Ciego" es aquel que dice inconscientemente: "Yo sufro como tú para pertenecer". Es una lealtad invisible hacia nuestros padres o abuelos que nos lleva a repetir sus destinos difíciles.</p>
             <h2 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">Mirar con Amor</h2>
@@ -143,7 +143,7 @@ export const BLOG_POSTS: BlogPost[] = [
         date: '15 de Diciembre, 2025',
         image: '/assets/images/tests/blog_money_energy.png',
         category: 'Abundancia',
-        author: 'Yelitzé Rangel',
+        author: 'Yelitze Rangel',
         content: `
             <p class="mb-6 text-lg">En el pensamiento sistémico, el dinero se equipara a la Vida y a la Madre. ¿Cómo es tu relación con tu madre? A menudo, tomar a la madre es tomar el dinero.</p>
             <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">Creencias Limitantes</h3>
@@ -159,7 +159,7 @@ export const BLOG_POSTS: BlogPost[] = [
         date: '10 de Diciembre, 2025',
         image: '/assets/images/coaching-ancestral-new.jpg',
         category: 'Ancestralidad',
-        author: 'Yelitzé Rangel',
+        author: 'Yelitze Rangel',
         content: `
             <p class="mb-6 text-lg">Mientras que la madre nos da la vida y la nutrición, el padre es quien nos da la fuerza para salir de casa y enfrentar el mundo exterior.</p>
             <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">La Fuerza del Hacer</h3>
@@ -175,7 +175,7 @@ export const BLOG_POSTS: BlogPost[] = [
         date: '05 de Diciembre, 2025',
         image: '/assets/images/tablero-sesion.png',
         category: 'Rituales',
-        author: 'Yelitzé Rangel',
+        author: 'Yelitze Rangel',
         content: `
             <p class="mb-6 text-lg">El Cacao no es solo una bebida; es una planta maestra que actúa como puente entre la mente y el corazón. En nuestros círculos, lo usamos para suavizar las defensas del ego.</p>
             <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">Sentir para Sanar</h3>
@@ -191,7 +191,7 @@ export const BLOG_POSTS: BlogPost[] = [
         date: '01 de Diciembre, 2025',
         image: '/assets/images/corporate-vortex.png',
         category: 'Metodología',
-        author: 'Yelitzé Rangel',
+        author: 'Yelitze Rangel',
         content: `
             <p class="mb-6 text-lg">El coaching tradicional se enfoca en el "aquí y ahora" y en el "hacia dónde voy". Es excelente para la acción, pero a veces insuficiente cuando existen bloqueos profundos.</p>
             <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">El Alma en el Proceso</h3>

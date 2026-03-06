@@ -108,7 +108,7 @@ export default function Header() {
                     <div className="relative w-48 h-20">
                         <Image
                             src={showScrolled ? "/assets/images/logo-color-scroll.png" : "/assets/images/logo-yelitze-new.png"}
-                            alt="Yelitzé Rangel Logo"
+                            alt="Yelitze Rangel Logo"
                             fill
                             className="object-contain object-left transition-opacity duration-300"
                             priority

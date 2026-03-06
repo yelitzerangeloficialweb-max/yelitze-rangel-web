@@ -121,7 +121,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
                                     </div>
                                     <h3 className="text-2xl font-heading mb-6 relative z-10">¿Te resonó esta lectura?</h3>
                                     <p className="text-gray-400 mb-10 font-light leading-relaxed">
-                                        Te invito a profundizar en este tema a través de una sesión personalizada de Alquimia Ancestral.
+                                        Te invito a profundizar en este tema a través de una sesión personalizada con Tu coach ancestral.
                                     </p>
                                     <Link
                                         href="/reservas"
