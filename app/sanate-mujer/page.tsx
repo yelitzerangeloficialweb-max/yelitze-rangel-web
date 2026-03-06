@@ -3,8 +3,9 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { FormEvent } from 'react';
-import { ArrowRight, CheckCircle2, ChevronDown, ChevronUp, X, Heart, Activity, ShieldAlert, Sparkles, Play } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronDown, ChevronUp, X, Heart, Activity, ShieldAlert, Sparkles, Play, Clock } from 'lucide-react';
 import { motion, Variants, AnimatePresence } from 'framer-motion';
+import { useEffect, useState as useHookState } from 'react';
 
 const fadeUpVariant: Variants = {
     hidden: { opacity: 0, y: 30 },
@@ -39,8 +40,14 @@ export default function SanateMujerLanding() {
                 />
             </div>
 
+            {/* SECTION 0: TOP STICKY BANNER */}
+            <TopStickyBanner />
+
             {/* SECTION 1: HERO SECTION */}
             <HeroSection />
+
+            {/* SECTION 1.5: TRUST BAR */}
+            <TrustBar />
 
             {/* SECTION 2: SOCIAL PROOF */}
             <SocialProofSection />
@@ -70,25 +77,148 @@ export default function SanateMujerLanding() {
 }
 
 // ---------------------------------------------------------
+// TOP STICKY BANNER COMPONENT
+// ---------------------------------------------------------
+function TopStickyBanner() {
+    const targetDate = new Date('2026-05-22T00:00:00').getTime();
+    const [timeLeft, setTimeLeft] = useHookState({
+        days: 0, hours: 0, minutes: 0, seconds: 0, isExpired: false
+    });
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                setTimeLeft(prev => ({ ...prev, isExpired: true }));
+                clearInterval(timer);
+                return;
+            }
+
+            setTimeLeft({
+                days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+                hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+                minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+                seconds: Math.floor((distance % (1000 * 60)) / 1000),
+                isExpired: false
+            });
+        }, 1000);
+
+        return () => clearInterval(timer);
+    }, [targetDate]);
+
+    if (timeLeft.isExpired) return null;
+
+    return (
+        <div className="sticky top-0 z-[100] w-full bg-[#B8835A] text-white py-3 shadow-lg overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
+            <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-12 relative z-10">
+                <div className="flex items-center gap-3">
+                    <Sparkles className="w-4 h-4 text-white animate-pulse" />
+                    <span className="text-[11px] font-bold tracking-[0.2em] uppercase whitespace-nowrap">
+                        El workshop inicia en:
+                    </span>
+                </div>
+
+                <div className="flex items-center gap-6">
+                    <div className="flex flex-col items-center">
+                        <span className="text-xl font-bold leading-none tabular-nums">{timeLeft.days.toString().padStart(2, '0')}</span>
+                        <span className="text-[8px] uppercase tracking-widest font-bold opacity-70">Días</span>
+                    </div>
+                    <span className="text-xl font-bold opacity-30">:</span>
+                    <div className="flex flex-col items-center">
+                        <span className="text-xl font-bold leading-none tabular-nums">{timeLeft.hours.toString().padStart(2, '0')}</span>
+                        <span className="text-[8px] uppercase tracking-widest font-bold opacity-70">Hrs</span>
+                    </div>
+                    <span className="text-xl font-bold opacity-30">:</span>
+                    <div className="flex flex-col items-center">
+                        <span className="text-xl font-bold leading-none tabular-nums">{timeLeft.minutes.toString().padStart(2, '0')}</span>
+                        <span className="text-[8px] uppercase tracking-widest font-bold opacity-70">Min</span>
+                    </div>
+                    <span className="text-xl font-bold opacity-30">:</span>
+                    <div className="flex flex-col items-center">
+                        <span className="text-xl font-bold leading-none tabular-nums">{timeLeft.seconds.toString().padStart(2, '0')}</span>
+                        <span className="text-[8px] uppercase tracking-widest font-bold opacity-70">Seg</span>
+                    </div>
+                </div>
+
+                <div className="hidden lg:flex items-center gap-3 bg-white/20 px-4 py-1 rounded-full border border-white/30">
+                    <CheckCircle2 className="w-3 h-3" />
+                    <span className="text-[9px] font-bold tracking-widest uppercase">Cupos Limitados</span>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ---------------------------------------------------------
 // REGISTRATION FORM COMPONENT (Used in Hero)
 // ---------------------------------------------------------
 function RegistrationForm() {
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
-        // Simulate API call
-        setTimeout(() => {
+        setError(null);
+
+        const form = e.target as HTMLFormElement;
+        const formData = {
+            name: (form.elements.namedItem('name') as HTMLInputElement).value,
+            email: (form.elements.namedItem('email') as HTMLInputElement).value,
+            whatsapp: (form.elements.namedItem('whatsapp') as HTMLInputElement).value,
+        };
+
+        try {
+            const response = await fetch('/api/sanate-mujer/registration', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                setIsSuccess(true);
+                // Reset form optionally, but redirecting is better
+                setTimeout(() => {
+                    window.location.href = '#registered';
+                }, 2000);
+            } else {
+                const data = await response.json();
+                setError(data.error || 'Algo salió mal. Por favor intenta de nuevo.');
+            }
+        } catch (err) {
+            setError('Error de conexión. Por favor intenta de nuevo.');
+        } finally {
             setIsSubmitting(false);
-            window.location.href = '#registered'; // Simulate redirect or success state
-        }, 1500);
+        }
     };
+
+    if (isSuccess) {
+        return (
+            <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="w-full bg-white/95 backdrop-blur-md p-12 rounded-2xl shadow-2xl border border-[#B8835A]/30 text-center"
+            >
+                <div className="w-20 h-20 bg-[#F5EFE6] rounded-full flex items-center justify-center mx-auto mb-6">
+                    <CheckCircle2 className="w-10 h-10 text-[#B8835A]" />
+                </div>
+                <h3 className="text-2xl font-bold text-[#2D2926] mb-4">¡Inscripción Exitosa!</h3>
+                <p className="text-[#2D2926]/70 leading-relaxed">
+                    Gracias por unirte a esta activación. Hemos enviado un correo de confirmación con los detalles del workshop.
+                </p>
+                <p className="mt-4 font-bold text-[#B8835A] uppercase tracking-widest text-sm">Nos vemos el 22 de Mayo</p>
+            </motion.div>
+        );
+    }
 
     return (
         <div className="flex flex-col items-center w-full">
             {/* Logo encima del formulario */}
-            <div className="w-80 md:w-[28rem] h-32 md:h-40 mb-8 relative mix-blend-multiply drop-shadow-md">
+            <div className="w-80 md:w-[28rem] h-32 md:h-40 mb-8 relative drop-shadow-md">
                 <Image
                     src="/assets/images/landing/logo-sanate-mujer.png"
                     alt="Sánate Mujer Activación"
@@ -103,6 +233,13 @@ function RegistrationForm() {
                 <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-[#B8835A] to-transparent opacity-50"></div>
 
                 <div className="space-y-6">
+                    {error && (
+                        <div className="bg-red-50 text-red-600 p-4 rounded-lg text-sm font-medium border border-red-100 flex items-center gap-3">
+                            <span className="w-2 h-2 bg-red-600 rounded-full animate-pulse" />
+                            {error}
+                        </div>
+                    )}
+
                     <div>
                         <label htmlFor="name" className="block text-xs font-semibold uppercase tracking-widest text-[#2D2926] mb-2">Nombre Completo</label>
                         <input
@@ -152,6 +289,41 @@ function RegistrationForm() {
                 </div>
             </form>
         </div>
+    );
+}
+
+// ---------------------------------------------------------
+// TRUST BAR COMPONENT
+// ---------------------------------------------------------
+function TrustBar() {
+    const logos = [
+        { name: 'Psicología Integrativa', icon: '✦' },
+        { name: 'Sabiduría Ancestral', icon: '❂' },
+        { name: 'Trauma Informed', icon: '⚕' },
+        { name: 'Tanatología', icon: '❈' },
+        { name: 'Coaching Energético', icon: '✺' }
+    ];
+
+    return (
+        <section className="py-10 bg-[#2D2926] relative overflow-hidden">
+            <div className="container mx-auto px-4 relative z-10">
+                <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 hover:opacity-80 transition-opacity">
+                    <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#F5EFE6] w-full text-center mb-4 md:mb-0 md:w-auto">
+                        Avalado por:
+                    </span>
+                    {logos.map((logo, index) => (
+                        <div key={index} className="flex items-center gap-3 grayscale contrast-125">
+                            <span className="text-[#B8835A] text-xl">{logo.icon}</span>
+                            <span className="text-[#F5EFE6] text-xs font-bold tracking-widest uppercase whitespace-nowrap">
+                                {logo.name}
+                            </span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            {/* Subtle light effect */}
+            <div className="absolute top-0 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-[#B8835A]/30 to-transparent"></div>
+        </section>
     );
 }
 
@@ -400,6 +572,48 @@ function SocialProofSection() {
                         <h3 className="text-xl font-heading text-[#2D2926] mb-4 italic">"Descubrí por qué siempre atraía hombres no disponibles."</h3>
                         <p className="text-[#2D2926]/80 leading-relaxed font-light">
                             "Tras la Activación, entendí que estaba cargando con el duelo no resuelto de mi madre. Al liberar esa carga con los rituales, mi energía cambió y atraje a una pareja consciente y respetuosa."
+                        </p>
+                    </motion.div>
+
+                    {/* Testimonial 3 */}
+                    <motion.div variants={fadeUpVariant} className="bg-white p-10 rounded-2xl shadow-lg border border-[#B8835A]/20 relative">
+                        <div className="absolute -top-6 -right-6 text-[#B8835A] opacity-20 font-serif text-9xl leading-none">"</div>
+                        <div className="flex items-center gap-4 mb-8">
+                            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-[#B8835A] bg-[#F5EFE6] flex items-center justify-center text-[#B8835A] font-bold">
+                                LR
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-[#2D2926] flex items-center gap-2">
+                                    Lucía R.
+                                    <CheckCircle2 className="w-4 h-4 text-[#B8835A]" />
+                                </h4>
+                                <span className="text-xs tracking-widest uppercase text-[#B8835A]">Madre y Profesional</span>
+                            </div>
+                        </div>
+                        <h3 className="text-xl font-heading text-[#2D2926] mb-4 italic">"Mis hijos recuperaron a su madre, y yo recuperé mi sonrisa."</h3>
+                        <p className="text-[#2D2926]/80 leading-relaxed font-light">
+                            "Vivía en modo supervivencia, agotada y reactiva. Yelitze me enseñó a autorregular mi sistema nervioso. Ahora mis hijos tienen una madre presente y yo por fin disfruto mi vida sin culpa."
+                        </p>
+                    </motion.div>
+
+                    {/* Testimonial 4 */}
+                    <motion.div variants={fadeUpVariant} className="bg-white p-10 rounded-2xl shadow-lg border border-[#B8835A]/20 relative">
+                        <div className="absolute -top-6 -right-6 text-[#B8835A] opacity-20 font-serif text-9xl leading-none">"</div>
+                        <div className="flex items-center gap-4 mb-8">
+                            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-[#B8835A] bg-[#F5EFE6] flex items-center justify-center text-[#B8835A] font-bold">
+                                MG
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-[#2D2926] flex items-center gap-2">
+                                    Marta G.
+                                    <CheckCircle2 className="w-4 h-4 text-[#B8835A]" />
+                                </h4>
+                                <span className="text-xs tracking-widest uppercase text-[#B8835A]">Líder Corporativa</span>
+                            </div>
+                        </div>
+                        <h3 className="text-xl font-heading text-[#2D2926] mb-4 italic">"El techo de cristal no estaba afuera, estaba en mis memorias."</h3>
+                        <p className="text-[#2D2926]/80 leading-relaxed font-light">
+                            "Logré el ascenso que deseaba tras limpiar las memorias de desmerecimiento de mi linaje. Yelitze es impecable en su método; la estructura que te da es de otro nivel."
                         </p>
                     </motion.div>
                 </motion.div>
@@ -900,11 +1114,6 @@ function FooterSection() {
             </div>
 
             <div className="container mx-auto px-4 text-center flex flex-col items-center relative z-10">
-                {/* Sanate Mujer Logo */}
-                <div className="mb-6 relative w-48 h-20 md:w-64 md:h-24 brightness-0 invert opacity-80">
-                    <Image src="/assets/images/landing/logo-sanate-mujer.png" alt="Sánate Mujer Activación" fill className="object-contain" />
-                </div>
-
                 {/* Yelitze Rangel Logo as Signature */}
                 <div className="mb-10 relative w-32 h-12 md:w-40 md:h-16 brightness-0 invert opacity-40 hover:opacity-70 transition-opacity duration-500">
                     <Image src="/assets/images/logo-yelitze-new.png" alt="Yelitze Rangel" fill className="object-contain" />

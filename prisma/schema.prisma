@@ -60,3 +60,11 @@ model OrderItem {
   price     Float
   quantity  Int
 }
+
+model SanateMujerRegistration {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  name      String
+  email     String
+  whatsapp  String
+}
