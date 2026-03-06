@@ -16,8 +16,8 @@ export function middleware(request: NextRequest) {
         return NextResponse.next();
     }
 
-    // 2. Check if maintenance mode is enabled
-    const maintenanceMode = process.env.MAINTENANCE_MODE?.toLowerCase() === 'true';
+    // 2. Force maintenance mode to true as requested by the user
+    const maintenanceMode = (process.env.MAINTENANCE_MODE?.toLowerCase() === 'true') || true;
     console.log('Maintenance Mode Active:', maintenanceMode);
 
     if (maintenanceMode) {
