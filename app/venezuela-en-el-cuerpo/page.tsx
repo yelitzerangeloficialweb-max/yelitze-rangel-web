@@ -12,10 +12,11 @@ import { useState } from "react";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn } from "@/components/ui/motion";
 
 export default function VenezuelaEnElCuerpoPage() {
-    const [openFaq, setOpenFaq] = useState<number | null>(null);
+    const [submitted, setSubmitted] = useState(false);
 
-    const toggleFaq = (index: number) => {
-        setOpenFaq(openFaq === index ? null : index);
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        setSubmitted(true);
     };
 
     return (
@@ -391,58 +392,84 @@ export default function VenezuelaEnElCuerpoPage() {
                             </div>
                         </FadeIn>
 
-                        <FadeIn delay={0.3} className="bg-[#F7F3F0] p-10 lg:p-14 rounded-[4rem] text-[#3D4D3D] shadow-2xl relative">
-                            {/* Form Header */}
-                            <div className="flex items-center gap-6 mb-12">
-                                <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center shadow-lg border border-stone-100">
-                                    <QrCode className="w-10 h-10 text-[#C05C3F]" />
-                                </div>
-                                <div>
-                                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#C05C3F] mb-1">Paso Final</p>
-                                    <h4 className="text-2xl font-bold font-heading">Registro Oficial</h4>
-                                </div>
-                            </div>
+                        <FadeIn delay={0.3} className="bg-[#F7F3F0] p-10 lg:p-14 rounded-[4rem] text-[#3D4D3D] shadow-2xl relative min-h-[500px] flex flex-col justify-center">
+                            {!submitted ? (
+                                <>
+                                    {/* Form Header */}
+                                    <div className="flex items-center gap-6 mb-12">
+                                        <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center shadow-lg border border-stone-100">
+                                            <QrCode className="w-10 h-10 text-[#C05C3F]" />
+                                        </div>
+                                        <div>
+                                            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#C05C3F] mb-1">Paso Final</p>
+                                            <h4 className="text-2xl font-bold font-heading">Registro Oficial</h4>
+                                        </div>
+                                    </div>
 
-                            <form className="space-y-6">
-                                <div>
-                                    <label className="text-xs font-bold text-[#7A5C43] uppercase tracking-widest mb-3 block ml-2">Nombre Completo</label>
-                                    <input
-                                        type="text"
-                                        className="w-full bg-white border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C05C3F]/20 focus:border-[#C05C3F] transition-all outline-none"
-                                        placeholder="Tu nombre aquí"
-                                        required
-                                    />
-                                </div>
-                                <div>
-                                    <label className="text-xs font-bold text-[#7A5C43] uppercase tracking-widest mb-3 block ml-2">Email Principal</label>
-                                    <input
-                                        type="email"
-                                        className="w-full bg-white border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C05C3F]/20 focus:border-[#C05C3F] transition-all outline-none"
-                                        placeholder="tu@email.com"
-                                        required
-                                    />
-                                </div>
-                                <div>
-                                    <label className="text-xs font-bold text-[#7A5C43] uppercase tracking-widest mb-3 block ml-2">WhatsApp</label>
-                                    <input
-                                        type="tel"
-                                        className="w-full bg-white border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C05C3F]/20 focus:border-[#C05C3F] transition-all outline-none"
-                                        placeholder="+58 ..."
-                                        required
-                                    />
-                                </div>
-                                <button
-                                    type="button"
-                                    className="w-full bg-[#C05C3F] text-white py-6 rounded-3xl font-bold text-lg shadow-xl hover:bg-[#A84A2F] transition-all transform hover:-translate-y-1 mt-6 flex items-center justify-center gap-4 group"
-                                >
-                                    Generar mi Pase QR y Enviar Test
-                                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                                </button>
-                            </form>
+                                    <form onSubmit={handleSubmit} className="space-y-6">
+                                        <div>
+                                            <label className="text-xs font-bold text-[#7A5C43] uppercase tracking-widest mb-3 block ml-2">Nombre Completo</label>
+                                            <input
+                                                type="text"
+                                                className="w-full bg-white border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C05C3F]/20 focus:border-[#C05C3F] transition-all outline-none"
+                                                placeholder="Tu nombre aquí"
+                                                required
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="text-xs font-bold text-[#7A5C43] uppercase tracking-widest mb-3 block ml-2">Email Principal</label>
+                                            <input
+                                                type="email"
+                                                className="w-full bg-white border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C05C3F]/20 focus:border-[#C05C3F] transition-all outline-none"
+                                                placeholder="tu@email.com"
+                                                required
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="text-xs font-bold text-[#7A5C43] uppercase tracking-widest mb-3 block ml-2">WhatsApp</label>
+                                            <input
+                                                type="tel"
+                                                className="w-full bg-white border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C05C3F]/20 focus:border-[#C05C3F] transition-all outline-none"
+                                                placeholder="+58 ..."
+                                                required
+                                            />
+                                        </div>
+                                        <button
+                                            type="submit"
+                                            className="w-full bg-[#C05C3F] text-white py-6 rounded-3xl font-bold text-lg shadow-xl hover:bg-[#A84A2F] transition-all transform hover:-translate-y-1 mt-6 flex items-center justify-center gap-4 group"
+                                        >
+                                            Generar mi Pase QR y Enviar Test
+                                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                        </button>
+                                    </form>
 
-                            <p className="text-center mt-8 text-[10px] text-[#7A5C43] uppercase tracking-widest font-bold opacity-60">
-                                Al registrarte aceptas nuestra política de privacidad
-                            </p>
+                                    <p className="text-center mt-8 text-[10px] text-[#7A5C43] uppercase tracking-widest font-bold opacity-60">
+                                        Al registrarte aceptas nuestra política de privacidad
+                                    </p>
+                                </>
+                            ) : (
+                                <FadeIn className="text-center">
+                                    <div className="flex flex-col items-center">
+                                        <div className="bg-white p-6 rounded-3xl shadow-xl border-4 border-[#3D4D3D] mb-8 scale-110">
+                                            <QrCode className="w-40 h-40 text-[#3D4D3D]" />
+                                            <div className="mt-4 pt-4 border-t border-stone-100">
+                                                <p className="text-[10px] font-bold uppercase tracking-widest text-[#C05C3F]">Pase Personalizado</p>
+                                                <p className="text-xs font-bold text-[#3D4D3D]">VENEZUELA-2026-REG</p>
+                                            </div>
+                                        </div>
+                                        <h4 className="text-3xl font-bold font-heading text-[#3D4D3D] mb-4">¡Registro Exitoso!</h4>
+                                        <p className="text-[#7A5C43] font-light leading-relaxed mb-8">
+                                            Tu Pase QR ha sido generado. También hemos enviado el Test de Percepción y tu eBook a tu correo electrónico.
+                                        </p>
+                                        <button
+                                            onClick={() => window.print()}
+                                            className="flex items-center gap-2 text-[#C05C3F] font-bold uppercase tracking-widest text-sm hover:opacity-70 transition-opacity"
+                                        >
+                                            Descargar Pase QR <CheckCircle2 className="w-4 h-4" />
+                                        </button>
+                                    </div>
+                                </FadeIn>
+                            )}
                         </FadeIn>
                     </div>
                 </div>
