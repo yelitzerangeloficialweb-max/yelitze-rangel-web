@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {
     ArrowRight, CheckCircle2, ShieldCheck,
-    MessageCircle, ChevronDown, User,
+    MessageCircle, ChevronDown, User, Star,
     Target, BookOpen, QrCode, TrendingUp,
     AlertCircle, Sparkles, Heart
 } from "lucide-react";
