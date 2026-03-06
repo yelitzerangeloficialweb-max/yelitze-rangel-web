@@ -11,19 +11,19 @@ export default function AboutPage() {
         <main className="bg-black text-white selection:bg-[var(--color-secondary)] selection:text-white">
 
             {/* 1. Hero Section (Split Layout) */}
-            <section className="min-h-screen bg-[#F5EFE6] text-stone-900 grid lg:grid-cols-2 overflow-hidden">
+            <section className="min-h-screen grid lg:grid-cols-2">
                 {/* Text Content */}
                 <div className="flex flex-col justify-center px-8 lg:px-20 py-32 lg:py-0 order-2 lg:order-1 relative z-10">
                     <FadeIn>
-                        <span className="text-[var(--color-primary)] uppercase tracking-[0.2em] text-sm font-medium mb-6 block">
+                        <span className="text-[var(--color-secondary)] uppercase tracking-[0.2em] text-sm font-medium mb-6 block">
                             Sobre Mi
                         </span>
-                        <h1 className="text-4xl lg:text-7xl font-heading text-[var(--color-primary)] mb-8 leading-tight font-bold">
+                        <h1 className="text-4xl lg:text-7xl font-heading text-white mb-8 leading-tight font-bold">
                             Donde la mente comprende <br />
-                            <span className="italic font-light opacity-80">el cuerpo y el alma recuerdan.</span>
+                            <span className="italic font-light text-[var(--color-secondary)] opacity-90">el cuerpo y el alma recuerdan.</span>
                         </h1>
                         <div className="space-y-6 max-w-xl">
-                            <p className="text-xl text-stone-600 italic border-l-4 border-[var(--color-primary)] pl-6">
+                            <p className="text-xl text-gray-300 italic border-l-4 border-[var(--color-secondary)] pl-6">
                                 Mi misión es ser el puente, cuando la ciencia ya explicó el dolor y el alma aún pide ser escuchada… ahí comienza mi trabajo.
                             </p>
                         </div>
@@ -32,83 +32,108 @@ export default function AboutPage() {
 
                 {/* Hero Image */}
                 <div className="relative h-[60vh] lg:h-auto order-1 lg:order-2">
-                    <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-l from-[#F5EFE6]/10 via-transparent to-transparent z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-black via-transparent to-transparent z-10" />
                     <Image
-                        src="/assets/images/about-me-new.png"
+                        src="/assets/images/about-hero-portrait.jpg"
                         alt="Yelitze Rangel - Coach Ancestral"
                         fill
-                        className="object-cover object-center"
+                        className="object-cover object-top"
                         priority
                         quality={100}
                     />
                 </div>
             </section>
 
-            {/* 2. My Story (Narrative from Image) */}
-            <section className="py-24 lg:py-40 px-4 bg-[#F5EFE6]">
-                <div className="container mx-auto max-w-7xl">
-                    <div className="grid lg:grid-cols-2 gap-16 lg:gap-32 items-center">
+            {/* 2. Credentials Section (Dark Texture Background) */}
+            <section className="bg-stone-900/50 py-24 px-4 relative overflow-hidden border-y border-white/5">
+                <div className="absolute top-0 right-0 w-96 h-96 bg-[var(--color-secondary)]/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
 
-                        {/* Text Content */}
-                        <div className="space-y-12 order-2 lg:order-1">
-                            {/* Section 1: El Quiebre */}
-                            <div className="space-y-6">
-                                <h2 className="text-3xl lg:text-4xl font-heading text-[var(--color-accent)] font-bold italic leading-tight">
-                                    El Quiebre: Donde la mente comprende, pero el alma aún duele.
-                                </h2>
-                                <p className="text-lg lg:text-xl text-stone-600 leading-relaxed font-light">
-                                    Hola, soy Yelitze Rangel. Durante años, mi vida parecía un éxito absoluto: una carrera corporativa sólida, viajes y reconocimiento. Pero por dentro, estaba quebrada. Me encontraba repitiendo la historia de mi linaje: un divorcio y una quiebra económica simultánea, sumado al dolor profundo de la pérdida de dos bebés. Me sentía quemada, vacía y con una rabia sorda que la psicología tradicional no lograba explicar.
-                                </p>
-                            </div>
+                <div className="container mx-auto relative z-10">
+                    <FadeIn className="max-w-5xl mx-auto text-center mb-16">
+                        <h2 className="text-3xl lg:text-5xl font-heading mb-6 text-white font-bold">
+                            Soy Yelitze Rangel
+                        </h2>
+                        <div className="w-24 h-1 bg-[var(--color-secondary)] mx-auto mb-6" />
+                        <p className="text-xl lg:text-2xl font-light text-gray-300 tracking-widest">
+                            TU COACH ANCESTRAL
+                        </p>
+                    </FadeIn>
 
-                            {/* Section 2: La Epifania */}
-                            <div className="space-y-6">
-                                <h2 className="text-3xl lg:text-4xl font-heading text-[var(--color-accent)] font-bold italic leading-tight">
-                                    La Epifanía: El Camino de Fuego.
-                                </h2>
-                                <p className="text-lg lg:text-xl text-stone-600 leading-relaxed font-light">
-                                    Ese quiebre me llevó hasta la India, iniciando un proceso de transformación donde comprendí que la sanación no ocurre cuando mente, cuerpo y alma caminan separados. Descubrí que cuando la ciencia explica el dolor, pero el alma sigue pidiendo ser escuchada, es ahí donde comienza el verdadero trabajo: el descongelamiento del trauma y la reconexión ancestral.
+                    <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto items-center">
+                        <div className="space-y-8">
+                            <FadeIn>
+                                <p className="text-2xl font-serif italic text-[var(--color-secondary)]">
+                                    ¿Quién soy yo para acompañarte?
                                 </p>
-                            </div>
-
-                            {/* Section 3: La Autoridad */}
-                            <div className="space-y-6">
-                                <h2 className="text-3xl lg:text-4xl font-heading text-[var(--color-accent)] font-bold italic leading-tight">
-                                    La Autoridad: El Puente entre la Ciencia y el Espíritu.
-                                </h2>
-                                <p className="text-lg lg:text-xl text-stone-600 leading-relaxed font-light">
-                                    No elegí mis caminos al azar; cada uno me enseñó cómo el ser humano se protege y cómo sana. Hoy, pongo a tu servicio una integración única de estructura y sabiduría:
-                                </p>
-                                <ul className="space-y-4 text-lg text-stone-600 font-light">
-                                    <li className="flex items-start gap-3">
-                                        <span className="text-[var(--color-accent)] mt-1.5">•</span>
-                                        <span><strong>Administradora de Empresas:</strong> Para darte orden y estructura.</span>
-                                    </li>
-                                    <li className="flex items-start gap-3">
-                                        <span className="text-[var(--color-accent)] mt-1.5">•</span>
-                                        <span><strong>Psicóloga y Tanatóloga:</strong> Para comprender tu mente y honrar tus duelos.</span>
-                                    </li>
-                                    <li className="flex items-start gap-3">
-                                        <span className="text-[var(--color-accent)] mt-1.5">•</span>
-                                        <span><strong>Sanadora Ancestral y Facilitadora de Trauma:</strong> Para liberar las memorias atrapadas en tu cuerpo y regenerar tu sistema.</span>
-                                    </li>
-                                </ul>
-                            </div>
+                            </FadeIn>
+                            <StaggerContainer className="space-y-6">
+                                {[
+                                    { icon: Sparkles, text: "Sanadora ancestral por linaje y memoria." },
+                                    { icon: Anchor, text: "Administradora de empresas por estructura y orden." },
+                                    { icon: Brain, text: "Psicóloga por vocación de comprender la mente." },
+                                    { icon: Heart, text: "Terapeuta en duelo y tanatóloga por respeto." },
+                                    { icon: Star, text: "Facilitadora de descongelamiento de trauma." },
+                                ].map((item, idx) => (
+                                    <StaggerItem key={idx} className="flex items-center gap-4 text-lg text-gray-300 group">
+                                        <div className="p-2 rounded-full bg-white/5 group-hover:bg-[var(--color-secondary)] transition-colors duration-300">
+                                            <item.icon className="w-5 h-5 text-current group-hover:text-white" />
+                                        </div>
+                                        <span>{item.text}</span>
+                                    </StaggerItem>
+                                ))}
+                            </StaggerContainer>
                         </div>
 
-                        {/* Image Column */}
-                        <div className="order-1 lg:order-2">
-                            <div className="relative aspect-[4/5] w-full max-w-[550px] mx-auto overflow-hidden rounded-t-[50%] border-x-8 border-t-8 border-stone-200/50 shadow-2xl">
-                                <Image
-                                    src="/assets/images/about-me-new.png"
-                                    alt="Yelitze Rangel - Camino de Fuego"
-                                    fill
-                                    className="object-cover"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#B8835A]/20 to-transparent" />
-                            </div>
-                        </div>
+                        <FadeIn delay={0.3} className="relative p-8 border border-white/10 rounded-2xl bg-white/5 backdrop-blur-sm">
+                            <p className="text-lg leading-relaxed text-gray-300 italic">
+                                No elegí todos estos caminos al azar. Cada uno me enseñó algo distinto sobre el ser humano: cómo piensa, cómo siente, cómo se protege y cómo, cuando es escuchado con verdad, sana. <br /><br />
+                                <span className="font-semibold text-[var(--color-secondary)] not-italic">Hoy integro todo eso en un solo método.</span> Uno que honra la ciencia sin olvidar el espíritu. Uno que acompaña sin imponer. Uno que devuelve soberanía interior.
+                            </p>
+                        </FadeIn>
+                    </div>
+                </div>
+            </section>
 
+            {/* 3. My Story (Narrative) */}
+            <section className="py-24 lg:py-32 px-4 container mx-auto">
+                <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+                    <FadeIn className="lg:col-span-5 relative h-[500px] lg:h-[700px] rounded-2xl overflow-hidden shadow-2xl">
+                        <Image
+                            src="/assets/images/about-story-portrait.jpg"
+                            alt="Mi Historia - Yelitze Rangel"
+                            fill
+                            className="object-cover object-top"
+                        />
+                        <div className="absolute inset-0 bg-black/10" />
+                    </FadeIn>
+                    <div className="lg:col-span-7 flex flex-col justify-center space-y-8">
+                        <FadeIn>
+                            <span className="text-sm font-bold tracking-widest text-[var(--color-secondary)] uppercase">
+                                El Camino
+                            </span>
+                            <h2 className="text-4xl lg:text-7xl font-heading text-white font-bold">
+                                Mi Historia
+                            </h2>
+                        </FadeIn>
+                        <StaggerContainer className="prose prose-lg text-gray-300">
+                            <StaggerItem className="mb-8">
+                                Después de la pérdida de dos bebés y de un divorcio, mi vida quedó en pausa. No sabía cómo reiniciar ni desde dónde volver a empezar.
+                            </StaggerItem>
+                            <StaggerItem className="mb-8">
+                                Ese quiebre me llevó a la India, donde inicié lo que llamo mi <strong className="text-white">camino de fuego</strong>: un proceso de transformación que marcó un giro profundo en mi vida y me reconectó con mis dones, mis raíces y mis recursos internos.
+                            </StaggerItem>
+                            <StaggerItem className="mb-8">
+                                Allí comprendí que la sanación no ocurre cuando mente, cuerpo y alma caminan separados. <strong className="text-white">El equilibrio nace cuando se integran.</strong>
+                            </StaggerItem>
+                            <StaggerItem className="mb-8">
+                                Desde ese despertar comencé a dar forma a una nueva vida y a un método que une ciencia, experiencia terapéutica y sabiduría ancestral para acompañar procesos de duelo, trauma y reconexión interior, dándole una mirada circular a tu destino.
+                            </StaggerItem>
+                        </StaggerContainer>
+                        <FadeIn delay={0.4} className="bg-white/5 p-8 rounded-xl border-l-2 border-[var(--color-secondary)] mt-4">
+                            <p className="text-xl font-light italic text-white m-0">
+                                Hoy acompaño desde la presencia, la integración y el respeto profundo por cada historia.
+                            </p>
+                        </FadeIn>
                     </div>
                 </div>
             </section>
