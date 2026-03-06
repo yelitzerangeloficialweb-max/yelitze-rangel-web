@@ -1120,7 +1120,7 @@ function FooterSection() {
                 </div>
 
                 <div className="text-white/60 text-sm space-y-4 max-w-md">
-                    <p className="font-light tracking-wide italic opacity-80 border-t border-white/10 pt-6">"El puente entre la ciencia y el espíritu para reclamar tu soberanía."</p>
+                    <p className="font-light tracking-wide italic opacity-80 border-t border-white/10 pt-6">"Anatomia del alma donde lo invisible cobra voz."</p>
                     <div className="pt-2">
                         <p>Yelitze Rangel &copy; 2026. Todos los derechos reservados.</p>
                         <p className="flex items-center justify-center gap-4 mt-2">

@@ -43,7 +43,7 @@ export async function POST(req: Request) {
                             <p>Próximamente recibirás más detalles sobre los rituales y la preparación necesaria.</p>
                             <p>Si tienes alguna duda, puedes contactarnos por WhatsApp respondiendo a este correo.</p>
                             <br />
-                            <p style="font-style: italic;">"El puente entre la ciencia y el espíritu para reclamar tu soberanía."</p>
+                            <p style="font-style: italic;">"Anatomia del alma donde lo invisible cobra voz."</p>
                             <p><strong>Yelitze Rangel</strong></p>
                             <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
                             <p style="font-size: 12px; color: #999; text-align: center;">&copy; 2026 Yelitze Rangel. Todos los derechos reservados.</p>
