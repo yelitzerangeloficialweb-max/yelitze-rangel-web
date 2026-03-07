@@ -14,8 +14,8 @@ export function middleware(request: NextRequest) {
     // 2. FORCE maintenance mode to true (ignoring env var for absolute internal security/preview)
     const maintenanceMode = true;
 
-    // 3. Check for the maintenance auth cookie
-    const authCookie = request.cookies.get('yelitze_access_session');
+    // 3. Check for the maintenance auth cookie (v2 to invalidate old sessions)
+    const authCookie = request.cookies.get('yelitze_access_session_v2');
     const isAuthenticated = authCookie?.value === 'true';
 
     console.log(`[Middleware] Path: ${pathname} | Maintenance: ${maintenanceMode} | Auth: ${isAuthenticated}`);

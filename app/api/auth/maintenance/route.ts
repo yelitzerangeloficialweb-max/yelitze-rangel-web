@@ -9,8 +9,8 @@ export async function POST(request: Request) {
         if (password === sitePassword) {
             const cookieStore = await cookies();
 
-            // Set a secure cookie that expires in 30 days
-            cookieStore.set('yelitze_access_session', 'true', {
+            // Set a secure cookie that expires in 30 days (v2 to invalidate old sessions)
+            cookieStore.set('yelitze_access_session_v2', 'true', {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
                 sameSite: 'lax',
