@@ -74,7 +74,7 @@ export default function Footer() {
                 </div>
 
                 <div className="pt-8 border-t border-white/10 text-center text-white/40 text-xs">
-                    <p>© {new Date().getFullYear()} Yelitze Rangel. Todos los derechos reservados. | Desarrollado por Kick-Off Development</p>
+                    <p>© {new Date().getFullYear()} Yelitze Rangel. Todos los derechos reservados. | Desarrollado por Kick-Off Development | Diseñado por Digital Marketing DMK</p>
                 </div>
             </div>
         </footer>

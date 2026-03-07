@@ -13,6 +13,11 @@ import { FadeIn, StaggerContainer, StaggerItem, ScaleIn } from "@/components/ui/
 
 export default function VenezuelaEnElCuerpoPage() {
     const [submitted, setSubmitted] = useState(false);
+    const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+    const toggleFaq = (index: number) => {
+        setOpenFaq(openFaq === index ? null : index);
+    };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -476,9 +481,7 @@ export default function VenezuelaEnElCuerpoPage() {
 
                 {/* Final Credits */}
                 <div className="container mx-auto px-4 mt-32 border-t border-white/5 pt-12 flex flex-col md:flex-row justify-between items-center gap-8 opacity-40">
-                    <p className="text-[10px] uppercase tracking-[0.4em] font-bold">
-                        &copy; 2026 Venezuela en el Cuerpo | Yelitze Rangel
-                    </p>
+                    &copy; 2026 Yelitze Rangel. Todos los derechos reservados. | Desarrollado por Kick-Off Development | Diseñado por Digital Marketing DMK
                     <div className="flex gap-8">
                         <Heart className="w-4 h-4" />
                         <Sparkles className="w-4 h-4" />
