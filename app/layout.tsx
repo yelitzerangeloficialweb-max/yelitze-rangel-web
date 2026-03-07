@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import MaintenanceGuard from '@/components/layout/MaintenanceGuard';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -40,7 +41,9 @@ export default function RootLayout({
             alt="facebook pixel"
           />
         </noscript>
-        {children}
+        <MaintenanceGuard>
+          {children}
+        </MaintenanceGuard>
       </body>
     </html>
   );
