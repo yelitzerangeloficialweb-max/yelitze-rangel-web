@@ -11,12 +11,14 @@ export function middleware(request: NextRequest) {
         return NextResponse.next();
     }
 
-    // 2. Check maintenance mode from environment variable
-    const maintenanceMode = process.env.MAINTENANCE_MODE?.toLowerCase() === 'true';
+    // 2. FORCE maintenance mode to true (ignoring env var for absolute internal security/preview)
+    const maintenanceMode = true;
 
     // 3. Check for the maintenance auth cookie
     const authCookie = request.cookies.get('yelitze_access_session');
     const isAuthenticated = authCookie?.value === 'true';
+
+    console.log(`[Middleware] Path: ${pathname} | Maintenance: ${maintenanceMode} | Auth: ${isAuthenticated}`);
 
     if (maintenanceMode) {
         if (isAuthenticated) {
