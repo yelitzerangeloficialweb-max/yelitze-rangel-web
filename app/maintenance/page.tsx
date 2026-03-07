@@ -22,7 +22,7 @@ export default function MaintenancePage() {
             });
 
             if (response.ok) {
-                window.location.reload(); // Reload to trigger middleware re-evaluation
+                window.location.href = '/'; // Redirect to home page
             } else {
                 const data = await response.json();
                 setError(data.message || 'Contraseña incorrecta');
