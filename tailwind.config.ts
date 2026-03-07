@@ -23,9 +23,9 @@ const config: Config = {
             },
             fontFamily: {
                 heading: ["'Playfair Display'", "serif"],
-                body: ["'Ranade'", "sans-serif"],
-                script: ["'Ranade'", "sans-serif"],
-                sans: ["'Ranade'", "sans-serif"],
+                body: ["'Inter'", "sans-serif"],
+                script: ["'Great Vibes'", "cursive"],
+                sans: ["'Inter'", "sans-serif"],
             },
         },
     },
