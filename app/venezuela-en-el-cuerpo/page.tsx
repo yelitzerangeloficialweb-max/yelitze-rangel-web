@@ -144,7 +144,7 @@ export default function VenezuelaEnElCuerpoPage() {
             </section>
 
             {/* 3. EL PROBLEMA (AGITACIÓN) */}
-            <section className="py-24 bg-[#2D2926] text-[#F5EFE6] relative overflow-hidden">
+            <section className="pt-52 pb-48 bg-[#2D2926] text-[#F5EFE6] relative overflow-hidden">
                 <WaveDivider position="top" fill="#F5EFE6" />
                 <FloatingStars count={30} className="opacity-50" />
                 <SacredGeometry className="-left-40 top-1/2 -translate-y-1/2 w-[800px] h-[800px] text-[#B8835A]/5" />
@@ -402,7 +402,7 @@ export default function VenezuelaEnElCuerpoPage() {
             </section>
 
             {/* 10.5 SOCIAL COMMITMENT */}
-            <section className="py-24 bg-[#B8835A] text-[#F5EFE6] relative overflow-hidden">
+            <section className="pt-52 pb-24 bg-[#B8835A] text-[#F5EFE6] relative overflow-hidden">
                 <WaveDivider position="top" fill="#F5EFE6" />
                 <div className="absolute inset-0 bg-[url('/assets/images/noise.png')] opacity-10 mix-blend-overlay pointer-events-none" />
                 <div className="container mx-auto px-4 max-w-4xl text-center relative z-10">
@@ -430,7 +430,7 @@ export default function VenezuelaEnElCuerpoPage() {
             </section>
 
             {/* 11. FOOTER (FORMULARIO) */}
-            <section id="registro" className="pt-40 pb-20 bg-[#2D2926] text-[#F5EFE6] overflow-hidden relative">
+            <section id="registro" className="pt-60 pb-20 bg-[#2D2926] text-[#F5EFE6] overflow-hidden relative">
                 <WaveDivider position="top" fill="#B8835A" />
                 {/* Visual Cue for QR & Mystical Elements */}
                 <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-[#B8835A] to-transparent" />
