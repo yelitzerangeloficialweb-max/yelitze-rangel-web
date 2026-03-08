@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Download, Loader2, Users, MapPin, Calendar, Phone } from 'lucide-react';
+import { Download, Loader2, Users, MapPin, Calendar, Phone, QrCode, X } from 'lucide-react';
 import { format, isValid } from 'date-fns';
 import { es } from 'date-fns/locale';
+import { TicketQR } from '@/components/ui/TicketQR';
 
 interface Registration {
     id: string;
@@ -27,6 +28,7 @@ const safeFormatDate = (dateStr: string, formatStr: string, options?: any) => {
 export default function AdminVenezuelaPage() {
     const [registrations, setRegistrations] = useState<Registration[]>([]);
     const [loading, setLoading] = useState(true);
+    const [selectedRegistration, setSelectedRegistration] = useState<Registration | null>(null);
 
     useEffect(() => {
         fetchRegistrations();
@@ -151,12 +153,13 @@ export default function AdminVenezuelaPage() {
                                 <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Ciudad</th>
                                 <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Email</th>
                                 <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Fecha</th>
+                                <th className="text-center px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Pase QR</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-stone-100">
                             {registrations.length === 0 ? (
                                 <tr>
-                                    <td colSpan={5} className="px-6 py-20 text-center text-stone-400">
+                                    <td colSpan={6} className="px-6 py-20 text-center text-stone-400">
                                         No hay registros todavía
                                     </td>
                                 </tr>
@@ -166,13 +169,22 @@ export default function AdminVenezuelaPage() {
                                         <td className="px-6 py-4 font-bold text-[var(--color-primary)]">{r.name}</td>
                                         <td className="px-6 py-4 text-stone-600">{r.whatsapp}</td>
                                         <td className="px-6 py-4">
-                                            <span className="px-3 py-1 bg-stone-100 rounded-full text-xs font-bold text-stone-600 uppercase tracking-wider">
+                                            <span className="px-3 py-1 bg-stone-100 rounded-full text-xs font-bold text-stone-600 uppercase tracking-wider line-clamp-1 max-w-[150px]">
                                                 {r.city}
                                             </span>
                                         </td>
                                         <td className="px-6 py-4 text-stone-500 text-sm">{r.email}</td>
                                         <td className="px-6 py-4 text-stone-400 text-sm">
                                             {safeFormatDate(r.createdAt, "d MMM, yyyy", { locale: es })}
+                                        </td>
+                                        <td className="px-6 py-4 text-center">
+                                            <button
+                                                onClick={() => setSelectedRegistration(r)}
+                                                className="p-2 bg-[var(--color-primary)] text-white rounded-lg hover:scale-110 transition-transform shadow-md inline-flex items-center justify-center"
+                                                title="Ver Pase QR"
+                                            >
+                                                <QrCode className="w-5 h-5" />
+                                            </button>
                                         </td>
                                     </tr>
                                 ))
@@ -181,6 +193,30 @@ export default function AdminVenezuelaPage() {
                     </table>
                 </div>
             </div>
+
+            {/* Ticket Preview Modal */}
+            {selectedRegistration && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                    <div
+                        className="absolute inset-0 bg-[#2D2926]/80 backdrop-blur-sm"
+                        onClick={() => setSelectedRegistration(null)}
+                    />
+                    <div className="relative w-full max-w-lg bg-transparent animate-in zoom-in-95 duration-200">
+                        <button
+                            onClick={() => setSelectedRegistration(null)}
+                            className="absolute -top-12 right-0 p-2 text-white hover:text-[#B8835A] transition-colors"
+                        >
+                            <X className="w-8 h-8" />
+                        </button>
+                        <div className="scale-90 md:scale-100">
+                            <TicketQR
+                                name={selectedRegistration.name}
+                                city={selectedRegistration.city}
+                            />
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
