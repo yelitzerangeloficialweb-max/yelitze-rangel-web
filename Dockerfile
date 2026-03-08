@@ -56,5 +56,5 @@ ENV HOSTNAME="0.0.0.0"
 # Ensure Prisma uses the correct database path
 ENV DATABASE_URL="file:/app/prisma/dev.db"
 
-# Run migrations and then start the server
-CMD ["sh", "-c", "prisma migrate deploy && node server.js"]
+# Run migrations and then start the server with better logging
+CMD ["sh", "-c", "echo 'Running Prisma migrations...' && npx prisma migrate deploy && echo 'Migrations completed. Starting server...' && node server.js"]
