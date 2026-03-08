@@ -1,5 +1,5 @@
 "use client";
-
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 export const SacredGeometry = ({ className = "" }: { className?: string }) => (
@@ -19,33 +19,52 @@ export const SacredGeometry = ({ className = "" }: { className?: string }) => (
     </div>
 );
 
-export const FloatingStars = ({ count = 20, className = "" }: { count?: number, className?: string }) => (
-    <div className={`absolute inset-0 pointer-events-none overflow-hidden ${className}`}>
-        {[...Array(count)].map((_, i) => (
-            <motion.div
-                key={i}
-                className="absolute bg-[#B8835A] rounded-full"
-                style={{
-                    width: Math.random() * 3 + 1 + "px",
-                    height: Math.random() * 3 + 1 + "px",
-                    left: Math.random() * 100 + "%",
-                    top: Math.random() * 100 + "%",
-                    boxShadow: "0 0 8px 2px rgba(184, 131, 90, 0.4)",
-                }}
-                animate={{
-                    opacity: [0.2, 1, 0.2],
-                    scale: [0.8, 1.5, 0.8],
-                }}
-                transition={{
-                    duration: Math.random() * 4 + 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: Math.random() * 5,
-                }}
-            />
-        ))}
-    </div>
-);
+export const FloatingStars = ({ count = 20, className = "" }: { count?: number, className?: string }) => {
+    const [stars, setStars] = useState<any[]>([]);
+
+    useEffect(() => {
+        const newStars = [...Array(count)].map((_, i) => ({
+            id: i,
+            width: Math.random() * 3 + 1 + "px",
+            height: Math.random() * 3 + 1 + "px",
+            left: Math.random() * 100 + "%",
+            top: Math.random() * 100 + "%",
+            duration: Math.random() * 4 + 2,
+            delay: Math.random() * 5,
+        }));
+        setStars(newStars);
+    }, [count]);
+
+    if (stars.length === 0) return null;
+
+    return (
+        <div className={`absolute inset-0 pointer-events-none overflow-hidden ${className}`}>
+            {stars.map((star: any) => (
+                <motion.div
+                    key={star.id}
+                    className="absolute bg-[#B8835A] rounded-full"
+                    style={{
+                        width: star.width,
+                        height: star.height,
+                        left: star.left,
+                        top: star.top,
+                        boxShadow: "0 0 8px 2px rgba(184, 131, 90, 0.4)",
+                    }}
+                    animate={{
+                        opacity: [0.2, 1, 0.2],
+                        scale: [0.8, 1.5, 0.8],
+                    }}
+                    transition={{
+                        duration: star.duration,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: star.delay,
+                    }}
+                />
+            ))}
+        </div>
+    );
+};
 
 export const ThinGoldenLine = ({ className = "", d }: { className?: string, d: string }) => (
     <div className={`absolute pointer-events-none ${className}`}>
