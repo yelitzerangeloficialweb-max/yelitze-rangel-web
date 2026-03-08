@@ -399,6 +399,32 @@ export default function VenezuelaEnElCuerpoPage() {
                 </div>
             </section>
 
+            {/* 10.5 SOCIAL COMMITMENT */}
+            <section className="py-24 bg-[#B8835A] text-[#F5EFE6] relative overflow-hidden">
+                <div className="absolute inset-0 bg-[url('/assets/images/noise.png')] opacity-10 mix-blend-overlay pointer-events-none" />
+                <div className="container mx-auto px-4 max-w-4xl text-center relative z-10">
+                    <FadeIn>
+                        <MessageCircle className="w-16 h-16 mx-auto mb-8 text-[#F5EFE6]/50" />
+                        <h2 className="text-3xl md:text-5xl font-heading mb-8 font-bold leading-tight">
+                            "La transformación social no comienza afuera. Comienza en la biología de cada persona."
+                        </h2>
+                        <div className="w-24 h-px bg-[#F5EFE6]/30 mx-auto mb-10" />
+                        <p className="text-xl font-light mb-12 max-w-2xl mx-auto">
+                            Sella tu compromiso. Ve ahora mismo al perfil de Instagram de Yelitze Rangel, busca la publicación oficial del evento y <strong>comenta tu asistencia</strong>.
+                        </p>
+                        <a
+                            href="https://www.instagram.com/yelitzerangeloficial/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-3 bg-[#F5EFE6] text-[#8C4005] px-10 py-5 rounded-full font-bold shadow-xl hover:scale-105 transition-transform"
+                        >
+                            Ir al Instagram Oficial
+                            <ArrowRight className="w-5 h-5" />
+                        </a>
+                    </FadeIn>
+                </div>
+            </section>
+
             {/* 11. FOOTER (FORMULARIO) */}
             <section id="registro" className="py-40 bg-[#2D2926] text-[#F5EFE6] overflow-hidden relative">
                 {/* Visual Cue for QR & Mystical Elements */}
@@ -411,23 +437,24 @@ export default function VenezuelaEnElCuerpoPage() {
                     <div className="grid lg:grid-cols-2 gap-20 items-center">
                         <FadeIn>
                             <h2 className="text-4xl lg:text-6xl font-heading text-[#8C4005] mb-8 font-bold italic leading-tight">
-                                Tu nueva seguridad <br /> corporal comienza <span className="text-[#B8835A]">aquí.</span>
+                                Reserva tu lugar en el <br /> <span className="text-[#B8835A]">Tour Nacional.</span>
                             </h2>
-                            <p className="text- stone-300 text-xl font-light mb-12 opacity-80 leading-relaxed">
-                                Regístrate hoy y conviértete en el arquitecto de tu propia regulación. Al enviar tus datos, recibirás tu Pase QR de Acceso inmediato.
+                            <p className="text-[#F5EFE6] text-xl font-light mb-12 opacity-80 leading-relaxed">
+                                Selecciona tu ciudad para generar tu Pase QR. Una vez registrado, recibirás un mensaje inmediato con la ubicación exacta y la hora del encuentro.
                             </p>
                             <div className="flex flex-col gap-6">
-                                <div className="flex items-center gap-4 opacity-60">
-                                    <div className="w-10 h-10 border border-[#B8835A]/30 rounded-full flex items-center justify-center">
-                                        <CheckCircle2 className="w-5 h-5 text-[#B8835A]" />
+                                <div className="flex items-start gap-4 opacity-80 backdrop-blur-sm bg-[#2D2926]/30 p-6 rounded-3xl border border-[#B8835A]/10">
+                                    <div className="min-w-12 h-12 border border-[#B8835A]/30 rounded-full flex items-center justify-center bg-[#B8835A]/10">
+                                        <QrCode className="w-5 h-5 text-[#B8835A]" />
                                     </div>
-                                    <p className="text-sm tracking-widest uppercase font-bold">Compromiso de Privacidad</p>
-                                </div>
-                                <div className="flex items-center gap-4 opacity-60">
-                                    <div className="w-10 h-10 border border-[#B8835A]/30 rounded-full flex items-center justify-center">
-                                        <CheckCircle2 className="w-5 h-5 text-[#B8835A]" />
+                                    <div>
+                                        <p className="text-sm font-bold text-[#F5EFE6] mb-1">¿Cómo funciona tu acceso?</p>
+                                        <ul className="text-sm space-y-2 text-[#F5EFE6]/70">
+                                            <li><strong className="text-[#B8835A]">Paso 1:</strong> Te registras seleccionando tu ciudad.</li>
+                                            <li><strong className="text-[#B8835A]">Paso 2:</strong> Recibes un mensaje automático con tu Pase QR único.</li>
+                                            <li><strong className="text-[#B8835A]">Paso 3:</strong> En ese mismo mensaje, te enviamos el Lugar y Hora detallados del evento en tu ciudad.</li>
+                                        </ul>
                                     </div>
-                                    <p className="text-sm tracking-widest uppercase font-bold">Contenido Certificado</p>
                                 </div>
                             </div>
                         </FadeIn>
@@ -452,7 +479,7 @@ export default function VenezuelaEnElCuerpoPage() {
                                             <input
                                                 type="text"
                                                 className="w-full bg-[#F5EFE6] border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C1530A]/20 focus:border-[#C1530A] transition-all outline-none"
-                                                placeholder="Tu nombre aquí"
+                                                placeholder="(Para tu pase personalizado)"
                                                 required
                                             />
                                         </div>
@@ -461,29 +488,52 @@ export default function VenezuelaEnElCuerpoPage() {
                                             <input
                                                 type="email"
                                                 className="w-full bg-[#F5EFE6] border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C1530A]/20 focus:border-[#C1530A] transition-all outline-none"
-                                                placeholder="tu@email.com"
+                                                placeholder="tu@correo.com"
                                                 required
                                             />
+                                        </div>
+                                        <div>
+                                            <label className="text-xs font-bold text-[#2D2926] uppercase tracking-widest mb-3 block ml-2">Selecciona tu Ciudad</label>
+                                            <div className="relative">
+                                                <select
+                                                    className="w-full bg-[#F5EFE6] border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C1530A]/20 focus:border-[#C1530A] transition-all outline-none appearance-none cursor-pointer"
+                                                    required
+                                                    defaultValue=""
+                                                >
+                                                    <option value="" disabled>Selecciona una opción...</option>
+                                                    <option value="caracas">Caracas</option>
+                                                    <option value="valencia">Valencia</option>
+                                                    <option value="puerto-cabello">Puerto Cabello</option>
+                                                    <option value="maracay">Maracay</option>
+                                                    <option value="barquisimeto">Barquisimeto</option>
+                                                    <option value="maracaibo">Maracaibo</option>
+                                                </select>
+                                                <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 w-5 h-5 text-[#C1530A] pointer-events-none" />
+                                            </div>
                                         </div>
                                         <div>
                                             <label className="text-xs font-bold text-[#2D2926] uppercase tracking-widest mb-3 block ml-2">WhatsApp</label>
                                             <input
                                                 type="tel"
+                                                name="phone"
                                                 className="w-full bg-[#F5EFE6] border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C1530A]/20 focus:border-[#C1530A] transition-all outline-none"
-                                                placeholder="+58 ..."
+                                                placeholder="(Donde recibirás coordenadas y QR)"
                                                 required
                                             />
                                         </div>
                                         <button
                                             type="submit"
-                                            className="w-full bg-[#C1530A] text-[#F5EFE6] py-6 rounded-3xl font-bold text-lg shadow-xl hover:bg-[#A84A2F] transition-all transform hover:-translate-y-1 mt-6 flex items-center justify-center gap-4 group"
+                                            className="w-full bg-[#C1530A] text-[#F5EFE6] py-6 rounded-3xl font-bold md:text-lg shadow-xl hover:bg-[#A84A2F] transition-all transform hover:-translate-y-1 mt-6 flex items-center justify-center gap-4 group"
                                         >
-                                            Generar mi Pase QR y Enviar Test
+                                            <span className="text-center">GENERAR MI PASE QR Y<br className="sm:hidden" /> RECIBIR COORDENADAS</span>
                                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                                         </button>
                                     </form>
 
-                                    <p className="text-center mt-8 text-[10px] text-[#2D2926] uppercase tracking-widest font-bold opacity-60">
+                                    <p className="text-center mt-6 text-xs text-[#2D2926] font-light opacity-80">
+                                        Toda la información sobre el lugar y la hora se enviará a tu WhatsApp junto con tu Pase QR al finalizar el registro.
+                                    </p>
+                                    <p className="text-center mt-2 text-[10px] text-[#2D2926] uppercase tracking-widest font-bold opacity-40">
                                         Al registrarte aceptas nuestra política de privacidad
                                     </p>
                                 </>
