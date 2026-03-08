@@ -67,7 +67,7 @@ export default function VenezuelaEnElCuerpoPage() {
             <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-[#F5EFE6]">
                 <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center relative z-10">
                     <FadeIn>
-                        <span className="text-[#C1530A] font-bold tracking-[0.3em] uppercase text-xs mb-6 block">
+                        <span className="inline-block text-[#C1530A] font-bold tracking-[0.3em] uppercase text-[10px] md:text-xs mb-8 border border-[#C1530A]/20 px-4 py-2 rounded-full bg-white/40 backdrop-blur-sm shadow-sm ring-1 ring-[#C1530A]/5">
                             Evento de Registro Gratuito
                         </span>
                         <h2 className="text-2xl md:text-3xl font-body text-[#8C4005] mb-4 font-semibold leading-snug">
