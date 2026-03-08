@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn } from "@/components/ui/motion";
+import { SacredGeometry, FloatingStars, ThinGoldenLine } from "@/components/ui/MysticalElements";
 
 export default function VenezuelaEnElCuerpoPage() {
     const [submitted, setSubmitted] = useState(false);
@@ -26,38 +27,38 @@ export default function VenezuelaEnElCuerpoPage() {
     };
 
     return (
-        <main className="min-h-screen selection:bg-[#D4AA50] selection:text-white" style={{
-            backgroundColor: '#FFFFFF', // Clean white
-            '--color-terracotta': '#D4AA50', // Golden accent
-            '--color-earth': '#5A5A5A',      // Medium Gray text
+        <main className="min-h-screen selection:bg-[#B8835A] selection:text-[#F5EFE6]" style={{
+            backgroundColor: '#F5EFE6', // Clean white
+            '--color-terracotta': '#B8835A', // Golden accent
+            '--color-earth': '#2D2926',      // Medium Gray text
             '--color-forest': '#2D2926',     // Dark Gray/Black heading
-            '--color-cream': '#FFFFFF',      // White
-            '--color-accent-ocre': '#E8B854' // Light Gold
+            '--color-cream': '#F5EFE6',      // White
+            '--color-accent-ocre': '#B8835A' // Light Gold
         } as React.CSSProperties}>
 
             {/* 1. HERO (ATENCIÓN) */}
-            <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-[#F7F3F0]">
+            <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-[#F5EFE6]">
                 <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center relative z-10">
                     <FadeIn>
-                        <span className="text-[#C05C3F] font-bold tracking-[0.3em] uppercase text-xs mb-6 block">
+                        <span className="text-[#C1530A] font-bold tracking-[0.3em] uppercase text-xs mb-6 block">
                             Evento de Registro Gratuito
                         </span>
-                        <h2 className="text-2xl md:text-3xl font-body text-[#3D4D3D] mb-4 font-semibold leading-snug">
+                        <h2 className="text-2xl md:text-3xl font-body text-[#8C4005] mb-4 font-semibold leading-snug">
                             Tu ansiedad no es el problema, es la solución que tu cuerpo encontró
                         </h2>
-                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading text-[#3D4D3D] mb-6 leading-[1.1] font-bold">
+                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading text-[#8C4005] mb-6 leading-[1.1] font-bold">
                             Venezuela en el Cuerpo
                         </h1>
-                        <p className="text-[#C05C3F] text-lg font-medium mb-6 max-w-xl">
+                        <p className="text-[#C1530A] text-lg font-medium mb-6 max-w-xl">
                             Una propuesta terapéutica para regular, integrar y abrir nuevas posibilidades
                         </p>
-                        <p className="text-[#7A5C43] text-lg font-light mb-10 max-w-xl leading-relaxed">
+                        <p className="text-[#2D2926] text-lg font-light mb-10 max-w-xl leading-relaxed">
                             Esto no es solo una conferencia. Es una experiencia de regulación. Es un espacio seguro para comprender lo que el cuerpo guarda y para ampliar nuestra capacidad de bienestar.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-6">
                             <Link
                                 href="#registro"
-                                className="bg-[#C05C3F] text-white px-10 py-5 rounded-full font-bold shadow-xl hover:bg-[#A84A2F] transition-all flex items-center justify-center gap-3 group"
+                                className="bg-[#C1530A] text-[#F5EFE6] px-10 py-5 rounded-full font-bold shadow-xl hover:bg-[#A84A2F] transition-all flex items-center justify-center gap-3 group"
                             >
                                 Generar mi Pase QR y Enviar Test
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -66,8 +67,8 @@ export default function VenezuelaEnElCuerpoPage() {
                     </FadeIn>
 
                     <ScaleIn delay={0.2} className="relative aspect-[4/5] lg:aspect-square">
-                        <div className="absolute inset-0 border-2 border-[#D4A373]/20 rounded-[3rem] -rotate-6 scale-95" />
-                        <div className="relative h-full w-full rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white">
+                        <div className="absolute inset-0 border-2 border-[#B8835A]/20 rounded-[3rem] -rotate-6 scale-95" />
+                        <div className="relative h-full w-full rounded-[3rem] overflow-hidden shadow-2xl border-4 border-[#F5EFE6]">
                             <Image
                                 src="/assets/images/venezuela/hero-bg.jpg"
                                 alt="Venezuela en el Cuerpo"
@@ -75,24 +76,24 @@ export default function VenezuelaEnElCuerpoPage() {
                                 className="object-cover"
                                 priority
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#3D4D3D]/40 to-transparent" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#2D2926]/40 to-transparent" />
                         </div>
                     </ScaleIn>
                 </div>
 
                 {/* Decorative Elements */}
-                <div className="absolute top-0 right-0 w-96 h-96 bg-[#C05C3F]/5 rounded-full blur-[100px] -z-10" />
-                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#3D4D3D]/5 rounded-full blur-[120px] -z-10" />
+                <div className="absolute top-0 right-0 w-96 h-96 bg-[#C1530A]/5 rounded-full blur-[100px] -z-10" />
+                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#2D2926]/5 rounded-full blur-[120px] -z-10" />
             </section>
 
             {/* 2. SEGMENTACIÓN */}
-            <section className="py-24 bg-white relative">
+            <section className="py-24 bg-[#F5EFE6] relative">
                 <div className="container mx-auto px-4 max-w-6xl">
                     <FadeIn className="mb-16">
-                        <h2 className="text-3xl md:text-5xl font-heading text-[#2D2926] font-bold mb-6">
+                        <h2 className="text-3xl md:text-5xl font-heading text-[#8C4005] font-bold mb-6">
                             ¿Por qué nuestro cuerpo?
                         </h2>
-                        <p className="text-[#5A5A5A] text-lg font-light leading-relaxed max-w-4xl">
+                        <p className="text-[#2D2926] text-lg font-light leading-relaxed max-w-4xl">
                             Cuando una emoción no puede expresarse en su momento, el cuerpo la almacena como tensión o bloqueo. Con el tiempo, esto puede manifestarse de diversas formas.
                         </p>
                     </FadeIn>
@@ -125,17 +126,17 @@ export default function VenezuelaEnElCuerpoPage() {
                                 desc: "Respuestas rápidas e involuntarias ante estímulos"
                             }
                         ].map((item, i) => (
-                            <StaggerItem key={i} className="flex-1 min-w-[300px] max-w-[380px] bg-white px-8 pb-8 pt-10 rounded-xl border border-stone-200 shadow-sm relative mt-6 hover:shadow-lg transition-shadow">
+                            <StaggerItem key={i} className="flex-1 min-w-[300px] max-w-[380px] bg-[#F5EFE6] px-8 pb-8 pt-10 rounded-xl border border-stone-200 shadow-sm relative mt-6 hover:shadow-lg transition-shadow">
                                 {/* Top Golden Border */}
-                                <div className="absolute top-0 left-0 right-0 h-[6px] bg-gradient-to-r from-[#E8B854] to-[#D4AA50] rounded-t-xl" />
+                                <div className="absolute top-0 left-0 right-0 h-[6px] bg-gradient-to-r from-[#B8835A] to-[#B8835A] rounded-t-xl" />
 
                                 {/* Icon Overlay */}
-                                <div className="absolute -top-7 left-1/2 -translate-x-1/2 w-14 h-14 bg-gradient-to-b from-[#E8B854] to-[#D4AA50] rounded-full flex items-center justify-center shadow-lg border-4 border-white">
-                                    <item.icon className="w-5 h-5 text-white stroke-[2.5]" />
+                                <div className="absolute -top-7 left-1/2 -translate-x-1/2 w-14 h-14 bg-gradient-to-b from-[#B8835A] to-[#B8835A] rounded-full flex items-center justify-center shadow-lg border-4 border-[#F5EFE6]">
+                                    <item.icon className="w-5 h-5 text-[#F5EFE6] stroke-[2.5]" />
                                 </div>
 
-                                <h3 className="text-xl font-heading text-[#2D2926] mb-3 font-bold mt-2">{item.title}</h3>
-                                <p className="text-[#5A5A5A] font-light text-[15px] leading-relaxed">{item.desc}</p>
+                                <h3 className="text-xl font-heading text-[#8C4005] mb-3 font-bold mt-2">{item.title}</h3>
+                                <p className="text-[#2D2926] font-light text-[15px] leading-relaxed">{item.desc}</p>
                             </StaggerItem>
                         ))}
                     </StaggerContainer>
@@ -143,14 +144,18 @@ export default function VenezuelaEnElCuerpoPage() {
             </section>
 
             {/* 3. EL PROBLEMA (AGITACIÓN) */}
-            <section className="py-24 bg-[#3D4D3D] text-[#F7F3F0] relative overflow-hidden">
+            <section className="py-24 bg-[#2D2926] text-[#F5EFE6] relative overflow-hidden">
+                <FloatingStars count={30} className="opacity-50" />
+                <SacredGeometry className="-left-40 top-1/2 -translate-y-1/2 w-[800px] h-[800px] text-[#B8835A]/5" />
+                <ThinGoldenLine d="M0,100 Q250,250 500,100 T1000,100" className="top-20 left-0 w-full h-64 opacity-20" />
+
                 <div className="absolute inset-0 opacity-[0.03] bg-[url('/assets/images/noise.png')] pointer-events-none" />
                 <div className="container mx-auto px-4 max-w-4xl relative z-10">
                     <FadeIn className="text-center">
-                        <h2 className="text-4xl lg:text-5xl font-heading mb-12 italic font-light">
-                            Vivir en <span className="text-[#D4A373] font-bold">modo supervivencia</span> no es vivir, es resistir mientras te consumes.
+                        <h2 className="text-4xl lg:text-5xl font-heading text-[#8C4005] mb-12 italic font-light">
+                            Vivir en <span className="text-[#B8835A] font-bold">modo supervivencia</span> no es vivir, es resistir mientras te consumes.
                         </h2>
-                        <div className="space-y-8 text-xl text-[#F7F3F0]/80 font-light leading-relaxed">
+                        <div className="space-y-8 text-xl text-[#F5EFE6]/80 font-light leading-relaxed">
                             <p>
                                 El cuerpo humano está diseñado para protegerse del peligro, pero no para vivir en él indefinidamente. Cuando el "modo alerta" se vuelve tu estado permanente, tu cerebro desconecta la creatividad y la visión de futuro para priorizar la respiración básica.
                             </p>
@@ -163,33 +168,33 @@ export default function VenezuelaEnElCuerpoPage() {
             </section>
 
             {/* 4. BIOGRAFÍA (YELITZE RANGEL) */}
-            <section className="py-32 bg-[#F7F3F0]">
+            <section className="py-32 bg-[#F5EFE6]">
                 <div className="container mx-auto px-4 max-w-6xl">
                     <div className="grid lg:grid-cols-2 gap-20 items-center">
                         <div className="relative">
                             <FadeIn>
-                                <div className="relative aspect-[3/4] w-full rounded-tr-[120px] rounded-bl-[120px] rounded-tl-none rounded-br-none overflow-hidden shadow-2xl border-x-4 border-t-4 border-white">
+                                <div className="relative aspect-[3/4] w-full rounded-tr-[120px] rounded-bl-[120px] rounded-tl-none rounded-br-none overflow-hidden shadow-2xl border-x-4 border-t-4 border-[#F5EFE6]">
                                     <Image
                                         src="/assets/images/yelitze/manifesto-new.jpg"
                                         alt="Yelitze Rangel"
                                         fill
                                         className="object-cover"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#7A5C43]/40 to-transparent" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#2D2926]/40 to-transparent" />
                                 </div>
-                                <div className="absolute -bottom-8 -right-8 bg-white p-8 rounded-3xl shadow-xl border border-[#F7F3F0]">
-                                    <p className="text-[#C05C3F] text-4xl font-bold font-heading">+8000</p>
-                                    <p className="text-[#7A5C43] text-sm font-bold uppercase tracking-widest">Vidas Impactadas</p>
+                                <div className="absolute -bottom-8 -right-8 bg-[#F5EFE6] p-8 rounded-3xl shadow-xl border border-[#F5EFE6]">
+                                    <p className="text-[#C1530A] text-4xl font-bold font-heading">+8000</p>
+                                    <p className="text-[#2D2926] text-sm font-bold uppercase tracking-widest">Vidas Impactadas</p>
                                 </div>
                             </FadeIn>
                         </div>
 
                         <div className="space-y-8">
                             <FadeIn>
-                                <span className="text-[#C05C3F] font-bold tracking-[0.4em] uppercase text-xs mb-6 block">Tu Guía en este Proceso</span>
-                                <h2 className="text-4xl lg:text-6xl font-heading text-[#3D4D3D] mb-8 font-bold italic">Yelitze Rangel</h2>
-                                <div className="w-24 h-px bg-[#C05C3F]/30 mb-8" />
-                                <div className="space-y-6 text-lg text-[#7A5C43] font-light leading-relaxed">
+                                <span className="text-[#C1530A] font-bold tracking-[0.4em] uppercase text-xs mb-6 block">Tu Guía en este Proceso</span>
+                                <h2 className="text-4xl lg:text-6xl font-heading text-[#8C4005] mb-8 font-bold italic">Yelitze Rangel</h2>
+                                <div className="w-24 h-px bg-[#C1530A]/30 mb-8" />
+                                <div className="space-y-6 text-lg text-[#2D2926] font-light leading-relaxed">
                                     <p>
                                         Psicóloga y especialista en <strong>Trauma Somático</strong>. Durante años he estudiado cómo las crisis sociales se graban en la fascia y el sistema nervioso de quienes las habitan.
                                     </p>
@@ -204,34 +209,34 @@ export default function VenezuelaEnElCuerpoPage() {
             </section>
 
             {/* 5. LA SOLUCIÓN (EL HITO) */}
-            <section className="py-32 bg-white">
+            <section className="py-32 bg-[#F5EFE6]">
                 <div className="container mx-auto px-4 max-w-5xl text-center">
                     <FadeIn>
-                        <h2 className="text-[#7A5C43] font-bold tracking-[0.4em] uppercase text-xs mb-8">El Método</h2>
-                        <h3 className="text-4xl lg:text-7xl font-heading text-[#3D4D3D] mb-12 font-bold leading-tight">
-                            Arquitectura <span className="text-[#C05C3F]">Intencional</span>
+                        <h2 className="text-[#2D2926] font-bold tracking-[0.4em] uppercase text-xs mb-8">El Método</h2>
+                        <h3 className="text-4xl lg:text-7xl font-heading text-[#8C4005] mb-12 font-bold leading-tight">
+                            Arquitectura <span className="text-[#C1530A]">Intencional</span>
                         </h3>
-                        <p className="text-2xl text-[#7A5C43] font-light max-w-3xl mx-auto italic mb-20">
+                        <p className="text-2xl text-[#2D2926] font-light max-w-3xl mx-auto italic mb-20">
                             Dejamos de reaccionar al entorno para empezar a diseñar nuestra respuesta interna.
                         </p>
                     </FadeIn>
 
                     <div className="grid md:grid-cols-2 gap-8 items-stretch">
-                        <FadeIn delay={0.2} className="flex-1 bg-[#F7F3F0] p-12 rounded-[3.5rem] border border-[#7A5C43]/10 relative group overflow-hidden">
+                        <FadeIn delay={0.2} className="flex-1 bg-[#F5EFE6] p-12 rounded-[3.5rem] border border-[#2D2926]/10 relative group overflow-hidden">
                             <div className="absolute top-0 right-0 p-8 opacity-5 -scale-x-100 group-hover:scale-x-110 transition-transform">
                                 <AlertCircle className="w-32 h-32" />
                             </div>
-                            <h4 className="text-6xl font-heading text-[#C05C3F]/20 mb-6 font-bold">01</h4>
-                            <h5 className="text-2xl font-bold text-[#3D4D3D] mb-6">Estado de Supervivencia</h5>
-                            <p className="text-[#7A5C43] font-light">Cuerpos tensos, mentes nubladas, decisiones basadas en el miedo al hoy.</p>
+                            <h4 className="text-6xl font-heading text-[#C1530A]/20 mb-6 font-bold">01</h4>
+                            <h5 className="text-2xl font-bold text-[#8C4005] mb-6">Estado de Supervivencia</h5>
+                            <p className="text-[#2D2926] font-light">Cuerpos tensos, mentes nubladas, decisiones basadas en el miedo al hoy.</p>
                         </FadeIn>
 
-                        <FadeIn delay={0.4} className="flex-1 bg-[#3D4D3D] p-12 rounded-[3.5rem] text-white relative group overflow-hidden shadow-2xl">
+                        <FadeIn delay={0.4} className="flex-1 bg-[#2D2926] p-12 rounded-[3.5rem] text-[#F5EFE6] relative group overflow-hidden shadow-2xl">
                             <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform">
                                 <Sparkles className="w-32 h-32" />
                             </div>
-                            <h4 className="text-6xl font-heading text-[#D4A373]/20 mb-6 font-bold">02</h4>
-                            <h5 className="text-2xl font-bold text-[#D4A373] mb-6">Arquitectura Intencional</h5>
+                            <h4 className="text-6xl font-heading text-[#B8835A]/20 mb-6 font-bold">02</h4>
+                            <h5 className="text-2xl font-bold text-[#8C4005] mb-6">Arquitectura Intencional</h5>
                             <p className="text-stone-300 font-light">Sistemas regulados, visión de largo plazo y capacidad real de crear abundancia.</p>
                         </FadeIn>
                     </div>
@@ -239,10 +244,10 @@ export default function VenezuelaEnElCuerpoPage() {
             </section>
 
             {/* 6. ENTREGABLES */}
-            <section className="py-32 bg-[#F7F3F0]">
+            <section className="py-32 bg-[#F5EFE6]">
                 <div className="container mx-auto px-4">
                     <FadeIn className="text-center mb-20">
-                        <h2 className="text-4xl lg:text-5xl font-heading text-[#3D4D3D] font-bold">Lo que recibirás gratis</h2>
+                        <h2 className="text-4xl lg:text-5xl font-heading text-[#8C4005] font-bold">Lo que recibirás gratis</h2>
                     </FadeIn>
 
                     <StaggerContainer className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
@@ -264,11 +269,11 @@ export default function VenezuelaEnElCuerpoPage() {
                             }
                         ].map((item, i) => (
                             <StaggerItem key={i} className="flex flex-col items-center text-center">
-                                <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-xl border border-[#7A5C43]/5 mb-8 group hover:scale-110 transition-transform">
-                                    <item.icon className="w-10 h-10 text-[#C05C3F]" />
+                                <div className="w-24 h-24 bg-[#F5EFE6] rounded-full flex items-center justify-center shadow-xl border border-[#2D2926]/5 mb-8 group hover:scale-110 transition-transform">
+                                    <item.icon className="w-10 h-10 text-[#C1530A]" />
                                 </div>
-                                <h4 className="text-2xl font-heading text-[#3D4D3D] mb-4 font-bold">{item.title}</h4>
-                                <p className="text-[#7A5C43] font-light leading-relaxed">{item.desc}</p>
+                                <h4 className="text-2xl font-heading text-[#8C4005] mb-4 font-bold">{item.title}</h4>
+                                <p className="text-[#2D2926] font-light leading-relaxed">{item.desc}</p>
                             </StaggerItem>
                         ))}
                     </StaggerContainer>
@@ -276,14 +281,14 @@ export default function VenezuelaEnElCuerpoPage() {
             </section>
 
             {/* 7. OFERTA */}
-            <section className="py-16 bg-white border-y border-[#7A5C43]/10">
+            <section className="py-16 bg-[#F5EFE6] border-y border-[#2D2926]/10">
                 <div className="container mx-auto px-4 text-center">
                     <FadeIn>
-                        <div className="inline-block bg-[#C05C3F]/10 px-8 py-3 rounded-full border border-[#C05C3F]/20 mb-6 font-bold">
-                            <span className="text-[#C05C3F] italic mr-2">Oportunidad Única:</span>
-                            <span className="text-[#3D4D3D] uppercase tracking-widest text-sm">Acceso Gratuito por tiempo limitado</span>
+                        <div className="inline-block bg-[#C1530A]/10 px-8 py-3 rounded-full border border-[#C1530A]/20 mb-6 font-bold">
+                            <span className="text-[#C1530A] italic mr-2">Oportunidad Única:</span>
+                            <span className="text-[#2D2926] uppercase tracking-widest text-sm">Acceso Gratuito por tiempo limitado</span>
                         </div>
-                        <p className="text-2xl text-[#7A5C43] font-light italic">
+                        <p className="text-2xl text-[#2D2926] font-light italic">
                             Valor Real del Contenido: <span className="line-through opacity-40">$120 USD</span>
                         </p>
                     </FadeIn>
@@ -291,11 +296,11 @@ export default function VenezuelaEnElCuerpoPage() {
             </section>
 
             {/* 8. PRUEBA SOCIAL */}
-            <section className="py-32 bg-[#F7F3F0] overflow-hidden">
+            <section className="py-32 bg-[#F5EFE6] overflow-hidden">
                 <div className="container mx-auto px-4">
                     <FadeIn className="text-center mb-20">
-                        <h2 className="text-4xl lg:text-5xl font-heading text-[#3D4D3D] font-bold">Resultados Reales</h2>
-                        <p className="text-[#7A5C43] mt-4 font-light italic">De quienes ya habitan una nueva soberanía corporal.</p>
+                        <h2 className="text-4xl lg:text-5xl font-heading text-[#8C4005] font-bold">Resultados Reales</h2>
+                        <p className="text-[#2D2926] mt-4 font-light italic">De quienes ya habitan una nueva soberanía corporal.</p>
                     </FadeIn>
 
                     <StaggerContainer className="flex gap-8 overflow-x-auto pb-12 snap-x hide-scrollbar">
@@ -316,18 +321,18 @@ export default function VenezuelaEnElCuerpoPage() {
                                 text: "Entendí que mi rabia por el país estaba congelada en mis hombros. Soltar eso fue mi verdadera libertad."
                             }
                         ].map((item, i) => (
-                            <StaggerItem key={i} className="min-w-[320px] md:min-w-[450px] bg-white p-12 rounded-[3.5rem] shadow-xl border border-stone-100 snap-center">
+                            <StaggerItem key={i} className="min-w-[320px] md:min-w-[450px] bg-[#F5EFE6] p-12 rounded-[3.5rem] shadow-xl border border-stone-100 snap-center">
                                 <div className="flex gap-1 mb-8">
-                                    {[1, 2, 3, 4, 5].map(v => <Star key={v} className="w-5 h-5 fill-[#D4A373] text-[#D4A373]" />)}
+                                    {[1, 2, 3, 4, 5].map(v => <Star key={v} className="w-5 h-5 fill-[#B8835A] text-[#B8835A]" />)}
                                 </div>
-                                <p className="text-xl text-[#3D4D3D] mb-8 font-light italic leading-relaxed">"{item.text}"</p>
+                                <p className="text-xl text-[#2D2926] mb-8 font-light italic leading-relaxed">"{item.text}"</p>
                                 <div className="flex items-center gap-4 border-t border-stone-100 pt-8">
-                                    <div className="w-12 h-12 bg-[#D4A373] rounded-full flex items-center justify-center text-white font-bold">
+                                    <div className="w-12 h-12 bg-[#B8835A] rounded-full flex items-center justify-center text-[#F5EFE6] font-bold">
                                         {item.name[0]}
                                     </div>
                                     <div>
-                                        <p className="font-bold text-[#3D4D3D]">{item.name}</p>
-                                        <p className="text-xs text-[#7A5C43] uppercase tracking-widest font-bold">{item.role}</p>
+                                        <p className="font-bold text-[#2D2926]">{item.name}</p>
+                                        <p className="text-xs text-[#2D2926] uppercase tracking-widest font-bold">{item.role}</p>
                                     </div>
                                 </div>
                             </StaggerItem>
@@ -337,12 +342,12 @@ export default function VenezuelaEnElCuerpoPage() {
             </section>
 
             {/* 9. GARANTÍA */}
-            <section className="py-24 bg-white">
+            <section className="py-24 bg-[#F5EFE6]">
                 <div className="container mx-auto px-4 max-w-3xl text-center">
                     <FadeIn className="flex flex-col items-center">
-                        <ShieldCheck className="w-20 h-20 text-[#3D4D3D] mb-8 opacity-60" />
-                        <h2 className="text-2xl font-bold text-[#3D4D3D] mb-6">Metodología Científica</h2>
-                        <p className="text-lg text-[#7A5C43] font-light leading-relaxed italic">
+                        <ShieldCheck className="w-20 h-20 text-[#2D2926] mb-8 opacity-60" />
+                        <h2 className="text-2xl font-bold text-[#8C4005] mb-6">Metodología Científica</h2>
+                        <p className="text-lg text-[#2D2926] font-light leading-relaxed italic">
                             Todas las dinámicas están fundamentadas en la <strong>Teoría Polivagal</strong> y el estudio del Sistema Nervioso Central. No es una charla motivacional; es un entrenamiento biológico.
                         </p>
                     </FadeIn>
@@ -350,10 +355,10 @@ export default function VenezuelaEnElCuerpoPage() {
             </section>
 
             {/* 10. FAQ */}
-            <section className="py-32 bg-[#F7F3F0]">
+            <section className="py-32 bg-[#F5EFE6]">
                 <div className="container mx-auto px-4 max-w-4xl">
                     <FadeIn className="text-center mb-16">
-                        <h2 className="text-4xl font-heading text-[#3D4D3D] font-bold">Preguntas Frecuentes</h2>
+                        <h2 className="text-4xl font-heading text-[#8C4005] font-bold">Preguntas Frecuentes</h2>
                     </FadeIn>
 
                     <div className="space-y-4">
@@ -376,16 +381,16 @@ export default function VenezuelaEnElCuerpoPage() {
                             }
                         ].map((item, i) => (
                             <FadeIn key={i}>
-                                <div className="border border-[#7A5C43]/10 bg-white rounded-2xl overflow-hidden hover:shadow-md transition-shadow">
+                                <div className="border border-[#2D2926]/10 bg-[#F5EFE6] rounded-2xl overflow-hidden hover:shadow-md transition-shadow">
                                     <button
                                         onClick={() => toggleFaq(i)}
                                         className="w-full px-8 py-6 flex items-center justify-between text-left group"
                                     >
-                                        <span className="text-lg font-bold text-[#3D4D3D]">{item.q}</span>
-                                        <ChevronDown className={`w-5 h-5 text-[#C05C3F] transition-transform duration-300 ${openFaq === i ? "rotate-180" : ""}`} />
+                                        <span className="text-lg font-bold text-[#2D2926]">{item.q}</span>
+                                        <ChevronDown className={`w-5 h-5 text-[#C1530A] transition-transform duration-300 ${openFaq === i ? "rotate-180" : ""}`} />
                                     </button>
                                     <div className={`transition-all duration-300 ease-in-out ${openFaq === i ? "max-h-48 opacity-100 p-8 pt-0" : "max-h-0 opacity-0 overflow-hidden"}`}>
-                                        <p className="text-[#7A5C43] font-light leading-relaxed">{item.a}</p>
+                                        <p className="text-[#2D2926] font-light leading-relaxed">{item.a}</p>
                                     </div>
                                 </div>
                             </FadeIn>
@@ -395,107 +400,110 @@ export default function VenezuelaEnElCuerpoPage() {
             </section>
 
             {/* 11. FOOTER (FORMULARIO) */}
-            <section id="registro" className="py-40 bg-[#3D4D3D] text-white overflow-hidden relative">
-                {/* Visual Cue for QR */}
-                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-[#D4A373] to-transparent" />
+            <section id="registro" className="py-40 bg-[#2D2926] text-[#F5EFE6] overflow-hidden relative">
+                {/* Visual Cue for QR & Mystical Elements */}
+                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-[#B8835A] to-transparent" />
+                <FloatingStars count={40} className="opacity-60" />
+                <SacredGeometry className="right-[-20%] bottom-[-20%] w-[1000px] h-[1000px] text-[#B8835A]/5" />
+                <ThinGoldenLine d="M0,200 Q300,0 600,200 T1200,200" className="bottom-0 left-0 w-full h-96 opacity-10" />
 
-                <div className="container mx-auto px-4 max-w-6xl">
+                <div className="container mx-auto px-4 max-w-6xl relative z-10">
                     <div className="grid lg:grid-cols-2 gap-20 items-center">
                         <FadeIn>
-                            <h2 className="text-4xl lg:text-6xl font-heading mb-8 font-bold italic leading-tight">
-                                Tu nueva seguridad <br /> corporal comienza <span className="text-[#D4A373]">aquí.</span>
+                            <h2 className="text-4xl lg:text-6xl font-heading text-[#8C4005] mb-8 font-bold italic leading-tight">
+                                Tu nueva seguridad <br /> corporal comienza <span className="text-[#B8835A]">aquí.</span>
                             </h2>
                             <p className="text- stone-300 text-xl font-light mb-12 opacity-80 leading-relaxed">
                                 Regístrate hoy y conviértete en el arquitecto de tu propia regulación. Al enviar tus datos, recibirás tu Pase QR de Acceso inmediato.
                             </p>
                             <div className="flex flex-col gap-6">
                                 <div className="flex items-center gap-4 opacity-60">
-                                    <div className="w-10 h-10 border border-[#D4A373]/30 rounded-full flex items-center justify-center">
-                                        <CheckCircle2 className="w-5 h-5 text-[#D4A373]" />
+                                    <div className="w-10 h-10 border border-[#B8835A]/30 rounded-full flex items-center justify-center">
+                                        <CheckCircle2 className="w-5 h-5 text-[#B8835A]" />
                                     </div>
                                     <p className="text-sm tracking-widest uppercase font-bold">Compromiso de Privacidad</p>
                                 </div>
                                 <div className="flex items-center gap-4 opacity-60">
-                                    <div className="w-10 h-10 border border-[#D4A373]/30 rounded-full flex items-center justify-center">
-                                        <CheckCircle2 className="w-5 h-5 text-[#D4A373]" />
+                                    <div className="w-10 h-10 border border-[#B8835A]/30 rounded-full flex items-center justify-center">
+                                        <CheckCircle2 className="w-5 h-5 text-[#B8835A]" />
                                     </div>
                                     <p className="text-sm tracking-widest uppercase font-bold">Contenido Certificado</p>
                                 </div>
                             </div>
                         </FadeIn>
 
-                        <FadeIn delay={0.3} className="bg-[#F7F3F0] p-10 lg:p-14 rounded-[4rem] text-[#3D4D3D] shadow-2xl relative min-h-[500px] flex flex-col justify-center">
+                        <FadeIn delay={0.3} className="bg-[#F5EFE6] p-10 lg:p-14 rounded-[4rem] text-[#2D2926] shadow-2xl relative min-h-[500px] flex flex-col justify-center">
                             {!submitted ? (
                                 <>
                                     {/* Form Header */}
                                     <div className="flex items-center gap-6 mb-12">
-                                        <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center shadow-lg border border-stone-100">
-                                            <QrCode className="w-10 h-10 text-[#C05C3F]" />
+                                        <div className="w-20 h-20 bg-[#F5EFE6] rounded-3xl flex items-center justify-center shadow-lg border border-stone-100">
+                                            <QrCode className="w-10 h-10 text-[#C1530A]" />
                                         </div>
                                         <div>
-                                            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#C05C3F] mb-1">Paso Final</p>
-                                            <h4 className="text-2xl font-bold font-heading">Registro Oficial</h4>
+                                            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#C1530A] mb-1">Paso Final</p>
+                                            <h4 className="text-2xl font-bold font-heading text-[#8C4005]">Registro Oficial</h4>
                                         </div>
                                     </div>
 
                                     <form onSubmit={handleSubmit} className="space-y-6">
                                         <div>
-                                            <label className="text-xs font-bold text-[#7A5C43] uppercase tracking-widest mb-3 block ml-2">Nombre Completo</label>
+                                            <label className="text-xs font-bold text-[#2D2926] uppercase tracking-widest mb-3 block ml-2">Nombre Completo</label>
                                             <input
                                                 type="text"
-                                                className="w-full bg-white border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C05C3F]/20 focus:border-[#C05C3F] transition-all outline-none"
+                                                className="w-full bg-[#F5EFE6] border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C1530A]/20 focus:border-[#C1530A] transition-all outline-none"
                                                 placeholder="Tu nombre aquí"
                                                 required
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-xs font-bold text-[#7A5C43] uppercase tracking-widest mb-3 block ml-2">Email Principal</label>
+                                            <label className="text-xs font-bold text-[#2D2926] uppercase tracking-widest mb-3 block ml-2">Email Principal</label>
                                             <input
                                                 type="email"
-                                                className="w-full bg-white border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C05C3F]/20 focus:border-[#C05C3F] transition-all outline-none"
+                                                className="w-full bg-[#F5EFE6] border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C1530A]/20 focus:border-[#C1530A] transition-all outline-none"
                                                 placeholder="tu@email.com"
                                                 required
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-xs font-bold text-[#7A5C43] uppercase tracking-widest mb-3 block ml-2">WhatsApp</label>
+                                            <label className="text-xs font-bold text-[#2D2926] uppercase tracking-widest mb-3 block ml-2">WhatsApp</label>
                                             <input
                                                 type="tel"
-                                                className="w-full bg-white border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C05C3F]/20 focus:border-[#C05C3F] transition-all outline-none"
+                                                className="w-full bg-[#F5EFE6] border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C1530A]/20 focus:border-[#C1530A] transition-all outline-none"
                                                 placeholder="+58 ..."
                                                 required
                                             />
                                         </div>
                                         <button
                                             type="submit"
-                                            className="w-full bg-[#C05C3F] text-white py-6 rounded-3xl font-bold text-lg shadow-xl hover:bg-[#A84A2F] transition-all transform hover:-translate-y-1 mt-6 flex items-center justify-center gap-4 group"
+                                            className="w-full bg-[#C1530A] text-[#F5EFE6] py-6 rounded-3xl font-bold text-lg shadow-xl hover:bg-[#A84A2F] transition-all transform hover:-translate-y-1 mt-6 flex items-center justify-center gap-4 group"
                                         >
                                             Generar mi Pase QR y Enviar Test
                                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                                         </button>
                                     </form>
 
-                                    <p className="text-center mt-8 text-[10px] text-[#7A5C43] uppercase tracking-widest font-bold opacity-60">
+                                    <p className="text-center mt-8 text-[10px] text-[#2D2926] uppercase tracking-widest font-bold opacity-60">
                                         Al registrarte aceptas nuestra política de privacidad
                                     </p>
                                 </>
                             ) : (
                                 <FadeIn className="text-center">
                                     <div className="flex flex-col items-center">
-                                        <div className="bg-white p-6 rounded-3xl shadow-xl border-4 border-[#3D4D3D] mb-8 scale-110">
-                                            <QrCode className="w-40 h-40 text-[#3D4D3D]" />
+                                        <div className="bg-[#F5EFE6] p-6 rounded-3xl shadow-xl border-4 border-[#2D2926] mb-8 scale-110">
+                                            <QrCode className="w-40 h-40 text-[#2D2926]" />
                                             <div className="mt-4 pt-4 border-t border-stone-100">
-                                                <p className="text-[10px] font-bold uppercase tracking-widest text-[#C05C3F]">Pase Personalizado</p>
-                                                <p className="text-xs font-bold text-[#3D4D3D]">VENEZUELA-2026-REG</p>
+                                                <p className="text-[10px] font-bold uppercase tracking-widest text-[#C1530A]">Pase Personalizado</p>
+                                                <p className="text-xs font-bold text-[#2D2926]">VENEZUELA-2026-REG</p>
                                             </div>
                                         </div>
-                                        <h4 className="text-3xl font-bold font-heading text-[#3D4D3D] mb-4">¡Registro Exitoso!</h4>
-                                        <p className="text-[#7A5C43] font-light leading-relaxed mb-8">
+                                        <h4 className="text-3xl font-bold font-heading text-[#8C4005] mb-4">¡Registro Exitoso!</h4>
+                                        <p className="text-[#2D2926] font-light leading-relaxed mb-8">
                                             Tu Pase QR ha sido generado. También hemos enviado el Test de Percepción y tu eBook a tu correo electrónico.
                                         </p>
                                         <button
                                             onClick={() => window.print()}
-                                            className="flex items-center gap-2 text-[#C05C3F] font-bold uppercase tracking-widest text-sm hover:opacity-70 transition-opacity"
+                                            className="flex items-center gap-2 text-[#C1530A] font-bold uppercase tracking-widest text-sm hover:opacity-70 transition-opacity"
                                         >
                                             Descargar Pase QR <CheckCircle2 className="w-4 h-4" />
                                         </button>
@@ -507,7 +515,7 @@ export default function VenezuelaEnElCuerpoPage() {
                 </div>
 
                 {/* Final Credits */}
-                <div className="container mx-auto px-4 mt-32 border-t border-white/5 pt-12 flex flex-col md:flex-row justify-between items-center gap-8 opacity-40">
+                <div className="container mx-auto px-4 mt-32 border-t border-[#F5EFE6]/5 pt-12 flex flex-col md:flex-row justify-between items-center gap-8 opacity-40">
                     &copy; 2026 Yelitze Rangel. Todos los derechos reservados. | Desarrollado por Kick-Off Development | Diseñado por Digital Marketing DMK
                     <div className="flex gap-8">
                         <Heart className="w-4 h-4" />
