@@ -1,10 +1,10 @@
 
 # Base image
 FROM node:20-alpine AS base
+RUN apk add --no-cache openssl libc6-compat
 
 # Install dependencies only when needed
 FROM base AS deps
-RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Install dependencies
@@ -33,9 +33,8 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Install OpenSSL for Prisma and libc6-compat for binaries
-RUN apk add --no-cache openssl libc6-compat && \
-    npm install -g prisma
+# Install Prisma CLI globally for migrations
+RUN npm install -g prisma
 
 # Create a non-root user
 RUN addgroup --system --gid 1001 nodejs
