@@ -225,7 +225,7 @@ export default function VenezuelaEnElCuerpoPage() {
                                 <div className="w-24 h-px bg-[#C1530A]/30 mb-8" />
                                 <div className="space-y-6 text-lg text-[#2D2926] font-light leading-relaxed">
                                     <p>
-                                        Soy Yelitze Rangel, psicóloga - terapeuta somática especializada en el descongelamiento del trauma corporal. A lo largo de mi carrera, he acompañado a cientos de personas en su proceso de regulación del sistema nervioso y en la sanación de memorias atrapadas en el cuerpo. Lo que vengo a compartir hoy no es solo un conocimiento, es un proceso de transformación profundo que cada uno de nosotros puede iniciar desde dentro.
+                                        Soy <strong className="text-[#8C4005] font-bold">Yelitze Rangel</strong>, psicóloga - terapeuta somática especializada en el descongelamiento del trauma corporal. A lo largo de mi carrera, he acompañado a cientos de personas en su proceso de regulación del sistema nervioso y en la sanación de memorias atrapadas en el cuerpo. Lo que vengo a compartir hoy no es solo un conocimiento, es un proceso de transformación profundo que cada uno de nosotros puede iniciar desde dentro.
                                     </p>
                                     <p>
                                         He liderado este proceso terapéutico acompañando a personas en distintos países, integrando ciencia, experiencia y sabiduría ancestral.
@@ -243,7 +243,7 @@ export default function VenezuelaEnElCuerpoPage() {
                     <FadeIn>
                         <h2 className="text-[#2D2926] font-bold tracking-[0.4em] uppercase text-xs mb-8">El Método</h2>
                         <h3 className="text-4xl lg:text-7xl font-heading text-[#8C4005] mb-12 font-bold leading-tight">
-                            Arquitectura <span className="text-[#C1530A]">Intencional</span>
+                            Arquitectura de vida <br className="md:hidden" /> <span className="text-[#C1530A]">Intencional</span>
                         </h3>
                         <p className="text-2xl text-[#2D2926] font-light max-w-3xl mx-auto italic mb-20">
                             Dejamos de reaccionar al entorno para empezar a diseñar nuestra respuesta interna.
