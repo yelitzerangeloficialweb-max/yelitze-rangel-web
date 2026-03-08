@@ -53,5 +53,8 @@ EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
+# Ensure Prisma uses the correct database path
+ENV DATABASE_URL="file:/app/prisma/dev.db"
+
 # Run migrations and then start the server
 CMD ["sh", "-c", "prisma migrate deploy && node server.js"]
