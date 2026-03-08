@@ -93,14 +93,14 @@ export default function VenezuelaEnElCuerpoPage() {
                         </div>
                     </FadeIn>
 
-                    <ScaleIn delay={0.2} className="relative aspect-[4/5] lg:aspect-square">
-                        <div className="absolute inset-0 border-2 border-[#B8835A]/20 rounded-[3rem] -rotate-6 scale-95" />
-                        <div className="relative h-full w-full rounded-[3rem] overflow-hidden shadow-2xl border-4 border-[#F5EFE6]">
+                    <ScaleIn delay={0.2} className="relative aspect-[4/5] lg:aspect-square group cursor-pointer">
+                        <div className="absolute inset-0 border-2 border-[#B8835A]/20 rounded-[3rem] -rotate-6 scale-95 group-hover:rotate-0 transition-transform duration-500" />
+                        <div className="relative h-full w-full rounded-[3rem] overflow-hidden shadow-2xl border-4 border-[#F5EFE6] transition-transform duration-500 group-hover:scale-[1.03]">
                             <Image
-                                src="/assets/images/venezuela/hero-bg.jpg"
+                                src="/assets/images/venezuela/hero-venezuela-new.jpg"
                                 alt="Venezuela en el Cuerpo"
                                 fill
-                                className="object-cover"
+                                className="object-cover transition-transform duration-700 group-hover:scale-110"
                                 priority
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#2D2926]/40 to-transparent" />
