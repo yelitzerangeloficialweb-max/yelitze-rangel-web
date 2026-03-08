@@ -64,7 +64,7 @@ export const WaveDivider = ({
     fill?: string,
     position?: "top" | "bottom"
 }) => (
-    <div className={`absolute left-0 w-full overflow-hidden leading-none z-0 ${position === 'top' ? 'top-[-1px] scale-y-[-1]' : 'bottom-[-1px]'} ${className}`}>
+    <div className={`absolute left-0 w-full overflow-hidden leading-none z-0 ${position === 'top' ? 'top-[-1px]' : 'bottom-[-1px] scale-y-[-1]'} ${className}`}>
         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-[calc(100%+2px)] left-[-1px] h-[70px] md:h-[140px]">
             {/* Main Brush Shape */}
             <path
