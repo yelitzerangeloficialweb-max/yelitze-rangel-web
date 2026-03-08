@@ -10,10 +10,12 @@ import {
     Zap, BatteryMedium, Brain, Repeat
 } from "lucide-react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn } from "@/components/ui/motion";
 import { SacredGeometry, FloatingStars, ThinGoldenLine, WaveDivider } from "@/components/ui/MysticalElements";
 
 export default function VenezuelaEnElCuerpoPage() {
+    const router = useRouter();
     const [submitted, setSubmitted] = useState(false);
     const [openFaq, setOpenFaq] = useState<number | null>(null);
 
@@ -21,9 +23,34 @@ export default function VenezuelaEnElCuerpoPage() {
         setOpenFaq(openFaq === index ? null : index);
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setSubmitted(true);
+        const formData = new FormData(e.currentTarget);
+        const name = formData.get("name") as string;
+        const email = formData.get("email") as string;
+        const city = formData.get("city") as string;
+        const whatsapp = formData.get("phone") as string;
+
+        try {
+            // Save to database
+            const res = await fetch('/api/venezuela-en-el-cuerpo/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, whatsapp, city }),
+            });
+
+            if (res.ok) {
+                // Redirect to success page with query params
+                router.push(`/venezuela-en-el-cuerpo/success?name=${encodeURIComponent(name)}&city=${encodeURIComponent(city)}`);
+            } else {
+                console.error('Registration failed');
+                // You could add a toast or error state here if needed
+                alert("Hubo un error al registrarte. Por favor intenta de nuevo.");
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert("Error de conexión. Intenta de nuevo.");
+        }
     };
 
     return (
@@ -60,7 +87,7 @@ export default function VenezuelaEnElCuerpoPage() {
                                 href="#registro"
                                 className="bg-[#C1530A] text-[#F5EFE6] px-10 py-5 rounded-full font-bold shadow-xl hover:bg-[#A84A2F] transition-all flex items-center justify-center gap-3 group"
                             >
-                                Generar mi Pase QR y Enviar Test
+                                Generar mi pase QR y recibir las coordenadas
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </Link>
                         </div>
@@ -465,106 +492,83 @@ export default function VenezuelaEnElCuerpoPage() {
                         </FadeIn>
 
                         <FadeIn delay={0.3} className="bg-[#F5EFE6] p-10 lg:p-14 rounded-[4rem] text-[#2D2926] shadow-2xl relative min-h-[500px] flex flex-col justify-center">
-                            {!submitted ? (
-                                <>
-                                    {/* Form Header */}
-                                    <div className="flex items-center gap-6 mb-12">
-                                        <div className="w-20 h-20 bg-[#F5EFE6] rounded-3xl flex items-center justify-center shadow-lg border border-stone-100">
-                                            <QrCode className="w-10 h-10 text-[#C1530A]" />
-                                        </div>
-                                        <div>
-                                            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#C1530A] mb-1">Paso Final</p>
-                                            <h4 className="text-2xl font-bold font-heading text-[#8C4005]">Registro Oficial</h4>
-                                        </div>
-                                    </div>
+                            {/* Form Header */}
+                            <div className="flex items-center gap-6 mb-12">
+                                <div className="w-20 h-20 bg-[#F5EFE6] rounded-3xl flex items-center justify-center shadow-lg border border-stone-100">
+                                    <QrCode className="w-10 h-10 text-[#C1530A]" />
+                                </div>
+                                <div>
+                                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#C1530A] mb-1">Paso Final</p>
+                                    <h4 className="text-2xl font-bold font-heading text-[#8C4005]">Registro Oficial</h4>
+                                </div>
+                            </div>
 
-                                    <form onSubmit={handleSubmit} className="space-y-6">
-                                        <div>
-                                            <label className="text-xs font-bold text-[#2D2926] uppercase tracking-widest mb-3 block ml-2">Nombre Completo</label>
-                                            <input
-                                                type="text"
-                                                className="w-full bg-[#F5EFE6] border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C1530A]/20 focus:border-[#C1530A] transition-all outline-none"
-                                                placeholder="(Para tu pase personalizado)"
-                                                required
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="text-xs font-bold text-[#2D2926] uppercase tracking-widest mb-3 block ml-2">Email Principal</label>
-                                            <input
-                                                type="email"
-                                                className="w-full bg-[#F5EFE6] border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C1530A]/20 focus:border-[#C1530A] transition-all outline-none"
-                                                placeholder="tu@correo.com"
-                                                required
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="text-xs font-bold text-[#2D2926] uppercase tracking-widest mb-3 block ml-2">Selecciona tu Ciudad</label>
-                                            <div className="relative">
-                                                <select
-                                                    className="w-full bg-[#F5EFE6] border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C1530A]/20 focus:border-[#C1530A] transition-all outline-none appearance-none cursor-pointer"
-                                                    required
-                                                    defaultValue=""
-                                                >
-                                                    <option value="" disabled>Selecciona una opción...</option>
-                                                    <option value="caracas">Caracas</option>
-                                                    <option value="valencia">Valencia</option>
-                                                    <option value="puerto-cabello">Puerto Cabello</option>
-                                                    <option value="maracay">Maracay</option>
-                                                    <option value="barquisimeto">Barquisimeto</option>
-                                                    <option value="maracaibo">Maracaibo</option>
-                                                </select>
-                                                <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 w-5 h-5 text-[#C1530A] pointer-events-none" />
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <label className="text-xs font-bold text-[#2D2926] uppercase tracking-widest mb-3 block ml-2">WhatsApp</label>
-                                            <input
-                                                type="tel"
-                                                name="phone"
-                                                className="w-full bg-[#F5EFE6] border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C1530A]/20 focus:border-[#C1530A] transition-all outline-none"
-                                                placeholder="(Donde recibirás coordenadas y QR)"
-                                                required
-                                            />
-                                        </div>
-                                        <button
-                                            type="submit"
-                                            className="w-full bg-[#C1530A] text-[#F5EFE6] py-6 rounded-3xl font-bold md:text-lg shadow-xl hover:bg-[#A84A2F] transition-all transform hover:-translate-y-1 mt-6 flex items-center justify-center gap-4 group"
+                            <form onSubmit={handleSubmit} className="space-y-6">
+                                <div>
+                                    <label className="text-xs font-bold text-[#2D2926] uppercase tracking-widest mb-3 block ml-2">Nombre Completo</label>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        className="w-full bg-[#F5EFE6] border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C1530A]/20 focus:border-[#C1530A] transition-all outline-none"
+                                        placeholder="(Para tu pase personalizado)"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label className="text-xs font-bold text-[#2D2926] uppercase tracking-widest mb-3 block ml-2">Email Principal</label>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        className="w-full bg-[#F5EFE6] border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C1530A]/20 focus:border-[#C1530A] transition-all outline-none"
+                                        placeholder="tu@correo.com"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label className="text-xs font-bold text-[#2D2926] uppercase tracking-widest mb-3 block ml-2">Selecciona tu Ciudad</label>
+                                    <div className="relative">
+                                        <select
+                                            name="city"
+                                            className="w-full bg-[#F5EFE6] border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C1530A]/20 focus:border-[#C1530A] transition-all outline-none appearance-none cursor-pointer"
+                                            required
+                                            defaultValue=""
                                         >
-                                            <span className="text-center">GENERAR MI PASE QR Y<br className="sm:hidden" /> RECIBIR COORDENADAS</span>
-                                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                                        </button>
-                                    </form>
-
-                                    <p className="text-center mt-6 text-xs text-[#2D2926] font-light opacity-80">
-                                        Toda la información sobre el lugar y la hora se enviará a tu WhatsApp junto con tu Pase QR al finalizar el registro.
-                                    </p>
-                                    <p className="text-center mt-2 text-[10px] text-[#2D2926] uppercase tracking-widest font-bold opacity-40">
-                                        Al registrarte aceptas nuestra política de privacidad
-                                    </p>
-                                </>
-                            ) : (
-                                <FadeIn className="text-center">
-                                    <div className="flex flex-col items-center">
-                                        <div className="bg-[#F5EFE6] p-6 rounded-3xl shadow-xl border-4 border-[#2D2926] mb-8 scale-110">
-                                            <QrCode className="w-40 h-40 text-[#2D2926]" />
-                                            <div className="mt-4 pt-4 border-t border-stone-100">
-                                                <p className="text-[10px] font-bold uppercase tracking-widest text-[#C1530A]">Pase Personalizado</p>
-                                                <p className="text-xs font-bold text-[#2D2926]">VENEZUELA-2026-REG</p>
-                                            </div>
-                                        </div>
-                                        <h4 className="text-3xl font-bold font-heading text-[#8C4005] mb-4">¡Registro Exitoso!</h4>
-                                        <p className="text-[#2D2926] font-light leading-relaxed mb-8">
-                                            Tu Pase QR ha sido generado. También hemos enviado el Test de Percepción y tu eBook a tu correo electrónico.
-                                        </p>
-                                        <button
-                                            onClick={() => window.print()}
-                                            className="flex items-center gap-2 text-[#C1530A] font-bold uppercase tracking-widest text-sm hover:opacity-70 transition-opacity"
-                                        >
-                                            Descargar Pase QR <CheckCircle2 className="w-4 h-4" />
-                                        </button>
+                                            <option value="" disabled>Selecciona una opción...</option>
+                                            <option value="caracas">Caracas</option>
+                                            <option value="valencia">Valencia</option>
+                                            <option value="puerto-cabello">Puerto Cabello</option>
+                                            <option value="maracay">Maracay</option>
+                                            <option value="barquisimeto">Barquisimeto</option>
+                                            <option value="maracaibo">Maracaibo</option>
+                                        </select>
+                                        <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 w-5 h-5 text-[#C1530A] pointer-events-none" />
                                     </div>
-                                </FadeIn>
-                            )}
+                                </div>
+                                <div>
+                                    <label className="text-xs font-bold text-[#2D2926] uppercase tracking-widest mb-3 block ml-2">WhatsApp</label>
+                                    <input
+                                        type="tel"
+                                        name="phone"
+                                        className="w-full bg-[#F5EFE6] border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C1530A]/20 focus:border-[#C1530A] transition-all outline-none"
+                                        placeholder="(Donde recibirás coordenadas y QR)"
+                                        required
+                                    />
+                                </div>
+                                <button
+                                    type="submit"
+                                    className="w-full bg-[#C1530A] text-[#F5EFE6] py-6 rounded-3xl font-bold md:text-lg shadow-xl hover:bg-[#A84A2F] transition-all transform hover:-translate-y-1 mt-6 flex items-center justify-center gap-4 group"
+                                >
+                                    <span className="text-center">GENERAR MI PASE QR Y<br className="sm:hidden" /> RECIBIR COORDENADAS</span>
+                                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                </button>
+                            </form>
+
+                            <p className="text-center mt-6 text-xs text-[#2D2926] font-light opacity-80">
+                                Toda la información sobre el lugar y la hora se enviará a tu WhatsApp junto con tu Pase QR al finalizar el registro.
+                            </p>
+                            <p className="text-center mt-2 text-[10px] text-[#2D2926] uppercase tracking-widest font-bold opacity-40">
+                                Al registrarte aceptas nuestra política de privacidad
+                            </p>
                         </FadeIn>
                     </div>
                 </div>

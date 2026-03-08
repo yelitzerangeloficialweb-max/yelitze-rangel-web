@@ -1,0 +1,170 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { Download, Loader2, Users, MapPin, Calendar, Phone } from 'lucide-react';
+import { format } from 'date-fns';
+import { es } from 'date-fns/locale';
+
+interface Registration {
+    id: string;
+    createdAt: string;
+    name: string;
+    email: string;
+    whatsapp: string;
+    city: string;
+}
+
+export default function AdminVenezuelaPage() {
+    const [registrations, setRegistrations] = useState<Registration[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        fetchRegistrations();
+    }, []);
+
+    const fetchRegistrations = async () => {
+        try {
+            const res = await fetch('/api/admin/venezuela/registrations');
+            const data = await res.json();
+            setRegistrations(data);
+        } catch (error) {
+            console.error('Error fetching registrations:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const exportToCSV = () => {
+        if (registrations.length === 0) return;
+
+        const headers = ['Nombre', 'Email', 'WhatsApp', 'Ciudad', 'Fecha de Registro'];
+        const csvContent = [
+            headers.join(','),
+            ...registrations.map(r => [
+                `"${r.name}"`,
+                `"${r.email}"`,
+                `"${r.whatsapp}"`,
+                `"${r.city}"`,
+                `"${format(new Date(r.createdAt), 'yyyy-MM-dd HH:mm:ss')}"`
+            ].join(','))
+        ].join('\n');
+
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        const url = URL.createObjectURL(blob);
+        link.setAttribute('href', url);
+        link.setAttribute('download', `registros_venezuela_${new Date().toISOString().split('T')[0]}.csv`);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center py-20">
+                <Loader2 className="w-8 h-8 animate-spin text-[var(--color-primary)]" />
+            </div>
+        );
+    }
+
+    return (
+        <div className="space-y-8">
+            <div className="flex items-center justify-between">
+                <div>
+                    <h1 className="text-3xl font-heading text-[var(--color-primary)] font-bold mb-2">
+                        Venezuela en el Cuerpo
+                    </h1>
+                    <p className="text-stone-500">
+                        {registrations.length} personas inscritas en total
+                    </p>
+                </div>
+                <button
+                    onClick={exportToCSV}
+                    disabled={registrations.length === 0}
+                    className="flex items-center gap-2 px-6 py-3 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition-colors disabled:opacity-50"
+                >
+                    <Download className="w-5 h-5" />
+                    Exportar CSV
+                </button>
+            </div>
+
+            {/* Quick Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-white p-6 rounded-3xl shadow-sm border border-stone-100 flex items-center gap-6">
+                    <div className="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center">
+                        <Users className="w-7 h-7 text-blue-600" />
+                    </div>
+                    <div>
+                        <p className="text-sm text-stone-500 font-medium">Total Inscritos</p>
+                        <p className="text-2xl font-bold text-[var(--color-primary)]">{registrations.length}</p>
+                    </div>
+                </div>
+                <div className="bg-white p-6 rounded-3xl shadow-sm border border-stone-100 flex items-center gap-6">
+                    <div className="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center">
+                        <MapPin className="w-7 h-7 text-orange-600" />
+                    </div>
+                    <div>
+                        <p className="text-sm text-stone-500 font-medium">Ciudades Impactadas</p>
+                        <p className="text-2xl font-bold text-[var(--color-primary)]">
+                            {new Set(registrations.map(r => r.city)).size}
+                        </p>
+                    </div>
+                </div>
+                <div className="bg-white p-6 rounded-3xl shadow-sm border border-stone-100 flex items-center gap-6">
+                    <div className="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center">
+                        <Phone className="w-7 h-7 text-purple-600" />
+                    </div>
+                    <div>
+                        <p className="text-sm text-stone-500 font-medium">Últimas 24h</p>
+                        <p className="text-2xl font-bold text-[var(--color-primary)]">
+                            {registrations.filter(r => new Date(r.createdAt) > new Date(Date.now() - 86400000)).length}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            {/* Registrations Table */}
+            <div className="bg-white rounded-3xl overflow-hidden shadow-sm border border-stone-100">
+                <div className="overflow-x-auto">
+                    <table className="w-full">
+                        <thead className="bg-stone-50 border-b border-stone-100">
+                            <tr>
+                                <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Nombre</th>
+                                <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">WhatsApp</th>
+                                <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Ciudad</th>
+                                <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Email</th>
+                                <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-stone-100">
+                            {registrations.length === 0 ? (
+                                <tr>
+                                    <td colSpan={5} className="px-6 py-20 text-center text-stone-400">
+                                        No hay registros todavía
+                                    </td>
+                                </tr>
+                            ) : (
+                                registrations.map((r) => (
+                                    <tr key={r.id} className="hover:bg-stone-50 transition-colors">
+                                        <td className="px-6 py-4 font-bold text-[var(--color-primary)]">{r.name}</td>
+                                        <td className="px-6 py-4 text-stone-600">{r.whatsapp}</td>
+                                        <td className="px-6 py-4">
+                                            <span className="px-3 py-1 bg-stone-100 rounded-full text-xs font-bold text-stone-600 uppercase tracking-wider">
+                                                {r.city}
+                                            </span>
+                                        </td>
+                                        <td className="px-6 py-4 text-stone-500 text-sm">{r.email}</td>
+                                        <td className="px-6 py-4 text-stone-400 text-sm">
+                                            {format(new Date(r.createdAt), "d MMM, yyyy", { locale: es })}
+                                        </td>
+                                    </tr>
+                                ))
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    );
+}

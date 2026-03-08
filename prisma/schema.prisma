@@ -68,3 +68,12 @@ model SanateMujerRegistration {
   email     String
   whatsapp  String
 }
+
+model VenezuelaEnElCuerpoRegistration {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  name      String
+  email     String
+  whatsapp  String
+  city      String
+}
