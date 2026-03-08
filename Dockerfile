@@ -1,4 +1,3 @@
-
 # Base image
 FROM node:20-alpine AS base
 
@@ -18,12 +17,9 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 # Next.js collects completely anonymous telemetry data about general usage.
-# Learn more here: https://nextjs.org/telemetry
-# Uncomment the following line in case you want to disable telemetry during the build.
 ENV NEXT_TELEMETRY_DISABLED=1
 
 RUN npx prisma generate
-
 RUN npm run build
 
 # Production image, copy all the files and run next
@@ -33,19 +29,17 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Install OpenSSL for Prisma and prisma CLI for migrations
-RUN apk add --no-cache openssl && \
+# Install OpenSSL for Prisma and libc6-compat for binaries
+RUN apk add --no-cache openssl libc6-compat && \
     npm install -g prisma
 
 # Create a non-root user
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
+# Copy essential files for standalone mode
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/prisma ./prisma
-
-# Automatically leverage output traces to reduce image size
-# https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
@@ -57,8 +51,7 @@ USER nextjs
 EXPOSE 3000
 
 ENV PORT=3000
-# set hostname to localhost
 ENV HOSTNAME="0.0.0.0"
 
 # Run migrations and then start the server
-CMD npx prisma migrate deploy && node server.js
+CMD ["sh", "-c", "prisma migrate deploy && node server.js"]
