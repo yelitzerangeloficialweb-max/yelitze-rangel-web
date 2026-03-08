@@ -32,7 +32,7 @@ export default function NewHero() {
                     </span>
 
                     <div className="space-y-4">
-                        <h1 className="text-5xl md:text-[5.5rem] font-heading font-normal tracking-[0.05em] leading-[1.1]">
+                        <h1 className="text-5xl md:text-[5.5rem] font-sans font-bold tracking-[0.05em] leading-[1.1]">
                             DESCUBRE TU HISTORIA
                         </h1>
                         <p className="text-4xl md:text-7xl font-script text-white/90 italic leading-tight drop-shadow-sm">
@@ -48,9 +48,9 @@ export default function NewHero() {
                     >
                         <Link
                             href="/tests"
-                            className="inline-block px-14 py-4 text-sm md:text-base font-heading font-normal tracking-[0.2em] uppercase border border-white/40 text-white rounded-full hover:bg-white hover:text-black transition-all bg-black/10 backdrop-blur-sm shadow-xl"
+                            className="inline-block px-14 py-4 text-sm md:text-base font-body font-medium tracking-[0.2em] uppercase border border-white/80 text-white rounded-full hover:bg-white hover:text-black transition-all bg-transparent"
                         >
-                            Inicia mi exploración
+                            INICIA MI EXPLORACIÓN
                         </Link>
                     </motion.div>
                 </motion.div>
