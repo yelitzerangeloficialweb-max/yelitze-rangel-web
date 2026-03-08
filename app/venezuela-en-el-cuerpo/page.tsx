@@ -41,12 +41,17 @@ export default function VenezuelaEnElCuerpoPage() {
                         <span className="text-[#C05C3F] font-bold tracking-[0.3em] uppercase text-xs mb-6 block">
                             Evento de Registro Gratuito
                         </span>
-                        <h1 className="text-4xl md:text-5xl lg:text-7xl font-heading text-[#3D4D3D] mb-8 leading-[1.1] font-bold">
-                            Tu cuerpo no puede crear una <br />
-                            <span className="text-[#C05C3F] italic font-light">nueva economía</span> si aún vive en el país de la ruina.
+                        <h2 className="text-2xl md:text-3xl font-body text-[#3D4D3D] mb-4 font-semibold leading-snug">
+                            Tu ansiedad no es el problema, es la solución que tu cuerpo encontró
+                        </h2>
+                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading text-[#3D4D3D] mb-6 leading-[1.1] font-bold">
+                            Venezuela en el Cuerpo
                         </h1>
-                        <p className="text-[#7A5C43] text-xl font-light mb-10 max-w-xl leading-relaxed">
-                            Descubre cómo el trauma social y el modo supervivencia bloquean tu capacidad de prosperar. Aprende a habitar una nueva seguridad corporal.
+                        <p className="text-[#C05C3F] text-lg font-medium mb-6 max-w-xl">
+                            Una propuesta terapéutica para regular, integrar y abrir nuevas posibilidades
+                        </p>
+                        <p className="text-[#7A5C43] text-lg font-light mb-10 max-w-xl leading-relaxed">
+                            Esto no es solo una conferencia. Es una experiencia de regulación. Es un espacio seguro para comprender lo que el cuerpo guarda y para ampliar nuestra capacidad de bienestar.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-6">
                             <Link
@@ -63,8 +68,8 @@ export default function VenezuelaEnElCuerpoPage() {
                         <div className="absolute inset-0 border-2 border-[#D4A373]/20 rounded-[3rem] -rotate-6 scale-95" />
                         <div className="relative h-full w-full rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white">
                             <Image
-                                src="/assets/images/venezuela/cuerpo-horizonte.png"
-                                alt="Venezuela en el Cuerpo - Yelitze Rangel"
+                                src="/assets/images/venezuela/hero-bg.jpg"
+                                alt="Venezuela en el Cuerpo"
                                 fill
                                 className="object-cover"
                                 priority
