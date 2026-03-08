@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Download, Loader2, Users, MapPin, Calendar, Phone } from 'lucide-react';
-import { format } from 'date-fns';
+import { format, isValid } from 'date-fns';
 import { es } from 'date-fns/locale';
 
 interface Registration {
@@ -13,6 +13,16 @@ interface Registration {
     whatsapp: string;
     city: string;
 }
+
+const safeFormatDate = (dateStr: string, formatStr: string, options?: any) => {
+    try {
+        const date = new Date(dateStr);
+        if (!isValid(date)) return 'Fecha inválida';
+        return format(date, formatStr, options);
+    } catch (error) {
+        return 'N/A';
+    }
+};
 
 export default function AdminVenezuelaPage() {
     const [registrations, setRegistrations] = useState<Registration[]>([]);
@@ -26,9 +36,15 @@ export default function AdminVenezuelaPage() {
         try {
             const res = await fetch('/api/admin/venezuela/registrations');
             const data = await res.json();
-            setRegistrations(data);
+            if (Array.isArray(data)) {
+                setRegistrations(data);
+            } else {
+                console.error('API did not return an array:', data);
+                setRegistrations([]);
+            }
         } catch (error) {
             console.error('Error fetching registrations:', error);
+            setRegistrations([]);
         } finally {
             setLoading(false);
         }
@@ -45,7 +61,7 @@ export default function AdminVenezuelaPage() {
                 `"${r.email}"`,
                 `"${r.whatsapp}"`,
                 `"${r.city}"`,
-                `"${format(new Date(r.createdAt), 'yyyy-MM-dd HH:mm:ss')}"`
+                `"${safeFormatDate(r.createdAt, 'yyyy-MM-dd HH:mm:ss')}"`
             ].join(','))
         ].join('\n');
 
@@ -156,7 +172,7 @@ export default function AdminVenezuelaPage() {
                                         </td>
                                         <td className="px-6 py-4 text-stone-500 text-sm">{r.email}</td>
                                         <td className="px-6 py-4 text-stone-400 text-sm">
-                                            {format(new Date(r.createdAt), "d MMM, yyyy", { locale: es })}
+                                            {safeFormatDate(r.createdAt, "d MMM, yyyy", { locale: es })}
                                         </td>
                                     </tr>
                                 ))
