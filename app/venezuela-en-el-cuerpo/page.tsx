@@ -534,12 +534,30 @@ export default function VenezuelaEnElCuerpoPage() {
                                             defaultValue=""
                                         >
                                             <option value="" disabled>Selecciona una opción...</option>
-                                            <option value="caracas">Caracas</option>
-                                            <option value="valencia">Valencia</option>
-                                            <option value="puerto-cabello">Puerto Cabello</option>
-                                            <option value="maracay">Maracay</option>
-                                            <option value="barquisimeto">Barquisimeto</option>
-                                            <option value="maracaibo">Maracaibo</option>
+                                            <option value="amazonas">Amazonas</option>
+                                            <option value="anzoategui">Anzoátegui</option>
+                                            <option value="apure">Apure</option>
+                                            <option value="aragua">Aragua</option>
+                                            <option value="barinas">Barinas</option>
+                                            <option value="bolivar">Bolívar</option>
+                                            <option value="carabobo">Carabobo</option>
+                                            <option value="cojedes">Cojedes</option>
+                                            <option value="delta-amacuro">Delta Amacuro</option>
+                                            <option value="distrito-capital">Distrito Capital</option>
+                                            <option value="falcon">Falcón</option>
+                                            <option value="guarico">Guárico</option>
+                                            <option value="lara">Lara</option>
+                                            <option value="merida">Mérida</option>
+                                            <option value="miranda">Miranda</option>
+                                            <option value="monagas">Monagas</option>
+                                            <option value="nueva-esparta">Nueva Esparta</option>
+                                            <option value="portuguesa">Portuguesa</option>
+                                            <option value="sucre">Sucre</option>
+                                            <option value="tachira">Táchira</option>
+                                            <option value="trujillo">Trujillo</option>
+                                            <option value="la-guaira">La Guaira</option>
+                                            <option value="yaracuy">Yaracuy</option>
+                                            <option value="zulia">Zulia</option>
                                         </select>
                                         <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 w-5 h-5 text-[#C1530A] pointer-events-none" />
                                     </div>
