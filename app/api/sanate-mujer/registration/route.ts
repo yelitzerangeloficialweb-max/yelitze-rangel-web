@@ -67,9 +67,18 @@ export async function POST(req: Request) {
 
     } catch (error: any) {
         console.error('CRITICAL: Registration API Failure');
-        console.error('Error Name:', error.name);
-        console.error('Error Message:', error.message);
-        console.error('Error Stack:', error.stack);
+        console.error('Error Details:', {
+            message: error.message,
+            code: error.code,
+            stack: error.stack
+        });
+
+        if (error.code === 'P2021') {
+            return NextResponse.json({
+                error: 'Base de datos desactualizada. Por favor, realiza el despliegue de nuevo.',
+                details: error.message
+            }, { status: 500 });
+        }
 
         return NextResponse.json({
             error: 'Error interno al procesar la inscripción',
