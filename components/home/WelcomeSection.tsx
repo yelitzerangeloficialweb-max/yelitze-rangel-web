@@ -17,9 +17,14 @@ export default function WelcomeSection() {
                         transition={{ duration: 0.8 }}
                         className="flex-1 space-y-8"
                     >
-                        <h2 className="text-4xl md:text-6xl font-script text-accent italic">
-                            Bienvenida familia de Almas
-                        </h2>
+                        <div className="space-y-2">
+                            <span className="text-accent/60 font-bold tracking-[0.3em] uppercase text-xs block pl-2">
+                                Sobre Mí
+                            </span>
+                            <h2 className="text-7xl md:text-[6rem] font-script text-accent leading-none -ml-2 drop-shadow-sm">
+                                Bienvenida familia de Almas
+                            </h2>
+                        </div>
 
                         <div className="space-y-6 text-lg text-text/80 leading-relaxed font-body font-light">
                             <p>
@@ -50,10 +55,10 @@ export default function WelcomeSection() {
                         className="flex-1 relative"
                     >
                         {/* Organic Border/Frame */}
-                        <div className="absolute -inset-4 border border-accent/20 rounded-[40px] rotate-3 z-0" />
-                        <div className="absolute -inset-4 border border-primary/10 rounded-[60px] -rotate-2 z-0" />
+                        <div className="absolute -inset-4 border border-accent/20 rounded-tr-[120px] rounded-bl-[120px] rounded-tl-none rounded-br-none rotate-3 z-0" />
+                        <div className="absolute -inset-4 border border-primary/10 rounded-tr-[140px] rounded-bl-[140px] rounded-tl-none rounded-br-none -rotate-2 z-0" />
 
-                        <div className="relative z-10 rounded-[30px] overflow-hidden shadow-2xl">
+                        <div className="relative z-10 rounded-tr-[120px] rounded-bl-[120px] rounded-tl-none rounded-br-none overflow-hidden shadow-2xl">
                             <Image
                                 src="/assets/images/yelitze-home-portrait.jpg"
                                 alt="Yelitze Rangel"
@@ -68,6 +73,6 @@ export default function WelcomeSection() {
                     </motion.div>
                 </div>
             </div>
-        </section>
+        </section >
     );
 }

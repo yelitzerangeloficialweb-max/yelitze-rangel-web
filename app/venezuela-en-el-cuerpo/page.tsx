@@ -6,7 +6,8 @@ import {
     ArrowRight, CheckCircle2, ShieldCheck,
     MessageCircle, ChevronDown, User, Star,
     Target, BookOpen, QrCode, TrendingUp,
-    AlertCircle, Sparkles, Heart
+    AlertCircle, Sparkles, Heart, Activity,
+    Zap, BatteryMedium, Brain, Repeat
 } from "lucide-react";
 import { useState } from "react";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn } from "@/components/ui/motion";
@@ -25,13 +26,13 @@ export default function VenezuelaEnElCuerpoPage() {
     };
 
     return (
-        <main className="min-h-screen selection:bg-[#B8835A] selection:text-white" style={{
-            backgroundColor: '#F7F3F0', // Cream/Off-white
-            '--color-terracotta': '#C05C3F',
-            '--color-earth': '#7A5C43',
-            '--color-forest': '#3D4D3D',
-            '--color-cream': '#F7F3F0',
-            '--color-accent-ocre': '#D4A373'
+        <main className="min-h-screen selection:bg-[#D4AA50] selection:text-white" style={{
+            backgroundColor: '#FFFFFF', // Clean white
+            '--color-terracotta': '#D4AA50', // Golden accent
+            '--color-earth': '#5A5A5A',      // Medium Gray text
+            '--color-forest': '#2D2926',     // Dark Gray/Black heading
+            '--color-cream': '#FFFFFF',      // White
+            '--color-accent-ocre': '#E8B854' // Light Gold
         } as React.CSSProperties}>
 
             {/* 1. HERO (ATENCIÓN) */}
@@ -85,35 +86,56 @@ export default function VenezuelaEnElCuerpoPage() {
             </section>
 
             {/* 2. SEGMENTACIÓN */}
-            <section className="py-24 bg-white">
-                <div className="container mx-auto px-4">
-                    <FadeIn className="text-center mb-16">
-                        <h2 className="text-sm font-bold tracking-[0.4em] text-[#7A5C43] uppercase mb-4">¿Te sientes así?</h2>
-                        <div className="h-1 w-20 bg-[#C05C3F]/30 mx-auto" />
+            <section className="py-24 bg-white relative">
+                <div className="container mx-auto px-4 max-w-6xl">
+                    <FadeIn className="mb-16">
+                        <h2 className="text-3xl md:text-5xl font-heading text-[#2D2926] font-bold mb-6">
+                            ¿Por qué nuestro cuerpo?
+                        </h2>
+                        <p className="text-[#5A5A5A] text-lg font-light leading-relaxed max-w-4xl">
+                            Cuando una emoción no puede expresarse en su momento, el cuerpo la almacena como tensión o bloqueo. Con el tiempo, esto puede manifestarse de diversas formas.
+                        </p>
                     </FadeIn>
 
-                    <StaggerContainer className="grid md:grid-cols-3 gap-8">
+                    <StaggerContainer className="flex flex-wrap justify-center gap-x-6 gap-y-12">
                         {[
                             {
-                                icon: AlertCircle,
-                                title: "Estrés Crónico",
-                                desc: "Vives en un estado de alerta constante, agotando tu energía vital antes de empezar el día."
-                            },
-                            {
-                                icon: TrendingUp,
-                                title: "Bloqueo Económico",
-                                desc: "Tu capacidad de producir está limitada por el miedo y la incertidumbre del entorno social."
-                            },
-                            {
                                 icon: Target,
-                                title: "Trauma Social",
-                                desc: "El impacto de la crisis ha dejado huellas en tu sistema nervioso que condicionan tu presente."
+                                title: "Ansiedad",
+                                desc: "Estado de alerta constante y anticipación del peligro"
+                            },
+                            {
+                                icon: Zap,
+                                title: "Estrés",
+                                desc: "Tensión acumulada que afecta el funcionamiento diario"
+                            },
+                            {
+                                icon: BatteryMedium,
+                                title: "Cansancio",
+                                desc: "Fatiga profunda que no se alivia con descanso"
+                            },
+                            {
+                                icon: Brain,
+                                title: "Dolor físico",
+                                desc: "Manifestaciones somáticas de tensiones no resueltas"
+                            },
+                            {
+                                icon: Repeat,
+                                title: "Reacciones automáticas",
+                                desc: "Respuestas rápidas e involuntarias ante estímulos"
                             }
                         ].map((item, i) => (
-                            <StaggerItem key={i} className="bg-[#F7F3F0] p-10 rounded-[2.5rem] border border-[#7A5C43]/10 hover:border-[#C05C3F]/30 transition-all group">
-                                <item.icon className="w-12 h-12 text-[#C05C3F] mb-6 opacity-60 group-hover:scale-110 transition-transform" />
-                                <h3 className="text-2xl font-heading text-[#3D4D3D] mb-4 font-bold">{item.title}</h3>
-                                <p className="text-[#7A5C43] font-light leading-relaxed">{item.desc}</p>
+                            <StaggerItem key={i} className="flex-1 min-w-[300px] max-w-[380px] bg-white px-8 pb-8 pt-10 rounded-xl border border-stone-200 shadow-sm relative mt-6 hover:shadow-lg transition-shadow">
+                                {/* Top Golden Border */}
+                                <div className="absolute top-0 left-0 right-0 h-[6px] bg-gradient-to-r from-[#E8B854] to-[#D4AA50] rounded-t-xl" />
+
+                                {/* Icon Overlay */}
+                                <div className="absolute -top-7 left-1/2 -translate-x-1/2 w-14 h-14 bg-gradient-to-b from-[#E8B854] to-[#D4AA50] rounded-full flex items-center justify-center shadow-lg border-4 border-white">
+                                    <item.icon className="w-5 h-5 text-white stroke-[2.5]" />
+                                </div>
+
+                                <h3 className="text-xl font-heading text-[#2D2926] mb-3 font-bold mt-2">{item.title}</h3>
+                                <p className="text-[#5A5A5A] font-light text-[15px] leading-relaxed">{item.desc}</p>
                             </StaggerItem>
                         ))}
                     </StaggerContainer>
@@ -146,7 +168,7 @@ export default function VenezuelaEnElCuerpoPage() {
                     <div className="grid lg:grid-cols-2 gap-20 items-center">
                         <div className="relative">
                             <FadeIn>
-                                <div className="relative aspect-[3/4] w-full rounded-[4rem] overflow-hidden shadow-2xl border-x-4 border-t-4 border-white">
+                                <div className="relative aspect-[3/4] w-full rounded-tr-[120px] rounded-bl-[120px] rounded-tl-none rounded-br-none overflow-hidden shadow-2xl border-x-4 border-t-4 border-white">
                                     <Image
                                         src="/assets/images/yelitze/manifesto-new.jpg"
                                         alt="Yelitze Rangel"
