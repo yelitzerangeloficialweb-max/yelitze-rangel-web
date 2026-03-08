@@ -80,7 +80,7 @@ export default function VenezuelaEnElCuerpoPage() {
                             Una propuesta terapéutica para regular, integrar y abrir nuevas posibilidades
                         </p>
                         <p className="text-[#2D2926] text-lg font-light mb-10 max-w-xl leading-relaxed">
-                            Esto no es solo una conferencia. Es una experiencia de regulación presencial y exclusiva para <strong className="text-[#8C4005] font-bold">150 personas</strong>. Es un espacio seguro para comprender lo que el cuerpo guarda y para ampliar nuestra capacidad de bienestar en vivo.
+                            Esto no es solo una conferencia. Es una experiencia de regulación <strong className="text-[#8C4005] font-bold underline decoration-[#C1530A]/30">presencial u online</strong>. Es un espacio seguro para comprender lo que el cuerpo guarda y para ampliar nuestra capacidad de bienestar en vivo.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-6">
                             <Link
@@ -406,7 +406,7 @@ export default function VenezuelaEnElCuerpoPage() {
                             },
                             {
                                 q: "¿Tengo que estar en Venezuela para participar?",
-                                a: "Sí. Este formato es presencial y exclusivo para 150 personas por ciudad, diseñado para vivir la experiencia de regulación somática en comunidad y en vivo."
+                                a: "Sí. Este formato puede ser presencial u online, diseñado para vivir la experiencia de regulación somática en comunidad y en vivo."
                             }
                         ].map((item, i) => (
                             <FadeIn key={i}>
