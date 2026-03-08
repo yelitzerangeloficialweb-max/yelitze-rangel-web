@@ -469,7 +469,7 @@ export default function VenezuelaEnElCuerpoPage() {
                     <div className="grid lg:grid-cols-2 gap-20 items-center">
                         <FadeIn>
                             <h2 className="text-4xl lg:text-6xl font-heading text-[#8C4005] mb-8 font-bold italic leading-tight">
-                                Reserva tu lugar en el <br /> <span className="text-[#B8835A]">Tour Nacional.</span>
+                                <span className="text-[#B8835A]">Tour Nacional de</span> <br /> Venezuela en el Cuerpo
                             </h2>
                             <p className="text-[#F5EFE6] text-xl font-light mb-12 opacity-80 leading-relaxed">
                                 Selecciona tu ciudad para generar tu Pase QR. Una vez registrado, recibirás un mensaje inmediato con la ubicación exacta y la hora del encuentro.
