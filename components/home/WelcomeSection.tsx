@@ -55,10 +55,10 @@ export default function WelcomeSection() {
 
                         <div className="relative z-10 rounded-[30px] overflow-hidden shadow-2xl">
                             <Image
-                                src="/images/home_redesign/yelitze.png"
+                                src="/assets/images/yelitze-home-portrait.jpg"
                                 alt="Yelitze Rangel"
-                                width={600}
-                                height={750}
+                                width={680}
+                                height={1024}
                                 className="object-cover w-full h-auto transform group-hover:scale-105 transition-transform duration-700"
                             />
                         </div>
