@@ -65,30 +65,55 @@ export const WaveDivider = ({
     position?: "top" | "bottom"
 }) => (
     <div className={`absolute left-0 w-full overflow-hidden leading-none z-0 ${position === 'top' ? 'top-[-1px]' : 'bottom-[-1px] scale-y-[-1]'} ${className}`}>
-        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-[calc(100%+2px)] left-[-1px] h-[70px] md:h-[140px]">
-            {/* Main Brush Shape */}
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-[calc(100%+2px)] left-[-1px] h-[80px] md:h-[160px]">
+            <defs>
+                <filter id="brushRoughness">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="3" result="noise" />
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" />
+                </filter>
+            </defs>
+
+            {/* Main Solid Body */}
             <path
                 d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,103.83-6.17,203.22,46.21,304,60,103,14,204.14-1,303.8-21.6,73.57-15.24,117.09-40.45,158.2-61.16V0Z"
                 fill={fill}
             />
-            {/* Brush Streaks/Texture (Roughness) */}
+
+            {/* Top Textured Edge Layers (Bristles) */}
             <path
-                d="M0,40 C150,60 350,10 550,80 C750,150 950,50 1200,60 L1200,0 L0,0 Z"
+                d="M0,45 C200,65 400,15 600,85 C800,155 1000,55 1200,65 L1200,0 L0,0 Z"
+                fill={fill}
+                opacity="0.4"
+                filter="url(#brushRoughness)"
+            />
+
+            <path
+                d="M0,52 C250,25 500,95 750,45 C1000,-5 1200,105 1200,35 L1200,0 L0,0 Z"
                 fill={fill}
                 opacity="0.3"
-                className="mix-blend-multiply"
+                filter="url(#brushRoughness)"
+            />
+
+            {/* Individual Bristle Lines for the 'Dry Brush' look */}
+            <path
+                d="M0,48 Q300,78 600,48 T1200,48"
+                fill="none"
+                stroke={fill}
+                strokeWidth="2"
+                strokeDasharray="20,15,40,10"
+                opacity="0.5"
             />
             <path
-                d="M0,50 C200,20 400,90 600,40 C800,-10 1000,110 1200,30 L1200,0 L0,0 Z"
-                fill={fill}
-                opacity="0.2"
+                d="M0,55 Q300,25 600,85 T1200,55"
+                fill="none"
+                stroke={fill}
+                strokeWidth="1.5"
+                strokeDasharray="50,20,30,40"
+                opacity="0.4"
             />
-            {/* Top rough edge simulation */}
-            <path
-                d="M0,45 L10,47 L20,44 L30,48 L40,43 L50,49 L60,42 L70,50 L80,44 L90,52 L100,43 L110,51 L120,44 L130,53 L140,45 L150,54 L160,46 L170,55 L180,47 L190,56 L200,48 L210,57 L220,49 L230,58 L240,50 L250,59 L260,51 L270,60 L280,52 L290,61 L300,53 L310,62 L320,54 L330,63 L340,55 L350,64 L360,56 L370,65 L380,57 L390,66 L400,58 L410,67 L420,59 L430,68 L440,60 L450,69 L460,61 L470,70 L480,62 L490,71 L500,63 L510,72 L520,64 L530,73 L540,65 L550,74 L560,66 L570,75 L580,67 L590,76 L600,68 L610,77 L620,69 L630,78 L640,70 L650,79 L660,71 L670,80 L680,72 L690,81 L700,73 L710,82 L720,74 L730,83 L740,75 L750,84 L760,76 L770,85 L780,77 L790,86 L800,78 L810,87 L820,79 L830,88 L840,80 L850,89 L860,81 L870,90 L880,82 L890,91 L900,83 L910,92 L920,84 L930,93 L940,85 L950,94 L960,86 L970,95 L980,87 L990,96 L1000,88 L1010,97 L1020,89 L1030,98 L1040,90 L1050,99 L1060,91 L1070,100 L1080,92 L1090,101 L1100,93 L1110,102 L1120,94 L1130,103 L1140,95 L1150,104 L1160,96 L1170,105 L1180,97 L1190,106 L1200,98 V0 H0 Z"
-                fill={fill}
-                opacity="0.1"
-            />
+
+            {/* Scratches/Texture Overlay */}
+            <rect width="100%" height="100%" fill="none" filter="url(#brushRoughness)" opacity="0.1" />
         </svg>
     </div>
 );
