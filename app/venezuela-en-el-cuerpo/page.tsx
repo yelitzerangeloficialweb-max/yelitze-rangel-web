@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn } from "@/components/ui/motion";
-import { SacredGeometry, FloatingStars, ThinGoldenLine } from "@/components/ui/MysticalElements";
+import { SacredGeometry, FloatingStars, ThinGoldenLine, WaveDivider } from "@/components/ui/MysticalElements";
 
 export default function VenezuelaEnElCuerpoPage() {
     const [submitted, setSubmitted] = useState(false);
@@ -46,14 +46,14 @@ export default function VenezuelaEnElCuerpoPage() {
                         <h2 className="text-2xl md:text-3xl font-body text-[#8C4005] mb-4 font-semibold leading-snug">
                             Tu ansiedad no es el problema, es la solución que tu cuerpo encontró
                         </h2>
-                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading text-[#8C4005] mb-6 leading-[1.1] font-bold">
+                        <h1 className="text-6xl md:text-8xl lg:text-[8rem] font-script text-[#8C4005] mb-6 leading-none pt-4 tracking-normal font-normal">
                             Venezuela en el Cuerpo
                         </h1>
                         <p className="text-[#C1530A] text-lg font-medium mb-6 max-w-xl">
                             Una propuesta terapéutica para regular, integrar y abrir nuevas posibilidades
                         </p>
                         <p className="text-[#2D2926] text-lg font-light mb-10 max-w-xl leading-relaxed">
-                            Esto no es solo una conferencia. Es una experiencia de regulación. Es un espacio seguro para comprender lo que el cuerpo guarda y para ampliar nuestra capacidad de bienestar.
+                            Esto no es solo una conferencia. Es una experiencia de regulación presencial y exclusiva para <strong className="text-[#8C4005] font-bold">150 personas</strong>. Es un espacio seguro para comprender lo que el cuerpo guarda y para ampliar nuestra capacidad de bienestar en vivo.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-6">
                             <Link
@@ -145,6 +145,7 @@ export default function VenezuelaEnElCuerpoPage() {
 
             {/* 3. EL PROBLEMA (AGITACIÓN) */}
             <section className="py-24 bg-[#2D2926] text-[#F5EFE6] relative overflow-hidden">
+                <WaveDivider position="top" fill="#F5EFE6" />
                 <FloatingStars count={30} className="opacity-50" />
                 <SacredGeometry className="-left-40 top-1/2 -translate-y-1/2 w-[800px] h-[800px] text-[#B8835A]/5" />
                 <ThinGoldenLine d="M0,100 Q250,250 500,100 T1000,100" className="top-20 left-0 w-full h-64 opacity-20" />
@@ -165,6 +166,7 @@ export default function VenezuelaEnElCuerpoPage() {
                         </div>
                     </FadeIn>
                 </div>
+                <WaveDivider position="bottom" fill="#F5EFE6" />
             </section>
 
             {/* 4. BIOGRAFÍA (YELITZE RANGEL) */}
@@ -377,7 +379,7 @@ export default function VenezuelaEnElCuerpoPage() {
                             },
                             {
                                 q: "¿Tengo que estar en Venezuela para participar?",
-                                a: "No. El evento es digital y está abierto a venezolanos en cualquier parte del mundo (y a cualquier persona que sienta que el entorno social ha impactado su cuerpo)."
+                                a: "Sí. Este formato es presencial y exclusivo para 150 personas por ciudad, diseñado para vivir la experiencia de regulación somática en comunidad y en vivo."
                             }
                         ].map((item, i) => (
                             <FadeIn key={i}>
@@ -401,6 +403,7 @@ export default function VenezuelaEnElCuerpoPage() {
 
             {/* 10.5 SOCIAL COMMITMENT */}
             <section className="py-24 bg-[#B8835A] text-[#F5EFE6] relative overflow-hidden">
+                <WaveDivider position="top" fill="#F5EFE6" />
                 <div className="absolute inset-0 bg-[url('/assets/images/noise.png')] opacity-10 mix-blend-overlay pointer-events-none" />
                 <div className="container mx-auto px-4 max-w-4xl text-center relative z-10">
                     <FadeIn>
@@ -408,6 +411,7 @@ export default function VenezuelaEnElCuerpoPage() {
                         <h2 className="text-3xl md:text-5xl font-heading mb-8 font-bold leading-tight">
                             "La transformación social no comienza afuera. Comienza en la biología de cada persona."
                         </h2>
+                        <p className="text-5xl md:text-6xl font-script text-[#F5EFE6]/70 -mt-4 mb-8">— Yelitze Rangel</p>
                         <div className="w-24 h-px bg-[#F5EFE6]/30 mx-auto mb-10" />
                         <p className="text-xl font-light mb-12 max-w-2xl mx-auto">
                             Sella tu compromiso. Ve ahora mismo al perfil de Instagram de Yelitze Rangel, busca la publicación oficial del evento y <strong>comenta tu asistencia</strong>.
@@ -426,7 +430,8 @@ export default function VenezuelaEnElCuerpoPage() {
             </section>
 
             {/* 11. FOOTER (FORMULARIO) */}
-            <section id="registro" className="py-40 bg-[#2D2926] text-[#F5EFE6] overflow-hidden relative">
+            <section id="registro" className="pt-40 pb-20 bg-[#2D2926] text-[#F5EFE6] overflow-hidden relative">
+                <WaveDivider position="top" fill="#B8835A" />
                 {/* Visual Cue for QR & Mystical Elements */}
                 <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-[#B8835A] to-transparent" />
                 <FloatingStars count={40} className="opacity-60" />
