@@ -61,14 +61,14 @@ export default function ServiceSelector() {
                                     <span className="text-xs font-bold tracking-[0.2em] text-accent opacity-80 uppercase">
                                         {service.tag}
                                     </span>
-                                    <h3 className="text-3xl font-serif text-text">
+                                    <h3 className="text-3xl font-heading text-text">
                                         {service.title}
                                     </h3>
-                                    <p className="text-text/70 font-light leading-relaxed max-w-md">
+                                    <p className="text-text/70 font-body font-light leading-relaxed max-w-md">
                                         {service.description}
                                     </p>
                                     <div className="pt-4">
-                                        <span className="inline-block px-8 py-3 border border-accent text-accent group-hover:bg-accent group-hover:text-background transition-all rounded-full text-xs font-bold tracking-[0.1em] uppercase">
+                                        <span className="inline-block px-8 py-3 border border-accent text-accent group-hover:bg-accent group-hover:text-background transition-all rounded-full text-xs font-heading font-bold tracking-[0.1em] uppercase">
                                             {service.cta}
                                         </span>
                                     </div>

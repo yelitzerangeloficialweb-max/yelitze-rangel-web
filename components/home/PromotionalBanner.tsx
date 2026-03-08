@@ -21,7 +21,7 @@ export default function PromotionalBanner() {
                         <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans font-bold leading-tight text-white drop-shadow-sm">
                             Descubre tu <br />
                             <span className="text-[var(--color-accent-light)]">Arquitectura de Vida</span> <br />
-                            <span>Intencional 2026</span>
+                            <span>Intencional</span>
                         </h2>
 
                         <div className="pt-4 flex justify-center lg:justify-start">
@@ -43,7 +43,7 @@ export default function PromotionalBanner() {
 
                             <Image
                                 src="/assets/images/tests/test_arquitectura_lifestyle.png"
-                                alt="Arquitectura de Vida Intencional 2026"
+                                alt="Arquitectura de Vida Intencional"
                                 fill
                                 className="object-cover object-top"
                             />

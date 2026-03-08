@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function WisdomChest() {
     return (
-        <section className="py-24 bg-[#1a1a1a] text-background overflow-hidden">
+        <section className="py-24 bg-[#1a1a1a] text-background overflow-hidden font-body">
             <div className="container mx-auto px-4">
                 <div className="bg-[#2D2926] rounded-[40px] overflow-hidden shadow-2xl border border-white/5">
                     <div className="flex flex-col md:flex-row items-stretch">
@@ -19,7 +19,7 @@ export default function WisdomChest() {
                             className="flex-1 p-12 md:p-20 flex flex-col justify-center space-y-8"
                         >
                             <div className="space-y-4">
-                                <span className="text-xs font-bold tracking-[0.3em] text-accent uppercase opacity-70">
+                                <span className="text-xs font-bold font-body tracking-[0.3em] text-accent uppercase opacity-70">
                                     Libros del Alma
                                 </span>
                                 <h2 className="text-4xl md:text-6xl font-script text-accent-light italic">
@@ -27,14 +27,14 @@ export default function WisdomChest() {
                                 </h2>
                             </div>
 
-                            <p className="text-lg text-white/60 font-light leading-relaxed">
+                            <p className="text-lg text-white/60 font-body font-light leading-relaxed">
                                 Libros diseñados para ser espejos de tu alma. El conocimiento que buscas ya habita dentro de ti, estos libros ahora te ayudarán a recordarlo.
                             </p>
 
                             <div className="pt-4">
                                 <Link
                                     href="/libros"
-                                    className="btn-outline border-white/20 text-white hover:bg-white hover:text-black"
+                                    className="btn-outline border-white/20 text-white font-heading hover:bg-white hover:text-black"
                                 >
                                     Explorar el cofre
                                 </Link>

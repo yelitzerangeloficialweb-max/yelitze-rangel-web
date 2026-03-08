@@ -48,23 +48,23 @@ export default function ArchitectureSector() {
                         className="flex-1 space-y-8"
                     >
                         <div className="space-y-4">
-                            <span className="text-xs font-bold tracking-[0.3em] text-accent uppercase opacity-80">
+                            <span className="text-xs font-bold tracking-[0.3em] text-accent font-body uppercase opacity-80">
                                 Diagnóstico del Alma
                             </span>
-                            <h2 className="text-4xl md:text-6xl font-serif leading-tight">
+                            <h2 className="text-4xl md:text-6xl font-heading leading-tight">
                                 Arquitectura de Vida <br />
-                                <span className="italic font-script text-accent-light">Intencional 2026</span>
+                                <span className="italic font-script text-accent-light">Intencional</span>
                             </h2>
                         </div>
 
-                        <p className="text-lg text-white/70 font-light leading-relaxed max-w-lg">
+                        <p className="text-lg text-white/70 font-body font-light leading-relaxed max-w-lg">
                             Un viaje único para que aprendas a dejar de sobrevivir y comiences a construir tu realidad desde el alma. Descubre el orden listo por este momento.
                         </p>
 
                         <div className="pt-6">
                             <Link
-                                href="/eventos/arquitectura-vida-2026"
-                                className="btn-premium px-12 py-5"
+                                href="/eventos/arquitectura-vida"
+                                className="btn-premium px-12 py-5 font-heading"
                             >
                                 Iniciar mi transformación
                             </Link>

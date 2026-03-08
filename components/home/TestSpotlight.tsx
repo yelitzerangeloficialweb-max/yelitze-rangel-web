@@ -23,7 +23,7 @@ export default function TestSpotlight() {
                             <span className="text-[var(--color-secondary)] font-bold tracking-[0.4em] uppercase text-xs mb-6 block">Diagnóstico de Alma</span>
                             <h2 className="text-white text-4xl md:text-6xl font-heading leading-tight italic">
                                 Arquitectura de Vida <br />
-                                <span className="text-white/40">Intencional 2026</span>
+                                <span className="text-white/40">Intencional</span>
                             </h2>
                             <p className="text-gray-400 text-lg md:text-xl font-light italic leading-relaxed max-w-xl mt-8">
                                 Un viaje diseñado para quienes deciden dejar de sobrevivir y comenzar a co-crear su realidad desde el alma. Descubre si estás listo para este movimiento.

@@ -21,7 +21,7 @@ export default function WelcomeSection() {
                             Bienvenida familia de Almas
                         </h2>
 
-                        <div className="space-y-6 text-lg text-text/80 leading-relaxed font-light">
+                        <div className="space-y-6 text-lg text-text/80 leading-relaxed font-body font-light">
                             <p>
                                 Soy Yelitze Rangel, de origen, un puente de amor y sanación.
                                 Mi propósito es acompañarte a recordar la sabiduría que ya habita en ti.
@@ -35,7 +35,7 @@ export default function WelcomeSection() {
 
                         <Link
                             href="/sobre-mi"
-                            className="btn-outline group"
+                            className="btn-outline group font-heading"
                         >
                             Conocer mi historia
                         </Link>

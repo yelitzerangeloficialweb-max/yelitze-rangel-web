@@ -24,7 +24,7 @@ const config: Config = {
             fontFamily: {
                 heading: ["'Playfair Display'", "serif"],
                 body: ["'Inter'", "sans-serif"],
-                script: ["'Great Vibes'", "cursive"],
+                script: ["'Allison'", "cursive"],
                 sans: ["'Inter'", "sans-serif"],
             },
         },

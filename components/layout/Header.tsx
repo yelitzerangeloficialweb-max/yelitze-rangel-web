@@ -128,10 +128,10 @@ export default function Header() {
                             <Link
                                 href={link.href}
                                 className={cn(
-                                    "text-sm font-medium transition-colors hover:text-secondary flex items-center gap-1 py-2",
+                                    "text-sm font-medium font-body tracking-[0.05em] transition-colors hover:text-secondary flex items-center gap-1 py-2",
                                     pathname === link.href || (link.children && pathname.startsWith(link.href))
                                         ? "text-secondary"
-                                        : (showScrolled ? "text-primary" : "text-white/90 hover:text-white mix-blend-difference")
+                                        : (showScrolled ? "text-primary" : "text-white/90 hover:text-white")
                                 )}
                             >
                                 {link.name}
@@ -214,7 +214,7 @@ export default function Header() {
                     <CartButton iconColor={showScrolled ? 'text-primary' : 'text-white/90'} />
                     <Link
                         href="/reservas"
-                        className="btn-premium px-6 py-2 text-sm bg-[var(--color-accent)] text-[var(--color-background)] hover:brightness-110"
+                        className="btn-premium px-6 py-2 text-sm font-heading bg-[var(--color-accent)] text-[var(--color-background)] hover:brightness-110"
                     >
                         Reservar Sesión
                     </Link>
