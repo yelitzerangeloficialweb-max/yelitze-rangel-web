@@ -12,6 +12,7 @@ import { FloatingStars, SacredGeometry } from "@/components/ui/MysticalElements"
 
 function SuccessContent() {
     const searchParams = useSearchParams();
+    const id = searchParams.get("id") || "";
     const name = searchParams.get("name") || "Participante";
     const city = searchParams.get("city") || "Venezuela";
     const [mounted, setMounted] = useState(false);
@@ -45,7 +46,7 @@ function SuccessContent() {
 
                 {/* THE TICKET */}
                 <div className="w-full mb-16">
-                    <TicketQR name={name} city={city} />
+                    <TicketQR id={id} name={name} city={city} />
                 </div>
 
                 {/* Information & Actions */}

@@ -64,8 +64,11 @@ export default function VenezuelaEnElCuerpoPage() {
             });
 
             if (res.ok) {
-                // Redirect to success page with query params
-                router.push(`/venezuela-en-el-cuerpo/success?name=${encodeURIComponent(name)}&city=${encodeURIComponent(city)}`);
+                const data = await res.json();
+                const registrationId = data.id;
+
+                // Redirect to success page with query params including ID
+                router.push(`/venezuela-en-el-cuerpo/success?id=${encodeURIComponent(registrationId)}&name=${encodeURIComponent(name)}&city=${encodeURIComponent(city)}`);
             } else {
                 console.error('Registration failed');
                 // You could add a toast or error state here if needed

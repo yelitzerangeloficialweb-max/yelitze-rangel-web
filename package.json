@@ -12,6 +12,7 @@
     "@ai-sdk/google": "^3.0.1",
     "@google/generative-ai": "^0.24.1",
     "@gsap/react": "^2.1.2",
+    "@prisma/client": "5.10.2",
     "ai": "^6.0.3",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
@@ -22,13 +23,13 @@
     "lucide-react": "^0.562.0",
     "next": "16.1.1",
     "openai": "^6.15.0",
+    "prisma": "5.10.2",
+    "qrcode.react": "^4.2.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-markdown": "^10.1.0",
     "resend": "^6.9.3",
-    "zod": "^4.2.1",
-    "@prisma/client": "5.10.2",
-    "prisma": "5.10.2"
+    "zod": "^4.2.1"
   },
   "devDependencies": {
     "@types/node": "^20",
