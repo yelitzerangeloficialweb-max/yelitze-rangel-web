@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Download, Loader2, Users, MapPin, Calendar, Phone, QrCode, X } from 'lucide-react';
+import { Download, Loader2, Users, MapPin, Calendar, Phone, QrCode, X, CheckCircle2, XCircle } from 'lucide-react';
 import { format, isValid } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { TicketQR } from '@/components/ui/TicketQR';
@@ -13,6 +13,8 @@ interface Registration {
     email: string;
     whatsapp: string;
     city: string;
+    scanned: boolean;
+    scannedAt: string | null;
 }
 
 const safeFormatDate = (dateStr: string, formatStr: string, options?: any) => {
@@ -152,7 +154,8 @@ export default function AdminVenezuelaPage() {
                                 <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">WhatsApp</th>
                                 <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Ciudad</th>
                                 <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Email</th>
-                                <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Fecha</th>
+                                <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Fecha y Hora</th>
+                                <th className="text-center px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Estado</th>
                                 <th className="text-center px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Pase QR</th>
                             </tr>
                         </thead>
@@ -173,9 +176,21 @@ export default function AdminVenezuelaPage() {
                                                 {r.city}
                                             </span>
                                         </td>
-                                        <td className="px-6 py-4 text-stone-500 text-sm">{r.email}</td>
-                                        <td className="px-6 py-4 text-stone-400 text-sm">
-                                            {safeFormatDate(r.createdAt, "d MMM, yyyy", { locale: es })}
+                                        <td className="px-6 py-4 text-stone-500 text-sm whitespace-nowrap">
+                                            {safeFormatDate(r.createdAt, "d MMM, yyyy - HH:mm", { locale: es })}
+                                        </td>
+                                        <td className="px-6 py-4 text-center">
+                                            {r.scanned ? (
+                                                <div className="flex flex-col items-center gap-1 group relative">
+                                                    <CheckCircle2 className="w-6 h-6 text-green-500" />
+                                                    <span className="text-[10px] text-green-600 font-bold uppercase">Escaneado</span>
+                                                </div>
+                                            ) : (
+                                                <div className="flex flex-col items-center gap-1">
+                                                    <XCircle className="w-6 h-6 text-red-400 opacity-40" />
+                                                    <span className="text-[10px] text-stone-400 font-bold uppercase">Pendiente</span>
+                                                </div>
+                                            )}
                                         </td>
                                         <td className="px-6 py-4 text-center">
                                             <button
