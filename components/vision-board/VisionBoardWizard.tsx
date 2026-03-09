@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import IntroStep from './steps/IntroStep';
 import ReflectionPortal from './steps/ReflectionPortal';
+import Portal1Step from './steps/Portal1Step';
 import PillarsStep from './steps/PillarsStep';
 import FinalBoardStep from './steps/FinalBoardStep';
 import ProgressBar from './ProgressBar';
@@ -106,17 +107,8 @@ export default function VisionBoardWizard() {
     const steps = [
         <IntroStep key="intro" onNext={nextStep} />,
         // Portals (1-4) ...
-        <ReflectionPortal
+        <Portal1Step
             key="p1"
-            portalNumber={1}
-            title="Cierre Consciente"
-            subtitle="¿Dónde se fue mi energía?"
-            description="Antes de sembrar semillas nuevas, es preciso limpiar el terreno y reconocer qué ciclos estamos cerrando."
-            questions={[
-                "¿En qué áreas sentí mayor desgaste emocional este último año?",
-                "¿Qué situaciones drenaron mi energía vital?",
-                "¿Dónde dije 'sí' queriendo decir 'no'?"
-            ]}
             value={data.reflections['portal1'] || ''}
             onChange={(v: string) => updateReflection('portal1', v)}
             onNext={nextStep}
