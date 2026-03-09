@@ -73,7 +73,7 @@ export default function IntroStep({ onNext }: { onNext: () => void }) {
                     <div className="w-full h-px bg-white/10" />
 
                     <p className="text-stone-300 text-xl leading-relaxed font-light max-w-xl">
-                        Bienvenida a tu **Arquitectura Intencional de Vida**. Esto no es un simple tablero de fotos; es el diseño de la estructura interna que permitirá que tus metas aterricen en terreno fértil.
+                        Bienvenida a tu <span className="font-bold text-white">Arquitectura Intencional de Vida</span>. Esto no es un simple tablero de fotos; es el diseño de la estructura interna que permitirá que tus metas aterricen en terreno fértil.
                     </p>
                 </div>
 
@@ -126,7 +126,7 @@ export default function IntroStep({ onNext }: { onNext: () => void }) {
                             Bienvenida a un espacio sagrado de creación. Aquí no solo visionamos, diseñamos la estructura que sostendrá tu nueva realidad.
                         </p>
                         <p className="text-gray-400 font-light text-lg">
-                            Para este viaje, necesitas **5 imágenes personales** (una para cada pilar: Propósito, Abundancia, Vínculos, Expansión e Intimidad). Si ya las tienes en tu dispositivo, estamos listas.
+                            Para este viaje, necesitas <span className="font-bold text-white">5 imágenes personales</span> (una para cada pilar: Propósito, Abundancia, Vínculos, Expansión e Intimidad). Si ya las tienes en tu dispositivo, estamos listas.
                         </p>
                     </div>
                 </div>
