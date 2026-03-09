@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { QrCode, Calendar, MapPin, User, Download, Share2, CheckCircle2 } from "lucide-react";
-import { QRCodeSVG } from "qrcode.react";
+import { QRCodeCanvas } from "qrcode.react";
 import { useState, useEffect } from "react";
 
 interface TicketProps {
@@ -56,7 +56,7 @@ export const TicketQR = ({
                     {/* QR Code Section */}
                     <div className="relative group p-6 border-2 border-[#B8835A]/10 rounded-3xl bg-white shadow-inner">
                         {qrUrl ? (
-                            <QRCodeSVG
+                            <QRCodeCanvas
                                 value={qrUrl}
                                 size={220}
                                 fgColor="#000000"
@@ -64,10 +64,8 @@ export const TicketQR = ({
                                 includeMargin={false}
                                 imageSettings={{
                                     src: "/assets/images/logo-yelitze-new.png",
-                                    x: undefined,
-                                    y: undefined,
-                                    height: 50,
-                                    width: 50,
+                                    height: 48,
+                                    width: 48,
                                     excavate: true,
                                 }}
                             />
