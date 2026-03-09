@@ -8,7 +8,7 @@ export async function PATCH(
     try {
         const { id } = await params;
         const body = await req.json();
-        const { name, email, whatsapp, city } = body;
+        const { name, email, whatsapp, city, instagram } = body;
 
         const registration = await db.venezuelaEnElCuerpoRegistration.update({
             where: { id },
@@ -17,6 +17,7 @@ export async function PATCH(
                 email,
                 whatsapp,
                 city,
+                instagram,
             },
         });
 

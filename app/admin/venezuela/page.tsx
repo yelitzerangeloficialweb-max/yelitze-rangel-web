@@ -15,6 +15,7 @@ interface Registration {
     email: string;
     whatsapp: string;
     city: string;
+    instagram?: string;
     scanned: boolean;
     scannedAt: string | null;
 }
@@ -100,13 +101,14 @@ export default function AdminVenezuelaPage() {
     const exportToCSV = () => {
         if (registrations.length === 0) return;
 
-        const headers = ['Nombre', 'Email', 'WhatsApp', 'Ciudad', 'Fecha de Registro'];
+        const headers = ['Nombre', 'Email', 'WhatsApp', 'Instagram', 'Ciudad', 'Fecha de Registro'];
         const csvContent = [
             headers.join(','),
             ...registrations.map(r => [
                 `"${r.name}"`,
                 `"${r.email}"`,
                 `"${r.whatsapp}"`,
+                `"${r.instagram || ''}"`,
                 `"${r.city}"`,
                 `"${safeFormatDate(r.createdAt, 'yyyy-MM-dd HH:mm:ss')}"`
             ].join(','))
@@ -151,13 +153,14 @@ export default function AdminVenezuelaPage() {
         const email = formData.get('email') as string;
         const whatsapp = formData.get('whatsapp') as string;
         const city = formData.get('city') as string;
+        const instagram = formData.get('instagram') as string;
 
         try {
             setIsSubmitting(true);
             const res = await fetch(`/api/admin/venezuela/registrations/${editingRegistration.id}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, email, whatsapp, city }),
+                body: JSON.stringify({ name, email, whatsapp, city, instagram }),
             });
 
             if (res.ok) {
@@ -295,6 +298,7 @@ export default function AdminVenezuelaPage() {
                             <tr>
                                 <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Nombre</th>
                                 <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">WhatsApp</th>
+                                <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Instagram</th>
                                 <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Ciudad</th>
                                 <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Email</th>
                                 <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Fecha y Hora</th>
@@ -331,6 +335,7 @@ export default function AdminVenezuelaPage() {
                                     <tr key={r.id} className="hover:bg-stone-50 transition-colors">
                                         <td className="px-6 py-4 font-bold text-[var(--color-primary)]">{r.name}</td>
                                         <td className="px-6 py-4 text-stone-600">{r.whatsapp}</td>
+                                        <td className="px-6 py-4 text-stone-500 text-sm">{r.instagram || '-'}</td>
                                         <td className="px-6 py-4">
                                             <span className="px-3 py-1 bg-stone-100 rounded-full text-xs font-bold text-stone-600 uppercase tracking-wider line-clamp-1 max-w-[150px]">
                                                 {r.city}
@@ -506,6 +511,16 @@ export default function AdminVenezuelaPage() {
                                         required
                                     />
                                 </div>
+                            </div>
+                            <div>
+                                <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-1 block">Instagram</label>
+                                <input
+                                    type="text"
+                                    name="instagram"
+                                    defaultValue={editingRegistration.instagram}
+                                    className="w-full px-5 py-3 rounded-2xl border border-stone-100 bg-stone-50 text-stone-700 outline-none"
+                                    placeholder="@usuario"
+                                />
                             </div>
                             <div className="pt-4 flex gap-3">
                                 <button
