@@ -242,8 +242,8 @@ export default function VenezuelaEnElCuerpoPage() {
                 <div className="container mx-auto px-4 max-w-5xl text-center">
                     <FadeIn>
                         <h2 className="text-[#2D2926] font-bold tracking-[0.4em] uppercase text-xs mb-8">El Método</h2>
-                        <h3 className="text-4xl lg:text-7xl font-heading text-[#8C4005] mb-12 font-bold leading-tight">
-                            Arquitectura de vida <br className="md:hidden" /> <span className="text-[#C1530A]">Intencional</span>
+                        <h3 className="text-4xl lg:text-7xl font-heading text-[#8C4005] mb-12 font-bold leading-tight uppercase tracking-tight">
+                            Arquitectura <br className="md:hidden" /> <span className="text-[#C1530A]">de vida Intencional</span>
                         </h3>
                         <p className="text-2xl text-[#2D2926] font-light max-w-3xl mx-auto italic mb-20">
                             Dejamos de reaccionar al entorno para empezar a diseñar nuestra respuesta interna.
