@@ -58,9 +58,9 @@ export const TicketQR = ({
                         {qrUrl ? (
                             <QRCodeSVG
                                 value={qrUrl}
-                                size={192}
-                                fgColor="#8C4005"
-                                level="H"
+                                size={220}
+                                fgColor="#000000"
+                                level="M"
                                 includeMargin={false}
                             />
                         ) : (
