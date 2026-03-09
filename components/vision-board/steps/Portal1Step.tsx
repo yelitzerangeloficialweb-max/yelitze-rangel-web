@@ -97,10 +97,15 @@ export default function Portal1Step({ value, onChange, onNext, onBack }: Props) 
                 </div>
 
                 {/* Final Input Area */}
-                <div className="mt-20 space-y-6">
-                    <div className="flex items-center gap-4">
-                        <div className="w-12 h-px bg-[#3C2A21]/20" />
-                        <span className="text-[11px] font-bold uppercase tracking-widest text-[#3C2A21]/50 font-guide">Espacio de Integración</span>
+                <div className="mt-20 space-y-8">
+                    <div className="space-y-4">
+                        <div className="flex items-center gap-4">
+                            <div className="w-12 h-px bg-[#3C2A21]/20" />
+                            <span className="text-[11px] font-bold uppercase tracking-widest text-[#3C2A21]/50 font-guide">Espacio de Integración</span>
+                        </div>
+                        <p className="text-[#3C2A21]/60 font-guide text-sm leading-relaxed max-w-2xl">
+                            Reflexiona sobre lo que has identificado anteriormente. Utiliza este espacio para redactar tu conclusión personal y tu declaración de cierre, inspirándote en los patrones y espejos explorados arriba.
+                        </p>
                     </div>
                     <textarea
                         value={value}
