@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn } from "@/components/ui/motion";
 import { SacredGeometry, FloatingStars, ThinGoldenLine, WaveDivider } from "@/components/ui/MysticalElements";
 
@@ -22,6 +23,29 @@ export default function VenezuelaEnElCuerpoPage() {
     const toggleFaq = (index: number) => {
         setOpenFaq(openFaq === index ? null : index);
     };
+
+    const BackgroundCircles = () => (
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <motion.div
+                animate={{
+                    scale: [1, 1.2, 1],
+                    rotate: [0, 90, 0],
+                    opacity: [0.1, 0.2, 0.1],
+                }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] border border-[#B8835A] rounded-full opacity-10"
+            />
+            <motion.div
+                animate={{
+                    scale: [1.2, 1, 1.2],
+                    rotate: [0, -90, 0],
+                    opacity: [0.1, 0.15, 0.1],
+                }}
+                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                className="absolute -bottom-[20%] -right-[10%] w-[70%] h-[70%] border border-[#8C4005] rounded-full opacity-10"
+            />
+        </div>
+    );
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -65,6 +89,7 @@ export default function VenezuelaEnElCuerpoPage() {
 
             {/* 1. HERO (ATENCIÓN) */}
             <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-[#F5EFE6]">
+                <BackgroundCircles />
                 <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center relative z-10">
                     <FadeIn>
                         <span className="inline-block text-[#C1530A] font-bold tracking-[0.3em] uppercase text-[10px] md:text-xs mb-8 border border-[#C1530A]/20 px-4 py-2 rounded-full bg-white/40 backdrop-blur-sm shadow-sm ring-1 ring-[#C1530A]/5">
@@ -114,7 +139,8 @@ export default function VenezuelaEnElCuerpoPage() {
             </section>
 
             {/* 2. SEGMENTACIÓN */}
-            <section className="py-24 bg-[#F5EFE6] relative">
+            <section className="py-24 bg-[#F5EFE6] relative overflow-hidden">
+                <BackgroundCircles />
                 <div className="container mx-auto px-4 max-w-6xl">
                     <FadeIn className="mb-16">
                         <h2 className="text-3xl md:text-5xl font-heading text-[#8C4005] font-bold mb-6">
@@ -197,7 +223,8 @@ export default function VenezuelaEnElCuerpoPage() {
             </section>
 
             {/* 4. BIOGRAFÍA (YELITZE RANGEL) */}
-            <section className="py-32 bg-[#F5EFE6]">
+            <section className="py-32 bg-[#F5EFE6] relative overflow-hidden">
+                <BackgroundCircles />
                 <div className="container mx-auto px-4 max-w-6xl">
                     <div className="grid lg:grid-cols-2 gap-20 items-center">
                         <div className="relative">
@@ -238,7 +265,8 @@ export default function VenezuelaEnElCuerpoPage() {
             </section>
 
             {/* 5. LA SOLUCIÓN (EL HITO) */}
-            <section className="py-32 bg-[#F5EFE6]">
+            <section className="py-32 bg-[#F5EFE6] relative overflow-hidden">
+                <BackgroundCircles />
                 <div className="container mx-auto px-4 max-w-5xl text-center">
                     <FadeIn>
                         <h2 className="text-[#2D2926] font-bold tracking-[0.4em] uppercase text-xs mb-8">El Método</h2>
@@ -317,7 +345,8 @@ export default function VenezuelaEnElCuerpoPage() {
 
 
             {/* 8. PRUEBA SOCIAL */}
-            <section className="py-32 bg-[#F5EFE6] overflow-hidden">
+            <section className="py-32 bg-[#F5EFE6] relative overflow-hidden">
+                <BackgroundCircles />
                 <div className="container mx-auto px-4">
                     <FadeIn className="text-center mb-20">
                         <h2 className="text-4xl lg:text-5xl font-heading text-[#8C4005] font-bold">Resultados Reales</h2>
@@ -371,7 +400,8 @@ export default function VenezuelaEnElCuerpoPage() {
             </section>
 
             {/* 9. GARANTÍA */}
-            <section className="py-24 bg-[#F5EFE6]">
+            <section className="py-24 bg-[#F5EFE6] relative overflow-hidden">
+                <BackgroundCircles />
                 <div className="container mx-auto px-4 max-w-3xl text-center">
                     <FadeIn className="flex flex-col items-center">
                         <ShieldCheck className="w-20 h-20 text-[#2D2926] mb-8 opacity-60" />
@@ -384,7 +414,8 @@ export default function VenezuelaEnElCuerpoPage() {
             </section>
 
             {/* 10. FAQ */}
-            <section className="py-32 bg-[#F5EFE6]">
+            <section className="py-32 bg-[#F5EFE6] relative overflow-hidden">
+                <BackgroundCircles />
                 <div className="container mx-auto px-4 max-w-4xl">
                     <FadeIn className="text-center mb-16">
                         <h2 className="text-4xl font-heading text-[#8C4005] font-bold">Preguntas Frecuentes</h2>
