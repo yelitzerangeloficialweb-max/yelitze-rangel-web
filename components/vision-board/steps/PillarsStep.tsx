@@ -94,16 +94,16 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
                     <div className="text-center mb-4">
                         <h4 className="font-heading text-lg text-[var(--color-primary)]">Tu Visualización</h4>
                         <p className="text-xs text-gray-500 max-w-xs mx-auto mb-2">
-                            <strong>¡Importante!</strong> Sube de 1 a 3 imágenes que te inspiren. Sin imagen, este pilar quedará vacío.
+                            <strong>¡Importante!</strong> Sube de 1 a 3 imágenes que representen este pilar en tu vida.
                         </p>
-                        <div className="bg-[#D4AF37]/10 p-2 rounded-lg inline-block">
-                            <p className="text-[10px] text-[#4A3B32] font-medium italic">
+                        <div className="bg-[var(--color-secondary)]/10 p-2 rounded-lg inline-block">
+                            <p className="text-[10px] text-[var(--color-primary)] font-medium italic">
                                 💡 Idea: {
                                     currentPillarIndex === 0 ? "Tu oficina ideal, un escenario, tu libro publicado..." :
-                                        currentPillarIndex === 1 ? "La casa de tus sueños, fajos de billetes, oro, el auto..." :
-                                            currentPillarIndex === 2 ? "Cena romántica, familia riendo, anillo de compromiso..." :
-                                                currentPillarIndex === 3 ? "Tú meditando, un diploma, un paisaje de paz..." :
-                                                    "Comida saludable, cuerpo tonificado, un spa..."
+                                        currentPillarIndex === 1 ? "La casa de tus sueños, abundancia, libertad financiera..." :
+                                            currentPillarIndex === 2 ? "Familia riendo, vínculos sanos, amor compartido..." :
+                                                currentPillarIndex === 3 ? "Tú meditando, un paisaje de paz, expansión interna..." :
+                                                    "Comida saludable, cuerpo vital, autocuidado..."
                                 }
                             </p>
                         </div>

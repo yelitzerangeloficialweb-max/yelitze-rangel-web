@@ -48,7 +48,7 @@ export default function TestSpotlight() {
 
                             <div className="pt-12">
                                 <Link
-                                    href="/experiencia-guiada"
+                                    href="/arquitectura-de-vida-intencional"
                                     className="btn-premium px-12 py-5 bg-white !text-stone-900 shadow-xl hover:!bg-stone-200 group"
                                 >
                                     Iniciar mi Transformación

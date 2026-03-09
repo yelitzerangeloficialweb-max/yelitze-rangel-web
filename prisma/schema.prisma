@@ -76,6 +76,7 @@ model VenezuelaEnElCuerpoRegistration {
   email     String
   whatsapp  String
   city      String
+  instagram String?
   scanned   Boolean  @default(false)
   scannedAt DateTime?
 }

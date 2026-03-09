@@ -54,13 +54,14 @@ export default function VenezuelaEnElCuerpoPage() {
         const email = formData.get("email") as string;
         const city = formData.get("city") as string;
         const whatsapp = formData.get("phone") as string;
+        const instagram = formData.get("instagram") as string;
 
         try {
             // Save to database
             const res = await fetch('/api/venezuela-en-el-cuerpo/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, email, whatsapp, city }),
+                body: JSON.stringify({ name, email, whatsapp, city, instagram }),
             });
 
             if (res.ok) {
@@ -296,7 +297,7 @@ export default function VenezuelaEnElCuerpoPage() {
                     <FadeIn>
                         <h2 className="text-[#2D2926] font-bold tracking-[0.4em] uppercase text-xs mb-8">El Método</h2>
                         <h3 className="text-4xl lg:text-7xl font-heading text-[#8C4005] mb-12 font-bold leading-tight uppercase tracking-tight">
-                            Arquitectura <br className="md:hidden" /> <span className="text-[#C1530A]">Intencional de Vida</span>
+                            Tracking de la <br className="md:hidden" /> <span className="text-[#C1530A]">Arquitectura Intencional de tu Vida</span>
                         </h3>
                         <p className="text-2xl text-[#2D2926] font-light max-w-3xl mx-auto italic mb-20">
                             Dejamos de reaccionar al entorno para empezar a diseñar nuestra respuesta interna.
@@ -318,7 +319,7 @@ export default function VenezuelaEnElCuerpoPage() {
                                 <Sparkles className="w-32 h-32" />
                             </div>
                             <h4 className="text-6xl font-heading text-[#B8835A]/20 mb-6 font-bold">02</h4>
-                            <h5 className="text-2xl font-bold text-[#8C4005] mb-6">Arquitectura Intencional de Vida</h5>
+                            <h5 className="text-2xl font-bold text-[#8C4005] mb-6">Tracking de la Arquitectura Intencional de tu Vida</h5>
                             <p className="text-stone-300 font-light">Sistemas regulados, visión de largo plazo y capacidad real de crear abundancia.</p>
                         </FadeIn>
                     </div>
@@ -354,7 +355,7 @@ export default function VenezuelaEnElCuerpoPage() {
                             },
                             {
                                 icon: Sparkles,
-                                title: "Arquitectura Intencional de Vida",
+                                title: "Tracking de la Arquitectura Intencional de tu Vida",
                                 desc: "El mapa práctico para diseñar tu respuesta interna y habitar una nueva soberanía."
                             }
                         ].map((item, i) => (
@@ -527,7 +528,7 @@ export default function VenezuelaEnElCuerpoPage() {
                                 <span className="text-[#B8835A]">Tour Nacional de</span> <br /> Venezuela en el Cuerpo
                             </h2>
                             <p className="text-[#F5EFE6] text-xl font-light mb-12 opacity-80 leading-relaxed">
-                                Selecciona tu ciudad para generar tu Pase QR. Una vez registrado, recibirás por email la ubicación exacta, la hora y detalles del encuentro.
+                                Llena el formulario de Registro Oficial y selecciona tu ciudad para generar tu Pase QR. Una vez registrado, recibirás por email la ubicación exacta, la hora y detalles del encuentro.
                             </p>
                             <div className="flex flex-col gap-6">
                                 <div className="flex items-start gap-4 opacity-80 backdrop-blur-sm bg-[#2D2926]/30 p-6 rounded-3xl border border-[#B8835A]/10">
@@ -541,6 +542,16 @@ export default function VenezuelaEnElCuerpoPage() {
                                             <li><strong className="text-[#B8835A]">Paso 2:</strong> Recibes un email automático con tu Pase QR único.</li>
                                             <li><strong className="text-[#B8835A]">Paso 3:</strong> Te enviaremos por email el Lugar y Hora detallados del evento en tu ciudad.</li>
                                         </ul>
+                                    </div>
+                                </div>
+                                <div className="flex justify-center lg:justify-start mt-8">
+                                    <div className="relative w-40 h-16 opacity-60 hover:opacity-100 transition-opacity">
+                                        <Image
+                                            src="/assets/images/logo-yelitze-new.png"
+                                            alt="Yelitze Rangel"
+                                            fill
+                                            className="object-contain object-left"
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -631,6 +642,15 @@ export default function VenezuelaEnElCuerpoPage() {
                                         </select>
                                         <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 w-5 h-5 text-[#C1530A] pointer-events-none" />
                                     </div>
+                                </div>
+                                <div>
+                                    <label className="text-xs font-bold text-[#2D2926] uppercase tracking-widest mb-3 block ml-2">Instagram (Opcional)</label>
+                                    <input
+                                        type="text"
+                                        name="instagram"
+                                        className="w-full bg-[#F5EFE6] border border-stone-200 rounded-3xl px-8 py-5 focus:ring-2 focus:ring-[#C1530A]/20 focus:border-[#C1530A] transition-all outline-none"
+                                        placeholder="@tuusuario"
+                                    />
                                 </div>
                                 <div>
                                     <label className="text-xs font-bold text-[#2D2926] uppercase tracking-widest mb-3 block ml-2">WhatsApp</label>

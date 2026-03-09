@@ -241,7 +241,7 @@ export default function TestsHubPage() {
                         </p>
                         <div className="pt-8">
                             <Link
-                                href="/experiencia-guiada"
+                                href="/arquitectura-de-vida-intencional"
                                 className="btn-premium px-16 py-6 bg-white !text-stone-900 shadow-2xl hover:!bg-stone-100 group gap-6 text-xl"
                             >
                                 Explorar la Experiencia

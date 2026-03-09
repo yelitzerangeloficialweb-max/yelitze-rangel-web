@@ -5,7 +5,7 @@ import { sendVenezuelaRegistrationEmail } from '@/lib/mail';
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { name, email, whatsapp, city } = body;
+        const { name, email, whatsapp, city, instagram } = body;
 
         if (!name || !email || !whatsapp || !city) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
@@ -41,6 +41,7 @@ export async function POST(req: Request) {
                 email: email.trim().toLowerCase(),
                 whatsapp: whatsapp.trim(),
                 city: city.trim(),
+                instagram: instagram?.trim(),
             },
         });
 

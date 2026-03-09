@@ -85,7 +85,7 @@ export default function Header() {
             href: '/tests',
             children: [
                 { name: 'Ver Todos', href: '/tests' },
-                { name: 'Arquitectura Intencional de Vida', href: '/experiencia-guiada' },
+                { name: 'Arquitectura Intencional de Vida', href: '/arquitectura-de-vida-intencional' },
                 { name: 'Heridas de la Infancia', href: '/tests/heridas-infancia' },
                 { name: 'Creencias sobre el Amor', href: '/tests/creencias-amor' },
                 { name: 'Creencias sobre el Dinero', href: '/tests/creencias-dinero' }
@@ -152,7 +152,7 @@ export default function Header() {
                                                 href={child.href}
                                                 className={cn(
                                                     "block px-4 py-3 text-sm text-primary hover:bg-background transition-colors border-b border-primary/5 last:border-0",
-                                                    child.href === '/experiencia-guiada'
+                                                    child.href === '/arquitectura-de-vida-intencional'
                                                         ? "hover:text-[var(--color-accent-light)] font-medium"
                                                         : "hover:text-secondary"
                                                 )}

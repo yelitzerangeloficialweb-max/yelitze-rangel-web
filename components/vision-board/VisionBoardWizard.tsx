@@ -184,7 +184,7 @@ export default function VisionBoardWizard() {
                 </div>
                 <h2 className="text-3xl font-heading text-[var(--color-primary)] mb-4">Todo está listo para tu revelación</h2>
                 <p className="text-gray-600 mb-8 leading-relaxed">
-                    Yelitze integrará tus pilares y reflexiones para entregarte tu Arquitectura de Vida 2026. Ingresa tus datos para recibir tu reporte detallado.
+                    Yelitze integrará tus pilares y reflexiones para entregarte tu Arquitectura de Vida. Ingresa tus datos para recibir tu reporte detallado de "Venezuela en el Cuerpo".
                 </p>
 
                 <form onSubmit={handleLeadSubmit} className="space-y-4 text-left">

@@ -26,7 +26,7 @@ export default function PromotionalBanner() {
 
                         <div className="pt-4 flex justify-center lg:justify-start">
                             <Link
-                                href="/experiencia-guiada"
+                                href="/arquitectura-de-vida-intencional"
                                 className="px-8 py-4 bg-[var(--color-primary)] hover:bg-[var(--color-primary-light)] text-white rounded-full font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2 shadow-xl"
                             >
                                 Iniciar mi Transformación

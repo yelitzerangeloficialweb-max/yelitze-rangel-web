@@ -35,11 +35,11 @@ export default function IntroStep({ onNext }: { onNext: () => void }) {
 
                     <FadeIn delay={0.2} className="space-y-4">
                         <span className="text-[var(--color-secondary)] font-bold tracking-[0.4em] uppercase text-xs md:text-sm">
-                            No es Magia. Es Orden.
+                            Venezuela en el Cuerpo
                         </span>
                         <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading text-[var(--color-primary)] leading-tight italic">
-                            Deja de Pedir. <br />
-                            <span className="text-stone-300">Empieza a Ordenar.</span>
+                            Tu Experiencia <br />
+                            <span className="text-stone-400">Guiada de Orden.</span>
                         </h1>
                     </FadeIn>
                 </div>
