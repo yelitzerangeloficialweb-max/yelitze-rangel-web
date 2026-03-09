@@ -16,9 +16,9 @@ export const sendVenezuelaRegistrationEmail = async ({
     registrationId
 }: SendRegistrationEmailProps) => {
     try {
-        const ticketUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangel.com'}/venezuela-en-el-cuerpo/success?id=${registrationId}&name=${encodeURIComponent(name)}&city=${encodeURIComponent(city)}`;
+        const ticketUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/venezuela-en-el-cuerpo/success?id=${registrationId}&name=${encodeURIComponent(name)}&city=${encodeURIComponent(city)}`;
 
-        const logoUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangel.com'}/assets/images/logo-yelitze-new.png`;
+        const logoUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/assets/images/logo-yelitze-new.png`;
 
         const { data, error } = await resend.emails.send({
             from: 'Yelitze Rangel <info@yelitzerangeloficial.com>',
