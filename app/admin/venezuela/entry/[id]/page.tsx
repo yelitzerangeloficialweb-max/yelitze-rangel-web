@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, Loader2, XCircle, User, MapPin, Mail, Phone, Calendar } from 'lucide-react';
+import { CheckCircle2, Loader2, XCircle, User, MapPin, Mail, Phone, Calendar, AlertTriangle } from 'lucide-react';
 
 interface Registration {
     id: string;
@@ -13,6 +13,7 @@ interface Registration {
     whatsapp: string;
     city: string;
     scanned: boolean;
+    scannedAt: string | null;
 }
 
 export default function ParticipantEntryPage() {
@@ -22,14 +23,16 @@ export default function ParticipantEntryPage() {
     const [error, setError] = useState<string | null>(null);
     const [participant, setParticipant] = useState<Registration | null>(null);
     const [scanDone, setScanDone] = useState(false);
+    const [alreadyScanned, setAlreadyScanned] = useState(false);
 
     useEffect(() => {
         const fetchAndScan = async () => {
             try {
-                // First get the data
+                // First get the data to check if already scanned
                 const response = await fetch(`/api/admin/venezuela/registrations`);
                 const data = await response.json();
-                const found = data.find((r: any) => r.id === params.id);
+                const id = params.id as string;
+                const found = data.find((r: Registration) => r.id === id);
 
                 if (!found) {
                     setError('Participante no encontrado');
@@ -39,15 +42,26 @@ export default function ParticipantEntryPage() {
 
                 setParticipant(found);
 
+                if (found.scanned) {
+                    setAlreadyScanned(true);
+                    setLoading(false);
+                    return;
+                }
+
                 // Now mark as scanned
-                const scanRes = await fetch(`/api/admin/venezuela/scan/${params.id}`, {
+                const scanRes = await fetch(`/api/admin/venezuela/scan/${id}`, {
                     method: 'POST'
                 });
 
                 if (scanRes.ok) {
                     setScanDone(true);
                 } else {
-                    console.error('Error marking as scanned');
+                    const errorData = await scanRes.json();
+                    if (errorData.alreadyScanned) {
+                        setAlreadyScanned(true);
+                    } else {
+                        console.error('Error marking as scanned');
+                    }
                 }
 
                 setLoading(false);
@@ -92,6 +106,7 @@ export default function ParticipantEntryPage() {
         );
     }
 
+    // SUCCESS OR ALREADY SCANNED VIEW
     return (
         <div className="min-h-screen bg-stone-50 flex items-center justify-center p-4">
             <motion.div
@@ -100,28 +115,49 @@ export default function ParticipantEntryPage() {
                 className="bg-white rounded-[3.5rem] shadow-2xl overflow-hidden max-w-md w-full border border-stone-100 relative"
             >
                 {/* Header Status */}
-                <div className="bg-[#C1530A] p-8 text-center relative overflow-hidden">
+                <div className={`${alreadyScanned ? 'bg-amber-500' : 'bg-green-600'} p-8 text-center relative overflow-hidden transition-colors duration-500`}>
                     <motion.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ type: "spring", damping: 12, stiffness: 200, delay: 0.2 }}
                         className="relative z-10 inline-flex items-center justify-center w-24 h-24 bg-white/20 backdrop-blur-md rounded-full border-4 border-white mb-4"
                     >
-                        <CheckCircle2 className="w-12 h-12 text-white" />
+                        {alreadyScanned ? (
+                            <AlertTriangle className="w-12 h-12 text-white" />
+                        ) : (
+                            <CheckCircle2 className="w-12 h-12 text-white" />
+                        )}
                     </motion.div>
-                    <h1 className="text-white text-3xl font-bold font-heading relative z-10">¡Entrada Confirmada!</h1>
-                    <p className="text-white/80 text-sm font-medium uppercase tracking-[0.2em] relative z-10 mt-1">Acceso Validado</p>
+
+                    <h1 className="text-white text-3xl font-bold font-heading relative z-10">
+                        {alreadyScanned ? '¡Pase ya Validado!' : '¡Entrada Confirmada!'}
+                    </h1>
+                    <p className="text-white/80 text-sm font-medium uppercase tracking-[0.2em] relative z-10 mt-1">
+                        {alreadyScanned ? 'Acceso Previamente Registrado' : 'Acceso Validado Ahora'}
+                    </p>
 
                     {/* Animated background circle */}
-                    <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 4 }}
-                        transition={{ duration: 1.5, ease: "easeOut" }}
-                        className="absolute inset-0 bg-white/10 rounded-full"
-                    />
+                    {!alreadyScanned && (
+                        <motion.div
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 4 }}
+                            transition={{ duration: 1.5, ease: "easeOut" }}
+                            className="absolute inset-0 bg-white/10 rounded-full"
+                        />
+                    )}
                 </div>
 
                 <div className="p-10 space-y-8">
+                    {/* Warning Message if already scanned */}
+                    {alreadyScanned && (
+                        <div className="bg-amber-50 border border-amber-200 p-4 rounded-2xl flex gap-3 items-start">
+                            <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+                            <p className="text-xs text-amber-800 leading-relaxed font-medium">
+                                Este código QR ya fue escaneado anteriormente. Por favor, verifica la identidad del participante para evitar duplicados.
+                            </p>
+                        </div>
+                    )}
+
                     {/* Participant Details */}
                     <div className="space-y-6">
                         <div className="flex items-center gap-6 p-4 rounded-3xl bg-stone-50 border border-stone-100">
@@ -145,9 +181,14 @@ export default function ParticipantEntryPage() {
                             <div className="flex items-center gap-4 px-4 py-3 rounded-2xl border border-stone-50">
                                 <Calendar className="w-5 h-5 text-stone-300" />
                                 <div>
-                                    <p className="text-[9px] font-bold text-stone-400 uppercase tracking-widest">Validación</p>
+                                    <p className="text-[9px] font-bold text-stone-400 uppercase tracking-widest">
+                                        {alreadyScanned ? 'Fecha de Registro' : 'Validación'}
+                                    </p>
                                     <p className="text-sm font-bold text-stone-700">
-                                        {new Date().toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' })} - {new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}
+                                        {alreadyScanned && participant.scannedAt
+                                            ? new Date(participant.scannedAt).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+                                            : new Date().toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+                                        }
                                     </p>
                                 </div>
                             </div>
@@ -168,7 +209,7 @@ export default function ParticipantEntryPage() {
 
                         <button
                             onClick={() => router.push('/admin/venezuela')}
-                            className="w-full bg-stone-900 text-white py-5 rounded-[2rem] font-bold text-sm tracking-widest uppercase hover:bg-stone-800 transition-all shadow-xl shadow-stone-200"
+                            className={`w-full ${alreadyScanned ? 'bg-amber-600 hover:bg-amber-700' : 'bg-stone-900 hover:bg-stone-800'} text-white py-5 rounded-[2rem] font-bold text-sm tracking-widest uppercase transition-all shadow-xl shadow-stone-200`}
                         >
                             Volver al Listado
                         </button>

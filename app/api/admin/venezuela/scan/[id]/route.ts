@@ -8,6 +8,15 @@ export async function POST(
     try {
         const { id } = await params;
 
+        // Check current status
+        const existing = await db.venezuelaEnElCuerpoRegistration.findUnique({
+            where: { id }
+        });
+
+        if (existing?.scanned) {
+            return NextResponse.json({ error: 'Already scanned', alreadyScanned: true }, { status: 400 });
+        }
+
         const registration = await db.venezuelaEnElCuerpoRegistration.update({
             where: { id },
             data: {
