@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Download, Loader2, Users, MapPin, Calendar, Phone, QrCode, X, CheckCircle2, XCircle, Camera } from 'lucide-react';
+import { Download, Loader2, Users, MapPin, Calendar, Phone, QrCode, X, CheckCircle2, XCircle, Camera, Pencil, Trash2, AlertCircle } from 'lucide-react';
 import { format, isValid } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { TicketQR } from '@/components/ui/TicketQR';
@@ -37,6 +37,9 @@ export default function AdminVenezuelaPage() {
     const [searchTerm, setSearchTerm] = useState('');
     const [cityFilter, setCityFilter] = useState('all');
     const [statusFilter, setStatusFilter] = useState('all');
+    const [editingRegistration, setEditingRegistration] = useState<Registration | null>(null);
+    const [deletingId, setDeletingId] = useState<string | null>(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const router = useRouter();
 
     useEffect(() => {
@@ -118,6 +121,58 @@ export default function AdminVenezuelaPage() {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+    };
+
+    const handleDelete = async (id: string) => {
+        if (!confirm('¿Estás seguro de que deseas eliminar este registro?')) return;
+
+        try {
+            const res = await fetch(`/api/admin/venezuela/registrations/${id}`, {
+                method: 'DELETE',
+            });
+
+            if (res.ok) {
+                setRegistrations(prev => prev.filter(r => r.id !== id));
+            } else {
+                alert('Error al eliminar el registro');
+            }
+        } catch (error) {
+            console.error('Error deleting registration:', error);
+            alert('Error de conexión');
+        }
+    };
+
+    const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (!editingRegistration) return;
+
+        const formData = new FormData(e.currentTarget);
+        const name = formData.get('name') as string;
+        const email = formData.get('email') as string;
+        const whatsapp = formData.get('whatsapp') as string;
+        const city = formData.get('city') as string;
+
+        try {
+            setIsSubmitting(true);
+            const res = await fetch(`/api/admin/venezuela/registrations/${editingRegistration.id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, whatsapp, city }),
+            });
+
+            if (res.ok) {
+                const updated = await res.json();
+                setRegistrations(prev => prev.map(r => r.id === updated.id ? updated : r));
+                setEditingRegistration(null);
+            } else {
+                alert('Error al actualizar el registro');
+            }
+        } catch (error) {
+            console.error('Error updating registration:', error);
+            alert('Error de conexión');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     if (loading) {
@@ -244,7 +299,7 @@ export default function AdminVenezuelaPage() {
                                 <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Email</th>
                                 <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Fecha y Hora</th>
                                 <th className="text-center px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Estado</th>
-                                <th className="text-center px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Pase QR</th>
+                                <th className="text-center px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Acciones</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-stone-100">
@@ -298,14 +353,30 @@ export default function AdminVenezuelaPage() {
                                                 </div>
                                             )}
                                         </td>
-                                        <td className="px-6 py-4 text-center">
-                                            <button
-                                                onClick={() => setSelectedRegistration(r)}
-                                                className="p-2 bg-[var(--color-primary)] text-white rounded-lg hover:scale-110 transition-transform shadow-md inline-flex items-center justify-center"
-                                                title="Ver Pase QR"
-                                            >
-                                                <QrCode className="w-5 h-5" />
-                                            </button>
+                                        <td className="px-6 py-4">
+                                            <div className="flex items-center justify-center gap-2">
+                                                <button
+                                                    onClick={() => setSelectedRegistration(r)}
+                                                    className="p-2 bg-stone-100 text-stone-600 rounded-lg hover:bg-stone-200 transition-colors"
+                                                    title="Ver Pase QR"
+                                                >
+                                                    <QrCode className="w-5 h-5" />
+                                                </button>
+                                                <button
+                                                    onClick={() => setEditingRegistration(r)}
+                                                    className="p-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors"
+                                                    title="Editar"
+                                                >
+                                                    <Pencil className="w-4 h-4" />
+                                                </button>
+                                                <button
+                                                    onClick={() => handleDelete(r.id)}
+                                                    className="p-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors"
+                                                    title="Eliminar"
+                                                >
+                                                    <Trash2 className="w-4 h-4" />
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 ));
@@ -369,6 +440,90 @@ export default function AdminVenezuelaPage() {
                         <p className="text-[10px] text-center mt-6 text-stone-400 font-bold uppercase tracking-widest">
                             Control de Acceso • Venezuela en el Cuerpo
                         </p>
+                    </div>
+                </div>
+            )}
+
+            {/* Edit Registration Modal */}
+            {editingRegistration && (
+                <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+                    <div
+                        className="absolute inset-0 bg-stone-900/60 backdrop-blur-sm"
+                        onClick={() => setEditingRegistration(null)}
+                    />
+                    <div className="relative w-full max-w-md bg-white rounded-[2rem] p-8 shadow-2xl animate-in zoom-in-95 duration-200">
+                        <button
+                            onClick={() => setEditingRegistration(null)}
+                            className="absolute top-6 right-6 p-2 text-stone-400 hover:text-stone-900 transition-colors"
+                        >
+                            <X className="w-6 h-6" />
+                        </button>
+
+                        <div className="text-center mb-8">
+                            <h3 className="text-xl font-bold font-heading text-stone-900">Editar Registro</h3>
+                            <p className="text-sm text-stone-500 mt-1">Actualiza la información del participante</p>
+                        </div>
+
+                        <form onSubmit={handleUpdate} className="space-y-4">
+                            <div>
+                                <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-1 block">Nombre Completo</label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    defaultValue={editingRegistration.name}
+                                    className="w-full px-5 py-3 rounded-2xl border border-stone-100 bg-stone-50 text-stone-700 outline-none"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-1 block">Correo Electrónico</label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    defaultValue={editingRegistration.email}
+                                    className="w-full px-5 py-3 rounded-2xl border border-stone-100 bg-stone-50 text-stone-700 outline-none"
+                                    required
+                                />
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-1 block">WhatsApp</label>
+                                    <input
+                                        type="text"
+                                        name="whatsapp"
+                                        defaultValue={editingRegistration.whatsapp}
+                                        className="w-full px-5 py-3 rounded-2xl border border-stone-100 bg-stone-50 text-stone-700 outline-none"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-1 block">Ciudad</label>
+                                    <input
+                                        type="text"
+                                        name="city"
+                                        defaultValue={editingRegistration.city}
+                                        className="w-full px-5 py-3 rounded-2xl border border-stone-100 bg-stone-50 text-stone-700 outline-none"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <div className="pt-4 flex gap-3">
+                                <button
+                                    type="button"
+                                    onClick={() => setEditingRegistration(null)}
+                                    className="flex-1 py-3 bg-stone-100 text-stone-600 font-bold rounded-xl hover:bg-stone-200 transition-colors"
+                                >
+                                    Cancelar
+                                </button>
+                                <button
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                    className="flex-1 py-3 bg-[#C1530A] text-white font-bold rounded-xl hover:bg-[#A84A2F] transition-colors disabled:opacity-50 flex items-center justify-center"
+                                >
+                                    {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Guardar Cambios'}
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             )}
