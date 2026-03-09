@@ -10,12 +10,36 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
         }
 
+        // 1. Check if email already exists
+        const existingEmail = await db.venezuelaEnElCuerpoRegistration.findFirst({
+            where: { email: email.trim().toLowerCase() }
+        });
+
+        if (existingEmail) {
+            return NextResponse.json({
+                error: 'duplicate',
+                message: 'Ya existe un registro con este correo electrónico.'
+            }, { status: 400 });
+        }
+
+        // 2. Check if WhatsApp already exists
+        const existingPhone = await db.venezuelaEnElCuerpoRegistration.findFirst({
+            where: { whatsapp: whatsapp.trim() }
+        });
+
+        if (existingPhone) {
+            return NextResponse.json({
+                error: 'duplicate',
+                message: 'Ya existe un registro con este número de WhatsApp.'
+            }, { status: 400 });
+        }
+
         const registration = await db.venezuelaEnElCuerpoRegistration.create({
             data: {
-                name,
-                email,
-                whatsapp,
-                city,
+                name: name.trim(),
+                email: email.trim().toLowerCase(),
+                whatsapp: whatsapp.trim(),
+                city: city.trim(),
             },
         });
 

@@ -70,9 +70,13 @@ export default function VenezuelaEnElCuerpoPage() {
                 // Redirect to success page with query params including ID
                 router.push(`/venezuela-en-el-cuerpo/success?id=${encodeURIComponent(registrationId)}&name=${encodeURIComponent(name)}&city=${encodeURIComponent(city)}`);
             } else {
-                console.error('Registration failed');
-                // You could add a toast or error state here if needed
-                alert("Hubo un error al registrarte. Por favor intenta de nuevo.");
+                const errorData = await res.json();
+                if (errorData.error === 'duplicate') {
+                    alert(errorData.message);
+                } else {
+                    console.error('Registration failed');
+                    alert("Hubo un error al registrarte. Por favor intenta de nuevo.");
+                }
             }
         } catch (error) {
             console.error('Error:', error);
