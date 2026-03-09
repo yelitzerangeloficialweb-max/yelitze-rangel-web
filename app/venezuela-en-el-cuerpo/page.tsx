@@ -488,6 +488,17 @@ export default function VenezuelaEnElCuerpoPage() {
             <section className="pt-52 pb-24 bg-[#B8835A] text-[#F5EFE6] relative overflow-hidden">
                 <WaveDivider position="top" fill="#F5EFE6" />
                 <div className="absolute inset-0 bg-[url('/assets/images/noise.png')] opacity-10 mix-blend-overlay pointer-events-none" />
+
+                {/* Logo Watermark */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[600px] md:h-[600px] opacity-[0.04] pointer-events-none z-0">
+                    <Image
+                        src="/assets/images/watermark-logo.png"
+                        alt="Watermark"
+                        fill
+                        className="object-contain brightness-0 invert"
+                    />
+                </div>
+
                 <div className="container mx-auto px-4 max-w-4xl text-center relative z-10">
                     <FadeIn>
                         <MessageCircle className="w-16 h-16 mx-auto mb-8 text-[#F5EFE6]/50" />
