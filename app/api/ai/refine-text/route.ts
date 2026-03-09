@@ -1,11 +1,17 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import OpenAI from 'openai';
 import { NextResponse } from 'next/server';
 
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API_KEY || '');
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY || ''
+});
 
 export async function POST(req: Request) {
     try {
         const { text, context } = await req.json();
+
+        if (!process.env.OPENAI_API_KEY) {
+            return NextResponse.json({ error: "OpenAI API Key missing on server." }, { status: 500 });
+        }
 
         if (!text || text.trim().length < 5) {
             return NextResponse.json({ error: "Texto demasiado corto para refinar." }, { status: 400 });
@@ -17,7 +23,7 @@ export async function POST(req: Request) {
         
         **TU VOZ Y TONO:**
         - **Elevado y Poético:** Usa un lenguaje que evoque orden, energía y propósito.
-        - **Sistémico:** Si es posible, integra conceptos como "orden", "lealtad", "espacio sagrado" o "energía vital".
+        - **Sistémico:** Integra conceptos como "orden", "lealtad", "espacio sagrado" o "energía vital".
         - **Breve y Directo:** No extiendas el texto innecesariamente, solo dale la fuerza y el "sentir" de tu marca.
         - **Primera Persona:** Mantén la perspectiva del usuario (Yo...).
         
@@ -28,14 +34,21 @@ export async function POST(req: Request) {
         Devuelve ÚNICAMENTE el texto refinado, sin introducciones ni comentarios adicionales. Que suene como una declaración de poder.
         `;
 
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-        const result = await model.generateContent(prompt);
-        const refinedText = result.response.text().trim();
+        const response = await openai.chat.completions.create({
+            model: "gpt-4o-mini", // Faster and cheaper for this task
+            messages: [
+                { role: "system", content: "Eres Yelitzé Rangel, una mentora experimentada." },
+                { role: "user", content: prompt }
+            ],
+            temperature: 0.7,
+        });
+
+        const refinedText = response.choices[0].message.content?.trim() || '';
 
         return NextResponse.json({ refinedText });
 
     } catch (error: any) {
-        console.error('Text Refinement Error:', error);
+        console.error('OpenAI Refinement Error:', error);
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }
