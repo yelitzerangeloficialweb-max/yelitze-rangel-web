@@ -56,14 +56,18 @@ export default function IntroStep({ onNext }: { onNext: () => void }) {
                         Bienvenida a tu **Arquitectura Intencional de Vida**. Esto no es un simple tablero de fotos; es el diseño de la estructura interna que permitirá que tus metas aterricen en terreno fértil.
                     </p>
                 </div>
-                <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl">
-                    <Image
-                        src="/assets/images/about-experience.jpg"
-                        alt="Orden y Propósito"
-                        fill
-                        className="object-cover grayscale hover:grayscale-0 transition-all duration-[2000ms]"
-                    />
-                    <div className="absolute inset-0 bg-[var(--color-primary)]/10" />
+                <div className="relative aspect-square">
+                    <div className="absolute inset-0 bg-stone-100 rounded-[3rem] transform -rotate-3 scale-95 opacity-50" />
+                    <div className="relative w-full h-full p-4 bg-white rounded-[3rem] border border-stone-100 shadow-2xl transform rotate-2 hover:rotate-0 transition-all duration-700">
+                        <div className="w-full h-full relative rounded-[2.5rem] overflow-hidden">
+                            <Image
+                                src="/assets/images/philosophy-transforma.jpg"
+                                alt="Orden y Propósito"
+                                fill
+                                className="object-cover transition-transform duration-[3000ms] hover:scale-110"
+                            />
+                        </div>
+                    </div>
                 </div>
             </section>
 
