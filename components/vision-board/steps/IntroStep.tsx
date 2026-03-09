@@ -107,7 +107,7 @@ export default function IntroStep({ onNext }: { onNext: () => void }) {
             </div>
 
             {/* 4. PRE-REQUISITE ALERT */}
-            <FadeIn className="bg-stone-950 rounded-[3rem] p-12 text-white relative overflow-hidden">
+            <FadeIn className="bg-[#2D2926] rounded-[3rem] p-12 text-white relative overflow-hidden">
                 <div className="absolute -right-20 -top-20 w-80 h-80 opacity-[0.05] pointer-events-none">
                     <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
                 </div>
