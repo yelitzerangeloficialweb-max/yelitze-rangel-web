@@ -273,13 +273,18 @@ export default function VenezuelaEnElCuerpoPage() {
             </section>
 
             {/* 6. ENTREGABLES */}
-            <section className="py-32 bg-[#F5EFE6]">
-                <div className="container mx-auto px-4">
-                    <FadeIn className="text-center mb-20">
-                        <h2 className="text-4xl lg:text-5xl font-heading text-[#8C4005] font-bold">Lo que recibirás gratis</h2>
+            <section className="py-40 bg-[#2D2926] text-[#F5EFE6] relative overflow-hidden">
+                <WaveDivider position="top" fill="#F5EFE6" />
+                <FloatingStars count={25} className="opacity-30" />
+                <SacredGeometry className="left-[-10%] bottom-[-10%] w-[600px] h-[600px] text-[#B8835A]/5" />
+
+                <div className="container mx-auto px-4 relative z-10">
+                    <FadeIn className="text-center mb-24">
+                        <h2 className="text-4xl lg:text-7xl font-heading text-[#B8835A] font-bold">Lo que recibirás gratis</h2>
+                        <div className="w-24 h-px bg-[#B8835A]/30 mx-auto mt-8" />
                     </FadeIn>
 
-                    <StaggerContainer className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+                    <StaggerContainer className="grid md:grid-cols-3 gap-16 max-w-6xl mx-auto">
                         {[
                             {
                                 icon: QrCode,
@@ -297,16 +302,17 @@ export default function VenezuelaEnElCuerpoPage() {
                                 desc: "El mapa práctico para diseñar tu respuesta interna y habitar una nueva soberanía."
                             }
                         ].map((item, i) => (
-                            <StaggerItem key={i} className="flex flex-col items-center text-center">
-                                <div className="w-24 h-24 bg-[#F5EFE6] rounded-full flex items-center justify-center shadow-xl border border-[#2D2926]/5 mb-8 group hover:scale-110 transition-transform">
-                                    <item.icon className="w-10 h-10 text-[#C1530A]" />
+                            <StaggerItem key={i} className="flex flex-col items-center text-center group">
+                                <div className="w-28 h-28 bg-[#F5EFE6] rounded-[2.5rem] flex items-center justify-center shadow-2xl border border-[#B8835A]/20 mb-10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                                    <item.icon className="w-12 h-12 text-[#C1530A]" />
                                 </div>
-                                <h4 className="text-2xl font-heading text-[#8C4005] mb-4 font-bold">{item.title}</h4>
-                                <p className="text-[#2D2926] font-light leading-relaxed">{item.desc}</p>
+                                <h4 className="text-2xl font-heading text-[#B8835A] mb-4 font-bold uppercase tracking-tight">{item.title}</h4>
+                                <p className="text-[#F5EFE6]/70 font-light leading-relaxed max-w-[280px]">{item.desc}</p>
                             </StaggerItem>
                         ))}
                     </StaggerContainer>
                 </div>
+                <WaveDivider position="bottom" fill="#F5EFE6" />
             </section>
 
 
