@@ -93,7 +93,7 @@ export default function VenezuelaEnElCuerpoPage() {
                 <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center relative z-10">
                     <FadeIn>
                         <span className="inline-block text-[#C1530A] font-bold tracking-[0.3em] uppercase text-[10px] md:text-xs mb-8 border border-[#C1530A]/20 px-4 py-2 rounded-full bg-white/40 backdrop-blur-sm shadow-sm ring-1 ring-[#C1530A]/5">
-                            Evento de Registro Gratuito
+                            Evento de Registro
                         </span>
                         <h2 className="text-2xl md:text-3xl font-body text-[#8C4005] mb-4 font-semibold leading-snug">
                             Tu ansiedad no es el problema, es la solución que tu cuerpo encontró
@@ -308,7 +308,7 @@ export default function VenezuelaEnElCuerpoPage() {
 
                 <div className="container mx-auto px-4 relative z-10">
                     <FadeIn className="text-center mb-24">
-                        <h2 className="text-4xl lg:text-7xl font-heading text-[#B8835A] font-bold">Lo que recibirás gratis</h2>
+                        <h2 className="text-4xl lg:text-7xl font-heading text-[#B8835A] font-bold">Lo que recibirás</h2>
                         <div className="w-24 h-px bg-[#B8835A]/30 mx-auto mt-8" />
                     </FadeIn>
 
