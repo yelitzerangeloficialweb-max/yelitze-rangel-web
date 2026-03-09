@@ -60,8 +60,16 @@ export const TicketQR = ({
                                 value={qrUrl}
                                 size={220}
                                 fgColor="#000000"
-                                level="M"
+                                level="H"
                                 includeMargin={false}
+                                imageSettings={{
+                                    src: "/assets/images/logo-yelitze-new.png",
+                                    x: undefined,
+                                    y: undefined,
+                                    height: 50,
+                                    width: 50,
+                                    excavate: true,
+                                }}
                             />
                         ) : (
                             <QrCode className="w-48 h-48 text-[#8C4005]/20 stroke-[1]" />
