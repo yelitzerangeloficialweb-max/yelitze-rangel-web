@@ -367,9 +367,9 @@ export default function VenezuelaEnElCuerpoPage() {
                 <div className="container mx-auto px-4 max-w-3xl text-center">
                     <FadeIn className="flex flex-col items-center">
                         <ShieldCheck className="w-20 h-20 text-[#2D2926] mb-8 opacity-60" />
-                        <h2 className="text-2xl font-bold text-[#8C4005] mb-6">Metodología Científica</h2>
-                        <p className="text-lg text-[#2D2926] font-light leading-relaxed italic">
-                            Todas las dinámicas están fundamentadas en la <strong>Teoría Polivagal</strong> y el estudio del Sistema Nervioso Central. No es una charla motivacional; es un entrenamiento biológico.
+                        <h2 className="text-2xl font-bold text-[#8C4005] mb-6">Un Proyecto con Respaldo</h2>
+                        <p className="text-xl text-[#2D2926] font-light leading-relaxed italic">
+                            <strong>Impacto:</strong> Salud mental comunitaria, prevención de violencia y fortalecimiento del tejido social.
                         </p>
                     </FadeIn>
                 </div>
