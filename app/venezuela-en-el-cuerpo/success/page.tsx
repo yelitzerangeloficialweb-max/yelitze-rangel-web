@@ -9,6 +9,7 @@ import { CheckCircle2, MessageCircle, ArrowLeft, Download, Share2 } from "lucide
 import { TicketQR } from "@/components/ui/TicketQR";
 import { FadeIn } from "@/components/ui/motion";
 import { FloatingStars, SacredGeometry } from "@/components/ui/MysticalElements";
+import html2canvas from "html2canvas";
 
 function SuccessContent() {
     const searchParams = useSearchParams();
@@ -16,10 +17,37 @@ function SuccessContent() {
     const name = searchParams.get("name") || "Participante";
     const city = searchParams.get("city") || "Venezuela";
     const [mounted, setMounted] = useState(false);
+    const [isDownloading, setIsDownloading] = useState(false);
 
     useEffect(() => {
         setMounted(true);
     }, []);
+
+    const handleDownload = async () => {
+        const element = document.getElementById('ticket-capture');
+        if (!element) return;
+
+        try {
+            setIsDownloading(true);
+            const canvas = await html2canvas(element, {
+                scale: 2, // Better quality
+                backgroundColor: null,
+                logging: false,
+                useCORS: true
+            });
+
+            const image = canvas.toDataURL("image/png");
+            const link = document.createElement("a");
+            link.href = image;
+            link.download = `ticket-venezuela-${name.replace(/\s+/g, '-').toLowerCase()}.png`;
+            link.click();
+        } catch (error) {
+            console.error("Error generating ticket image:", error);
+            alert("Hubo un problema al generar la imagen. Por favor, toma una captura de pantalla.");
+        } finally {
+            setIsDownloading(false);
+        }
+    };
 
     if (!mounted) return null;
 
@@ -69,15 +97,28 @@ function SuccessContent() {
 
                     <FadeIn delay={0.4} className="bg-[#F5EFE6]/5 border border-[#F5EFE6]/10 p-8 rounded-3xl backdrop-blur-sm">
                         <h3 className="text-[#F5EFE6] font-bold text-lg mb-4 flex items-center gap-2">
-                            <Share2 className="w-5 h-5" />
-                            Comparte tu Ticket
+                            <Download className="w-5 h-5" />
+                            Guarda tu Ticket
                         </h3>
                         <p className="text-sm font-light leading-relaxed mb-6 opacity-70">
-                            Toma una captura de pantalla de tu ticket o compártelo en tus historias etiquetando a <span className="font-bold underline">@yelitzerangeloficial</span>.
+                            Descarga tu ticket directamente en tu dispositivo o toma una captura de pantalla para llevarlo contigo el día del evento.
                         </p>
-                        <button className="w-full flex items-center justify-center gap-2 border border-[#F5EFE6]/30 px-6 py-4 rounded-full font-bold hover:bg-[#F5EFE6]/10 transition-colors">
-                            <Download className="w-5 h-5" />
-                            Guardar Ticket
+                        <button
+                            onClick={handleDownload}
+                            disabled={isDownloading}
+                            className="w-full flex items-center justify-center gap-2 border border-[#F5EFE6]/30 px-6 py-4 rounded-full font-bold hover:bg-[#F5EFE6]/10 transition-colors disabled:opacity-50"
+                        >
+                            {isDownloading ? (
+                                <>
+                                    <div className="w-4 h-4 border-2 border-[#F5EFE6] border-t-transparent animate-spin rounded-full" />
+                                    Generando...
+                                </>
+                            ) : (
+                                <>
+                                    <Download className="w-5 h-5" />
+                                    Descargar Ticket
+                                </>
+                            )}
                         </button>
                     </FadeIn>
                 </div>

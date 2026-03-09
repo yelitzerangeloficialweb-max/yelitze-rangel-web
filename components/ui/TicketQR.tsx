@@ -35,7 +35,7 @@ export const TicketQR = ({
             className="relative w-full max-w-md mx-auto aspect-[0.7] font-sans"
         >
             {/* Main Ticket Container */}
-            <div className="absolute inset-0 bg-[#F5EFE6] rounded-3xl shadow-2xl border-2 border-[#B8835A]/30 overflow-hidden flex flex-col">
+            <div id="ticket-capture" className="absolute inset-0 bg-[#F5EFE6] rounded-3xl shadow-2xl border-2 border-[#B8835A]/30 overflow-hidden flex flex-col">
 
                 {/* Header / Brand */}
                 <div className="bg-[#8C4005] p-6 text-center border-b-2 border-dashed border-[#F5EFE6]/30">
