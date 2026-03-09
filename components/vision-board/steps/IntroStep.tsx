@@ -45,40 +45,47 @@ export default function IntroStep({ onNext }: { onNext: () => void }) {
                 </div>
             </header>
 
-            {/* 2. THE PHILOSOPHY (Split Layout Idea) */}
-            <section className="grid lg:grid-cols-2 gap-12 items-center bg-[#FDFBF7] p-10 md:p-20 rounded-[4rem] shadow-sm border border-stone-100 relative overflow-hidden group">
-                {/* Brand Textures */}
-                <div className="absolute inset-0 opacity-[0.15] pointer-events-none">
-                    <Image src="/assets/images/hilos-bg.png" alt="" fill className="object-cover" />
-                </div>
-                <div className="absolute -bottom-20 -left-20 w-80 h-80 opacity-[0.05] pointer-events-none group-hover:scale-110 transition-transform duration-[3000ms]">
-                    <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
+            {/* 2. THE PHILOSOPHY (Dark Editorial Version) */}
+            <section className="grid lg:grid-cols-2 gap-12 items-center bg-stone-950 p-10 md:p-24 rounded-[4rem] shadow-2xl relative overflow-hidden group">
+                {/* Brand Textures - Vortex Line Art */}
+                <div className="absolute inset-0 opacity-20 pointer-events-none">
+                    <Image src="/assets/images/vortex-hero-clean.png" alt="" fill className="object-cover scale-150 transform -translate-x-1/4" />
                 </div>
 
-                <div className="space-y-8 relative z-10">
+                {/* Subtle Orange Gradient Glow (like the references) */}
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--color-secondary)]/10 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2" />
+
+                <div className="space-y-10 relative z-10">
                     <div className="flex items-center gap-4">
-                        <div className="w-12 h-px bg-[var(--color-secondary)]/30" />
-                        <span className="text-[var(--color-secondary)] text-[10px] font-bold tracking-[0.4em] uppercase">Filosofía de Orden</span>
+                        <div className="w-12 h-px bg-[var(--color-secondary)]" />
+                        <span className="text-[var(--color-secondary)] text-xs font-bold tracking-[0.5em] uppercase">Filosofía de Orden</span>
                     </div>
-                    <p className="text-3xl md:text-4xl font-serif italic text-[var(--color-primary)] leading-snug">
-                        "La mayoría de los mapas de sueños fallan porque nacen de la carencia. <span className="text-[var(--color-secondary)]">Hoy aprenderás a co-crear desde la certeza.</span>"
-                    </p>
-                    <div className="space-y-4">
-                        <p className="text-stone-500 text-lg leading-relaxed font-light">
-                            Bienvenida a tu **Arquitectura Intencional de Vida**. Esto no es un simple tablero de fotos; es el diseño de la estructura interna que permitirá que tus metas aterricen en terreno fértil.
+
+                    <div className="space-y-6">
+                        <p className="text-4xl md:text-5xl font-serif italic text-white leading-tight">
+                            "La mayoría de los mapas de sueños fallan porque nacen de la <span className="text-stone-500">carencia.</span>"
+                        </p>
+                        <p className="text-2xl md:text-3xl font-serif text-[var(--color-secondary)] leading-snug">
+                            Hoy aprenderás a co-crear desde la certeza.
                         </p>
                     </div>
+
+                    <div className="w-full h-px bg-white/10" />
+
+                    <p className="text-stone-300 text-xl leading-relaxed font-light max-w-xl">
+                        Bienvenida a tu **Arquitectura Intencional de Vida**. Esto no es un simple tablero de fotos; es el diseño de la estructura interna que permitirá que tus metas aterricen en terreno fértil.
+                    </p>
                 </div>
 
                 <div className="relative aspect-square z-10">
-                    <div className="absolute inset-0 bg-stone-200/40 rounded-[3rem] transform -rotate-3 scale-95 opacity-50 blur-sm" />
-                    <div className="relative w-full h-full p-4 bg-white rounded-[3rem] border border-stone-100 shadow-2xl transform rotate-1 hover:rotate-0 transition-all duration-700">
+                    <div className="absolute inset-0 bg-[var(--color-secondary)]/20 rounded-[3rem] transform -rotate-6 scale-95 blur-xl" />
+                    <div className="relative w-full h-full p-4 bg-stone-900 rounded-[3rem] border border-white/10 shadow-2xl transform rotate-1 hover:rotate-0 transition-all duration-1000">
                         <div className="w-full h-full relative rounded-[2.5rem] overflow-hidden">
                             <Image
                                 src="/assets/images/philosophy-transforma.jpg"
                                 alt="Orden y Propósito"
                                 fill
-                                className="object-cover transition-transform duration-[3000ms] hover:scale-110"
+                                className="object-cover transition-transform duration-[5000ms] hover:scale-110"
                             />
                         </div>
                     </div>
