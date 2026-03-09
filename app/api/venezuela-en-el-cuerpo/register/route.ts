@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
+import { sendVenezuelaRegistrationEmail } from '@/lib/mail';
 
 export async function POST(req: Request) {
     try {
@@ -42,6 +43,18 @@ export async function POST(req: Request) {
                 city: city.trim(),
             },
         });
+
+        // 3. Send confirmation email (Non-blocking)
+        try {
+            await sendVenezuelaRegistrationEmail({
+                email: registration.email,
+                name: registration.name,
+                city: registration.city,
+                registrationId: registration.id
+            });
+        } catch (mailError) {
+            console.error('Email sending failed but registration was successful:', mailError);
+        }
 
         return NextResponse.json(registration, { status: 201 });
     } catch (error: any) {
