@@ -327,19 +327,19 @@ export default function VenezuelaEnElCuerpoPage() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
                         {[
                             {
-                                name: "Maria Elena G.",
+                                name: "Ana María G.",
                                 role: "Emprendedora",
                                 image: "/assets/images/testimonials/ana.png",
                                 text: "Pensé que vivir en alerta era mi única opción. Gracias a la Arquitectura de Vida Intencional, hoy tomo decisiones desde la calma y la claridad."
                             },
                             {
-                                name: "Carlos J.",
-                                role: "Consultor",
+                                name: "Carolina P.",
+                                role: "Consultora",
                                 image: "/assets/images/testimonials/carolina.png",
                                 text: "Recuperé mi capacidad de dormir y crear. Al regular mi sistema nervioso, mi productividad se disparó porque dejé de actuar desde el miedo."
                             },
                             {
-                                name: "Susana R.",
+                                name: "Sofía R.",
                                 role: "Líder de Equipos",
                                 image: "/assets/images/testimonials/sofia.png",
                                 text: "Descubrí que mi cuerpo guardaba tensiones que no me dejaban avanzar. Soltar esas memorias atrapadas fue el inicio de mi verdadera libertad."
