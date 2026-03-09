@@ -3,12 +3,13 @@ import { NextResponse, NextRequest } from 'next/server';
 export function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
-    // 1. Skip middleware for static files, API routes, and QR entry validation
+    // 1. Skip middleware for static files, API routes, and specific public pages
     const isAsset = pathname.includes('.') || pathname.startsWith('/_next') || pathname.startsWith('/api/auth/maintenance');
     const isMaintenancePage = pathname === '/maintenance';
     const isQREntryInfo = pathname.includes('/admin/venezuela/entry/');
+    const isVenezuelaLanding = pathname.startsWith('/venezuela-en-el-cuerpo');
 
-    if (isAsset || isQREntryInfo) {
+    if (isAsset || isQREntryInfo || isVenezuelaLanding) {
         return NextResponse.next();
     }
 
