@@ -62,12 +62,6 @@ export const TicketQR = ({
                                 fgColor="#000000"
                                 level="H"
                                 includeMargin={false}
-                                imageSettings={{
-                                    src: "/assets/images/logo-yelitze-new.png",
-                                    height: 48,
-                                    width: 48,
-                                    excavate: true,
-                                }}
                             />
                         ) : (
                             <QrCode className="w-48 h-48 text-[#8C4005]/20 stroke-[1]" />
@@ -118,7 +112,7 @@ export const TicketQR = ({
                     <div className="flex justify-center gap-4 mb-2">
                         <span className="text-[#8C4005] font-mono text-[9px] tracking-tighter opacity-70">ID: {id.split('-')[0].toUpperCase()}</span>
                         <span className="text-[#8C4005] font-mono text-[9px] tracking-tighter opacity-70">PASE: VIP</span>
-                        <span className="text-[#8C4005] font-mono text-[9px] tracking-tighter opacity-70">TOUR: 2024</span>
+                        <span className="text-[#8C4005] font-mono text-[9px] tracking-tighter opacity-70">TOUR NACIONAL</span>
                     </div>
                     <p className="text-[#8C4005]/60 text-[7px] uppercase font-bold tracking-[0.2em]">Pase intransferible • Requerido para Ingreso</p>
                 </div>
