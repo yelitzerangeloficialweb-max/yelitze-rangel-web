@@ -553,17 +553,18 @@ export default function AdminVenezuelaPage() {
                                 />
                             </div>
                             <div className="pt-4 flex flex-col gap-3">
-                                {editingRegistration.scanned && (
-                                    <button
-                                        type="button"
-                                        onClick={handleResetQR}
-                                        disabled={isSubmitting}
-                                        className="w-full py-3 bg-orange-50 text-orange-600 font-bold rounded-xl hover:bg-orange-100 transition-colors flex items-center justify-center gap-2 border border-orange-100"
-                                    >
-                                        <Repeat className="w-4 h-4" />
-                                        Reiniciar QR (Volver a pendiente)
-                                    </button>
-                                )}
+                                <button
+                                    type="button"
+                                    onClick={handleResetQR}
+                                    disabled={isSubmitting}
+                                    className={`w-full py-3 font-bold rounded-xl transition-colors flex items-center justify-center gap-2 border ${editingRegistration.scanned
+                                            ? "bg-orange-50 text-orange-600 border-orange-100 hover:bg-orange-100"
+                                            : "bg-stone-50 text-stone-400 border-stone-100 cursor-not-allowed opacity-60"
+                                        }`}
+                                >
+                                    <Repeat className="w-4 h-4" />
+                                    {editingRegistration.scanned ? "Reiniciar QR (Volver a pendiente)" : "QR ya está en pendiente"}
+                                </button>
                                 <div className="flex gap-3">
                                     <button
                                         type="button"
