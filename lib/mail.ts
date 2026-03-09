@@ -40,7 +40,7 @@ export const sendVenezuelaRegistrationEmail = async ({
                         </p>
 
                         <p style="font-size: 16px;">
-                            Tu lugar en el <strong>Tour Nacional de Venezuela en el Cuerpo</strong> ha sido reservado con éxito para la ciudad de <strong>${city === 'el-vigia' ? 'El Vigía' : city}</strong>.
+                            Tu lugar en el <strong>Tour Nacional Venezuela en el Cuerpo</strong> ha sido reservado con éxito para la ciudad de <strong>${city === 'el-vigia' ? 'El Vigía' : city}</strong>.
                         </p>
                         
                         ${city === 'el-vigia' ? `

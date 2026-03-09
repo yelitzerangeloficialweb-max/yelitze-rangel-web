@@ -68,7 +68,7 @@ function SuccessContent() {
                         ¡Registro Exitoso!
                     </h1>
                     <p className="text-xl font-light text-[#F5EFE6]/80 max-w-xl mx-auto leading-relaxed mb-4">
-                        Tu lugar en el <span className="text-[#B8835A] font-bold italic">Tour Nacional de Venezuela en el Cuerpo</span> ha sido reservado. Aquí tienes tu pase oficial.
+                        Tu lugar en el <span className="text-[#B8835A] font-bold italic">Tour Nacional Venezuela en el Cuerpo</span> ha sido reservado. Aquí tienes tu pase oficial.
                     </p>
                     <p className="text-lg font-script text-[#B8835A] italic opacity-90">
                         "Primero sana el cuerpo… y luego cambia la historia."
