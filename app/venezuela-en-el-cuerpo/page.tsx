@@ -565,13 +565,13 @@ export default function VenezuelaEnElCuerpoPage() {
                                         </ul>
                                     </div>
                                 </div>
-                                <div className="flex justify-center lg:justify-start mt-8">
-                                    <div className="relative w-40 h-16 opacity-60 hover:opacity-100 transition-opacity">
+                                <div className="flex justify-center mt-12 w-full">
+                                    <div className="relative w-64 h-24 opacity-80 hover:opacity-100 transition-opacity">
                                         <Image
                                             src="/assets/images/logo-yelitze-new.png"
                                             alt="Yelitze Rangel"
                                             fill
-                                            className="object-contain object-left"
+                                            className="object-contain"
                                         />
                                     </div>
                                 </div>
