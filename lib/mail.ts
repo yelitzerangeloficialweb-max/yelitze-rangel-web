@@ -18,7 +18,7 @@ export const sendVenezuelaRegistrationEmail = async ({
     try {
         const ticketUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangel.com'}/venezuela-en-el-cuerpo/success?id=${registrationId}&name=${encodeURIComponent(name)}&city=${encodeURIComponent(city)}`;
 
-        // WhatsApp groups logic could be added here if needed, but for now we use the general one or instructions
+        const logoUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangel.com'}/assets/images/logo-yelitze-new.png`;
 
         const { data, error } = await resend.emails.send({
             from: 'Yelitze Rangel <info@yelitzerangeloficial.com>',
@@ -26,7 +26,8 @@ export const sendVenezuelaRegistrationEmail = async ({
             subject: '¡Tu registro al Tour Venezuela en el Cuerpo es Exitoso! 🇻🇪',
             html: `
                 <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background-color: #F5EFE6; border-radius: 24px; overflow: hidden; border: 1px solid #B8835A30;">
-                    <div style="background-color: #8C4005; padding: 40px 20px; text-align: center;">
+                    <div style="background-color: #8C4005; padding: 30px 20px; text-align: center;">
+                        <img src="${logoUrl}" alt="Yelitze Rangel" style="max-width: 180px; height: auto; margin-bottom: 20px;">
                         <h1 style="color: #F5EFE6; margin: 0; font-size: 24px; letter-spacing: 2px; text-transform: uppercase;">Venezuela en el Cuerpo</h1>
                         <p style="color: #F5EFE6; opacity: 0.8; margin-top: 10px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Confirmación de Registro</p>
                     </div>
@@ -39,7 +40,7 @@ export const sendVenezuelaRegistrationEmail = async ({
                         </p>
                         
                         <p style="font-size: 16px; margin-top: 20px;">
-                            Este es un paso fundamental en tu camino hacia la arquitectura de vida intencional. Estamos muy emocionados de tenerte con nosotros.
+                            Este es un paso fundamental en tu camino hacia la <strong>Arquitectura de Vida Intencional</strong>. Estamos muy emocionados de tenerte con nosotros.
                         </p>
                         
                         <div style="margin: 40px 0; text-align: center;">
@@ -59,7 +60,7 @@ export const sendVenezuelaRegistrationEmail = async ({
                     </div>
                     
                     <div style="background-color: #2D2926; padding: 30px; text-align: center; color: #F5EFE680; font-size: 12px; letter-spacing: 1px;">
-                        <p style="margin: 0;">YELITZE RANGEL • ARQUITECTURA DE VIDA • 2024</p>
+                        <p style="margin: 0; text-transform: uppercase;">YELITZE RANGEL • Arquitectura de Vida Intencional</p>
                         <p style="margin-top: 5px;">Este correo fue enviado automáticamente por el sistema de registro.</p>
                     </div>
                 </div>
