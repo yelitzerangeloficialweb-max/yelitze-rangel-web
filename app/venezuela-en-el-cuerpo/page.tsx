@@ -309,20 +309,6 @@ export default function VenezuelaEnElCuerpoPage() {
                 </div>
             </section>
 
-            {/* 7. OFERTA */}
-            <section className="py-16 bg-[#F5EFE6] border-y border-[#2D2926]/10">
-                <div className="container mx-auto px-4 text-center">
-                    <FadeIn>
-                        <div className="inline-block bg-[#C1530A]/10 px-8 py-3 rounded-full border border-[#C1530A]/20 mb-6 font-bold">
-                            <span className="text-[#C1530A] italic mr-2">Oportunidad Única:</span>
-                            <span className="text-[#2D2926] uppercase tracking-widest text-sm">Acceso Gratuito por tiempo limitado</span>
-                        </div>
-                        <p className="text-2xl text-[#2D2926] font-light italic">
-                            Valor Real del Contenido: <span className="line-through opacity-40">$120 USD</span>
-                        </p>
-                    </FadeIn>
-                </div>
-            </section>
 
             {/* 8. PRUEBA SOCIAL */}
             <section className="py-32 bg-[#F5EFE6] overflow-hidden">
