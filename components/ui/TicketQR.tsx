@@ -75,24 +75,28 @@ export const TicketQR = ({
                     </div>
 
                     {/* Attendee Info */}
-                    <div className="w-full text-center space-y-4">
-                        <div className="space-y-1">
+                    <div className="w-full text-center space-y-5">
+                        <div className="space-y-2">
                             <span className="text-[#8C4005]/40 text-[9px] uppercase tracking-widest font-bold">Titular del Pase</span>
-                            <p className="text-[#2D2926] font-heading text-xl font-bold uppercase tracking-tight line-clamp-1">{name}</p>
+                            <div className="px-2 py-1">
+                                <p className="text-[#2D2926] font-heading text-2xl font-bold uppercase tracking-tight leading-relaxed overflow-hidden whitespace-nowrap">
+                                    {name}
+                                </p>
+                            </div>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4 border-t border-[#B8835A]/10 pt-4">
-                            <div className="text-left">
+                        <div className="grid grid-cols-2 gap-4 border-t border-[#B8835A]/10 pt-5">
+                            <div className="text-left space-y-1">
                                 <span className="text-[#8C4005]/40 text-[9px] uppercase tracking-widest font-bold block">Sede</span>
-                                <div className="flex items-center gap-1 text-[#2D2926]">
-                                    <MapPin className="w-3 h-3 text-[#B8835A]" />
-                                    <span className="font-bold text-xs uppercase truncate">{city}</span>
+                                <div className="flex items-center gap-1 text-[#2D2926] py-0.5">
+                                    <MapPin className="w-3 h-3 text-[#B8835A] shrink-0" />
+                                    <span className="font-bold text-xs uppercase overflow-hidden whitespace-nowrap">{city}</span>
                                 </div>
                             </div>
-                            <div className="text-right">
+                            <div className="text-right space-y-1">
                                 <span className="text-[#8C4005]/40 text-[9px] uppercase tracking-widest font-bold block">Horario</span>
-                                <div className="flex items-center justify-end gap-1 text-[#2D2926]">
-                                    <Calendar className="w-3 h-3 text-[#B8835A]" />
+                                <div className="flex items-center justify-end gap-1 text-[#2D2926] py-0.5">
+                                    <Calendar className="w-3 h-3 text-[#B8835A] shrink-0" />
                                     <span className="font-bold text-[9px] uppercase">Vía Whatsapp</span>
                                 </div>
                             </div>
