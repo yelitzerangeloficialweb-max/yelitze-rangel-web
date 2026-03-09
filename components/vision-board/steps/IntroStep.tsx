@@ -46,12 +46,7 @@ export default function IntroStep({ onNext }: { onNext: () => void }) {
             </header>
 
             {/* 2. THE PHILOSOPHY (Dark Editorial Version) */}
-            <section className="grid lg:grid-cols-2 gap-12 items-center bg-stone-950 p-10 md:p-24 rounded-[4rem] shadow-2xl relative overflow-hidden group">
-                {/* Brand Textures - Vortex Line Art */}
-                <div className="absolute inset-0 opacity-20 pointer-events-none">
-                    <Image src="/assets/images/vortex-hero-clean.png" alt="" fill className="object-cover scale-150 transform -translate-x-1/4" />
-                </div>
-
+            <section className="grid lg:grid-cols-2 gap-12 items-center bg-[#2D2926] p-10 md:p-24 rounded-[4rem] shadow-2xl relative overflow-hidden group">
                 {/* Subtle Orange Gradient Glow (like the references) */}
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--color-secondary)]/10 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2" />
 
