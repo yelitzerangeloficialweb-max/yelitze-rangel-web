@@ -120,7 +120,7 @@ export default function FinalBoardStep({
                     <p className="text-[10px] uppercase tracking-[0.4em] text-[var(--color-secondary)] mb-2">Proyecto de Vida</p>
                     <h1 className="text-3xl md:text-4xl font-heading text-[var(--color-primary)] uppercase tracking-wide px-4">ARQUITECTURA INTENCIONAL<br />DE VIDA</h1>
                     <p className="text-[var(--color-secondary)] font-bold tracking-[0.2em] uppercase text-[10px] mt-4 opacity-80">
-                        Experiencia Venezuela en el Cuerpo
+                        Tu Diseño de Realidad 2026
                     </p>
                 </div>
 
@@ -177,7 +177,7 @@ export default function FinalBoardStep({
                                 <h3 className="font-heading text-2xl md:text-3xl text-[var(--color-primary)] leading-none">YO SOY</h3>
                                 <div className="w-12 h-[1px] bg-gray-200 mx-auto" />
                                 <p className="text-xs italic text-gray-600 font-serif leading-relaxed px-2 line-clamp-3">
-                                    "{data.analysis?.identity || 'La Arquitecta de mi Destino'}"
+                                    "{data.analysis?.identity || 'La Arquitecta de mi Propio Destino'}"
                                 </p>
                             </div>
                         </div>
@@ -265,7 +265,7 @@ export default function FinalBoardStep({
                                 <span className="text-[10px] uppercase tracking-widest text-gray-400 mb-1">Identidad Central</span>
                                 <h3 className="font-heading text-xl text-[#2C3E50] leading-none mb-2">YO SOY</h3>
                                 <p className="text-[10px] italic text-gray-600 font-serif leading-tight">
-                                    {data.analysis?.identity || "La Arquitecta de mi Destino"}
+                                    {data.analysis?.identity || "La Arquitecta de mi Propio Destino"}
                                 </p>
                             </div>
 
@@ -309,7 +309,7 @@ export default function FinalBoardStep({
 
                         {/* Action Plan */}
                         <div className="space-y-6">
-                            <h3 className="text-xl font-heading border-b border-[var(--color-secondary)] pb-2 text-[var(--color-secondary)]">Pasos de Organización</h3>
+                            <h3 className="text-xl font-heading border-b border-[var(--color-secondary)] pb-2 text-[var(--color-secondary)]">Pasos de Acción</h3>
                             <ul className="space-y-4">
                                 {data.analysis?.guide_steps?.map((step: string, i: number) => (
                                     <li key={i} className="flex gap-3 items-start">
@@ -330,10 +330,10 @@ export default function FinalBoardStep({
                             {Object.entries(data.reflections).map(([id, text], idx) => (
                                 <div key={idx} className="space-y-1">
                                     <h4 className="text-[10px] font-bold text-[var(--color-secondary)] uppercase tracking-widest">
-                                        Portal {id.replace('portal', '')}: {
+                                        Portal {idx + 1}: {
                                             id === 'portal1' ? 'Cierre Consciente' :
                                                 id === 'portal2' ? 'Foco y Dispersión' :
-                                                    id === 'portal3' ? 'Poder Personal' : 'Estructura'
+                                                    id === 'portal3' ? 'Poder Personal' : 'Arquitectura'
                                         }
                                     </h4>
                                     <p className="text-sm text-gray-600 italic">"{text}"</p>
@@ -347,7 +347,7 @@ export default function FinalBoardStep({
                         <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--color-secondary)] opacity-10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
                         <h3 className="text-2xl font-heading">¿Lista para Construir?</h3>
                         <p className="text-gray-300 leading-relaxed max-w-2xl mx-auto text-sm">
-                            {data.analysis?.cta_message || "Tu diseño es poderoso, pero la construcción requiere acompañamiento. No dejes que este plano se quede en papel."}
+                            {data.analysis?.cta_message || "Tu diseño es poderoso, pero la construcción requiere acompañamiento. No dejes que este plano se quede solo en el papel."}
                         </p>
                         <div className="pt-4">
                             <p className="inline-block border border-[var(--color-secondary)] text-[var(--color-secondary)] px-8 py-2 rounded-full font-bold text-xs uppercase tracking-widest">

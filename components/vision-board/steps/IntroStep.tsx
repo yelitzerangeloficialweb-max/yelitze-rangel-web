@@ -35,7 +35,7 @@ export default function IntroStep({ onNext }: { onNext: () => void }) {
 
                     <FadeIn delay={0.2} className="space-y-4">
                         <span className="text-[var(--color-secondary)] font-bold tracking-[0.4em] uppercase text-xs md:text-sm">
-                            Venezuela en el Cuerpo
+                            Arquitectura Intencional de Vida
                         </span>
                         <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading text-[var(--color-primary)] leading-tight italic">
                             Tu Experiencia <br />
@@ -97,6 +97,9 @@ export default function IntroStep({ onNext }: { onNext: () => void }) {
                     </div>
                     <div className="space-y-4 text-center md:text-left">
                         <h3 className="text-2xl font-heading">Requisito Sagrado</h3>
+                        <p className="text-stone-500 font-serif italic mb-8 max-w-lg">
+                            Bienvenida a un espacio sagrado de creación. Aquí no solo visionamos, diseñamos la estructura que sostendrá tu nueva realidad.
+                        </p>
                         <p className="text-gray-400 font-light text-lg">
                             Para este viaje, necesitas **5 imágenes personales** (una para cada pilar: Propósito, Abundancia, Vínculos, Expansión e Intimidad). Si ya las tienes en tu dispositivo, estamos listas.
                         </p>

@@ -72,18 +72,18 @@ export async function POST(req: Request) {
             - **Frase Clave:** "No es magia, es orden".
             - **Personalización:** Usa EXCLUSIVAMENTE la información que te ha dado el usuario. Si su pilar es sobre "abrir una panadería", SÁCALO en la respuesta. No des ejemplos genéricos.
 
-            **CONTEXTO DEL USUARIO (Lee con atención):**
+            **CONTEXTO DEL USUARIO (Sus respuestas):**
             Reflexiones (Sus bloqueos actuales):
             ${reflectionsText}
             
-            Pilares de Vida (Sus deseos):
+            Pilares (Sus deseos para 2026):
             ${pillarsText}
 
             **TU MISIÓN:**
-            Diagnosticar por qué aún no ha manifestado esto y darle la estructura para 2026.
+            Diagnosticar por qué aún no ha manifestado esto y darle la estructura para 2026 basada en el orden sistémico.
 
-            **Genera un JSON con estas claves (Responde en Español neutro/latino pero con peso):**
-            - "release": (Máx 15 palabras) Lo que debe soltar. Sé sistémica. Ej: "La lealtad a la escasez de tu linaje materno".
+            **Genera un JSON con estas claves:**
+            - "release": (Máx 15 palabras) Lo que debe soltar sistémicamente. Ej: "La lealtad a la escasez de tu linaje materno".
             - "identity": (Máx 10 palabras) Su nuevo arquetipo. Ej: "La Matriarca de Negocios Digitales".
             - "practice": (Máx 15 palabras) Una acción ritual o hábito de orden. Ej: "Ordenar tu cartera cada noche agradeciendo".
             - "manifesto": (Máx 30 palabras) Una declaración de poder en presente, integrando sus deseos específicos.
@@ -92,7 +92,7 @@ export async function POST(req: Request) {
             `;
 
             const model = genAI.getGenerativeModel({
-                model: "gemini-1.5-flash-latest",
+                model: "gemini-1.5-flash",
                 generationConfig: { responseMimeType: "application/json" }
             });
 

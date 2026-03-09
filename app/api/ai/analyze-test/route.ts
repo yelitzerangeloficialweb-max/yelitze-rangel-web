@@ -46,7 +46,7 @@ export async function POST(req: Request) {
         let analysis = "No se pudo generar el análisis en este momento, pero tus respuestas han sido registradas.";
         try {
             console.log("Starting AI Analysis...");
-            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
+            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
             const prompt = `
             Actúa como Yelitzé Rangel, terapeuta sistémica y guía espiritual.

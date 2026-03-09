@@ -109,12 +109,12 @@ export default function VisionBoardWizard() {
         <ReflectionPortal
             key="p1"
             portalNumber={1}
-            title="Cierre Consciente 2025"
+            title="Cierre Consciente"
             subtitle="¿Dónde se fue mi energía?"
-            description="Antes de sembrar semillas nuevas, es preciso limpiar el terreno..."
+            description="Antes de sembrar semillas nuevas, es preciso limpiar el terreno y reconocer qué ciclos estamos cerrando."
             questions={[
-                "¿En qué áreas sentí mayor desgaste emocional?",
-                "¿Qué situaciones drenaron mi energía?",
+                "¿En qué áreas sentí mayor desgaste emocional este último año?",
+                "¿Qué situaciones drenaron mi energía vital?",
                 "¿Dónde dije 'sí' queriendo decir 'no'?"
             ]}
             value={data.reflections['portal1'] || ''}
@@ -127,10 +127,10 @@ export default function VisionBoardWizard() {
             portalNumber={2}
             title="Foco y Dispersión"
             subtitle="¿Dónde perdí mi centro?"
-            description="La dispersión es una forma sutil de abandono propio..."
+            description="La dispersión es una forma sutil de abandono propio. Identificar dónde se fuga nuestra atención es el primer paso para recuperarla."
             questions={[
-                "¿Qué distracciones me alejaron de mis prioridades?",
-                "¿En qué momentos dejé de escucharme?"
+                "¿Qué distracciones me alejaron de mis prioridades reales?",
+                "¿En qué momentos dejé de escuchar mi propia voz?"
             ]}
             value={data.reflections['portal2'] || ''}
             onChange={(v: string) => updateReflection('portal2', v)}
@@ -142,10 +142,10 @@ export default function VisionBoardWizard() {
             portalNumber={3}
             title="Recuperar Mi Poder"
             subtitle="Lo que dejo de cargar"
-            description="Para volar alto, el equipaje debe ser ligero..."
+            description="Para volar alto, el equipaje debe ser ligero. Identifica las cargas que ya no te pertenecen."
             questions={[
-                "¿Qué responsabilidades no me corresponden?",
-                "¿Qué expectativas ajenas estoy lista para soltar?"
+                "¿Qué responsabilidades o dolores ajenos estoy cargando por lealtad?",
+                "¿Qué expectativas de otros estoy lista para soltar?"
             ]}
             value={data.reflections['portal3'] || ''}
             onChange={(v: string) => updateReflection('portal3', v)}
@@ -155,12 +155,12 @@ export default function VisionBoardWizard() {
         <ReflectionPortal
             key="p4"
             portalNumber={4}
-            title="Ordenar Mi Vida"
-            subtitle="Gestión consciente de energía"
-            description="El orden no es rigidez, es la estructura que permite el flujo..."
+            title="Arquitectura de Orden"
+            subtitle="Gestión Consciente de Energía"
+            description="El orden no es rigidez, es la estructura que permite que tu energía fluya hacia donde tú decidas."
             questions={[
-                "¿Qué áreas necesitan más estructura?",
-                "¿Dónde necesito límites claros?"
+                "¿Qué áreas de mi vida necesitan hoy mayor estructura y orden?",
+                "¿Dónde necesito establecer límites claros para proteger mi paz?"
             ]}
             value={data.reflections['portal4'] || ''}
             onChange={(v: string) => updateReflection('portal4', v)}
@@ -184,7 +184,7 @@ export default function VisionBoardWizard() {
                 </div>
                 <h2 className="text-3xl font-heading text-[var(--color-primary)] mb-4">Todo está listo para tu revelación</h2>
                 <p className="text-gray-600 mb-8 leading-relaxed">
-                    Yelitze integrará tus pilares y reflexiones para entregarte tu Arquitectura de Vida. Ingresa tus datos para recibir tu reporte detallado de "Venezuela en el Cuerpo".
+                    Yelitze integrará tus pilares y reflexiones para entregarte tu Arquitectura de Vida. Ingresa tus datos para recibir tu reporte detallado.
                 </p>
 
                 <form onSubmit={handleLeadSubmit} className="space-y-4 text-left">

@@ -42,13 +42,9 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
 
     return (
         <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-8">
-                <span className="text-[var(--color-secondary)] tracking-[0.2em] font-medium text-sm block mb-2">
-                    PORTAL 5&6 · ARQUITECTURA
-                </span>
-                <h2 className="text-3xl font-heading text-[var(--color-primary)]">
-                    {activePillar.title} ({currentPillarIndex + 1}/5)
-                </h2>
+            <div className="text-center mb-12">
+                <p className="text-[10px] uppercase tracking-[0.4em] text-[var(--color-secondary)] mb-2">PORTAL 5 · ARQUITECTURA</p>
+                <h2 className="text-4xl md:text-5xl font-heading text-[var(--color-primary)]">TU DISEÑO 2026</h2>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
