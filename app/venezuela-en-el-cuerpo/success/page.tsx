@@ -136,7 +136,7 @@ function SuccessContent() {
             {/* Bottom Credits */}
             <footer className="mt-20 pt-10 border-t border-[#F5EFE6]/10 w-full text-center">
                 <p className="text-[#F5EFE6]/30 text-xs font-mono uppercase tracking-widest">
-                    Yelitze Rangel • Arquitectura de Vida • 2024
+                    Yelitze Rangel • Arquitectura de vida Intencional
                 </p>
             </footer>
         </main>
