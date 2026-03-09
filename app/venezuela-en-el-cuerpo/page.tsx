@@ -225,7 +225,7 @@ export default function VenezuelaEnElCuerpoPage() {
                                 <div className="w-24 h-px bg-[#C1530A]/30 mb-8" />
                                 <div className="space-y-6 text-lg text-[#2D2926] font-light leading-relaxed">
                                     <p>
-                                        Soy <strong className="text-[#8C4005] font-bold">Yelitze Rangel</strong>, psicóloga - terapeuta somática especializada en el descongelamiento del trauma corporal. A lo largo de mi carrera, he acompañado a cientos de personas en su proceso de regulación del sistema nervioso y en la sanación de memorias atrapadas en el cuerpo. Lo que vengo a compartir hoy no es solo un conocimiento, es un proceso de transformación profundo que cada uno de nosotros puede iniciar desde dentro.
+                                        Soy <span className="bg-[#B8835A] text-[#F5EFE6] px-2 py-0.5 font-medium rounded-md inline-block shadow-sm">Yelitze Rangel</span>, psicóloga - terapeuta somática especializada en el descongelamiento del trauma corporal. A lo largo de mi carrera, he acompañado a cientos de personas en su proceso de regulación del sistema nervioso y en la sanación de memorias atrapadas en el cuerpo. Lo que vengo a compartir hoy no es solo un conocimiento, es un proceso de transformación profundo que cada uno de nosotros puede iniciar desde dentro.
                                     </p>
                                     <p>
                                         He liderado este proceso terapéutico acompañando a personas en distintos países, integrando ciencia, experiencia y sabiduría ancestral.
