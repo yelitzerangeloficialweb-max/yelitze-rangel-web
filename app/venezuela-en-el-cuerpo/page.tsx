@@ -307,8 +307,11 @@ export default function VenezuelaEnElCuerpoPage() {
                 <SacredGeometry className="left-[-10%] bottom-[-10%] w-[600px] h-[600px] text-[#B8835A]/5" />
 
                 <div className="container mx-auto px-4 relative z-10">
-                    <FadeIn className="text-center mb-24">
+                    <FadeIn className="text-center mb-16">
                         <h2 className="text-4xl lg:text-7xl font-heading text-[#B8835A] font-bold">Lo que recibirás</h2>
+                        <p className="mt-8 text-lg text-[#F5EFE6]/60 font-light leading-relaxed max-w-2xl mx-auto italic">
+                            Herramientas prácticas y digitales diseñadas para iniciar tu regulación somática y transformar tu respuesta interna desde hoy mismo.
+                        </p>
                         <div className="w-24 h-px bg-[#B8835A]/30 mx-auto mt-8" />
                     </FadeIn>
 
@@ -339,12 +342,6 @@ export default function VenezuelaEnElCuerpoPage() {
                             </StaggerItem>
                         ))}
                     </StaggerContainer>
-
-                    <FadeIn delay={0.6} className="mt-20 text-center max-w-3xl mx-auto">
-                        <p className="text-lg text-[#F5EFE6]/60 font-light leading-relaxed">
-                            Estos recursos han sido diseñados como un acompañamiento integral para tu proceso. Al participar, obtendrás herramientas prácticas y digitales que te permitirán empezar a aplicar los principios de la regulación somática de inmediato, asegurando que tu transformación comience incluso antes del evento central.
-                        </p>
-                    </FadeIn>
                 </div>
                 <WaveDivider position="bottom" fill="#F5EFE6" />
             </section>
