@@ -292,9 +292,9 @@ export default function VenezuelaEnElCuerpoPage() {
                                 desc: "Un diagnóstico corporal para identificar tu nivel de estrés somático."
                             },
                             {
-                                icon: BookOpen,
-                                title: "eBook Digital",
-                                desc: "Herramientas de regulación inmediata para aplicar desde casa."
+                                icon: Sparkles,
+                                title: "Arquitectura de vida Intencional",
+                                desc: "El mapa práctico para diseñar tu respuesta interna y habitar una nueva soberanía."
                             }
                         ].map((item, i) => (
                             <StaggerItem key={i} className="flex flex-col items-center text-center">
