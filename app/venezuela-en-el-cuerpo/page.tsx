@@ -110,7 +110,7 @@ export default function VenezuelaEnElCuerpoPage() {
                         <div className="flex flex-col sm:flex-row gap-6">
                             <Link
                                 href="#registro"
-                                className="bg-[#C1530A] text-[#F5EFE6] px-10 py-5 rounded-full font-bold shadow-xl hover:bg-[#A84A2F] transition-all flex items-center justify-center gap-3 group"
+                                className="bg-[#C1530A] text-[#F5EFE6] px-10 py-5 rounded-full font-bold shadow-[0_15px_30px_-5px_rgba(193,83,10,0.4)] hover:bg-[#A84A2F] hover:shadow-[0_20px_40px_-5px_rgba(193,83,10,0.5)] transition-all flex items-center justify-center gap-3 group"
                             >
                                 Generar mi pase QR y recibir las coordenadas
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -474,7 +474,7 @@ export default function VenezuelaEnElCuerpoPage() {
                             href="https://www.instagram.com/yelitzerangeloficial/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-3 bg-[#F5EFE6] text-[#8C4005] px-10 py-5 rounded-full font-bold shadow-xl hover:scale-105 transition-transform"
+                            className="inline-flex items-center gap-3 bg-[#F5EFE6] text-[#8C4005] px-10 py-5 rounded-full font-bold shadow-[0_15px_30px_-5px_rgba(45,41,38,0.2)] hover:scale-105 transition-transform"
                         >
                             Ir al Instagram Oficial
                             <ArrowRight className="w-5 h-5" />
@@ -601,7 +601,7 @@ export default function VenezuelaEnElCuerpoPage() {
                                 </div>
                                 <button
                                     type="submit"
-                                    className="w-full bg-[#C1530A] text-[#F5EFE6] py-6 rounded-3xl font-bold md:text-lg shadow-xl hover:bg-[#A84A2F] transition-all transform hover:-translate-y-1 mt-6 flex items-center justify-center gap-4 group"
+                                    className="w-full bg-[#C1530A] text-[#F5EFE6] py-6 rounded-3xl font-bold md:text-lg shadow-[0_15px_30px_-5px_rgba(193,83,10,0.4)] hover:bg-[#A84A2F] hover:shadow-[0_20px_40px_-5px_rgba(193,83,10,0.5)] transition-all transform hover:-translate-y-1 mt-6 flex items-center justify-center gap-4 group"
                                 >
                                     <span className="text-center">GENERAR MI PASE QR Y<br className="sm:hidden" /> RECIBIR COORDENADAS</span>
                                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
