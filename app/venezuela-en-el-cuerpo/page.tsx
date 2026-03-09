@@ -574,6 +574,7 @@ export default function VenezuelaEnElCuerpoPage() {
                                             <option value="cojedes">Cojedes</option>
                                             <option value="delta-amacuro">Delta Amacuro</option>
                                             <option value="distrito-capital">Distrito Capital</option>
+                                            <option value="el-vigia">El Vigía</option>
                                             <option value="falcon">Falcón</option>
                                             <option value="guarico">Guárico</option>
                                             <option value="lara">Lara</option>
