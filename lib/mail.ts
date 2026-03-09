@@ -48,7 +48,7 @@ export const sendVenezuelaRegistrationEmail = async ({
                             <h3 style="color: #8C4005; margin-top: 0; font-size: 18px;">📍 Coordenadas de tu Encuentro:</h3>
                             <p style="margin: 10px 0;"><strong>Fecha:</strong> 27 de Marzo, 2026</p>
                             <p style="margin: 10px 0;"><strong>Hora:</strong> 2:00 PM</p>
-                            <p style="margin: 10px 0;"><strong>Lugar:</strong> Junio Hotel Boutique (@juniotelboutique)</p>
+                            <p style="margin: 10px 0;"><strong>Lugar:</strong> Junio Hotel Boutique, Ig: @juniotelboutique</p>
                             <p style="margin: 10px 0; font-size: 13px; color: #8C4005;">Producción: @yosoyvigia | Alianza: @giga913fm</p>
                         </div>
                         ` : `
