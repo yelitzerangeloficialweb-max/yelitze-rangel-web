@@ -293,7 +293,7 @@ export default function VenezuelaEnElCuerpoPage() {
                                 <Sparkles className="w-32 h-32" />
                             </div>
                             <h4 className="text-6xl font-heading text-[#B8835A]/20 mb-6 font-bold">02</h4>
-                            <h5 className="text-2xl font-bold text-[#8C4005] mb-6">Arquitectura Intencional</h5>
+                            <h5 className="text-2xl font-bold text-[#8C4005] mb-6">Arquitectura de vida Intencional</h5>
                             <p className="text-stone-300 font-light">Sistemas regulados, visión de largo plazo y capacidad real de crear abundancia.</p>
                         </FadeIn>
                     </div>
