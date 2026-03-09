@@ -1,7 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { ArrowLeft, Info, Zap } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowLeft, Info, Zap, Sparkles, Loader2 } from 'lucide-react';
 import Image from 'next/image';
 
 interface Props {
@@ -12,6 +13,31 @@ interface Props {
 }
 
 export default function Portal1Step({ value, onChange, onNext, onBack }: Props) {
+    const [isRefining, setIsRefining] = useState(false);
+
+    const handleRefine = async () => {
+        if (!value || value.trim().length < 10) return;
+
+        setIsRefining(true);
+        try {
+            const res = await fetch('/api/ai/refine-text', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    text: value,
+                    context: "Portal 1: Cierre Consciente - Reflexión final sobre bloqueos y fugas de energía"
+                })
+            });
+            const data = await res.json();
+            if (data.refinedText) {
+                onChange(data.refinedText);
+            }
+        } catch (error) {
+            console.error("Refinement failed:", error);
+        } finally {
+            setIsRefining(false);
+        }
+    };
     const modules = [
         {
             headline: "Desgaste Emocional",
@@ -120,6 +146,21 @@ export default function Portal1Step({ value, onChange, onNext, onBack }: Props) 
                         <p className="text-[#3C2A21]/60 font-guide text-sm leading-relaxed max-w-2xl">
                             Reflexiona sobre lo que has identificado anteriormente. Utiliza este espacio para redactar tu conclusión personal y tu declaración de cierre, inspirándote en los patrones y espejos explorados arriba.
                         </p>
+                    </div>
+
+                    <div className="flex justify-end">
+                        <button
+                            onClick={handleRefine}
+                            disabled={isRefining || !value || value.trim().length < 10}
+                            className="bg-[#EFE9E0] text-[#3C2A21] px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 hover:bg-[#E5DACE] transition-colors disabled:opacity-50 disabled:cursor-not-allowed group"
+                        >
+                            {isRefining ? (
+                                <Loader2 className="w-4 h-4 animate-spin" />
+                            ) : (
+                                <Sparkles className="w-4 h-4 text-[#8C4005] group-hover:scale-110 transition-transform" />
+                            )}
+                            Auto (IA)
+                        </button>
                     </div>
                     <textarea
                         value={value}
