@@ -1,10 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Download, Loader2, Users, MapPin, Calendar, Phone, QrCode, X, CheckCircle2, XCircle } from 'lucide-react';
+import { Download, Loader2, Users, MapPin, Calendar, Phone, QrCode, X, CheckCircle2, XCircle, Camera } from 'lucide-react';
 import { format, isValid } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { TicketQR } from '@/components/ui/TicketQR';
+import { Html5QrcodeScanner } from 'html5-qrcode';
+import { useRouter } from 'next/navigation';
 
 interface Registration {
     id: string;
@@ -31,10 +33,48 @@ export default function AdminVenezuelaPage() {
     const [registrations, setRegistrations] = useState<Registration[]>([]);
     const [loading, setLoading] = useState(true);
     const [selectedRegistration, setSelectedRegistration] = useState<Registration | null>(null);
+    const [isScanning, setIsScanning] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [cityFilter, setCityFilter] = useState('all');
+    const [statusFilter, setStatusFilter] = useState('all');
+    const router = useRouter();
 
     useEffect(() => {
         fetchRegistrations();
     }, []);
+
+    useEffect(() => {
+        let scanner: Html5QrcodeScanner | null = null;
+
+        if (isScanning) {
+            scanner = new Html5QrcodeScanner(
+                "qr-reader",
+                { fps: 10, qrbox: { width: 250, height: 250 } },
+                /* verbose= */ false
+            );
+
+            scanner.render((decodedText) => {
+                // The QR contains a URL like: https://target.com/admin/venezuela/entry/ID
+                // Or sometimes just the path. We extract the ID or the path.
+                if (decodedText.includes('/admin/venezuela/entry/')) {
+                    const url = new URL(decodedText);
+                    router.push(url.pathname);
+                    setIsScanning(false);
+                } else if (decodedText.startsWith('/')) {
+                    router.push(decodedText);
+                    setIsScanning(false);
+                }
+            }, (error) => {
+                // console.warn(error);
+            });
+        }
+
+        return () => {
+            if (scanner) {
+                scanner.clear().catch(err => console.error("Failed to clear scanner", err));
+            }
+        };
+    }, [isScanning, router]);
 
     const fetchRegistrations = async () => {
         try {
@@ -99,14 +139,23 @@ export default function AdminVenezuelaPage() {
                         {registrations.length} personas inscritas en total
                     </p>
                 </div>
-                <button
-                    onClick={exportToCSV}
-                    disabled={registrations.length === 0}
-                    className="flex items-center gap-2 px-6 py-3 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition-colors disabled:opacity-50"
-                >
-                    <Download className="w-5 h-5" />
-                    Exportar CSV
-                </button>
+                <div className="flex gap-4">
+                    <button
+                        onClick={() => setIsScanning(true)}
+                        className="flex items-center gap-2 px-6 py-3 bg-[#C1530A] text-white font-bold rounded-xl hover:bg-[#A84A2F] transition-colors"
+                    >
+                        <Camera className="w-5 h-5" />
+                        Escanear QR
+                    </button>
+                    <button
+                        onClick={exportToCSV}
+                        disabled={registrations.length === 0}
+                        className="flex items-center gap-2 px-6 py-3 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition-colors disabled:opacity-50"
+                    >
+                        <Download className="w-5 h-5" />
+                        Exportar CSV
+                    </button>
+                </div>
             </div>
 
             {/* Quick Stats */}
@@ -138,9 +187,48 @@ export default function AdminVenezuelaPage() {
                     <div>
                         <p className="text-sm text-stone-500 font-medium">Últimas 24h</p>
                         <p className="text-2xl font-bold text-[var(--color-primary)]">
-                            {registrations.filter(r => new Date(r.createdAt) > new Date(Date.now() - 86400000)).length}
+                            {registrations.filter((r: Registration) => new Date(r.createdAt) > new Date(Date.now() - 86400000)).length}
                         </p>
                     </div>
+                </div>
+            </div>
+
+            {/* Filters & Search */}
+            <div className="flex flex-col md:flex-row gap-4 bg-white p-6 rounded-3xl shadow-sm border border-stone-100">
+                <div className="flex-grow">
+                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-2 block">Buscador</label>
+                    <input
+                        type="text"
+                        placeholder="Buscar por nombre, email o WhatsApp..."
+                        className="w-full px-5 py-3 rounded-2xl border border-stone-100 bg-stone-50 text-stone-700 focus:ring-2 focus:ring-[#C1530A]/20 focus:border-[#C1530A] transition-all outline-none"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                </div>
+                <div className="md:w-48">
+                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-2 block">Ciudad</label>
+                    <select
+                        className="w-full px-5 py-3 rounded-2xl border border-stone-100 bg-stone-50 text-stone-700 outline-none"
+                        value={cityFilter}
+                        onChange={(e) => setCityFilter(e.target.value)}
+                    >
+                        <option value="all">Todas las ciudades</option>
+                        {Array.from(new Set(registrations.map((r: Registration) => r.city))).sort().map((city: string) => (
+                            <option key={city} value={city}>{city}</option>
+                        ))}
+                    </select>
+                </div>
+                <div className="md:w-48">
+                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-2 block">Estado</label>
+                    <select
+                        className="w-full px-5 py-3 rounded-2xl border border-stone-100 bg-stone-50 text-stone-700 outline-none"
+                        value={statusFilter}
+                        onChange={(e) => setStatusFilter(e.target.value)}
+                    >
+                        <option value="all">Cualquier estado</option>
+                        <option value="scanned">Escaneados</option>
+                        <option value="pending">Pendientes</option>
+                    </select>
                 </div>
             </div>
 
@@ -160,14 +248,31 @@ export default function AdminVenezuelaPage() {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-stone-100">
-                            {registrations.length === 0 ? (
-                                <tr>
-                                    <td colSpan={6} className="px-6 py-20 text-center text-stone-400">
-                                        No hay registros todavía
-                                    </td>
-                                </tr>
-                            ) : (
-                                registrations.map((r) => (
+                            {(() => {
+                                const filtered = registrations.filter((r: Registration) => {
+                                    const matchesSearch =
+                                        r.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                        r.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                        r.whatsapp.includes(searchTerm);
+
+                                    const matchesCity = cityFilter === 'all' || r.city === cityFilter;
+                                    const matchesStatus = statusFilter === 'all' ||
+                                        (statusFilter === 'scanned' ? r.scanned : !r.scanned);
+
+                                    return matchesSearch && matchesCity && matchesStatus;
+                                });
+
+                                if (filtered.length === 0) {
+                                    return (
+                                        <tr>
+                                            <td colSpan={7} className="px-6 py-20 text-center text-stone-400">
+                                                No se encontraron resultados que coincidan con los filtros.
+                                            </td>
+                                        </tr>
+                                    );
+                                }
+
+                                return filtered.map((r: Registration) => (
                                     <tr key={r.id} className="hover:bg-stone-50 transition-colors">
                                         <td className="px-6 py-4 font-bold text-[var(--color-primary)]">{r.name}</td>
                                         <td className="px-6 py-4 text-stone-600">{r.whatsapp}</td>
@@ -203,8 +308,8 @@ export default function AdminVenezuelaPage() {
                                             </button>
                                         </td>
                                     </tr>
-                                ))
-                            )}
+                                ));
+                            })()}
                         </tbody>
                     </table>
                 </div>
@@ -227,6 +332,7 @@ export default function AdminVenezuelaPage() {
                             </button>
                             <div className="scale-90 md:scale-100">
                                 <TicketQR
+                                    id={selectedRegistration.id}
                                     name={selectedRegistration.name}
                                     city={selectedRegistration.city}
                                 />
@@ -235,6 +341,37 @@ export default function AdminVenezuelaPage() {
                     </div>
                 )
             }
-        </div >
+            {/* QR Scanner Modal */}
+            {isScanning && (
+                <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+                    <div
+                        className="absolute inset-0 bg-stone-900/95 backdrop-blur-md"
+                        onClick={() => setIsScanning(false)}
+                    />
+                    <div className="relative w-full max-w-md bg-white rounded-[3rem] p-8 shadow-2xl">
+                        <button
+                            onClick={() => setIsScanning(false)}
+                            className="absolute top-6 right-6 p-2 text-stone-400 hover:text-stone-900 transition-colors"
+                        >
+                            <X className="w-6 h-6" />
+                        </button>
+
+                        <div className="text-center mb-8">
+                            <div className="w-16 h-16 bg-[#C1530A]/10 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-[#C1530A]/20">
+                                <Camera className="w-8 h-8 text-[#C1530A]" />
+                            </div>
+                            <h3 className="text-xl font-bold font-heading text-stone-900">Escanear Pase</h3>
+                            <p className="text-sm text-stone-500 mt-1">Coloca el código QR frente a la cámara</p>
+                        </div>
+
+                        <div id="qr-reader" className="overflow-hidden rounded-2xl border-2 border-dashed border-stone-200"></div>
+
+                        <p className="text-[10px] text-center mt-6 text-stone-400 font-bold uppercase tracking-widest">
+                            Control de Acceso • Venezuela en el Cuerpo
+                        </p>
+                    </div>
+                </div>
+            )}
+        </div>
     );
 }
