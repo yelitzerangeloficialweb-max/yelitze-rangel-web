@@ -329,17 +329,17 @@ export default function VenezuelaEnElCuerpoPage() {
                             {
                                 name: "Maria Elena G.",
                                 role: "Emprendedora",
-                                text: "Pensé que el estrés era normal. Cuando regulé mi cuerpo, por fin pude tomar decisiones financieras claras sin ansiedad."
+                                text: "Pensé que vivir en alerta era mi única opción. Gracias a la Arquitectura de Vida Intencional, hoy tomo decisiones desde la calma y la claridad."
                             },
                             {
                                 name: "Carlos J.",
                                 role: "Consultor",
-                                text: "La metodología de Yelitze me devolvió la capacidad de dormir y producir. Mi negocio creció un 40% simplemente porque yo ya no estaba en alerta."
+                                text: "Recuperé mi capacidad de dormir y crear. Al regular mi sistema nervioso, mi productividad se disparó porque dejé de actuar desde el miedo."
                             },
                             {
                                 name: "Susana R.",
-                                role: "Líder Social",
-                                text: "Entendí que mi rabia por el país estaba congelada en mis hombros. Soltar eso fue mi verdadera libertad."
+                                role: "Líder de Equipos",
+                                text: "Descubrí que mi cuerpo guardaba tensiones que no me dejaban avanzar. Soltar esas memorias atrapadas fue el inicio de mi verdadera libertad."
                             }
                         ].map((item, i) => (
                             <StaggerItem key={i} className="min-w-[320px] md:min-w-[450px] bg-[#F5EFE6] p-12 rounded-[3.5rem] shadow-xl border border-stone-100 snap-center">
