@@ -35,13 +35,27 @@ export const sendVenezuelaRegistrationEmail = async ({
                     <div style="padding: 40px 30px; color: #2D2926; line-height: 1.6;">
                         <h2 style="color: #8C4005; margin-bottom: 20px;">¡Hola, ${name}!</h2>
                         
+                        <p style="font-size: 16px; font-style: italic; border-left: 3px solid #B8835A; padding-left: 15px; margin-bottom: 25px;">
+                            "Primero sana el cuerpo… y luego cambia la historia."
+                        </p>
+
                         <p style="font-size: 16px;">
-                            Tu lugar en el <strong>Tour Nacional de Venezuela en el Cuerpo</strong> ha sido reservado con éxito para la ciudad de <strong>${city}</strong>.
+                            Tu lugar en el <strong>Tour Nacional de Venezuela en el Cuerpo</strong> ha sido reservado con éxito para la ciudad de <strong>${city === 'el-vigia' ? 'El Vigía' : city}</strong>.
                         </p>
                         
+                        ${city === 'el-vigia' ? `
+                        <div style="background-color: #FDFBFA; border: 1px solid #B8835A30; padding: 25px; border-radius: 20px; margin: 30px 0;">
+                            <h3 style="color: #8C4005; margin-top: 0; font-size: 18px;">📍 Coordenadas de tu Encuentro:</h3>
+                            <p style="margin: 10px 0;"><strong>Fecha:</strong> 27 de Marzo, 2026</p>
+                            <p style="margin: 10px 0;"><strong>Hora:</strong> 2:00 PM</p>
+                            <p style="margin: 10px 0;"><strong>Lugar:</strong> Junio Hotel Boutique (@juniotelboutique)</p>
+                            <p style="margin: 10px 0; font-size: 13px; color: #8C4005;">Producción: @yosoyvigia | Alianza: @giga913fm</p>
+                        </div>
+                        ` : `
                         <p style="font-size: 16px; margin-top: 20px;">
                             Este es un paso fundamental en tu camino hacia la <strong>Arquitectura de Vida Intencional</strong>. Estamos muy emocionados de tenerte con nosotros.
                         </p>
+                        `}
                         
                         <div style="margin: 40px 0; text-align: center;">
                             <a href="${ticketUrl}" style="background-color: #C1530A; color: white; padding: 16px 32px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-block; box-shadow: 0 4px 15px rgba(193, 83, 10, 0.3);">
@@ -53,8 +67,8 @@ export const sendVenezuelaRegistrationEmail = async ({
                             <h3 style="color: #B8835A; margin-top: 0; font-size: 16px;">Pasos Siguientes:</h3>
                             <ul style="padding-left: 20px; margin-bottom: 0;">
                                 <li style="margin-bottom: 10px;">Guarda tu ticket digital (puedes descargarlo o tomarle captura).</li>
-                                <li style="margin-bottom: 10px;">Únete al grupo de WhatsApp oficial para recibir la ubicación y detalles logísticos.</li>
-                                <li style="margin-bottom: 0;">Llega 15 minutos antes con tu código QR listo para escanear.</li>
+                                <li style="margin-bottom: 10px;">Te enviaremos más detalles y recordatorios por esta misma vía.</li>
+                                <li style="margin-bottom: 0;">El día del evento, llega 15 minutos antes con tu código QR listo.</li>
                             </ul>
                         </div>
                     </div>

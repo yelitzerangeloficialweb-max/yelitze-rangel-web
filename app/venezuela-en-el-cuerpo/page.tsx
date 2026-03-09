@@ -105,11 +105,14 @@ export default function VenezuelaEnElCuerpoPage() {
                         <h2 className="text-2xl md:text-3xl font-body text-[#8C4005] mb-4 font-semibold leading-snug">
                             Tu ansiedad no es el problema, es la solución que tu cuerpo encontró
                         </h2>
-                        <h1 className="text-6xl md:text-8xl lg:text-[8rem] font-script text-[#8C4005] mb-6 leading-none pt-4 tracking-normal font-normal">
+                        <h1 className="text-6xl md:text-8xl lg:text-[7rem] font-script text-[#8C4005] mb-6 leading-none pt-4 tracking-normal font-normal">
                             Venezuela en el Cuerpo
                         </h1>
-                        <p className="text-[#C1530A] text-lg font-medium mb-6 max-w-xl">
-                            Una propuesta terapéutica para regular, integrar y abrir nuevas posibilidades
+                        <p className="text-[#C1530A] text-lg font-bold mb-6 max-w-xl uppercase tracking-widest">
+                            Un movimiento de Regulación Personal y colectiva
+                        </p>
+                        <p className="text-[#2D2926] text-xl font-light mb-10 max-w-xl leading-relaxed italic border-l-4 border-[#B8835A] pl-6">
+                            "Primero sana el cuerpo… y luego cambia la historia."
                         </p>
                         <p className="text-[#2D2926] text-lg font-light mb-10 max-w-xl leading-relaxed">
                             Esto no es solo una conferencia. Es una experiencia de regulación <strong className="text-[#8C4005] font-bold underline decoration-[#C1530A]/30">presencial u online</strong>. Es un espacio seguro para comprender lo que el cuerpo guarda y para ampliar nuestra capacidad de bienestar en vivo.
@@ -151,11 +154,23 @@ export default function VenezuelaEnElCuerpoPage() {
                 <div className="container mx-auto px-4 max-w-6xl">
                     <FadeIn className="mb-16">
                         <h2 className="text-3xl md:text-5xl font-heading text-[#8C4005] font-bold mb-6">
-                            ¿Por qué nuestro cuerpo?
+                            El cuerpo es el <span className="text-[#B8835A]">primer territorio</span> del ser humano
                         </h2>
-                        <p className="text-[#2D2926] text-lg font-light leading-relaxed max-w-4xl">
-                            Cuando una emoción no puede expresarse en su momento, el cuerpo la almacena como tensión o bloqueo. Con el tiempo, esto puede manifestarse de diversas formas.
-                        </p>
+                        <div className="grid md:grid-cols-2 gap-12 text-[#2D2926] text-lg font-light leading-relaxed">
+                            <div className="space-y-6">
+                                <p>
+                                    Antes que las ideas. Antes que las creencias. Antes que el discurso. La forma en que habitas tu cuerpo determina cómo ves el mundo, y cómo el mundo te duele.
+                                </p>
+                                <p>
+                                    Es un movimiento de regulación y descongelamiento del sistema nervioso, individual y social.
+                                </p>
+                            </div>
+                            <div className="bg-[#B8835A]/5 p-8 rounded-[2rem] border border-[#B8835A]/20">
+                                <p className="italic">
+                                    "Cuando vivimos estrés prolongado, trauma o sobrecarga, el sistema nervioso no pregunta. Se protege. A veces lucha. A veces huye. Y muchas veces… Se congela."
+                                </p>
+                            </div>
+                        </div>
                     </FadeIn>
 
                     <StaggerContainer className="flex flex-wrap justify-center gap-x-6 gap-y-12">
@@ -217,11 +232,14 @@ export default function VenezuelaEnElCuerpoPage() {
                             Vivir en <span className="text-[#B8835A] font-bold">modo supervivencia</span> no es vivir, es resistir mientras te consumes.
                         </h2>
                         <div className="space-y-8 text-xl text-[#F5EFE6]/80 font-light leading-relaxed">
-                            <p>
-                                El cuerpo humano está diseñado para protegerse del peligro, pero no para vivir en él indefinidamente. Cuando el "modo alerta" se vuelve tu estado permanente, tu cerebro desconecta la creatividad y la visión de futuro para priorizar la respiración básica.
+                            <p className="border-l-2 border-[#B8835A]/30 pl-8 py-4 italic">
+                                Es como un río en invierno. El agua sigue ahí, pero la superficie se endurece para no romperse. La ansiedad es esa capa de hielo. <span className="text-[#B8835A] font-bold">No es el enemigo. Es protección.</span>
                             </p>
                             <p>
-                                Por eso, por más que leas sobre finanzas o planificación, si tu sistema nervioso sigue sintiéndose en "ruina", siempre saboteará tus intentos de progreso. Sanar el cuerpo es la premisa básica para reconstruir la economía.
+                                Pero vivir congelados limita cómo decidimos, cómo amamos, cómo confiamos, cómo soñamos. Y la sanación no comienza en la ideología. Comienza cuando el cuerpo vuelve a sentirse seguro.
+                            </p>
+                            <p>
+                                Es comprender qué pasó en tu cuerpo. Es permitirle terminar lo que quedó interrumpido. Es recordar que primero sana el cuerpo… y luego cambia la historia.
                             </p>
                         </div>
                     </FadeIn>
@@ -633,8 +651,9 @@ export default function VenezuelaEnElCuerpoPage() {
                                 </button>
                             </form>
 
-                            <p className="text-center mt-6 text-xs text-[#2D2926] font-light opacity-80">
-                                Toda la información sobre el lugar y la hora se enviará a tu email al finalizar el registro.
+                            <p className="text-center mt-6 text-xs text-[#2D2926] font-light opacity-80 max-w-md mx-auto">
+                                <span className="font-bold block mb-2 uppercase tracking-widest text-[#8C4005]">No es política • No es ideología</span>
+                                Es un movimiento de integración y regulación colectiva. Toda la información sobre el lugar y la hora se enviará a tu email al finalizar el registro.
                             </p>
                             <p className="text-center mt-2 text-[10px] text-[#2D2926] uppercase tracking-widest font-bold opacity-40">
                                 Al registrarte aceptas nuestra política de privacidad

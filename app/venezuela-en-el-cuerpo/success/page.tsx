@@ -67,8 +67,11 @@ function SuccessContent() {
                     <h1 className="text-4xl md:text-6xl font-heading font-bold text-[#8C4005] mb-4">
                         ¡Registro Exitoso!
                     </h1>
-                    <p className="text-xl font-light text-[#F5EFE6]/80 max-w-xl mx-auto leading-relaxed">
+                    <p className="text-xl font-light text-[#F5EFE6]/80 max-w-xl mx-auto leading-relaxed mb-4">
                         Tu lugar en el <span className="text-[#B8835A] font-bold italic">Tour Nacional de Venezuela en el Cuerpo</span> ha sido reservado. Aquí tienes tu pase oficial.
+                    </p>
+                    <p className="text-lg font-script text-[#B8835A] italic opacity-90">
+                        "Primero sana el cuerpo… y luego cambia la historia."
                     </p>
                 </FadeIn>
 
