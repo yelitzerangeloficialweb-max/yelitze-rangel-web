@@ -21,7 +21,7 @@ export const sendVenezuelaRegistrationEmail = async ({
         // WhatsApp groups logic could be added here if needed, but for now we use the general one or instructions
 
         const { data, error } = await resend.emails.send({
-            from: 'Yelitze Rangel <onboarding@resend.dev>',
+            from: 'Yelitze Rangel <info@yelitzerangel.com>',
             to: [email],
             subject: '¡Tu registro al Tour Venezuela en el Cuerpo es Exitoso! 🇻🇪',
             html: `
