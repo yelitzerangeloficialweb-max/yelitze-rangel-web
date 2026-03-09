@@ -324,41 +324,49 @@ export default function VenezuelaEnElCuerpoPage() {
                         <p className="text-[#2D2926] mt-4 font-light italic">De quienes ya habitan una nueva soberanía corporal.</p>
                     </FadeIn>
 
-                    <StaggerContainer className="flex gap-8 overflow-x-auto pb-12 snap-x hide-scrollbar">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
                         {[
                             {
                                 name: "Maria Elena G.",
                                 role: "Emprendedora",
+                                image: "/assets/images/testimonials/ana.png",
                                 text: "Pensé que vivir en alerta era mi única opción. Gracias a la Arquitectura de Vida Intencional, hoy tomo decisiones desde la calma y la claridad."
                             },
                             {
                                 name: "Carlos J.",
                                 role: "Consultor",
+                                image: "/assets/images/testimonials/carolina.png",
                                 text: "Recuperé mi capacidad de dormir y crear. Al regular mi sistema nervioso, mi productividad se disparó porque dejé de actuar desde el miedo."
                             },
                             {
                                 name: "Susana R.",
                                 role: "Líder de Equipos",
+                                image: "/assets/images/testimonials/sofia.png",
                                 text: "Descubrí que mi cuerpo guardaba tensiones que no me dejaban avanzar. Soltar esas memorias atrapadas fue el inicio de mi verdadera libertad."
                             }
                         ].map((item, i) => (
-                            <StaggerItem key={i} className="min-w-[320px] md:min-w-[450px] bg-[#F5EFE6] p-12 rounded-[3.5rem] shadow-xl border border-stone-100 snap-center">
-                                <div className="flex gap-1 mb-8">
-                                    {[1, 2, 3, 4, 5].map(v => <Star key={v} className="w-5 h-5 fill-[#B8835A] text-[#B8835A]" />)}
+                            <StaggerItem key={i} className="bg-[#F5EFE6] p-8 md:p-12 rounded-[3.5rem] shadow-xl border border-stone-100 flex flex-col items-center text-center">
+                                <div className="flex gap-1 mb-6">
+                                    {[1, 2, 3, 4, 5].map(v => <Star key={v} className="w-4 h-4 fill-[#B8835A] text-[#B8835A]" />)}
                                 </div>
-                                <p className="text-xl text-[#2D2926] mb-8 font-light italic leading-relaxed">"{item.text}"</p>
-                                <div className="flex items-center gap-4 border-t border-stone-100 pt-8">
-                                    <div className="w-12 h-12 bg-[#B8835A] rounded-full flex items-center justify-center text-[#F5EFE6] font-bold">
-                                        {item.name[0]}
+                                <p className="text-lg text-[#2D2926] mb-8 font-light italic leading-relaxed">"{item.text}"</p>
+                                <div className="flex flex-col items-center gap-4 border-t border-stone-100 pt-8 w-full">
+                                    <div className="relative w-20 h-20 rounded-full overflow-hidden shadow-lg border-2 border-[#B8835A]/20">
+                                        <Image
+                                            src={item.image}
+                                            alt={item.name}
+                                            fill
+                                            className="object-cover"
+                                        />
                                     </div>
                                     <div>
-                                        <p className="font-bold text-[#2D2926]">{item.name}</p>
-                                        <p className="text-xs text-[#2D2926] uppercase tracking-widest font-bold">{item.role}</p>
+                                        <p className="font-bold text-[#20D2926]">{item.name}</p>
+                                        <p className="text-xs text-[#2D2926] uppercase tracking-widest font-bold opacity-60">{item.role}</p>
                                     </div>
                                 </div>
                             </StaggerItem>
                         ))}
-                    </StaggerContainer>
+                    </div>
                 </div>
             </section>
 
@@ -393,12 +401,8 @@ export default function VenezuelaEnElCuerpoPage() {
                                 a: "No. Venezuela en el Cuerpo es una iniciativa estrictamente terapéutica y de sanación somática. El enfoque es el impacto individual del entorno social en el sistema nervioso."
                             },
                             {
-                                q: "¿Qué costo tiene?",
-                                a: "Este evento es 100% gratuito. Mi intención es facilitar el acceso a estas herramientas de regulación a la mayor cantidad de personas posible."
-                            },
-                            {
                                 q: "¿Tengo que estar en Venezuela para participar?",
-                                a: "Sí. Este formato puede ser presencial u online, diseñado para vivir la experiencia de regulación somática en comunidad y en vivo."
+                                a: "No necesariamente. Aunque el tour tiene encuentros presenciales en Venezuela, el formato también permite la participación online desde cualquier parte del mundo, permitiéndote vivir la experiencia de regulación somática en comunidad y en vivo."
                             }
                         ].map((item, i) => (
                             <FadeIn key={i}>
