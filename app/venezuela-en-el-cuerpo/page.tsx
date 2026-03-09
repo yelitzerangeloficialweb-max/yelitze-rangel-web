@@ -296,7 +296,7 @@ export default function VenezuelaEnElCuerpoPage() {
                     <FadeIn>
                         <h2 className="text-[#2D2926] font-bold tracking-[0.4em] uppercase text-xs mb-8">El Método</h2>
                         <h3 className="text-4xl lg:text-7xl font-heading text-[#8C4005] mb-12 font-bold leading-tight uppercase tracking-tight">
-                            Arquitectura <br className="md:hidden" /> <span className="text-[#C1530A]">de vida Intencional</span>
+                            Arquitectura <br className="md:hidden" /> <span className="text-[#C1530A]">Intencional de Vida</span>
                         </h3>
                         <p className="text-2xl text-[#2D2926] font-light max-w-3xl mx-auto italic mb-20">
                             Dejamos de reaccionar al entorno para empezar a diseñar nuestra respuesta interna.
@@ -318,7 +318,7 @@ export default function VenezuelaEnElCuerpoPage() {
                                 <Sparkles className="w-32 h-32" />
                             </div>
                             <h4 className="text-6xl font-heading text-[#B8835A]/20 mb-6 font-bold">02</h4>
-                            <h5 className="text-2xl font-bold text-[#8C4005] mb-6">Arquitectura de vida Intencional</h5>
+                            <h5 className="text-2xl font-bold text-[#8C4005] mb-6">Arquitectura Intencional de Vida</h5>
                             <p className="text-stone-300 font-light">Sistemas regulados, visión de largo plazo y capacidad real de crear abundancia.</p>
                         </FadeIn>
                     </div>
@@ -354,7 +354,7 @@ export default function VenezuelaEnElCuerpoPage() {
                             },
                             {
                                 icon: Sparkles,
-                                title: "Arquitectura de vida Intencional",
+                                title: "Arquitectura Intencional de Vida",
                                 desc: "El mapa práctico para diseñar tu respuesta interna y habitar una nueva soberanía."
                             }
                         ].map((item, i) => (
@@ -387,7 +387,7 @@ export default function VenezuelaEnElCuerpoPage() {
                                 name: "Ana María G.",
                                 role: "Emprendedora",
                                 image: "/assets/images/testimonials/ana.png",
-                                text: "Pensé que vivir en alerta era mi única opción. Gracias a la Arquitectura de Vida Intencional, hoy tomo decisiones desde la calma y la claridad."
+                                text: "Pensé que vivir en alerta era mi única opción. Gracias a la Arquitectura Intencional de Vida, hoy tomo decisiones desde la calma y la claridad."
                             },
                             {
                                 name: "Carolina P.",

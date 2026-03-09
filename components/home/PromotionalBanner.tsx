@@ -20,8 +20,8 @@ export default function PromotionalBanner() {
                     <div className="text-center lg:text-left space-y-8 animate-fade-in">
                         <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans font-bold leading-tight text-white drop-shadow-sm">
                             Descubre tu <br />
-                            <span className="text-[var(--color-accent-light)]">Arquitectura de Vida</span> <br />
-                            <span>Intencional</span>
+                            <span className="text-[var(--color-accent-light)]">Arquitectura Intencional</span> <br />
+                            <span>de Vida</span>
                         </h2>
 
                         <div className="pt-4 flex justify-center lg:justify-start">
@@ -43,7 +43,7 @@ export default function PromotionalBanner() {
 
                             <Image
                                 src="/assets/images/tests/test_arquitectura_lifestyle.png"
-                                alt="Arquitectura de Vida Intencional"
+                                alt="Arquitectura Intencional de Vida"
                                 fill
                                 className="object-cover object-top"
                             />

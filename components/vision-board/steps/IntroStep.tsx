@@ -53,7 +53,7 @@ export default function IntroStep({ onNext }: { onNext: () => void }) {
                         "La mayoría de los mapas de sueños fallan porque nacen de la carencia. Hoy aprenderás a co-crear desde la certeza."
                     </p>
                     <p className="text-stone-500 text-lg leading-relaxed font-light">
-                        Bienvenida a tu **Arquitectura de Vida Intencional 2026**. Esto no es un simple tablero de fotos; es el diseño de la estructura interna que permitirá que tus metas aterricen en terreno fértil.
+                        Bienvenida a tu **Arquitectura Intencional de Vida**. Esto no es un simple tablero de fotos; es el diseño de la estructura interna que permitirá que tus metas aterricen en terreno fértil.
                     </p>
                 </div>
                 <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl">

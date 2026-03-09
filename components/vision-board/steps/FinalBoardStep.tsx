@@ -56,12 +56,12 @@ export default function FinalBoardStep({
             heightLeft -= pdfHeight;
         }
 
-        const fileName = `Arquitectura_Vida_${registrationData?.name?.replace(/\s/g, '_') || '2026'}.pdf`;
+        const fileName = `Arquitectura_Intencional_${registrationData?.name?.replace(/\s/g, '_') || 'Vida'}.pdf`;
         pdf.save(fileName);
     };
 
     const getCalendarUrl = () => {
-        const title = encodeURIComponent("Clase en Vivo: Arquitectura de Vida Intencional 2026 con Yelitze Rangel");
+        const title = encodeURIComponent("Clase en Vivo: Arquitectura Intencional de Vida con Yelitze Rangel");
         const details = encodeURIComponent("Recuerda tener tu PDF de Arquitectura impreso a la mano. El enlace de Zoom llegará a tu correo.");
         const dates = "20260115T230000Z/20260116T010000Z";
         return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&dates=${dates}`;
@@ -118,7 +118,7 @@ export default function FinalBoardStep({
                 {/* Header */}
                 <div className="text-center mb-12 relative z-10">
                     <p className="text-[10px] uppercase tracking-[0.4em] text-[#D4AF37] mb-2">Proyecto de Vida</p>
-                    <h1 className="text-3xl md:text-4xl font-heading text-[var(--color-primary)] uppercase tracking-wide">ARQUITECTURA DE VIDA<br />INTENCIONAL 2026</h1>
+                    <h1 className="text-3xl md:text-4xl font-heading text-[var(--color-primary)] uppercase tracking-wide">ARQUITECTURA INTENCIONAL<br />DE VIDA</h1>
                 </div>
 
                 {/* VISUAL DIAGRAM */}
@@ -230,7 +230,7 @@ export default function FinalBoardStep({
                 <div className="space-y-8 page-break-after-always">
                     <div className="flex justify-between items-start border-b-2 border-[#D4AF37] pb-4">
                         <div className="text-left">
-                            <p className="text-[10px] uppercase tracking-[0.4em] text-[#D4AF37] mb-1">Arquitectura de Vida Intencional 2026</p>
+                            <p className="text-[10px] uppercase tracking-[0.4em] text-[#D4AF37] mb-1">Arquitectura Intencional de Vida</p>
                             <h1 className="text-3xl font-heading text-[#2C3E50]">MI PLANO MAESTRO</h1>
                         </div>
                         <div className="text-right">

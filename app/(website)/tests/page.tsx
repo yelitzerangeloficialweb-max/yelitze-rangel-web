@@ -233,8 +233,8 @@ export default function TestsHubPage() {
                     <div className="p-16 md:p-24 space-y-10 flex flex-col justify-center">
                         <span className="text-[var(--color-secondary)] font-bold tracking-[0.5em] uppercase text-xs">Agenda del Alma 2026</span>
                         <h2 className="text-white text-4xl md:text-7xl font-heading leading-[1.1] italic">
-                            Arquitectura de <br />
-                            <span className="text-white/30">Vida Intencional</span>
+                            Arquitectura <br />
+                            <span className="text-white/30">Intencional de Vida</span>
                         </h2>
                         <p className="text-stone-400 text-xl font-light italic leading-relaxed max-w-lg">
                             Un viaje de 12 meses diseñado para quienes deciden dejar de sobrevivir y comenzar a co-crear su realidad desde el alma.

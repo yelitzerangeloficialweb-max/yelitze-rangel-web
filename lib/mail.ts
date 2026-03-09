@@ -53,7 +53,7 @@ export const sendVenezuelaRegistrationEmail = async ({
                         </div>
                         ` : `
                         <p style="font-size: 16px; margin-top: 20px;">
-                            Este es un paso fundamental en tu camino hacia la <strong>Arquitectura de Vida Intencional</strong>. Estamos muy emocionados de tenerte con nosotros.
+                            Este es un paso fundamental en tu camino hacia la <strong>Arquitectura Intencional de Vida</strong>. Estamos muy emocionados de tenerte con nosotros.
                         </p>
                         `}
                         
@@ -74,7 +74,7 @@ export const sendVenezuelaRegistrationEmail = async ({
                     </div>
                     
                     <div style="background-color: #2D2926; padding: 30px; text-align: center; color: #F5EFE680; font-size: 12px; letter-spacing: 1px;">
-                        <p style="margin: 0; text-transform: uppercase;">YELITZE RANGEL • Arquitectura de Vida Intencional</p>
+                        <p style="margin: 0; text-transform: uppercase;">YELITZE RANGEL • Arquitectura Intencional de Vida</p>
                         <p style="margin-top: 5px;">Este correo fue enviado automáticamente por el sistema de registro.</p>
                     </div>
                 </div>
