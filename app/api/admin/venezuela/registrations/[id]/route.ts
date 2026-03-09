@@ -3,14 +3,15 @@ import { db } from '@/lib/db';
 
 export async function PATCH(
     req: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
+        const { id } = await params;
         const body = await req.json();
         const { name, email, whatsapp, city } = body;
 
         const registration = await db.venezuelaEnElCuerpoRegistration.update({
-            where: { id: params.id },
+            where: { id },
             data: {
                 name,
                 email,
@@ -28,11 +29,12 @@ export async function PATCH(
 
 export async function DELETE(
     req: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
+        const { id } = await params;
         await db.venezuelaEnElCuerpoRegistration.delete({
-            where: { id: params.id },
+            where: { id },
         });
 
         return NextResponse.json({ message: 'Registration deleted successfully' });
