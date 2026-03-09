@@ -509,7 +509,7 @@ export default function VenezuelaEnElCuerpoPage() {
                                 <span className="text-[#B8835A]">Tour Nacional de</span> <br /> Venezuela en el Cuerpo
                             </h2>
                             <p className="text-[#F5EFE6] text-xl font-light mb-12 opacity-80 leading-relaxed">
-                                Selecciona tu ciudad para generar tu Pase QR. Una vez registrado, recibirás un email inmediato con la ubicación exacta y la hora del encuentro.
+                                Selecciona tu ciudad para generar tu Pase QR. Una vez registrado, recibirás por email la ubicación exacta, la hora y detalles del encuentro.
                             </p>
                             <div className="flex flex-col gap-6">
                                 <div className="flex items-start gap-4 opacity-80 backdrop-blur-sm bg-[#2D2926]/30 p-6 rounded-3xl border border-[#B8835A]/10">
@@ -521,7 +521,7 @@ export default function VenezuelaEnElCuerpoPage() {
                                         <ul className="text-sm space-y-2 text-[#F5EFE6]/70">
                                             <li><strong className="text-[#B8835A]">Paso 1:</strong> Te registras seleccionando tu ciudad.</li>
                                             <li><strong className="text-[#B8835A]">Paso 2:</strong> Recibes un email automático con tu Pase QR único.</li>
-                                            <li><strong className="text-[#B8835A]">Paso 3:</strong> En ese mismo email, te enviamos el Lugar y Hora detallados del evento en tu ciudad.</li>
+                                            <li><strong className="text-[#B8835A]">Paso 3:</strong> Te enviaremos por email el Lugar y Hora detallados del evento en tu ciudad.</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -634,7 +634,7 @@ export default function VenezuelaEnElCuerpoPage() {
                             </form>
 
                             <p className="text-center mt-6 text-xs text-[#2D2926] font-light opacity-80">
-                                Toda la información sobre el lugar y la hora se enviará a tu email junto con tu Pase QR al finalizar el registro.
+                                Toda la información sobre el lugar y la hora se enviará a tu email al finalizar el registro.
                             </p>
                             <p className="text-center mt-2 text-[10px] text-[#2D2926] uppercase tracking-widest font-bold opacity-40">
                                 Al registrarte aceptas nuestra política de privacidad
