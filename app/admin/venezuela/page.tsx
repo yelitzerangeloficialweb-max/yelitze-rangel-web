@@ -176,6 +176,7 @@ export default function AdminVenezuelaPage() {
                                                 {r.city}
                                             </span>
                                         </td>
+                                        <td className="px-6 py-4 text-stone-500 text-sm whitespace-nowrap">{r.email}</td>
                                         <td className="px-6 py-4 text-stone-500 text-sm whitespace-nowrap">
                                             {safeFormatDate(r.createdAt, "d MMM, yyyy - HH:mm", { locale: es })}
                                         </td>
@@ -210,28 +211,30 @@ export default function AdminVenezuelaPage() {
             </div>
 
             {/* Ticket Preview Modal */}
-            {selectedRegistration && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-                    <div
-                        className="absolute inset-0 bg-[#2D2926]/80 backdrop-blur-sm"
-                        onClick={() => setSelectedRegistration(null)}
-                    />
-                    <div className="relative w-full max-w-lg bg-transparent animate-in zoom-in-95 duration-200">
-                        <button
+            {
+                selectedRegistration && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                        <div
+                            className="absolute inset-0 bg-[#2D2926]/80 backdrop-blur-sm"
                             onClick={() => setSelectedRegistration(null)}
-                            className="absolute -top-12 right-0 p-2 text-white hover:text-[#B8835A] transition-colors"
-                        >
-                            <X className="w-8 h-8" />
-                        </button>
-                        <div className="scale-90 md:scale-100">
-                            <TicketQR
-                                name={selectedRegistration.name}
-                                city={selectedRegistration.city}
-                            />
+                        />
+                        <div className="relative w-full max-w-lg bg-transparent animate-in zoom-in-95 duration-200">
+                            <button
+                                onClick={() => setSelectedRegistration(null)}
+                                className="absolute -top-12 right-0 p-2 text-white hover:text-[#B8835A] transition-colors"
+                            >
+                                <X className="w-8 h-8" />
+                            </button>
+                            <div className="scale-90 md:scale-100">
+                                <TicketQR
+                                    name={selectedRegistration.name}
+                                    city={selectedRegistration.city}
+                                />
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
-        </div>
+                )
+            }
+        </div >
     );
 }
