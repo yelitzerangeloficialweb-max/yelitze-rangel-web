@@ -140,6 +140,16 @@ export default function VenezuelaEnElCuerpoPage() {
                                 priority
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#2D2926]/40 to-transparent" />
+
+                            {/* Logo Overlay */}
+                            <div className="absolute bottom-8 right-8 w-24 h-10 md:w-32 md:h-12 opacity-80 z-20 pointer-events-none">
+                                <Image
+                                    src="/assets/images/logo-yelitze-new.png"
+                                    alt="Yelitze Logo"
+                                    fill
+                                    className="object-contain object-right brightness-0 invert"
+                                />
+                            </div>
                         </div>
                     </ScaleIn>
                 </div>
