@@ -310,7 +310,7 @@ export default function VenezuelaEnElCuerpoPage() {
                     <FadeIn className="text-center mb-16">
                         <h2 className="text-4xl lg:text-7xl font-heading text-[#B8835A] font-bold">Lo que recibirás</h2>
                         <p className="mt-8 text-lg text-[#F5EFE6]/60 font-light leading-relaxed max-w-2xl mx-auto italic">
-                            Herramientas prácticas y digitales diseñadas para iniciar tu regulación somática y transformar tu respuesta interna desde hoy mismo.
+                            Herramientas prácticas y digitales diseñadas para iniciar tu regulación somática y transformar tu respuesta interna desde el primer momento.
                         </p>
                         <div className="w-24 h-px bg-[#B8835A]/30 mx-auto mt-8" />
                     </FadeIn>
