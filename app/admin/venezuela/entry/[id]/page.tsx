@@ -28,8 +28,10 @@ export default function ParticipantEntryPage() {
     useEffect(() => {
         const fetchAndScan = async () => {
             try {
-                // First get the data to check if already scanned
-                const response = await fetch(`/api/admin/venezuela/registrations`);
+                // First get the data to check if already scanned (no cache to ensure real-time status)
+                const response = await fetch(`/api/admin/venezuela/registrations`, {
+                    cache: 'no-store'
+                });
                 const data = await response.json();
                 const id = params.id as string;
                 const found = data.find((r: Registration) => r.id === id);
@@ -130,10 +132,10 @@ export default function ParticipantEntryPage() {
                     </motion.div>
 
                     <h1 className="text-white text-3xl font-bold font-heading relative z-10">
-                        {alreadyScanned ? '¡Pase ya Validado!' : '¡Entrada Confirmada!'}
+                        {alreadyScanned ? '¡Pase no Válido!' : '¡Entrada Confirmada!'}
                     </h1>
                     <p className="text-white/80 text-sm font-medium uppercase tracking-[0.2em] relative z-10 mt-1">
-                        {alreadyScanned ? 'Acceso Previamente Registrado' : 'Acceso Validado Ahora'}
+                        {alreadyScanned ? 'ESTE QR YA FUE VERIFICADO' : 'Acceso Validado Ahora'}
                     </p>
 
                     {/* Animated background circle */}
