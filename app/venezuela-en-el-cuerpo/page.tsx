@@ -339,6 +339,12 @@ export default function VenezuelaEnElCuerpoPage() {
                             </StaggerItem>
                         ))}
                     </StaggerContainer>
+
+                    <FadeIn delay={0.6} className="mt-20 text-center max-w-3xl mx-auto">
+                        <p className="text-lg text-[#F5EFE6]/60 font-light leading-relaxed">
+                            Estos recursos han sido diseñados como un acompañamiento integral para tu proceso. Al participar, obtendrás herramientas prácticas y digitales que te permitirán empezar a aplicar los principios de la regulación somática de inmediato, asegurando que tu transformación comience incluso antes del evento central.
+                        </p>
+                    </FadeIn>
                 </div>
                 <WaveDivider position="bottom" fill="#F5EFE6" />
             </section>
