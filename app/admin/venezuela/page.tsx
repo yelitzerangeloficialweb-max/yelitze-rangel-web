@@ -175,7 +175,8 @@ export default function AdminVenezuelaPage() {
             alert('Error de conexión');
         } finally {
             setIsSubmitting(false);
-        }
+        };
+
         const handleResetQR = async () => {
             if (!editingRegistration) return;
             if (!confirm('¿Estás seguro de que deseas reiniciar el estado del QR a pendiente?')) return;
