@@ -17,6 +17,61 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
     const [currentPillarIndex, setCurrentPillarIndex] = useState(0);
     const activePillar = data.pillars[currentPillarIndex];
 
+    const PILLAR_CONTENT = [
+        {
+            label1: "Enraizando mi Sentido",
+            help1: "¿Qué actividad o rol hoy se siente desconectado de tu alma? ¿Cómo sería vivir tu misión con gozo y no como una carga?",
+            placeholder1: "Ej: Deseo que mi trabajo sea un canal de servicio ligero y no una lucha de supervivencia...",
+            label2: "Mi Misión en Orden",
+            help2: "¿Cómo se vería tu día a día si cada acción estuviera alineada a tu gran 'Para Qué'? Describe el éxito con propósito.",
+            placeholder2: "Ej: Veo mi agenda fluida, impactando vidas mientras respeto mi tiempo de descanso...",
+            helpAction: "Define una acción tan pequeña que no requiera esfuerzo: Ej. 'Escribir mi intención del día en un post-it'.",
+            placeholderAction: "Ej: Escribir 1 intención diaria..."
+        },
+        {
+            label1: "Sanando mi Relación con el Recibir",
+            help1: "¿Dónde estás operando desde la escasez o el miedo? ¿Qué pesos ancestrales cargas sobre el dinero y los recursos?",
+            placeholder1: "Ej: Suelto la lealtad a la pobreza de mis ancestros y me abro a la abundancia sin culpa...",
+            label2: "Flujo de Abundancia",
+            help2: "Visualiza tu flujo financiero como un río que nutre tu vida sin esfuerzo. ¿Qué libertad te permite ese fluir?",
+            placeholder2: "Ej: Genero recursos con alegría, permitiéndome viajar y sostener mi bienestar con holgura...",
+            helpAction: "Una pequeña acción de gratitud financiera: Ej. 'Agradecer por un ingreso al verlo en mi cuenta'.",
+            placeholderAction: "Ej: Agradecer cada flujo de dinero..."
+        },
+        {
+            label1: "Ordenando mis Relaciones",
+            help1: "¿Qué vínculos se sienten desequilibrados? ¿A quién estás intentando 'salvar' o cargar que no te corresponde?",
+            placeholder1: "Ej: Regreso a cada quien su carga y tomo solo lo que me pertenece en mis relaciones...",
+            label2: "Vínculos en Sintonía",
+            help2: "¿Cómo se siente estar en relaciones donde hay orden y cada quien ocupa su lugar? Describe la paz del encuentro.",
+            placeholder2: "Ej: Mis relaciones son honestas, nutritivas y basadas en el respeto mutuo de nuestros destinos...",
+            helpAction: "Un gesto de equilibrio: Ej. 'Mandar un mensaje de aprecio a alguien sin esperar respuesta'.",
+            placeholderAction: "Ej: Expresar aprecio genuino..."
+        },
+        {
+            label1: "Abriéndome a lo Nuevo",
+            help1: "¿En qué área te has quedado pequeña por miedo? ¿Qué fronteras (físicas o mentales) necesitas cruzar este 2026?",
+            placeholder1: "Ej: Me doy permiso de brillar en mi máximo potencial sin miedo a ser vista o juzgada...",
+            label2: "Mi Máxima Expansión",
+            help2: "Vete expandiéndote, ocupando todo tu espacio. ¿Qué nuevas experiencias están esperando tu 'Sí' definitivo?",
+            placeholder2: "Ej: Conquisto nuevos mercados/países y mi mensaje llega a miles con claridad y fuerza...",
+            helpAction: "Un paso hacia lo desconocido: Ej. 'Leer 5 páginas de un libro que me inspire a crecer'.",
+            placeholderAction: "Ej: Leer 5 páginas inspiradoras..."
+        },
+        {
+            label1: "Habitando mi Templo",
+            help1: "¿Qué señales de tu cuerpo has ignorado? ¿Dónde el cansancio es una señal de falta de orden en tu energía vital?",
+            placeholder1: "Ej: Elijo escuchar a mi cuerpo y darle el descanso sagrado que requiere para sanar...",
+            label2: "Energía Vital Radiante",
+            help2: "Imagínate con una salud vibrante, donde tu cuerpo es el aliado de tus sueños. ¿Qué hábitos de amor te sostienen?",
+            placeholder2: "Ej: Despierto cada mañana con vitalidad, nutriendo mi templo con alimentos vivos y movimiento...",
+            helpAction: "Un ritual de presencia física: Ej. 'Beber un vaso de agua al despertar antes de ver el celular'.",
+            placeholderAction: "Ej: Beber agua en presencia..."
+        }
+    ];
+
+    const content = PILLAR_CONTENT[currentPillarIndex];
+
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
@@ -82,31 +137,31 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
                 <div className="space-y-10 relative z-20">
                     <div className="space-y-2">
                         <label className="text-lg font-bold text-[#2D2926] font-guide block">
-                            Elevando la Intención <span className="text-[#8C4005]/60 block text-xs font-normal italic">(¿Dónde quieres ligereza?)</span>
+                            {content.label1} <span className="text-[#8C4005]/60 block text-xs font-normal italic">(Elevando la Intención)</span>
                         </label>
                         <textarea
                             value={activePillar.intention}
                             onChange={(e) => updatePillar(currentPillarIndex, 'intention', e.target.value)}
                             className="w-full h-32 p-6 bg-white border border-[#3C2A21]/10 rounded-[2rem] focus:ring-2 focus:ring-[#8C4005]/20 outline-none resize-none text-[#2D2926] font-editorial text-xl placeholder:text-[#3C2A21]/30 shadow-sm transition-all"
-                            placeholder="Ej: Quiero sentir paz financiera y soltar la lucha..."
+                            placeholder={content.placeholder1}
                         />
                         <p className="text-[#3C2A21]/60 font-guide text-[11px] leading-relaxed italic">
-                            ¿Qué área de tu vida se siente pesada o estancada? Visualiza cómo sería soltar esa carga y flotar sobre ella.
+                            {content.help1}
                         </p>
                     </div>
 
                     <div className="space-y-2">
                         <label className="text-lg font-bold text-[#2D2926] font-guide block">
-                            Redefiniendo el Resultado <span className="text-[#8C4005]/60 block text-xs font-normal italic">(¿Cómo se ve el éxito sin esfuerzo?)</span>
+                            {content.label2} <span className="text-[#8C4005]/60 block text-xs font-normal italic">(Redefiniendo el Resultado)</span>
                         </label>
-                        <input
-                            type="text"
+                        <textarea
                             value={activePillar.direction}
                             onChange={(e) => updatePillar(currentPillarIndex, 'direction', e.target.value)}
-                            className="w-full p-6 bg-white border border-[#3C2A21]/10 rounded-[1.5rem] focus:ring-2 focus:ring-[#8C4005]/20 outline-none text-[#2D2926] font-editorial text-xl shadow-sm transition-all"
+                            className="w-full h-32 p-6 bg-white border border-[#3C2A21]/10 rounded-[2rem] focus:ring-2 focus:ring-[#8C4005]/20 outline-none resize-none text-[#2D2926] font-editorial text-xl placeholder:text-[#3C2A21]/30 shadow-sm transition-all"
+                            placeholder={content.placeholder2}
                         />
                         <p className="text-[#3C2A21]/60 font-guide text-[11px] leading-relaxed italic">
-                            Imagina tu meta alcanzada sin el estrés habitual. Describe el resultado como si fuera una consecuencia natural de tu bienestar.
+                            {content.help2}
                         </p>
                     </div>
 
@@ -119,9 +174,10 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
                             value={activePillar.action}
                             onChange={(e) => updatePillar(currentPillarIndex, 'action', e.target.value)}
                             className="w-full p-6 bg-white border border-[#3C2A21]/10 rounded-[1.5rem] focus:ring-2 focus:ring-[#8C4005]/20 outline-none text-[#2D2926] font-editorial text-xl shadow-sm transition-all"
+                            placeholder={content.placeholderAction}
                         />
                         <p className="text-[#3C2A21]/60 font-guide text-[11px] leading-relaxed italic">
-                            Define una acción tan pequeña que no requiera fuerza de voluntad. Ej: 'Respirar 2 minutos' o 'Agradecer un logro'.
+                            {content.helpAction}
                         </p>
                     </div>
                 </div>
