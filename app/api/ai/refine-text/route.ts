@@ -30,6 +30,9 @@ export async function POST(req: Request) {
         **TEXTO ORIGINAL DEL USUARIO:**
         "${text}"
         
+        **ESTRUCTURA:**
+        Si el texto contiene múltiples párrafos separados por doble salto de línea, mantén exactamente la misma cantidad de párrafos en tu respuesta (refinando cada uno por separado) para conservar la estructura de los módulos.
+        
         **INSTRUCCIÓN:**
         Devuelve ÚNICAMENTE el texto refinado, sin introducciones ni comentarios adicionales. Que suene como una declaración de poder.
         `;

@@ -15,6 +15,22 @@ interface Props {
 export default function Portal1Step({ value, onChange, onNext, onBack }: Props) {
     const [isRefining, setIsRefining] = useState(false);
 
+    // Split the value into parts if it exists, otherwise use empty strings
+    // We expect value to be joined by a specific delimiter or just newlines
+    const [responses, setResponses] = useState<string[]>(() => {
+        if (!value) return ["", "", ""];
+        const parts = value.split('\n\n');
+        return [parts[0] || "", parts[1] || "", parts[2] || ""];
+    });
+
+    const updateResponse = (index: number, text: string) => {
+        const newResponses = [...responses];
+        newResponses[index] = text;
+        setResponses(newResponses);
+        // Save to parent by joining with double newline for clean reading by AI
+        onChange(newResponses.join('\n\n'));
+    };
+
     const handleRefine = async () => {
         if (!value || value.trim().length < 10) return;
 
@@ -116,49 +132,37 @@ export default function Portal1Step({ value, onChange, onNext, onBack }: Props) 
                                         </div>
                                     </div>
                                 </div>
-                                <div className="bg-[#F9F7F2] p-8 rounded-[2rem] border border-[#3C2A21]/10 shadow-[inner_0_2px_4px_rgba(0,0,0,0.02)] transition-all hover:bg-white hover:border-[#8C4005]/20">
-                                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#8C4005] font-guide block mb-3">El Espejo (Ejemplo)</span>
-                                    <p className="text-lg italic text-[#2D2926] font-editorial leading-relaxed">
-                                        "{mod.example}"
-                                    </p>
+                                <div className="bg-[#F9F7F2] p-8 rounded-[2rem] border border-[#3C2A21]/10 shadow-[inner_0_2px_4px_rgba(0,0,0,0.02)] transition-all hover:bg-white hover:border-[#8C4005]/20 flex flex-col">
+                                    <div className="flex items-center gap-2 mb-3">
+                                        <Lightbulb className="w-4 h-4 text-[#8C4005]" />
+                                        <span className="text-[10px] font-bold uppercase tracking-widest text-[#8C4005] font-guide block">Mi Reflexión</span>
+                                    </div>
+                                    <textarea
+                                        value={responses[i]}
+                                        onChange={(e) => updateResponse(i, e.target.value)}
+                                        placeholder={`Ej: ${mod.example}`}
+                                        className="w-full h-full min-h-[120px] bg-transparent border-none outline-none resize-none text-lg italic text-[#2D2926] font-editorial leading-relaxed placeholder:text-[#3C2A21]/20"
+                                    />
                                 </div>
                             </div>
                         </div>
                     ))}
                 </div>
 
-                {/* Final Input Area */}
-                <div className="mt-20 space-y-8">
-                    <div className="space-y-4">
-                        <div className="flex items-center gap-4">
-                            <div className="w-12 h-px bg-[#3C2A21]/20" />
-                            <span className="text-[11px] font-bold uppercase tracking-widest text-[#3C2A21]/50 font-guide">Espacio de Integración</span>
-                        </div>
-                        <p className="text-[#3C2A21]/60 font-guide text-sm leading-relaxed max-w-2xl">
-                            Reflexiona sobre lo que has identificado anteriormente. Utiliza este espacio para redactar tu conclusión personal y tu declaración de cierre, inspirándote en los patrones y espejos explorados arriba.
-                        </p>
-                    </div>
-
-                    <div className="flex justify-end">
-                        <button
-                            onClick={handleRefine}
-                            disabled={isRefining || !value || value.trim().length < 10}
-                            className="bg-[#EFE9E0] text-[#3C2A21] px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 hover:bg-[#E5DACE] transition-colors disabled:opacity-50 disabled:cursor-not-allowed group"
-                        >
-                            {isRefining ? (
-                                <Loader2 className="w-4 h-4 animate-spin" />
-                            ) : (
-                                <Sparkles className="w-4 h-4 text-[#8C4005] group-hover:scale-110 transition-transform" />
-                            )}
-                            Auto (IA)
-                        </button>
-                    </div>
-                    <textarea
-                        value={value}
-                        onChange={(e) => onChange(e.target.value)}
-                        placeholder="Integra tus hallazgos aquí. Termina con una declaración de liberación (ej: 'Cierro este ciclo para reclamar mi soberanía')."
-                        className="w-full h-64 p-10 bg-[#F9F7F2] border border-[#3C2A21]/5 rounded-[2.5rem] focus:ring-2 focus:ring-[#8C4005]/20 focus:bg-white outline-none resize-none text-[#2D2926] text-2xl font-light font-editorial placeholder:text-[#3C2A21]/30 transition-all shadow-inner"
-                    />
+                {/* AI Refinement Area */}
+                <div className="mt-8 flex justify-center">
+                    <button
+                        onClick={handleRefine}
+                        disabled={isRefining || !value || value.trim().length < 10}
+                        className="bg-[#EFE9E0] text-[#3C2A21] px-8 py-3 rounded-xl text-sm font-bold flex items-center gap-2 hover:bg-[#E5DACE] transition-colors disabled:opacity-50 disabled:cursor-not-allowed group shadow-sm border border-[#3C2A21]/5"
+                    >
+                        {isRefining ? (
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                            <Sparkles className="w-4 h-4 text-[#8C4005] group-hover:scale-110 transition-transform" />
+                        )}
+                        Refinar mi Cierre con IA
+                    </button>
                 </div>
             </div>
 
