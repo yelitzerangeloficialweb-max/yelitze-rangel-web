@@ -40,3 +40,26 @@ export async function generateImagePromptGemini(intention: string) {
         return "abstract spiritual minimalist art, golden light"; // Fallback
     }
 }
+export async function generateVisionPrompt(intention: string, images: string[]) {
+    try {
+        const visionModel = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+
+        const prompt = `Estas son 3 imágenes que el usuario ha subido para representar su pilar de arquitectura de vida: "${intention}".
+        Analiza visualmente estas 3 imágenes y genera una descripción maestra en INGLÉS para una 4ta imagen que combine los elementos clave, colores y estética de las anteriores, pero elevándolas a un nivel de arte conceptual, minimalista y arquitectónico.
+        Solo devuelve el prompt final en inglés, sin explicaciones.`;
+
+        const imageParts = images.map(img => ({
+            inlineData: {
+                data: img.split(',')[1],
+                mimeType: "image/jpeg"
+            }
+        }));
+
+        const result = await visionModel.generateContent([prompt, ...imageParts]);
+        const response = await result.response;
+        return response.text();
+    } catch (error) {
+        console.error("Gemini Vision Error:", error);
+        return intention + ", conceptual art, minimalist, architectural, hyper-realistic"; // Fallback
+    }
+}

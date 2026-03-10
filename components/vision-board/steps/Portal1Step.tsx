@@ -60,19 +60,10 @@ export default function Portal1Step({ value, onChange, onNext, onBack }: Props) 
     ];
 
     return (
-        <div className="max-w-4xl mx-auto px-4 py-12 bg-[#F5EFE6] rounded-[3rem] min-h-[80vh] flex flex-col justify-center relative overflow-hidden">
+        <div className="max-w-4xl mx-auto px-4 py-12 bg-[#F3F4F6] rounded-[3rem] min-h-[80vh] flex flex-col justify-center relative overflow-hidden">
             {/* Brand Graphic Elements */}
             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#8C4005]/10 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
             <div className="absolute -bottom-24 -left-24 w-[500px] h-[500px] bg-[#B8835A]/5 blur-[120px] rounded-full pointer-events-none" />
-
-            <div className="absolute inset-0 opacity-[0.08] pointer-events-none">
-                <Image
-                    src="/assets/images/hilos-bg.png"
-                    alt=""
-                    fill
-                    className="object-cover scale-110 rotate-12"
-                />
-            </div>
 
             <style jsx global>{`
                 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap');

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { VisionData } from '../VisionBoardWizard';
-import { Image as ImageIcon, ArrowLeft, ArrowRight, Cloud, Info, Lightbulb, Trash2, Plus, Zap } from 'lucide-react';
+import { Image as ImageIcon, ArrowLeft, ArrowRight, Cloud, Info, Lightbulb, Trash2, Plus, Zap, Sparkles, Loader2 } from 'lucide-react';
 import Image from 'next/image';
 
 interface Props {
@@ -15,6 +15,7 @@ interface Props {
 
 export default function PillarsStep({ data, updatePillar, updatePillarImages, onNext, onBack }: Props) {
     const [currentPillarIndex, setCurrentPillarIndex] = useState(0);
+    const [isGeneratingAI, setIsGeneratingAI] = useState(false);
     const activePillar = data.pillars[currentPillarIndex];
 
     const PILLAR_CONTENT = [
@@ -72,11 +73,37 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
 
     const content = PILLAR_CONTENT[currentPillarIndex];
 
+    const handleGenerateAIImage = async () => {
+        if (activePillar.images.length < 3) return;
+
+        setIsGeneratingAI(true);
+        try {
+            const res = await fetch('/api/ai/generate-pillar-image', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    pillarTitle: activePillar.title,
+                    intention: activePillar.intention,
+                    images: activePillar.images
+                })
+            });
+            const data = await res.json();
+            if (data.imageUrl) {
+                updatePillarImages(currentPillarIndex, [...activePillar.images, data.imageUrl]);
+            }
+        } catch (error) {
+            console.error("AI Generation failed:", error);
+            alert("Error al generar imagen con IA.");
+        } finally {
+            setIsGeneratingAI(false);
+        }
+    };
+
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
-            if (activePillar.images.length >= 3) {
-                alert("Máximo 3 imágenes por pilar.");
+            if (activePillar.images.length >= 4) {
+                alert("Máximo 4 imágenes por pilar.");
                 return;
             }
             const reader = new FileReader();
@@ -96,19 +123,10 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
     const isLastPillar = currentPillarIndex === data.pillars.length - 1;
 
     return (
-        <div className="max-w-6xl mx-auto px-4 py-8 bg-[#F5EFE6] rounded-[3rem] min-h-[85vh] flex flex-col relative overflow-hidden">
+        <div className="max-w-6xl mx-auto px-4 py-8 bg-[#F3F4F6] rounded-[3rem] min-h-[85vh] flex flex-col relative overflow-hidden">
             {/* Brand Graphic Elements */}
             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#8C4005]/10 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
             <div className="absolute -bottom-24 -left-24 w-[500px] h-[500px] bg-[#B8835A]/5 blur-[120px] rounded-full pointer-events-none" />
-
-            <div className="absolute inset-0 opacity-[0.08] pointer-events-none">
-                <Image
-                    src="/assets/images/hilos-bg.png"
-                    alt=""
-                    fill
-                    className="object-cover scale-110 rotate-12"
-                />
-            </div>
 
             <style jsx global>{`
                 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap');
@@ -190,7 +208,7 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
                     <div className="text-center mb-8 space-y-3">
                         <h4 className="font-editorial text-3xl text-[#2D2926]">Tu Espacio de Flotación</h4>
                         <p className="text-sm text-[#3C2A21]/70 font-guide max-w-xs mx-auto leading-relaxed">
-                            ¡Guarda tu energía! Sube hasta <strong>3 imágenes</strong> o diseños que representen libertad, fluidez o expansión. <span className="italic block mt-1">No tienen que ser realistas.</span>
+                            ¡Guarda tu energía! Sube hasta <strong>3 imágenes</strong> o diseños que representen libertad, fluidez o expansión para que la IA complete tu visión. <span className="italic block mt-1">No tienen que ser realistas.</span>
                         </p>
                     </div>
 
@@ -212,8 +230,29 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
                             </div>
                         )}
 
+                        {/* AI Button - Visible when 3 images are present */}
+                        {activePillar.images.length === 3 && (
+                            <button
+                                onClick={handleGenerateAIImage}
+                                disabled={isGeneratingAI}
+                                className="w-full mb-4 bg-black text-[#F9F7F2] py-4 rounded-[1.5rem] font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-3 hover:bg-[#8C4005] transition-all disabled:opacity-50"
+                            >
+                                {isGeneratingAI ? (
+                                    <>
+                                        <Loader2 className="w-4 h-4 animate-spin" />
+                                        Componiendo Visión...
+                                    </>
+                                ) : (
+                                    <>
+                                        <Sparkles className="w-4 h-4 text-[#B8835A]" />
+                                        Completar pilar con IA
+                                    </>
+                                )}
+                            </button>
+                        )}
+
                         {/* Upload Trigger */}
-                        {activePillar.images.length < 3 ? (
+                        {activePillar.images.length < 4 ? (
                             <label className={`w-full group cursor-pointer transition-all duration-500 ${activePillar.images.length > 0 ? 'h-32' : 'flex-grow h-48'}`}>
                                 <div className="h-full border-2 border-dashed border-[#8C4005]/20 rounded-[2.5rem] bg-[#F9F7F2]/50 hover:bg-white hover:border-[#8C4005]/40 flex flex-col items-center justify-center gap-4 group-hover:shadow-inner transition-all">
                                     <div className="bg-[#8C4005]/10 p-4 rounded-full group-hover:scale-110 transition-transform duration-500">

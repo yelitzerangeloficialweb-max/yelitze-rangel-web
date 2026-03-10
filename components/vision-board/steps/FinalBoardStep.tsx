@@ -391,7 +391,7 @@ function ArchitecturalCard({ pillar, label, small }: { pillar: any, label: strin
                         // eslint-disable-next-line @next/next/no-img-element
                         <img src={pillar.images[0]} alt="" className="w-full h-full object-cover opacity-90 contrast-110" />
                     ) : (
-                        // Collage for 2-3 images
+                        // Collage for 2-4 images
                         <div className="grid grid-cols-2 grid-rows-2 w-full h-full gap-0.5">
                             {pillar.images.map((img: string, i: number) => (
                                 <div key={i} className={`relative overflow-hidden ${pillar.images.length === 3 && i === 0 ? 'col-span-2 row-span-1' : 'col-span-1 row-span-1'} ${pillar.images.length === 2 ? 'row-span-2' : ''}`}>
