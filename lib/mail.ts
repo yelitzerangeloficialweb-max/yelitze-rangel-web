@@ -117,13 +117,13 @@ export const sendVisionBoardEmail = async ({
         const { data, error } = await resend.emails.send({
             from: 'Yelitze Rangel <info@yelitzerangeloficial.com>',
             to: [email],
-            subject: 'Tu Arquitectura de Vida 2026 está lista 🏛️✨',
+            subject: 'Tracking de la Arquitectura Intencional de tu Vida 🏛️✨',
             attachments,
             html: `
                 <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background-color: #F9F7F2; border-radius: 32px; overflow: hidden; border: 1px solid #3C2A2115;">
                     <div style="background-color: #2D2926; padding: 40px 20px; text-align: center;">
                         <img src="${logoUrl}" alt="Yelitze Rangel" style="max-width: 150px; height: auto; margin-bottom: 20px;">
-                        <h1 style="color: #F9F7F2; margin: 0; font-size: 22px; letter-spacing: 3px; text-transform: uppercase;">Arquitectura de Vida</h1>
+                        <h1 style="color: #F9F7F2; margin: 0; font-size: 16px; letter-spacing: 2px; text-transform: uppercase;">Tracking de la Arquitectura Intencional de tu Vida</h1>
                     </div>
                     
                     <div style="padding: 50px 40px; color: #2D2926; line-height: 1.8;">

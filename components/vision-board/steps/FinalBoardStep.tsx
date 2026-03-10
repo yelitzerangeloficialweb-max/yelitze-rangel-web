@@ -325,7 +325,7 @@ export default function FinalBoardStep({
 
                     {/* Footer Info */}
                     <div className="absolute bottom-8 left-0 right-0 text-center font-mono text-[8px] text-[#38BDF8]/40 uppercase tracking-[0.5em]">
-                        Yelitze Rangel • Arquitectura Intencional • © 2026 All Rights Reserved
+                        Yelitze Rangel • Tracking de la Arquitectura Intencional de tu Vida • 2026
                     </div>
                 </div>
 

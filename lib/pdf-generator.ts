@@ -82,7 +82,7 @@ export async function generateVisionBoardPDF(name: string, analysis: any, pillar
     pdf.setTextColor(56, 189, 248);
     pdf.setFontSize(8);
     pdf.setFont('helvetica', 'bold');
-    pdf.text('TECHNICAL SPECIFICATION: LIFE ARCHITECTURE', margin, y);
+    pdf.text('TRACKING DE LA ARQUITECTURA INTENCIONAL DE TU VIDA', margin, y);
     y += 8;
 
     pdf.setTextColor(255, 255, 255);
@@ -177,7 +177,7 @@ export async function generateVisionBoardPDF(name: string, analysis: any, pillar
     y = pageHeight - 30;
     pdf.setFontSize(8);
     pdf.setTextColor(184, 131, 90);
-    pdf.text('YELITZE RANGEL • Arquitectura Intencional de Vida • 2026', pageWidth / 2, y, { align: 'center' });
+    pdf.text('YELITZE RANGEL • Tracking de la Arquitectura Intencional de tu Vida • 2026', pageWidth / 2, y, { align: 'center' });
 
     return Buffer.from(pdf.output('arraybuffer'));
 }
