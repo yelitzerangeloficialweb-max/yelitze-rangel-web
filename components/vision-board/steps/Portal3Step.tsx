@@ -14,22 +14,17 @@ interface Props {
 
 export default function Portal3Step({ value, onChange, onNext, onBack }: Props) {
     const [isRefining, setIsRefining] = useState(false);
-
-    const [responses, setResponses] = useState<string[]>(() => {
-        if (!value) return ["", ""];
-        const parts = value.split('\n\n');
-        return [parts[0] || "", parts[1] || ""];
-    });
-
-    const updateResponse = (index: number, text: string) => {
-        const newResponses = [...responses];
-        newResponses[index] = text;
-        setResponses(newResponses);
-        onChange(newResponses.join('\n\n'));
-    };
+    const [moduleResponses, setModuleResponses] = useState<string[]>(["", ""]);
 
     const handleRefine = async () => {
-        if (!value || value.trim().length < 10) return;
+        const combinedContext = `Módulos completados:
+${modules.map((m, i) => `${m.headline}: ${moduleResponses[i]}`).join('\n')}
+
+Declaración de poder actual: ${value}`;
+
+        if (!combinedContext.trim() || (value.trim().length < 10 && moduleResponses.every(r => !r.trim()))) {
+            return;
+        }
 
         setIsRefining(true);
         try {
@@ -37,8 +32,8 @@ export default function Portal3Step({ value, onChange, onNext, onBack }: Props) 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    text: value,
-                    context: "Portal 3: Recuperar Mi Poder - Soltar cargas ajenas y expectativas sociales"
+                    text: combinedContext,
+                    context: "Portal 3: Saltos Cuánticos - Reclamando el Poder. Integra los hallazgos en una declaración de liberación y reclamo de soberanía."
                 })
             });
             const data = await res.json();
@@ -54,16 +49,16 @@ export default function Portal3Step({ value, onChange, onNext, onBack }: Props) 
 
     const modules = [
         {
-            headline: "La Auditoría de Lealtad",
-            context: "Identifica pesos que no te pertenecen pero que has aceptado como propios.",
-            action: "Busca problemas de terceros (familia, socios, amigos) que estés intentando resolver tú.",
-            example: "Cargar con la estabilidad emocional de un familiar, sacrificando mi propio tiempo de descanso y paz mental."
+            headline: "Cargas Heredadas",
+            context: "Responsabilidades que asumiste por otros y que hoy detienen tu avance.",
+            action: "¿Qué ya no te pertenece sostener?",
+            example: "Suelto la necesidad de mediar en los conflictos de mi familia de origen."
         },
         {
-            headline: "El Espejo Social",
-            context: "Soltar lo que otros esperan de ti es el primer paso para la soberanía.",
-            action: "Identifica un \"debería\" que te genera ansiedad y que no nace de tu deseo real.",
-            example: "La presión de escalar mi negocio a un ritmo frenético solo para cumplir con un estándar de éxito ajeno."
+            headline: "El Poder Reclamado",
+            context: "Esa energía que ahora vuelve a ti al soltar lo que no es tuyo.",
+            action: "¿En qué vas a invertir esa nueva libertad?",
+            example: "Utilizo mi energía para diseñar mi propio proyecto creativo sin pedir permiso."
         }
     ];
 
@@ -88,8 +83,8 @@ export default function Portal3Step({ value, onChange, onNext, onBack }: Props) 
                     </span>
                     <Feather className="w-5 h-5 text-[#8C4005]/40" />
                 </div>
-                <h2 className="text-5xl md:text-7xl font-editorial text-[#2D2926] leading-tight">Recuperar Mi Poder</h2>
-                <p className="text-[#3C2A21] italic text-xl md:text-2xl font-editorial tracking-wide opacity-90">Lo que dejo de cargar</p>
+                <h2 className="text-5xl md:text-7xl font-editorial text-[#2D2926] leading-tight">Salto Cuántico</h2>
+                <p className="text-[#3C2A21] italic text-xl md:text-2xl font-editorial tracking-wide opacity-90">Recuperando mi soberanía.</p>
             </div>
 
             {/* Main Workspace */}
@@ -100,9 +95,7 @@ export default function Portal3Step({ value, onChange, onNext, onBack }: Props) 
                 <div className="space-y-16">
                     {modules.map((mod, i) => (
                         <div key={i} className="space-y-6 relative">
-                            <h3 className="text-2xl font-bold text-[#2D2926] font-guide tracking-tight">
-                                {i + 1}. {mod.headline}
-                            </h3>
+                            <h3 className="text-2xl font-bold text-[#2D2926] font-guide tracking-tight">{mod.headline}</h3>
 
                             <div className="grid lg:grid-cols-2 gap-10 items-start">
                                 <div className="space-y-6">
@@ -132,11 +125,15 @@ export default function Portal3Step({ value, onChange, onNext, onBack }: Props) 
                                 <div className="bg-[#F9F7F2] p-8 rounded-[2rem] border border-[#3C2A21]/10 shadow-[inner_0_2px_4px_rgba(0,0,0,0.02)] transition-all hover:bg-white hover:border-[#8C4005]/20 flex flex-col">
                                     <div className="flex items-center gap-2 mb-3">
                                         <Lightbulb className="w-4 h-4 text-[#8C4005]" />
-                                        <span className="text-[10px] font-bold uppercase tracking-widest text-[#8C4005] font-guide block">Mi Reflexión</span>
+                                        <span className="text-[10px] font-bold uppercase tracking-widest text-[#8C4005] font-guide block">Mi Hallazgo</span>
                                     </div>
                                     <textarea
-                                        value={responses[i]}
-                                        onChange={(e) => updateResponse(i, e.target.value)}
+                                        value={moduleResponses[i]}
+                                        onChange={(e) => {
+                                            const newRes = [...moduleResponses];
+                                            newRes[i] = e.target.value;
+                                            setModuleResponses(newRes);
+                                        }}
                                         placeholder={`Ej: ${mod.example}`}
                                         className="w-full h-full min-h-[120px] bg-transparent border-none outline-none resize-none text-lg italic text-[#2D2926] font-editorial leading-relaxed placeholder:text-[#3C2A21]/20"
                                     />
@@ -146,20 +143,39 @@ export default function Portal3Step({ value, onChange, onNext, onBack }: Props) 
                     ))}
                 </div>
 
-                {/* AI Refinement Area */}
-                <div className="mt-8 flex justify-center">
-                    <button
-                        onClick={handleRefine}
-                        disabled={isRefining || !value || value.trim().length < 10}
-                        className="bg-[#EFE9E0] text-[#3C2A21] px-8 py-3 rounded-xl text-sm font-bold flex items-center gap-2 hover:bg-[#E5DACE] transition-colors disabled:opacity-50 disabled:cursor-not-allowed group shadow-sm border border-[#3C2A21]/5"
-                    >
-                        {isRefining ? (
-                            <Loader2 className="w-4 h-4 animate-spin" />
-                        ) : (
-                            <Sparkles className="w-4 h-4 text-[#8C4005] group-hover:scale-110 transition-transform" />
-                        )}
-                        Refinar mi Poder con IA
-                    </button>
+                {/* Final Input Area */}
+                <div className="mt-20 space-y-8">
+                    <div className="space-y-4">
+                        <div className="flex items-center gap-4">
+                            <div className="w-12 h-px bg-[#3C2A21]/20" />
+                            <span className="text-[11px] font-bold uppercase tracking-widest text-[#3C2A21]/50 font-guide">Espacio de Liberación</span>
+                        </div>
+                        <p className="text-[#3C2A21]/60 font-guide text-sm leading-relaxed max-w-2xl">
+                            Nombra aquello que dejas aquí hoy. Al escribirlo, visualiza cómo recuperas ese poder para tu propia arquitectura.
+                        </p>
+                    </div>
+
+                    <div className="flex justify-end">
+                        <button
+                            onClick={handleRefine}
+                            disabled={isRefining || (!value.trim() && moduleResponses.every(r => !r.trim()))}
+                            className="bg-[#EFE9E0] text-[#3C2A21] px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 hover:bg-[#E5DACE] transition-colors disabled:opacity-50 disabled:cursor-not-allowed group border border-[#3C2A21]/5 shadow-sm"
+                        >
+                            {isRefining ? (
+                                <Loader2 className="w-4 h-4 animate-spin" />
+                            ) : (
+                                <Sparkles className="w-4 h-4 text-[#8C4005] group-hover:scale-110 transition-transform" />
+                            )}
+                            Integrar con IA
+                        </button>
+                    </div>
+
+                    <textarea
+                        value={value}
+                        onChange={(e) => onChange(e.target.value)}
+                        placeholder="Hoy dejo de cargar con... Reclamo mi poder para..."
+                        className="w-full h-64 p-10 bg-[#F9F7F2] border border-[#3C2A21]/5 rounded-[2.5rem] focus:ring-2 focus:ring-[#8C4005]/20 focus:bg-white outline-none resize-none text-[#2D2926] text-2xl font-light font-editorial placeholder:text-[#3C2A21]/30 transition-all shadow-inner"
+                    />
                 </div>
             </div>
 
@@ -176,8 +192,8 @@ export default function Portal3Step({ value, onChange, onNext, onBack }: Props) 
                     disabled={!value.trim()}
                     className="bg-[#2D2926] text-[#F9F7F2] px-14 py-6 rounded-2xl font-bold uppercase tracking-[0.25em] text-xs hover:scale-[1.02] shadow-[0_20px_40px_rgba(45,41,38,0.2)] disabled:opacity-20 disabled:cursor-not-allowed transition-all active:scale-95 group flex items-center gap-4 font-guide"
                 >
-                    CONSOLIDAR LIBERACIÓN
-                    <Zap className="w-5 h-5 group-hover:fill-current transition-all" />
+                    RECLAMAR MI PODER
+                    <Feather className="w-5 h-5 group-hover:fill-current transition-all" />
                 </button>
             </div>
         </div>

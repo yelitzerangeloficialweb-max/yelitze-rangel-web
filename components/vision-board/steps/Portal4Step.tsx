@@ -14,22 +14,17 @@ interface Props {
 
 export default function Portal4Step({ value, onChange, onNext, onBack }: Props) {
     const [isRefining, setIsRefining] = useState(false);
-
-    const [responses, setResponses] = useState<string[]>(() => {
-        if (!value) return ["", ""];
-        const parts = value.split('\n\n');
-        return [parts[0] || "", parts[1] || ""];
-    });
-
-    const updateResponse = (index: number, text: string) => {
-        const newResponses = [...responses];
-        newResponses[index] = text;
-        setResponses(newResponses);
-        onChange(newResponses.join('\n\n'));
-    };
+    const [moduleResponses, setModuleResponses] = useState<string[]>(["", ""]);
 
     const handleRefine = async () => {
-        if (!value || value.trim().length < 10) return;
+        const combinedContext = `Módulos completados:
+${modules.map((m, i) => `${m.headline}: ${moduleResponses[i]}`).join('\n')}
+
+Decreto de orden actual: ${value}`;
+
+        if (!combinedContext.trim() || (value.trim().length < 10 && moduleResponses.every(r => !r.trim()))) {
+            return;
+        }
 
         setIsRefining(true);
         try {
@@ -37,8 +32,8 @@ export default function Portal4Step({ value, onChange, onNext, onBack }: Props) 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    text: value,
-                    context: "Portal 4: Arquitectura de Orden - Definiendo la soberanía y la intención de diseño interno"
+                    text: combinedContext,
+                    context: "Portal 4: Arquitectura de Orden. Integra los hallazgos en una declaración de soberanía e intención de diseño interno clara y poderosa."
                 })
             });
             const data = await res.json();
@@ -100,9 +95,7 @@ export default function Portal4Step({ value, onChange, onNext, onBack }: Props) 
                 <div className="space-y-16">
                     {modules.map((mod, i) => (
                         <div key={i} className="space-y-6 relative">
-                            <h3 className="text-2xl font-bold text-[#2D2926] font-guide tracking-tight">
-                                {i + 1}. {mod.headline}
-                            </h3>
+                            <h3 className="text-2xl font-bold text-[#2D2926] font-guide tracking-tight">{mod.headline}</h3>
 
                             <div className="grid lg:grid-cols-2 gap-10 items-start">
                                 <div className="space-y-6">
@@ -132,11 +125,15 @@ export default function Portal4Step({ value, onChange, onNext, onBack }: Props) 
                                 <div className="bg-[#F9F7F2] p-8 rounded-[2rem] border border-[#3C2A21]/10 shadow-[inner_0_2px_4px_rgba(0,0,0,0.02)] transition-all hover:bg-white hover:border-[#8C4005]/20 flex flex-col">
                                     <div className="flex items-center gap-2 mb-3">
                                         <Lightbulb className="w-4 h-4 text-[#8C4005]" />
-                                        <span className="text-[10px] font-bold uppercase tracking-widest text-[#8C4005] font-guide block">Mi Reflexión</span>
+                                        <span className="text-[10px] font-bold uppercase tracking-widest text-[#8C4005] font-guide block">Mi Hallazgo</span>
                                     </div>
                                     <textarea
-                                        value={responses[i]}
-                                        onChange={(e) => updateResponse(i, e.target.value)}
+                                        value={moduleResponses[i]}
+                                        onChange={(e) => {
+                                            const newRes = [...moduleResponses];
+                                            newRes[i] = e.target.value;
+                                            setModuleResponses(newRes);
+                                        }}
                                         placeholder={`Ej: ${mod.example}`}
                                         className="w-full h-full min-h-[120px] bg-transparent border-none outline-none resize-none text-lg italic text-[#2D2926] font-editorial leading-relaxed placeholder:text-[#3C2A21]/20"
                                     />
@@ -146,20 +143,39 @@ export default function Portal4Step({ value, onChange, onNext, onBack }: Props) 
                     ))}
                 </div>
 
-                {/* AI Refinement Area */}
-                <div className="mt-8 flex justify-center">
-                    <button
-                        onClick={handleRefine}
-                        disabled={isRefining || !value || value.trim().length < 10}
-                        className="bg-[#EFE9E0] text-[#3C2A21] px-8 py-3 rounded-xl text-sm font-bold flex items-center gap-2 hover:bg-[#E5DACE] transition-colors disabled:opacity-50 disabled:cursor-not-allowed group shadow-sm border border-[#3C2A21]/5"
-                    >
-                        {isRefining ? (
-                            <Loader2 className="w-4 h-4 animate-spin" />
-                        ) : (
-                            <Sparkles className="w-4 h-4 text-[#8C4005] group-hover:scale-110 transition-transform" />
-                        )}
-                        Refinar mi Diseño con IA
-                    </button>
+                {/* Final Input Area */}
+                <div className="mt-20 space-y-8">
+                    <div className="space-y-4">
+                        <div className="flex items-center gap-4">
+                            <div className="w-12 h-px bg-[#3C2A21]/20" />
+                            <span className="text-[11px] font-bold uppercase tracking-widest text-[#3C2A21]/50 font-guide">Decreto Arquitectónico</span>
+                        </div>
+                        <p className="text-[#3C2A21]/60 font-guide text-sm leading-relaxed max-w-2xl">
+                            Declara aquí los pilares de tu nueva arquitectura de orden...
+                        </p>
+                    </div>
+
+                    <div className="flex justify-end">
+                        <button
+                            onClick={handleRefine}
+                            disabled={isRefining || (!value.trim() && moduleResponses.every(r => !r.trim()))}
+                            className="bg-[#EFE9E0] text-[#3C2A21] px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 hover:bg-[#E5DACE] transition-colors disabled:opacity-50 disabled:cursor-not-allowed group border border-[#3C2A21]/5 shadow-sm"
+                        >
+                            {isRefining ? (
+                                <Loader2 className="w-4 h-4 animate-spin" />
+                            ) : (
+                                <Sparkles className="w-4 h-4 text-[#8C4005] group-hover:scale-110 transition-transform" />
+                            )}
+                            Integrar con IA
+                        </button>
+                    </div>
+
+                    <textarea
+                        value={value}
+                        onChange={(e) => onChange(e.target.value)}
+                        placeholder="Mis pilares de soberanía para este 2026 son..."
+                        className="w-full h-64 p-10 bg-[#F9F7F2] border border-[#3C2A21]/5 rounded-[2.5rem] focus:ring-2 focus:ring-[#8C4005]/20 focus:bg-white outline-none resize-none text-[#2D2926] text-2xl font-light font-editorial placeholder:text-[#3C2A21]/30 transition-all shadow-inner"
+                    />
                 </div>
             </div>
 
