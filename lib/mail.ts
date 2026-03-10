@@ -96,15 +96,29 @@ export const sendVenezuelaRegistrationEmail = async ({
 export const sendVisionBoardEmail = async ({
     email,
     name,
-    analysis
-}: { email: string, name: string, analysis: any }) => {
+    analysis,
+    pdfBuffer
+}: {
+    email: string,
+    name: string,
+    analysis: any,
+    pdfBuffer?: Buffer
+}) => {
     try {
         const logoUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/assets/images/logo-yelitze-new.png`;
+
+        const attachments = pdfBuffer ? [
+            {
+                filename: 'Arquitectura-Intencional-Vida.pdf',
+                content: pdfBuffer,
+            }
+        ] : [];
 
         const { data, error } = await resend.emails.send({
             from: 'Yelitze Rangel <info@yelitzerangeloficial.com>',
             to: [email],
             subject: 'Tu Arquitectura de Vida 2026 está lista 🏛️✨',
+            attachments,
             html: `
                 <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background-color: #F9F7F2; border-radius: 32px; overflow: hidden; border: 1px solid #3C2A2115;">
                     <div style="background-color: #2D2926; padding: 40px 20px; text-align: center;">
@@ -123,6 +137,12 @@ export const sendVisionBoardEmail = async ({
                         <div style="background-color: white; padding: 30px; border-radius: 20px; border: 1px solid #3C2A2110; margin-bottom: 40px;">
                             <h3 style="color: #8C4005; font-size: 16px; margin-top: 0;">Tu Manifiesto de Poder</h3>
                             <p style="font-size: 17px; color: #3C2A21;">${analysis.manifesto}</p>
+                        </div>
+
+                        <div style="margin-bottom: 20px; text-align: center;">
+                            <p style="font-size: 14px; color: #8C4005; font-weight: bold;">
+                                Te hemos adjunto tu PDF Maestro en este correo. Prepárate para construir.
+                            </p>
                         </div>
 
                         <div style="margin-bottom: 40px;">

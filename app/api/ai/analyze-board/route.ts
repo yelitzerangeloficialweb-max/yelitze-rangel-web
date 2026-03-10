@@ -2,6 +2,7 @@ import OpenAI from 'openai';
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { sendVisionBoardEmail } from '@/lib/mail';
+import { generateVisionBoardPDF } from '@/lib/pdf-generator';
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY || ''
@@ -98,16 +99,19 @@ export async function POST(req: Request) {
             });
         }
 
-        // 3. SEND EMAIL WITH RESULTS
+        // 3. GENERATE PDF AND SEND EMAIL WITH RESULTS
         if (userEmail && userName) {
             try {
+                const pdfBuffer = await generateVisionBoardPDF(userName, analysisObj, pillars);
+
                 await sendVisionBoardEmail({
                     email: userEmail,
                     name: userName,
-                    analysis: analysisObj
+                    analysis: analysisObj,
+                    pdfBuffer
                 });
             } catch (emailError) {
-                console.error("Failed to send Vision Board email:", emailError);
+                console.error("Failed to generate or send Vision Board email/PDF:", emailError);
             }
         }
 
