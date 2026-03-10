@@ -192,18 +192,26 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
                     <ArrowLeft className="w-4 h-4" /> Anterior
                 </button>
 
-                <div className="flex gap-4">
+                <div className="flex flex-col items-end gap-2">
                     <button
                         onClick={() => {
+                            if (!activePillar.intention.trim()) {
+                                alert("Por favor, escribe tu intención para poder avanzar.");
+                                return;
+                            }
                             if (!isLastPillar) setCurrentPillarIndex(c => c + 1);
                             else onNext();
                         }}
-                        disabled={!activePillar.intention.trim()}
-                        className="bg-[#8C4005] text-[#F9F7F2] px-14 py-6 rounded-2xl font-bold uppercase tracking-[0.25em] text-xs hover:scale-[1.02] shadow-[0_20px_40px_rgba(140,64,5,0.2)] disabled:opacity-20 disabled:cursor-not-allowed transition-all active:scale-95 group flex items-center gap-4 font-guide"
+                        className={`bg-[#8C4005] text-[#F9F7F2] px-14 py-6 rounded-2xl font-bold uppercase tracking-[0.25em] text-xs hover:scale-[1.02] shadow-[0_20px_40px_rgba(140,64,5,0.2)] transition-all active:scale-95 group flex items-center gap-4 font-guide ${!activePillar.intention.trim() ? 'opacity-40 cursor-not-allowed' : ''}`}
                     >
                         {isLastPillar ? 'Confirmar mi Elevación' : 'Siguiente Pilar'}
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </button>
+                    {!activePillar.intention.trim() && (
+                        <span className="text-[10px] text-red-500 font-bold uppercase tracking-widest animate-pulse">
+                            * Escribe tu intención para continuar
+                        </span>
+                    )}
                 </div>
             </div>
         </div>
