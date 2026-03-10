@@ -88,6 +88,9 @@ Reflexión final actual: ${value}`;
                 </span>
                 <h2 className="text-5xl md:text-7xl font-editorial text-[#2D2926] leading-tight">Cierre Consciente</h2>
                 <p className="text-[#3C2A21] italic text-xl md:text-2xl font-editorial tracking-wide opacity-90">¿A dónde se fue mi energía?</p>
+                <p className="text-[#3C2A21]/70 text-sm md:text-base font-guide max-w-2xl mx-auto leading-relaxed mt-4">
+                    Antes de sembrar las semillas de tu nueva arquitectura, es vital limpiar la maleza. El desgaste no es falta de capacidad, sino una señal de que tu energía está invertida en el lugar equivocado. Cerrar conscientemente es recuperar el poder que dejaste en el pasado para traerlo al presente.
+                </p>
             </div>
 
             {/* Main Workspace */}
