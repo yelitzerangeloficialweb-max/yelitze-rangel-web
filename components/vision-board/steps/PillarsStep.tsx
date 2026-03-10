@@ -76,7 +76,7 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
             <div className="grid lg:grid-cols-2 gap-12 items-start relative z-10">
 
                 {/* Left Column: Form Section */}
-                <div className="space-y-10">
+                <div className="space-y-10 relative z-20">
                     <div className="space-y-2">
                         <label className="text-lg font-bold text-[#2D2926] font-guide block">
                             Elevando la Intención <span className="text-[#8C4005]/60 block text-xs font-normal italic">(¿Dónde quieres ligereza?)</span>
@@ -124,7 +124,7 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
                 </div>
 
                 {/* Right Column: Visual Section */}
-                <div className="bg-white p-10 rounded-[3rem] shadow-[0_20px_60px_rgba(45,41,38,0.06)] border border-[#3C2A21]/10 flex flex-col min-h-[500px] relative overflow-hidden group">
+                <div className="bg-white p-10 rounded-[3rem] shadow-[0_20px_60px_rgba(45,41,38,0.06)] border border-[#3C2A21]/10 flex flex-col min-h-[500px] relative z-20 overflow-hidden group">
                     {/* Floating Glow */}
                     <div className="absolute top-0 right-0 w-32 h-32 bg-[#8C4005]/5 blur-3xl rounded-full" />
 
