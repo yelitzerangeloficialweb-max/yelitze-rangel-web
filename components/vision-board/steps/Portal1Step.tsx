@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Info, Zap, Sparkles, Loader2 } from 'lucide-react';
+import { ArrowLeft, Info, Zap, Sparkles, Loader2, Lightbulb } from 'lucide-react';
 import Image from 'next/image';
 
 interface Props {
