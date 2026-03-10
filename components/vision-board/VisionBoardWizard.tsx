@@ -6,6 +6,7 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 import IntroStep from './steps/IntroStep';
 import ReflectionPortal from './steps/ReflectionPortal';
 import Portal1Step from './steps/Portal1Step';
+import Portal2Step from './steps/Portal2Step';
 import PillarsStep from './steps/PillarsStep';
 import FinalBoardStep from './steps/FinalBoardStep';
 import ProgressBar from './ProgressBar';
@@ -114,16 +115,8 @@ export default function VisionBoardWizard() {
             onNext={nextStep}
             onBack={prevStep}
         />,
-        <ReflectionPortal
+        <Portal2Step
             key="p2"
-            portalNumber={2}
-            title="Foco y Dispersión"
-            subtitle="¿Dónde perdí mi centro?"
-            description="La dispersión es una forma sutil de abandono propio. Identificar dónde se fuga nuestra atención es el primer paso para recuperarla."
-            questions={[
-                "¿Qué distracciones me alejaron de mis prioridades reales?",
-                "¿En qué momentos dejé de escuchar mi propia voz?"
-            ]}
             value={data.reflections['portal2'] || ''}
             onChange={(v: string) => updateReflection('portal2', v)}
             onNext={nextStep}
