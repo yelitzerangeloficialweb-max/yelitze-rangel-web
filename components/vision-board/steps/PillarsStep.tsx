@@ -181,7 +181,7 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
             </div>
 
             {/* Navigation Section */}
-            <div className="mt-auto pt-10 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="mt-auto pt-10 flex flex-col md:flex-row justify-between items-center gap-8 relative z-20">
                 <button
                     onClick={() => {
                         if (currentPillarIndex > 0) setCurrentPillarIndex(c => c - 1);
@@ -193,20 +193,12 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
                 </button>
 
                 <div className="flex gap-4">
-                    {!isLastPillar && (
-                        <button
-                            onClick={() => setCurrentPillarIndex(c => c + 1)}
-                            className="bg-[#2D2926]/5 text-[#2D2926] px-8 py-5 rounded-full font-bold uppercase tracking-widest text-[10px] hover:bg-white border border-[#2D2926]/10 transition-all"
-                        >
-                            Siguiente Pilar
-                        </button>
-                    )}
                     <button
                         onClick={() => {
                             if (!isLastPillar) setCurrentPillarIndex(c => c + 1);
                             else onNext();
                         }}
-                        disabled={!activePillar.intention || activePillar.images.length === 0}
+                        disabled={!activePillar.intention.trim()}
                         className="bg-[#8C4005] text-[#F9F7F2] px-14 py-6 rounded-2xl font-bold uppercase tracking-[0.25em] text-xs hover:scale-[1.02] shadow-[0_20px_40px_rgba(140,64,5,0.2)] disabled:opacity-20 disabled:cursor-not-allowed transition-all active:scale-95 group flex items-center gap-4 font-guide"
                     >
                         {isLastPillar ? 'Confirmar mi Elevación' : 'Siguiente Pilar'}
