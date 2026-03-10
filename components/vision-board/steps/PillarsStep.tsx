@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { VisionData } from '../VisionBoardWizard';
-import { Image as ImageIcon, ArrowLeft, ArrowRight, Cloud, Info, Lightbulb, Trash2, Plus } from 'lucide-react';
+import { Image as ImageIcon, ArrowLeft, ArrowRight, Cloud, Info, Lightbulb, Trash2, Plus, Zap } from 'lucide-react';
 import Image from 'next/image';
 
 interface Props {
