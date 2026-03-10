@@ -7,6 +7,7 @@ import IntroStep from './steps/IntroStep';
 import ReflectionPortal from './steps/ReflectionPortal';
 import Portal1Step from './steps/Portal1Step';
 import Portal2Step from './steps/Portal2Step';
+import Portal3Step from './steps/Portal3Step';
 import PillarsStep from './steps/PillarsStep';
 import FinalBoardStep from './steps/FinalBoardStep';
 import ProgressBar from './ProgressBar';
@@ -122,16 +123,8 @@ export default function VisionBoardWizard() {
             onNext={nextStep}
             onBack={prevStep}
         />,
-        <ReflectionPortal
+        <Portal3Step
             key="p3"
-            portalNumber={3}
-            title="Recuperar Mi Poder"
-            subtitle="Lo que dejo de cargar"
-            description="Para volar alto, el equipaje debe ser ligero. Identifica las cargas que ya no te pertenecen."
-            questions={[
-                "¿Qué responsabilidades o dolores ajenos estoy cargando por lealtad?",
-                "¿Qué expectativas de otros estoy lista para soltar?"
-            ]}
             value={data.reflections['portal3'] || ''}
             onChange={(v: string) => updateReflection('portal3', v)}
             onNext={nextStep}
