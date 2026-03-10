@@ -1,6 +1,7 @@
 import OpenAI from 'openai';
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
+import { sendVisionBoardEmail } from '@/lib/mail';
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY || ''
@@ -95,6 +96,19 @@ export async function POST(req: Request) {
                 where: { id: resultId },
                 data: { aiAnalysis: analysisText }
             });
+        }
+
+        // 3. SEND EMAIL WITH RESULTS
+        if (userEmail && userName) {
+            try {
+                await sendVisionBoardEmail({
+                    email: userEmail,
+                    name: userName,
+                    analysis: analysisObj
+                });
+            } catch (emailError) {
+                console.error("Failed to send Vision Board email:", emailError);
+            }
         }
 
         return NextResponse.json(analysisObj);
