@@ -40,11 +40,11 @@ export type VisionData = {
 const INITIAL_DATA: VisionData = {
     reflections: {},
     pillars: [
-        { id: '1', title: 'Propósito y Trabajo', intention: '', direction: '', action: '', images: [] },
-        { id: '2', title: 'Abundancia y Recursos', intention: '', direction: '', action: '', images: [] },
-        { id: '3', title: 'Relaciones y Vida Personal', intention: '', direction: '', action: '', images: [] },
-        { id: '4', title: 'Crecimiento Interno', intention: '', direction: '', action: '', images: [] },
-        { id: '5', title: 'Bienestar y Autocuidado', intention: '', direction: '', action: '', images: [] },
+        { id: '1', title: 'Arquitectura de Propósito', intention: '', direction: '', action: '', images: [] },
+        { id: '2', title: 'Arquitectura de Abundancia', intention: '', direction: '', action: '', images: [] },
+        { id: '3', title: 'Arquitectura de Vínculos', intention: '', direction: '', action: '', images: [] },
+        { id: '4', title: 'Arquitectura de Expansión', intention: '', direction: '', action: '', images: [] },
+        { id: '5', title: 'Arquitectura de Vitalidad', intention: '', direction: '', action: '', images: [] },
     ],
     emotions: { primary: '', keywords: [] }
 };
