@@ -1,6 +1,6 @@
 import { jsPDF } from 'jspdf';
 
-export async function generateVisionBoardPDF(name: string, analysis: any, pillars: any[]) {
+export async function generateVisionBoardPDF(name: string, analysis: any, pillars: any[], gender: string) {
     const pdf = new jsPDF('p', 'mm', 'a4');
     const pageWidth = pdf.internal.pageSize.getWidth();
     const pageHeight = pdf.internal.pageSize.getHeight();
@@ -79,7 +79,7 @@ export async function generateVisionBoardPDF(name: string, analysis: any, pillar
     pdf.setTextColor(140, 64, 5);
     pdf.setFontSize(10);
     pdf.setFont('helvetica', 'bold');
-    pdf.text('TU IDENTIDAD CENTRAL:', margin, y);
+    pdf.text('ENERGÍA CENTRAL DEL YO SOY:', margin, y);
     y += 10;
 
     pdf.setTextColor(45, 41, 38);

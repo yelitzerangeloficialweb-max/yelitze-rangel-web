@@ -15,7 +15,7 @@ export default function FinalBoardStep({
     data: VisionData,
     onBack: () => void,
     isAnalyzing?: boolean,
-    registrationData?: { name: string, email: string }
+    registrationData?: { name: string, email: string, gender: string }
 }) {
     const pdfContentRef = useRef<HTMLDivElement>(null);
 
@@ -173,11 +173,11 @@ export default function FinalBoardStep({
                         {/* 3. CENTER: Identity - The Core */}
                         <div className="col-start-2 row-start-2 w-full max-w-[240px] z-30 text-center bg-white/80 backdrop-blur-sm p-4 md:p-8 rounded-full border border-[var(--color-secondary)]/50 shadow-[0_0_30px_rgba(var(--color-secondary-rgb),0.15)] flex flex-col items-center justify-center aspect-square ring-4 ring-white/50">
                             <div className="space-y-2">
-                                <span className="text-[9px] uppercase tracking-[0.2em] text-[var(--color-secondary)] font-bold">Energía Central</span>
+                                <span className="text-[9px] uppercase tracking-[0.2em] text-[var(--color-secondary)] font-bold">Energía Central del YO SOY</span>
                                 <h3 className="font-heading text-2xl md:text-3xl text-[var(--color-primary)] leading-none">YO SOY</h3>
                                 <div className="w-12 h-[1px] bg-gray-200 mx-auto" />
                                 <p className="text-xs italic text-gray-600 font-serif leading-relaxed px-2 line-clamp-3">
-                                    "{data.analysis?.identity || 'La Arquitecta de mi Propio Destino'}"
+                                    "{data.analysis?.identity || (registrationData?.gender === 'hombre' ? 'El Arquitecto de mi propio orden y bienestar' : 'La Arquitecta de mi propio orden y bienestar')}"
                                 </p>
                             </div>
                         </div>
@@ -262,10 +262,10 @@ export default function FinalBoardStep({
 
                             {/* Center Identity */}
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-full shadow-2xl border-2 border-[var(--color-secondary)] w-48 h-48 flex flex-col items-center justify-center text-center">
-                                <span className="text-[10px] uppercase tracking-widest text-gray-400 mb-1">Identidad Central</span>
+                                <span className="text-[9px] uppercase tracking-widest text-gray-400 mb-1">ENERGÍA CENTRAL DEL YO SOY</span>
                                 <h3 className="font-heading text-xl text-[#2C3E50] leading-none mb-2">YO SOY</h3>
                                 <p className="text-[10px] italic text-gray-600 font-serif leading-tight">
-                                    {data.analysis?.identity || "La Arquitecta de mi Propio Destino"}
+                                    {data.analysis?.identity || (registrationData?.gender === 'hombre' ? 'El Arquitecto de mi propio orden y bienestar' : 'La Arquitecta de mi propio orden y bienestar')}
                                 </p>
                             </div>
 

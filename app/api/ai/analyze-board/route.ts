@@ -23,7 +23,7 @@ export async function POST(req: Request) {
             }, { status: 200 });
         }
 
-        const { reflections, pillars, userName, userEmail } = await req.json();
+        const { reflections, pillars, userName, userEmail, userGender } = await req.json();
 
         // 1. SAVE TO DATABASE IMMEDIATELY
         try {
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
                     testTitle: "Arquitectura de Vida",
                     score: 0,
                     maxScore: 0,
-                    answers: JSON.stringify({ reflections, pillars }),
+                    answers: JSON.stringify({ reflections, pillars, userGender }),
                     aiAnalysis: "Analizando con GPT...",
                     userName: userName || null,
                     userEmail: userEmail || null
@@ -59,7 +59,8 @@ export async function POST(req: Request) {
         - **Sistémica y Ancestral:** Hablas de "orden", "lealtades invisibles", "energía vital".
         - **Directa y Radical:** Vas al hueso. 
         - **Frase Clave:** "No es magia, es orden".
-        - **Personalización:** Usa EXCLUSIVAMENTE la información del usuario: ${userName}.
+        - **Personalización:** Usa EXCLUSIVAMENTE la información del usuario: ${userName} (Identificado como ${userGender}). 
+        - **IMPORTANTE:** Si es hombre usa términos como "Arquitecto", si es mujer "Arquitecta". No uses lenguaje neutro si el género es claro.
         
         **CONTEXTO DEL USUARIO:**
         ${reflectionsText}
@@ -102,7 +103,7 @@ export async function POST(req: Request) {
         // 3. GENERATE PDF AND SEND EMAIL WITH RESULTS
         if (userEmail && userName) {
             try {
-                const pdfBuffer = await generateVisionBoardPDF(userName, analysisObj, pillars);
+                const pdfBuffer = await generateVisionBoardPDF(userName, analysisObj, pillars, userGender);
 
                 await sendVisionBoardEmail({
                     email: userEmail,

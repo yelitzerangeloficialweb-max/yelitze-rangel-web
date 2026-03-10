@@ -53,7 +53,7 @@ export default function VisionBoardWizard() {
     const [step, setStep] = useState(0);
     const [data, setData] = useState<VisionData>(INITIAL_DATA);
     const [isAnalyzing, setIsAnalyzing] = useState(false);
-    const [registration, setRegistration] = useState({ name: '', email: '' });
+    const [registration, setRegistration] = useState({ name: '', email: '', gender: 'mujer' });
 
     const nextStep = () => setStep(s => s + 1);
     const prevStep = () => setStep(s => s - 1);
@@ -75,7 +75,8 @@ export default function VisionBoardWizard() {
                     reflections: data.reflections,
                     pillars: data.pillars,
                     userName: registration.name,
-                    userEmail: registration.email
+                    userEmail: registration.email,
+                    userGender: registration.gender
                 })
             });
             const analysis = await res.json();
@@ -169,6 +170,24 @@ export default function VisionBoardWizard() {
                             className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] outline-none transition-colors"
                             placeholder="Tu nombre"
                         />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">¿Cómo te identificas?</label>
+                        <div className="flex gap-4">
+                            {['mujer', 'hombre'].map((g) => (
+                                <button
+                                    key={g}
+                                    type="button"
+                                    onClick={() => setRegistration(prev => ({ ...prev, gender: g }))}
+                                    className={`flex-1 py-3 rounded-xl border-2 transition-all font-bold uppercase tracking-widest text-xs ${registration.gender === g
+                                        ? 'border-[var(--color-primary)] bg-[var(--color-primary)] text-white'
+                                        : 'border-gray-200 text-gray-400 hover:border-gray-300'
+                                        }`}
+                                >
+                                    {g === 'mujer' ? 'Mujer (Arquitecta)' : 'Hombre (Arquitecto)'}
+                                </button>
+                            ))}
+                        </div>
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Correo Electrónico</label>
