@@ -65,7 +65,7 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
             {/* Header Section */}
             <div className="text-center mb-12 space-y-2">
                 <span className="text-[#8C4005] tracking-[0.5em] font-bold text-[10px] uppercase block font-guide">
-                    PORTAL 5 · ARQUITECTURA
+                    PORTAL 5 · ARQUITECTURA · PILAR {currentPillarIndex + 1}/{data.pillars.length}
                 </span>
                 <h2 className="text-5xl md:text-6xl font-editorial text-[#2D2926] leading-tight flex items-center justify-center gap-4">
                     TU DISEÑO 2026
