@@ -8,6 +8,7 @@ import ReflectionPortal from './steps/ReflectionPortal';
 import Portal1Step from './steps/Portal1Step';
 import Portal2Step from './steps/Portal2Step';
 import Portal3Step from './steps/Portal3Step';
+import Portal4Step from './steps/Portal4Step';
 import PillarsStep from './steps/PillarsStep';
 import FinalBoardStep from './steps/FinalBoardStep';
 import ProgressBar from './ProgressBar';
@@ -130,16 +131,8 @@ export default function VisionBoardWizard() {
             onNext={nextStep}
             onBack={prevStep}
         />,
-        <ReflectionPortal
+        <Portal4Step
             key="p4"
-            portalNumber={4}
-            title="Arquitectura de Orden"
-            subtitle="Gestión Consciente de Energía"
-            description="El orden no es rigidez, es la estructura que permite que tu energía fluya hacia donde tú decidas."
-            questions={[
-                "¿Qué áreas de mi vida necesitan hoy mayor estructura y orden?",
-                "¿Dónde necesito establecer límites claros para proteger mi paz?"
-            ]}
             value={data.reflections['portal4'] || ''}
             onChange={(v: string) => updateReflection('portal4', v)}
             onNext={nextStep}
