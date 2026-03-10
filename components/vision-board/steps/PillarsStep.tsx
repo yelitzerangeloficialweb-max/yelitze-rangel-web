@@ -68,7 +68,7 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
                     PORTAL 5 · ARQUITECTURA
                 </span>
                 <h2 className="text-5xl md:text-6xl font-editorial text-[#2D2926] leading-tight flex items-center justify-center gap-4">
-                    TU DISEÑO 2026: <span className="opacity-60 italic">ANTIGRAVITY</span>
+                    TU DISEÑO 2026
                 </h2>
             </div>
 
