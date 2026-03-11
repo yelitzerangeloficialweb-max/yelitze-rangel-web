@@ -29,6 +29,10 @@ export async function POST(req: Request) {
             quality: "hd",
         });
 
+        if (!response.data || response.data.length === 0 || !response.data[0].url) {
+            throw new Error('DALL-E 3 failed to return an image URL');
+        }
+
         const dalLeUrl = response.data[0].url;
         
         // Fetch and convert to Base64 to ensure persistence
