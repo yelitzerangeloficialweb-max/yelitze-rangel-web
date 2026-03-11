@@ -166,7 +166,7 @@ Decreto de orden actual: ${value}`;
                             ) : (
                                 <Sparkles className="w-4 h-4 text-[#8C4005] group-hover:scale-110 transition-transform" />
                             )}
-                            Integrar con IA
+                            Integrar con Yelitze
                         </button>
                     </div>
 
