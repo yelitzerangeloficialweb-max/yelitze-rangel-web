@@ -48,6 +48,7 @@ export default function FinalBoardStep({
                 const printable = doc.querySelector('[data-pdf-content]');
                 if (printable) {
                     (printable as HTMLElement).style.display = 'block';
+                    (printable as HTMLElement).style.position = 'relative';
                 }
             }
         });
@@ -233,7 +234,7 @@ export default function FinalBoardStep({
             </div>
 
             {/* 4. PRINTABLE BLUEPRINT CONTAINER (Hidden from UI, visible on Export) */}
-            <div ref={pdfContentRef} className="bg-[#F9F7F2] text-[#2D2926] overflow-hidden">
+            <div data-pdf-content ref={pdfContentRef} className="bg-[#F9F7F2] text-[#2D2926] overflow-hidden hidden" style={{ width: '210mm' }}>
 
                 {/* PDF PAGE 1: LA CARTA */}
                 <div className="min-h-[1120px] p-24 relative flex flex-col page-break-after-always">

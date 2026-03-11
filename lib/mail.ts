@@ -24,6 +24,7 @@ export const sendVenezuelaRegistrationEmail = async ({
             from: 'Yelitze Rangel <info@yelitzerangeloficial.com>',
             to: [email],
             subject: '¡Tu registro al Tour Venezuela en el Cuerpo es Exitoso! 🇻🇪',
+            text: `¡Hola, ${name}! Tu registro al Tour Nacional Venezuela en el Cuerpo ha sido reservado con éxito para ${city}. Puedes ver tu ticket en la web oficial.`,
             html: `
                 <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background-color: #F5EFE6; border-radius: 24px; overflow: hidden; border: 1px solid #B8835A30;">
                     <div style="background-color: #8C4005; padding: 30px 20px; text-align: center;">
@@ -118,6 +119,7 @@ export const sendVisionBoardEmail = async ({
             from: 'Yelitze Rangel <info@yelitzerangeloficial.com>',
             to: [email],
             subject: 'Tracking de la Arquitectura Intencional de tu Vida 🏛️✨',
+            text: `Hola ${name}, aquí está el diseño de tu Arquitectura de Vida 2026. Tu nuevo arquetipo es: ${analysis.identity}. Encontrarás tu PDF Maestro adjunto a este correo.`,
             attachments,
             html: `
                 <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background-color: #F9F7F2; border-radius: 32px; overflow: hidden; border: 1px solid #3C2A2115;">
