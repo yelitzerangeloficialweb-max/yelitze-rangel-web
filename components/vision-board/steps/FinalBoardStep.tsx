@@ -420,12 +420,20 @@ export default function FinalBoardStep({
                         <div className="bg-[#FDFBF7] p-12 rounded-[2rem] border border-[#B8835A20] space-y-10">
                             <h3 className="text-2xl font-editorial text-[#8C4005] border-b border-[#B8835A30] pb-4">Pasos de Acción Inmediata</h3>
                             <div className="space-y-8">
-                                {data.analysis?.guide_steps?.map((step: string, i: number) => (
-                                    <div key={i} className="flex gap-8 items-start">
-                                        <span className="w-10 h-10 rounded-full bg-[#B8835A]/10 text-[#8C4005] flex items-center justify-center font-editorial text-xl font-bold shrink-0">{i + 1}</span>
-                                        <p className="text-[#2D2926] text-xl font-editorial leading-relaxed opacity-90 pt-1">{step}</p>
-                                    </div>
-                                ))}
+                                {(() => {
+                                    const actionSteps = (data.analysis?.guide_steps && data.analysis.guide_steps.length > 0)
+                                        ? data.analysis.guide_steps
+                                        : data.pillars.map(p => p.action).filter(a => a && a.trim() !== '');
+
+                                    if (actionSteps.length === 0) return <p className="text-gray-400 italic">Define tus micropasos en la sección de Pilares para verlos aquí.</p>;
+
+                                    return actionSteps.map((step: string, i: number) => (
+                                        <div key={i} className="flex gap-8 items-start">
+                                            <span className="w-10 h-10 rounded-full bg-[#B8835A]/10 text-[#8C4005] flex items-center justify-center font-editorial text-xl font-bold shrink-0">{i + 1}</span>
+                                            <p className="text-[#2D2926] text-xl font-editorial leading-relaxed opacity-90 pt-1">{step}</p>
+                                        </div>
+                                    ));
+                                })()}
                             </div>
                         </div>
 

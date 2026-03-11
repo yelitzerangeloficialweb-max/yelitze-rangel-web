@@ -19,6 +19,11 @@ export async function POST(req: Request) {
                 release: "Tus dudas sobre tu propio potencial.",
                 identity: "La Arquitecta Soberana de tu realidad.",
                 practice: "La auto-observación diaria sin juicio.",
+                guide_steps: [
+                    "Presencia: Identifica 3 momentos del día donde pierdes tu centro.",
+                    "Orden: Organiza tu agenda priorizando tu energía vital primero.",
+                    "Decreto: Repite tu manifiesto frente al espejo cada mañana."
+                ],
                 error: "Config Error"
             }, { status: 200 });
         }
@@ -44,7 +49,7 @@ export async function POST(req: Request) {
         }
 
         const pillarsText = pillars.map((p: any) =>
-            `- ${p.title}: Intención="${p.intention}", Dirección="${p.direction}"`
+            `- ${p.title}: Intención="${p.intention}", Dirección="${p.direction}", Acción Propuesta="${p.action}"`
         ).join('\n');
 
         const reflectionsText = Object.entries(reflections).map(([k, v]) =>
@@ -65,10 +70,11 @@ export async function POST(req: Request) {
         **CONTEXTO DEL USUARIO:**
         ${reflectionsText}
         
-        Pilares deseados:
+        Pilares y Acciones que el usuario ya visualizó:
         ${pillarsText}
 
-        **TU MISIÓN:** Diagnosticar por qué aún no ha manifestado esto y darle la estructura para 2026.
+        **TU MISIÓN:** Diagnosticar por qué aún no ha manifestado esto y darle la estructura para 2026. 
+        Genera 3 pasos de acción inmediata CLAROS y PODEROSOS (guide_steps).
 
         **RESPONDE ÚNICAMENTE CON UN JSON VÁLIDO:**
         {
@@ -76,7 +82,7 @@ export async function POST(req: Request) {
           "identity": "Su nuevo arquetipo (máx 10 palabras)",
           "practice": "Una acción ritual o hábito de orden (máx 15 palabras)",
           "manifesto": "Una declaración de poder en presente integrando sus deseos (máx 30 palabras)",
-          "guide_steps": ["Paso 1", "Paso 2", "Paso 3"],
+          "guide_steps": ["Nombre del paso 1: descripción breve", "Nombre del paso 2: descripción breve", "Nombre del paso 3: descripción breve"],
           "cta_message": "Invitación a profundizar (máx 20 palabras)"
         }
         `;

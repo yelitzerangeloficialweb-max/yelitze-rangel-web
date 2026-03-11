@@ -168,7 +168,11 @@ export async function generateVisionBoardPDF(name: string, analysis: any, pillar
     y += 10;
     pdf.setTextColor(45, 41, 38);
     pdf.setFontSize(10);
-    (analysis.guide_steps || []).forEach((step: string, i: number) => {
+    const actionSteps = (analysis.guide_steps && analysis.guide_steps.length > 0)
+        ? analysis.guide_steps
+        : pillars.map(p => p.action).filter(a => a && a.trim() !== '');
+
+    actionSteps.forEach((step: string, i: number) => {
         pdf.text(`${i + 1}. ${step}`, margin + 10, y, { maxWidth: pageWidth - margin * 2 - 20 });
         y += 8;
     });
