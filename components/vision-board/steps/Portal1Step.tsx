@@ -173,7 +173,7 @@ Reflexión final actual: ${value}`;
                             ) : (
                                 <Sparkles className="w-4 h-4" />
                             )}
-                            Refinar con Yelitze IA
+                            Refinar con Yelitze
                         </button>
                     </div>
                     <textarea
