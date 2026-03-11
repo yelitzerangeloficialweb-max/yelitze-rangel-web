@@ -2,8 +2,15 @@ import React from 'react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Activación Sánate Mujer | Yelitze Rangel',
+    title: 'Activación Sánate Mujer | Sanación de Linaje Femenino | Yelitze Rangel',
     description: 'Únete a la inmersión online gratuita "Activación Sánate Mujer" y descubre cómo dejar de repetir la historia de desamor de tu linaje femenino.',
+    alternates: {
+        canonical: 'https://yelitzerangeloficial.com/sanate-mujer',
+    },
+    robots: {
+        index: false,
+        follow: false,
+    }
 };
 
 export default function LandingLayout({

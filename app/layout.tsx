@@ -3,8 +3,16 @@ import Script from 'next/script';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Yelitze Rangel • Tu coach ancestral',
-  description: 'Honra tus raíces, transforma tu vida. Terapias de constelaciones familiares y tu coach ancestral.',
+  title: 'Yelitze Rangel • Constelaciones Familiares y Sanación Ancestral',
+  description: 'Honra tus raíces, transforma tu vida. Terapias de constelaciones familiares y sanación transgeneracional con Yelitze Rangel.',
+  metadataBase: new URL('https://yelitzerangeloficial.com'),
+  alternates: {
+    canonical: '/',
+  },
+  robots: {
+    index: false,
+    follow: false,
+  }
 };
 
 export default function RootLayout({
