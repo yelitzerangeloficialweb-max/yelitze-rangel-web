@@ -188,7 +188,7 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
 
                     <div className="space-y-2">
                         <label className="text-lg font-bold text-[#2D2926] font-guide block">
-                            El Micropaso de Flotación <span className="text-[#8C4005]/60 block text-xs font-normal italic">(Hábito Anti-gravedad)</span>
+                            Cimiento de Acción Diaria <span className="text-[#8C4005]/60 block text-xs font-normal italic">(Hábito Anti-gravedad)</span>
                         </label>
                         <input
                             type="text"
@@ -209,9 +209,9 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
                     <div className="absolute top-0 right-0 w-32 h-32 bg-[#8C4005]/5 blur-3xl rounded-full" />
 
                     <div className="text-center mb-8 space-y-3">
-                        <h4 className="font-editorial text-3xl text-[#2D2926]">Tu Espacio de Flotación</h4>
+                        <h4 className="font-editorial text-3xl text-[#2D2926]">Mesa de Diseño Maestro</h4>
                         <p className="text-sm text-[#3C2A21]/70 font-guide max-w-xs mx-auto leading-relaxed">
-                            ¡Guarda tu energía! Sube hasta <strong>3 imágenes</strong> o diseños que representen libertad, fluidez o expansión para que la IA complete tu visión. <span className="italic block mt-1">No tienen que ser realistas.</span>
+                            ¡Guarda tu energía! Sube hasta <strong>3 imágenes</strong> o diseños que representen tu nueva estructura, fluidez o expansión para que la arquitectura se complete. <span className="italic block mt-1">No tienen que ser realistas.</span>
                         </p>
                     </div>
 
@@ -263,7 +263,7 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
                                     </div>
                                     <div className="text-center">
                                         <span className="text-sm font-bold text-[#8C4005] font-guide block">
-                                            Subir Espacio de Flotación
+                                            Cargar Referencias de Diseño
                                         </span>
                                         <span className="text-[10px] text-[#3C2A21]/40 font-bold uppercase tracking-widest mt-1 block">
                                             ({activePillar.images.length}/3)
