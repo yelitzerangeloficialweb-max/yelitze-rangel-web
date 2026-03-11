@@ -90,10 +90,13 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
             const data = await res.json();
             if (data.imageUrl) {
                 updatePillarImages(currentPillarIndex, [...activePillar.images, data.imageUrl]);
+            } else if (data.error) {
+                console.error("AI Generation server error:", data.error, data.details);
+                alert(`Error: ${data.details || data.error}`);
             }
         } catch (error) {
             console.error("AI Generation failed:", error);
-            alert("Error al generar imagen con IA.");
+            alert("Error de conexión al generar imagen. Intenta de nuevo.");
         } finally {
             setIsGeneratingAI(false);
         }

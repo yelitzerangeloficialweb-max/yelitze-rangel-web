@@ -48,12 +48,16 @@ export async function generateVisionPrompt(intention: string, images: string[]) 
         Analiza visualmente estas 3 imágenes y genera una descripción maestra en INGLÉS para una 4ta imagen que combine los elementos clave, colores y estética de las anteriores, pero elevándolas a un nivel de arte conceptual, minimalista y arquitectónico.
         Solo devuelve el prompt final en inglés, sin explicaciones.`;
 
-        const imageParts = images.map(img => ({
-            inlineData: {
-                data: img.split(',')[1],
-                mimeType: "image/jpeg"
-            }
-        }));
+        const imageParts = images.map(img => {
+            const [header, data] = img.split(',');
+            const mimeType = header.match(/:(.*?);/)?.[1] || "image/jpeg";
+            return {
+                inlineData: {
+                    data,
+                    mimeType
+                }
+            };
+        });
 
         const result = await visionModel.generateContent([prompt, ...imageParts]);
         const response = await result.response;
