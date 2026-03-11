@@ -108,7 +108,7 @@ export default function FinalBoardStep({
         <div className="max-w-7xl mx-auto space-y-16 pb-20">
             {/* 1. Header & Quick Actions */}
             <div className="no-print space-y-8">
-                <div className="bg-[#2D2926] text-[#F9F7F2] p-8 rounded-[2rem] border border-[#B8835A30] flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-hidden">
+                <div className="bg-[#2D2926] text-[#F9F7F2] p-8 rounded-[2rem] border border-[#B8835A30] flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-visible">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-[#B8835A] opacity-5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
                     <div className="flex items-center gap-6 relative z-10">
                         <div className="w-16 h-16 bg-[#B8835A] text-[#2D2926] rounded-full flex items-center justify-center shadow-inner">
@@ -169,8 +169,8 @@ export default function FinalBoardStep({
                 </div>
                 <div
                     id="vision-board-canvas"
-                    className="bg-white p-8 md:p-20 relative overflow-hidden text-[#4A3B32] shadow-[0_40px_100px_rgba(45,41,38,0.12)] mx-auto rounded-[4rem] border border-[#B8835A15] group"
-                    style={{ aspectRatio: '10/14', maxWidth: '850px' }}
+                    className="bg-white p-8 md:p-20 md:pb-32 relative overflow-visible text-[#4A3B32] shadow-[0_40px_100px_rgba(45,41,38,0.12)] mx-auto rounded-[4rem] border border-[#B8835A15] group"
+                    style={{ minHeight: '1100px', maxWidth: '850px' }}
                 >
                     {/* Background Sacred Geometry - More sophisticated */}
                     <div className="absolute inset-0 pointer-events-none opacity-[0.08]">
@@ -221,8 +221,8 @@ export default function FinalBoardStep({
                             </div>
 
                             <div className="col-start-3 row-start-2 translate-x-4"><ArchitecturalCard pillar={data.pillars[2]} label="VÍNCULOS" small /></div>
-                            <div className="col-start-1 row-start-3 translate-y-4"><ArchitecturalCard pillar={data.pillars[3]} label="EXPANSIÓN" small /></div>
-                            <div className="col-start-3 row-start-3 translate-y-4"><ArchitecturalCard pillar={data.pillars[4]} label="VITALIDAD" small /></div>
+                            <div className="col-start-1 row-start-3"><ArchitecturalCard pillar={data.pillars[3]} label="EXPANSIÓN" small /></div>
+                            <div className="col-start-3 row-start-3"><ArchitecturalCard pillar={data.pillars[4]} label="VITALIDAD" small /></div>
                         </div>
 
                         <div className="mt-auto pt-10 text-center w-full">
@@ -469,7 +469,7 @@ function ArchitecturalCard({ pillar, label, small }: { pillar: any, label: strin
     const hasImages = pillar.images && pillar.images.length > 0;
 
     return (
-        <div className="bg-white p-2 pb-6 shadow-sm border border-gray-100 relative group overflow-hidden h-full flex flex-col">
+        <div className="bg-white p-2 pb-8 shadow-sm border border-[#B8835A]/10 relative group overflow-visible h-full flex flex-col min-h-[200px]">
             <div className={`absolute top-2 left-2 bg-white/90 backdrop-blur text-[#2C3E50] px-2 py-0.5 text-[8px] uppercase tracking-widest font-bold z-10 border border-gray-200 ${small ? 'text-[6px]' : ''}`}>
                 {label}
             </div>
@@ -500,8 +500,8 @@ function ArchitecturalCard({ pillar, label, small }: { pillar: any, label: strin
                 <p className={`font-heading text-[#2C3E50] leading-tight mb-1 ${small ? 'text-[10px]' : 'text-xs'}`}>
                     {pillar.intention ? pillar.intention.substring(0, small ? 25 : 40) + (pillar.intention.length > (small ? 25 : 40) ? '...' : '') : ''}
                 </p>
-                <div className="w-8 h-[1px] bg-[var(--color-secondary)] mx-auto my-2"></div>
-                <p className={`font-bold text-[var(--color-secondary)] uppercase ${small ? 'text-[7px]' : 'text-[8px]'}`}>{pillar.action}</p>
+                <div className="w-8 h-[1px] bg-[#B8835A]/30 mx-auto my-2"></div>
+                <p className={`font-bold text-[#8C4005] uppercase ${small ? 'text-[7px]' : 'text-[8px]'}`}>{pillar.action}</p>
             </div>
         </div>
     );
