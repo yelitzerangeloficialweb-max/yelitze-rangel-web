@@ -26,7 +26,12 @@ export default function FinalBoardStep({
         // Ensure fonts and images are ready
         await document.fonts.ready;
         
-        // Wait for all images to BE LOADED before capturing
+        // Temporary visibility for capture
+        element.style.display = 'block';
+        element.style.position = 'fixed';
+        element.style.left = '-9999px';
+        element.style.top = '0';
+
         const images = Array.from(element.getElementsByTagName('img'));
         await Promise.all(images.map(img => {
             if (img.complete) return Promise.resolve();
@@ -36,44 +41,38 @@ export default function FinalBoardStep({
             });
         }));
 
-        const canvas = await html2canvas(element, {
-            scale: 3, // Increased scale for professional printing
-            useCORS: true,
-            allowTaint: true,
-            logging: false,
-            backgroundColor: '#F9F7F2',
-            imageTimeout: 15000,
-            onclone: (doc) => {
-                // Ensure visibility of the printable container during capture
-                const printable = doc.querySelector('[data-pdf-content]');
-                if (printable) {
-                    (printable as HTMLElement).style.display = 'block';
-                    (printable as HTMLElement).style.position = 'relative';
-                }
-            }
-        });
-
-        const imgData = canvas.toDataURL('image/jpeg', 1.0);
-
         const pdf = new jsPDF('p', 'mm', 'a4');
         const pdfWidth = pdf.internal.pageSize.getWidth();
         const pdfHeight = pdf.internal.pageSize.getHeight();
-        const imgWidth = pdfWidth;
-        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        
+        // Capture each page separately to avoid information being cut between pages
+        const pages = Array.from(element.children);
+        
+        for (let i = 0; i < pages.length; i++) {
+            const page = pages[i] as HTMLElement;
+            
+            // Skip non-page elements if any
+            if (!page.classList.contains('min-h-[1120px]')) continue;
 
-        let heightLeft = imgHeight;
-        let position = 0;
+            const canvas = await html2canvas(page, {
+                scale: 3, 
+                useCORS: true,
+                allowTaint: true,
+                logging: false,
+                backgroundColor: '#F9F7F2',
+                imageTimeout: 15000,
+            });
 
-        // Standard PDF generation loop for multiple pages
-        pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight, undefined, 'FAST');
-        heightLeft -= pdfHeight;
-
-        while (heightLeft >= 0) {
-            position = heightLeft - imgHeight;
-            pdf.addPage();
-            pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight, undefined, 'FAST');
-            heightLeft -= pdfHeight;
+            const imgData = canvas.toDataURL('image/jpeg', 0.95);
+            
+            if (pdf.internal.pages.length > 1 && i > 0) {
+                pdf.addPage();
+            }
+            
+            pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
         }
+
+        element.style.display = 'none';
 
         const fileName = `Arquitectura_Intencional_${registrationData?.name?.replace(/\s/g, '_') || 'Vida'}.pdf`;
         pdf.save(fileName);
@@ -303,11 +302,15 @@ export default function FinalBoardStep({
                 </div>
 
                 {/* PDF PAGE 3: BITÁCORA (Reflections & Steps) */}
-                <div className="min-h-[1120px] p-24 bg-white space-y-16">
-                    <div className="text-center space-y-4">
-                        <span className="bg-[#8C4005] text-[#F9F7F2] px-6 py-1 rounded-full text-[10px] font-bold uppercase tracking-[0.3em] font-guide">Bitácora de Construcción</span>
+                <div className="min-h-[1120px] p-24 bg-white flex flex-col">
+                    <div className="text-center space-y-6 mb-12">
+                        <div className="flex justify-center">
+                            <span className="bg-[#8C4005] text-[#F9F7F2] px-10 py-3 rounded-full text-[10px] font-bold uppercase tracking-[0.4em] font-guide inline-flex items-center justify-center leading-none">
+                                Bitácora de Construcción
+                            </span>
+                        </div>
                         <h2 className="text-5xl font-editorial text-[#2D2926]">La Ruta de la {isMale ? 'Arquitecta' : 'Arquitecto'}</h2>
-                        <div className="flex justify-center mt-4"><p className="text-[10px] font-guide text-gray-400">PÁGINA 03/03</p></div>
+                        <div className="flex justify-center mt-2"><p className="text-[10px] font-guide text-gray-400">PÁGINA 03/03</p></div>
                     </div>
 
                     {/* Steps Section */}
@@ -369,36 +372,56 @@ export default function FinalBoardStep({
 function ArchitecturalCard({ pillar, label, small }: { pillar: any, label: string, small?: boolean }) {
     if (!pillar) return null;
 
-    const hasImages = pillar.images && pillar.images.length > 0;
+    const images = pillar.images || [];
+    const hasImages = images.length > 0;
+    
+    // Determine which image to show as "Main" or use AI priority
+    // If we have >= 4 images, it means we have the AI one at index 3
+    const aiImage = images.length >= 4 ? images[3] : null;
+    const userImages = images.slice(0, 3);
 
     return (
-        <div className="bg-white p-2 pb-8 shadow-sm border border-[#B8835A]/10 relative group overflow-visible h-full flex flex-col min-h-[200px]">
-            <div className={`absolute top-2 left-2 bg-white/90 backdrop-blur text-[#2C3E50] px-2 py-0.5 text-[8px] uppercase tracking-widest font-bold z-10 border border-gray-200 ${small ? 'text-[6px]' : ''}`}>
+        <div className={`bg-white shadow-md border border-[#B8835A15] p-2 flex flex-col relative ${small ? 'w-48' : 'w-56'}`}>
+            <div className={`absolute top-3 left-3 bg-[#8C4005] text-white px-3 py-1 text-[8px] uppercase tracking-[0.2em] font-bold z-20 rounded-sm shadow-sm ${small ? 'scale-90' : ''}`}>
                 {label}
             </div>
 
-            <div className={`w-full ${small ? 'aspect-square' : 'aspect-[3/4]'} bg-gray-50 mb-2 overflow-hidden relative`}>
-                {hasImages ? (
-                    (() => {
-                        // Priority: AI image (detected if length >= 4, use the 4th image)
-                        const imageToDisplay = pillar.images.length >= 4 ? pillar.images[3] : pillar.images[0];
-                        
-                        return (
-                            // eslint-disable-next-line @next/next/no-img-element
-                            <img src={imageToDisplay} alt="" className="w-full h-full object-cover opacity-90 contrast-110" />
-                        );
-                    })()
+            <div className={`w-full ${small ? 'h-48' : 'h-64'} bg-[#F9F7F2] relative overflow-hidden mb-3 border border-[#3C2A21]/5`}>
+                {!hasImages ? (
+                    <div className="w-full h-full flex items-center justify-center text-[#B8835A]/30 text-[8px] font-bold tracking-widest italic">ESTRUCTURA VACÍA</div>
+                ) : aiImage ? (
+                    <img src={aiImage} alt="" className="w-full h-full object-cover grayscale-[20%] sepia-[10%] contrast-110" />
                 ) : (
-                    <div className="w-full h-full flex items-center justify-center text-gray-300 bg-gray-50 text-[10px]">VACÍO</div>
+                    <div className="w-full h-full flex flex-col gap-0.5">
+                        {images.length === 1 ? (
+                            <img src={images[0]} alt="" className="w-full h-full object-cover" />
+                        ) : (
+                            <>
+                                <div className="h-2/3 w-full">
+                                    <img src={userImages[0]} alt="" className="w-full h-full object-cover" />
+                                </div>
+                                <div className="h-1/3 w-full flex gap-0.5">
+                                    <div className="w-1/2 h-full">
+                                        <img src={userImages[1] || userImages[0]} alt="" className="w-full h-full object-cover" />
+                                    </div>
+                                    <div className="w-1/2 h-full">
+                                        <img src={userImages[2] || userImages[0]} alt="" className="w-full h-full object-cover" />
+                                    </div>
+                                </div>
+                            </>
+                        )}
+                    </div>
                 )}
             </div>
 
-            <div className="text-center px-1 mt-auto">
-                <p className={`font-heading text-[#2C3E50] leading-tight mb-1 ${small ? 'text-[10px]' : 'text-xs'}`}>
-                    {pillar.intention ? pillar.intention.substring(0, small ? 25 : 40) + (pillar.intention.length > (small ? 25 : 40) ? '...' : '') : ''}
+            <div className="text-center px-2 py-1 space-y-2 mt-auto">
+                <p className={`font-editorial italic text-[#2D2926] leading-[1.1] ${small ? 'text-xs' : 'text-sm'}`}>
+                    "{pillar.intention ? (pillar.intention.length > 50 ? pillar.intention.substring(0, 47) + '...' : pillar.intention) : 'Sin intención'}"
                 </p>
-                <div className="w-8 h-[1px] bg-[#B8835A]/30 mx-auto my-2"></div>
-                <p className={`font-bold text-[#8C4005] uppercase ${small ? 'text-[7px]' : 'text-[8px]'}`}>{pillar.action}</p>
+                <div className="w-6 h-[0.5px] bg-[#B8835A]/20 mx-auto" />
+                <p className={`font-guide font-bold text-[#8C4005] uppercase tracking-tighter ${small ? 'text-[8px]' : 'text-[9px]'}`}>
+                    {pillar.action || 'Pendiente'}
+                </p>
             </div>
         </div>
     );
