@@ -126,7 +126,7 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
     const isLastPillar = currentPillarIndex === data.pillars.length - 1;
 
     return (
-        <div className="max-w-6xl mx-auto px-4 py-8 bg-[#F3F4F6] rounded-[3rem] min-h-[85vh] flex flex-col relative overflow-hidden">
+        <div className="max-w-6xl mx-auto px-4 py-8 bg-[#F5EFE6] rounded-[3rem] min-h-[85vh] flex flex-col relative">
             {/* Brand Graphic Elements */}
             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#8C4005]/10 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
             <div className="absolute -bottom-24 -left-24 w-[500px] h-[500px] bg-[#B8835A]/5 blur-[120px] rounded-full pointer-events-none" />

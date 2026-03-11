@@ -69,7 +69,7 @@ Reflexión final actual: ${value}`;
     ];
 
     return (
-        <div className="max-w-4xl mx-auto px-4 py-12 bg-[#F3F4F6] rounded-[3rem] min-h-[80vh] flex flex-col justify-center relative overflow-hidden">
+        <div className="max-w-4xl mx-auto px-4 py-12 bg-[#F5EFE6] rounded-[3rem] min-h-[80vh] flex flex-col justify-center relative">
             {/* Brand Graphic Elements */}
             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#8C4005]/10 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
             <div className="absolute -bottom-24 -left-24 w-[500px] h-[500px] bg-[#B8835A]/5 blur-[120px] rounded-full pointer-events-none" />
@@ -161,18 +161,18 @@ Reflexión final actual: ${value}`;
                         </p>
                     </div>
 
-                    <div className="flex justify-end">
+                    <div className="flex justify-end pr-4">
                         <button
                             onClick={handleRefine}
                             disabled={isRefining || (!value.trim() && moduleResponses.every(r => !r.trim()))}
-                            className="bg-[#EFE9E0] text-[#3C2A21] px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 hover:bg-[#E5DACE] transition-colors disabled:opacity-50 disabled:cursor-not-allowed group border border-[#3C2A21]/5 shadow-sm"
+                            className="bg-[#8C4005] text-white px-6 py-3 rounded-full text-xs font-bold flex items-center gap-2 hover:bg-[#B8835A] transition-all disabled:opacity-20 disabled:cursor-not-allowed uppercase tracking-widest shadow-lg"
                         >
                             {isRefining ? (
                                 <Loader2 className="w-4 h-4 animate-spin" />
                             ) : (
-                                <Sparkles className="w-4 h-4 text-[#8C4005] group-hover:scale-110 transition-transform" />
+                                <Sparkles className="w-4 h-4" />
                             )}
-                            Integrar con Yelitze
+                            Refinar con Yelitze IA
                         </button>
                     </div>
                     <textarea

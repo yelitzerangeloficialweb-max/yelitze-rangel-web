@@ -23,18 +23,37 @@ export default function FinalBoardStep({
         const element = pdfContentRef.current;
         if (!element) return;
 
-        // Ensure fonts
+        // Ensure fonts and images are ready
         await document.fonts.ready;
+        
+        // Wait for all images to BE LOADED before capturing
+        const images = Array.from(element.getElementsByTagName('img'));
+        await Promise.all(images.map(img => {
+            if (img.complete) return Promise.resolve();
+            return new Promise(resolve => {
+                img.onload = resolve;
+                img.onerror = resolve;
+            });
+        }));
 
         const canvas = await html2canvas(element, {
-            scale: 2,
+            scale: 3, // Increased scale for professional printing
             useCORS: true,
-            backgroundColor: '#F5EFE6'
+            allowTaint: true,
+            logging: false,
+            backgroundColor: '#F9F7F2',
+            imageTimeout: 15000,
+            onclone: (doc) => {
+                // Ensure visibility of the printable container during capture
+                const printable = doc.querySelector('[data-pdf-content]');
+                if (printable) {
+                    (printable as HTMLElement).style.display = 'block';
+                }
+            }
         });
 
         const imgData = canvas.toDataURL('image/jpeg', 1.0);
 
-        // A4 Paper Size calculations (Portrait)
         const pdf = new jsPDF('p', 'mm', 'a4');
         const pdfWidth = pdf.internal.pageSize.getWidth();
         const pdfHeight = pdf.internal.pageSize.getHeight();
@@ -44,15 +63,14 @@ export default function FinalBoardStep({
         let heightLeft = imgHeight;
         let position = 0;
 
-        // Add first page
-        pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+        // Standard PDF generation loop for multiple pages
+        pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight, undefined, 'FAST');
         heightLeft -= pdfHeight;
 
-        // Add extra pages if long
         while (heightLeft >= 0) {
             position = heightLeft - imgHeight;
             pdf.addPage();
-            pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+            pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight, undefined, 'FAST');
             heightLeft -= pdfHeight;
         }
 
@@ -102,11 +120,11 @@ export default function FinalBoardStep({
                         </div>
                     </div>
                     <div className="flex flex-wrap gap-4 relative z-10">
-                        <a href={getCalendarUrl()} target="_blank" rel="noopener noreferrer" className="px-8 py-3 rounded-full border-2 border-[#B8835A] text-[#B8835A] hover:bg-[#B8835A] hover:text-white transition-all font-bold text-xs uppercase tracking-widest">
+                        <a href={getCalendarUrl()} target="_blank" rel="noopener noreferrer" className="px-6 py-3 rounded-xl border border-[#B8835A] text-[#B8835A] hover:bg-[#B8835A] hover:text-[#2D2926] transition-all font-bold text-[10px] uppercase tracking-widest whitespace-nowrap">
                             📅 Agendar Clase
                         </a>
-                        <button onClick={handleDownloadPDF} className="px-8 py-3 rounded-full bg-[#B8835A] text-white hover:bg-[#8C4005] font-bold shadow-lg shadow-[#B8835A]/20 flex items-center gap-2 transition-all uppercase text-xs tracking-widest">
-                            <Download className="w-4 h-4" /> Exportar Plano Maestro
+                        <button onClick={handleDownloadPDF} className="px-6 py-3 rounded-xl bg-[#B8835A] text-[#2D2926] hover:bg-[#D4AF37] font-bold shadow-lg flex items-center gap-2 transition-all uppercase text-[10px] tracking-widest whitespace-nowrap">
+                            <Download className="w-3.5 h-3.5" /> Exportar PDF
                         </button>
                     </div>
                 </div>
@@ -140,57 +158,75 @@ export default function FinalBoardStep({
             </div>
 
             {/* 3. THE VISUAL BOARD (Web Interactive Version) */}
-            <div className="space-y-6 no-print">
-                <div className="text-center">
-                    <h3 className="text-3xl font-editorial text-[#2D2926]">Tu Diseño de Realidad 2026</h3>
-                    <p className="text-[#B8835A] font-guide text-[10px] uppercase tracking-[0.2em] font-bold">Representación Visual de tus Pilares</p>
+            <div className="space-y-10 no-print">
+                <div className="text-center space-y-4">
+                    <h3 className="text-4xl md:text-5xl font-editorial text-[#2D2926]">Tu Diseño de Realidad 2026</h3>
+                    <div className="flex items-center justify-center gap-4">
+                        <div className="h-px w-12 bg-[#B8835A]/30" />
+                        <p className="text-[#B8835A] font-guide text-[10px] uppercase tracking-[0.4em] font-bold">Arquitectura de Vida Sistémica</p>
+                        <div className="h-px w-12 bg-[#B8835A]/30" />
+                    </div>
                 </div>
                 <div
                     id="vision-board-canvas"
-                    className="bg-[#FDFBF7] p-8 md:p-16 relative overflow-hidden text-[#4A3B32] shadow-2xl mx-auto rounded-[3rem] border border-[#B8835A10]"
-                    style={{ aspectRatio: '10/14', maxWidth: '800px' }}
+                    className="bg-white p-8 md:p-20 relative overflow-hidden text-[#4A3B32] shadow-[0_40px_100px_rgba(45,41,38,0.12)] mx-auto rounded-[4rem] border border-[#B8835A15] group"
+                    style={{ aspectRatio: '10/14', maxWidth: '850px' }}
                 >
-                    {/* Background Sacred Geometry */}
-                    <div className="absolute inset-0 pointer-events-none opacity-20">
-                        <svg width="100%" height="100%">
-                            <line x1="50%" y1="20%" x2="50%" y2="80%" stroke="#D4AF37" strokeWidth="1" />
-                            <line x1="10%" y1="50%" x2="90%" y2="50%" stroke="#D4AF37" strokeWidth="1" />
-                            <circle cx="50%" cy="50%" r="15%" fill="none" stroke="#D4AF37" strokeWidth="1" />
+                    {/* Background Sacred Geometry - More sophisticated */}
+                    <div className="absolute inset-0 pointer-events-none opacity-[0.08]">
+                        <svg width="100%" height="100%" viewBox="0 0 100 140">
+                            <defs>
+                                <radialGradient id="grad-gold" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stopColor="#D4AF37" stopOpacity="1" />
+                                    <stop offset="100%" stopColor="#B8835A" stopOpacity="0" />
+                                </radialGradient>
+                            </defs>
+                            <circle cx="50" cy="70" r="45" fill="none" stroke="#D4AF37" strokeWidth="0.2" />
+                            <circle cx="50" cy="70" r="30" fill="none" stroke="#D4AF37" strokeWidth="0.1" />
+                            <line x1="50" y1="0" x2="50" y2="140" stroke="#D4AF37" strokeWidth="0.1" />
+                            <line x1="0" y1="70" x2="100" y2="70" stroke="#D4AF37" strokeWidth="0.1" />
+                            <path d="M50 25 L75 70 L50 115 L25 70 Z" fill="none" stroke="#D4AF37" strokeWidth="0.1" />
+                            <circle cx="50" cy="70" r="2" fill="url(#grad-gold)" />
                         </svg>
                     </div>
 
                     <div className="relative z-10 w-full h-full flex flex-col items-center">
-                        <div className="text-center mb-16">
-                            <p className="text-[10px] uppercase tracking-[0.4em] text-[#8C4005] mb-2 font-guide font-bold">Proyecto de Vida</p>
-                            <h1 className="text-3xl md:text-5xl font-editorial text-[#2D2926] uppercase tracking-wide">Arquitectura<br />Intencional</h1>
+                        <div className="text-center mb-16 relative">
+                            <p className="text-[10px] uppercase tracking-[0.5em] text-[#8C4005] mb-3 font-guide font-bold opacity-60">Master Plan</p>
+                            <h1 className="text-4xl md:text-6xl font-editorial text-[#2D2926] uppercase tracking-tighter leading-none">Arquitectura<br /><span className="italic text-[#B8835A]">Intencional</span></h1>
                         </div>
 
-                        <div className="grid grid-cols-3 grid-rows-3 w-full gap-4 md:gap-8 items-center justify-items-center relative">
-                            {/* Connections */}
+                        <div className="grid grid-cols-3 grid-rows-3 w-full gap-4 md:gap-10 items-center justify-items-center relative flex-grow">
+                            {/* Connections - More architectural */}
                             <svg className="absolute inset-0 w-full h-full pointer-events-none -z-10 opacity-30">
-                                <circle cx="50%" cy="50%" r="22%" stroke="#B8835A" strokeWidth="0.5" strokeDasharray="4 4" fill="none" />
-                                <line x1="50%" y1="50%" x2="50%" y2="10%" stroke="#B8835A" strokeWidth="0.5" />
-                                <line x1="50%" y1="50%" x2="10%" y2="50%" stroke="#B8835A" strokeWidth="0.5" />
-                                <line x1="50%" y1="50%" x2="90%" y2="50%" stroke="#B8835A" strokeWidth="0.5" />
+                                <circle cx="50%" cy="50%" r="22%" stroke="#B8835A" strokeWidth="0.5" strokeDasharray="6 3" fill="none" />
+                                <line x1="50%" y1="20%" x2="50%" y2="50%" stroke="#B8835A" strokeWidth="0.5" />
+                                <line x1="20%" y1="50%" x2="50%" y2="50%" stroke="#B8835A" strokeWidth="0.5" />
+                                <line x1="80%" y1="50%" x2="50%" y2="50%" stroke="#B8835A" strokeWidth="0.5" />
+                                <line x1="30%" y1="80%" x2="50%" y2="50%" stroke="#B8835A" strokeWidth="0.5" />
+                                <line x1="70%" y1="80%" x2="50%" y2="50%" stroke="#B8835A" strokeWidth="0.5" />
                             </svg>
 
-                            <div className="col-start-2 row-start-1"><ArchitecturalCard pillar={data.pillars[0]} label="PROPOSITO" /></div>
-                            <div className="col-start-1 row-start-2"><ArchitecturalCard pillar={data.pillars[1]} label="RECURSOS" small /></div>
+                            <div className="col-start-2 row-start-1 -translate-y-4"><ArchitecturalCard pillar={data.pillars[0]} label="PROPÓSITO" /></div>
+                            <div className="col-start-1 row-start-2 -translate-x-4"><ArchitecturalCard pillar={data.pillars[1]} label="RECURSOS" small /></div>
 
-                            <div className="col-start-2 row-start-2 w-full aspect-square bg-white rounded-full border-2 border-[#B8835A] flex flex-col items-center justify-center p-6 text-center shadow-xl ring-8 ring-[#FDFBF7]">
-                                <span className="text-[8px] font-guide font-bold text-[#B8835A] uppercase tracking-widest mb-1">YO SOY</span>
-                                <p className="text-xs italic font-editorial leading-tight text-[#2D2926]">
-                                    "{data.analysis?.identity || (isMale ? 'El Arquitecto de mi propio orden' : 'La Arquitecta de mi propio orden')}"
-                                </p>
+                            <div className="col-start-2 row-start-2 w-full aspect-square bg-[#FDFBF7] rounded-full border border-[#B8835A]/20 flex flex-col items-center justify-center p-8 text-center shadow-2xl ring-12 ring-white z-20 group-hover:scale-105 transition-transform duration-700">
+                                <div className="absolute inset-2 border border-dashed border-[#B8835A]/30 rounded-full animate-[spin_20s_linear_infinite]" />
+                                <span className="text-[9px] font-guide font-bold text-[#8C4005] uppercase tracking-[0.3em] mb-3 relative z-10">CENTRADO EN</span>
+                                <h4 className="text-lg md:text-xl font-editorial italic leading-tight text-[#2D2926] relative z-10">
+                                    {data.analysis?.identity || (isMale ? 'El Arquitecto' : 'La Arquitecta')}
+                                </h4>
+                                <div className="w-8 h-[1px] bg-[#B8835A]/40 my-3" />
+                                <p className="text-[10px] font-guide text-[#B8835A] uppercase tracking-widest font-bold">2026</p>
                             </div>
 
-                            <div className="col-start-3 row-start-2"><ArchitecturalCard pillar={data.pillars[2]} label="VINCULOS" small /></div>
-                            <div className="col-start-1 row-start-3"><ArchitecturalCard pillar={data.pillars[3]} label="EXPANSIÓN" small /></div>
-                            <div className="col-start-3 row-start-3"><ArchitecturalCard pillar={data.pillars[4]} label="VITALIDAD" small /></div>
+                            <div className="col-start-3 row-start-2 translate-x-4"><ArchitecturalCard pillar={data.pillars[2]} label="VÍNCULOS" small /></div>
+                            <div className="col-start-1 row-start-3 translate-y-4"><ArchitecturalCard pillar={data.pillars[3]} label="EXPANSIÓN" small /></div>
+                            <div className="col-start-3 row-start-3 translate-y-4"><ArchitecturalCard pillar={data.pillars[4]} label="VITALIDAD" small /></div>
                         </div>
 
-                        <div className="mt-auto pt-16 text-center border-t border-[#B8835A20] w-full">
-                            <p className="text-sm italic font-editorial text-[#2D2926] opacity-60">"No es magia, es orden."</p>
+                        <div className="mt-auto pt-10 text-center w-full">
+                            <p className="text-sm italic font-editorial text-[#2D2926] opacity-40">"El orden es la primera ley del cielo."</p>
                         </div>
                     </div>
                 </div>
@@ -207,7 +243,7 @@ export default function FinalBoardStep({
                             <h2 className="text-2xl font-editorial uppercase tracking-widest">Plano Maestro 2026</h2>
                         </div>
                         <div className="text-right">
-                            <p className="text-[10px] font-guide text-gray-400">PÁGINA 01/03</p>
+                            <p className="text-[10px] font-guide text-gray-400">PÁGINA 01/04</p>
                         </div>
                     </div>
 
@@ -225,28 +261,69 @@ export default function FinalBoardStep({
                     </div>
                 </div>
 
-                {/* PDF PAGE 2: EL PLANO (Architect Blueprint Aesthetic) */}
-                <div className="min-h-[1120px] p-12 relative flex flex-col bg-[#0F172A] text-white page-break-after-always overflow-hidden">
-                    {/* Technical Grid Overlay */}
-                    <div className="absolute inset-0 opacity-[0.07]"
-                        style={{ backgroundImage: 'linear-gradient(#38BDF8 1px, transparent 1px), linear-gradient(90deg, #38BDF8 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+                {/* PDF PAGE 2: TABLERO VISUAL (The "Vision Board" with Actual Images) */}
+                <div className="min-h-[1120px] p-16 bg-white relative flex flex-col page-break-after-always overflow-hidden">
+                    <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
+                        <svg width="100%" height="100%" viewBox="0 0 100 140">
+                             <circle cx="50" cy="70" r="45" fill="none" stroke="#D4AF37" strokeWidth="0.1" />
+                             <line x1="50" y1="0" x2="50" y2="140" stroke="#D4AF37" strokeWidth="0.1" />
+                        </svg>
+                    </div>
+
+                    <div className="relative z-10 flex flex-col h-full items-center">
+                        <div className="text-center mb-12">
+                             <span className="text-[10px] font-guide font-bold text-[#8C4005] uppercase tracking-[0.5em] block mb-2">Configuración Final</span>
+                             <h2 className="text-5xl font-editorial text-[#2D2926]">Tablero de Visión</h2>
+                             <div className="flex justify-center mt-4"><p className="text-[10px] font-guide text-gray-400">PÁGINA 02/04</p></div>
+                        </div>
+
+                        <div className="grid grid-cols-3 grid-rows-3 w-full gap-8 items-center justify-items-center flex-grow">
+                             <div className="col-start-2 row-start-1"><ArchitecturalCard pillar={data.pillars[0]} label="PROPÓSITO" /></div>
+                             <div className="col-start-1 row-start-2"><ArchitecturalCard pillar={data.pillars[1]} label="RECURSOS" small /></div>
+                             
+                             <div className="col-start-2 row-start-2 w-full aspect-square bg-[#FDFBF7] rounded-full border border-[#B8835A]/20 flex flex-col items-center justify-center p-6 text-center shadow-xl">
+                                  <span className="text-[8px] font-guide font-bold text-[#8C4005] uppercase tracking-[0.2em] mb-2">CENTRADO EN</span>
+                                  <h4 className="text-base font-editorial italic text-[#2D2926]">
+                                      {data.analysis?.identity || (isMale ? 'El Arquitecto' : 'La Arquitecta')}
+                                  </h4>
+                                  <div className="w-6 h-[1px] bg-[#B8835A]/30 my-2" />
+                                  <p className="text-[8px] font-guide text-[#B8835A] font-bold">2026</p>
+                             </div>
+
+                             <div className="col-start-3 row-start-2"><ArchitecturalCard pillar={data.pillars[2]} label="VÍNCULOS" small /></div>
+                             <div className="col-start-1 row-start-3"><ArchitecturalCard pillar={data.pillars[3]} label="EXPANSIÓN" small /></div>
+                             <div className="col-start-3 row-start-3"><ArchitecturalCard pillar={data.pillars[4]} label="VITALIDAD" small /></div>
+                        </div>
+
+                        <div className="mt-12 text-center text-[10px] font-mono text-[#B8835A] uppercase tracking-widest opacity-60">
+                             YELITZE RANGEL • DISEÑO INTENCIONAL • 2026
+                        </div>
+                    </div>
+                </div>
+
+                {/* PDF PAGE 2: EL PLANO (Architect Blueprint Aesthetic - NO BLUE) */}
+                <div className="min-h-[1120px] p-12 relative flex flex-col bg-[#1C1917] text-[#F9F7F2] page-break-after-always overflow-hidden">
+                    {/* Technical Grid Overlay - Brand Colors */}
+                    <div className="absolute inset-0 opacity-[0.05]"
+                        style={{ backgroundImage: 'linear-gradient(#B8835A 1px, transparent 1px), linear-gradient(90deg, #B8835A 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
                     <div className="absolute inset-0 opacity-[0.03]"
-                        style={{ backgroundImage: 'linear-gradient(#38BDF8 0.5px, transparent 0.5px), linear-gradient(90deg, #38BDF8 0.5px, transparent 0.5px)', backgroundSize: '8px 8px' }} />
+                        style={{ backgroundImage: 'linear-gradient(#B8835A 0.5px, transparent 0.5px), linear-gradient(90deg, #B8835A 0.5px, transparent 0.5px)', backgroundSize: '8px 8px' }} />
 
                     {/* Blueprint Border & Rulers */}
-                    <div className="absolute inset-8 border border-[#38BDF8]/40 pointer-events-none" />
+                    <div className="absolute inset-8 border border-[#B8835A]/30 pointer-events-none" />
 
-                    <div className="relative z-10 flex flex-col h-full border-l border-r border-[#38BDF8]/20 mx-12 px-12 py-16">
+                    <div className="relative z-10 flex flex-col h-full border-l border-r border-[#B8835A]/10 mx-12 px-12 py-16">
                         {/* Header Technical Block */}
-                        <div className="flex justify-between items-start border-b border-[#38BDF8]/40 pb-12 mb-16">
+                        <div className="flex justify-between items-start border-b border-[#B8835A]/30 pb-12 mb-16">
                             <div className="space-y-4">
-                                <h2 className="text-[10px] font-mono uppercase tracking-[0.5em] text-[#38BDF8]">TECHNICAL SPECIFICATION: LIFE ARCHITECTURE</h2>
+                                <h2 className="text-[10px] font-mono uppercase tracking-[0.5em] text-[#B8835A]">TECHNICAL SPECIFICATION: LIFE ARCHITECTURE</h2>
                                 <h1 className="text-4xl font-editorial text-white tracking-widest italic lowercase">el plano maestro</h1>
                             </div>
-                            <div className="text-right font-mono text-[9px] text-[#38BDF8]/60 space-y-1">
+                            <div className="text-right font-mono text-[9px] text-[#B8835A]/60 space-y-1">
                                 <p>SCALE: 1:LIFE</p>
                                 <p>REF: 2026-BOARD-{registrationData?.name?.substring(0, 3).toUpperCase()}</p>
-                                <p>STATUS: VERIFIED</p>
+                                <p>STATUS: VERIFIED BY YELITZE</p>
+                                <p>PÁGINA 03/04</p>
                             </div>
                         </div>
 
@@ -254,80 +331,82 @@ export default function FinalBoardStep({
                         <div className="flex-1 relative flex items-center justify-center">
                             {/* Blueprint Lines */}
                             <div className="absolute inset-0 flex items-center justify-center -z-10">
-                                <svg width="100%" height="80%" className="opacity-40">
-                                    <line x1="10%" y1="50%" x2="90%" y2="50%" stroke="#38BDF8" strokeWidth="0.5" strokeDasharray="10 5" />
-                                    <line x1="50%" y1="0%" x2="50%" y2="100%" stroke="#38BDF8" strokeWidth="0.5" strokeDasharray="10 5" />
-                                    <circle cx="50%" cy="50%" r="35%" stroke="#38BDF8" strokeWidth="1" fill="none" />
-                                    <circle cx="50%" cy="50%" r="15%" stroke="#38BDF8" strokeWidth="0.5" strokeDasharray="2 2" fill="none" />
+                                <svg width="100%" height="80%" className="opacity-30">
+                                    <line x1="10%" y1="50%" x2="90%" y2="50%" stroke="#B8835A" strokeWidth="0.5" strokeDasharray="10 5" />
+                                    <line x1="50%" y1="0%" x2="50%" y2="100%" stroke="#B8835A" strokeWidth="0.5" strokeDasharray="10 5" />
+                                    <circle cx="50%" cy="50%" r="35%" stroke="#B8835A" strokeWidth="1" fill="none" />
+                                    <circle cx="50%" cy="50%" r="15%" stroke="#B8835A" strokeWidth="0.5" strokeDasharray="2 2" fill="none" />
                                     {/* Diagonal guidelines */}
-                                    <line x1="20%" y1="20%" x2="80%" y2="80%" stroke="#38BDF8" strokeWidth="0.3" strokeDasharray="5 5" />
-                                    <line x1="80%" y1="20%" x2="20%" y2="80%" stroke="#38BDF8" strokeWidth="0.3" strokeDasharray="5 5" />
+                                    <line x1="20%" y1="20%" x2="80%" y2="80%" stroke="#B8835A" strokeWidth="0.3" strokeDasharray="5 5" />
+                                    <line x1="80%" y1="20%" x2="20%" y2="80%" stroke="#B8835A" strokeWidth="0.3" strokeDasharray="5 5" />
                                 </svg>
                             </div>
 
                             {/* Data Nodes */}
                             <div className="grid grid-cols-2 grid-rows-2 gap-x-32 gap-y-48 relative z-20">
                                 {data.pillars.slice(1).map((p, i) => (
-                                    <div key={i} className="bg-[#0F172A] border border-[#38BDF8]/60 p-6 rounded-sm w-48 shadow-[0_0_20px_rgba(56,189,248,0.15)] relative">
-                                        <div className="absolute -top-3 -left-3 w-6 h-6 border-t border-l border-[#38BDF8]" />
-                                        <span className="text-[8px] font-mono text-[#38BDF8] block mb-2">AXIS: 0{i + 2}</span>
-                                        <h4 className="text-[10px] font-bold text-white uppercase tracking-widest mb-2 border-b border-[#38BDF8]/20 pb-1">{p.title}</h4>
-                                        <p className="text-[9px] text-[#38BDF8]/80 italic line-clamp-3">"{p.intention || 'INTENCION EN PROCESO'}"</p>
-                                        <div className="mt-4 pt-2 border-t border-[#38BDF8]/10">
-                                            <p className="text-[8px] font-mono text-white tracking-widest">ACT: {p.action || 'RECODER'}</p>
+                                    <div key={i} className="bg-[#1C1917] border border-[#B8835A]/50 p-6 rounded-sm w-48 shadow-[0_0_30px_rgba(184,131,90,0.1)] relative">
+                                        <div className="absolute -top-3 -left-3 w-6 h-6 border-t border-l border-[#B8835A]" />
+                                        <span className="text-[8px] font-mono text-[#B8835A] block mb-2">AXIS: 0{i + 2}</span>
+                                        <h4 className="text-[11px] font-bold text-white uppercase tracking-widest mb-2 border-b border-[#B8835A]/20 pb-1">{p.title}</h4>
+                                        <p className="text-[10px] text-[#B8835A]/90 italic line-clamp-3 leading-relaxed">"{p.intention || 'INTENCIÓN EN PROCESO'}"</p>
+                                        <div className="mt-4 pt-2 border-t border-[#B8835A]/10">
+                                            <p className="text-[9px] font-mono text-white/70 tracking-widest">ACT: {p.action || 'RECONOCER'}</p>
                                         </div>
                                     </div>
                                 ))}
 
                                 {/* Center Identity Core */}
-                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#0F172A] border-4 border-double border-[#38BDF8] rounded-full flex flex-col items-center justify-center p-8 text-center shadow-[0_0_40px_rgba(56,189,248,0.2)]">
-                                    <span className="text-[9px] font-mono text-[#38BDF8] uppercase tracking-[0.3em] mb-3">core architecture</span>
-                                    <h3 className="text-2xl font-editorial text-white mb-2">YO SOY</h3>
-                                    <div className="w-12 h-[1px] bg-[#38BDF8]/40 mb-3" />
-                                    <p className="text-[11px] font-mono text-[#38BDF8] italic leading-relaxed">
+                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-[#1C1917] border-4 border-double border-[#B8835A] rounded-full flex flex-col items-center justify-center p-10 text-center shadow-[0_0_50px_rgba(184,131,90,0.15)]">
+                                    <span className="text-[10px] font-mono text-[#B8835A] uppercase tracking-[0.4em] mb-4">core architecture</span>
+                                    <h3 className="text-3xl font-editorial text-white mb-2 italic">YO SOY</h3>
+                                    <div className="w-16 h-[1px] bg-[#B8835A]/40 mb-4" />
+                                    <p className="text-[12px] font-mono text-[#B8835A] italic leading-relaxed uppercase tracking-wider">
                                         "{data.analysis?.identity || (isMale ? 'EL ARQUITECTO DE MI PROPIO ORDEN' : 'LA ARQUITECTA DE MI PROPIO ORDEN')}"
                                     </p>
                                 </div>
 
                                 {/* Purpose Axis - Top Overlay */}
-                                <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-56 bg-[#0F172A] border-2 border-[#38BDF8] p-6 shadow-xl text-center">
-                                    <span className="text-[8px] font-mono text-[#38BDF8] block mb-1">PRIMARY AXIS: 01</span>
-                                    <h4 className="text-xs font-bold text-white uppercase tracking-widest mb-2">PROPÓSITO</h4>
-                                    <p className="text-[9px] text-[#38BDF8]/90 italic">"{data.pillars[0].intention || 'FUNDAMENTAL'}"</p>
+                                <div className="absolute -top-36 left-1/2 -translate-x-1/2 w-64 bg-[#1C1917] border-2 border-[#B8835A] p-6 shadow-2xl text-center">
+                                    <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-[#D4AF37]" />
+                                    <span className="text-[9px] font-mono text-[#B8835A] block mb-1">PRIMARY AXIS: 01</span>
+                                    <h4 className="text-xs font-bold text-white uppercase tracking-widest mb-2">EL PROPÓSITO</h4>
+                                    <p className="text-[10px] text-[#B8835A] italic">"{data.pillars[0].intention || 'RAÍZ FUNDAMENTAL'}"</p>
                                 </div>
                             </div>
                         </div>
 
                         {/* Analysis Footer Technical Info */}
-                        <div className="mt-20 grid grid-cols-2 gap-8 border-t border-[#38BDF8]/40 pt-12">
+                        <div className="mt-16 grid grid-cols-2 gap-10 border-t border-[#B8835A]/30 pt-12">
                             <div className="space-y-4">
-                                <h3 className="text-[10px] font-mono text-[#38BDF8] uppercase tracking-widest">SOBERANÍA SISTÉMICA / LO QUE SUELTAS</h3>
-                                <p className="text-sm font-editorial italic text-white/90 leading-relaxed border-l-2 border-[#38BDF8] pl-6">
-                                    {data.analysis?.release || "DEPURANDO LEALTADES..."}
+                                <h3 className="text-[10px] font-mono text-[#B8835A] uppercase tracking-widest font-bold">SOBERANÍA SISTÉMICA / LO QUE SUELTO</h3>
+                                <p className="text-sm font-editorial italic text-white/95 leading-relaxed border-l-2 border-[#B8835A] pl-6">
+                                    {data.analysis?.release || "Depurando lealtades obsoletas para habitar mi presente."}
                                 </p>
                             </div>
                             <div className="space-y-4">
-                                <h3 className="text-[10px] font-mono text-[#38BDF8] uppercase tracking-widest">PRÁCTICA MAESTRA / HÁBITO DE ORDEN</h3>
-                                <p className="text-sm font-editorial italic text-white/90 leading-relaxed border-l-2 border-[#38BDF8] pl-6">
-                                    {data.analysis?.practice || "ESTABLECIENDO RITMO..."}
+                                <h3 className="text-[10px] font-mono text-[#B8835A] uppercase tracking-widest font-bold">PRÁCTICA MAESTRA / HÁBITO DE ORDEN</h3>
+                                <p className="text-sm font-editorial italic text-white/95 leading-relaxed border-l-2 border-[#B8835A] pl-6">
+                                    {data.analysis?.practice || "Estableciendo el ritmo sagrado de mi nueva arquitectura."}
                                 </p>
                             </div>
                         </div>
 
                         {/* Technical Manifesto Footer */}
-                        <div className="mt-16 text-center">
-                            <p className="text-[9px] font-mono text-[#38BDF8]/60 uppercase tracking-[1em] mb-4">M A N I F E S T O</p>
-                            <p className="text-lg font-editorial text-white italic max-w-2xl mx-auto leading-relaxed border border-[#38BDF8]/20 p-8 bg-white/5">
-                                "{data.analysis?.manifesto || 'DISEÑANDO REALIDAD...'}"
+                        <div className="mt-12 text-center">
+                            <p className="text-[9px] font-mono text-[#B8835A]/50 uppercase tracking-[1em] mb-4">M A N I F E S T O</p>
+                            <p className="text-xl font-editorial text-white italic max-w-3xl mx-auto leading-relaxed border border-[#B8835A]/10 p-10 bg-white/[0.02] shadow-inner">
+                                "{data.analysis?.manifesto || 'Diseñando una realidad donde cada espacio es habitado con consciencia y soberanía.'}"
                             </p>
                         </div>
                     </div>
 
                     {/* Footer Info */}
-                    <div className="absolute bottom-8 left-0 right-0 text-center font-mono text-[8px] text-[#38BDF8]/40 uppercase tracking-[0.5em]">
-                        Yelitze Rangel • Tracking de la Arquitectura Intencional de tu Vida • 2026
+                    <div className="absolute bottom-8 left-0 right-0 text-center font-mono text-[9px] text-[#B8835A]/40 uppercase tracking-[0.5em]">
+                        YELITZE RANGEL • MASTER PLAN 2026 • ARQUITECTURA INTENCIONAL
                     </div>
                 </div>
+
 
                 {/* PDF PAGE 3: BITÁCORA (Reflections & Steps) */}
                 <div className="min-h-[1120px] p-24 bg-white space-y-16">
@@ -354,18 +433,29 @@ export default function FinalBoardStep({
                         <div className="space-y-8">
                             <h3 className="text-2xl font-editorial text-[#2D2926] border-b border-[#B8835A10] pb-4">Reflexiones de los Portales</h3>
                             <div className="grid grid-cols-2 gap-8">
-                                {Object.entries(data.reflections).map(([id, text], idx) => (
-                                    <div key={idx} className="p-6 bg-[#FDFBF7] rounded-2xl border border-[#B8835A10]">
-                                        <span className="text-[10px] uppercase font-bold text-[#B8835A] font-guide tracking-widest block mb-2">Portal {idx + 1}</span>
-                                        <p className="text-sm italic font-editorial text-[#2D2926] opacity-70 leading-relaxed">"{text}"</p>
-                                    </div>
-                                ))}
+                                {Object.entries(data.reflections).map(([id, text], idx) => {
+                                    const portalTitles: Record<string, string> = {
+                                        'portal1': 'Cierre Consciente',
+                                        'portal2': 'Foco y Dispersión',
+                                        'portal3': 'Salto Cuántico',
+                                        'portal4': 'Arquitectura de Orden'
+                                    };
+                                    return (
+                                        <div key={idx} className="p-6 bg-[#FDFBF7] rounded-2xl border border-[#B8835A10]">
+                                            <span className="text-[10px] uppercase font-bold text-[#B8835A] font-guide tracking-widest block mb-2">
+                                                Portal {idx + 1} · {portalTitles[id] || ''}
+                                            </span>
+                                            <p className="text-sm italic font-editorial text-[#2D2926] opacity-70 leading-relaxed">"{text}"</p>
+                                        </div>
+                                    );
+                                })}
                             </div>
                         </div>
                     </div>
 
                     <div className="pt-24 text-center">
-                        <p className="text-[10px] uppercase font-guide font-bold tracking-[0.4em] text-[#B8835A] opacity-40">Diseño Intencional 2026</p>
+                        <p className="text-[10px] uppercase font-guide font-bold tracking-[0.4em] text-[#B8835A] mb-2 opacity-40">Diseño Intencional 2026</p>
+                        <p className="text-[8px] font-guide text-gray-300">PÁGINA 04/04</p>
                     </div>
                 </div>
             </div>
