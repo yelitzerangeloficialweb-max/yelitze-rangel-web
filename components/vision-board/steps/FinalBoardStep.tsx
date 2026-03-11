@@ -346,11 +346,18 @@ export default function FinalBoardStep({
                                         'portal3': 'Recuperar Mi Poder',
                                         'portal4': 'Arquitectura de Orden'
                                     };
+                                    const portalSubtitles: Record<string, string> = {
+                                        'portal1': '¿Dónde se fue mi energía?',
+                                        'portal2': '¿Dónde perdí mi centro?',
+                                        'portal3': 'Lo que dejo de cargar',
+                                        'portal4': 'Gestión Consciente de Energía'
+                                    };
                                     return (
                                         <div key={idx} className="p-6 bg-[#FDFBF7] rounded-2xl border border-[#B8835A10]">
-                                            <span className="text-[10px] uppercase font-bold text-[#B8835A] font-guide tracking-widest block mb-2">
+                                            <span className="text-[10px] uppercase font-bold text-[#B8835A] font-guide tracking-widest block mb-1">
                                                 Portal {idx + 1} · {portalTitles[id] || ''}
                                             </span>
+                                            <p className="text-[9px] italic text-[#8C4005]/60 font-editorial mb-3">{portalSubtitles[id] || ''}</p>
                                             <p className="text-sm italic font-editorial text-[#2D2926] opacity-70 leading-relaxed">"{text}"</p>
                                         </div>
                                     );

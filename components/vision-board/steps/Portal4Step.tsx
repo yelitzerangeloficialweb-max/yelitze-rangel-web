@@ -108,21 +108,17 @@ Decreto de orden actual: ${value}`;
                                             <Info className="w-4 h-4 text-[#2D2926]" />
                                         </div>
                                         <div className="space-y-1">
-                                            <span className="text-[11px] font-bold uppercase tracking-widest text-[#2D2926]/60 font-guide">Contexto</span>
-                                            <p className="text-base font-normal text-[#3C2A21]/80 font-guide leading-relaxed">
-                                                {mod.context}
-                                            </p>
+                                            <p className="text-[10px] font-bold text-[#3C2A21]/40 uppercase tracking-widest font-guide">Contexto</p>
+                                            <p className="text-sm text-[#3C2A21]/70 leading-relaxed italic font-guide">{mod.context}</p>
                                         </div>
                                     </div>
                                     <div className="flex items-start gap-4">
-                                        <div className="bg-[#8C4005]/10 p-2 rounded-full mt-0.5">
+                                        <div className="bg-[#8C4005]/5 p-2 rounded-full mt-0.5">
                                             <Zap className="w-4 h-4 text-[#8C4005]" />
                                         </div>
                                         <div className="space-y-1">
-                                            <span className="text-[11px] font-bold uppercase tracking-widest text-[#8C4005] font-guide">Acción</span>
-                                            <p className="text-base font-bold text-[#8C4005] font-guide">
-                                                {mod.action}
-                                            </p>
+                                            <p className="text-[10px] font-bold text-[#8C4005]/40 uppercase tracking-widest font-guide">Acción</p>
+                                            <p className="text-sm text-[#2D2926] leading-relaxed font-guide font-medium">{mod.action}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -155,7 +151,7 @@ Decreto de orden actual: ${value}`;
                             <span className="text-[11px] font-bold uppercase tracking-widest text-[#3C2A21]/50 font-guide">Decreto Arquitectónico</span>
                         </div>
                         <p className="text-[#3C2A21]/60 font-guide text-sm leading-relaxed max-w-2xl">
-                            Declara aquí los pilares de tu nueva arquitectura de orden...
+                            Declara aquí los pilares de tu nueva arquitectura de orden. Utiliza este espacio para consolidar tu visión maestra y establecer el decreto que sostendrá tu nueva realidad durante este ciclo.
                         </p>
                     </div>
 
