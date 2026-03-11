@@ -243,7 +243,7 @@ export default function FinalBoardStep({
                             <h2 className="text-2xl font-editorial uppercase tracking-widest">Plano Maestro 2026</h2>
                         </div>
                         <div className="text-right">
-                            <p className="text-[10px] font-guide text-gray-400">PÁGINA 01/04</p>
+                            <p className="text-[10px] font-guide text-gray-400">PÁGINA 01/03</p>
                         </div>
                     </div>
 
@@ -274,7 +274,7 @@ export default function FinalBoardStep({
                         <div className="text-center mb-12">
                              <span className="text-[10px] font-guide font-bold text-[#8C4005] uppercase tracking-[0.5em] block mb-2">Configuración Final</span>
                              <h2 className="text-5xl font-editorial text-[#2D2926]">Tablero de Visión</h2>
-                             <div className="flex justify-center mt-4"><p className="text-[10px] font-guide text-gray-400">PÁGINA 02/04</p></div>
+                             <div className="flex justify-center mt-4"><p className="text-[10px] font-guide text-gray-400">PÁGINA 02/03</p></div>
                         </div>
 
                         <div className="grid grid-cols-3 grid-rows-3 w-full gap-8 items-center justify-items-center flex-grow">
@@ -301,118 +301,12 @@ export default function FinalBoardStep({
                     </div>
                 </div>
 
-                {/* PDF PAGE 2: EL PLANO (Architect Blueprint Aesthetic - NO BLUE) */}
-                <div className="min-h-[1120px] p-12 relative flex flex-col bg-[#1C1917] text-[#F9F7F2] page-break-after-always overflow-hidden">
-                    {/* Technical Grid Overlay - Brand Colors */}
-                    <div className="absolute inset-0 opacity-[0.05]"
-                        style={{ backgroundImage: 'linear-gradient(#B8835A 1px, transparent 1px), linear-gradient(90deg, #B8835A 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-                    <div className="absolute inset-0 opacity-[0.03]"
-                        style={{ backgroundImage: 'linear-gradient(#B8835A 0.5px, transparent 0.5px), linear-gradient(90deg, #B8835A 0.5px, transparent 0.5px)', backgroundSize: '8px 8px' }} />
-
-                    {/* Blueprint Border & Rulers */}
-                    <div className="absolute inset-8 border border-[#B8835A]/30 pointer-events-none" />
-
-                    <div className="relative z-10 flex flex-col h-full border-l border-r border-[#B8835A]/10 mx-12 px-12 py-16">
-                        {/* Header Technical Block */}
-                        <div className="flex justify-between items-start border-b border-[#B8835A]/30 pb-12 mb-16">
-                            <div className="space-y-4">
-                                <h2 className="text-[10px] font-mono uppercase tracking-[0.5em] text-[#B8835A]">TECHNICAL SPECIFICATION: LIFE ARCHITECTURE</h2>
-                                <h1 className="text-4xl font-editorial text-white tracking-widest italic lowercase">el plano maestro</h1>
-                            </div>
-                            <div className="text-right font-mono text-[9px] text-[#B8835A]/60 space-y-1">
-                                <p>SCALE: 1:LIFE</p>
-                                <p>REF: 2026-BOARD-{registrationData?.name?.substring(0, 3).toUpperCase()}</p>
-                                <p>STATUS: VERIFIED BY YELITZE</p>
-                                <p>PÁGINA 03/04</p>
-                            </div>
-                        </div>
-
-                        {/* Central Blueprint Schema */}
-                        <div className="flex-1 relative flex items-center justify-center">
-                            {/* Blueprint Lines */}
-                            <div className="absolute inset-0 flex items-center justify-center -z-10">
-                                <svg width="100%" height="80%" className="opacity-30">
-                                    <line x1="10%" y1="50%" x2="90%" y2="50%" stroke="#B8835A" strokeWidth="0.5" strokeDasharray="10 5" />
-                                    <line x1="50%" y1="0%" x2="50%" y2="100%" stroke="#B8835A" strokeWidth="0.5" strokeDasharray="10 5" />
-                                    <circle cx="50%" cy="50%" r="35%" stroke="#B8835A" strokeWidth="1" fill="none" />
-                                    <circle cx="50%" cy="50%" r="15%" stroke="#B8835A" strokeWidth="0.5" strokeDasharray="2 2" fill="none" />
-                                    {/* Diagonal guidelines */}
-                                    <line x1="20%" y1="20%" x2="80%" y2="80%" stroke="#B8835A" strokeWidth="0.3" strokeDasharray="5 5" />
-                                    <line x1="80%" y1="20%" x2="20%" y2="80%" stroke="#B8835A" strokeWidth="0.3" strokeDasharray="5 5" />
-                                </svg>
-                            </div>
-
-                            {/* Data Nodes */}
-                            <div className="grid grid-cols-2 grid-rows-2 gap-x-32 gap-y-48 relative z-20">
-                                {data.pillars.slice(1).map((p, i) => (
-                                    <div key={i} className="bg-[#1C1917] border border-[#B8835A]/50 p-6 rounded-sm w-48 shadow-[0_0_30px_rgba(184,131,90,0.1)] relative">
-                                        <div className="absolute -top-3 -left-3 w-6 h-6 border-t border-l border-[#B8835A]" />
-                                        <span className="text-[8px] font-mono text-[#B8835A] block mb-2">AXIS: 0{i + 2}</span>
-                                        <h4 className="text-[11px] font-bold text-white uppercase tracking-widest mb-2 border-b border-[#B8835A]/20 pb-1">{p.title}</h4>
-                                        <p className="text-[10px] text-[#B8835A]/90 italic line-clamp-3 leading-relaxed">"{p.intention || 'INTENCIÓN EN PROCESO'}"</p>
-                                        <div className="mt-4 pt-2 border-t border-[#B8835A]/10">
-                                            <p className="text-[9px] font-mono text-white/70 tracking-widest">ACT: {p.action || 'RECONOCER'}</p>
-                                        </div>
-                                    </div>
-                                ))}
-
-                                {/* Center Identity Core */}
-                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-[#1C1917] border-4 border-double border-[#B8835A] rounded-full flex flex-col items-center justify-center p-10 text-center shadow-[0_0_50px_rgba(184,131,90,0.15)]">
-                                    <span className="text-[10px] font-mono text-[#B8835A] uppercase tracking-[0.4em] mb-4">core architecture</span>
-                                    <h3 className="text-3xl font-editorial text-white mb-2 italic">YO SOY</h3>
-                                    <div className="w-16 h-[1px] bg-[#B8835A]/40 mb-4" />
-                                    <p className="text-[12px] font-mono text-[#B8835A] italic leading-relaxed uppercase tracking-wider">
-                                        "{data.analysis?.identity || (isMale ? 'EL ARQUITECTO DE MI PROPIO ORDEN' : 'LA ARQUITECTA DE MI PROPIO ORDEN')}"
-                                    </p>
-                                </div>
-
-                                {/* Purpose Axis - Top Overlay */}
-                                <div className="absolute -top-36 left-1/2 -translate-x-1/2 w-64 bg-[#1C1917] border-2 border-[#B8835A] p-6 shadow-2xl text-center">
-                                    <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-[#D4AF37]" />
-                                    <span className="text-[9px] font-mono text-[#B8835A] block mb-1">PRIMARY AXIS: 01</span>
-                                    <h4 className="text-xs font-bold text-white uppercase tracking-widest mb-2">EL PROPÓSITO</h4>
-                                    <p className="text-[10px] text-[#B8835A] italic">"{data.pillars[0].intention || 'RAÍZ FUNDAMENTAL'}"</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Analysis Footer Technical Info */}
-                        <div className="mt-16 grid grid-cols-2 gap-10 border-t border-[#B8835A]/30 pt-12">
-                            <div className="space-y-4">
-                                <h3 className="text-[10px] font-mono text-[#B8835A] uppercase tracking-widest font-bold">SOBERANÍA SISTÉMICA / LO QUE SUELTO</h3>
-                                <p className="text-sm font-editorial italic text-white/95 leading-relaxed border-l-2 border-[#B8835A] pl-6">
-                                    {data.analysis?.release || "Depurando lealtades obsoletas para habitar mi presente."}
-                                </p>
-                            </div>
-                            <div className="space-y-4">
-                                <h3 className="text-[10px] font-mono text-[#B8835A] uppercase tracking-widest font-bold">PRÁCTICA MAESTRA / HÁBITO DE ORDEN</h3>
-                                <p className="text-sm font-editorial italic text-white/95 leading-relaxed border-l-2 border-[#B8835A] pl-6">
-                                    {data.analysis?.practice || "Estableciendo el ritmo sagrado de mi nueva arquitectura."}
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* Technical Manifesto Footer */}
-                        <div className="mt-12 text-center">
-                            <p className="text-[9px] font-mono text-[#B8835A]/50 uppercase tracking-[1em] mb-4">M A N I F E S T O</p>
-                            <p className="text-xl font-editorial text-white italic max-w-3xl mx-auto leading-relaxed border border-[#B8835A]/10 p-10 bg-white/[0.02] shadow-inner">
-                                "{data.analysis?.manifesto || 'Diseñando una realidad donde cada espacio es habitado con consciencia y soberanía.'}"
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* Footer Info */}
-                    <div className="absolute bottom-8 left-0 right-0 text-center font-mono text-[9px] text-[#B8835A]/40 uppercase tracking-[0.5em]">
-                        YELITZE RANGEL • MASTER PLAN 2026 • ARQUITECTURA INTENCIONAL
-                    </div>
-                </div>
-
-
                 {/* PDF PAGE 3: BITÁCORA (Reflections & Steps) */}
                 <div className="min-h-[1120px] p-24 bg-white space-y-16">
                     <div className="text-center space-y-4">
                         <span className="bg-[#8C4005] text-[#F9F7F2] px-6 py-1 rounded-full text-[10px] font-bold uppercase tracking-[0.3em] font-guide">Bitácora de Construcción</span>
-                        <h2 className="text-5xl font-editorial text-[#2D2926]">La Ruta de la {isMale ? 'Arquitecto' : 'Arquitecta'}</h2>
+                        <h2 className="text-5xl font-editorial text-[#2D2926]">La Ruta de la {isMale ? 'Arquitecta' : 'Arquitecto'}</h2>
+                        <div className="flex justify-center mt-4"><p className="text-[10px] font-guide text-gray-400">PÁGINA 03/03</p></div>
                     </div>
 
                     {/* Steps Section */}
@@ -461,9 +355,9 @@ export default function FinalBoardStep({
                         </div>
                     </div>
 
-                    <div className="pt-24 text-center">
+                    <div className="pt-12 text-center">
                         <p className="text-[10px] uppercase font-guide font-bold tracking-[0.4em] text-[#B8835A] mb-2 opacity-40">Diseño Intencional 2026</p>
-                        <p className="text-[8px] font-guide text-gray-300">PÁGINA 04/04</p>
+                        <p className="text-[8px] font-guide text-gray-300">©{new Date().getFullYear()} Yelitze Rangel</p>
                     </div>
                 </div>
             </div>
@@ -484,21 +378,15 @@ function ArchitecturalCard({ pillar, label, small }: { pillar: any, label: strin
 
             <div className={`w-full ${small ? 'aspect-square' : 'aspect-[3/4]'} bg-gray-50 mb-2 overflow-hidden relative`}>
                 {hasImages ? (
-                    pillar.images.length === 1 ? (
-                        // Single Image
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img src={pillar.images[0]} alt="" className="w-full h-full object-cover opacity-90 contrast-110" />
-                    ) : (
-                        // Collage for 2-4 images
-                        <div className="grid grid-cols-2 grid-rows-2 w-full h-full gap-0.5">
-                            {pillar.images.map((img: string, i: number) => (
-                                <div key={i} className={`relative overflow-hidden ${pillar.images.length === 3 && i === 0 ? 'col-span-2 row-span-1' : 'col-span-1 row-span-1'} ${pillar.images.length === 2 ? 'row-span-2' : ''}`}>
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img src={img} alt="" className="w-full h-full object-cover opacity-90 contrast-110" />
-                                </div>
-                            ))}
-                        </div>
-                    )
+                    (() => {
+                        // Priority: AI image (detected if length >= 4, use the 4th image)
+                        const imageToDisplay = pillar.images.length >= 4 ? pillar.images[3] : pillar.images[0];
+                        
+                        return (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img src={imageToDisplay} alt="" className="w-full h-full object-cover opacity-90 contrast-110" />
+                        );
+                    })()
                 ) : (
                     <div className="w-full h-full flex items-center justify-center text-gray-300 bg-gray-50 text-[10px]">VACÍO</div>
                 )}

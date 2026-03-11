@@ -92,11 +92,15 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
                 updatePillarImages(currentPillarIndex, [...activePillar.images, data.imageUrl]);
             } else if (data.error) {
                 console.error("AI Generation server error:", data.error, data.details);
-                alert(`Error: ${data.details || data.error}`);
+                if (data.details?.includes('timeout')) {
+                    alert("La IA está trabajando intensamente en tu imagen de alta calidad. Por favor, intenta de nuevo en unos segundos.");
+                } else {
+                    alert(`Error: ${data.details || data.error}`);
+                }
             }
         } catch (error) {
             console.error("AI Generation failed:", error);
-            alert("Error de conexión al generar imagen. Intenta de nuevo.");
+            alert("El servidor está procesando muchas peticiones. Por favor, espera un momento e intenta de nuevo.");
         } finally {
             setIsGeneratingAI(false);
         }
@@ -243,7 +247,7 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
                                 {isGeneratingAI ? (
                                     <>
                                         <Loader2 className="w-4 h-4 animate-spin" />
-                                        Componiendo Visión...
+                                        Generando Arte en Alta Calidad...
                                     </>
                                 ) : (
                                     <>

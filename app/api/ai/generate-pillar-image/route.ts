@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { generateVisionPrompt } from '@/lib/ai/gemini';
 
+export const maxDuration = 60; // Aumentar a 60 segundos para evitar timeouts en Vercel
+
 export async function POST(req: Request) {
     try {
         const { intention, images, pillarTitle } = await req.json();
@@ -29,7 +31,8 @@ export async function POST(req: Request) {
             const url = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=1024&height=1024&nologo=true&seed=${randomSeed}${modelParam}`;
             
             console.log(`Fetching image from Pollinations (${modelName || 'default'}):`, url);
-            const res = await fetch(url, { signal: AbortSignal.timeout(25000) }); // 25s timeout
+            // Reducimos el timeout individual pero permitimos que la función total dure más
+            const res = await fetch(url, { signal: AbortSignal.timeout(35000) }); // 35s timeout
             if (!res.ok) throw new Error(`Pollinations error ${res.status}: ${res.statusText}`);
             return res;
         };
