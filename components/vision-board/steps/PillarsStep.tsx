@@ -248,7 +248,7 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
                                 ) : (
                                     <>
                                         <Sparkles className="w-4 h-4 text-[#B8835A]" />
-                                        Completar pilar con IA
+                                        Completar pilar
                                     </>
                                 )}
                             </button>

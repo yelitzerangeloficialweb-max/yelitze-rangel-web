@@ -13,37 +13,47 @@ export async function POST(req: Request) {
         const visualPrompt = await generateVisionPrompt(`${pillarTitle}: ${intention}`, images);
 
         // 2. Clear prompt and encode for Pollinations
-        // We use Flux model from Pollinations for high quality
-        const cleanPrompt = visualPrompt.replace(/[\n\r]/g, " ").trim();
-        const encodedPrompt = encodeURIComponent(cleanPrompt + ", cinematic lighting, conceptual architectural art, 4k, masterpiece, minimal aesthetic");
+        // Flux is the premium model, but we'll use turbo or default if it fails
+        let cleanPrompt = visualPrompt.replace(/[\n\r]/g, " ").trim();
+        // Limit prompt length to avoid URL issues
+        if (cleanPrompt.length > 800) {
+            cleanPrompt = cleanPrompt.substring(0, 800);
+        }
 
+        const encodedPrompt = encodeURIComponent(cleanPrompt + ", cinematic lighting, conceptual architectural art, minimal aesthetic, high quality");
         const randomSeed = Math.floor(Math.random() * 1000000);
-        const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=1024&height=1024&nologo=true&seed=${randomSeed}&model=flux`;
+        
+        // We'll try flux first, if it fails, we fall back to default
+        const tryFetch = async (modelName: string | null = 'flux') => {
+            const modelParam = modelName ? `&model=${modelName}` : '';
+            const url = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=1024&height=1024&nologo=true&seed=${randomSeed}${modelParam}`;
+            
+            console.log(`Fetching image from Pollinations (${modelName || 'default'}):`, url);
+            const res = await fetch(url, { signal: AbortSignal.timeout(25000) }); // 25s timeout
+            if (!res.ok) throw new Error(`Pollinations error ${res.status}: ${res.statusText}`);
+            return res;
+        };
 
-        // 3. Fetch the image from Pollinations and convert to base64
-        console.log('Fetching image from Pollinations:', imageUrl);
-        const response = await fetch(imageUrl);
-
-        if (!response.ok) {
-            console.error('Pollinations API error:', response.status, response.statusText);
-            throw new Error(`Failed to fetch image from Pollinations: ${response.statusText}`);
+        let response;
+        try {
+            response = await tryFetch('flux');
+        } catch (e) {
+            console.warn('Flux model failed, retrying with default model...', e);
+            response = await tryFetch(null); // Default model fallback
         }
 
         const arrayBuffer = await response.arrayBuffer();
         const buffer = Buffer.from(arrayBuffer);
-
-        // Basic check if it's actually an image (PNG/JPG typically start with specific bytes)
-        // But for now, we'll trust the success status.
         const base64Image = `data:image/jpeg;base64,${buffer.toString('base64')}`;
 
-        console.log('Image generated and converted successfully');
+        console.log('Image generated successfully');
         return NextResponse.json({ imageUrl: base64Image, prompt: visualPrompt });
 
     } catch (error) {
         console.error('Generate Pillar Image Error:', error);
         return NextResponse.json({
             error: 'Internal Server Error',
-            details: error instanceof Error ? error.message : String(error)
+            details: error instanceof Error ? error.message : 'Error desconocido en la generación de imagen'
         }, { status: 500 });
     }
 }
