@@ -437,7 +437,7 @@ export default function FinalBoardStep({
                                     const portalTitles: Record<string, string> = {
                                         'portal1': 'Cierre Consciente',
                                         'portal2': 'Foco y Dispersión',
-                                        'portal3': 'Salto Cuántico',
+                                        'portal3': 'Recuperar Mi Poder',
                                         'portal4': 'Arquitectura de Orden'
                                     };
                                     return (

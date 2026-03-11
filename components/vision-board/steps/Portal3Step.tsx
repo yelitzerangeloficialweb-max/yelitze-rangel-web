@@ -33,7 +33,7 @@ Declaración de poder actual: ${value}`;
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     text: combinedContext,
-                    context: "Portal 3: Saltos Cuánticos - Reclamando el Poder. Integra los hallazgos en una declaración de liberación y reclamo de soberanía."
+                    context: "Portal 3: Recuperar Mi Poder - Reclamando la Soberanía. Integra los hallazgos en una declaración de liberación y reclamo de poder personal."
                 })
             });
             const data = await res.json();
@@ -83,14 +83,18 @@ Declaración de poder actual: ${value}`;
                     </span>
                     <Feather className="w-5 h-5 text-[#8C4005]/40" />
                 </div>
-                <h2 className="text-5xl md:text-7xl font-editorial text-[#2D2926] leading-tight">Salto Cuántico</h2>
-                <p className="text-[#3C2A21] italic text-xl md:text-2xl font-editorial tracking-wide opacity-90">Recuperando mi soberanía.</p>
+                <h2 className="text-5xl md:text-7xl font-editorial text-[#2D2926] leading-tight">Recuperar Mi Poder</h2>
+                <p className="text-[#3C2A21] italic text-xl md:text-2xl font-editorial tracking-wide opacity-90">Lo que dejo de cargar</p>
             </div>
 
             {/* Main Workspace */}
             <div className="bg-white p-8 md:p-16 rounded-[3rem] shadow-[0_20px_60px_rgba(45,41,38,0.06)] border border-[#3C2A21]/10 relative overflow-hidden mb-12">
                 {/* Active Zone Marker */}
                 <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-[75%] bg-[#8C4005] rounded-r-full" />
+
+                <div className="mb-12 p-6 bg-[#F9F7F2] rounded-2xl text-sm md:text-base text-[#3C2A21]/80 leading-relaxed italic border-l-4 border-[#8C4005] font-guide">
+                    Para volar alto, el equipaje debe ser ligero. Identifica las cargas que ya no te pertenecen.
+                </div>
 
                 <div className="space-y-16">
                     {modules.map((mod, i) => (

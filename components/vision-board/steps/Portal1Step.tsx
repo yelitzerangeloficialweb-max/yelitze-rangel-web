@@ -87,16 +87,17 @@ Reflexión final actual: ${value}`;
                     PORTAL 1
                 </span>
                 <h2 className="text-5xl md:text-7xl font-editorial text-[#2D2926] leading-tight">Cierre Consciente</h2>
-                <p className="text-[#3C2A21] italic text-xl md:text-2xl font-editorial tracking-wide opacity-90">¿A dónde se fue mi energía?</p>
-                <p className="text-[#3C2A21]/70 text-sm md:text-base font-guide max-w-2xl mx-auto leading-relaxed mt-4">
-                    Antes de sembrar las semillas de tu nueva arquitectura, es vital limpiar la maleza. El desgaste no es falta de capacidad, sino una señal de que tu energía está invertida en el lugar equivocado. Cerrar conscientemente es recuperar el poder que dejaste en el pasado para traerlo al presente.
-                </p>
+                <p className="text-[#3C2A21] italic text-xl md:text-2xl font-editorial tracking-wide opacity-90">¿Dónde se fue mi energía?</p>
             </div>
 
             {/* Main Workspace */}
             <div className="bg-white p-8 md:p-16 rounded-[3rem] shadow-[0_20px_60px_rgba(45,41,38,0.06)] border border-[#3C2A21]/10 relative overflow-hidden mb-12">
                 {/* Active Zone Marker */}
                 <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-[75%] bg-[#8C4005] rounded-r-full" />
+
+                <div className="mb-12 p-6 bg-[#F9F7F2] rounded-2xl text-sm md:text-base text-[#3C2A21]/80 leading-relaxed italic border-l-4 border-[#8C4005] font-guide">
+                    Antes de sembrar semillas nuevas, es preciso limpiar el terreno y reconocer qué ciclos estamos cerrando.
+                </div>
 
                 <div className="space-y-16">
                     {modules.map((mod, i) => (
