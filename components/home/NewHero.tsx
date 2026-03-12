@@ -70,10 +70,10 @@ export default function NewHero() {
                 </button>
             </div>
 
-            {/* Organic Bottom Curve with Brush Strokes */}
-            <div className="absolute bottom-[-2px] left-0 right-0 z-30 pointer-events-none">
-                {/* Logo/Watermark at bottom center */}
-                <div className="absolute bottom-28 md:bottom-32 left-1/2 -translate-x-1/2 z-40 opacity-30">
+            {/* Organic Bottom Divider using Brush Transition */}
+            <div className="absolute bottom-0 left-0 right-0 z-30 pointer-events-none">
+                {/* Logo/Watermark */}
+                <div className="absolute bottom-48 left-1/2 -translate-x-1/2 z-40 opacity-20">
                     <Image
                         src="/assets/images/watermark-logo.png"
                         alt="Logo"
@@ -83,29 +83,16 @@ export default function NewHero() {
                     />
                 </div>
 
-                {/* Dark Brush Decoration Gradient Shadow */}
-                <div className="absolute bottom-0 left-0 w-full h-[150px] md:h-[220px] bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10" />
-
-                {/* Main White Curve SVG */}
-                <svg
-                    viewBox="0 0 1440 240"
-                    fill="none"
-                    preserveAspectRatio="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-full h-[140px] md:h-[260px] relative z-20"
-                >
-                    <path
-                        d="M0 240H1440V120C1440 120 1080 0 720 0C360 0 0 120 0 120V240Z"
-                        fill="white"
+                {/* Brush Separator Image */}
+                <div className="relative w-full h-[180px] md:h-[320px] overflow-visible">
+                    <Image
+                        src="/assets/images/brush-separator.png"
+                        alt="Brush border"
+                        fill
+                        className="object-cover object-bottom translate-y-1 scale-x-105"
+                        priority
                     />
-                    {/* Artistic Line Detail */}
-                    <path
-                        d="M0 122C360 122 720 2 1080 2C1440 2 1440 122 1440 122"
-                        stroke="black"
-                        strokeWidth="0.5"
-                        className="opacity-10"
-                    />
-                </svg>
+                </div>
             </div>
         </section>
     );
