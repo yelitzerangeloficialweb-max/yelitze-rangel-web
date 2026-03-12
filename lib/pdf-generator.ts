@@ -1,6 +1,6 @@
 import { jsPDF } from 'jspdf';
 
-export async function generateVisionBoardPDF(name: string, analysis: any, pillars: any[], gender: string) {
+export async function generateVisionBoardPDF(name: string, analysis: any, pillars: any[], gender: string, portalReflections?: Record<string, string>) {
     const pdf = new jsPDF('p', 'mm', 'a4');
     const pageWidth = pdf.internal.pageSize.getWidth();
     const pageHeight = pdf.internal.pageSize.getHeight();
@@ -123,8 +123,6 @@ export async function generateVisionBoardPDF(name: string, analysis: any, pillar
                 // Silently skip if image data is invalid
             }
         }
-
-        pdf.setTextColor(45, 41, 38);
         pdf.setFontSize(7);
         pdf.setFont('helvetica', 'bold');
         const titleLines = pdf.splitTextToSize(p.title || '', 40);
@@ -173,89 +171,114 @@ export async function generateVisionBoardPDF(name: string, analysis: any, pillar
     pdf.setFillColor(255, 255, 255);
     pdf.rect(0, 0, pageWidth, pageHeight, 'F');
 
-    y = 30;
+    y = 25;
     pdf.setTextColor(140, 64, 5);
     pdf.setFontSize(10);
     pdf.setFont('helvetica', 'bold');
     pdf.text('BITÁCORA DE CONSTRUCCIÓN', pageWidth / 2, y, { align: 'center' });
     y += 10;
     pdf.setTextColor(45, 41, 38);
-    pdf.setFontSize(22);
-    pdf.text(`La Ruta de la ${isMale ? 'Arquitecta' : 'Arquitecto'}`, pageWidth / 2, y, { align: 'center' });
-    y += 20;
+    pdf.setFontSize(20);
+    pdf.text(`La Ruta del ${isMale ? 'Arquitecto' : 'Arquitecta'}`, pageWidth / 2, y, { align: 'center' });
+    y += 15;
 
-    // Actions Section
+    // Actions Section - More compact
     pdf.setFillColor(249, 247, 242);
-    pdf.rect(margin, y, pageWidth - margin * 2, 70, 'F');
-    let actionY = y + 10;
+    pdf.rect(margin, y, pageWidth - margin * 2, 55, 'F');
+    let actionY = y + 8;
     pdf.setTextColor(140, 64, 5);
-    pdf.setFontSize(12);
+    pdf.setFontSize(11);
     pdf.text('PASOS DE ACCIÓN INMEDIATA', margin + 10, actionY);
-    actionY += 10;
+    actionY += 8;
     pdf.setTextColor(45, 41, 38);
-    pdf.setFontSize(10);
+    pdf.setFontSize(9);
     pdf.setFont('helvetica', 'normal');
     
     const actionSteps = (analysis.guide_steps && analysis.guide_steps.length > 0)
         ? analysis.guide_steps
         : pillars.map(p => p.action).filter(a => a && a.trim() !== '');
 
-    actionSteps.slice(0, 5).forEach((step: string, i: number) => {
+    actionSteps.slice(0, 4).forEach((step: string, i: number) => {
         const stepLines = pdf.splitTextToSize(`${i + 1}. ${step}`, pageWidth - margin * 2 - 20);
         pdf.text(stepLines, margin + 10, actionY);
-        actionY += (stepLines.length * 5) + 2;
+        actionY += (stepLines.length * 4.5) + 1.5;
     });
 
-    y += 85;
+    y += 65;
 
-    // Reflections Section
-    pdf.setTextColor(45, 41, 38);
-    pdf.setFontSize(12);
+    // Reflections Section - NEW!
+    if (portalReflections) {
+        pdf.setTextColor(140, 64, 5);
+        pdf.setFontSize(11);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text('REFLEXIONES DE LOS PORTALES', margin, y);
+        y += 8;
+        
+        pdf.setFont('helvetica', 'italic');
+        pdf.setFontSize(8);
+        const reflectionEntries = Object.entries(portalReflections);
+        
+        // Render 4 reflections in a simplified way
+        const portalNames: Record<string, string> = {
+            'portal1': 'Cierre',
+            'portal2': 'Foco',
+            'portal3': 'Poder',
+            'portal4': 'Orden'
+        };
+
+        reflectionEntries.slice(0, 4).forEach(([id, text], idx) => {
+            const label = `P${idx + 1} (${portalNames[id] || id}): `;
+            const lines = pdf.splitTextToSize(label + `"${text}"`, pageWidth - margin * 2);
+            pdf.setTextColor(184, 131, 90);
+            pdf.setFont('helvetica', 'bolditalic');
+            pdf.text(label, margin, y);
+            
+            pdf.setTextColor(80, 80, 80);
+            pdf.setFont('helvetica', 'italic');
+            const labelWidth = pdf.getTextWidth(label);
+            pdf.text(pdf.splitTextToSize(`"${text}"`, pageWidth - margin * 2 - labelWidth), margin + labelWidth, y);
+            
+            y += (lines.length * 4) + 2;
+        });
+        y += 5;
+    }
+
+    // Manifesto Section
     pdf.setFont('helvetica', 'bold');
-    pdf.text('REFLEXIONES DE LOS PORTALES', margin, y);
-    y += 10;
-    
-    const reflections = analysis.reflections || {}; // Should be passed but analysis might have it or not
-    // If not in analysis, we rely on the caller but here we'll just show what we can
-    // In analyze-board/route.ts, we have reflections variables.
-    
-    // Note: Since lib/pdf-generator doesn't get reflections mapping directly from analysis object (usually)
-    // we should update the route to pass it or use analysis summary if available.
-    // For now, let's just use the space for the Manifesto.
-
-    pdf.setFont('helvetica', 'normal');
-    pdf.setFontSize(10);
+    pdf.setFontSize(11);
     pdf.setTextColor(140, 64, 5);
     pdf.text('MI MANIFIESTO DE PODER:', margin, y);
-    y += 8;
+    y += 7;
     pdf.setTextColor(45, 41, 38);
     pdf.setFont('helvetica', 'italic');
+    pdf.setFontSize(10);
     const manifestoLines = pdf.splitTextToSize(analysis.manifesto || 'No hay manifiesto disponible.', pageWidth - margin * 2);
     pdf.text(manifestoLines, margin, y);
-    y += (manifestoLines.length * 6) + 15;
+    y += (manifestoLines.length * 5) + 12;
 
-    // Technical Details
+    // Release & Practice
     pdf.setFont('helvetica', 'bold');
     pdf.setFontSize(9);
     pdf.setTextColor(140, 64, 5);
-    pdf.text('SOBERANÍA SISTÉMICA / LO QUE SUELTAS:', margin, y);
-    y += 6;
+    pdf.text('SOBERANÍA SISTÉMICA / LO QUE SUELTO:', margin, y);
+    y += 5;
     pdf.setFont('helvetica', 'normal');
     pdf.setTextColor(45, 41, 38);
-    const releaseLines = pdf.splitTextToSize(analysis.release || '', pageWidth - margin * 2);
+    const releaseLines = pdf.splitTextToSize(analysis.release || 'Lo que ya no me pertenece.', pageWidth - margin * 2);
     pdf.text(releaseLines, margin, y);
-    y += (releaseLines.length * 5) + 10;
+    y += (releaseLines.length * 4.5) + 8;
 
     pdf.setFont('helvetica', 'bold');
     pdf.setTextColor(140, 64, 5);
     pdf.text('PRÁCTICA MAESTRA / HÁBITO:', margin, y);
-    y += 6;
+    y += 5;
     pdf.setFont('helvetica', 'normal');
     pdf.setTextColor(45, 41, 38);
-    const practiceLines = pdf.splitTextToSize(analysis.practice || '', pageWidth - margin * 2);
+    const practiceLines = pdf.splitTextToSize(analysis.practice || 'Mi ritual de orden diario.', pageWidth - margin * 2);
     pdf.text(practiceLines, margin, y);
 
     addFooter(3, 3);
 
     return Buffer.from(pdf.output('arraybuffer'));
 }
+

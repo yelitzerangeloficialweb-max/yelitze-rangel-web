@@ -1,35 +1,3 @@
-@font-face {
-  font-family: 'Playfair Display';
-  src: url('/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Playfair Display';
-  src: url('/fonts/Playfair_Display/PlayfairDisplay-Italic-VariableFont_wght.ttf') format('truetype');
-  font-weight: 100 900;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Allison';
-  src: url('/fonts/Allison/Allison-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('/fonts/Inter/Inter-VariableFont_opsz,wght.ttf') format('truetype');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -78,13 +46,13 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter), sans-serif;
 }
 
 h1,
 h2,
 h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-playfair), serif;
   font-weight: 700;
   letter-spacing: -0.01em;
 }
@@ -92,12 +60,20 @@ h3 {
 h4,
 h5,
 h6 {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-playfair), serif;
   font-weight: 500;
 }
 
 .font-script {
-  font-family: 'Great Vibes', cursive;
+  font-family: var(--font-allison), cursive;
+}
+
+.font-editorial {
+  font-family: var(--font-cormorant), serif;
+}
+
+.font-guide {
+  font-family: var(--font-montserrat), sans-serif;
 }
 
 /* Smooth Scrolling */

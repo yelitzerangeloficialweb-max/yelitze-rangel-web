@@ -135,12 +135,6 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#8C4005]/10 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
             <div className="absolute -bottom-24 -left-24 w-[500px] h-[500px] bg-[#B8835A]/5 blur-[120px] rounded-full pointer-events-none" />
 
-            <style jsx global>{`
-                @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap');
-                
-                .font-editorial { font-family: 'Cormorant Garamond', serif; }
-                .font-guide { font-family: 'Montserrat', sans-serif; }
-            `}</style>
 
             {/* Header Section */}
             <div className="text-center mb-12 space-y-2">

@@ -109,7 +109,7 @@ export async function POST(req: Request) {
         // 3. GENERATE PDF AND SEND EMAIL WITH RESULTS
         if (userEmail && userName) {
             try {
-                const pdfBuffer = await generateVisionBoardPDF(userName, analysisObj, pillars, userGender);
+                const pdfBuffer = await generateVisionBoardPDF(userName, analysisObj, pillars, userGender, reflections);
 
                 await sendVisionBoardEmail({
                     email: userEmail,

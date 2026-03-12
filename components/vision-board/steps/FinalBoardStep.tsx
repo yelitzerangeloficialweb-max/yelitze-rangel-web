@@ -153,6 +153,28 @@ export default function FinalBoardStep({
                             <p className="text-2xl mt-2">YELITZE RANGEL</p>
                             <p className="text-[#B8835A] text-sm italic">Mentora de Vida y Diseño Intencional</p>
                         </div>
+
+                        {/* Results Bitácora in UI too */}
+                        {data.analysis && (
+                            <div className="mt-16 pt-16 border-t border-[#B8835A20] space-y-12">
+                                <div className="grid md:grid-cols-2 gap-8">
+                                    <div className="bg-[#FDFBF7] p-8 rounded-2xl border border-[#B8835A10] space-y-4">
+                                        <h5 className="text-[#8C4005] font-bold text-sm tracking-widest uppercase font-guide italic">Mi Manifiesto 2026</h5>
+                                        <p className="text-xl md:text-2xl italic font-editorial leading-relaxed text-[#2D2926]">"{data.analysis.manifesto}"</p>
+                                    </div>
+                                    <div className="space-y-6">
+                                        <div className="bg-[#FDFBF7] p-6 rounded-xl border border-[#B8835A10]">
+                                            <h5 className="text-[#8C4005] font-bold text-[10px] tracking-widest uppercase font-guide mb-2">Soberanía Sistémica / Lo que hoy suelto</h5>
+                                            <p className="text-[#2D2926] opacity-80 font-editorial text-lg">{data.analysis.release}</p>
+                                        </div>
+                                        <div className="bg-[#FDFBF7] p-6 rounded-xl border border-[#B8835A10]">
+                                            <h5 className="text-[#8C4005] font-bold text-[10px] tracking-widest uppercase font-guide mb-2">Práctica Maestra / Mi ritual de orden</h5>
+                                            <p className="text-[#2D2926] opacity-80 font-editorial text-lg">{data.analysis.practice}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
@@ -243,7 +265,7 @@ export default function FinalBoardStep({
                             <h2 className="text-2xl font-editorial uppercase tracking-widest">Plano Maestro 2026</h2>
                         </div>
                         <div className="text-right">
-                            <p className="text-[10px] font-guide text-gray-400">PÁGINA 01/03</p>
+                            <p className="text-[10px] font-guide text-gray-400">PÁGINA 01/04</p>
                         </div>
                     </div>
 
@@ -274,7 +296,7 @@ export default function FinalBoardStep({
                         <div className="text-center mb-12">
                              <span className="text-[10px] font-guide font-bold text-[#8C4005] uppercase tracking-[0.5em] block mb-2">Configuración Final</span>
                              <h2 className="text-5xl font-editorial text-[#2D2926]">Tablero de Visión</h2>
-                             <div className="flex justify-center mt-4"><p className="text-[10px] font-guide text-gray-400">PÁGINA 02/03</p></div>
+                             <div className="flex justify-center mt-4"><p className="text-[10px] font-guide text-gray-400">PÁGINA 02/04</p></div>
                         </div>
 
                         <div className="grid grid-cols-3 grid-rows-3 w-full gap-8 items-center justify-items-center flex-grow">
@@ -309,8 +331,8 @@ export default function FinalBoardStep({
                                 Bitácora de Construcción
                             </span>
                         </div>
-                        <h2 className="text-5xl font-editorial text-[#2D2926]">La Ruta de la {isMale ? 'Arquitecta' : 'Arquitecto'}</h2>
-                        <div className="flex justify-center mt-2"><p className="text-[10px] font-guide text-gray-400">PÁGINA 03/03</p></div>
+                        <h2 className="text-5xl font-editorial text-[#2D2926]">La Ruta del {isMale ? 'Arquitecto' : 'Arquitecta'}</h2>
+                        <div className="flex justify-center mt-2"><p className="text-[10px] font-guide text-gray-400">PÁGINA 03/04</p></div>
                     </div>
 
                     {/* Steps Section */}
@@ -369,6 +391,47 @@ export default function FinalBoardStep({
                     <div className="pt-12 text-center">
                         <p className="text-[10px] uppercase font-guide font-bold tracking-[0.4em] text-[#B8835A] mb-2 opacity-40">Diseño Intencional 2026</p>
                         <p className="text-[8px] font-guide text-gray-300">©{new Date().getFullYear()} Yelitze Rangel</p>
+                    </div>
+                </div>
+
+                {/* PDF PAGE 4: MANIFIESTO Y COMPROMISO */}
+                <div className="min-h-[1120px] p-24 bg-white flex flex-col">
+                    <div className="text-center space-y-6 mb-16">
+                        <div className="flex justify-center">
+                            <span className="bg-[#B8835A] text-white px-10 py-3 rounded-full text-[10px] font-bold uppercase tracking-[0.4em] font-guide">
+                                Manifiesto y Compromiso
+                            </span>
+                        </div>
+                        <h2 className="text-5xl font-editorial text-[#2D2926]">Mi Nueva Realidad</h2>
+                        <div className="flex justify-center mt-2"><p className="text-[10px] font-guide text-gray-400">PÁGINA 04/04</p></div>
+                    </div>
+
+                    <div className="flex-grow space-y-20 pt-10">
+                        <div className="text-center space-y-10 px-12">
+                            <p className="text-[10px] uppercase tracking-[0.5em] text-[#8C4005] font-guide font-bold opacity-60">Declaración de Poder</p>
+                            <p className="text-4xl font-editorial italic text-[#2D2926] leading-relaxed">
+                                "{data.analysis?.manifesto || 'Yo soy el arquitecto de mi propia paz y abundancia.'}"
+                            </p>
+                            <div className="w-24 h-px bg-[#B8835A]/30 mx-auto" />
+                        </div>
+
+                        <div className="grid grid-cols-1 gap-12">
+                            <div className="bg-[#FDFBF7] p-12 rounded-[2rem] border border-[#B8835A15] relative overflow-hidden">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-[#B8835A] opacity-5 -translate-y-1/2 translate-x-1/2 rounded-full" />
+                                <h4 className="text-[10px] uppercase tracking-[0.3em] font-guide font-bold text-[#8C4005] mb-6">Soberanía Sistémica / Lo que hoy suelto</h4>
+                                <p className="text-2xl font-editorial text-[#2D2926] opacity-90">{data.analysis?.release || 'Las lealtades que ya no me pertenecen.'}</p>
+                            </div>
+
+                            <div className="bg-[#FDFBF7] p-12 rounded-[2rem] border border-[#B8835A15] relative overflow-hidden">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-[#B8835A] opacity-5 -translate-y-1/2 translate-x-1/2 rounded-full" />
+                                <h4 className="text-[10px] uppercase tracking-[0.3em] font-guide font-bold text-[#8C4005] mb-6">Práctica Maestra / Mi ritual de orden</h4>
+                                <p className="text-2xl font-editorial text-[#2D2926] opacity-90">{data.analysis?.practice || 'Habitar mi presente con intención diaria.'}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="pt-20 text-center border-t border-gray-100 italic font-editorial text-[#B8835A] opacity-60">
+                        "La arquitectura de tu vida es el reflejo del orden en tu alma."
                     </div>
                 </div>
             </div>
