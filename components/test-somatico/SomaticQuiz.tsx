@@ -265,6 +265,36 @@ export default function SomaticQuiz() {
                             </div>
                         </div>
 
+                        {/* Venezuela en el Cuerpo Highlight */}
+                        <motion.div 
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            className="bg-[#8C4005] text-[#F5EFE6] p-12 md:p-20 rounded-[5rem] shadow-2xl relative overflow-hidden group"
+                        >
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-[#B8835A]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-700" />
+                            <div className="relative z-10 flex flex-col md:flex-row items-center gap-12 text-center md:text-left">
+                                <div className="space-y-6 flex-1">
+                                    <span className="text-[#B8835A] font-bold tracking-[0.4em] uppercase text-xs block font-guide">Evento Especial</span>
+                                    <h3 className="text-4xl md:text-6xl font-editorial leading-tight">
+                                        Tour Nacional:<br />
+                                        <span className="italic text-[#B8835A]">Venezuela en el Cuerpo</span>
+                                    </h3>
+                                    <p className="text-xl md:text-2xl font-editorial opacity-80 max-w-2xl leading-relaxed">
+                                        Si tu sistema nervioso está en modo supervivencia, este movimiento de regulación personal y colectiva es el espacio para recuperar tu soberanía.
+                                    </p>
+                                </div>
+                                <div className="flex-shrink-0">
+                                    <Link 
+                                        href="/venezuela-en-el-cuerpo"
+                                        className="inline-flex items-center gap-4 bg-[#F5EFE6] text-[#8C4005] px-10 py-6 rounded-2xl font-bold uppercase tracking-[0.2em] text-xs hover:scale-105 transition-transform shadow-xl group/btn"
+                                    >
+                                        Inscribirme al Tour
+                                        <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform" />
+                                    </Link>
+                                </div>
+                            </div>
+                        </motion.div>
+
                         <div className="bg-white p-12 md:p-24 rounded-[5rem] border border-[#B8835A]/10 text-center space-y-12">
                             <h4 className="text-4xl md:text-5xl font-editorial text-[#2D2926]">¿Deseas dar el siguiente paso en tu regulación?</h4>
                             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
