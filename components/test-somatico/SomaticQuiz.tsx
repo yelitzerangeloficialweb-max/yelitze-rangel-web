@@ -295,15 +295,6 @@ export default function SomaticQuiz() {
                             </div>
                         </motion.div>
 
-                        <div className="bg-white p-12 md:p-24 rounded-[5rem] border border-[#B8835A]/10 text-center space-y-12">
-                            <h4 className="text-4xl md:text-5xl font-editorial text-[#2D2926]">¿Deseas dar el siguiente paso en tu regulación?</h4>
-                            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                                <Link href="/servicios/sesiones-corporales" className="btn-somatic">Agendar mi sesión de Neurobreathwork</Link>
-                                <Link href="/servicios" className="btn-somatic">Explorar terapia EFT</Link>
-                                <Link href="/servicios" className="btn-somatic">Descubrir el EMDR</Link>
-                                <Link href="/contacto" className="btn-somatic bg-[#8C4005] text-white">Reserva tu evaluación de Kinesiología</Link>
-                            </div>
-                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>
