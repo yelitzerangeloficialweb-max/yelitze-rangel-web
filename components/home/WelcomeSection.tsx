@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function WelcomeSection() {
     return (
-        <section className="py-24 bg-white overflow-hidden">
+        <section className="py-24 bg-[#FFFFFF] overflow-hidden">
             <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row items-center gap-16">
                     {/* Text Content */}
