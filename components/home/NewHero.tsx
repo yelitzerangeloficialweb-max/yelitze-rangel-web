@@ -84,12 +84,14 @@ export default function NewHero() {
                 </div>
 
                 {/* Brush Separator Image */}
-                <div className="relative w-full h-[180px] md:h-[320px] overflow-visible">
+                <div className="relative w-full flex justify-center overflow-hidden leading-none translate-y-[2px]">
                     <Image
                         src="/assets/images/brush-separator.png"
                         alt="Brush border"
-                        fill
-                        className="object-cover object-bottom translate-y-1 scale-x-105"
+                        width={2560}
+                        height={600}
+                        quality={100}
+                        className="w-full h-auto min-h-[100px] object-cover object-bottom"
                         priority
                     />
                 </div>
