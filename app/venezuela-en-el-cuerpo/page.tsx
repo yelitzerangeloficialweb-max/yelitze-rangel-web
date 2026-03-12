@@ -116,7 +116,7 @@ export default function VenezuelaEnElCuerpoPage() {
                             "Primero sana el cuerpo… y luego cambia la historia."
                         </p>
                         <p className="text-[#2D2926] text-lg font-light mb-10 max-w-xl leading-relaxed">
-                            Esto no es solo una conferencia. Es una experiencia de regulación <strong className="text-[#8C4005] font-bold underline decoration-[#C1530A]/30">presencial u online</strong>. Es un espacio seguro para comprender lo que el cuerpo guarda y para ampliar nuestra capacidad de bienestar en vivo.
+                            Esto no es solo una conferencia. Es una experiencia de regulación <strong className="text-[#8C4005] font-bold underline decoration-[#C1530A]/30">presencial u online</strong>. Es un espacio seguro para comprender lo que el cuerpo guarda y para ampliar nuestra capacidad de bienestar.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-6">
                             <Link
@@ -356,7 +356,7 @@ export default function VenezuelaEnElCuerpoPage() {
                             {
                                 icon: QrCode,
                                 title: "Pase de Acceso QR",
-                                desc: "Tu entrada personal e intransferible para el evento digital en vivo."
+                                desc: "Tu entrada personal e intransferible para el evento digital."
                             },
                             {
                                 icon: CheckCircle2,
@@ -472,7 +472,7 @@ export default function VenezuelaEnElCuerpoPage() {
                             },
                             {
                                 q: "¿Tengo que estar en Venezuela para participar?",
-                                a: "No necesariamente. Aunque el tour tiene encuentros presenciales en Venezuela, el formato también permite la participación online desde cualquier parte del mundo, permitiéndote vivir la experiencia de regulación somática en comunidad y en vivo."
+                                a: "No necesariamente. Aunque el tour tiene encuentros presenciales en Venezuela, el formato también permite la participación online desde cualquier parte del mundo, permitiéndote vivir la experiencia de regulación somática en comunidad."
                             }
                         ].map((item, i) => (
                             <FadeIn key={i}>
