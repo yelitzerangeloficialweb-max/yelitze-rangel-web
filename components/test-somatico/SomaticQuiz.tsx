@@ -87,6 +87,30 @@ export default function SomaticQuiz() {
         }
     };
 
+    const getStressType = () => {
+        const cat1 = (answers[1] || 0) + (answers[2] || 0) + (answers[3] || 0);
+        const cat2 = (answers[4] || 0) + (answers[5] || 0) + (answers[6] || 0);
+        const cat3 = (answers[7] || 0);
+
+        if (cat2 > cat1 && cat2 > cat3) return {
+            type: "Estrés de Supervivencia (Congelamiento)",
+            desc: "Tu cuerpo ha guardado memorias de amenaza que no pudieron completarse. Vives en una 'pausa' biológica que consume tu energía vital.",
+            icon: Zap
+        };
+        if (cat1 > cat2 && cat1 > cat3) return {
+            type: "Estrés de Anticipación (Fascial)",
+            desc: "Tu red fascial está organizada para un peligro inminente. Tu abdomen y diafragma actúan como un escudo constante, limitando tu expansión.",
+            icon: Activity
+        };
+        return {
+            type: "Desregulación del Sistema Nervioso",
+            desc: "Tu sistema tiene dificultades para encontrar el camino de regreso a la calma. Los ciclos de alerta se disparan sin un cierre claro.",
+            icon: Brain
+        };
+    };
+
+    const stressResult = getStressType();
+
     return (
         <div className="relative z-10 w-full">
             <AnimatePresence mode="wait">
@@ -210,21 +234,30 @@ export default function SomaticQuiz() {
                         animate={{ opacity: 1, y: 0 }}
                         className="max-w-5xl mx-auto space-y-20"
                     >
-                        <div className="bg-[#2D2926] text-[#F5EFE6] p-16 md:p-24 rounded-[5rem] shadow-2xl relative overflow-hidden text-center space-y-10">
+                        <div className="bg-[#2D2926] text-[#F5EFE6] p-16 md:p-24 rounded-[5rem] shadow-2xl relative overflow-hidden text-center space-y-12">
                             <div className="absolute inset-0 bg-gradient-to-br from-[#8C4005]/20 to-transparent pointer-events-none" />
-                            <div className="relative z-10 space-y-6">
+                            <div className="relative z-10 space-y-8">
                                 <div className="flex justify-center">
-                                    <div className="bg-[#B8835A] p-4 rounded-full">
-                                        <CheckCircle2 className="w-8 h-8 text-white" />
+                                    <div className="bg-[#B8835A] p-6 rounded-full shadow-lg">
+                                        <stressResult.icon className="w-10 h-10 text-white" />
                                     </div>
                                 </div>
-                                <h2 className="text-3xl md:text-5xl font-editorial leading-tight">
-                                    {totalScore >= 3.5 
-                                        ? "Tu sistema nervioso parece estar sosteniendo emociones no resueltas en tu red fascial, organizando tu cuerpo alrededor de una amenaza que ya pasó."
-                                        : "Tu red fascial muestra signos de regulación, aunque hay áreas que podrían beneficiarse de una mayor integración somática."
-                                    }
-                                </h2>
+                                <div className="space-y-4">
+                                    <span className="text-[#B8835A] font-bold tracking-[0.4em] uppercase text-xs block font-guide">Tu Tipo de Estrés Somático</span>
+                                    <h2 className="text-4xl md:text-6xl font-editorial leading-tight text-[#B8835A]">
+                                        {stressResult.type}
+                                    </h2>
+                                </div>
+                                <p className="text-xl md:text-3xl font-editorial italic opacity-90 max-w-3xl mx-auto leading-relaxed">
+                                    {stressResult.desc}
+                                </p>
                                 <div className="w-24 h-px bg-[#B8835A] mx-auto opacity-40" />
+                                <p className="text-lg md:text-xl font-body font-light max-w-2xl mx-auto text-[#F5EFE6]/70">
+                                    {totalScore >= 3.5 
+                                        ? "Tu sistema nervioso parece estar organizando tu cuerpo alrededor de una amenaza que ya pasó. Esta información es vital para tu proceso en 'Venezuela en el Cuerpo'."
+                                        : "Muestras signos de regulación, pero hay memorias específicas en tu fascia que están condicionando tu respuesta al entorno."
+                                    }
+                                </p>
                             </div>
                         </div>
 
