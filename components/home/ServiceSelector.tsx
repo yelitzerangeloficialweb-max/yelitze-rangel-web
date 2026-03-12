@@ -27,11 +27,11 @@ export default function ServiceSelector() {
     return (
         <section className="py-24 bg-surface/50">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-20">
+                <div className="text-center mb-20 relative z-10">
                     <span className="text-sm font-medium tracking-[0.2em] uppercase opacity-60">
-                        ENCUENTRA TU CAMINO
+                        ECOSISTEMA DE EVOLUCIÓN
                     </span>
-                    <h2 className="mt-4 text-4xl md:text-6xl font-script text-accent italic">
+                    <h2 className="mt-4 text-5xl md:text-7xl font-script text-accent italic">
                         ¿Cómo quieres comenzar?
                     </h2>
                 </div>

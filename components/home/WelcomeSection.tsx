@@ -6,8 +6,8 @@ import { motion } from "framer-motion";
 
 export default function WelcomeSection() {
     return (
-        <section className="py-24 bg-[#FFFFFF] overflow-hidden">
-            <div className="container mx-auto px-4">
+        <section className="py-24 bg-[#FFFFFF] relative overflow-visible">
+            <div className="container mx-auto px-4 relative z-10">
                 <div className="flex flex-col md:flex-row items-center gap-16">
                     {/* Text Content */}
                     <motion.div
@@ -72,6 +72,18 @@ export default function WelcomeSection() {
                         <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-accent/10 rounded-full blur-3xl z-0" />
                     </motion.div>
                 </div>
+            </div>
+
+            {/* Squiggly line crossing to next section */}
+            <div className="absolute -bottom-[25%] md:-bottom-[35%] xl:-bottom-[40%] left-0 w-[200%] md:w-[150%] xl:w-[110%] pointer-events-none z-0 mix-blend-multiply opacity-90 -translate-x-[10%]">
+                <Image
+                    src="/assets/images/squiggly-line.png"
+                    alt="Decorative line"
+                    width={1920}
+                    height={800}
+                    quality={100}
+                    className="w-full h-auto object-contain"
+                />
             </div>
         </section >
     );
