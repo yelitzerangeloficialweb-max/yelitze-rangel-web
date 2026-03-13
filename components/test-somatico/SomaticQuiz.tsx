@@ -19,21 +19,21 @@ import Link from 'next/link';
 const QUESTIONS = [
     {
         id: 1,
-        category: "Restricciones Físicas (La Fascia)",
+        category: "Restricciones Físicas (La Fascia Corporal)",
         text: "¿Sientes tu abdomen contraído de forma constante?",
         context: "(Esto es un signo de anticipación crónica)",
     },
     {
         id: 2,
-        category: "Restricciones Físicas (La Fascia)",
+        category: "Restricciones Físicas (La Fascia Corporal)",
         text: "¿Sientes rigidez profunda en la cadera o el músculo psoas?",
         context: "(Refleja un cuerpo preparado para huir que nunca terminó de hacerlo)",
     },
     {
         id: 3,
-        category: "Restricciones Físicas (La Fascia)",
+        category: "Restricciones Físicas (La Fascia Corporal)",
         text: "¿Sientes que una tensión en tu diafragma o pecho se refleja como dolor en tus cervicales?",
-        context: "(Esto ocurre porque la fascia es una red continua y transmite tensiones de un área a otra)",
+        context: "(Esto ocurre porque la fascia corporal es una red continua y transmite tensiones de un área a otra)",
     },
     {
         id: 4,
@@ -68,9 +68,10 @@ const OPTIONS = [
 ];
 
 export default function SomaticQuiz() {
-    const [step, setStep] = useState<'intro' | 'quiz' | 'result'>('intro');
+    const [step, setStep] = useState<'intro' | 'quiz' | 'reflection' | 'result'>('intro');
     const [currentIndex, setCurrentIndex] = useState(0);
     const [answers, setAnswers] = useState<Record<number, number>>({});
+    const [reflection, setReflection] = useState('');
 
     const currentQuestion = QUESTIONS[currentIndex];
     const progress = (currentIndex / QUESTIONS.length) * 100;
@@ -83,7 +84,7 @@ export default function SomaticQuiz() {
         if (currentIndex < QUESTIONS.length - 1) {
             setCurrentIndex(prev => prev + 1);
         } else {
-            setStep('result');
+            setStep('reflection');
         }
     };
 
@@ -92,20 +93,27 @@ export default function SomaticQuiz() {
         const cat2 = (answers[4] || 0) + (answers[5] || 0) + (answers[6] || 0);
         const cat3 = (answers[7] || 0);
 
-        if (cat2 > cat1 && cat2 > cat3) return {
-            type: "Estrés de Supervivencia (Congelamiento)",
-            desc: "Tu cuerpo ha guardado memorias de amenaza que no pudieron completarse. Vives en una 'pausa' biológica que consume tu energía vital.",
+        // More refined logic:
+        if (cat2 >= 2) return {
+            type: "Estrés de Supervivencia (Congelamiento Profundo)",
+            desc: "Tu cuerpo ha guardado memorias de amenaza que no pudieron completarse. Vives en una 'pausa' biológica que consume tu energía vital. Sientes que hay algo 'atrapado' que no te permite avanzar.",
             icon: Zap
         };
-        if (cat1 > cat2 && cat1 > cat3) return {
-            type: "Estrés de Anticipación (Fascial)",
-            desc: "Tu red fascial está organizada para un peligro inminente. Tu abdomen y diafragma actúan como un escudo constante, limitando tu expansión.",
+        if (cat1 >= 2) return {
+            type: "Estrés de Anticipación (Bloqueo Fascial Corporal)",
+            desc: "Tu fascia corporal está organizada para un peligro inminente. Tu abdomen y diafragma actúan como un escudo constante, limitando tu expansión y soberanía.",
             icon: Activity
         };
-        return {
-            type: "Desregulación del Sistema Nervioso",
-            desc: "Tu sistema tiene dificultades para encontrar el camino de regreso a la calma. Los ciclos de alerta se disparan sin un cierre claro.",
+        if (cat3 >= 0.5) return {
+            type: "Hipersensibilidad y Desregulación",
+            desc: "Tu sistema tiene dificultades para encontrar el camino de regreso a la calma. Los ciclos de alerta se disparan pero tu cuerpo ya está intentando liberar de forma espontánea.",
             icon: Brain
+        };
+        
+        return {
+            type: "Tensión Somática Latente",
+            desc: "Tu sistema mantiene un nivel de alerta funcional, pero hay áreas de tu red fascial que necesitan ser movilizadas para evitar que el patrón se cronifique.",
+            icon: Sparkles
         };
     };
 
@@ -129,13 +137,13 @@ export default function SomaticQuiz() {
                             </span>
                             <h1 className="text-5xl md:text-7xl font-editorial text-[#2D2926] leading-tight">
                                 Test Somático<br />
-                                <span className="italic text-[#B8835A]">Identifica tus Emociones Atrapadas en la Fascia</span>
+                                <span className="italic text-[#B8835A]">Identifica tus Emociones Atrapadas en la Fascia Corporal</span>
                             </h1>
                         </div>
 
                         <div className="bg-white/40 backdrop-blur-md p-10 md:p-16 rounded-[4rem] border border-[#B8835A]/10 shadow-xl space-y-8">
                             <p className="text-2xl md:text-3xl font-editorial italic text-[#2D2926] leading-relaxed">
-                                "Las emociones no son solo mentales, son procesos fisiológicos corporales. Cuando no podemos completar el ciclo natural de una emoción (como huir o defendernos), la activación se queda retenida, densificando nuestra red fascial y creando síntomas físicos. Descubre qué emociones podría estar sosteniendo tu cuerpo en este momento."
+                                "Las emociones no son solo mentales, son procesos fisiológicos corporales. Cuando no podemos completar el ciclo natural de una emoción (como huir o defendernos), la activación se queda retenida, densificando nuestra fascia corporal y creando síntomas físicos. Descubre qué emociones podría estar sosteniendo tu cuerpo en este momento."
                             </p>
                             
                             <div className="flex justify-center pt-8">
@@ -226,6 +234,42 @@ export default function SomaticQuiz() {
                     </motion.div>
                 )}
 
+                {/* 2.5 REFLECTION STEP */}
+                {step === 'reflection' && (
+                    <motion.div
+                        key="reflection"
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="max-w-3xl mx-auto space-y-12"
+                    >
+                        <div className="text-center space-y-6">
+                            <h2 className="text-4xl md:text-6xl font-editorial text-[#2D2926]">Espacio de Escucha</h2>
+                            <p className="text-xl font-editorial italic text-[#8C4005]">
+                                Antes de ver tus resultados, tómate un momento... ¿Qué sientes en tu cuerpo ahora mismo al pasar por este proceso?
+                            </p>
+                        </div>
+                        
+                        <div className="bg-white p-10 rounded-[3rem] shadow-xl border border-[#B8835A]/10">
+                            <textarea
+                                value={reflection}
+                                onChange={(e) => setReflection(e.target.value)}
+                                placeholder="Escribe aquí lo que emerge: una tensión, un pensamiento, una emoción..."
+                                className="w-full h-48 p-6 text-xl font-editorial text-[#2D2926] placeholder:text-[#2D2926]/20 bg-transparent border-none focus:ring-0 resize-none"
+                            />
+                        </div>
+
+                        <div className="flex justify-center">
+                            <button
+                                onClick={() => setStep('result')}
+                                className="bg-[#8C4005] text-[#F5EFE6] px-14 py-6 rounded-2xl font-bold uppercase tracking-[0.25em] text-xs hover:scale-[1.05] shadow-xl transition-all flex items-center gap-4 group font-guide"
+                            >
+                                Ver mi diagnóstico
+                                <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                            </button>
+                        </div>
+                    </motion.div>
+                )}
+
                 {/* 3. RESULT STEP */}
                 {step === 'result' && (
                     <motion.div
@@ -254,11 +298,60 @@ export default function SomaticQuiz() {
                                 <div className="w-24 h-px bg-[#B8835A] mx-auto opacity-40" />
                                 <p className="text-lg md:text-xl font-body font-light max-w-2xl mx-auto text-[#F5EFE6]/70">
                                     {totalScore >= 3.5 
-                                        ? "Tu sistema nervioso parece estar organizando tu cuerpo alrededor de una amenaza que ya pasó. Esta información es vital para tu proceso en 'Venezuela en el Cuerpo'."
-                                        : "Muestras signos de regulación, pero hay memorias específicas en tu fascia que están condicionando tu respuesta al entorno."
+                                        ? "Tu sistema nervioso parece estar organizando tu cuerpo alrededor de una amenaza que ya pasó. Esta información es vital para tu proceso en 'Venezuela en el Cuerpo'. El cuerpo no puede crear una mente proactiva si la fascia corporal está en defensa."
+                                        : "Muestras signos de regulación, pero hay memorias específicas en tu fascia corporal que están condicionando tu respuesta al entorno."
                                     }
                                 </p>
                             </div>
+                        </div>
+
+                        {/* Solutions & Exercises */}
+                        <div className="space-y-16">
+                            <div className="text-center space-y-4">
+                                <span className="text-[#8C4005] font-bold tracking-[0.4em] uppercase text-xs block font-guide">Ruta de Regulación</span>
+                                <h3 className="text-4xl md:text-6xl font-editorial text-[#2D2926]">Técnicas de Descongelamiento</h3>
+                            </div>
+
+                            <div className="grid md:grid-cols-2 gap-8">
+                                <ExerciseCard 
+                                    title="Vibración Somática"
+                                    desc="Permite que tu cuerpo tiemble de forma natural. Comienza por las manos y deja que el movimiento suba. Esto libera la energía retenida en la fascia corporal."
+                                />
+                                <ExerciseCard 
+                                    title="Titulación de la Mirada"
+                                    desc="Recorre el espacio donde estás. Nombra 3 objetos que te den seguridad. Ayuda a tu sistema a entender que el peligro ya pasó."
+                                />
+                                <ExerciseCard 
+                                    title="Liberación de Voz: El Sonido 'VOO'"
+                                    desc="Inhala profundo y, al exhalar, emite un sonido grave 'VOOOOO'. Siente la vibración en tu pecho y abdomen. Tonifica el nervio vago."
+                                />
+                                <ExerciseCard 
+                                    title="Resonancia de Hum"
+                                    desc="Cierra los labios y emite un zumbido. Lleva la atención a la garganta. La voz es la herramienta más directa para regular el sistema nervioso."
+                                />
+                            </div>
+                        </div>
+
+                        {/* Educational Links */}
+                        <div className="grid md:grid-cols-2 gap-8">
+                            <Link href="/test-somatico/sintomas-fisicos" className="group">
+                                <div className="bg-white p-12 rounded-[4rem] border border-[#B8835A]/10 hover:border-[#8C4005]/30 transition-all space-y-6">
+                                    <h4 className="text-3xl font-editorial text-[#2D2926]">Síntomas Físicos y Fibromialgia</h4>
+                                    <p className="text-lg font-body font-light text-[#2D2926]/60">Descubre cómo el dolor crónico está vinculado a memorias somáticas.</p>
+                                    <div className="flex items-center gap-2 text-[#8C4005] font-bold text-xs font-guide uppercase tracking-widest">
+                                        Explorar síntomas <ArrowRight className="w-4 h-4" />
+                                    </div>
+                                </div>
+                            </Link>
+                            <Link href="/test-somatico/el-psoas" className="group">
+                                <div className="bg-white p-12 rounded-[4rem] border border-[#B8835A]/10 hover:border-[#8C4005]/30 transition-all space-y-6">
+                                    <h4 className="text-3xl font-editorial text-[#2D2926]">El Músculo PSOAS: Soberanía de Alma</h4>
+                                    <p className="text-lg font-body font-light text-[#2D2926]/60">Entiende por qué este músculo es la clave para una mente proactiva y libre.</p>
+                                    <div className="flex items-center gap-2 text-[#8C4005] font-bold text-xs font-guide uppercase tracking-widest">
+                                        Entender el Psoas <ArrowRight className="w-4 h-4" />
+                                    </div>
+                                </div>
+                            </Link>
                         </div>
 
                         {/* Venezuela en el Cuerpo Highlight */}
@@ -299,6 +392,18 @@ export default function SomaticQuiz() {
                     @apply flex items-center justify-center text-center p-6 rounded-2xl border-2 border-[#8C4005]/10 font-guide text-[10px] font-bold uppercase tracking-widest text-[#8C4005] hover:bg-[#8C4005] hover:text-[#F5EFE6] hover:shadow-xl transition-all h-full;
                 }
             `}</style>
+        </div>
+    );
+}
+
+function ExerciseCard({ title, desc }: { title: string, desc: string }) {
+    return (
+        <div className="bg-white p-10 md:p-14 rounded-[3.5rem] border border-stone-100 shadow-sm hover:shadow-xl transition-all space-y-6">
+            <h4 className="text-2xl font-bold font-editorial text-[#2D2926]">{title}</h4>
+            <div className="w-12 h-px bg-[#B8835A]/30" />
+            <p className="text-lg text-[#2D2926]/70 leading-relaxed font-body font-light italic">
+                {desc}
+            </p>
         </div>
     );
 }
