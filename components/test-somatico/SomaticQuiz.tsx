@@ -261,43 +261,6 @@ export default function SomaticQuiz() {
                             </div>
                         </div>
 
-                        <div className="space-y-16">
-                            <div className="text-center space-y-4">
-                                <span className="text-[#8C4005] font-bold tracking-[0.4em] uppercase text-xs block font-guide">
-                                    Protocolo de Sanación
-                                </span>
-                                <h3 className="text-4xl md:text-6xl font-editorial text-[#2D2926]">
-                                    Recomendaciones Terapéuticas
-                                </h3>
-                                <p className="text-xl md:text-2xl font-editorial italic text-[#8C4005] max-w-3xl mx-auto leading-relaxed">
-                                    "La clave para sanar no es forzar al sistema, sino crear las condiciones de seguridad para que la liberación ocurra de forma natural."
-                                </p>
-                            </div>
-
-                            <div className="grid md:grid-cols-2 gap-8">
-                                <RecommendationCard 
-                                    icon={Wind}
-                                    title="Neurobreathwork"
-                                    desc="Combina respiración consciente conectada, sonido y trabajo fascial somático para llevar al cerebro a estados de mayor integración (ondas theta y gamma). Esto permite que la experiencia congelada se movilice y complete la respuesta fisiológica."
-                                />
-                                <RecommendationCard 
-                                    icon={Sparkles}
-                                    title="EFT (Técnicas de Liberación Emocional)"
-                                    desc="Combina la estimulación de puntos de acupuntura mediante toques con la focalización consciente en la emoción. Esto envía una señal reguladora a tu sistema nervioso que ayuda a disminuir la carga emocional del recuerdo."
-                                />
-                                <RecommendationCard 
-                                    icon={Brain}
-                                    title="EMDR"
-                                    desc="A través de la estimulación bilateral, facilita el reprocesamiento de experiencias atascadas en tu sistema nervioso. Ayuda a que tu cuerpo deje de reaccionar como si el peligro estuviera ocurriendo en el presente."
-                                />
-                                <RecommendationCard 
-                                    icon={ShieldCheck}
-                                    title="Kinesiología Holística"
-                                    desc="Es la herramienta clave de integración que nos permite leer y comunicarnos directamente con tu sistema para identificar con exactitud cuál de estas técnicas necesita tu cuerpo de forma prioritaria."
-                                />
-                            </div>
-                        </div>
-
                         {/* Venezuela en el Cuerpo Highlight */}
                         <motion.div 
                             initial={{ opacity: 0, scale: 0.95 }}
@@ -336,21 +299,6 @@ export default function SomaticQuiz() {
                     @apply flex items-center justify-center text-center p-6 rounded-2xl border-2 border-[#8C4005]/10 font-guide text-[10px] font-bold uppercase tracking-widest text-[#8C4005] hover:bg-[#8C4005] hover:text-[#F5EFE6] hover:shadow-xl transition-all h-full;
                 }
             `}</style>
-        </div>
-    );
-}
-
-function RecommendationCard({ icon: Icon, title, desc }: { icon: any, title: string, desc: string }) {
-    return (
-        <div className="bg-white p-10 md:p-14 rounded-[3.5rem] border border-stone-100 shadow-sm hover:shadow-xl transition-shadow space-y-6">
-            <div className="w-16 h-16 bg-[#F5EFE6] rounded-2xl flex items-center justify-center text-[#8C4005]">
-                <Icon className="w-8 h-8" />
-            </div>
-            <h4 className="text-2xl font-bold font-editorial text-[#2D2926]">{title}</h4>
-            <div className="w-12 h-px bg-[#B8835A]/30" />
-            <p className="text-lg text-[#2D2926]/70 leading-relaxed font-body font-light">
-                {desc}
-            </p>
         </div>
     );
 }
