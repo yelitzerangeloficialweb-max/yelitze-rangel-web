@@ -72,6 +72,8 @@ export default function SomaticQuiz() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [answers, setAnswers] = useState<Record<number, number>>({});
     const [reflection, setReflection] = useState('');
+    const [aiResult, setAiResult] = useState<any>(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     const currentQuestion = QUESTIONS[currentIndex];
     const progress = (currentIndex / QUESTIONS.length) * 100;
@@ -118,6 +120,28 @@ export default function SomaticQuiz() {
     };
 
     const stressResult = getStressType();
+
+    const generateAIResult = async () => {
+        setIsLoading(true);
+        setStep('result');
+        try {
+            const response = await fetch('/api/ai/somatic-test', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    answers,
+                    reflection,
+                    stressResult
+                })
+            });
+            const data = await response.json();
+            setAiResult(data);
+        } catch (error) {
+            console.error("AI Generation Error:", error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     return (
         <div className="relative z-10 w-full">
@@ -260,18 +284,43 @@ export default function SomaticQuiz() {
 
                         <div className="flex justify-center">
                             <button
-                                onClick={() => setStep('result')}
+                                onClick={generateAIResult}
                                 className="bg-[#8C4005] text-[#F5EFE6] px-14 py-6 rounded-2xl font-bold uppercase tracking-[0.25em] text-xs hover:scale-[1.05] shadow-xl transition-all flex items-center gap-4 group font-guide"
                             >
-                                Ver mi diagnóstico
+                                {isLoading ? "Analizando tu biología..." : "Ver mi diagnóstico"}
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                             </button>
                         </div>
                     </motion.div>
                 )}
 
+                {/* 2.6 LOADING STEP */}
+                {isLoading && step === 'result' && (
+                    <motion.div
+                        key="loading"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="max-w-3xl mx-auto py-32 text-center space-y-8"
+                    >
+                        <div className="relative flex justify-center">
+                            <motion.div 
+                                animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
+                                transition={{ duration: 3, repeat: Infinity }}
+                                className="w-24 h-24 border-4 border-[#B8835A]/20 border-t-[#8C4005] rounded-full"
+                            />
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <Sparkles className="w-8 h-8 text-[#8C4005]" />
+                            </div>
+                        </div>
+                        <div className="space-y-4">
+                            <h2 className="text-3xl font-editorial text-[#2D2926]">Escuchando tu fascia corporal...</h2>
+                            <p className="text-xl font-editorial italic text-[#8C4005]">"Tu cuerpo no miente, solo el orden libera."</p>
+                        </div>
+                    </motion.div>
+                )}
+
                 {/* 3. RESULT STEP */}
-                {step === 'result' && (
+                {step === 'result' && !isLoading && (
                     <motion.div
                         key="result"
                         initial={{ opacity: 0, y: 50 }}
@@ -291,14 +340,21 @@ export default function SomaticQuiz() {
                                     <h2 className="text-4xl md:text-6xl font-editorial leading-tight text-[#B8835A]">
                                         {stressResult.type}
                                     </h2>
+                                    {aiResult?.somatic_insight && (
+                                        <p className="text-[#B8835A] font-editorial italic text-2xl opacity-80">
+                                            "{aiResult.somatic_insight}"
+                                        </p>
+                                    )}
                                 </div>
-                                <p className="text-xl md:text-3xl font-editorial italic opacity-90 max-w-3xl mx-auto leading-relaxed">
-                                    {stressResult.desc}
-                                </p>
+                                <div className="w-full max-w-4xl mx-auto bg-white/5 p-10 rounded-[3rem] border border-white/10 space-y-6">
+                                    <p className="text-xl md:text-3xl font-editorial italic opacity-90 leading-relaxed text-[#F5EFE6]">
+                                        {aiResult?.personalized_analysis || stressResult.desc}
+                                    </p>
+                                </div>
                                 <div className="w-24 h-px bg-[#B8835A] mx-auto opacity-40" />
                                 <p className="text-lg md:text-xl font-body font-light max-w-2xl mx-auto text-[#F5EFE6]/70">
                                     {totalScore >= 3.5 
-                                        ? "Tu sistema nervioso parece estar organizando tu cuerpo alrededor de una amenaza que ya pasó. Esta información es vital para tu proceso en 'Venezuela en el Cuerpo'. El cuerpo no puede crear una mente proactiva si la fascia corporal está en defensa."
+                                        ? "Tu sistema nervioso parece estar organizando tu cuerpo alrededor de una amenaza que ya pasó. El cuerpo no puede crear una mente proactiva si la fascia corporal está en defensa."
                                         : "Muestras signos de regulación, pero hay memorias específicas en tu fascia corporal que están condicionando tu respuesta al entorno."
                                     }
                                 </p>
@@ -310,6 +366,11 @@ export default function SomaticQuiz() {
                             <div className="text-center space-y-4">
                                 <span className="text-[#8C4005] font-bold tracking-[0.4em] uppercase text-xs block font-guide">Ruta de Regulación</span>
                                 <h3 className="text-4xl md:text-6xl font-editorial text-[#2D2926]">Técnicas de Descongelamiento</h3>
+                                {aiResult?.action_step && (
+                                    <p className="text-xl font-editorial italic text-[#8C4005] animate-pulse">
+                                        Recomendación IA: {aiResult.action_step}
+                                    </p>
+                                )}
                             </div>
 
                             <div className="grid md:grid-cols-2 gap-8">
@@ -369,7 +430,7 @@ export default function SomaticQuiz() {
                                         <span className="italic text-[#B8835A]">Venezuela en el Cuerpo</span>
                                     </h3>
                                     <p className="text-xl md:text-2xl font-editorial opacity-80 max-w-2xl leading-relaxed">
-                                        Si tu sistema nervioso está en modo supervivencia, este movimiento de regulación personal y colectiva es el espacio para recuperar tu soberanía.
+                                        {aiResult?.venezuela_connection || "Si tu sistema nervioso está en modo supervivencia, este movimiento de regulación personal y colectiva es el espacio para recuperar tu soberanía."}
                                     </p>
                                 </div>
                                 <div className="flex-shrink-0">
