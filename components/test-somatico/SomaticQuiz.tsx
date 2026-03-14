@@ -169,6 +169,16 @@ export default function SomaticQuiz() {
                             <p className="text-2xl md:text-3xl font-editorial italic text-[#2D2926] leading-relaxed">
                                 "Las emociones no son solo mentales, son procesos fisiológicos corporales. Cuando no podemos completar el ciclo natural de una emoción (como huir o defendernos), la activación se queda retenida, densificando nuestra fascia corporal y creando síntomas físicos. Descubre qué emociones podría estar sosteniendo tu cuerpo en este momento."
                             </p>
+
+                            <div className="bg-[#8C4005]/5 p-8 rounded-[2rem] border-l-4 border-[#8C4005] mt-6 flex flex-col md:flex-row gap-6 items-center text-left">
+                                <Zap className="w-12 h-12 text-[#8C4005] flex-shrink-0" />
+                                <div>
+                                    <h3 className="text-xl font-bold font-editorial text-[#8C4005] mb-2">El Músculo PSOAS: El Guardián de tu Soberanía</h3>
+                                    <p className="font-body font-light text-[#2D2926]/80 text-lg">
+                                        Físicamente conecta tu columna con tus piernas, pero holísticamente es el <strong>"Músculo del Alma"</strong>. Un psoas contraído constantemente envía una señal de peligro a tu cerebro, haciendo biológicamente imposible crear una mente proactiva. Este test evaluará su estado.
+                                    </p>
+                                </div>
+                            </div>
                             
                             <div className="flex justify-center pt-8">
                                 <button
@@ -346,20 +356,53 @@ export default function SomaticQuiz() {
                                         </p>
                                     )}
                                 </div>
-                                <div className="w-full max-w-4xl mx-auto bg-white/5 p-10 rounded-[3rem] border border-white/10 space-y-6">
-                                    <p className="text-xl md:text-3xl font-editorial italic opacity-90 leading-relaxed text-[#F5EFE6]">
-                                        {aiResult?.personalized_analysis || stressResult.desc}
-                                    </p>
-                                </div>
-                                <div className="w-24 h-px bg-[#B8835A] mx-auto opacity-40" />
-                                <p className="text-lg md:text-xl font-body font-light max-w-2xl mx-auto text-[#F5EFE6]/70">
-                                    {totalScore >= 3.5 
-                                        ? "Tu sistema nervioso parece estar organizando tu cuerpo alrededor de una amenaza que ya pasó. El cuerpo no puede crear una mente proactiva si la fascia corporal está en defensa."
-                                        : "Muestras signos de regulación, pero hay memorias específicas en tu fascia corporal que están condicionando tu respuesta al entorno."
-                                    }
+                            <div className="w-full max-w-4xl mx-auto bg-white/5 p-10 rounded-[3rem] border border-white/10 space-y-6 relative overflow-hidden group">
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full duration-1000 transition-transform" />
+                                <p className="text-xl md:text-3xl font-editorial italic opacity-90 leading-relaxed text-[#F5EFE6] relative z-10">
+                                    {aiResult?.personalized_analysis || stressResult.desc}
                                 </p>
                             </div>
+                            <div className="w-24 h-px bg-[#B8835A] mx-auto opacity-40" />
+                            <motion.p 
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.5 }}
+                                className="text-lg md:text-xl font-body font-light max-w-2xl mx-auto text-[#F5EFE6]/70"
+                            >
+                                {totalScore >= 3.5 
+                                    ? "Tu sistema nervioso parece estar organizando tu cuerpo alrededor de una amenaza que ya pasó. El cuerpo no puede crear una mente proactiva si la fascia corporal está en defensa."
+                                    : "Muestras signos de regulación, pero hay memorias específicas en tu fascia corporal que están condicionando tu respuesta al entorno."
+                                }
+                            </motion.p>
                         </div>
+                    </div>
+
+                    {/* Prominent Educational Link - Symptoms */}
+                    <motion.div 
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        className="py-8"
+                    >
+                        <Link href="/test-somatico/sintomas-fisicos" className="group block">
+                            <div className="bg-[#8C4005]/5 p-12 md:p-16 rounded-[4rem] border-2 border-[#8C4005]/20 hover:border-[#8C4005] transition-all duration-500 shadow-xl hover:shadow-2xl relative overflow-hidden text-center md:text-left flex flex-col md:flex-row items-center gap-8">
+                                <div className="flex-1 space-y-4">
+                                    <h4 className="text-4xl md:text-6xl font-editorial text-[#2D2926] leading-tight">
+                                        Comprendiendo los <br />
+                                        <span className="text-[#8C4005] font-black uppercase tracking-widest text-5xl md:text-7xl block mt-2">SÍNTOMAS FÍSICOS</span>
+                                        <span className="italic block mt-2 opacity-80">y la FIBROMIALGIA</span>
+                                    </h4>
+                                    <p className="text-xl font-body font-light text-[#2D2926]/70 max-w-2xl mx-auto md:mx-0">
+                                        Profundiza en cómo el dolor crónico está íntimamente vinculado a las memorias somáticas atrapadas en tu cuerpo.
+                                    </p>
+                                </div>
+                                <div className="flex-shrink-0">
+                                    <div className="w-20 h-20 rounded-full bg-[#8C4005] text-[#F5EFE6] flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                                        <ArrowRight className="w-10 h-10" />
+                                    </div>
+                                </div>
+                            </div>
+                        </Link>
+                    </motion.div>
 
                         {/* Solutions & Exercises */}
                         <div className="space-y-16">
@@ -394,22 +437,23 @@ export default function SomaticQuiz() {
                         </div>
 
                         {/* Educational Links */}
-                        <div className="grid md:grid-cols-2 gap-8">
-                            <Link href="/test-somatico/sintomas-fisicos" className="group">
-                                <div className="bg-white p-12 rounded-[4rem] border border-[#B8835A]/10 hover:border-[#8C4005]/30 transition-all space-y-6">
-                                    <h4 className="text-3xl font-editorial text-[#2D2926]">Síntomas Físicos y Fibromialgia</h4>
-                                    <p className="text-lg font-body font-light text-[#2D2926]/60">Descubre cómo el dolor crónico está vinculado a memorias somáticas.</p>
-                                    <div className="flex items-center gap-2 text-[#8C4005] font-bold text-xs font-guide uppercase tracking-widest">
-                                        Explorar síntomas <ArrowRight className="w-4 h-4" />
+                        <div className="grid md:grid-cols-2 gap-8 items-stretch pt-8 border-t border-[#B8835A]/10">
+                            <div className="space-y-6 flex flex-col justify-center">
+                                <h3 className="text-3xl md:text-4xl font-editorial text-[#2D2926]">
+                                    Aprende más sobre tu anatomía sagrada
+                                </h3>
+                                <p className="text-lg font-body font-light text-[#2D2926]/70">
+                                    El conocimiento es el primer paso para la regulación.
+                                </p>
+                            </div>
+                            <Link href="/test-somatico/el-psoas" className="group h-full">
+                                <div className="bg-white p-12 rounded-[4rem] border border-[#B8835A]/10 hover:border-[#8C4005]/30 transition-all space-y-6 h-full flex flex-col justify-between hover:-translate-y-2 duration-300 shadow-sm hover:shadow-xl">
+                                    <div className="space-y-4">
+                                        <h4 className="text-3xl font-editorial text-[#2D2926]">El Músculo PSOAS: Soberanía de Alma</h4>
+                                        <p className="text-lg font-body font-light text-[#2D2926]/60">Entiende por qué este músculo es la clave para una mente proactiva y libre.</p>
                                     </div>
-                                </div>
-                            </Link>
-                            <Link href="/test-somatico/el-psoas" className="group">
-                                <div className="bg-white p-12 rounded-[4rem] border border-[#B8835A]/10 hover:border-[#8C4005]/30 transition-all space-y-6">
-                                    <h4 className="text-3xl font-editorial text-[#2D2926]">El Músculo PSOAS: Soberanía de Alma</h4>
-                                    <p className="text-lg font-body font-light text-[#2D2926]/60">Entiende por qué este músculo es la clave para una mente proactiva y libre.</p>
-                                    <div className="flex items-center gap-2 text-[#8C4005] font-bold text-xs font-guide uppercase tracking-widest">
-                                        Entender el Psoas <ArrowRight className="w-4 h-4" />
+                                    <div className="flex items-center gap-2 text-[#8C4005] font-bold text-xs font-guide uppercase tracking-widest mt-8">
+                                        Entender el Psoas <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
                                     </div>
                                 </div>
                             </Link>
