@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft, Zap, ShieldCheck, Activity } from 'lucide-react';
+import { ArrowLeft, Zap, ShieldCheck, Activity, Sparkles } from 'lucide-react';
 
 export const metadata: Metadata = {
     title: 'El Músculo Psoas: Soberanía y Mente Proactiva • Yelitze Rangel',
