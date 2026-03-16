@@ -44,29 +44,44 @@ export default function WisdomChest() {
                         </div>
                     </motion.div>
 
-                    {/* Image Content - Right */}
+                    {/* Image Content - Right (With the new Grey Shape as Mask/Frame) */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 1, delay: 0.2 }}
-                        className="lg:w-1/2 flex justify-center lg:justify-end order-1 lg:order-2"
+                        className="lg:w-1/2 flex justify-center lg:justify-end order-1 lg:order-2 relative"
                     >
-                        <div className="relative w-full aspect-[4/5] max-w-[550px] rounded-[40px] rounded-tr-[150px] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.4)]">
-                            <Image
-                                src="/images/home_redesign/wisdom_chest.png"
-                                alt="Cofre de Sabiduría"
-                                fill
-                                className="object-cover"
-                            />
-                            {/* Inner Glow */}
-                            <div className="absolute inset-0 ring-1 ring-inset ring-white/10" />
+                        {/* The Brush Shape Image as a Frame Container */}
+                        <div className="relative w-full aspect-[4/3] max-w-[650px] flex items-center justify-center">
+                            {/* Shape Background */}
+                            <div className="absolute inset-0 z-0">
+                                <Image
+                                    src="/images/formaGris-bag.png"
+                                    alt=""
+                                    fill
+                                    className="object-contain"
+                                    priority
+                                />
+                            </div>
+                            
+                            {/* Inner Image (Clipped or floating inside the shape) */}
+                            <div className="relative z-10 w-[75%] h-[75%] rounded-2xl overflow-hidden shadow-2xl translate-y-[-5%]">
+                                <Image
+                                    src="/images/home_redesign/wisdom_chest.png"
+                                    alt="Cofre de Sabiduría"
+                                    fill
+                                    className="object-cover"
+                                />
+                                {/* Soft inner shadow */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                            </div>
                         </div>
                     </motion.div>
                 </div>
             </div>
 
-            {/* Transition Brush Separator at the Bottom - To transition to Newsletter */}
+            {/* Transition Brush Separator at the Bottom */}
             <div className="absolute bottom-0 left-0 w-full h-[200px] lg:h-[400px] z-20 pointer-events-none translate-y-[80%]">
                 <Image
                     src="/assets/images/brush-separator-black.png"
