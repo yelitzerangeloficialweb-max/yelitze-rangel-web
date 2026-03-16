@@ -36,7 +36,7 @@ export default function ServiceSelector() {
     const activePortal = services[activeIndex];
 
     return (
-        <section className="relative py-32 bg-[#F5EFE6] overflow-hidden">
+        <section className="relative py-32 bg-[#FFFFFF] overflow-hidden">
             {/* Header Text */}
             <div className="text-center mb-24 relative z-20">
                 <motion.span 
@@ -50,7 +50,7 @@ export default function ServiceSelector() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
-                    className="mt-4 text-5xl md:text-7xl font-script text-[#B8835A] italic"
+                    className="mt-4 text-4xl md:text-5xl font-script text-[#B8835A] italic"
                 >
                     ¿Cómo quieres comenzar?
                 </motion.h2>
@@ -67,22 +67,25 @@ export default function ServiceSelector() {
                         className="relative min-h-[500px] flex items-center"
                     >
                         {/* The Dark Block Container */}
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-6xl mx-auto flex items-center justify-end">
+                        <div className="absolute top-[10%] lg:top-[15%] left-0 w-full h-[90%] lg:h-[85%] z-0">
                             {/* Brush and Background Container */}
-                            <div className="relative w-full lg:w-[85%] h-full bg-[#2D2926] rounded-br-[100px] lg:rounded-br-[200px]">
-                                {/* Top Brush Stroke */}
-                                <div className="absolute -top-[120px] lg:-top-[180px] left-0 w-full h-[200px] lg:h-[300px] pointer-events-none">
+                            <div className="relative w-full h-full bg-[#2D2926] rounded-br-[100px] lg:rounded-br-[300px] overflow-visible">
+                                {/* Top Brush Stroke - LARGE */}
+                                <div className="absolute -top-[150px] lg:-top-[280px] left-0 w-full h-[300px] lg:h-[600px] pointer-events-none z-10">
                                     <Image
-                                        src="/images/home_redesign/brush_portal_bg.png"
+                                        src="/assets/images/brush-separator-black.png"
                                         alt=""
                                         fill
-                                        className="object-contain object-left-bottom"
+                                        className="object-fill object-bottom brightness-[0.15]"
                                         priority
                                     />
                                 </div>
                                 
-                                {/* Right Accent (Orange Gradient as seen in design) */}
-                                <div className="absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-[#ff9a5c]/20 to-transparent pointer-events-none" />
+                                {/* Top Right Orange Glow */}
+                                <div className="absolute -top-24 -right-24 w-96 h-96 bg-gradient-to-br from-[#ff9a5c]/40 to-transparent blur-[100px] rounded-full pointer-events-none z-0" />
+                                
+                                {/* Internal Right Accent */}
+                                <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-[#ff9a5c]/10 to-transparent pointer-events-none" />
                             </div>
                         </div>
 
@@ -94,7 +97,7 @@ export default function ServiceSelector() {
                                     initial={{ scale: 0.8, opacity: 0 }}
                                     animate={{ scale: 1, opacity: 1 }}
                                     transition={{ duration: 0.8, delay: 0.2 }}
-                                    className="relative w-64 h-64 md:w-[480px] md:h-[480px] lg:w-[550px] lg:h-[550px] rounded-full overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] border-[1px] border-white/10"
+                                    className="relative w-72 h-72 md:w-[520px] md:h-[520px] lg:w-[680px] lg:h-[680px] rounded-full overflow-hidden shadow-[0_60px_120px_-20px_rgba(0,0,0,0.9)] border-[12px] border-white/5 lg:-ml-24"
                                 >
                                     <Image
                                         src={activePortal.image}
@@ -117,7 +120,7 @@ export default function ServiceSelector() {
                                     <span className="block text-xs font-bold tracking-[0.4em] uppercase text-white/50">
                                         {activePortal.tag}
                                     </span>
-                                    <h3 className="text-5xl md:text-7xl font-script text-[#B8835A] italic leading-tight">
+                                    <h3 className="text-6xl md:text-[6.5rem] font-script text-[#B8835A] italic leading-[0.8] drop-shadow-sm pb-4">
                                         {activePortal.title}
                                     </h3>
                                     <p className="text-lg md:text-xl font-body font-light leading-relaxed text-white/80 max-w-xl mx-auto lg:mx-0">
@@ -127,7 +130,7 @@ export default function ServiceSelector() {
                                     <div className="pt-8">
                                         <Link
                                             href={activePortal.link}
-                                            className="inline-block px-12 py-4 bg-[#B8835A] text-[#2D2926] rounded-2xl font-body font-bold tracking-widest uppercase transition-all hover:scale-105 hover:bg-[#c9956d] shadow-lg active:scale-95"
+                                            className="inline-block px-12 py-4 bg-[#B8835A] text-white rounded-2xl font-body font-bold tracking-widest uppercase transition-all hover:scale-105 hover:bg-[#c9956d] shadow-xl active:scale-95"
                                         >
                                             {activePortal.cta}
                                         </Link>
@@ -139,7 +142,7 @@ export default function ServiceSelector() {
                 </AnimatePresence>
 
                 {/* Slider Controls */}
-                <div className="flex justify-center lg:justify-end gap-6 mt-16 lg:-mt-20 relative z-30 lg:pr-24">
+                <div className="flex justify-center lg:justify-end gap-6 mt-16 lg:-mt-40 relative z-30 lg:pr-32">
                     <button
                         onClick={prevPortal}
                         className="w-14 h-14 rounded-full border border-text/10 bg-white/5 flex items-center justify-center transition-all hover:bg-white/10 text-text/60"
