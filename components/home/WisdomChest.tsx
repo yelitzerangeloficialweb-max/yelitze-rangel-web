@@ -67,12 +67,12 @@ export default function WisdomChest() {
             </div>
 
             {/* Transition Brush Separator at the Bottom - To transition to Newsletter */}
-            <div className="absolute bottom-0 left-0 w-full h-[200px] lg:h-[400px] z-20 pointer-events-none translate-y-[50%]">
+            <div className="absolute bottom-0 left-0 w-full h-[200px] lg:h-[400px] z-20 pointer-events-none translate-y-[80%]">
                 <Image
                     src="/assets/images/brush-separator-black.png"
                     alt=""
                     fill
-                    className="object-fill object-top brightness-[0.18]"
+                    className="object-fill object-top brightness-[0.18] scale-y-125"
                 />
             </div>
         </section>
