@@ -15,7 +15,6 @@ const services = [
         cta: "ENTRAR AL PORTAL",
         link: "/servicios/coaching-ancestral",
         image: "/images/home_redesign/service_coaching.png",
-        accent: "#B8835A",
     },
     {
         id: "02",
@@ -25,7 +24,6 @@ const services = [
         cta: "CONOCER MI HISTORIA",
         link: "/servicios/sesiones-corporales",
         image: "/images/home_redesign/service_sanctuary.png",
-        accent: "#B8835A",
     },
 ];
 
@@ -38,18 +36,9 @@ export default function ServiceSelector() {
     const activePortal = services[activeIndex];
 
     return (
-        <section className="relative py-24 bg-[#F5EFE6] overflow-hidden min-h-[900px] flex flex-col items-center">
-            {/* Background Decorative Elements */}
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-[#ff9a5c]/20 to-transparent rounded-full blur-[120px] -mr-48 -mt-48 pointer-events-none" />
-            
-            <div className="absolute top-40 left-10 opacity-20 pointer-events-none">
-                <svg width="200" height="150" viewBox="0 0 200 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 10C50 50 150 10 190 60C230 110 50 140 10 140" stroke="#8C4005" strokeWidth="1" strokeDasharray="4 4" />
-                </svg>
-            </div>
-
+        <section className="relative py-32 bg-[#F5EFE6] overflow-hidden">
             {/* Header Text */}
-            <div className="text-center mb-16 relative z-10">
+            <div className="text-center mb-24 relative z-20">
                 <motion.span 
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -67,89 +56,93 @@ export default function ServiceSelector() {
                 </motion.h2>
             </div>
 
-            {/* Slider Content */}
             <div className="container mx-auto px-4 relative max-w-7xl">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={activeIndex}
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -50 }}
-                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                        className="relative flex flex-col lg:flex-row items-center justify-between min-h-[600px]"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="relative min-h-[500px] flex items-center"
                     >
-                        {/* Background Brush Stroke */}
-                        <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center lg:justify-end overflow-visible">
-                            <motion.div
-                                initial={{ scale: 0.9, opacity: 0, x: 50 }}
-                                animate={{ scale: 1, opacity: 1, x: 0 }}
-                                transition={{ duration: 1.2, delay: 0.2 }}
-                                className="relative w-full lg:w-[110%] h-[120%] lg:-mr-[10%]"
-                            >
-                                <Image
-                                    src="/images/home_redesign/brush_portal_bg.png"
-                                    alt="Brush Background"
-                                    fill
-                                    className="object-contain lg:object-right"
-                                    priority
-                                />
-                            </motion.div>
-                        </div>
-
-                        {/* Image Side */}
-                        <div className="relative z-10 lg:w-1/2 flex justify-center lg:justify-start">
-                            <motion.div
-                                initial={{ scale: 0.9, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 1 }}
-                                transition={{ delay: 0.4, duration: 0.8 }}
-                                className="relative w-64 h-64 md:w-[450px] md:h-[450px] rounded-full overflow-hidden border-[15px] border-[#F5EFE6] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)]"
-                            >
-                                <Image
-                                    src={activePortal.image}
-                                    alt={activePortal.title}
-                                    fill
-                                    className="object-cover"
-                                    priority
-                                />
-                            </motion.div>
-                        </div>
-
-                        {/* Text Content */}
-                        <div className="relative z-20 lg:w-1/2 mt-12 lg:mt-0 text-white lg:pl-16">
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.6 }}
-                                className="space-y-6 max-w-lg"
-                            >
-                                <span className="block text-sm font-bold tracking-[0.3em] uppercase opacity-70">
-                                    {activePortal.tag}
-                                </span>
-                                <h3 className="text-5xl md:text-7xl font-script text-[#B8835A] italic">
-                                    {activePortal.title}
-                                </h3>
-                                <p className="text-lg md:text-xl font-body font-light leading-relaxed text-background/80">
-                                    {activePortal.description}
-                                </p>
-                                
-                                <div className="pt-8">
-                                    <Link
-                                        href={activePortal.link}
-                                        className="inline-block px-10 py-4 bg-[#B8835A] text-[#F5EFE6] rounded-xl font-heading font-bold tracking-widest uppercase transition-all hover:scale-105 hover:shadow-xl active:scale-95"
-                                    >
-                                        {activePortal.cta}
-                                    </Link>
+                        {/* The Dark Block Container */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-6xl mx-auto flex items-center justify-end">
+                            {/* Brush and Background Container */}
+                            <div className="relative w-full lg:w-[85%] h-full bg-[#2D2926] rounded-br-[100px] lg:rounded-br-[200px]">
+                                {/* Top Brush Stroke */}
+                                <div className="absolute -top-[120px] lg:-top-[180px] left-0 w-full h-[200px] lg:h-[300px] pointer-events-none">
+                                    <Image
+                                        src="/images/home_redesign/brush_portal_bg.png"
+                                        alt=""
+                                        fill
+                                        className="object-contain object-left-bottom"
+                                        priority
+                                    />
                                 </div>
-                            </motion.div>
+                                
+                                {/* Right Accent (Orange Gradient as seen in design) */}
+                                <div className="absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-[#ff9a5c]/20 to-transparent pointer-events-none" />
+                            </div>
+                        </div>
+
+                        {/* Content Grid */}
+                        <div className="relative z-10 w-full grid grid-cols-1 lg:grid-cols-[1fr,1.2fr] items-center gap-12 lg:gap-0">
+                            {/* Circular Image */}
+                            <div className="flex justify-center lg:justify-start lg:-ml-12">
+                                <motion.div
+                                    initial={{ scale: 0.8, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    transition={{ duration: 0.8, delay: 0.2 }}
+                                    className="relative w-64 h-64 md:w-[480px] md:h-[480px] lg:w-[550px] lg:h-[550px] rounded-full overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] border-[1px] border-white/10"
+                                >
+                                    <Image
+                                        src={activePortal.image}
+                                        alt={activePortal.title}
+                                        fill
+                                        className="object-cover"
+                                        priority
+                                    />
+                                </motion.div>
+                            </div>
+
+                            {/* Text Content */}
+                            <div className="text-white lg:pl-12 lg:pr-24 space-y-8 text-center lg:text-left">
+                                <motion.div
+                                    initial={{ opacity: 0, x: 30 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ duration: 0.8, delay: 0.4 }}
+                                    className="space-y-6"
+                                >
+                                    <span className="block text-xs font-bold tracking-[0.4em] uppercase text-white/50">
+                                        {activePortal.tag}
+                                    </span>
+                                    <h3 className="text-5xl md:text-7xl font-script text-[#B8835A] italic leading-tight">
+                                        {activePortal.title}
+                                    </h3>
+                                    <p className="text-lg md:text-xl font-body font-light leading-relaxed text-white/80 max-w-xl mx-auto lg:mx-0">
+                                        {activePortal.description}
+                                    </p>
+                                    
+                                    <div className="pt-8">
+                                        <Link
+                                            href={activePortal.link}
+                                            className="inline-block px-12 py-4 bg-[#B8835A] text-[#2D2926] rounded-2xl font-body font-bold tracking-widest uppercase transition-all hover:scale-105 hover:bg-[#c9956d] shadow-lg active:scale-95"
+                                        >
+                                            {activePortal.cta}
+                                        </Link>
+                                    </div>
+                                </motion.div>
+                            </div>
                         </div>
                     </motion.div>
                 </AnimatePresence>
 
                 {/* Slider Controls */}
-                <div className="flex justify-center gap-6 mt-16 relative z-30">
+                <div className="flex justify-center lg:justify-end gap-6 mt-16 lg:-mt-20 relative z-30 lg:pr-24">
                     <button
                         onClick={prevPortal}
-                        className="w-14 h-14 rounded-full border border-text/10 flex items-center justify-center transition-all hover:bg-text hover:text-background"
+                        className="w-14 h-14 rounded-full border border-text/10 bg-white/5 flex items-center justify-center transition-all hover:bg-white/10 text-text/60"
                         aria-label="Anterior"
                     >
                         <ChevronLeft className="w-6 h-6" />
@@ -165,7 +158,7 @@ export default function ServiceSelector() {
                     </div>
                     <button
                         onClick={nextPortal}
-                        className="w-14 h-14 rounded-full border border-text/10 flex items-center justify-center transition-all hover:bg-text hover:text-background"
+                        className="w-14 h-14 rounded-full border border-text/10 bg-white/5 flex items-center justify-center transition-all hover:bg-white/10 text-text/60"
                         aria-label="Siguiente"
                     >
                         <ChevronRight className="w-6 h-6" />
@@ -173,8 +166,8 @@ export default function ServiceSelector() {
                 </div>
             </div>
 
-            {/* Bottom Border/Detail */}
-            <div className="mt-20 w-32 h-1 bg-[#B8835A]/30 rounded-full" />
+            {/* Background Details */}
+            <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] bg-gradient-to-bl from-[#ff9a5c]/10 to-transparent blur-[120px] rounded-full pointer-events-none" />
         </section>
     );
 }
