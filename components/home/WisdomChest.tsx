@@ -65,11 +65,21 @@ export default function WisdomChest() {
                 />
             </div>
 
-            {/* Floating curly line decoration on the left */}
-            <div className="absolute bottom-24 left-10 w-32 h-32 opacity-20 pointer-events-none hidden lg:block">
-                <svg viewBox="0 0 100 100" className="w-full h-full stroke-[#B8835A] fill-none stroke-[0.5]">
-                    <path d="M0,50 C20,20 80,80 100,50 S180,20 200,50" />
-                </svg>
+            {/* Floating curly line and logo decoration on the left */}
+            <div className="absolute bottom-12 left-8 md:left-12 lg:left-20 flex items-center gap-4 opacity-30 pointer-events-none hidden lg:flex">
+                <div className="relative w-10 h-10">
+                    <Image
+                        src="/assets/images/watermark-logo.png"
+                        alt=""
+                        fill
+                        className="object-contain"
+                    />
+                </div>
+                <div className="w-32 h-16">
+                    <svg viewBox="0 0 100 100" className="w-full h-full stroke-[#B8835A] fill-none stroke-[0.5]">
+                        <path d="M0,50 C20,20 80,80 100,50 S180,20 200,50" />
+                    </svg>
+                </div>
             </div>
         </section>
     );
