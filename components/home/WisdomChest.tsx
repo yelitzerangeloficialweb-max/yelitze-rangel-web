@@ -6,9 +6,8 @@ import { motion } from "framer-motion";
 export default function WisdomChest() {
     return (
         <section className="relative py-32 bg-[#2D2926] overflow-hidden">
-            {/* Background Glows */}
-            <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#B8835A]/5 blur-[120px] rounded-full pointer-events-none" />
-
+            {/* Minimalist Background - No glows or shapes */}
+            
             <div className="container mx-auto px-4 relative z-10 max-w-7xl">
                 <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
                     
@@ -34,7 +33,7 @@ export default function WisdomChest() {
                         </p>
                     </motion.div>
 
-                    {/* Image Content - Right (Vertical with organic rounded corner) */}
+                    {/* Image Content - Right (Vertical with organic rounded corner, absolute no background shapes) */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
@@ -42,28 +41,27 @@ export default function WisdomChest() {
                         transition={{ duration: 1, delay: 0.2 }}
                         className="lg:w-1/2 flex justify-center lg:justify-end order-1 lg:order-2"
                     >
-                        <div className="relative w-full aspect-[3/4] max-w-[450px] rounded-[40px] rounded-tr-[150px] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)]">
+                        <div className="relative w-full aspect-[3/4] max-w-[450px] rounded-[40px] rounded-tr-[150px] overflow-hidden shadow-2xl">
                             <Image
-                                src="/images/home_redesign/wisdom_chest.png"
+                                src="/assets/images/yelitze-reading-books.jpg"
                                 alt="Cofre de Sabiduría"
                                 fill
                                 className="object-cover"
+                                priority
                             />
-                            {/* Ambient Glow */}
-                            <div className="absolute inset-0 ring-1 ring-inset ring-white/10" />
+                            {/* Ambient Glow removed to keep it ultra clean as requested */}
                         </div>
                     </motion.div>
                 </div>
             </div>
 
-            {/* White Transition Brush Separator at the Bottom (Transitions to white Newsletter bg) */}
-            <div className="absolute bottom-0 left-0 w-full h-[300px] lg:h-[500px] z-20 pointer-events-none translate-y-[60%]">
+            {/* White Transition Brush Separator at the Bottom - Moved down as requested earlier */}
+            <div className="absolute bottom-0 left-0 w-full h-[300px] lg:h-[500px] z-20 pointer-events-none translate-y-[80%]">
                 <Image
                     src="/assets/images/brush-separator.png"
                     alt=""
                     fill
                     className="object-fill object-top brightness-100 scale-y-125"
-                    priority
                 />
             </div>
 
