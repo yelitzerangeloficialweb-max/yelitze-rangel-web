@@ -82,7 +82,7 @@ export default function ServiceSelector() {
                                     initial={{ scale: 0.8, opacity: 0 }}
                                     animate={{ scale: 1, opacity: 1 }}
                                     transition={{ duration: 0.8, delay: 0.2 }}
-                                    className="relative w-80 h-80 md:w-[600px] md:h-[600px] lg:w-[750px] lg:h-[750px] rounded-full overflow-hidden shadow-[0_60px_120px_-20px_rgba(0,0,0,0.95)] z-50 -mt-64 lg:-mt-[500px] lg:-ml-24"
+                                    className="relative w-64 h-64 md:w-[480px] md:h-[480px] lg:w-[580px] lg:h-[580px] rounded-full overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,0,0,0.9)] z-50 -mt-48 lg:-mt-[350px] lg:-ml-12"
                                 >
                                     <Image
                                         src={activePortal.image}
