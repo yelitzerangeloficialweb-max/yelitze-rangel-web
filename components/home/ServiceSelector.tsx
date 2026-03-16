@@ -79,18 +79,18 @@ export default function ServiceSelector() {
                         className="relative flex flex-col lg:flex-row items-center justify-between min-h-[600px]"
                     >
                         {/* Background Brush Stroke */}
-                        <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-end">
+                        <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center lg:justify-end overflow-visible">
                             <motion.div
-                                initial={{ scale: 0.8, opacity: 0, x: 100 }}
+                                initial={{ scale: 0.9, opacity: 0, x: 50 }}
                                 animate={{ scale: 1, opacity: 1, x: 0 }}
-                                transition={{ duration: 1.2, delay: 0.3 }}
-                                className="relative w-full lg:w-[90%] h-full lg:h-[120%]"
+                                transition={{ duration: 1.2, delay: 0.2 }}
+                                className="relative w-full lg:w-[110%] h-[120%] lg:-mr-[10%]"
                             >
                                 <Image
                                     src="/images/home_redesign/brush_portal_bg.png"
                                     alt="Brush Background"
                                     fill
-                                    className="object-contain object-right"
+                                    className="object-contain lg:object-right"
                                     priority
                                 />
                             </motion.div>
