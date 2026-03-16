@@ -9,10 +9,10 @@ export default function ArchitectureSector() {
         <section className="relative min-h-[700px] flex items-center overflow-hidden bg-[#2D2926] py-24">
             {/* Background Image Container with Gradient Fade */}
             <div className="absolute inset-0 z-0">
-                <div className="relative w-full h-full lg:w-[70%]">
+                <div className="relative w-full h-full lg:w-[80%] lg:-left-24">
                     <Image
                         src="/images/home_redesign/Web-Yelitze12.png"
-                        alt="Arquitectura de Vida 2026"
+                        alt="Arquitectura de Vida"
                         fill
                         className="object-cover object-left"
                         priority
