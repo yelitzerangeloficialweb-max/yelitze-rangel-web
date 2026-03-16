@@ -18,6 +18,7 @@ import { SacredGeometry, FloatingStars, ThinGoldenLine, WaveDivider } from "@/co
 export default function VenezuelaEnElCuerpoPage() {
     const router = useRouter();
     const [submitted, setSubmitted] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [openFaq, setOpenFaq] = useState<number | null>(null);
 
     const toggleFaq = (index: number) => {
@@ -49,6 +50,9 @@ export default function VenezuelaEnElCuerpoPage() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (isSubmitting) return;
+
+        setIsSubmitting(true);
         const formData = new FormData(e.currentTarget);
         const name = formData.get("name") as string;
         const email = formData.get("email") as string;
@@ -82,6 +86,8 @@ export default function VenezuelaEnElCuerpoPage() {
         } catch (error) {
             console.error('Error:', error);
             alert("Error de conexión. Intenta de nuevo.");
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -685,10 +691,20 @@ export default function VenezuelaEnElCuerpoPage() {
                                 </div>
                                 <button
                                     type="submit"
-                                    className="w-full bg-[#C1530A] text-[#F5EFE6] py-6 rounded-3xl font-bold md:text-lg shadow-[0_15px_30px_-5px_rgba(193,83,10,0.4)] hover:bg-[#A84A2F] hover:shadow-[0_20px_40px_-5px_rgba(193,83,10,0.5)] transition-all transform hover:-translate-y-1 mt-6 flex items-center justify-center gap-4 group"
+                                    disabled={isSubmitting}
+                                    className="w-full bg-[#C1530A] text-[#F5EFE6] py-6 rounded-3xl font-bold md:text-lg shadow-[0_15px_30px_-5px_rgba(193,83,10,0.4)] hover:bg-[#A84A2F] hover:shadow-[0_20px_40px_-5px_rgba(193,83,10,0.5)] transition-all transform hover:-translate-y-1 mt-6 flex items-center justify-center gap-4 group disabled:opacity-70 disabled:cursor-not-allowed"
                                 >
-                                    <span className="text-center">GENERAR MI PASE QR Y<br className="sm:hidden" /> RECIBIR COORDENADAS</span>
-                                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                    {isSubmitting ? (
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-5 h-5 border-2 border-[#F5EFE6]/30 border-t-[#F5EFE6] rounded-full animate-spin" />
+                                            <span>PROCESANDO...</span>
+                                        </div>
+                                    ) : (
+                                        <>
+                                            <span className="text-center">GENERAR MI PASE QR Y<br className="sm:hidden" /> RECIBIR COORDENADAS</span>
+                                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                        </>
+                                    )}
                                 </button>
                             </form>
 

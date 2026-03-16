@@ -65,16 +65,16 @@ model SanateMujerRegistration {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   name      String
-  email     String
-  whatsapp  String
+  email     String   @unique
+  whatsapp  String   @unique
 }
 
 model VenezuelaEnElCuerpoRegistration {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   name      String
-  email     String
-  whatsapp  String
+  email     String   @unique
+  whatsapp  String   @unique
   city      String
   instagram String?
   scanned   Boolean  @default(false)

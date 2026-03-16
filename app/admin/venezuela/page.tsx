@@ -236,6 +236,26 @@ export default function AdminVenezuelaPage() {
                         Escanear QR
                     </button>
                     <button
+                        onClick={async () => {
+                            if (!confirm('¿Estás seguro de que deseas eliminar registros con correos o números duplicados? Esta acción es permanente.')) return;
+                            try {
+                                setLoading(true);
+                                const res = await fetch('/api/admin/venezuela/registrations/deduplicate', { method: 'POST' });
+                                const data = await res.json();
+                                alert(data.message || data.error);
+                                fetchRegistrations();
+                            } catch (e) {
+                                alert('Error al procesar la limpieza');
+                            } finally {
+                                setLoading(false);
+                            }
+                        }}
+                        className="flex items-center gap-2 px-6 py-3 bg-amber-600 text-white font-bold rounded-xl hover:bg-amber-700 transition-colors"
+                    >
+                        <Repeat className="w-5 h-5" />
+                        Limpiar Duplicados
+                    </button>
+                    <button
                         onClick={exportToCSV}
                         disabled={registrations.length === 0}
                         className="flex items-center gap-2 px-6 py-3 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition-colors disabled:opacity-50"
