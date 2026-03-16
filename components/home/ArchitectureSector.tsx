@@ -43,7 +43,7 @@ export default function ArchitectureSector() {
                                     Arquitectura de Vida
                                 </h2>
                                 <h3 className="text-4xl md:text-6xl lg:text-[4.5rem] font-medium text-white leading-tight">
-                                    Intencional 2026
+                                    Intencional
                                 </h3>
                             </div>
                         </div>
