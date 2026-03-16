@@ -36,27 +36,40 @@ export default function ServiceSelector() {
     const activePortal = services[activeIndex];
 
     return (
-        <section className="relative py-32 bg-[#FFFFFF] overflow-hidden">
-            {/* Header Text */}
-            <div className="text-center mb-24 relative z-20">
-                <motion.span 
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    className="text-xs font-bold tracking-[0.4em] uppercase text-text/60"
-                >
-                    ECOSISTEMA DE EVOLUCIÓN
-                </motion.span>
-                <motion.h2 
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                    className="mt-4 text-4xl md:text-5xl font-script text-[#B8835A] italic"
-                >
-                    ¿Cómo quieres comenzar?
-                </motion.h2>
+        <section className="relative bg-[#2D2926] overflow-hidden">
+            {/* Header Text Area - White Container */}
+            <div className="bg-[#FFFFFF] pt-32 pb-32 relative z-20">
+                <div className="text-center relative z-20">
+                    <motion.span 
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        className="text-xs font-bold tracking-[0.4em] uppercase text-text/60"
+                    >
+                        ECOSISTEMA DE EVOLUCIÓN
+                    </motion.span>
+                    <motion.h2 
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                        className="mt-4 text-4xl md:text-5xl font-script text-[#B8835A] italic"
+                    >
+                        ¿Cómo quieres comenzar?
+                    </motion.h2>
+                </div>
+
+                {/* Brush Transition AT THE BOTTOM of the white area */}
+                <div className="absolute -bottom-1 left-0 w-full h-[300px] lg:h-[500px] pointer-events-none translate-y-full z-10">
+                    <Image
+                        src="/assets/images/brush-separator-black.png"
+                        alt=""
+                        fill
+                        className="object-fill object-top brightness-[0.15]"
+                        priority
+                    />
+                </div>
             </div>
 
-            <div className="container mx-auto px-4 relative max-w-7xl">
+            <div className="container mx-auto px-4 relative max-w-7xl py-32">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={activeIndex}
@@ -66,28 +79,9 @@ export default function ServiceSelector() {
                         transition={{ duration: 0.5 }}
                         className="relative min-h-[500px] flex items-center"
                     >
-                        {/* The Dark Block Container */}
-                        <div className="absolute top-[10%] lg:top-[15%] left-0 w-full h-[90%] lg:h-[85%] z-0">
-                            {/* Brush and Background Container */}
-                            <div className="relative w-full h-full bg-[#2D2926] rounded-br-[100px] lg:rounded-br-[300px] overflow-visible">
-                                {/* Top Brush Stroke - LARGE */}
-                                <div className="absolute -top-[150px] lg:-top-[280px] left-0 w-full h-[300px] lg:h-[600px] pointer-events-none z-10">
-                                    <Image
-                                        src="/assets/images/brush-separator-black.png"
-                                        alt=""
-                                        fill
-                                        className="object-fill object-bottom brightness-[0.15]"
-                                        priority
-                                    />
-                                </div>
-                                
-                                {/* Top Right Orange Glow */}
-                                <div className="absolute -top-24 -right-24 w-96 h-96 bg-gradient-to-br from-[#ff9a5c]/40 to-transparent blur-[100px] rounded-full pointer-events-none z-0" />
-                                
-                                {/* Internal Right Accent */}
-                                <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-[#ff9a5c]/10 to-transparent pointer-events-none" />
-                            </div>
-                        </div>
+                        {/* Background Detail Details */}
+                        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-[#ff9a5c]/10 to-transparent pointer-events-none" />
+                        <div className="absolute -top-24 -right-24 w-96 h-96 bg-gradient-to-br from-[#ff9a5c]/30 to-transparent blur-[100px] rounded-full pointer-events-none" />
 
                         {/* Content Grid */}
                         <div className="relative z-10 w-full grid grid-cols-1 lg:grid-cols-[1fr,1.2fr] items-center gap-12 lg:gap-0">
@@ -169,8 +163,8 @@ export default function ServiceSelector() {
                 </div>
             </div>
 
-            {/* Background Details */}
-            <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] bg-gradient-to-bl from-[#ff9a5c]/10 to-transparent blur-[120px] rounded-full pointer-events-none" />
+            {/* Bottom Section Detail */}
+            <div className="absolute bottom-[10%] left-[5%] w-[20%] h-[20%] bg-[#B8835A]/5 blur-[80px] rounded-full pointer-events-none" />
         </section>
     );
 }
