@@ -6,72 +6,66 @@ import { motion } from "framer-motion";
 
 export default function ArchitectureSector() {
     return (
-        <section className="relative min-h-[600px] flex items-center overflow-hidden bg-text text-background py-24">
-            {/* Background Texture/Overlay */}
-            <div className="absolute inset-0 z-0 opacity-20">
-                <Image
-                    src="/images/home_redesign/architecture_banner.png"
-                    alt="Background Texture"
-                    fill
-                    className="object-cover"
-                />
+        <section className="relative min-h-[700px] flex items-center overflow-hidden bg-[#2D2926] py-24">
+            {/* Background Image Container with Gradient Fade */}
+            <div className="absolute inset-0 z-0">
+                <div className="relative w-full h-full lg:w-[70%]">
+                    <Image
+                        src="/images/home_redesign/architecture_banner.png" // User needs to update this file with the compass image
+                        alt="Arquitectura de Vida 2026"
+                        fill
+                        className="object-cover object-left"
+                        priority
+                    />
+                    {/* Gradient Overlays for smooth blending */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#2D2926]/40 to-[#2D2926]" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#2D2926] via-transparent to-transparent" />
+                </div>
             </div>
 
             <div className="container mx-auto px-4 relative z-10">
-                <div className="flex flex-col md:flex-row items-center gap-16">
-                    {/* Image Area */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1 }}
-                        className="flex-1"
-                    >
-                        <div className="relative rounded-[20px] overflow-hidden shadow-2xl border border-white/10">
-                            <Image
-                                src="/images/home_redesign/architecture_banner.png"
-                                alt="Arquitectura de Vida"
-                                width={800}
-                                height={600}
-                                className="object-cover w-full h-auto"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-r from-text/60 to-transparent" />
-                        </div>
-                    </motion.div>
-
-                    {/* Text Area */}
+                <div className="flex flex-col lg:flex-row items-center justify-end">
+                    
+                    {/* Text Area - Aligned to the right */}
                     <motion.div
                         initial={{ opacity: 0, x: 50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="flex-1 space-y-8"
+                        className="lg:w-1/2 space-y-8 text-center lg:text-left"
                     >
-                        <div className="space-y-4">
-                            <span className="text-xs font-bold tracking-[0.3em] text-accent font-body uppercase opacity-80">
-                                Diagnóstico del Alma
+                        <div className="space-y-2">
+                            <span className="text-[10px] md:text-xs font-bold tracking-[0.4em] text-white/50 uppercase">
+                                DIAGNÓSTICO DEL ALMA
                             </span>
-                            <h2 className="text-4xl md:text-6xl font-heading leading-tight">
-                                Arquitectura de Vida <br />
-                                <span className="italic font-script text-accent-light">Intencional</span>
-                            </h2>
+                            <div className="space-y-0">
+                                <h2 className="text-5xl md:text-7xl lg:text-[5.5rem] font-script text-[#B8835A] italic leading-[0.8] drop-shadow-sm">
+                                    Arquitectura de Vida
+                                </h2>
+                                <h3 className="text-4xl md:text-6xl lg:text-[4.5rem] font-medium text-white leading-tight">
+                                    Intencional 2026
+                                </h3>
+                            </div>
                         </div>
 
-                        <p className="text-lg text-white/70 font-body font-light leading-relaxed max-w-lg">
-                            Un viaje único para que aprendas a dejar de sobrevivir y comiences a construir tu realidad desde el alma. Descubre el orden listo por este momento.
+                        <p className="text-lg md:text-xl text-white/80 font-body font-light leading-relaxed max-w-xl mx-auto lg:mx-0">
+                            Un viaje diseñado para quienes deciden dejar de sobrevivir y comenzar a co-crear su realidad desde el alma. Descubre si estás listo para este movimiento
                         </p>
 
-                        <div className="pt-6">
+                        <div className="pt-8">
                             <Link
                                 href="/eventos/arquitectura-vida"
-                                className="btn-premium px-12 py-5 font-heading"
+                                className="inline-block px-12 py-5 bg-[#B8835A] text-white rounded-2xl font-body font-bold tracking-widest uppercase transition-all hover:scale-105 hover:bg-[#c9956d] shadow-2xl active:scale-95"
                             >
-                                Iniciar mi transformación
+                                INICIAR MI TRANSFORMACIÓN
                             </Link>
                         </div>
                     </motion.div>
                 </div>
             </div>
+
+            {/* Subtle light effects */}
+            <div className="absolute top-1/4 right-[10%] w-96 h-96 bg-[#ff9a5c]/10 blur-[120px] rounded-full pointer-events-none" />
         </section>
     );
 }
