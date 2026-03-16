@@ -69,9 +69,16 @@ export default function NewHero() {
             </div>
 
             {/* Pagination/Scroll Indicator */}
-            <div className="absolute bottom-32 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4 opacity-40">
-                <div className="w-[1px] h-12 bg-white" />
-                <div className="w-1.5 h-1.5 bg-[#B8835A] rounded-full" />
+            <div className="absolute bottom-32 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4">
+                <div className="w-[1px] h-12 bg-white/40" />
+                <div className="relative w-10 h-10">
+                    <Image
+                        src="/assets/images/watermark-logo.png"
+                        alt=""
+                        fill
+                        className="object-contain"
+                    />
+                </div>
             </div>
 
             {/* Organic Bottom Divider */}
