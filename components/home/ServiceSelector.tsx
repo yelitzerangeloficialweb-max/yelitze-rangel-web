@@ -58,19 +58,19 @@ export default function ServiceSelector() {
                 </div>
             </div>
 
-            {/* Transition Brush Separator - Positioned at the seam */}
-            <div className="absolute top-[420px] left-0 w-full h-[300px] lg:h-[500px] z-30 pointer-events-none">
+            {/* Transition Brush Separator - Moved to z-10 to be behind the circular image */}
+            <div className="absolute top-[420px] left-0 w-full h-[300px] lg:h-[500px] z-10 pointer-events-none">
                 <Image
                     src="/assets/images/brush-separator-black.png"
                     alt=""
                     fill
-                    className="object-fill object-top brightness-[0.12] scale-y-125"
+                    className="object-fill object-top brightness-[0.18] scale-y-125"
                     priority
                 />
             </div>
 
-            {/* Dark Portal Area */}
-            <div className="relative bg-[#2D2926] pt-32 pb-48 z-10">
+            {/* Dark Portal Area - Moved to z-20 to allow z-50 children (circle) to be on top of z-10 brush */}
+            <div className="relative bg-[#2D2926] pt-32 pb-48 z-20">
                 {/* Background Glows */}
                 <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-l from-[#ff9a5c]/15 via-transparent to-transparent pointer-events-none" />
                 <div className="absolute -top-40 right-0 w-[600px] h-[600px] bg-[#ff9a5c]/15 blur-[150px] rounded-full pointer-events-none" />
@@ -91,7 +91,7 @@ export default function ServiceSelector() {
                                     initial={{ scale: 0.8, opacity: 0 }}
                                     animate={{ scale: 1, opacity: 1 }}
                                     transition={{ duration: 0.8, delay: 0.2 }}
-                                    className="relative w-80 h-80 md:w-[550px] md:h-[550px] lg:w-[700px] lg:h-[700px] rounded-full overflow-hidden shadow-[0_60px_120px_-20px_rgba(0,0,0,0.95)] border-[15px] border-white/5 z-40 -mt-64 lg:-mt-[450px] lg:-ml-24"
+                                    className="relative w-80 h-80 md:w-[600px] md:h-[600px] lg:w-[750px] lg:h-[750px] rounded-full overflow-hidden shadow-[0_60px_120px_-20px_rgba(0,0,0,0.95)] border-[15px] border-white/5 z-50 -mt-64 lg:-mt-[500px] lg:-ml-24"
                                 >
                                     <Image
                                         src={activePortal.image}
