@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 
 export default function NewNewsletter() {
     return (
-        <section className="relative py-32 overflow-hidden font-body">
-            {/* Background Image */}
+        <section className="relative py-48 overflow-hidden font-body">
+            {/* Background Image - Sunset/Field theme */}
             <div className="absolute inset-0 z-0">
                 <Image
                     src="/images/home_redesign/newsletter_bg.png"
@@ -14,42 +14,51 @@ export default function NewNewsletter() {
                     fill
                     className="object-cover"
                 />
-                <div className="absolute inset-0 bg-black/30" />
+                <div className="absolute inset-0 bg-black/40" />
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent" />
             </div>
 
             <div className="container mx-auto px-4 relative z-10 text-center text-white">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="max-w-3xl mx-auto space-y-10"
+                    transition={{ duration: 1 }}
+                    className="max-w-4xl mx-auto space-y-12"
                 >
-                    <div className="space-y-4">
-                        <span className="text-xs font-bold font-body tracking-[0.3em] uppercase opacity-80">
-                            Comunidad Consciente
-                        </span>
-                        <h2 className="text-4xl md:text-7xl font-script text-accent-light italic">
+                    <div className="space-y-6">
+                        <h2 className="text-6xl md:text-[8rem] font-script text-white italic leading-[0.7] drop-shadow-lg">
                             Únete al Círculo
                         </h2>
-                        <p className="text-lg md:text-xl text-white/80 font-body font-light leading-relaxed">
+                        <p className="text-xl md:text-2xl text-white/90 font-body font-light leading-relaxed max-w-2xl mx-auto">
                             Recibe inspiración semanal, herramientas de sanación y acceso exclusivo a talleres y eventos para tu evolución.
                         </p>
                     </div>
 
-                    <form className="flex flex-col md:flex-row items-center justify-center gap-4 bg-white/10 p-2 rounded-full backdrop-blur-md border border-white/20">
-                        <input
-                            type="email"
-                            placeholder="Escribe tu correo electrónico"
-                            className="flex-grow bg-transparent border-none px-8 py-4 text-white placeholder:text-white/50 focus:outline-none focus:ring-0 w-full font-body"
-                        />
+                    <form className="max-w-xl mx-auto space-y-8">
+                        <div className="relative group">
+                            <input
+                                type="email"
+                                placeholder="Escribe tu correo electrónico"
+                                className="w-full bg-transparent border-b-2 border-white/30 px-4 py-4 text-xl text-white placeholder:text-white/40 focus:outline-none focus:border-[#B8835A] transition-colors font-body text-center"
+                            />
+                        </div>
                         <button
                             type="submit"
-                            className="btn-premium whitespace-nowrap px-10 py-4 bg-accent text-background font-heading hover:bg-accent-light"
+                            className="inline-block px-16 py-5 bg-[#B8835A] text-white rounded-2xl font-body font-bold tracking-widest uppercase transition-all hover:scale-105 hover:bg-[#c9956d] shadow-2xl active:scale-95"
                         >
-                            Suscribirme
+                            SUSCRIBIRME
                         </button>
                     </form>
+
+                    {/* Flower of Life or Sacred Geometry Decoration */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-10 pointer-events-none z-0">
+                        <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-white stroke-[0.2]">
+                            <circle cx="50" cy="50" r="45" />
+                            {/* Simple sacred geo shape placeholder */}
+                            <path d="M50,5 L50,95 M5,50 L95,50 M20,20 L80,80 M80,20 L20,80" />
+                        </svg>
+                    </div>
                 </motion.div>
             </div>
         </section>

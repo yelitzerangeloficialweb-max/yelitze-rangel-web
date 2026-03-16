@@ -14,9 +14,7 @@ export default function Home() {
             <WelcomeSection />
             <ServiceSelector />
             <ArchitectureSector />
-            <HomeEvents />
             <WisdomChest />
-            <BlogSpotlight />
             <NewNewsletter />
         </main>
     );

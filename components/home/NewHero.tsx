@@ -6,49 +6,61 @@ import { motion } from "framer-motion";
 
 export default function NewHero() {
     return (
-        <section className="relative h-[95vh] min-h-[750px] flex items-center justify-center overflow-hidden bg-background">
-            {/* Background Image with Overlay */}
+        <section className="relative h-[95vh] min-h-[750px] flex items-center justify-center overflow-hidden bg-black">
+            {/* Background Image with Premium Overlays */}
             <div className="absolute inset-0 z-0">
                 <Image
                     src="/images/home_redesign/hero_bg.png"
                     alt="Ancestral Background"
                     fill
-                    className="object-cover scale-105"
+                    className="object-cover scale-105 opacity-80"
                     priority
                 />
-                <div className="absolute inset-0 bg-black/50" />
+                {/* Global Overlays */}
+                <div className="absolute inset-0 bg-black/40" />
+                
+                {/* Specific Orange Light Effect - Top Left */}
+                <div className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] bg-[#ff9a5c]/20 blur-[150px] rounded-full pointer-events-none" />
+                
+                {/* Bottom Seam Overlay */}
+                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
             </div>
 
-            {/* Content reached via z-10 */}
-            <div className="container mx-auto px-4 relative z-10 text-center text-white -translate-y-12">
+            {/* Content Container */}
+            <div className="container mx-auto px-4 relative z-10 text-center text-white">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1.2, ease: "easeOut" }}
-                    className="space-y-6"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    className="space-y-8"
                 >
-                    <span className="block text-xs md:text-sm font-body font-bold tracking-[0.4em] uppercase opacity-80 mb-4">
+                    <motion.span 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0.8 }}
+                        transition={{ delay: 0.5, duration: 1 }}
+                        className="block text-xs md:text-sm font-body font-bold tracking-[0.5em] uppercase"
+                    >
                         Test Gratuitos
-                    </span>
+                    </motion.span>
 
                     <div className="space-y-4">
-                        <h1 className="text-5xl md:text-[5.5rem] font-sans font-bold tracking-[0.05em] leading-[1.1]">
+                        <h1 className="text-5xl md:text-[5.5rem] font-sans font-bold tracking-[0.05em] leading-[1.1] uppercase">
                             DESCUBRE TU HISTORIA
                         </h1>
-                        <p className="text-4xl md:text-7xl font-script text-white/90 italic leading-tight drop-shadow-sm">
+                        <p className="text-4xl md:text-[5.5rem] font-script text-white/90 italic leading-tight drop-shadow-lg">
                             los patrones que guía tu vida
                         </p>
                     </div>
 
                     <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 1, duration: 1 }}
                         className="pt-12 flex justify-center"
                     >
                         <Link
                             href="/tests"
-                            className="inline-block px-14 py-4 text-sm md:text-base font-body font-medium tracking-[0.2em] uppercase border border-white/80 text-white rounded-full hover:bg-white hover:text-black transition-all bg-transparent"
+                            className="inline-block px-14 py-5 text-sm md:text-base font-body font-bold tracking-[0.2em] uppercase border border-white/60 text-white rounded-full hover:bg-white hover:text-black transition-all bg-transparent backdrop-blur-sm"
                         >
                             INICIA MI EXPLORACIÓN
                         </Link>
@@ -56,43 +68,22 @@ export default function NewHero() {
                 </motion.div>
             </div>
 
-            {/* Navigation Arrows */}
-            <div className="absolute inset-x-4 md:inset-x-12 top-1/2 -translate-y-1/2 flex justify-between z-20 text-white/40">
-                <button className="p-4 hover:text-white transition-colors">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="m15 18-6-6 6-6" />
-                    </svg>
-                </button>
-                <button className="p-4 hover:text-white transition-colors">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="m9 18 6-6-6-6" />
-                    </svg>
-                </button>
+            {/* Pagination/Scroll Indicator */}
+            <div className="absolute bottom-32 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4 opacity-40">
+                <div className="w-[1px] h-12 bg-white" />
+                <div className="w-1.5 h-1.5 bg-[#B8835A] rounded-full" />
             </div>
 
-            {/* Organic Bottom Divider using Brush Transition */}
+            {/* Organic Bottom Divider */}
             <div className="absolute bottom-0 left-0 right-0 z-30 pointer-events-none">
-                {/* Logo/Watermark */}
-                <div className="absolute bottom-48 left-1/2 -translate-x-1/2 z-40 opacity-20">
-                    <Image
-                        src="/assets/images/watermark-logo.png"
-                        alt="Logo"
-                        width={120}
-                        height={120}
-                        className="w-16 h-16 md:w-24 md:h-24 brightness-200"
-                    />
-                </div>
-
-                {/* Brush Separator Image */}
                 <div className="relative w-full flex justify-center overflow-hidden leading-none translate-y-[2px]">
                     <Image
                         src="/assets/images/brush-separator.png"
-                        alt="Brush border"
+                        alt=""
                         width={2560}
                         height={600}
                         quality={100}
-                        className="w-full h-auto min-h-[100px] object-cover object-bottom"
-                        priority
+                        className="w-full h-auto min-h-[100px] object-cover object-bottom brightness-[0.95]"
                     />
                 </div>
             </div>
