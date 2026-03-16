@@ -16,15 +16,6 @@ const services = [
         link: "/servicios/coaching-ancestral",
         image: "/images/home_redesign/service_coaching.png",
     },
-    {
-        id: "02",
-        title: "Cuerpo y Santuario",
-        tag: "PORTAL 02",
-        description: "Libera las memorias atrapadas en tu piel. Desde sesiones de sanación hasta alineación, entra en el templo donde ocurre la verdadera liberación.",
-        cta: "CONOCER MI HISTORIA",
-        link: "/servicios/sesiones-corporales",
-        image: "/images/home_redesign/service_sanctuary.png",
-    },
 ];
 
 export default function ServiceSelector() {
@@ -135,31 +126,33 @@ export default function ServiceSelector() {
                     </AnimatePresence>
 
                     {/* Slider Controls */}
-                    <div className="flex justify-center lg:justify-end gap-8 mt-24 relative z-50 lg:pr-12">
-                        <button
-                            onClick={prevPortal}
-                            className="w-16 h-16 rounded-full border border-white/10 bg-white/5 flex items-center justify-center transition-all hover:bg-white/10 text-white/60"
-                            aria-label="Anterior"
-                        >
-                            <ChevronLeft className="w-8 h-8" />
-                        </button>
-                        <div className="flex items-center gap-4">
-                            {services.map((_, idx) => (
-                                <button
-                                    key={idx}
-                                    onClick={() => setActiveIndex(idx)}
-                                    className={`w-3 h-3 rounded-full transition-all duration-500 ${idx === activeIndex ? "bg-[#B8835A] w-12" : "bg-white/20 hover:bg-white/40"}`}
-                                />
-                            ))}
+                    {services.length > 1 && (
+                        <div className="flex justify-center lg:justify-end gap-8 mt-24 relative z-50 lg:pr-12">
+                            <button
+                                onClick={prevPortal}
+                                className="w-16 h-16 rounded-full border border-white/10 bg-white/5 flex items-center justify-center transition-all hover:bg-white/10 text-white/60"
+                                aria-label="Anterior"
+                            >
+                                <ChevronLeft className="w-8 h-8" />
+                            </button>
+                            <div className="flex items-center gap-4">
+                                {services.map((_, idx) => (
+                                    <button
+                                        key={idx}
+                                        onClick={() => setActiveIndex(idx)}
+                                        className={`w-3 h-3 rounded-full transition-all duration-500 ${idx === activeIndex ? "bg-[#B8835A] w-12" : "bg-white/20 hover:bg-white/40"}`}
+                                    />
+                                ))}
+                            </div>
+                            <button
+                                onClick={nextPortal}
+                                className="w-16 h-16 rounded-full border border-white/10 bg-white/5 flex items-center justify-center transition-all hover:bg-white/10 text-white/60"
+                                aria-label="Siguiente"
+                            >
+                                <ChevronRight className="w-8 h-8" />
+                            </button>
                         </div>
-                        <button
-                            onClick={nextPortal}
-                            className="w-16 h-16 rounded-full border border-white/10 bg-white/5 flex items-center justify-center transition-all hover:bg-white/10 text-white/60"
-                            aria-label="Siguiente"
-                        >
-                            <ChevronRight className="w-8 h-8" />
-                        </button>
-                    </div>
+                    )}
                 </div>
 
                 {/* Bottom Section Detail Glow */}
