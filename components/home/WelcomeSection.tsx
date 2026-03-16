@@ -70,7 +70,7 @@ export default function WelcomeSection() {
                         {/* Portrait Image with Organic Clipping/Rounding */}
                         <div className="relative z-10 w-full max-w-[550px] aspect-[4/5] rounded-[40px] rounded-tr-[150px] overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,0,0,0.15)] mx-auto lg:ml-auto">
                             <Image
-                                src="/images/home_redesign/yelitze.png"
+                                src="/assets/images/yelitze-home-portrait.jpg"
                                 alt="Yelitze Rangel"
                                 fill
                                 className="object-cover"
