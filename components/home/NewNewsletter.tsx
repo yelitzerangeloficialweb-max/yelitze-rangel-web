@@ -5,7 +5,18 @@ import { motion } from "framer-motion";
 
 export default function NewNewsletter() {
     return (
-        <section className="relative py-48 overflow-hidden font-body">
+        <section className="relative py-48 overflow-hidden font-body bg-white">
+            {/* Top Brush Shape - formaGris-bag.png positioned at top center, full width */}
+            <div className="absolute top-0 left-0 w-full h-[150px] lg:h-[250px] z-20 pointer-events-none -translate-y-[10%]">
+                <Image
+                    src="/images/formaGris-bag.png"
+                    alt=""
+                    fill
+                    className="object-fill object-top brightness-100"
+                    priority
+                />
+            </div>
+
             {/* Background Image - Sunset/Field theme */}
             <div className="absolute inset-0 z-0">
                 <Image
