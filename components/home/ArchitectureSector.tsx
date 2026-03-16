@@ -11,7 +11,7 @@ export default function ArchitectureSector() {
             <div className="absolute inset-0 z-0">
                 <div className="relative w-full h-full lg:w-[70%]">
                     <Image
-                        src="/images/home_redesign/architecture_banner.png" // User needs to update this file with the compass image
+                        src="/images/home_redesign/Web-Yelitze12.png"
                         alt="Arquitectura de Vida 2026"
                         fill
                         className="object-cover object-left"
