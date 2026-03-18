@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
     Activity, 
@@ -10,7 +10,6 @@ import {
     Sparkles, 
     Zap, 
     ArrowLeft,
-    Download,
     ShieldCheck
 } from 'lucide-react';
 import Link from 'next/link';
@@ -88,7 +87,45 @@ export default function SomaticQuiz() {
 
     const currentQuestion = QUESTIONS[currentIndex];
     const progress = (currentIndex / QUESTIONS.length) * 100;
-    const totalScore = Object.values(answers).reduce((a, b) => a + b, 0);
+
+    const stressResult = useMemo(() => {
+        const cat1 = (answers[1] || 0) + (answers[2] || 0) + (answers[3] || 0);
+        const cat2 = (answers[4] || 0) + (answers[5] || 0) + (answers[6] || 0);
+        const cat3 = (answers[7] || 0);
+        const totalScore = Object.values(answers).reduce((a, b) => a + b, 0);
+
+        if (cat2 >= 2) return {
+            type: "Estrés de Supervivencia (Congelamiento Profundo)",
+            desc: "Tu cuerpo ha guardado memorias de amenaza que no pudieron completarse. Vives en una 'pausa' biológica que consume tu energía vital.",
+            icon: Zap,
+            severity: 'high'
+        };
+        if (cat1 >= 2) return {
+            type: "Estrés de Anticipación (Bloqueo Fascial)",
+            desc: "Tu fascia corporal está organizada para un peligro inminente. Tu abdomen y diafragma actúan como un escudo constante.",
+            icon: Activity,
+            severity: 'medium'
+        };
+        if (cat3 >= 0.5) return {
+            type: "Hipersensibilidad y Desregulación",
+            desc: "Tu sistema tiene dificultades para encontrar el camino de regreso a la calma. Los ciclos de alerta se disparan espontáneamente.",
+            icon: Brain,
+            severity: 'medium'
+        };
+        if (totalScore <= 1.5) return {
+            type: "Regulación Somática Óptima",
+            desc: "Tu sistema nervioso se encuentra en un estado de equilibrio y escucha. Tu fascia corporal mantiene su elasticidad biológica.",
+            icon: ShieldCheck,
+            severity: 'low'
+        };
+        
+        return {
+            type: "Tensión Somática Latente",
+            desc: "Tu sistema mantiene un nivel de alerta funcional, pero hay áreas de tu red fascial que necesitan ser movilizadas.",
+            icon: Sparkles,
+            severity: 'low'
+        };
+    }, [answers]);
 
     const handleAnswer = (value: number) => {
         const newAnswers = { ...answers, [currentQuestion.id]: value };
@@ -101,50 +138,9 @@ export default function SomaticQuiz() {
         }
     };
 
-    const getStressType = () => {
-        const cat1 = (answers[1] || 0) + (answers[2] || 0) + (answers[3] || 0);
-        const cat2 = (answers[4] || 0) + (answers[5] || 0) + (answers[6] || 0);
-        const cat3 = (answers[7] || 0);
-
-        if (cat2 >= 2) return {
-            type: "Estrés de Supervivencia (Congelamiento Profundo)",
-            desc: "Tu cuerpo ha guardado memorias de amenaza que no pudieron completarse. Vives en una 'pausa' biológica que consume tu energía vital. Sientes que hay algo 'atrapado' que no te permite avanzar.",
-            icon: Zap
-        };
-        if (cat1 >= 2) return {
-            type: "Estrés de Anticipación (Bloqueo Fascial Corporal)",
-            desc: "Tu fascia corporal está organizada para un peligro inminente. Tu abdomen y diafragma actúan como un escudo constante, limitando tu expansión y soberanía.",
-            icon: Activity
-        };
-        if (cat3 >= 0.5) return {
-            type: "Hipersensibilidad y Desregulación",
-            desc: "Tu sistema tiene dificultades para encontrar el camino de regreso a la calma. Los ciclos de alerta se disparan pero tu cuerpo ya está intentando liberar de forma espontánea.",
-            icon: Brain
-        };
-        if (totalScore <= 1.5) return {
-            type: "Regulación Somática Óptima",
-            desc: "Tu sistema nervioso se encuentra en un estado de equilibrio y escucha. Tu fascia corporal mantiene su elasticidad, permitiéndote habitar tu cuerpo desde la soberanía y la presencia.",
-            icon: ShieldCheck
-        };
-        
-        return {
-            type: "Tensión Somática Latente",
-            desc: "Tu sistema mantiene un nivel de alerta funcional, pero hay áreas de tu red fascial que necesitan ser movilizadas para evitar que el patrón se cronifique.",
-            icon: Sparkles
-        };
-    };
-
-    const stressResult = getStressType();
-
     const sendEmailWithData = async (finalResult: any) => {
         setIsSending(true);
         try {
-            const stressLevel = getStressType(); 
-            const serializableStress = {
-                type: stressLevel.type,
-                desc: stressLevel.desc
-            };
-
             const response = await fetch('/api/ai/somatic-test/send-email', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -152,7 +148,7 @@ export default function SomaticQuiz() {
                     email,
                     name,
                     reflection,
-                    stressResult: serializableStress,
+                    stressResult: { type: stressResult.type, desc: stressResult.desc },
                     result: finalResult
                 })
             });
@@ -199,7 +195,7 @@ export default function SomaticQuiz() {
     };
 
     return (
-        <div className="relative z-10 w-full">
+        <div className="relative z-10 w-full pb-20">
             <AnimatePresence mode="wait">
                 {/* 1. INTRO STEP */}
                 {step === 'intro' && (
@@ -216,13 +212,13 @@ export default function SomaticQuiz() {
                             </span>
                             <h1 className="text-5xl md:text-7xl font-editorial text-[#2D2926] leading-tight">
                                 Test Somático<br />
-                                <span className="italic text-[#B8835A]">Identifica tus Emociones Atrapadas en la Fascia Corporal</span>
+                                <span className="italic text-[#B8835A]">Escucha el lenguaje de tu Fascia Corporal</span>
                             </h1>
                         </div>
 
                         <div className="bg-white/40 backdrop-blur-md p-10 md:p-16 rounded-[4rem] border border-[#B8835A]/10 shadow-xl space-y-8">
                             <p className="text-2xl md:text-3xl font-editorial italic text-[#2D2926] leading-relaxed">
-                                "Las emociones no son solo mentales, son procesos fisiológicos corporales. Cuando no podemos completar el ciclo natural de una emoción (como huir o defendernos), la activación se queda retenida, densificando nuestra fascia corporal y creando síntomas físicos."
+                                "Las emociones no procesadas se densifican en tu fascia corporal, creando patrones de tensión que limitan tu soberanía. Descubre lo que tu sistema nervioso está intentando integrar."
                             </p>
                             
                             <div className="flex justify-center pt-8">
@@ -249,7 +245,7 @@ export default function SomaticQuiz() {
                     >
                         <div className="mb-16 text-center space-y-4">
                             <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest text-[#2D2926]/40 font-guide">
-                                <span>Pregunta {currentIndex + 1} de {QUESTIONS.length}</span>
+                                <span>Pasos {currentIndex + 1} de {QUESTIONS.length}</span>
                                 <span>{Math.round(progress)}%</span>
                             </div>
                             <div className="h-1.5 w-full bg-white/50 rounded-full overflow-hidden">
@@ -281,12 +277,12 @@ export default function SomaticQuiz() {
                                         <button
                                             key={i}
                                             onClick={() => handleAnswer(opt.value)}
-                                            className="w-full text-left p-6 md:p-8 rounded-3xl bg-[#F5EFE6]/50 hover:bg-white hover:shadow-lg transition-all flex items-center justify-between"
+                                            className="w-full text-left p-6 md:p-8 rounded-3xl bg-[#F5EFE6]/50 hover:bg-white hover:shadow-lg transition-all flex items-center justify-between group"
                                         >
                                             <span className="text-xl md:text-2xl font-editorial text-[#2D2926]">
                                                 {opt.label}
                                             </span>
-                                            <ArrowRight className="w-5 h-5 text-[#8C4005]" />
+                                            <ArrowRight className="w-5 h-5 text-[#8C4005] group-hover:translate-x-2 transition-transform" />
                                         </button>
                                     ))}
                                 </div>
@@ -370,66 +366,122 @@ export default function SomaticQuiz() {
                             disabled={!email || !name}
                             className="w-full bg-[#8C4005] text-[#F5EFE6] px-14 py-6 rounded-2xl font-bold uppercase tracking-[0.25em] text-xs transition-all font-guide"
                         >
-                            {isLoading ? "Analizando..." : "Ver mi diagnóstico"}
+                            {isLoading ? "Consultando tu sistema..." : "Ver mi diagnóstico"}
                         </button>
                     </motion.div>
                 )}
 
-                {/* 5. LOADING / RESULT STEP */}
+                {/* 5. LOADING */}
                 {isLoading && step === 'result' && (
                     <div className="max-w-3xl mx-auto py-32 text-center space-y-8">
-                        <Sparkles className="w-16 h-16 text-[#8C4005] mx-auto animate-pulse" />
+                        <motion.div 
+                            animate={{ scale: [1, 1.1, 1], rotate: [0, 90, 180, 270, 360] }}
+                            transition={{ duration: 4, repeat: Infinity }}
+                            className="w-20 h-20 border-4 border-[#B8835A]/20 border-t-[#8C4005] rounded-full mx-auto"
+                        />
                         <h2 className="text-3xl font-editorial text-[#2D2926]">Analizando tu biología...</h2>
+                        <p className="text-[#8C4005] italic font-editorial text-xl">"Restaura el orden, y el equilibrio llegará por añadidura."</p>
                     </div>
                 )}
 
+                {/* 6. RESULT STEP */}
                 {step === 'result' && !isLoading && (
                     <motion.div
                         key="result"
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="max-w-5xl mx-auto space-y-16"
+                        className="max-w-5xl mx-auto space-y-16 py-10"
                     >
-                        {/* Summary Card */}
-                        <div className="bg-[#2D2926] text-[#F5EFE6] p-16 md:p-24 rounded-[5rem] shadow-2xl text-center space-y-8">
-                            <stressResult.icon className="w-16 h-16 text-[#B8835A] mx-auto" />
-                            <h2 className="text-4xl md:text-7xl font-editorial text-[#B8835A]">
-                                {stressResult.type}
-                            </h2>
-                            <p className="text-xl md:text-3xl font-editorial italic opacity-90 max-w-3xl mx-auto">
-                                "{aiResult?.personalized_analysis || stressResult.desc}"
-                            </p>
-                        </div>
+                        {/* Main Analysis Banner */}
+                        <div className="bg-[#2D2926] text-[#F5EFE6] p-16 md:p-24 rounded-[4rem] md:rounded-[6rem] shadow-3xl text-center space-y-10 relative overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#8C4005]/10 to-transparent opacity-50" />
+                            <div className="relative z-10 flex flex-col items-center gap-8">
+                                <div className="bg-[#B8835A]/20 p-6 rounded-full">
+                                    <stressResult.icon className="w-12 h-12 text-[#B8835A]" />
+                                </div>
+                                <div className="space-y-4">
+                                    <span className="text-[#B8835A] font-bold tracking-[0.5em] uppercase text-xs block font-guide">Auditoría Biológica</span>
+                                    <h2 className="text-4xl md:text-7xl font-editorial leading-tight text-[#B8835A]">
+                                        {stressResult.type}
+                                    </h2>
+                                </div>
+                                
+                                <div className="max-w-3xl mx-auto py-8 border-y border-white/10">
+                                    <p className="text-xl md:text-3xl font-editorial italic opacity-95 leading-relaxed">
+                                        "{aiResult?.personalized_analysis || stressResult.desc}"
+                                    </p>
+                                </div>
 
-                        <div className="grid md:grid-cols-2 gap-8">
-                            <ExerciseCard 
-                                title="Guía de Regulación"
-                                desc={aiResult?.action_step || "Práctica la respiración consciente diafragmática."}
-                            />
-                            <div className="bg-[#8C4005] text-[#F5EFE6] p-12 rounded-[3rem] flex flex-col justify-between">
-                                <h3 className="text-3xl font-editorial mb-4">¿Deseas profundizar?</h3>
-                                <p className="opacity-80 mb-8">{aiResult?.venezuela_connection || "El Tour Venezuela en el Cuerpo es el espacio ideal para ti."}</p>
-                                <Link 
-                                    href="/venezuela-en-el-cuerpo"
-                                    className="bg-[#F5EFE6] text-[#8C4005] py-4 rounded-xl font-bold uppercase tracking-widest text-center text-xs"
-                                >
-                                    Inscribirme al Tour
-                                </Link>
+                                {aiResult?.somatic_insight && (
+                                    <div className="bg-[#B8835A] text-white px-8 py-4 rounded-2xl inline-block shadow-xl">
+                                        <p className="font-editorial text-lg italic uppercase tracking-wider">
+                                            {aiResult.somatic_insight}
+                                        </p>
+                                    </div>
+                                )}
                             </div>
                         </div>
 
-                        {/* FINAL CTA & FOOTER */}
-                        <div className="text-center space-y-6 pt-12 border-t border-[#B8835A]/20">
-                            <p className="text-[#8C4005] font-editorial italic text-xl">Tu diagnóstico completo ha sido enviado a {email}</p>
-                            <div className="flex flex-wrap justify-center gap-4">
+                        {/* Recommendation Sections */}
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {/* Primary Action from IA */}
+                            <div className="md:col-span-2 bg-white p-12 md:p-16 rounded-[4rem] border border-[#B8835A]/10 shadow-xl space-y-8 flex flex-col justify-center">
+                                <div className="space-y-4 text-center md:text-left">
+                                    <span className="text-[#8C4005] font-bold tracking-[0.2em] uppercase text-[10px] block font-guide">Tu Primer Paso Maestro</span>
+                                    <h3 className="text-3xl md:text-5xl font-editorial text-[#2D2926]">Guía de Regulación</h3>
+                                    <p className="text-2xl font-editorial italic text-[#8C4005] leading-relaxed">
+                                        {aiResult?.action_step || "Escucha el silencio de tu cuerpo y permite una exhalación profunda."}
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Venezuela en el Cuerpo CTA */}
+                            <div className="bg-[#8C4005] text-[#F5EFE6] p-12 rounded-[4rem] flex flex-col justify-between shadow-2xl relative overflow-hidden group">
+                                <div className="relative z-10 space-y-6 text-center">
+                                    <h4 className="text-3xl font-editorial leading-snug">¿Lista para restaurar el orden?</h4>
+                                    <p className="opacity-80 font-body text-base leading-relaxed">
+                                        {aiResult?.venezuela_connection || "El Tour Venezuela en el Cuerpo es el espacio para tu liberación."}
+                                    </p>
+                                    <Link 
+                                        href="/venezuela-en-el-cuerpo"
+                                        className="inline-flex items-center gap-2 bg-[#F5EFE6] text-[#8C4005] px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-xs hover:scale-105 transition-all shadow-lg mx-auto"
+                                    >
+                                        Inscribirme al Tour
+                                        <ArrowRight className="w-4 h-4" />
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Secondary Tools - Less redundant, more supportive */}
+                        <div className="space-y-12">
+                            <div className="text-center space-y-2">
+                                <span className="text-[#8C4005] font-bold tracking-[0.2em] uppercase text-[10px] block font-guide">Recursos de sostenibilidad</span>
+                                <h4 className="text-3xl md:text-4xl font-editorial text-[#2D2926]">Prácticas de Sostenimiento</h4>
+                            </div>
+                            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                                <ExerciseCard title="Vibración" desc="Movimiento suave para soltar cargas." />
+                                <ExerciseCard title="Mirada" desc="Orienta tu sistema al espacio seguro." />
+                                <ExerciseCard title="Voz (VOO)" desc="Regula el nervio vago profundamente." />
+                                <ExerciseCard title="Respiración" desc="Habita el aire en tu fascia corporal." />
+                            </div>
+                        </div>
+
+                        {/* FOOTER & WHATSAPP */}
+                        <div className="text-center space-y-8 pt-16 border-t border-[#B8835A]/10">
+                            <div className="space-y-4">
+                                <p className="text-[#8C4005] font-editorial italic text-2xl uppercase tracking-tighter">Tu diagnóstico completo ha sido enviado a {email}</p>
                                 <button 
                                     onClick={() => window.location.href = `https://wa.me/${whatsapp?.replace(/\D/g, '') || '584120000000'}?text=Hola Yelitze, acabo de terminar mi Test Somático y soy ${stressResult.type}. Me gustaría profundizar en mi proceso.`}
-                                    className="px-8 py-4 border-2 border-[#8C4005] text-[#8C4005] rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-[#8C4005] hover:text-white transition-all"
+                                    className="flex items-center gap-4 bg-[#25D366] text-white px-10 py-5 rounded-2xl font-bold uppercase tracking-[0.2em] text-xs hover:scale-105 transition-all shadow-xl mx-auto"
                                 >
-                                    Escribir por WhatsApp
+                                    <Activity className="w-5 h-5" />
+                                    Consultar por WhatsApp
                                 </button>
                             </div>
-                            <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-[#2D2926]/40">YELITZE RANGEL • Tu Coach Ancestral</p>
+                            <div className="pt-10">
+                                <p className="text-[10px] uppercase tracking-[0.5em] font-bold text-[#2D2926]/40">YELITZE RANGEL • Tu Coach Ancestral • 2026</p>
+                            </div>
                         </div>
                     </motion.div>
                 )}
@@ -440,10 +492,9 @@ export default function SomaticQuiz() {
 
 function ExerciseCard({ title, desc }: { title: string, desc: string }) {
     return (
-        <div className="bg-white p-12 rounded-[3.5rem] border border-[#B8835A]/10 shadow-sm space-y-6">
-            <h4 className="text-2xl font-bold font-editorial text-[#2D2926]">{title}</h4>
-            <div className="w-12 h-px bg-[#B8835A]/30" />
-            <p className="text-lg text-[#2D2926]/70 leading-relaxed font-body font-light italic">
+        <div className="bg-white/50 p-8 rounded-[3rem] border border-[#B8835A]/10 shadow-sm hover:shadow-md transition-all space-y-4 text-center">
+            <h5 className="text-xl font-bold font-editorial text-[#8C4005]">{title}</h5>
+            <p className="text-sm text-[#2D2926]/60 leading-relaxed font-body italic">
                 {desc}
             </p>
         </div>

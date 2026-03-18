@@ -397,14 +397,44 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
     pdf.setTextColor(184, 131, 90);
     pdf.setFontSize(9);
     pdf.setFont('helvetica', 'bold');
-    pdf.text('TU PRIMER PASO DE REGULACIÓN', pageWidth / 2, innerY, { align: 'center' });
-    innerY += 15;
+    pdf.text('EL PRIMER PASO MAESTRO', pageWidth / 2, innerY, { align: 'center' });
+    innerY += 12;
     pdf.setTextColor(249, 247, 242);
-    pdf.setFontSize(16);
+    pdf.setFontSize(14);
     pdf.setFont('helvetica', 'bold');
     pdf.text(actionLines, pageWidth / 2, innerY, { align: 'center' });
 
-    // 5. Signature Area
+    y += actionBoxHeight + 15;
+
+    // 5. Standard Tools (Maintenance)
+    pdf.setTextColor(140, 64, 5);
+    pdf.setFontSize(9);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('RECURSOS DE SOSTENIMIENTO DIARIO', margin, y);
+    y += 8;
+
+    const exercises = [
+        { t: "Vibración", d: "Movimiento suave para soltar cargas." },
+        { t: "Mirada", d: "Orienta tu sistema al espacio seguro." },
+        { t: "Voz (VOO)", d: "Regula el nervio vago profundamente." },
+        { t: "Respiración", d: "Habita el aire en tu fascia corporal." }
+    ];
+
+    pdf.setFontSize(8);
+    exercises.forEach((ex, idx) => {
+        const rowX = margin + (idx % 2) * (contentWidth / 2);
+        const rowY = y + Math.floor(idx / 2) * 12;
+        
+        pdf.setTextColor(140, 64, 5);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text(ex.t, rowX, rowY);
+        
+        pdf.setTextColor(80, 80, 80);
+        pdf.setFont('helvetica', 'italic');
+        pdf.text(`: ${ex.d}`, rowX + pdf.getTextWidth(ex.t), rowY);
+    });
+
+    // 6. Signature Area
     y = pageHeight - 50;
     pdf.setTextColor(140, 64, 5);
     pdf.setFontSize(14);

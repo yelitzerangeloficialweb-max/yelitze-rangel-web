@@ -37,16 +37,17 @@ export async function POST(req: Request) {
         - Respuestas (1=Sí, 0.5=A veces, 0=No): ${JSON.stringify(answers)}
 
         **TU MISIÓN:**
-        Habla directamente a ${name}. Generar un análisis personalizado de lo que su cuerpo está intentando decir a través de la fascia corporal. 
-        Habla sobre el impacto en su mente proactiva y la importancia de la regulación para recuperar su soberanía.
-        Relaciona su reflexión personal con el tipo de estrés detectado.
+        Habla directamente a ${name}. Genera un análisis profundo de lo que su cuerpo está comunicando a través de su fascia corporal. 
+        **No repitas la descripción base** del tipo de estrés; úsala solo como punto de partida para profundizar.
+        Relaciona su "Reflexión personal" directamente con el estado de su fascia (por ejemplo, si menciona dolor lumbar, relaciónalo con el Psoas).
+        Habla sobre el impacto en su soberanía y el orden biológico.
 
         **RESPONDE ÚNICAMENTE CON UN JSON VÁLIDO:**
         {
-          "personalized_analysis": "Un párrafo profundo y empático sobre su estado somático actual (máx 80 palabras)",
-          "somatic_insight": "Una frase reveladora sobre su fascia corporal (máx 20 palabras)",
-          "action_step": "Una recomendación específica de los ejercicios (VOO, Vibración, Mirada) adaptada a su caso (máx 20 palabras)",
-          "venezuela_connection": "Por qué el tour 'Venezuela en el Cuerpo' es el espacio perfecto para este usuario específico (máx 25 palabras)"
+          "personalized_analysis": "Análisis profundo, biológico y empático. Háblale a sus células. (máx 80 palabras)",
+          "somatic_insight": "Un 'MANTRA DE SOBERANÍA' corto y poderoso que el usuario pueda repetir para su regulación (máx 15 palabras)",
+          "action_step": "El 'Primer Paso Maestro': Recomendación específica de ejercicios (VOO, Vibración, Mirada) adaptada a su reflexión (máx 20 palabras)",
+          "venezuela_connection": "Una invitación personalizada al tour 'Venezuela en el Cuerpo' basada en su necesidad específica (máx 25 palabras)"
         }
         `;
 
