@@ -143,7 +143,10 @@ export default function SomaticQuiz() {
                     answers,
                     reflection,
                     name,
-                    stressResult
+                    stressResult: {
+                        type: stressResult.type,
+                        desc: stressResult.desc
+                    }
                 })
             });
             const data = await response.json();
@@ -717,11 +720,13 @@ export default function SomaticQuiz() {
             });
 
             const emailData = await response.json();
+            console.log("Email API response:", emailData);
             if (!response.ok) {
-                console.error("Error sending email:", emailData.error);
-                alert("Hubo un problema al enviar el correo. Por favor verifica que tu email sea correcto.");
+                console.error("Error sending email:", emailData.error, emailData.details);
+                alert(`No se pudo enviar el correo: ${emailData.error || 'Error desconocido'}. Detalle: ${JSON.stringify(emailData.details || '')}`);
             } else {
                 console.log("Email sent successfully", emailData);
+                alert("¡Diagnóstico enviado con éxito! Revisa tu correo (incluida la carpeta de Spam).");
             }
         } catch (error) {
             console.error("Error sending data:", error);
