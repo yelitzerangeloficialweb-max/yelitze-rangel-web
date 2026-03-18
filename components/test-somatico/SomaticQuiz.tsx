@@ -697,7 +697,12 @@ export default function SomaticQuiz() {
     const sendEmailWithData = async (finalResult: any) => {
         setIsSending(true);
         try {
-            const stressLevel = getStressType(); // Use getStressType() to get the current stress result
+            const stressLevel = getStressType(); 
+            // Only send serializable data (no icons)
+            const serializableStress = {
+                type: stressLevel.type,
+                desc: stressLevel.desc
+            };
 
             const response = await fetch('/api/ai/somatic-test/send-email', {
                 method: 'POST',
@@ -706,7 +711,7 @@ export default function SomaticQuiz() {
                     email,
                     name,
                     reflection,
-                    stressResult: stressLevel,
+                    stressResult: serializableStress,
                     result: finalResult
                 })
             });
