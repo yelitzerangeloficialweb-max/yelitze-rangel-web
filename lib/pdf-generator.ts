@@ -282,3 +282,90 @@ export async function generateVisionBoardPDF(name: string, analysis: any, pillar
     return Buffer.from(pdf.output('arraybuffer'));
 }
 
+export async function generateSomaticPDF(name: string, analysis: any, stressResult: any, reflection: string) {
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    const margin = 20;
+    const isMale = false;
+
+    // Background Cream
+    pdf.setFillColor(245, 239, 230);
+    pdf.rect(0, 0, pageWidth, pageHeight, 'F');
+
+    // Header Line
+    pdf.setDrawColor(140, 64, 5);
+    pdf.setLineWidth(0.5);
+    pdf.line(margin, 25, pageWidth - margin, 25);
+
+    let y = 45;
+    pdf.setTextColor(140, 64, 5);
+    pdf.setFontSize(24);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('Diagnóstico Somático', margin, y);
+    
+    y += 10;
+    pdf.setFontSize(11);
+    pdf.setFont('helvetica', 'italic');
+    pdf.text(`Consultante: ${name}`, margin, y);
+    
+    y += 20;
+    // Analysis Card
+    pdf.setFillColor(255, 255, 255);
+    pdf.roundedRect(margin, y, pageWidth - margin * 2, 85, 5, 5, 'F');
+    
+    let innerY = y + 12;
+    pdf.setTextColor(184, 131, 90);
+    pdf.setFontSize(10);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('AUDITORÍA DE TU BIOLOGÍA', margin + 10, innerY);
+    
+    innerY += 10;
+    pdf.setTextColor(45, 41, 38);
+    pdf.setFontSize(12);
+    pdf.setFont('helvetica', 'italic');
+    const analysisLines = pdf.splitTextToSize(`"${analysis.personalized_analysis}"`, pageWidth - margin * 2 - 20);
+    pdf.text(analysisLines, margin + 10, innerY);
+    
+    y += 100;
+    // Insight
+    pdf.setFillColor(253, 251, 247);
+    pdf.roundedRect(margin, y, pageWidth - margin * 2, 45, 5, 5, 'F');
+    innerY = y + 10;
+    pdf.setTextColor(140, 64, 5);
+    pdf.setFontSize(9);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('INSIGHT SOMÁTICO', margin + 10, innerY);
+    innerY += 8;
+    pdf.setTextColor(60, 60, 60);
+    pdf.setFontSize(10);
+    pdf.setFont('helvetica', 'normal');
+    const insightLines = pdf.splitTextToSize(analysis.somatic_insight, pageWidth - margin * 2 - 20);
+    pdf.text(insightLines, margin + 10, innerY);
+
+    y += 55;
+    // Action Step (Dark Box)
+    pdf.setFillColor(45, 41, 38);
+    pdf.roundedRect(margin, y, pageWidth - margin * 2, 45, 5, 5, 'F');
+    innerY = y + 15;
+    pdf.setTextColor(184, 131, 90);
+    pdf.setFontSize(9);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('TU PRIMER PASO DE REGULACIÓN', pageWidth / 2, innerY, { align: 'center' });
+    innerY += 12;
+    pdf.setTextColor(245, 239, 230);
+    pdf.setFontSize(14);
+    pdf.setFont('helvetica', 'bold');
+    const actionLines = pdf.splitTextToSize(analysis.action_step, pageWidth - margin * 2 - 30);
+    pdf.text(actionLines, pageWidth / 2, innerY, { align: 'center' });
+
+    // Footer
+    const pgNum = 1;
+    pdf.setFontSize(8);
+    pdf.setTextColor(184, 131, 90);
+    pdf.text(`PÁGINA 0${pgNum}`, pageWidth - margin, pageHeight - 10, { align: 'right' });
+    pdf.text('YELITZE RANGEL • Arquitectura Intencional de Vida • 2026', margin, pageHeight - 10);
+
+    return Buffer.from(pdf.output('arraybuffer'));
+}
+

@@ -1,11 +1,12 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { generateSomaticPDF } from '@/lib/pdf-generator';
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 export async function POST(req: Request) {
     try {
-        const { email, result, pdfBase64, name = 'Explorador/a' } = await req.json();
+        const { email, result, reflection, stressResult, name = 'Explorador/a' } = await req.json();
 
         if (!email) {
             return NextResponse.json({ error: 'Email is required' }, { status: 400 });
@@ -16,7 +17,10 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: 'Resend API Key Missing', simulation: true }, { status: 500 });
         }
 
-        console.log(`Payload size (Approx): ${JSON.stringify(req.body).length} bytes`);
+        // Generate PDF on server side
+        console.log(`Generating server-side PDF for ${name}...`);
+        const pdfBuffer = await generateSomaticPDF(name, result, stressResult, reflection);
+
         console.log(`Sending email to: ${email} from info@yelitzerangeloficial.com`);
 
         const { data, error } = await resend.emails.send({
@@ -26,7 +30,7 @@ export async function POST(req: Request) {
             attachments: [
                 {
                     filename: 'Diagnostico_Somatico_Yelitze_Rangel.pdf',
-                    content: pdfBase64.split(',')[1], // Remove "data:application/pdf;base64," prefix
+                    content: pdfBuffer,
                 },
             ],
             html: `

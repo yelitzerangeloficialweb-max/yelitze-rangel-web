@@ -14,8 +14,6 @@ import {
     ShieldCheck
 } from 'lucide-react';
 import Link from 'next/link';
-import { jsPDF } from 'jspdf';
-import html2canvas from 'html2canvas';
 
 // Questions and Categories
 const QUESTIONS = [
@@ -153,7 +151,7 @@ export default function SomaticQuiz() {
             
             // Automatic email sending with PDF
             if (email) {
-                await sendEmailWithPDF(data, name);
+                await sendEmailWithData(data);
             }
         } catch (error) {
             console.error("AI Generation Error:", error);
@@ -692,61 +690,24 @@ export default function SomaticQuiz() {
                 }
             `}</style>
 
-            {/* Hidden PDF Template */}
-            <div className="hidden">
-                <PDFTemplate 
-                    result={aiResult} 
-                    stressResult={stressResult} 
-                    answers={answers} 
-                    reflection={reflection} 
-                    name={name}
-                />
-            </div>
+
         </div>
     );
 
-    async function sendEmailWithPDF(finalResult: any, userName: string) {
+    const sendEmailWithData = async (finalResult: any) => {
         setIsSending(true);
         try {
-            const pdfContent = document.getElementById('pdf-content');
-            if (!pdfContent) {
-                console.error("PDF content element not found");
-                return;
-            }
-
-            // Temporarily show it for capture
-            pdfContent.style.left = '0';
-            pdfContent.style.visibility = 'visible';
-
-            const canvas = await html2canvas(pdfContent, {
-                scale: 2,
-                backgroundColor: '#F5EFE6',
-                useCORS: true,
-                logging: false,
-            });
-            
-            // Hide it back
-            pdfContent.style.left = '-10000px';
-            pdfContent.style.visibility = 'hidden';
-
-            const imgData = canvas.toDataURL('image/png');
-            const pdf = new jsPDF('p', 'mm', 'a4');
-            const imgProps = pdf.getImageProperties(imgData);
-            const pdfWidth = pdf.internal.pageSize.getWidth();
-            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-            
-            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-            const pdfBase64 = pdf.output('datauristring');
+            const stressLevel = getStressType(); // Use getStressType() to get the current stress result
 
             const response = await fetch('/api/ai/somatic-test/send-email', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     email,
-                    name: userName,
-                    whatsapp,
-                    result: finalResult,
-                    pdfBase64
+                    name,
+                    reflection,
+                    stressResult: stressLevel,
+                    result: finalResult
                 })
             });
 
@@ -758,72 +719,12 @@ export default function SomaticQuiz() {
                 console.log("Email sent successfully", emailData);
             }
         } catch (error) {
-            console.error("Error generating/sending PDF:", error);
-            alert("Error al generar el PDF o enviar el correo.");
+            console.error("Error sending data:", error);
+            alert("Error al enviar los resultados por correo.");
         } finally {
             setIsSending(false);
         }
     }
-}
-
-function PDFTemplate({ result, stressResult, reflection, name }: any) {
-    if (!result) return null;
-    return (
-        <div id="pdf-content" style={{
-            width: '210mm',
-            padding: '20mm',
-            backgroundColor: '#F5EFE6',
-            fontFamily: 'serif',
-            color: '#2D2926',
-            position: 'absolute',
-            left: '-10000px',
-            top: 0,
-            zIndex: -1
-        }}>
-            <div style={{ textAlign: 'center', marginBottom: '15mm' }}>
-                <h1 style={{ color: '#8C4005', fontSize: '32pt', fontStyle: 'italic', margin: 0 }}>Test Somático</h1>
-                <p style={{ letterSpacing: '0.3em', fontSize: '10pt', fontWeight: 'bold', color: '#8C4005', marginTop: '4mm' }}>YELITZE RANGEL</p>
-                <div style={{ height: '1px', backgroundColor: '#B8835A', width: '40mm', margin: '4mm auto', opacity: 0.3 }}></div>
-                <p style={{ fontStyle: 'italic', fontSize: '12pt', color: '#8C4005' }}>"Tu cuerpo no miente, solo el orden libera."</p>
-            </div>
-
-            <div style={{ marginBottom: '10mm', borderBottom: '1px solid #B8835A22', paddingBottom: '4mm' }}>
-                <p style={{ margin: 0, fontSize: '11pt', color: '#2D2926' }}>Explorador/a: <strong>{name}</strong></p>
-            </div>
-            
-            <div style={{ marginBottom: '10mm' }}>
-                <span style={{ fontSize: '9pt', color: '#8C4005', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Diagnóstico Somático</span>
-                <h2 style={{ fontSize: '24pt', color: '#2D2926', marginTop: '2mm', marginBottom: '6mm' }}>{stressResult.type}</h2>
-            </div>
-
-            <div style={{ backgroundColor: 'white', padding: '10mm', borderRadius: '10mm', marginBottom: '10mm', border: '1px solid #B8835A11' }}>
-                <h3 style={{ color: '#B8835A', fontSize: '16pt', marginBottom: '4mm' }}>Análisis Personalizado</h3>
-                <p style={{ fontSize: '13pt', fontStyle: 'italic', lineHeight: '1.6', color: '#2D2926' }}>
-                    "{result.personalized_analysis}"
-                </p>
-                <div style={{ borderTop: '1px solid #B8835A22', paddingTop: '6mm', marginTop: '6mm' }}>
-                    <p style={{ color: '#8C4005', fontWeight: 'bold', fontSize: '11pt', marginBottom: '2mm' }}>Insight Somático:</p>
-                    <p style={{ fontSize: '12pt' }}>{result.somatic_insight}</p>
-                </div>
-            </div>
-
-            <div style={{ backgroundColor: '#8C4005', color: 'white', padding: '10mm', borderRadius: '10mm', marginBottom: '10mm' }}>
-                <h3 style={{ margin: 0, fontSize: '14pt', opacity: 0.9 }}>Ruta de Regulación Sugerida</h3>
-                <p style={{ fontSize: '18pt', marginTop: '4mm', marginBottom: 0, fontWeight: 'bold' }}>{result.action_step}</p>
-            </div>
-
-            <div style={{ padding: '8mm', border: '1px solid #B8835A33', borderRadius: '10mm', marginBottom: '10mm' }}>
-                <h3 style={{ color: '#8C4005', fontSize: '14pt', marginTop: 0, marginBottom: '3mm' }}>Tu Reflexión Personal</h3>
-                <p style={{ fontSize: '11pt', color: '#2D292699', fontStyle: 'italic' }}>"{reflection}"</p>
-            </div>
-
-            <div style={{ textAlign: 'center', marginTop: '15mm', borderTop: '1px solid #2D292611', paddingTop: '10mm' }}>
-                <p style={{ fontSize: '10pt', color: '#2D2926' }}><strong>Yelitze Rangel</strong></p>
-                <p style={{ fontSize: '9pt', color: '#2D2926', opacity: 0.6 }}>Anatomía del alma donde lo invisible cobra voz.</p>
-                <p style={{ fontSize: '8pt', color: '#2D2926', opacity: 0.4, marginTop: '8mm' }}>© 2026 Yelitze Rangel. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    );
 }
 
 function ExerciseCard({ title, desc }: { title: string, desc: string }) {
