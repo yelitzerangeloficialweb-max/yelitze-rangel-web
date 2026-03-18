@@ -23,43 +23,50 @@ const QUESTIONS = [
         id: 1,
         category: "Restricciones Físicas (La Fascia Corporal)",
         text: "¿Sientes tu abdomen contraído de forma constante?",
-        context: "(Esto es un signo de anticipación crónica)",
+        context: "(Signo de anticipación crónica)",
+        explanation: "El abdomen es el centro de nuestra seguridad biológica. Una contracción constante aquí indica que el diafragma está bloqueado, preparándote para un impacto que tu sistema percibe como inminente."
     },
     {
         id: 2,
         category: "Restricciones Físicas (La Fascia Corporal)",
         text: "¿Sientes rigidez profunda en la cadera o el músculo psoas?",
-        context: "(Refleja un cuerpo preparado para huir que nunca terminó de hacerlo)",
+        context: "(Cuerpo preparado para huir)",
+        explanation: "El Psoas es el principal músculo de lucha o huida. Si está rígido, tu cerebro recibe una señal constante de peligro, lo que imposibilita la calma real y la toma de decisiones proactivas."
     },
     {
         id: 3,
         category: "Restricciones Físicas (La Fascia Corporal)",
-        text: "¿Sientes que una tensión en tu diafragma o pecho se refleja como dolor en tus cervicales?",
-        context: "(Esto ocurre porque la fascia corporal es una red continua y transmite tensiones de un área a otra)",
+        text: "¿Sientes que una tensión en tu diafragma se refleja en tus cervicales?",
+        context: "(La fascia corporal como red continua)",
+        explanation: "La fascia corporal es una red que conecta todo el cuerpo. Una tensión en el centro (diafragma/emociones) suele 'tirar' de los extremos (cuello/cabeza), creando dolores que no se alivian solo con masajes locales."
     },
     {
         id: 4,
         category: "El Ciclo Emocional Incompleto",
-        text: "Miedo: ¿Has vivido situaciones de amenaza donde no pudiste protegerte o escapar para sobrevivir?",
+        text: "Miedo: ¿Has vivido situaciones donde no pudiste protegerte o escapar?",
         context: "",
+        explanation: "Cuando el sistema nervioso se activa para sobrevivir pero no puede completar la acción (huir o defenderse), esa energía queda atrapada en el tejido fascial como una memoria biológica activa."
     },
     {
         id: 5,
         category: "El Ciclo Emocional Incompleto",
         text: "Rabia: ¿Has sentido que vulneran tus límites y no has podido defenderte?",
         context: "",
+        explanation: "La rabia es energía defensiva. Si no se expresa o se usa para poner un límite, se vuelve hacia adentro, tensando la mandíbula, los hombros y rigidizando la fascia corporal."
     },
     {
         id: 6,
         category: "El Ciclo Emocional Incompleto",
-        text: "Tristeza: ¿Has vivido una pérdida dolorosa sin permitirte el tiempo para retirarte e integrarlo?",
+        text: "Tristeza: ¿Has vivido pérdidas sin permitirte el tiempo para integrarlo?",
         context: "",
+        explanation: "La tristeza requiere un repliegue biológico. No permitir este proceso mantiene al sistema en un estado de 'falsa alerta', impidiendo que los tejidos se relajen y se hidraten correctamente."
     },
     {
         id: 7,
-        category: "Señales de Liberación del Sistema Nervioso",
-        text: "Cuando logras relajarte o sentirte en un entorno seguro, ¿experimentas suspiros profundos, temblores corporales, calor que recorre tu cuerpo o lágrimas repentinas?",
-        context: "",
+        category: "Señales de Liberación",
+        text: "¿Sientes suspiros profundos, calores o temblores al relajarte?",
+        context: "(Tu sistema intentando regularse)",
+        explanation: "Estas no son fallas, son 'descargas' del sistema nervioso. El temblor o el suspiro indican que la energía retenida está finalmente saliendo, permitiendo que la fascia corporal recupere su elasticidad."
     }
 ];
 
@@ -74,7 +81,9 @@ export default function SomaticQuiz() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [answers, setAnswers] = useState<Record<number, number>>({});
     const [reflection, setReflection] = useState('');
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [whatsapp, setWhatsapp] = useState('');
     const [isSending, setIsSending] = useState(false);
     const [aiResult, setAiResult] = useState<any>(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -135,6 +144,7 @@ export default function SomaticQuiz() {
                 body: JSON.stringify({
                     answers,
                     reflection,
+                    name,
                     stressResult
                 })
             });
@@ -143,7 +153,7 @@ export default function SomaticQuiz() {
             
             // Automatic email sending with PDF
             if (email) {
-                await sendEmailWithPDF(data);
+                await sendEmailWithPDF(data, name);
             }
         } catch (error) {
             console.error("AI Generation Error:", error);
@@ -189,6 +199,21 @@ export default function SomaticQuiz() {
                                 </div>
                             </div>
                             
+                            <div className="grid md:grid-cols-3 gap-6 text-left py-8 border-t border-[#B8835A]/10">
+                                <div className="space-y-4">
+                                    <h4 className="font-bold text-[#8C4005] uppercase tracking-widest text-[10px]">1. Observación</h4>
+                                    <p className="text-sm text-[#2D2926]/70 leading-relaxed font-body">Responde con honestidad escuchando la sensación física, no solo el pensamiento.</p>
+                                </div>
+                                <div className="space-y-4 border-x border-[#B8835A]/10 px-6">
+                                    <h4 className="font-bold text-[#8C4005] uppercase tracking-widest text-[10px]">2. Reflexión</h4>
+                                    <p className="text-sm text-[#2D2926]/70 leading-relaxed font-body">Un espacio para nombrar lo que sientes y permitir que el sistema nervioso se calme.</p>
+                                </div>
+                                <div className="space-y-4">
+                                    <h4 className="font-bold text-[#8C4005] uppercase tracking-widest text-[10px]">3. Integración</h4>
+                                    <p className="text-sm text-[#2D2926]/70 leading-relaxed font-body">Recibe tu diagnóstico biológico y ejercicios prácticos de regulación.</p>
+                                </div>
+                            </div>
+
                             <div className="flex justify-center pt-8">
                                 <button
                                     onClick={() => setStep('quiz')}
@@ -242,10 +267,19 @@ export default function SomaticQuiz() {
                                     <h2 className="text-3xl md:text-5xl font-editorial text-[#2D2926] leading-tight">
                                         {currentQuestion.text}
                                     </h2>
-                                    {currentQuestion.context && (
-                                        <p className="text-[#8C4005] italic text-xl font-editorial opacity-80">
-                                            {currentQuestion.context}
-                                        </p>
+                                    {currentQuestion.explanation && (
+                                        <motion.div 
+                                            initial={{ opacity: 0, x: -20 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            key={`exp-${currentIndex}`}
+                                            className="bg-[#8C4005]/5 p-6 rounded-2xl border-l-2 border-[#8C4005]/30 relative overflow-hidden"
+                                        >
+                                            <div className="absolute top-0 right-0 w-24 h-24 bg-[#8C4005]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
+                                            <p className="text-[#8C4005] text-lg font-editorial italic leading-relaxed relative z-10">
+                                                <span className="font-bold not-italic text-[10px] uppercase tracking-widest block mb-1 opacity-60">Biología del Síntoma:</span>
+                                                {currentQuestion.explanation}
+                                            </p>
+                                        </motion.div>
                                     )}
                                 </div>
 
@@ -286,39 +320,73 @@ export default function SomaticQuiz() {
                         className="max-w-3xl mx-auto space-y-12"
                     >
                         <div className="text-center space-y-6">
-                            <h2 className="text-4xl md:text-6xl font-editorial text-[#2D2926]">Espacio de Escucha</h2>
-                            <p className="text-xl font-editorial italic text-[#8C4005]">
-                                Antes de ver tus resultados, tómate un momento... ¿Qué sientes en tu cuerpo ahora mismo al pasar por este proceso?
+                            <h2 className="text-4xl md:text-6xl font-editorial text-[#2D2926]">Escucha Profunda</h2>
+                            <p className="text-xl font-editorial italic text-[#8C4005] max-w-2xl mx-auto">
+                                "Titular el sistema nervioso significa darle un espacio de salida a la carga eléctrica acumulada. Escribir es un acto neurobiológico que ayuda a organizar el caos interno en soberanía."
                             </p>
                         </div>
                         
-                        <div className="bg-white p-10 rounded-[3rem] shadow-xl border border-[#B8835A]/10">
-                            <textarea
-                                value={reflection}
-                                onChange={(e) => setReflection(e.target.value)}
-                                placeholder="Escribe aquí lo que emerge: una tensión, un pensamiento, una emoción..."
-                                className="w-full h-48 p-6 text-xl font-editorial text-[#2D2926] placeholder:text-[#2D2926]/20 bg-transparent border-none focus:ring-0 resize-none"
-                            />
-                        </div>
+                        <div className="bg-white p-10 rounded-[3rem] shadow-xl border border-[#B8835A]/10 space-y-8">
+                            <div className="space-y-4">
+                                <label className="text-[#8C4005] font-bold uppercase tracking-wider text-[10px] block font-guide ml-4">
+                                    Sobre tu proceso:
+                                </label>
+                                <textarea
+                                    value={reflection}
+                                    onChange={(e) => setReflection(e.target.value)}
+                                    placeholder="Escribe aquí lo que emerge: una tensión, un pensamiento, una emoción..."
+                                    className="w-full h-32 p-6 text-xl font-editorial text-[#2D2926] placeholder:text-[#2D2926]/20 bg-[#F5EFE6]/30 rounded-[2rem] border-none focus:ring-2 focus:ring-[#8C4005] outline-none resize-none"
+                                />
+                            </div>
 
-                        <div className="bg-white p-8 rounded-[2rem] shadow-lg border border-[#B8835A]/10 space-y-4 max-w-md mx-auto">
-                            <label className="text-[#8C4005] font-bold uppercase tracking-wider text-[10px] block font-guide text-center">
-                                Recibe tu diagnóstico completo por correo:
-                            </label>
-                            <input 
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder="tu@email.com"
-                                className="w-full p-4 text-center text-xl font-editorial text-[#2D2926] bg-[#F5EFE6]/30 rounded-2xl border-none focus:ring-2 focus:ring-[#8C4005] outline-none"
-                                required
-                            />
+                            <div className="grid md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <label className="text-[#8C4005] font-bold uppercase tracking-wider text-[10px] block font-guide ml-4">
+                                        Tu Nombre:
+                                    </label>
+                                    <input 
+                                        type="text"
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        placeholder="¿Cómo te llamas?"
+                                        className="w-full p-4 text-lg font-editorial text-[#2D2926] bg-[#F5EFE6]/30 rounded-2xl border-none focus:ring-2 focus:ring-[#8C4005] outline-none"
+                                        required
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-[#8C4005] font-bold uppercase tracking-wider text-[10px] block font-guide ml-4">
+                                        Tu WhatsApp:
+                                    </label>
+                                    <input 
+                                        type="tel"
+                                        value={whatsapp}
+                                        onChange={(e) => setWhatsapp(e.target.value)}
+                                        placeholder="+58 412..."
+                                        className="w-full p-4 text-lg font-editorial text-[#2D2926] bg-[#F5EFE6]/30 rounded-2xl border-none focus:ring-2 focus:ring-[#8C4005] outline-none"
+                                        required
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="space-y-2">
+                                <label className="text-[#8C4005] font-bold uppercase tracking-wider text-[10px] block font-guide ml-4 text-center">
+                                    Recibe tu diagnóstico completo por correo:
+                                </label>
+                                <input 
+                                    type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="tu@email.com"
+                                    className="w-full p-4 text-center text-lg font-editorial text-[#2D2926] bg-[#F5EFE6]/30 rounded-2xl border-none focus:ring-2 focus:ring-[#8C4005] outline-none"
+                                    required
+                                />
+                            </div>
                         </div>
 
                         <div className="flex justify-center">
                             <button
                                 onClick={generateAIResult}
-                                disabled={!email || !reflection}
+                                disabled={!email || !reflection || !name}
                                 className="bg-[#8C4005] text-[#F5EFE6] px-14 py-6 rounded-2xl font-bold uppercase tracking-[0.25em] text-xs hover:scale-[1.05] disabled:opacity-50 disabled:hover:scale-100 shadow-xl transition-all flex items-center gap-4 group font-guide"
                             >
                                 {isLoading ? "Analizando tu biología..." : "Ver mi diagnóstico y recibir PDF"}
@@ -593,12 +661,13 @@ export default function SomaticQuiz() {
                     stressResult={stressResult} 
                     answers={answers} 
                     reflection={reflection} 
+                    name={name}
                 />
             </div>
         </div>
     );
 
-    async function sendEmailWithPDF(finalResult: any) {
+    async function sendEmailWithPDF(finalResult: any, userName: string) {
         setIsSending(true);
         try {
             const pdfContent = document.getElementById('pdf-content');
@@ -636,6 +705,8 @@ export default function SomaticQuiz() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     email,
+                    name: userName,
+                    whatsapp,
                     result: finalResult,
                     pdfBase64
                 })
@@ -649,7 +720,7 @@ export default function SomaticQuiz() {
     }
 }
 
-function PDFTemplate({ result, stressResult, reflection }: any) {
+function PDFTemplate({ result, stressResult, reflection, name }: any) {
     if (!result) return null;
     return (
         <div id="pdf-content" style={{
@@ -668,6 +739,10 @@ function PDFTemplate({ result, stressResult, reflection }: any) {
                 <p style={{ letterSpacing: '0.3em', fontSize: '10pt', fontWeight: 'bold', color: '#8C4005', marginTop: '4mm' }}>YELITZE RANGEL</p>
                 <div style={{ height: '1px', backgroundColor: '#B8835A', width: '40mm', margin: '4mm auto', opacity: 0.3 }}></div>
                 <p style={{ fontStyle: 'italic', fontSize: '12pt', color: '#8C4005' }}>"Tu cuerpo no miente, solo el orden libera."</p>
+            </div>
+
+            <div style={{ marginBottom: '10mm', borderBottom: '1px solid #B8835A22', paddingBottom: '4mm' }}>
+                <p style={{ margin: 0, fontSize: '11pt', color: '#2D2926' }}>Explorador/a: <strong>{name}</strong></p>
             </div>
             
             <div style={{ marginBottom: '10mm' }}>

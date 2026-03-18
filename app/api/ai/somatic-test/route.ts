@@ -18,7 +18,7 @@ export async function POST(req: Request) {
             });
         }
 
-        const { answers, reflection, stressResult } = await req.json();
+        const { answers, reflection, stressResult, name = 'Explorador/a' } = await req.json();
 
         const prompt = `
         Actúa como **Yelitzé Rangel**, mentora de vida, consteladora familiar y experta en somatización y fascia corporal.
@@ -30,13 +30,14 @@ export async function POST(req: Request) {
         - **Frase Clave:** "Tu cuerpo no miente".
 
         **CONTEXTO DEL USUARIO:**
+        - Nombre: ${name}
         - Diagnóstico base (lógica de puntuación): ${stressResult.type}
         - Breve descripción base: ${stressResult.desc}
         - Reflexión personal del usuario: "${reflection}"
         - Respuestas (1=Sí, 0.5=A veces, 0=No): ${JSON.stringify(answers)}
 
         **TU MISIÓN:**
-        Generar un análisis personalizado de lo que su cuerpo está intentando decir a través de la fascia corporal. 
+        Habla directamente a ${name}. Generar un análisis personalizado de lo que su cuerpo está intentando decir a través de la fascia corporal. 
         Habla sobre el impacto en su mente proactiva y la importancia de la regulación para recuperar su soberanía.
         Relaciona su reflexión personal con el tipo de estrés detectado.
 
