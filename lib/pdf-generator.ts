@@ -13,7 +13,7 @@ export async function generateVisionBoardPDF(name: string, analysis: any, pillar
         pdf.setFontSize(8);
         pdf.setTextColor(184, 131, 90);
         pdf.text(`PÁGINA 0${pageNum}/0${totalPages}`, pageWidth - margin, pageHeight - 10, { align: 'right' });
-        pdf.text('YELITZE RANGEL • Arquitectura Intencional de Vida • 2026', margin, pageHeight - 10);
+        pdf.text('YELITZE RANGEL • Tu Coach Ancestral • 2026', margin, pageHeight - 10);
     };
 
     // --- PAGE 1: CARTA DE YELITZE ---
@@ -48,7 +48,7 @@ export async function generateVisionBoardPDF(name: string, analysis: any, pillar
         "Con amor y certeza,",
         "",
         "YELITZE RANGEL",
-        "Mentora de Vida y Diseño Intencional"
+        "Tu Coach Ancestral"
     ];
 
     letterText.forEach(paragraph => {
@@ -56,6 +56,10 @@ export async function generateVisionBoardPDF(name: string, analysis: any, pillar
             pdf.setFont('helvetica', 'bold');
             pdf.setFontSize(14);
             pdf.setTextColor(140, 64, 5);
+        } else if (paragraph === "Tu Coach Ancestral") {
+            pdf.setFont('helvetica', 'italic');
+            pdf.setFontSize(10);
+            pdf.setTextColor(184, 131, 90);
         } else if (paragraph === "Con amor y certeza,") {
             pdf.setFont('helvetica', 'bold');
             pdf.setFontSize(10);
@@ -287,85 +291,163 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
     const pageWidth = pdf.internal.pageSize.getWidth();
     const pageHeight = pdf.internal.pageSize.getHeight();
     const margin = 20;
-    const isMale = false;
 
     // Background Cream
-    pdf.setFillColor(245, 239, 230);
+    pdf.setFillColor(249, 247, 242);
     pdf.rect(0, 0, pageWidth, pageHeight, 'F');
 
-    // Header Line
+    // Branding Header
     pdf.setDrawColor(140, 64, 5);
     pdf.setLineWidth(0.5);
-    pdf.line(margin, 25, pageWidth - margin, 25);
-
-    let y = 45;
+    pdf.line(margin, 20, pageWidth - margin, 20);
+    
     pdf.setTextColor(140, 64, 5);
-    pdf.setFontSize(24);
+    pdf.setFontSize(8);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('YELITZE RANGEL | TU COACH ANCESTRAL', pageWidth / 2, 17, { align: 'center' });
+
+    let y = 35;
+    pdf.setTextColor(140, 64, 5);
+    pdf.setFontSize(26);
     pdf.setFont('helvetica', 'bold');
     pdf.text('Diagnóstico Somático', margin, y);
     
     y += 10;
-    pdf.setFontSize(11);
+    pdf.setTextColor(45, 41, 38);
+    pdf.setFontSize(12);
     pdf.setFont('helvetica', 'italic');
-    pdf.text(`Consultante: ${name}`, margin, y);
+    pdf.text(`Para: ${name}`, margin, y);
     
-    y += 20;
-    // Analysis Card
+    y += 15;
+
+    // 1. Stress Type Highlight
+    pdf.setFillColor(184, 131, 90, 0.1);
+    pdf.roundedRect(margin, y, pageWidth - margin * 2, 35, 5, 5, 'F');
+    let innerY = y + 10;
+    pdf.setTextColor(184, 131, 90);
+    pdf.setFontSize(9);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('TIPO DE ESTRÉS DETECTADO', margin + 10, innerY);
+    innerY += 10;
+    pdf.setTextColor(140, 64, 5);
+    pdf.setFontSize(18);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text(stressResult.type, margin + 10, innerY);
+    innerY += 8;
+    pdf.setTextColor(45, 41, 38);
+    pdf.setFontSize(9);
+    pdf.setFont('helvetica', 'normal');
+    const stressDescLines = pdf.splitTextToSize(stressResult.desc, pageWidth - margin * 2 - 20);
+    pdf.text(stressDescLines, margin + 10, innerY);
+    
+    y += 50;
+
+    // 2. Personal Analysis Card
     pdf.setFillColor(255, 255, 255);
-    pdf.roundedRect(margin, y, pageWidth - margin * 2, 85, 5, 5, 'F');
-    
-    let innerY = y + 12;
+    pdf.roundedRect(margin, y, pageWidth - margin * 2, 85, 8, 8, 'F');
+    pdf.setDrawColor(184, 131, 90, 0.2);
+    pdf.roundedRect(margin, y, pageWidth - margin * 2, 85, 8, 8, 'S');
+
+    innerY = y + 15;
     pdf.setTextColor(184, 131, 90);
     pdf.setFontSize(10);
     pdf.setFont('helvetica', 'bold');
     pdf.text('AUDITORÍA DE TU BIOLOGÍA', margin + 10, innerY);
     
-    innerY += 10;
+    innerY += 12;
     pdf.setTextColor(45, 41, 38);
-    pdf.setFontSize(12);
+    pdf.setFontSize(13);
     pdf.setFont('helvetica', 'italic');
     const analysisLines = pdf.splitTextToSize(`"${analysis.personalized_analysis}"`, pageWidth - margin * 2 - 20);
     pdf.text(analysisLines, margin + 10, innerY);
     
     y += 100;
-    // Insight
+
+    // 3. Insight Box
     pdf.setFillColor(253, 251, 247);
-    pdf.roundedRect(margin, y, pageWidth - margin * 2, 45, 5, 5, 'F');
+    pdf.roundedRect(margin, y, pageWidth - margin * 2, 35, 5, 5, 'F');
     innerY = y + 10;
     pdf.setTextColor(140, 64, 5);
     pdf.setFontSize(9);
     pdf.setFont('helvetica', 'bold');
     pdf.text('INSIGHT SOMÁTICO', margin + 10, innerY);
-    innerY += 8;
-    pdf.setTextColor(60, 60, 60);
-    pdf.setFontSize(10);
-    pdf.setFont('helvetica', 'normal');
-    const insightLines = pdf.splitTextToSize(analysis.somatic_insight, pageWidth - margin * 2 - 20);
-    pdf.text(insightLines, margin + 10, innerY);
+    innerY += 10;
+    pdf.setTextColor(140, 64, 5);
+    pdf.setFontSize(11);
+    pdf.setFont('helvetica', 'bolditalic');
+    pdf.text(`"${analysis.somatic_insight}"`, margin + 10, innerY);
 
-    y += 55;
-    // Action Step (Dark Box)
+    y += 45;
+
+    // 4. Action Step (Premium Dark Box)
     pdf.setFillColor(45, 41, 38);
-    pdf.roundedRect(margin, y, pageWidth - margin * 2, 45, 5, 5, 'F');
+    pdf.roundedRect(margin, y, pageWidth - margin * 2, 45, 10, 10, 'F');
     innerY = y + 15;
     pdf.setTextColor(184, 131, 90);
     pdf.setFontSize(9);
     pdf.setFont('helvetica', 'bold');
     pdf.text('TU PRIMER PASO DE REGULACIÓN', pageWidth / 2, innerY, { align: 'center' });
-    innerY += 12;
-    pdf.setTextColor(245, 239, 230);
-    pdf.setFontSize(14);
+    innerY += 15;
+    pdf.setTextColor(249, 247, 242);
+    pdf.setFontSize(16);
     pdf.setFont('helvetica', 'bold');
     const actionLines = pdf.splitTextToSize(analysis.action_step, pageWidth - margin * 2 - 30);
     pdf.text(actionLines, pageWidth / 2, innerY, { align: 'center' });
 
-    // Footer
-    const pgNum = 1;
-    pdf.setFontSize(8);
+    y += 60;
+
+    // 5. Signature Area
+    y = pageHeight - 50;
+    pdf.setTextColor(140, 64, 5);
+    pdf.setFontSize(14);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('Yelitze Rangel', margin, y);
+    y += 6;
     pdf.setTextColor(184, 131, 90);
-    pdf.text(`PÁGINA 0${pgNum}`, pageWidth - margin, pageHeight - 10, { align: 'right' });
-    pdf.text('YELITZE RANGEL • Arquitectura Intencional de Vida • 2026', margin, pageHeight - 10);
+    pdf.setFontSize(10);
+    pdf.setFont('helvetica', 'italic');
+    pdf.text('Tu Coach Ancestral', margin, y);
+
+    // CTA Tour Venezuela
+    y = pageHeight - 30;
+    pdf.setDrawColor(184, 131, 90, 0.3);
+    pdf.line(margin, y, pageWidth - margin, y);
+    y += 8;
+    pdf.setTextColor(140, 64, 5);
+    pdf.setFontSize(9);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('¿LISTA PARA PROFUNDIZAR? ÚNETE AL TOUR "VENEZUELA EN EL CUERPO"', pageWidth / 2, y, { align: 'center' });
+
+    // Footer
+    pdf.setFontSize(7);
+    pdf.setTextColor(184, 131, 90);
+    pdf.text('YELITZE RANGEL • Tu Coach Ancestral • 2026', margin, pageHeight - 10);
+    pdf.text('Somatic Health Audit', pageWidth - margin, pageHeight - 10, { align: 'right' });
+
+    // PAGE 2: User Reflection if long
+    if (reflection && reflection.length > 10) {
+        pdf.addPage();
+        pdf.setFillColor(249, 247, 242);
+        pdf.rect(0, 0, pageWidth, pageHeight, 'F');
+        
+        y = 30;
+        pdf.setTextColor(140, 64, 5);
+        pdf.setFontSize(12);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text('TU ESCUCHA PROFUNDA (REFLEXIÓN)', margin, y);
+        
+        y += 12;
+        pdf.setTextColor(80, 80, 80);
+        pdf.setFontSize(10);
+        pdf.setFont('helvetica', 'italic');
+        const refLines = pdf.splitTextToSize(reflection, pageWidth - margin * 2);
+        pdf.text(refLines, margin, y);
+        
+        // Footer Page 2
+        pdf.setFontSize(7);
+        pdf.setTextColor(184, 131, 90);
+        pdf.text('YELITZE RANGEL • Tu Coach Ancestral • PÁGINA 02', margin, pageHeight - 10);
+    }
 
     return Buffer.from(pdf.output('arraybuffer'));
 }
-

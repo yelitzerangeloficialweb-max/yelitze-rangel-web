@@ -75,7 +75,7 @@ export const sendVenezuelaRegistrationEmail = async ({
                     </div>
                     
                     <div style="background-color: #2D2926; padding: 30px; text-align: center; color: #F5EFE680; font-size: 12px; letter-spacing: 1px;">
-                        <p style="margin: 0; text-transform: uppercase;">YELITZE RANGEL • Arquitectura Intencional de Vida</p>
+                        <p style="margin: 0; text-transform: uppercase;">YELITZE RANGEL • Tu Coach Ancestral</p>
                         <p style="margin-top: 5px;">Este correo fue enviado automáticamente por el sistema de registro.</p>
                     </div>
                 </div>
@@ -171,7 +171,7 @@ export const sendVisionBoardEmail = async ({
                     
                     <div style="background-color: #EFE9E0; padding: 30px; text-align: center; color: #3C2A21; font-size: 12px;">
                         <p style="margin: 0;"><strong>YELITZE RANGEL</strong></p>
-                        <p style="margin-top: 5px; opacity: 0.6;">Mentora de Vida y Diseño Intencional</p>
+                        <p style="margin-top: 5px; opacity: 0.6;">Tu Coach Ancestral</p>
                     </div>
                 </div>
             `
@@ -264,7 +264,7 @@ export const sendSomaticEmail = async ({
                             <!-- Footer -->
                             <div style="text-align: center; border-top: 1px solid #E6DED5; padding-top: 40px;">
                                 <p style="font-family: 'Playfair Display', serif; font-size: 18px; color: #8C4005; margin: 0;"><strong>Yelitze Rangel</strong></p>
-                                <p style="font-size: 12px; color: #A8A098; margin-top: 5px; text-transform: uppercase; letter-spacing: 0.1em;">Mentora de Vida | Fascia Corporal</p>
+                                <p style="font-size: 12px; color: #A8A098; margin-top: 5px; text-transform: uppercase; letter-spacing: 0.1em;">Tu Coach Ancestral</p>
                                 <div style="margin-top: 30px;">
                                     <a href="https://yelitzerangel.com" style="text-decoration: none; color: #B8835A; font-size: 13px; font-weight: 600;">yelitzerangel.com</a>
                                 </div>
