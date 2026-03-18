@@ -10,7 +10,8 @@ import {
     Sparkles, 
     Zap, 
     ArrowLeft,
-    Download
+    Download,
+    ShieldCheck
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -119,6 +120,11 @@ export default function SomaticQuiz() {
             type: "Hipersensibilidad y Desregulación",
             desc: "Tu sistema tiene dificultades para encontrar el camino de regreso a la calma. Los ciclos de alerta se disparan pero tu cuerpo ya está intentando liberar de forma espontánea.",
             icon: Brain
+        };
+        if (totalScore <= 1.5) return {
+            type: "Regulación Somática Óptima",
+            desc: "Tu sistema nervioso se encuentra en un estado de equilibrio y escucha. Tu fascia corporal mantiene su elasticidad, permitiéndote habitar tu cuerpo desde la soberanía y la presencia.",
+            icon: ShieldCheck
         };
         
         return {
