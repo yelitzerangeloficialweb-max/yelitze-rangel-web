@@ -49,6 +49,60 @@ export default function SintomasSomaticosPage() {
                                 Otros síntomas comunes relacionados con la experiencia somática incluyen migrañas tensionales, trastornos digestivos (el "segundo cerebro"), fatiga crónica y bruxismo. Todos ellos tienen una raíz común: un ciclo fisiológico interrumpido.
                             </p>
                         </div>
+
+                        {/* New Section: Emotions */}
+                        <div className="pt-12 border-t border-[#B8835A]/10 space-y-10">
+                            <div className="space-y-4">
+                                <h3 className="text-3xl md:text-4xl font-editorial text-[#8C4005]">Emociones Comunes "Atrapadas" en la Fascia</h3>
+                                <p className="text-lg font-body font-light text-[#2D2926]/70 leading-relaxed">
+                                    La fascia es extremadamente sensible a la química del estrés (cortisol y adrenalina). Cuando una emoción no se procesa, el tejido puede volverse rígido o inflamarse.
+                                </p>
+                            </div>
+
+                            <div className="grid md:grid-cols-2 gap-6">
+                                {[
+                                    { e: "Miedo y Supervivencia", l: "Psoas (el 'músculo del alma') y zona lumbar." },
+                                    { e: "Ira y Frustración", l: "Mandíbula (bruxismo), cuello y hombros." },
+                                    { e: "Tristeza y Duelo", l: "Pecho, diafragma y zona dorsal (peso en la espalda)." },
+                                    { e: "Culpabilidad / Responsabilidad", l: "Hombros y trapecios (carga pesada)." },
+                                    { e: "Ansiedad y Control", l: "Fascia abdominal rígida y restricción respiratoria." }
+                                ].map((item, idx) => (
+                                    <div key={idx} className="bg-white/40 p-6 rounded-3xl border border-[#B8835A]/5 space-y-2">
+                                        <h4 className="font-bold font-editorial text-[#8C4005]">{item.e}</h4>
+                                        <p className="text-base text-[#2D2926]/80 font-body font-light">Suele alojarse en: <strong>{item.l}</strong></p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* New Section: Physical Symptoms */}
+                        <div className="pt-12 border-t border-[#B8835A]/10 space-y-10">
+                            <div className="space-y-4">
+                                <h3 className="text-3xl md:text-4xl font-editorial text-[#8C4005]">Síntomas de Restricción Fascial-Emocional</h3>
+                                <p className="text-lg font-body font-light text-[#2D2926]/70 leading-relaxed">
+                                    Si la fascia está "atrapada" por una carga emocional, el cuerpo presenta síntomas que a veces no tienen una explicación médica clara:
+                                </p>
+                            </div>
+
+                            <div className="grid md:grid-cols-2 gap-4">
+                                {[
+                                    { t: "Dolor Crónico Errante", d: "Aparecen y desaparecen en diferentes partes sin causa aparente." },
+                                    { t: "Rigidez Matutina", d: "Sensación de estar 'oxidado' o 'acartonado' al despertar." },
+                                    { t: "Restricción del Movimiento", d: "Sentir que los músculos están cortos o que no puedes estirarte." },
+                                    { t: "Nudos o Puntos Gatillo", d: "Zonas de tensión extrema que parecen 'piedras' bajo la piel." },
+                                    { t: "Fatiga Crónica", d: "El cuerpo gasta energía inmensa manteniendo tejidos contraídos." },
+                                    { t: "Alteraciones Viscerales", d: "Afecta la digestión y el sueño debido a la tensión fascial profunda." }
+                                ].map((item, idx) => (
+                                    <div key={idx} className="flex gap-4 items-start p-4 rounded-2xl bg-[#8C4005]/5">
+                                        <Sparkles className="w-5 h-5 text-[#8C4005] mt-1 flex-shrink-0" />
+                                        <div className="space-y-1">
+                                            <h5 className="font-bold font-editorial text-[#2D2926] text-lg">{item.t}</h5>
+                                            <p className="text-sm text-[#2D2926]/70 font-body font-light leading-snug">{item.d}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                     </section>
                 </article>
             </div>

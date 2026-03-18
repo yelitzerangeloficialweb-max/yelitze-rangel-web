@@ -14,6 +14,8 @@ import {
     ShieldCheck
 } from 'lucide-react';
 import Link from 'next/link';
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 
 // Questions and Categories
 const QUESTIONS = [
@@ -72,6 +74,8 @@ export default function SomaticQuiz() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [answers, setAnswers] = useState<Record<number, number>>({});
     const [reflection, setReflection] = useState('');
+    const [email, setEmail] = useState('');
+    const [isSending, setIsSending] = useState(false);
     const [aiResult, setAiResult] = useState<any>(null);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -136,6 +140,11 @@ export default function SomaticQuiz() {
             });
             const data = await response.json();
             setAiResult(data);
+            
+            // Automatic email sending with PDF
+            if (email) {
+                await sendEmailWithPDF(data);
+            }
         } catch (error) {
             console.error("AI Generation Error:", error);
         } finally {
@@ -292,12 +301,27 @@ export default function SomaticQuiz() {
                             />
                         </div>
 
+                        <div className="bg-white p-8 rounded-[2rem] shadow-lg border border-[#B8835A]/10 space-y-4 max-w-md mx-auto">
+                            <label className="text-[#8C4005] font-bold uppercase tracking-wider text-[10px] block font-guide text-center">
+                                Recibe tu diagnóstico completo por correo:
+                            </label>
+                            <input 
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="tu@email.com"
+                                className="w-full p-4 text-center text-xl font-editorial text-[#2D2926] bg-[#F5EFE6]/30 rounded-2xl border-none focus:ring-2 focus:ring-[#8C4005] outline-none"
+                                required
+                            />
+                        </div>
+
                         <div className="flex justify-center">
                             <button
                                 onClick={generateAIResult}
-                                className="bg-[#8C4005] text-[#F5EFE6] px-14 py-6 rounded-2xl font-bold uppercase tracking-[0.25em] text-xs hover:scale-[1.05] shadow-xl transition-all flex items-center gap-4 group font-guide"
+                                disabled={!email || !reflection}
+                                className="bg-[#8C4005] text-[#F5EFE6] px-14 py-6 rounded-2xl font-bold uppercase tracking-[0.25em] text-xs hover:scale-[1.05] disabled:opacity-50 disabled:hover:scale-100 shadow-xl transition-all flex items-center gap-4 group font-guide"
                             >
-                                {isLoading ? "Analizando tu biología..." : "Ver mi diagnóstico"}
+                                {isLoading ? "Analizando tu biología..." : "Ver mi diagnóstico y recibir PDF"}
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                             </button>
                         </div>
@@ -436,6 +460,70 @@ export default function SomaticQuiz() {
                             </div>
                         </div>
 
+                        {/* Educational Insight: Emotions */}
+                        <div className="space-y-12 py-16 border-t border-[#B8835A]/10">
+                            <div className="text-center space-y-4">
+                                <span className="text-[#8C4005] font-bold tracking-[0.4em] uppercase text-xs block font-guide">Conexión Bio-Emocional</span>
+                                <h3 className="text-4xl md:text-6xl font-editorial text-[#2D2926]">Emociones "Atrapadas" en la Fascia</h3>
+                                <p className="text-xl font-body font-light text-[#2D2926]/70 max-w-2xl mx-auto">
+                                    La fascia es extremadamente sensible a la química del estrés (cortisol y adrenalina). Cuando una emoción no se procesa, el tejido puede volverse rígido o inflamarse.
+                                </p>
+                            </div>
+
+                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <div className="bg-white/40 p-8 rounded-[2.5rem] border border-[#B8835A]/10 space-y-4">
+                                    <h4 className="text-xl font-bold font-editorial text-[#8C4005]">Miedo y Supervivencia</h4>
+                                    <p className="text-lg text-[#2D2926]/80 font-body font-light">Suele alojarse en el <strong>psoas</strong> (el "músculo del alma") y en la zona lumbar.</p>
+                                </div>
+                                <div className="bg-white/40 p-8 rounded-[2.5rem] border border-[#B8835A]/10 space-y-4">
+                                    <h4 className="text-xl font-bold font-editorial text-[#8C4005]">Ira y Frustración</h4>
+                                    <p className="text-lg text-[#2D2926]/80 font-body font-light">Comúnmente reflejada en la <strong>mandíbula</strong> (bruxismo), el cuello y los hombros.</p>
+                                </div>
+                                <div className="bg-white/40 p-8 rounded-[2.5rem] border border-[#B8835A]/10 space-y-4">
+                                    <h4 className="text-xl font-bold font-editorial text-[#8C4005]">Tristeza y Duelo</h4>
+                                    <p className="text-lg text-[#2D2926]/80 font-body font-light">Se manifiesta a menudo en el <strong>pecho, el diafragma</strong> y la zona dorsal (sensación de "peso").</p>
+                                </div>
+                                <div className="bg-white/40 p-8 rounded-[2.5rem] border border-[#B8835A]/10 space-y-4">
+                                    <h4 className="text-xl font-bold font-editorial text-[#8C4005]">Culpabilidad o Responsabilidad</h4>
+                                    <p className="text-lg text-[#2D2926]/80 font-body font-light">Se siente típicamente como una carga pesada sobre los <strong>hombros y los trapecios</strong>.</p>
+                                </div>
+                                <div className="bg-white/40 p-8 rounded-[2.5rem] border border-[#B8835A]/10 space-y-4">
+                                    <h4 className="text-xl font-bold font-editorial text-[#8C4005]">Ansiedad y Control</h4>
+                                    <p className="text-lg text-[#2D2926]/80 font-body font-light">Se refleja en una <strong>fascia abdominal rígida</strong> y en la restricción de la respiración.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Educational Insight: Physical Symptoms */}
+                        <div className="space-y-12 py-16 border-t border-[#B8835A]/10">
+                            <div className="text-center space-y-4">
+                                <span className="text-[#8C4005] font-bold tracking-[0.4em] uppercase text-xs block font-guide">Señales Físicas</span>
+                                <h3 className="text-4xl md:text-6xl font-editorial text-[#2D2926]">Restricción Fascial-Emocional</h3>
+                                <p className="text-xl font-body font-light text-[#2D2926]/70 max-w-2xl mx-auto">
+                                    Si la fascia está "atrapada" por una carga emocional, el cuerpo presenta síntomas que a veces no tienen una explicación médica clara.
+                                </p>
+                            </div>
+
+                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {[
+                                    { t: "Dolor Crónico Errante", d: "Dolores que aparecen y desaparecen en diferentes partes sin causa aparente." },
+                                    { t: "Rigidez Matutina", d: "Sensación de estar 'oxidado' o 'acartonado' al despertar." },
+                                    { t: "Restricción del Movimiento", d: "Sentir que los músculos están cortos o que no puedes estirarte completamente." },
+                                    { t: "Nudos o Puntos Gatillo", d: "Zonas de tensión extrema que duelen al tacto y parecen 'piedras'." },
+                                    { t: "Fatiga Crónica", d: "El cuerpo gasta energía inmensa manteniendo esos tejidos contraídos." },
+                                    { t: "Alteraciones Viscerales", d: "Afecta la función digestiva y el sueño debido a la tensión en la fascia del tronco." }
+                                ].map((item, idx) => (
+                                    <div key={idx} className="bg-[#8C4005]/5 p-8 rounded-[2rem] border border-[#8C4005]/10 flex gap-4 items-start">
+                                        <CheckCircle2 className="w-6 h-6 text-[#8C4005] mt-1 flex-shrink-0" />
+                                        <div className="space-y-2">
+                                            <h5 className="font-bold font-editorial text-[#2D2926]">{item.t}</h5>
+                                            <p className="text-base text-[#2D2926]/70 font-body font-light leading-snug">{item.d}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
                         {/* Educational Links */}
                         <div className="grid md:grid-cols-2 gap-8 items-stretch pt-8 border-t border-[#B8835A]/10">
                             <div className="space-y-6 flex flex-col justify-center">
@@ -497,6 +585,122 @@ export default function SomaticQuiz() {
                     @apply flex items-center justify-center text-center p-6 rounded-2xl border-2 border-[#8C4005]/10 font-guide text-[10px] font-bold uppercase tracking-widest text-[#8C4005] hover:bg-[#8C4005] hover:text-[#F5EFE6] hover:shadow-xl transition-all h-full;
                 }
             `}</style>
+
+            {/* Hidden PDF Template */}
+            <div className="hidden">
+                <PDFTemplate 
+                    result={aiResult} 
+                    stressResult={stressResult} 
+                    answers={answers} 
+                    reflection={reflection} 
+                />
+            </div>
+        </div>
+    );
+
+    async function sendEmailWithPDF(finalResult: any) {
+        setIsSending(true);
+        try {
+            const pdfContent = document.getElementById('pdf-content');
+            if (!pdfContent) {
+                console.error("PDF content element not found");
+                return;
+            }
+
+            // Temporarily show it for capture
+            pdfContent.style.left = '0';
+            pdfContent.style.visibility = 'visible';
+
+            const canvas = await html2canvas(pdfContent, {
+                scale: 2,
+                backgroundColor: '#F5EFE6',
+                useCORS: true,
+                logging: false,
+            });
+            
+            // Hide it back
+            pdfContent.style.left = '-10000px';
+            pdfContent.style.visibility = 'hidden';
+
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const imgProps = pdf.getImageProperties(imgData);
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+            
+            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+            const pdfBase64 = pdf.output('datauristring');
+
+            await fetch('/api/ai/somatic-test/send-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email,
+                    result: finalResult,
+                    pdfBase64
+                })
+            });
+            console.log("Email sent successfully");
+        } catch (error) {
+            console.error("Error generating/sending PDF:", error);
+        } finally {
+            setIsSending(false);
+        }
+    }
+}
+
+function PDFTemplate({ result, stressResult, reflection }: any) {
+    if (!result) return null;
+    return (
+        <div id="pdf-content" style={{
+            width: '210mm',
+            padding: '20mm',
+            backgroundColor: '#F5EFE6',
+            fontFamily: 'serif',
+            color: '#2D2926',
+            position: 'absolute',
+            left: '-10000px',
+            top: 0,
+            zIndex: -1
+        }}>
+            <div style={{ textAlign: 'center', marginBottom: '15mm' }}>
+                <h1 style={{ color: '#8C4005', fontSize: '32pt', fontStyle: 'italic', margin: 0 }}>Test Somático</h1>
+                <p style={{ letterSpacing: '0.3em', fontSize: '10pt', fontWeight: 'bold', color: '#8C4005', marginTop: '4mm' }}>YELITZE RANGEL</p>
+                <div style={{ height: '1px', backgroundColor: '#B8835A', width: '40mm', margin: '4mm auto', opacity: 0.3 }}></div>
+                <p style={{ fontStyle: 'italic', fontSize: '12pt', color: '#8C4005' }}>"Tu cuerpo no miente, solo el orden libera."</p>
+            </div>
+            
+            <div style={{ marginBottom: '10mm' }}>
+                <span style={{ fontSize: '9pt', color: '#8C4005', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Diagnóstico Somático</span>
+                <h2 style={{ fontSize: '24pt', color: '#2D2926', marginTop: '2mm', marginBottom: '6mm' }}>{stressResult.type}</h2>
+            </div>
+
+            <div style={{ backgroundColor: 'white', padding: '10mm', borderRadius: '10mm', marginBottom: '10mm', border: '1px solid #B8835A11' }}>
+                <h3 style={{ color: '#B8835A', fontSize: '16pt', marginBottom: '4mm' }}>Análisis Personalizado</h3>
+                <p style={{ fontSize: '13pt', fontStyle: 'italic', lineHeight: '1.6', color: '#2D2926' }}>
+                    "{result.personalized_analysis}"
+                </p>
+                <div style={{ borderTop: '1px solid #B8835A22', paddingTop: '6mm', marginTop: '6mm' }}>
+                    <p style={{ color: '#8C4005', fontWeight: 'bold', fontSize: '11pt', marginBottom: '2mm' }}>Insight Somático:</p>
+                    <p style={{ fontSize: '12pt' }}>{result.somatic_insight}</p>
+                </div>
+            </div>
+
+            <div style={{ backgroundColor: '#8C4005', color: 'white', padding: '10mm', borderRadius: '10mm', marginBottom: '10mm' }}>
+                <h3 style={{ margin: 0, fontSize: '14pt', opacity: 0.9 }}>Ruta de Regulación Sugerida</h3>
+                <p style={{ fontSize: '18pt', marginTop: '4mm', marginBottom: 0, fontWeight: 'bold' }}>{result.action_step}</p>
+            </div>
+
+            <div style={{ padding: '8mm', border: '1px solid #B8835A33', borderRadius: '10mm', marginBottom: '10mm' }}>
+                <h3 style={{ color: '#8C4005', fontSize: '14pt', marginTop: 0, marginBottom: '3mm' }}>Tu Reflexión Personal</h3>
+                <p style={{ fontSize: '11pt', color: '#2D292699', fontStyle: 'italic' }}>"{reflection}"</p>
+            </div>
+
+            <div style={{ textAlign: 'center', marginTop: '15mm', borderTop: '1px solid #2D292611', paddingTop: '10mm' }}>
+                <p style={{ fontSize: '10pt', color: '#2D2926' }}><strong>Yelitze Rangel</strong></p>
+                <p style={{ fontSize: '9pt', color: '#2D2926', opacity: 0.6 }}>Anatomía del alma donde lo invisible cobra voz.</p>
+                <p style={{ fontSize: '8pt', color: '#2D2926', opacity: 0.4, marginTop: '8mm' }}>© 2026 Yelitze Rangel. Todos los derechos reservados.</p>
+            </div>
         </div>
     );
 }
