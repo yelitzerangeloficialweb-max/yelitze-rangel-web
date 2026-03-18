@@ -12,12 +12,15 @@ export async function POST(req: Request) {
         }
 
         if (!resend) {
-            console.error('RESEND_API_KEY is not set');
-            return NextResponse.json({ success: true, message: 'Simulation mode: Email not sent' });
+            console.error('RESEND_API_KEY is not set in the environment');
+            return NextResponse.json({ error: 'Resend API Key Missing', simulation: true }, { status: 500 });
         }
 
+        console.log(`Payload size (Approx): ${JSON.stringify(req.body).length} bytes`);
+        console.log(`Sending email to: ${email} from info@yelitzerangeloficial.com`);
+
         const { data, error } = await resend.emails.send({
-            from: 'Yelitze Rangel <onboarding@resend.dev>',
+            from: 'Yelitze Rangel <info@yelitzerangeloficial.com>',
             to: email,
             subject: 'Tu Diagnóstico Somático: El cuerpo no miente 🌿',
             attachments: [
@@ -106,10 +109,11 @@ export async function POST(req: Request) {
         });
 
         if (error) {
-            console.error('Resend Error:', error);
-            return NextResponse.json({ error }, { status: 500 });
+            console.error('RESEND CRITICAL ERROR:', JSON.stringify(error, null, 2));
+            return NextResponse.json({ error: error.message || 'Resend error', details: error }, { status: 500 });
         }
 
+        console.log('RESEND SUCCESS:', JSON.stringify(data, null, 2));
         return NextResponse.json({ success: true, data });
     } catch (error: any) {
         console.error('Email Route Error:', error);
