@@ -77,7 +77,7 @@ const OPTIONS = [
 ];
 
 export default function SomaticQuiz() {
-    const [step, setStep] = useState<'intro' | 'quiz' | 'reflection' | 'result'>('intro');
+    const [step, setStep] = useState<'intro' | 'quiz' | 'reflection' | 'form' | 'result'>('intro');
     const [currentIndex, setCurrentIndex] = useState(0);
     const [answers, setAnswers] = useState<Record<number, number>>({});
     const [reflection, setReflection] = useState('');
@@ -317,6 +317,7 @@ export default function SomaticQuiz() {
                         key="reflection"
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -30 }}
                         className="max-w-3xl mx-auto space-y-12"
                     >
                         <div className="text-center space-y-6">
@@ -327,19 +328,50 @@ export default function SomaticQuiz() {
                         </div>
                         
                         <div className="bg-white p-10 rounded-[3rem] shadow-xl border border-[#B8835A]/10 space-y-8">
-                            <div className="space-y-4">
-                                <label className="text-[#8C4005] font-bold uppercase tracking-wider text-[10px] block font-guide ml-4">
+                            <div className="space-y-4 text-center">
+                                <label className="text-[#8C4005] font-bold uppercase tracking-wider text-[12px] block font-guide">
                                     Sobre tu proceso:
                                 </label>
                                 <textarea
                                     value={reflection}
                                     onChange={(e) => setReflection(e.target.value)}
                                     placeholder="Escribe aquí lo que emerge: una tensión, un pensamiento, una emoción..."
-                                    className="w-full h-32 p-6 text-xl font-editorial text-[#2D2926] placeholder:text-[#2D2926]/20 bg-[#F5EFE6]/30 rounded-[2rem] border-none focus:ring-2 focus:ring-[#8C4005] outline-none resize-none"
+                                    className="w-full h-64 p-8 text-2xl font-editorial text-[#2D2926] placeholder:text-[#2D2926]/20 bg-[#F5EFE6]/30 rounded-[2.5rem] border-none focus:ring-2 focus:ring-[#8C4005] outline-none resize-none"
                                 />
                             </div>
+                        </div>
 
-                            <div className="grid md:grid-cols-2 gap-6">
+                        <div className="flex justify-center">
+                            <button
+                                onClick={() => setStep('form')}
+                                disabled={!reflection}
+                                className="bg-[#8C4005] text-[#F5EFE6] px-14 py-6 rounded-2xl font-bold uppercase tracking-[0.25em] text-xs hover:scale-[1.05] disabled:opacity-50 disabled:hover:scale-100 shadow-xl transition-all flex items-center gap-4 group font-guide"
+                            >
+                                Continuar con mi Diagnóstico
+                                <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                            </button>
+                        </div>
+                    </motion.div>
+                )}
+
+                {/* 2.55 LEAD FORM STEP */}
+                {step === 'form' && (
+                    <motion.div
+                        key="form"
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -30 }}
+                        className="max-w-xl mx-auto space-y-12"
+                    >
+                        <div className="text-center space-y-6">
+                            <h2 className="text-4xl md:text-6xl font-editorial text-[#2D2926]">Tu Identidad</h2>
+                            <p className="text-xl font-editorial italic text-[#8C4005] max-w-md mx-auto">
+                                Para entregarte este diagnóstico con el cuidado que merece, necesito saber a quién me dirijo.
+                            </p>
+                        </div>
+
+                        <div className="bg-white p-10 rounded-[3rem] shadow-xl border border-[#B8835A]/10 space-y-8">
+                            <div className="space-y-6">
                                 <div className="space-y-2">
                                     <label className="text-[#8C4005] font-bold uppercase tracking-wider text-[10px] block font-guide ml-4">
                                         Tu Nombre:
@@ -349,7 +381,7 @@ export default function SomaticQuiz() {
                                         value={name}
                                         onChange={(e) => setName(e.target.value)}
                                         placeholder="¿Cómo te llamas?"
-                                        className="w-full p-4 text-lg font-editorial text-[#2D2926] bg-[#F5EFE6]/30 rounded-2xl border-none focus:ring-2 focus:ring-[#8C4005] outline-none"
+                                        className="w-full p-6 text-xl font-editorial text-[#2D2926] bg-[#F5EFE6]/30 rounded-2xl border-none focus:ring-2 focus:ring-[#8C4005] outline-none"
                                         required
                                     />
                                 </div>
@@ -362,35 +394,41 @@ export default function SomaticQuiz() {
                                         value={whatsapp}
                                         onChange={(e) => setWhatsapp(e.target.value)}
                                         placeholder="+58 412..."
-                                        className="w-full p-4 text-lg font-editorial text-[#2D2926] bg-[#F5EFE6]/30 rounded-2xl border-none focus:ring-2 focus:ring-[#8C4005] outline-none"
+                                        className="w-full p-6 text-xl font-editorial text-[#2D2926] bg-[#F5EFE6]/30 rounded-2xl border-none focus:ring-2 focus:ring-[#8C4005] outline-none"
+                                        required
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-[#8C4005] font-bold uppercase tracking-wider text-[10px] block font-guide ml-4 text-center">
+                                        Email para el diagnóstico PDF:
+                                    </label>
+                                    <input 
+                                        type="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        placeholder="tu@email.com"
+                                        className="w-full p-6 text-center text-xl font-editorial text-[#2D2926] bg-[#F5EFE6]/30 rounded-2xl border-none focus:ring-2 focus:ring-[#8C4005] outline-none"
                                         required
                                     />
                                 </div>
                             </div>
-
-                            <div className="space-y-2">
-                                <label className="text-[#8C4005] font-bold uppercase tracking-wider text-[10px] block font-guide ml-4 text-center">
-                                    Recibe tu diagnóstico completo por correo:
-                                </label>
-                                <input 
-                                    type="email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    placeholder="tu@email.com"
-                                    className="w-full p-4 text-center text-lg font-editorial text-[#2D2926] bg-[#F5EFE6]/30 rounded-2xl border-none focus:ring-2 focus:ring-[#8C4005] outline-none"
-                                    required
-                                />
-                            </div>
                         </div>
 
-                        <div className="flex justify-center">
+                        <div className="flex flex-col items-center gap-6">
                             <button
                                 onClick={generateAIResult}
-                                disabled={!email || !reflection || !name}
+                                disabled={!email || !name}
                                 className="bg-[#8C4005] text-[#F5EFE6] px-14 py-6 rounded-2xl font-bold uppercase tracking-[0.25em] text-xs hover:scale-[1.05] disabled:opacity-50 disabled:hover:scale-100 shadow-xl transition-all flex items-center gap-4 group font-guide"
                             >
                                 {isLoading ? "Analizando tu biología..." : "Ver mi diagnóstico y recibir PDF"}
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                            </button>
+                            
+                            <button
+                                onClick={() => setStep('reflection')}
+                                className="text-[#2D2926]/40 hover:text-[#8C4005] font-guide text-[10px] uppercase font-bold tracking-widest transition-colors flex items-center gap-2"
+                            >
+                                <ArrowLeft className="w-4 h-4" /> Volver a mi reflexión
                             </button>
                         </div>
                     </motion.div>
