@@ -32,6 +32,10 @@ export async function POST(req: Request) {
                         <h1 style="color: #8C4005; font-style: italic; font-size: 2.5rem; margin-bottom: 10px;">Test Somático</h1>
                         <p style="text-transform: uppercase; letter-spacing: 0.3em; font-size: 0.8rem; color: #8C4005; font-weight: bold;">Tu cuerpo no miente, solo el orden libera.</p>
                     </div>
+
+                    <p style="font-size: 1.2rem; line-height: 1.6;">Hola <strong>${name}</strong>,</p>
+                    
+                    <p style="line-height: 1.6;">Gracias por confiar en tu biología y por tomarte el tiempo para este espacio de escucha profunda. Aquí tienes los resultados de tu diagnóstico somático:</p>
                     
                     <div style="background-color: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 30px;">
                         <h2 style="color: #B8835A; margin-top: 0;">Tu Análisis Personalizado</h2>

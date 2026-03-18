@@ -540,8 +540,8 @@ export default function SomaticQuiz() {
                                 <span className="text-[#8C4005] font-bold tracking-[0.4em] uppercase text-xs block font-guide">Ruta de Regulación</span>
                                 <h3 className="text-4xl md:text-6xl font-editorial text-[#2D2926]">Técnicas de Descongelamiento</h3>
                                 {aiResult?.action_step && (
-                                    <p className="text-xl font-editorial italic text-[#8C4005] animate-pulse">
-                                        Recomendación IA: {aiResult.action_step}
+                                    <p className="text-xl font-editorial italic text-[#8C4005]">
+                                        Guía de Regulación: {aiResult.action_step}
                                     </p>
                                 )}
                             </div>
@@ -738,7 +738,7 @@ export default function SomaticQuiz() {
             pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
             const pdfBase64 = pdf.output('datauristring');
 
-            await fetch('/api/ai/somatic-test/send-email', {
+            const response = await fetch('/api/ai/somatic-test/send-email', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -749,9 +749,17 @@ export default function SomaticQuiz() {
                     pdfBase64
                 })
             });
-            console.log("Email sent successfully");
+
+            const emailData = await response.json();
+            if (!response.ok) {
+                console.error("Error sending email:", emailData.error);
+                alert("Hubo un problema al enviar el correo. Por favor verifica que tu email sea correcto.");
+            } else {
+                console.log("Email sent successfully", emailData);
+            }
         } catch (error) {
             console.error("Error generating/sending PDF:", error);
+            alert("Error al generar el PDF o enviar el correo.");
         } finally {
             setIsSending(false);
         }
