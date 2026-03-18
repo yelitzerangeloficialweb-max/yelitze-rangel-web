@@ -132,6 +132,45 @@ export default function SomaticQuiz() {
 
     const stressResult = getStressType();
 
+    const sendEmailWithData = async (finalResult: any) => {
+        setIsSending(true);
+        try {
+            console.log("Iniciando envío de email para:", email);
+            const stressLevel = getStressType(); 
+            const serializableStress = {
+                type: stressLevel.type,
+                desc: stressLevel.desc
+            };
+
+            const response = await fetch('/api/ai/somatic-test/send-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email,
+                    name,
+                    reflection,
+                    stressResult: serializableStress,
+                    result: finalResult
+                })
+            });
+
+            const emailData = await response.json();
+            console.log("Email API response:", emailData);
+            if (!response.ok) {
+                console.error("Error sending email:", emailData.error, emailData.details);
+                alert(`No se pudo enviar el correo: ${emailData.error || 'Error desconocido'}. Detalle: ${JSON.stringify(emailData.details || '')}`);
+            } else {
+                console.log("Email sent successfully", emailData);
+                // No alert here, it can be distracting if it works
+            }
+        } catch (error: any) {
+            console.error("Error sending data:", error);
+            alert("Error al intentar conectar con el servicio de correo: " + error.message);
+        } finally {
+            setIsSending(false);
+        }
+    }
+
     const generateAIResult = async () => {
         setIsLoading(true);
         setStep('result');
@@ -158,6 +197,7 @@ export default function SomaticQuiz() {
             }
         } catch (error) {
             console.error("AI Generation Error:", error);
+            alert("Error al generar el diagnóstico por IA. Revisa tu conexión.");
         } finally {
             setIsLoading(false);
         }
@@ -697,44 +737,7 @@ export default function SomaticQuiz() {
         </div>
     );
 
-    const sendEmailWithData = async (finalResult: any) => {
-        setIsSending(true);
-        try {
-            const stressLevel = getStressType(); 
-            // Only send serializable data (no icons)
-            const serializableStress = {
-                type: stressLevel.type,
-                desc: stressLevel.desc
-            };
 
-            const response = await fetch('/api/ai/somatic-test/send-email', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    email,
-                    name,
-                    reflection,
-                    stressResult: serializableStress,
-                    result: finalResult
-                })
-            });
-
-            const emailData = await response.json();
-            console.log("Email API response:", emailData);
-            if (!response.ok) {
-                console.error("Error sending email:", emailData.error, emailData.details);
-                alert(`No se pudo enviar el correo: ${emailData.error || 'Error desconocido'}. Detalle: ${JSON.stringify(emailData.details || '')}`);
-            } else {
-                console.log("Email sent successfully", emailData);
-                alert("¡Diagnóstico enviado con éxito! Revisa tu correo (incluida la carpeta de Spam).");
-            }
-        } catch (error) {
-            console.error("Error sending data:", error);
-            alert("Error al enviar los resultados por correo.");
-        } finally {
-            setIsSending(false);
-        }
-    }
 }
 
 function ExerciseCard({ title, desc }: { title: string, desc: string }) {
