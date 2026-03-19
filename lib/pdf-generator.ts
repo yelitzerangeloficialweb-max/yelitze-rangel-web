@@ -215,7 +215,7 @@ export async function generateVisionBoardPDF(name: string, analysis: any, pillar
         pdf.setTextColor(140, 64, 5);
         pdf.setFontSize(11);
         pdf.setFont('helvetica', 'bold');
-        pdf.text('REFLEXIONES DE LOS PORTAL7ES', margin, y);
+        pdf.text('REFLEXIONES DE LOS PORTALES', margin, y);
         y += 8;
         
         pdf.setFont('helvetica', 'italic');
@@ -322,24 +322,25 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
     y += 15;
 
     // 1. Stress Type Highlight
+    // Fixing alpha issue with fillColor - use light RGB instead
+    pdf.setFillColor(235, 230, 225); // Light Cream/Brown
     const stressDesLines = pdf.splitTextToSize(stressResult.desc, contentWidth - 20);
-    const stressBoxHeight = 25 + (stressDesLines.length * 4);
+    const stressBoxHeight = 25 + (stressDesLines.length * 5);
     
-    pdf.setFillColor(184, 131, 90, 0.1);
     pdf.roundedRect(margin, y, contentWidth, stressBoxHeight, 5, 5, 'F');
     let innerY = y + 10;
-    pdf.setTextColor(184, 131, 90);
+    pdf.setTextColor(140, 64, 5); // Use brown for subheader
     pdf.setFontSize(9);
     pdf.setFont('helvetica', 'bold');
     pdf.text('TIPO DE ESTRÉS DETECTADO', margin + 10, innerY);
     innerY += 10;
-    pdf.setTextColor(140, 64, 5);
+    pdf.setTextColor(184, 131, 90); // Gold for title
     pdf.setFontSize(18);
     pdf.setFont('helvetica', 'bold');
     pdf.text(stressResult.type, margin + 10, innerY);
     innerY += 8;
-    pdf.setTextColor(45, 41, 38);
-    pdf.setFontSize(9);
+    pdf.setTextColor(60, 60, 60); // Dark gray for secondary text
+    pdf.setFontSize(10);
     pdf.setFont('helvetica', 'normal');
     pdf.text(stressDesLines, margin + 10, innerY);
     
@@ -347,12 +348,12 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
 
     // 2. Personal Analysis Card
     const analysisLines = pdf.splitTextToSize(`"${analysis.personalized_analysis}"`, contentWidth - 20);
-    const analysisHeight = 35 + (analysisLines.length * 6);
+    const analysisHeight = 35 + (analysisLines.length * 6.5);
     
     pdf.setFillColor(255, 255, 255);
-    pdf.roundedRect(margin, y, contentWidth, analysisHeight, 8, 8, 'F');
-    pdf.setDrawColor(184, 131, 90, 0.2);
-    pdf.roundedRect(margin, y, contentWidth, analysisHeight, 8, 8, 'S');
+    pdf.setDrawColor(184, 131, 90);
+    pdf.setLineWidth(0.2);
+    pdf.roundedRect(margin, y, contentWidth, analysisHeight, 8, 8, 'FD');
 
     innerY = y + 15;
     pdf.setTextColor(184, 131, 90);
@@ -362,11 +363,11 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
     
     innerY += 12;
     pdf.setTextColor(45, 41, 38);
-    pdf.setFontSize(13);
+    pdf.setFontSize(12);
     pdf.setFont('helvetica', 'italic');
     pdf.text(analysisLines, margin + 10, innerY);
     
-    y += analysisHeight + 15;
+    y += analysisHeight + 12;
 
     // 3. Insight Box
     const insightLines = pdf.splitTextToSize(`"${analysis.somatic_insight}"`, contentWidth - 20);
@@ -385,20 +386,28 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
     pdf.setFont('helvetica', 'bolditalic');
     pdf.text(insightLines, margin + 10, innerY);
 
-    y += insightHeight + 15;
+    y += insightHeight + 12;
 
     // 4. Action Step (Premium Dark Box)
     const actionLines = pdf.splitTextToSize(analysis.action_step, contentWidth - 30);
-    const actionBoxHeight = 35 + (actionLines.length * 7);
+    const actionBoxHeight = 40 + (actionLines.length * 7);
+
+    // Ensure we don't go off the page
+    if (y + actionBoxHeight > pageHeight - 60) {
+        pdf.addPage();
+        pdf.setFillColor(249, 247, 242);
+        pdf.rect(0, 0, pageWidth, pageHeight, 'F');
+        y = 30;
+    }
 
     pdf.setFillColor(45, 41, 38);
     pdf.roundedRect(margin, y, contentWidth, actionBoxHeight, 10, 10, 'F');
-    innerY = y + 12;
+    innerY = y + 15;
     pdf.setTextColor(184, 131, 90);
     pdf.setFontSize(9);
     pdf.setFont('helvetica', 'bold');
     pdf.text('EL PRIMER PASO MAESTRO', pageWidth / 2, innerY, { align: 'center' });
-    innerY += 12;
+    innerY += 15;
     pdf.setTextColor(249, 247, 242);
     pdf.setFontSize(14);
     pdf.setFont('helvetica', 'bold');
@@ -408,10 +417,10 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
 
     // 5. Standard Tools (Maintenance)
     pdf.setTextColor(140, 64, 5);
-    pdf.setFontSize(9);
+    pdf.setFontSize(10);
     pdf.setFont('helvetica', 'bold');
     pdf.text('RECURSOS DE SOSTENIMIENTO DIARIO', margin, y);
-    y += 8;
+    y += 10;
 
     const exercises = [
         { t: "Vibración", d: "Movimiento suave para soltar cargas." },
@@ -423,7 +432,7 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
     pdf.setFontSize(8);
     exercises.forEach((ex, idx) => {
         const rowX = margin + (idx % 2) * (contentWidth / 2);
-        const rowY = y + Math.floor(idx / 2) * 12;
+        const rowY = y + Math.floor(idx / 2) * 10;
         
         pdf.setTextColor(140, 64, 5);
         pdf.setFont('helvetica', 'bold');
@@ -431,7 +440,8 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
         
         pdf.setTextColor(80, 80, 80);
         pdf.setFont('helvetica', 'italic');
-        pdf.text(`: ${ex.d}`, rowX + pdf.getTextWidth(ex.t), rowY);
+        const labelWidth = pdf.getTextWidth(ex.t);
+        pdf.text(pdf.splitTextToSize(`: ${ex.d}`, (contentWidth / 2) - labelWidth - 5), rowX + labelWidth, rowY);
     });
 
     // 6. Signature Area
@@ -450,7 +460,7 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
     y = pageHeight - 30;
     pdf.setDrawColor(184, 131, 90, 0.3);
     pdf.line(margin, y, pageWidth - margin, y);
-    y += 8;
+    y += 10;
     pdf.setTextColor(140, 64, 5);
     pdf.setFontSize(9);
     pdf.setFont('helvetica', 'bold');
