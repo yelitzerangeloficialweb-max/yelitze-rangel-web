@@ -50,22 +50,13 @@ export default function ServiceSelector() {
                 </div>
             </div>
 
-            {/* Transition Brush Separator */}
-            <div className="absolute top-[420px] left-0 w-full h-[300px] lg:h-[500px] z-10 pointer-events-none">
-                <Image
-                    src="/assets/images/brush-separator-black.png"
-                    alt=""
-                    fill
-                    className="object-fill object-top brightness-[0.18] scale-y-125"
-                    priority
-                />
-            </div>
+
 
             {/* PORTAL 01 - DARK SECTION */}
             <div className="relative bg-[#2D2926] pt-32 pb-48 z-20">
                 {/* Background Glows */}
                 <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-l from-[#ff9a5c]/15 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute -top-40 right-0 w-[600px] h-[600px] bg-[#ff9a5c]/15 blur-[150px] rounded-full pointer-events-none" />
+
 
                 <div className="container mx-auto px-4 relative max-w-7xl">
                     <div className="relative flex flex-col lg:flex-row items-center gap-16 lg:gap-0">
