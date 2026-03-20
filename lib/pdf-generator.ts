@@ -322,75 +322,86 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
     y += 15;
 
     // 1. Stress Type Highlight
-    // Fixing alpha issue with fillColor - use light RGB instead
-    pdf.setFillColor(235, 230, 225); // Light Cream/Brown
-    const stressDesLines = pdf.splitTextToSize(stressResult.desc, contentWidth - 20);
-    const stressBoxHeight = 25 + (stressDesLines.length * 5);
+    const innerPadding = 18;
+    const textWidth = contentWidth - innerPadding * 2;
     
-    pdf.roundedRect(margin, y, contentWidth, stressBoxHeight, 5, 5, 'F');
-    let innerY = y + 10;
-    pdf.setTextColor(140, 64, 5); // Use brown for subheader
-    pdf.setFontSize(9);
+    pdf.setFillColor(235, 230, 225); // Light Cream/Brown
+    const stressTypeLines = pdf.splitTextToSize(stressResult.type, textWidth);
+    const stressDesLines = pdf.splitTextToSize(stressResult.desc, textWidth);
+    const stressBoxHeight = 35 + (stressTypeLines.length * 8) + (stressDesLines.length * 6);
+    
+    pdf.roundedRect(margin, y, contentWidth, stressBoxHeight, 10, 10, 'F');
+    
+    // Background "01"
+    const p = pdf as any; // Cast to any to use custom methods like setLineDashPattern
+    p.setTextColor(140, 64, 5, 0.05); // Very faint
+    p.setFontSize(45);
+    p.setFont('helvetica', 'bold');
+    p.text('01', margin + contentWidth - 25, y + 25);
+
+    let innerY = y + 12;
+    p.setTextColor(140, 64, 5);
+    p.setFontSize(8);
+    p.setFont('helvetica', 'bold');
+    p.text('ANTES / ESTADO DE SUPERVIVENCIA', margin + innerPadding, innerY);
+    
+    innerY += 12;
+    pdf.setTextColor(184, 131, 90);
+    pdf.setFontSize(22);
     pdf.setFont('helvetica', 'bold');
-    pdf.text('TIPO DE ESTRÉS DETECTADO', margin + 10, innerY);
-    innerY += 10;
-    pdf.setTextColor(184, 131, 90); // Gold for title
-    pdf.setFontSize(18);
-    pdf.setFont('helvetica', 'bold');
-    pdf.text(stressResult.type, margin + 10, innerY);
-    innerY += 8;
-    pdf.setTextColor(60, 60, 60); // Dark gray for secondary text
-    pdf.setFontSize(10);
+    pdf.text(stressTypeLines, margin + innerPadding, innerY);
+    
+    innerY += (stressTypeLines.length * 8) + 2;
+    pdf.setTextColor(60, 60, 60);
+    pdf.setFontSize(11);
     pdf.setFont('helvetica', 'normal');
-    pdf.text(stressDesLines, margin + 10, innerY);
+    pdf.text(stressDesLines, margin + innerPadding, innerY);
     
     y += stressBoxHeight + 15;
 
     // 2. Personal Analysis Card
-    const analysisLines = pdf.splitTextToSize(`"${analysis.personalized_analysis}"`, contentWidth - 20);
-    const analysisHeight = 35 + (analysisLines.length * 6.5);
+    const analysisLines = pdf.splitTextToSize(`"${analysis.personalized_analysis}"`, textWidth);
+    const analysisHeight = 50 + (analysisLines.length * 8);
     
     pdf.setFillColor(255, 255, 255);
-    pdf.setDrawColor(184, 131, 90);
-    pdf.setLineWidth(0.2);
-    pdf.roundedRect(margin, y, contentWidth, analysisHeight, 8, 8, 'FD');
+    pdf.roundedRect(margin, y, contentWidth, analysisHeight, 10, 10, 'F');
 
-    innerY = y + 15;
+    innerY = y + 18;
     pdf.setTextColor(184, 131, 90);
-    pdf.setFontSize(10);
+    pdf.setFontSize(11);
     pdf.setFont('helvetica', 'bold');
-    pdf.text('AUDITORÍA DE TU BIOLOGÍA', margin + 10, innerY);
+    pdf.text('AUDITORÍA DE TU BIOLOGÍA', margin + innerPadding, innerY);
     
-    innerY += 12;
+    innerY += 15;
     pdf.setTextColor(45, 41, 38);
-    pdf.setFontSize(12);
+    pdf.setFontSize(14);
     pdf.setFont('helvetica', 'italic');
-    pdf.text(analysisLines, margin + 10, innerY);
+    pdf.text(analysisLines, margin + innerPadding, innerY);
     
-    y += analysisHeight + 12;
+    y += analysisHeight + 15;
 
     // 3. Insight Box
-    const insightLines = pdf.splitTextToSize(`"${analysis.somatic_insight}"`, contentWidth - 20);
-    const insightHeight = 25 + (insightLines.length * 6);
+    const insightLines = pdf.splitTextToSize(`"${analysis.somatic_insight}"`, textWidth);
+    const insightHeight = 45 + (insightLines.length * 8);
 
     pdf.setFillColor(253, 251, 247);
-    pdf.roundedRect(margin, y, contentWidth, insightHeight, 5, 5, 'F');
-    innerY = y + 10;
+    pdf.roundedRect(margin, y, contentWidth, insightHeight, 10, 10, 'F');
+    innerY = y + 12;
     pdf.setTextColor(140, 64, 5);
-    pdf.setFontSize(9);
+    pdf.setFontSize(10);
     pdf.setFont('helvetica', 'bold');
-    pdf.text('INSIGHT SOMÁTICO', margin + 10, innerY);
-    innerY += 10;
+    pdf.text('INSIGHT SOMÁTICO', margin + innerPadding, innerY);
+    innerY += 12;
     pdf.setTextColor(140, 64, 5);
-    pdf.setFontSize(11);
+    pdf.setFontSize(13);
     pdf.setFont('helvetica', 'bolditalic');
-    pdf.text(insightLines, margin + 10, innerY);
+    pdf.text(insightLines, margin + innerPadding, innerY);
 
-    y += insightHeight + 12;
+    y += insightHeight + 15;
 
-    // 4. Action Step (Premium Dark Box)
-    const actionLines = pdf.splitTextToSize(analysis.action_step, contentWidth - 30);
-    const actionBoxHeight = 40 + (actionLines.length * 7);
+    // 4. Action Step (Premium Wave Box - Venezuela en el Cuerpo Style)
+    const actionLines = pdf.splitTextToSize(analysis.action_step, contentWidth - 40);
+    const actionBoxHeight = 60 + (actionLines.length * 8.5);
 
     // Ensure we don't go off the page
     if (y + actionBoxHeight > pageHeight - 60) {
@@ -400,18 +411,68 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
         y = 30;
     }
 
-    pdf.setFillColor(45, 41, 38);
-    pdf.roundedRect(margin, y, contentWidth, actionBoxHeight, 10, 10, 'F');
-    innerY = y + 15;
-    pdf.setTextColor(184, 131, 90);
-    pdf.setFontSize(9);
-    pdf.setFont('helvetica', 'bold');
-    pdf.text('EL PRIMER PASO MAESTRO', pageWidth / 2, innerY, { align: 'center' });
-    innerY += 15;
-    pdf.setTextColor(249, 247, 242);
-    pdf.setFontSize(14);
-    pdf.setFont('helvetica', 'bold');
-    pdf.text(actionLines, pageWidth / 2, innerY, { align: 'center' });
+    const waveYTop = y;
+    const waveYBottom = y + actionBoxHeight;
+    const waveDepth = 4;
+
+    // Draw the Black Wave Box
+    p.setFillColor(45, 41, 38);
+    p.moveTo(margin, waveYTop + waveDepth);
+    // Top wave
+    p.bezierCurveTo(
+        margin + contentWidth * 0.25, waveYTop - waveDepth, 
+        margin + contentWidth * 0.75, waveYTop + waveDepth * 3, 
+        margin + contentWidth, waveYTop + waveDepth
+    );
+    p.lineTo(margin + contentWidth, waveYBottom - waveDepth);
+    // Bottom wave
+    p.bezierCurveTo(
+        margin + contentWidth * 0.75, waveYBottom + waveDepth, 
+        margin + contentWidth * 0.25, waveYBottom - waveDepth * 3, 
+        margin, waveYBottom - waveDepth
+    );
+    p.closePath();
+    p.fill();
+
+    // Background Geometric Patterns (Subtle Lines)
+    p.setDrawColor(65, 60, 55); 
+    p.setLineWidth(0.1);
+    const patternCenterX = margin + 20;
+    const patternCenterY = y + actionBoxHeight / 2;
+    for (let i = 1; i <= 6; i++) {
+        p.circle(patternCenterX, patternCenterY, i * 15, 'S');
+    }
+
+    // Dotted Wave Line (Premium accent)
+    p.setDrawColor(140, 64, 5, 0.2); // Soft brown
+    p.setLineDashPattern([2, 2], 0);
+    p.setLineWidth(0.2);
+    p.moveTo(margin, waveYTop + waveDepth + 15);
+    p.bezierCurveTo(
+        margin + contentWidth * 0.25, waveYTop + waveDepth + 5, 
+        margin + contentWidth * 0.75, waveYTop + waveDepth + 25, 
+        margin + contentWidth, waveYTop + waveDepth + 15
+    );
+    p.stroke();
+    p.setLineDashPattern([], 0); // Reset dash
+
+    // Background "02"
+    p.setTextColor(255, 255, 255, 0.05);
+    p.setFontSize(45);
+    p.setFont('helvetica', 'bold');
+    p.text('02', margin + contentWidth - 25, y + 25);
+
+    innerY = y + 18;
+    p.setTextColor(184, 131, 90);
+    p.setFontSize(8);
+    p.setFont('helvetica', 'bold');
+    p.text('DESPUÉS / ARQUITECTURA INTENCIONAL', pageWidth / 2, innerY, { align: 'center' });
+    
+    innerY += 18;
+    p.setTextColor(249, 247, 242);
+    p.setFontSize(16);
+    p.setFont('times', 'bolditalic');
+    p.text(actionLines, pageWidth / 2, innerY, { align: 'center' });
 
     y += actionBoxHeight + 15;
 
@@ -429,10 +490,10 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
         { t: "Respiración", d: "Habita el aire en tu fascia corporal." }
     ];
 
-    pdf.setFontSize(8);
+    pdf.setFontSize(10);
     exercises.forEach((ex, idx) => {
         const rowX = margin + (idx % 2) * (contentWidth / 2);
-        const rowY = y + Math.floor(idx / 2) * 10;
+        const rowY = y + Math.floor(idx / 2) * 12;
         
         pdf.setTextColor(140, 64, 5);
         pdf.setFont('helvetica', 'bold');
@@ -441,7 +502,7 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
         pdf.setTextColor(80, 80, 80);
         pdf.setFont('helvetica', 'italic');
         const labelWidth = pdf.getTextWidth(ex.t);
-        pdf.text(pdf.splitTextToSize(`: ${ex.d}`, (contentWidth / 2) - labelWidth - 5), rowX + labelWidth, rowY);
+        pdf.text(pdf.splitTextToSize(`: ${ex.d}`, (contentWidth / 2) - labelWidth - 8), rowX + labelWidth, rowY);
     });
 
     // 6. Signature Area

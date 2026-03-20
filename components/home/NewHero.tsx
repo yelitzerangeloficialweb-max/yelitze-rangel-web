@@ -6,48 +6,48 @@ import { motion } from "framer-motion";
 
 export default function NewHero() {
     return (
-        <section className="relative h-[95vh] min-h-[750px] flex items-center justify-center overflow-hidden bg-black">
+        <section className="relative h-[95vh] min-h-[750px] flex items-center justify-center overflow-hidden bg-[#2D2926]">
             {/* Background Image with Premium Overlays */}
             <div className="absolute inset-0 z-0">
                 <Image
                     src="/images/home_redesign/hero_bg.png"
                     alt="Ancestral Background"
                     fill
-                    className="object-cover scale-105 opacity-80"
+                    className="object-cover scale-105 opacity-100"
                     priority
                 />
-                {/* Global Overlays */}
-                <div className="absolute inset-0 bg-black/40" />
+                {/* Global Overlays - Softer for more visibility */}
+                <div className="absolute inset-0 bg-black/25" />
                 
-                {/* Specific Orange Light Effect - Top Left */}
-                <div className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] bg-[#ff9a5c]/20 blur-[150px] rounded-full pointer-events-none" />
+                {/* Specific Orange Light Effect - Top Left - Warmer */}
+                <div className="absolute -top-[15%] -left-[10%] w-[70%] h-[70%] bg-[#ff9a5c]/35 blur-[180px] rounded-full pointer-events-none" />
                 
                 {/* Bottom Seam Overlay */}
-                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60" />
             </div>
 
             {/* Content Container */}
             <div className="container mx-auto px-4 relative z-10 text-center text-white">
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
+                    initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1.5, ease: "easeOut" }}
-                    className="space-y-8"
+                    transition={{ duration: 1.8, ease: "easeOut" }}
+                    className="space-y-12"
                 >
                     <motion.span 
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.8 }}
-                        transition={{ delay: 0.5, duration: 1 }}
-                        className="block text-xs md:text-sm font-body font-bold tracking-[0.5em] uppercase"
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5, duration: 1.2 }}
+                        className="block text-[10px] md:text-xs font-guide font-bold tracking-[0.7em] uppercase text-white/80"
                     >
                         Test Gratuitos
                     </motion.span>
 
-                    <div className="space-y-4">
-                        <h1 className="text-5xl md:text-[5.5rem] font-sans font-bold tracking-[0.05em] leading-[1.1] uppercase">
+                    <div className="space-y-2 md:space-y-0">
+                        <h1 className="text-5xl md:text-[7.5rem] font-sans font-black tracking-[0.02em] leading-none uppercase drop-shadow-2xl">
                             DESCUBRE TU HISTORIA
                         </h1>
-                        <p className="text-4xl md:text-[5.5rem] font-script text-white/90 italic leading-tight drop-shadow-lg">
+                        <p className="text-4xl md:text-[5.5rem] font-script text-white/95 italic leading-none drop-shadow-xl -mt-2 md:-mt-4">
                             los patrones que guía tu vida
                         </p>
                     </div>
@@ -55,12 +55,12 @@ export default function NewHero() {
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 1, duration: 1 }}
-                        className="pt-12 flex justify-center"
+                        transition={{ delay: 1.2, duration: 1 }}
+                        className="pt-16 flex justify-center"
                     >
                         <Link
                             href="/tests"
-                            className="inline-block px-14 py-5 text-sm md:text-base font-body font-bold tracking-[0.2em] uppercase border border-white/60 text-white rounded-full hover:bg-white hover:text-black transition-all bg-transparent backdrop-blur-sm"
+                            className="inline-block px-16 py-6 text-sm md:text-base font-body font-bold tracking-[0.25em] uppercase border border-white/40 text-white rounded-full hover:bg-white hover:text-black transition-all bg-transparent backdrop-blur-md shadow-2xl group"
                         >
                             INICIA MI EXPLORACIÓN
                         </Link>
@@ -68,10 +68,10 @@ export default function NewHero() {
                 </motion.div>
             </div>
 
-            {/* Pagination/Scroll Indicator */}
-            <div className="absolute bottom-32 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4">
-                <div className="w-[1px] h-12 bg-white/40" />
-                <div className="relative w-10 h-10">
+            {/* Pagination/Scroll Indicator - Match Screenshot Positioning */}
+            <div className="absolute bottom-40 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-6 opacity-80">
+                <div className="w-[1px] h-20 bg-gradient-to-b from-transparent via-white/50 to-white/70" />
+                <div className="relative w-12 h-12">
                     <Image
                         src="/assets/images/watermark-logo.png"
                         alt=""
@@ -81,16 +81,16 @@ export default function NewHero() {
                 </div>
             </div>
 
-            {/* Organic Bottom Divider */}
+            {/* Organic Bottom Divider - WHITE BRUSH */}
             <div className="absolute bottom-0 left-0 right-0 z-30 pointer-events-none">
-                <div className="relative w-full flex justify-center overflow-hidden leading-none translate-y-[2px]">
+                <div className="relative w-full flex justify-center overflow-hidden leading-none translate-y-[1px]">
                     <Image
                         src="/assets/images/brush-separator.png"
                         alt=""
                         width={2560}
-                        height={600}
+                        height={400}
                         quality={100}
-                        className="w-full h-auto min-h-[100px] object-cover object-bottom brightness-[0.95]"
+                        className="w-full h-auto min-h-[140px] object-cover object-bottom"
                     />
                 </div>
             </div>

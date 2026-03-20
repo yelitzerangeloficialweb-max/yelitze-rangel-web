@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import { WaveDivider } from "@/components/ui/MysticalElements";
 
 const services = [
     {
@@ -28,7 +29,7 @@ const services = [
 
 export default function ServiceSelector() {
     return (
-        <section className="relative overflow-hidden bg-white">
+        <section className="relative overflow-hidden bg-[#F5EFE6]">
             {/* White Header Area */}
             <div className="relative pt-32 pb-48 z-20">
                 <div className="container mx-auto px-4 text-center">
@@ -53,15 +54,12 @@ export default function ServiceSelector() {
 
 
             {/* PORTAL 01 - DARK SECTION */}
-            <div className="relative bg-[#2D2926] pt-32 pb-48 z-20 mt-16">
+            <div className="relative bg-[#2D2926] pt-40 pb-56 z-20 mt-16">
                 {/* Wave Transition Top */}
-                <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0] -translate-y-[99%] rotate-180 z-0">
-                    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-[calc(100%+1.3px)] h-[100px] fill-[#2D2926]">
-                        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V120H0V56.44Z" className="fill-[#2D2926]"></path>
-                    </svg>
-                </div>
+                <WaveDivider position="top" fill="#F5EFE6" />
+                
                 {/* Background Glows */}
-                <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-l from-[#ff9a5c]/15 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-l from-[#ff9a5c]/10 via-transparent to-transparent pointer-events-none" />
 
 
                 <div className="container mx-auto px-4 relative max-w-7xl">
@@ -73,7 +71,7 @@ export default function ServiceSelector() {
                                 whileInView={{ scale: 1, opacity: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8 }}
-                                className="relative w-64 h-64 md:w-[480px] md:h-[480px] lg:w-[580px] lg:h-[580px] rounded-full overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,0,0,0.9)] z-50 -mt-48 lg:-mt-[350px] lg:-ml-12"
+                                className="relative w-64 h-64 md:w-[480px] md:h-[480px] lg:w-[580px] lg:h-[580px] rounded-full overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,0,0,1)] z-50 -mt-56 lg:-mt-[380px] lg:-ml-12"
                             >
                                 <Image
                                     src={services[0].image}
@@ -97,14 +95,14 @@ export default function ServiceSelector() {
                                 <span className="block text-xs font-bold tracking-[0.4em] uppercase text-white/50">
                                     {services[0].tag}
                                 </span>
-                                <h3 className="text-6xl md:text-[7rem] font-script text-[#B8835A] italic leading-[0.75] drop-shadow-md pb-6">
+                                <h3 className="text-6xl md:text-[7.5rem] font-script text-[#B8835A] italic leading-[0.75] drop-shadow-md pb-6">
                                     {services[0].title}
                                 </h3>
                                 <p className="text-xl md:text-2xl font-body font-light leading-relaxed text-white/80 max-w-xl mx-auto lg:mx-0">
                                     {services[0].description}
                                 </p>
                                 
-                                <div className="pt-10">
+                                <div className="pt-12">
                                     <Link
                                         href={services[0].link}
                                         className="inline-block px-14 py-5 bg-[#B8835A] text-white rounded-2xl font-body font-bold tracking-[0.2em] uppercase transition-all hover:scale-105 hover:bg-[#c9956d] shadow-2xl active:scale-95"
@@ -118,11 +116,7 @@ export default function ServiceSelector() {
                 </div>
 
                 {/* Wave Transition Bottom */}
-                <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] translate-y-[99%] z-0">
-                    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-[calc(100%+1.3px)] h-[100px] fill-[#2D2926]">
-                        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V120H0V56.44Z" className="fill-[#2D2926]"></path>
-                    </svg>
-                </div>
+                <WaveDivider position="bottom" fill="#F5EFE6" />
             </div>
 
             {/* PORTAL 02 - LIGHT SECTION */}

@@ -299,11 +299,25 @@ export default function SomaticQuiz() {
                         animate={{ opacity: 1, y: 0 }}
                         className="max-w-3xl mx-auto space-y-12"
                     >
-                        <div className="text-center space-y-6">
-                            <h2 className="text-4xl md:text-6xl font-editorial text-[#2D2926]">Escucha Profunda</h2>
-                            <p className="text-xl font-editorial italic text-[#8C4005]">
-                                "¿Qué sensaciones emergen en tu cuerpo al hacer este test?"
-                            </p>
+                        <div className="text-center space-y-8">
+                            <div className="space-y-4">
+                                <h2 className="text-4xl md:text-6xl font-editorial text-[#2D2926]">Escucha Profunda</h2>
+                                <p className="text-xl font-editorial italic text-[#8C4005]">
+                                    "¿Qué sensaciones emergen en tu cuerpo al hacer este test?"
+                                </p>
+                            </div>
+                            
+                            <div className="max-w-2xl mx-auto bg-[#8C4005]/5 p-8 rounded-[2rem] border-l-4 border-[#8C4005] space-y-4 text-left">
+                                <p className="text-[#2D2926] text-lg font-body leading-relaxed">
+                                    Este es un espacio para registrar lo que tu sistema nervioso está comunicando en este momento. Al recordar situaciones o identificar tensiones, tu cuerpo suele reaccionar con sensaciones físicas concretas.
+                                </p>
+                                <div className="pt-2 border-t border-[#8C4005]/10">
+                                    <p className="text-[#8C4005] font-bold text-xs uppercase tracking-widest font-guide mb-2">Ejemplos de lo que puedes escribir:</p>
+                                    <p className="text-[#4D4D4D] italic text-base font-editorial">
+                                        "Siento un nudo en la garganta", "picazón en las manos", "mis hombros están muy pesados" o "un frío que recorre mi espalda".
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                         
                         <textarea
