@@ -69,9 +69,9 @@ export default function NewHero() {
             </div>
 
             {/* Pagination/Scroll Indicator - Match Screenshot Positioning */}
-            <div className="absolute bottom-40 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-6 opacity-80">
-                <div className="w-[1px] h-20 bg-gradient-to-b from-transparent via-white/50 to-white/70" />
-                <div className="relative w-12 h-12">
+            <div className="absolute bottom-32 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-6 opacity-80">
+                <div className="w-[1px] h-16 bg-gradient-to-b from-transparent via-white/50 to-white/70" />
+                <div className="relative w-24 h-24">
                     <Image
                         src="/assets/images/watermark-logo.png"
                         alt=""
