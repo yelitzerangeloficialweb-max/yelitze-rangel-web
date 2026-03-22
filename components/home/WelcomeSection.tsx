@@ -59,6 +59,13 @@ export default function WelcomeSection() {
                         
 
 
+                        {/* Decorative squiggly line (svg for better control) */}
+                        <div className="absolute top-1/2 left-0 -translate-y-1/2 -ml-24 w-48 h-48 opacity-20 pointer-events-none">
+                            <svg viewBox="0 0 100 100" className="w-full h-full stroke-[#B8835A] fill-none stroke-[0.5]">
+                                <path d="M0,50 C20,20 80,80 100,50 S180,20 200,50" />
+                            </svg>
+                        </div>
+
                         {/* Portrait Image with Organic Clipping/Rounding */}
                         <div className="relative z-10 w-full max-w-[550px] aspect-[4/5] rounded-[40px] rounded-tr-[150px] overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,0,0,0.15)] mx-auto lg:ml-auto">
                             <Image
