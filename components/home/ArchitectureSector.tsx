@@ -3,13 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { WaveDivider } from "@/components/ui/MysticalElements";
+
 
 export default function ArchitectureSector() {
     return (
         <section className="relative min-h-[850px] flex items-center overflow-hidden bg-[#2D2926] pt-72 pb-32">
-            {/* Wave Transition Top */}
-            <WaveDivider position="top" fill="#F5EFE6" />
+
             {/* Background Image Container with Gradient Fade */}
             <div className="absolute inset-0 top-20 z-0">
                 <div className="relative w-full h-full lg:w-[80%] lg:-left-24">

@@ -21,9 +21,9 @@
   /* Neutral - Uso de gris o dorado para evitar negro en separadores */
   --color-neutral: #B8835A;
 
-  /* Crema Orgánico - Para sustituir el blanco y dar calidez */
-  --color-background: #F5EFE6;
-  --color-surface: #F5EFE6;
+  /* Blanco Puro - Para el fondo solicitado */
+  --color-background: #FFFFFF;
+  --color-surface: #FFFFFF;
 
   /* Gris Carbón Profundo - Para bloques de texto largos, evitando el negro puro */
   --color-text: #2D2926;

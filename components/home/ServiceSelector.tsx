@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
-import { WaveDivider } from "@/components/ui/MysticalElements";
+
 
 const services = [
     {
@@ -29,7 +29,7 @@ const services = [
 
 export default function ServiceSelector() {
     return (
-        <section className="relative overflow-hidden bg-[#F5EFE6]">
+        <section className="relative overflow-hidden bg-white">
             {/* White Header Area */}
             <div className="relative pt-32 pb-48 z-20">
                 <div className="container mx-auto px-4 text-center">
@@ -55,8 +55,7 @@ export default function ServiceSelector() {
 
             {/* PORTAL 01 - DARK SECTION */}
             <div className="relative bg-[#2D2926] pt-40 pb-56 z-20 mt-16">
-                {/* Wave Transition Top */}
-                <WaveDivider position="top" fill="#F5EFE6" />
+
                 
                 {/* Background Glows */}
                 <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-l from-[#ff9a5c]/10 via-transparent to-transparent pointer-events-none" />
@@ -115,8 +114,7 @@ export default function ServiceSelector() {
                     </div>
                 </div>
 
-                {/* Wave Transition Bottom */}
-                <WaveDivider position="bottom" fill="#F5EFE6" />
+
             </div>
 
             {/* PORTAL 02 - LIGHT SECTION */}
@@ -124,12 +122,7 @@ export default function ServiceSelector() {
                 {/* Decorative Lines and Glows */}
                 <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-tr from-[#ff9a5c]/5 via-transparent to-[#ff9a5c]/10 pointer-events-none" />
                 
-                {/* Spiral Line Decoration (Using SVG for precision if possible, or placeholder/css) */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none opacity-20">
-                    <svg viewBox="0 0 1000 1000" className="w-full h-full stroke-[#B8835A] fill-none stroke-[0.5]">
-                        <path d="M100,200 Q500,0 900,200 T100,600 T900,1000" />
-                    </svg>
-                </div>
+
 
                 <div className="container mx-auto px-4 relative max-w-7xl">
                     <div className="relative flex flex-col lg:flex-row items-center gap-16 lg:gap-24">

@@ -55,32 +55,9 @@ export default function WisdomChest() {
                 </div>
             </div>
 
-            {/* White Transition Brush Separator at the Bottom - Moved down as requested earlier */}
-            <div className="absolute bottom-0 left-0 w-full h-[300px] lg:h-[500px] z-20 pointer-events-none translate-y-[80%]">
-                <Image
-                    src="/assets/images/brush-separator.png"
-                    alt=""
-                    fill
-                    className="object-fill object-top brightness-100 scale-y-125"
-                />
-            </div>
 
-            {/* Floating curly line and logo decoration on the left */}
-            <div className="absolute bottom-12 left-8 md:left-12 lg:left-20 flex items-center gap-4 opacity-30 pointer-events-none hidden lg:flex">
-                <div className="relative w-10 h-10">
-                    <Image
-                        src="/assets/images/watermark-logo.png"
-                        alt=""
-                        fill
-                        className="object-contain"
-                    />
-                </div>
-                <div className="w-32 h-16">
-                    <svg viewBox="0 0 100 100" className="w-full h-full stroke-[#B8835A] fill-none stroke-[0.5]">
-                        <path d="M0,50 C20,20 80,80 100,50 S180,20 200,50" />
-                    </svg>
-                </div>
-            </div>
+
+
         </section>
     );
 }
