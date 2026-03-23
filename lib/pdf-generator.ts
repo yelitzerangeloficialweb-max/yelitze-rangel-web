@@ -415,24 +415,9 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
     const waveYBottom = y + actionBoxHeight;
     const waveDepth = 4;
 
-    // Draw the Black Wave Box
-    p.setFillColor(45, 41, 38);
-    p.moveTo(margin, waveYTop + waveDepth);
-    // Top wave
-    p.bezierCurveTo(
-        margin + contentWidth * 0.25, waveYTop - waveDepth, 
-        margin + contentWidth * 0.75, waveYTop + waveDepth * 3, 
-        margin + contentWidth, waveYTop + waveDepth
-    );
-    p.lineTo(margin + contentWidth, waveYBottom - waveDepth);
-    // Bottom wave
-    p.bezierCurveTo(
-        margin + contentWidth * 0.75, waveYBottom + waveDepth, 
-        margin + contentWidth * 0.25, waveYBottom - waveDepth * 3, 
-        margin, waveYBottom - waveDepth
-    );
-    p.closePath();
-    p.fill();
+    // Draw a nice solid rectangle instead of the wave box which was crashing
+    pdf.setFillColor(45, 41, 38);
+    pdf.rect(margin, waveYTop, contentWidth, actionBoxHeight, 'F');
 
     // Background Geometric Patterns (Subtle Lines)
     p.setDrawColor(65, 60, 55); 
@@ -443,18 +428,12 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
         p.circle(patternCenterX, patternCenterY, i * 15, 'S');
     }
 
-    // Dotted Wave Line (Premium accent)
-    p.setDrawColor(140, 64, 5, 0.2); // Soft brown
-    p.setLineDashPattern([2, 2], 0);
-    p.setLineWidth(0.2);
-    p.moveTo(margin, waveYTop + waveDepth + 15);
-    p.bezierCurveTo(
-        margin + contentWidth * 0.25, waveYTop + waveDepth + 5, 
-        margin + contentWidth * 0.75, waveYTop + waveDepth + 25, 
-        margin + contentWidth, waveYTop + waveDepth + 15
-    );
-    p.stroke();
-    p.setLineDashPattern([], 0); // Reset dash
+    // Pattern background (using circles is standard)
+    pdf.setDrawColor(65, 60, 55);
+    pdf.setLineWidth(0.1);
+    for (let i = 1; i <= 6; i++) {
+        pdf.circle(patternCenterX, patternCenterY, i * 15, 'S');
+    }
 
     // Background "02"
     pdf.setTextColor(235, 230, 225); // Using light color instead of alpha for the big "02" background
