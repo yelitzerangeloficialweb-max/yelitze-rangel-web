@@ -155,6 +155,13 @@ Declaración de poder actual: ${value}`;
                         </p>
                     </div>
 
+                    <textarea
+                        value={value}
+                        onChange={(e) => onChange(e.target.value)}
+                        placeholder="Hoy dejo de cargar con... Reclamo mi poder para..."
+                        className="w-full h-64 p-10 bg-[#F9F7F2] border border-[#3C2A21]/5 rounded-[2.5rem] focus:ring-2 focus:ring-[#8C4005]/20 focus:bg-white outline-none resize-none text-[#2D2926] text-2xl font-light font-editorial placeholder:text-[#3C2A21]/30 transition-all shadow-inner"
+                    />
+
                     <div className="flex justify-end pr-4">
                         <button
                             onClick={handleRefine}
@@ -169,13 +176,6 @@ Declaración de poder actual: ${value}`;
                             Refinar con Yelitze
                         </button>
                     </div>
-
-                    <textarea
-                        value={value}
-                        onChange={(e) => onChange(e.target.value)}
-                        placeholder="Hoy dejo de cargar con... Reclamo mi poder para..."
-                        className="w-full h-64 p-10 bg-[#F9F7F2] border border-[#3C2A21]/5 rounded-[2.5rem] focus:ring-2 focus:ring-[#8C4005]/20 focus:bg-white outline-none resize-none text-[#2D2926] text-2xl font-light font-editorial placeholder:text-[#3C2A21]/30 transition-all shadow-inner"
-                    />
                 </div>
             </div>
 
