@@ -11,7 +11,8 @@ import {
     Zap, 
     ArrowLeft,
     ShieldCheck,
-    Download
+    Download,
+    Loader2 
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -86,6 +87,7 @@ export default function SomaticQuiz() {
     const [isDownloading, setIsDownloading] = useState(false);
     const [aiResult, setAiResult] = useState<any>(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [isRefining, setIsRefining] = useState(false);
 
     const currentQuestion = QUESTIONS[currentIndex];
     const progress = (currentIndex / QUESTIONS.length) * 100;
@@ -359,13 +361,44 @@ export default function SomaticQuiz() {
                             value={reflection}
                             onChange={(e) => setReflection(e.target.value)}
                             placeholder="Describe brevemente tu sentir actual..."
-                            className="w-full h-64 p-8 text-2xl font-editorial text-[#2D2926] bg-white rounded-[2.5rem] shadow-xl border-none focus:ring-2 focus:ring-[#8C4005] outline-none"
+                            className="w-full h-64 p-10 text-2xl font-editorial text-[#2D2926] bg-white rounded-[2.5rem] shadow-xl border-none focus:ring-2 focus:ring-[#8C4005] outline-none resize-none"
                         />
 
-                        <div className="flex justify-center">
+                        <div className="flex justify-end pr-4 -mt-6 relative z-20">
+                            <button
+                                onClick={async () => {
+                                    if (!reflection.trim()) return;
+                                    setIsRefining(true);
+                                    try {
+                                        const response = await fetch('/api/ai/somatic-test/refine-reflection', {
+                                            method: 'POST',
+                                            headers: { 'Content-Type': 'application/json' },
+                                            body: JSON.stringify({ text: reflection })
+                                        });
+                                        const data = await response.json();
+                                        if (data.refinedText) setReflection(data.refinedText);
+                                    } catch (err) {
+                                        console.error("Refinement error:", err);
+                                    } finally {
+                                        setIsRefining(false);
+                                    }
+                                }}
+                                disabled={isRefining || !reflection.trim()}
+                                className="bg-[#8C4005] text-white px-6 py-3 rounded-full text-[10px] font-bold flex items-center gap-2 hover:bg-[#B8835A] transition-all disabled:opacity-20 disabled:cursor-not-allowed uppercase tracking-widest shadow-lg"
+                            >
+                                {isRefining ? (
+                                    <Loader2 className="w-4 h-4 animate-spin" />
+                                ) : (
+                                    <Sparkles className="w-4 h-4" />
+                                )}
+                                Interpretación de Yelitze
+                            </button>
+                        </div>
+
+                        <div className="flex justify-center pt-8">
                             <button
                                 onClick={() => setStep('form')}
-                                disabled={!reflection}
+                                disabled={!reflection || isRefining}
                                 className="bg-[#8C4005] text-[#F5EFE6] px-14 py-6 rounded-2xl font-bold uppercase tracking-[0.25em] text-xs hover:scale-[1.05] disabled:opacity-50 transition-all font-guide"
                             >
                                 Continuar
