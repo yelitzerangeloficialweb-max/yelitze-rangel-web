@@ -384,7 +384,7 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
     // Calibrated line-height for jsPDF Helvetica
     const lh = (fs: number) => Math.ceil(fs * 0.41 * 10) / 10;
 
-    const logoData     = loadImageAsBase64('assets/images/logo-color.png');
+    const logoData      = loadImageAsBase64('assets/images/logo-yelitze-new.png');
     const logoWhiteData = loadImageAsBase64('assets/images/logo-white.png');
     const watermarkData = loadImageAsBase64('assets/images/watermark-logo.png');
 
@@ -407,19 +407,25 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
     };
 
     // Dark branded band at page top (height = bandH mm)
+    // Uses the full script text logo (logo-yelitze-new.png, ~3:1 ratio) centered in the band.
     const drawDarkBand = (bandH: number, subtitle: string) => {
         pdf.setFillColor(35, 25, 22);
         pdf.rect(0, 0, W, bandH, 'F');
 
-        const logoSrc = logoWhiteData || logoData;
+        // Full text logo centered — try color version first (dark bg makes it visible)
+        const logoSrc = logoData || logoWhiteData;
         if (logoSrc) {
-            try { pdf.addImage(logoSrc, 'PNG', W / 2 - 16, 6, 32, 11); } catch { /* skip */ }
+            const logoW = 58;   // mm — wide enough for script text
+            const logoH = 19;   // mm — 3:1 ratio
+            try {
+                pdf.addImage(logoSrc, 'PNG', (W - logoW) / 2, (bandH - logoH) / 2 - 3, logoW, logoH);
+            } catch { /* skip */ }
         }
 
         pdf.setTextColor(184, 131, 90);
         pdf.setFontSize(6.5);
         pdf.setFont('helvetica', 'bold');
-        pdf.text(subtitle, W / 2, bandH - 7, { align: 'center' });
+        pdf.text(subtitle, W / 2, bandH - 5, { align: 'center' });
 
         // Gold accent line at bottom of band
         pdf.setFillColor(184, 131, 90);
@@ -449,13 +455,14 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
 
     let y = BAND_H + 14;
 
-    // Two-line greeting: small label then large name
+    // Two-line greeting: small copper label, then large serif name
+    // Gap must clear the 36pt ascender (~9mm above baseline) so they don't overlap.
     const firstName = name.split(' ')[0];
     pdf.setTextColor(184, 131, 90);
     pdf.setFontSize(11);
     pdf.setFont('helvetica', 'italic');
     pdf.text('Hola,', M, y);
-    y += lh(11) + 2;
+    y += 15;  // enough space: cap-height(11pt≈3mm) + gap(3mm) + ascender(36pt≈9mm)
 
     pdf.setTextColor(140, 64, 5);
     pdf.setFontSize(36);
@@ -712,19 +719,27 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
         pdf.text('Tu Coach Ancestral', M, sigY + lh(13) + 1);
     }
 
-    // ── CTA ──────────────────────────────────────────────────────────────────
+    // ── CTA BUTTON ────────────────────────────────────────────────────────────
 
-    pdf.setDrawColor(184, 131, 90);
-    pdf.setLineWidth(0.3);
-    pdf.line(M, H - 26, W - M, H - 26);
+    const VEC_URL  = 'https://yelitzerangeloficial.com/venezuela-en-el-cuerpo';
+    const btnW     = 140;
+    const btnH     = 10;
+    const btnX     = (W - btnW) / 2;
+    const btnY     = H - 30;
+    const btnLabel = '\u00BFLISTA PARA PROFUNDIZAR? \u2192  VENEZUELA EN EL CUERPO';
 
-    pdf.setTextColor(140, 64, 5);
-    pdf.setFontSize(8);
+    // Button fill (brand accent)
+    pdf.setFillColor(140, 64, 5);
+    pdf.roundedRect(btnX, btnY, btnW, btnH, 3, 3, 'F');
+
+    // Button text
+    pdf.setTextColor(255, 255, 255);
+    pdf.setFontSize(7.5);
     pdf.setFont('helvetica', 'bold');
-    pdf.text(
-        '\u00BFLISTA PARA PROFUNDIZAR? \u00DANETE AL TOUR \u201CVENEZUELA EN EL CUERPO\u201D',
-        W / 2, H - 18, { align: 'center' }
-    );
+    pdf.text(btnLabel, W / 2, btnY + 6.5, { align: 'center' });
+
+    // Clickable link area over the button
+    pdf.link(btnX, btnY, btnW, btnH, { url: VEC_URL });
 
     drawFooter('Diagn\u00F3stico Som\u00E1tico  \u2022  02 / 02');
 
