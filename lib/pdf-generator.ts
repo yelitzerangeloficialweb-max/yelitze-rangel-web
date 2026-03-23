@@ -333,11 +333,11 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
     pdf.roundedRect(margin, y, contentWidth, stressBoxHeight, 10, 10, 'F');
     
     // Background "01"
-    const p = pdf as any; // Cast to any to use custom methods like setLineDashPattern
-    p.setTextColor(140, 64, 5, 0.05); // Very faint
-    p.setFontSize(45);
-    p.setFont('helvetica', 'bold');
-    p.text('01', margin + contentWidth - 25, y + 25);
+    const p = pdf as any; 
+    pdf.setTextColor(140, 64, 5); // Faint effect handled by simpler color if needed, or keep standard
+    pdf.setFontSize(45);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('01', margin + contentWidth - 25, y + 25);
 
     let innerY = y + 12;
     p.setTextColor(140, 64, 5);
@@ -457,10 +457,10 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
     p.setLineDashPattern([], 0); // Reset dash
 
     // Background "02"
-    p.setTextColor(255, 255, 255, 0.05);
-    p.setFontSize(45);
-    p.setFont('helvetica', 'bold');
-    p.text('02', margin + contentWidth - 25, y + 25);
+    pdf.setTextColor(235, 230, 225); // Using light color instead of alpha for the big "02" background
+    pdf.setFontSize(45);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('02', margin + contentWidth - 25, y + 25);
 
     innerY = y + 18;
     p.setTextColor(184, 131, 90);

@@ -10,7 +10,8 @@ import {
     Sparkles, 
     Zap, 
     ArrowLeft,
-    ShieldCheck
+    ShieldCheck,
+    Download
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -82,6 +83,7 @@ export default function SomaticQuiz() {
     const [email, setEmail] = useState('');
     const [whatsapp, setWhatsapp] = useState('');
     const [isSending, setIsSending] = useState(false);
+    const [isDownloading, setIsDownloading] = useState(false);
     const [aiResult, setAiResult] = useState<any>(null);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -161,6 +163,39 @@ export default function SomaticQuiz() {
             console.error("Error connecting to mail service:", error);
         } finally {
             setIsSending(false);
+        }
+    }
+
+    const handleDownloadPDF = async () => {
+        if (!aiResult) return;
+        setIsDownloading(true);
+        try {
+            const response = await fetch('/api/ai/somatic-test/download', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email,
+                    name,
+                    reflection,
+                    stressResult: { type: stressResult.type, desc: stressResult.desc },
+                    result: aiResult
+                })
+            });
+
+            if (response.ok) {
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `Diagnostico_Somatico_${name.replace(/\s+/g, '_')}.pdf`;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+            }
+        } catch (error) {
+            console.error("Error downloading PDF:", error);
+        } finally {
+            setIsDownloading(false);
         }
     }
 
@@ -485,13 +520,24 @@ export default function SomaticQuiz() {
                         <div className="text-center space-y-8 pt-16 border-t border-[#B8835A]/10">
                             <div className="space-y-4">
                                 <p className="text-[#8C4005] font-editorial italic text-2xl uppercase tracking-tighter">Tu diagnóstico completo ha sido enviado a {email}</p>
-                                <button 
-                                    onClick={() => window.location.href = `https://wa.me/${whatsapp?.replace(/\D/g, '') || '584120000000'}?text=Hola Yelitze, acabo de terminar mi Test Somático y soy ${stressResult.type}. Me gustaría profundizar en mi proceso.`}
-                                    className="flex items-center gap-4 bg-[#25D366] text-white px-10 py-5 rounded-2xl font-bold uppercase tracking-[0.2em] text-xs hover:scale-105 transition-all shadow-xl mx-auto"
-                                >
-                                    <Activity className="w-5 h-5" />
-                                    Consultar por WhatsApp
-                                </button>
+                                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                                    <button 
+                                        onClick={() => window.location.href = `https://wa.me/${whatsapp?.replace(/\D/g, '') || '584120000000'}?text=Hola Yelitze, acabo de terminar mi Test Somático y soy ${stressResult.type}. Me gustaría profundizar en mi proceso.`}
+                                        className="flex items-center gap-4 bg-[#25D366] text-white px-10 py-5 rounded-2xl font-bold uppercase tracking-[0.25em] text-xs hover:scale-105 transition-all shadow-xl"
+                                    >
+                                        <Activity className="w-5 h-5" />
+                                        WhatsApp
+                                    </button>
+
+                                    <button 
+                                        onClick={handleDownloadPDF}
+                                        disabled={isDownloading}
+                                        className="flex items-center gap-4 bg-[#8C4005] text-white px-10 py-5 rounded-2xl font-bold uppercase tracking-[0.25em] text-xs hover:scale-105 transition-all shadow-xl disabled:opacity-50"
+                                    >
+                                        <Download className="w-5 h-5" />
+                                        {isDownloading ? "Descargando..." : "Descargar PDF"}
+                                    </button>
+                                </div>
                             </div>
                             <div className="pt-10">
                                 <p className="text-[10px] uppercase tracking-[0.5em] font-bold text-[#2D2926]/40">YELITZE RANGEL • Tu Coach Ancestral • 2026</p>
