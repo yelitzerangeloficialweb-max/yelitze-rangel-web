@@ -493,23 +493,28 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
         y += lines.length * lh(10.5) + 5;
     }
 
-    // Quote card (rounded rect with left accent, like the email template)
-    y += 2;
-    const quoteText = '\u201CEl cuerpo que se regula, crea. El cuerpo que se libera, trasciende.\u201D';
-    const quoteLines = pdf.splitTextToSize(quoteText, CW - 20);
-    const qPAD = 10;
-    const quoteBoxH = qPAD + quoteLines.length * lh(13) + qPAD;
+    // ── AUDITORÍA DE TU BIOLOGÍA (carta page) ────────────────────────────────
+    y += 5;
+    const auditLines = pdf.splitTextToSize(analysis?.personalized_analysis || '', TW);
+    const auditBoxH  = PAD + lh(8) + 4 + auditLines.length * lh(10) + PAD;
 
-    pdf.setFillColor(246, 240, 233);
-    pdf.roundedRect(M, y, CW, quoteBoxH, 5, 5, 'F');
-    pdf.setFillColor(140, 64, 5);
-    pdf.rect(M, y, 3.5, quoteBoxH, 'F');
+    pdf.setFillColor(255, 255, 255);
+    pdf.roundedRect(M, y, CW, auditBoxH, 4, 4, 'F');
+    accentBar([184, 131, 90], y, auditBoxH);
 
-    pdf.setTextColor(140, 64, 5);
-    pdf.setFontSize(13);
-    pdf.setFont('times', 'italic');
-    pdf.text(quoteLines, M + 11, y + qPAD);
-    y += quoteBoxH + 12;
+    let iy1 = y + PAD;
+    pdf.setTextColor(184, 131, 90);
+    pdf.setFontSize(8);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('AUDITOR\u00CDA DE TU BIOLOG\u00CDA', M + PAD, iy1);
+    iy1 += lh(8) + 4;
+
+    pdf.setTextColor(45, 41, 38);
+    pdf.setFontSize(10);
+    pdf.setFont('helvetica', 'italic');
+    pdf.text(auditLines, M + PAD, iy1);
+
+    y += auditBoxH + 12;
 
     // Signature block
     pdf.setTextColor(184, 131, 90);
@@ -591,30 +596,7 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
 
     y += box1H + 5;
 
-    // ── BOX 2: Análisis personalizado ──────────────────────────────────────
-
-    const analysisLines = pdf.splitTextToSize(analysis?.personalized_analysis || '', TW);
-    const box2H = PAD + lh(8) + 4 + analysisLines.length * lh(10) + PAD;
-
-    pdf.setFillColor(255, 255, 255);
-    pdf.roundedRect(M, y, CW, box2H, 4, 4, 'F');
-    accentBar([184, 131, 90], y, box2H);
-
-    iy = y + PAD;
-    pdf.setTextColor(184, 131, 90);
-    pdf.setFontSize(8);
-    pdf.setFont('helvetica', 'bold');
-    pdf.text('AUDITOR\u00CDA DE TU BIOLOG\u00CDA', M + PAD, iy);
-    iy += lh(8) + 4;
-
-    pdf.setTextColor(45, 41, 38);
-    pdf.setFontSize(10);
-    pdf.setFont('helvetica', 'italic');
-    pdf.text(analysisLines, M + PAD, iy);
-
-    y += box2H + 5;
-
-    // ── BOX 3: Insight somático ─────────────────────────────────────────────
+    // ── BOX 2: Insight somático ────────────────────────────────────────────
 
     const insightLines = pdf.splitTextToSize(`\u201C${analysis?.somatic_insight || ''}\u201D`, TW);
     const box3H = PAD + lh(8) + 4 + insightLines.length * lh(11) + PAD;
@@ -721,24 +703,28 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
 
     // ── CTA BUTTON ────────────────────────────────────────────────────────────
 
-    const VEC_URL  = 'https://yelitzerangeloficial.com/venezuela-en-el-cuerpo';
-    const btnW     = 140;
-    const btnH     = 10;
-    const btnX     = (W - btnW) / 2;
-    const btnY     = H - 30;
-    const btnLabel = '\u00BFLISTA PARA PROFUNDIZAR? \u2192  VENEZUELA EN EL CUERPO';
+    const VEC_URL = 'https://yelitzerangeloficial.com/venezuela-en-el-cuerpo';
+    const btnW    = CW;    // full content width — no text overflow
+    const btnH    = 14;
+    const btnX    = M;
+    const btnY    = H - 28;
 
-    // Button fill (brand accent)
     pdf.setFillColor(140, 64, 5);
-    pdf.roundedRect(btnX, btnY, btnW, btnH, 3, 3, 'F');
+    pdf.roundedRect(btnX, btnY, btnW, btnH, 4, 4, 'F');
 
-    // Button text
+    // Line 1 — small question label (safe ASCII + \u00BF for ¿)
+    pdf.setTextColor(255, 210, 160);
+    pdf.setFontSize(7);
+    pdf.setFont('helvetica', 'normal');
+    pdf.text('\u00BFLista para profundizar?', W / 2, btnY + 5, { align: 'center' });
+
+    // Line 2 — main CTA
     pdf.setTextColor(255, 255, 255);
-    pdf.setFontSize(7.5);
+    pdf.setFontSize(9);
     pdf.setFont('helvetica', 'bold');
-    pdf.text(btnLabel, W / 2, btnY + 6.5, { align: 'center' });
+    pdf.text('VENEZUELA EN EL CUERPO', W / 2, btnY + 11, { align: 'center' });
 
-    // Clickable link area over the button
+    // Clickable link
     pdf.link(btnX, btnY, btnW, btnH, { url: VEC_URL });
 
     drawFooter('Diagn\u00F3stico Som\u00E1tico  \u2022  02 / 02');
