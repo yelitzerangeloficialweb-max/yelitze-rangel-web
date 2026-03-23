@@ -384,7 +384,8 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
     // Calibrated line-height for jsPDF Helvetica
     const lh = (fs: number) => Math.ceil(fs * 0.41 * 10) / 10;
 
-    const logoData = loadImageAsBase64('assets/images/logo-color.png');
+    const logoData     = loadImageAsBase64('assets/images/logo-color.png');
+    const logoWhiteData = loadImageAsBase64('assets/images/logo-white.png');
     const watermarkData = loadImageAsBase64('assets/images/watermark-logo.png');
 
     // ── Reusable page elements ──────────────────────────────────────────────
@@ -405,27 +406,31 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
         } catch { /* skip if GState unsupported */ }
     };
 
-    const drawLogo = () => {
-        if (!logoData) return;
-        try { pdf.addImage(logoData, 'PNG', W - M - 32, 6, 32, 11); } catch { /* skip */ }
-    };
+    // Dark branded band at page top (height = bandH mm)
+    const drawDarkBand = (bandH: number, subtitle: string) => {
+        pdf.setFillColor(35, 25, 22);
+        pdf.rect(0, 0, W, bandH, 'F');
 
-    const drawHeader = () => {
-        pdf.setDrawColor(140, 64, 5);
-        pdf.setLineWidth(0.4);
-        pdf.line(M, 20, W - M, 20);
-        pdf.setTextColor(140, 64, 5);
-        pdf.setFontSize(7);
+        const logoSrc = logoWhiteData || logoData;
+        if (logoSrc) {
+            try { pdf.addImage(logoSrc, 'PNG', W / 2 - 16, 6, 32, 11); } catch { /* skip */ }
+        }
+
+        pdf.setTextColor(184, 131, 90);
+        pdf.setFontSize(6.5);
         pdf.setFont('helvetica', 'bold');
-        pdf.text('YELITZE RANGEL  |  TU COACH ANCESTRAL', M, 16);
-        drawLogo();
+        pdf.text(subtitle, W / 2, bandH - 7, { align: 'center' });
+
+        // Gold accent line at bottom of band
+        pdf.setFillColor(184, 131, 90);
+        pdf.rect(0, bandH, W, 1.2, 'F');
     };
 
     const drawFooter = (label: string) => {
         pdf.setFontSize(7);
         pdf.setTextColor(184, 131, 90);
         pdf.setFont('helvetica', 'normal');
-        pdf.text('yelitzerangel.com  \u2022  2026', M, H - 8);
+        pdf.text('yelitzerangeloficial.com  \u2022  2026', M, H - 8);
         pdf.text(label, W - M, H - 8, { align: 'right' });
     };
 
@@ -438,78 +443,88 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
 
     drawBackground(true);
     drawWatermark();
-    drawHeader();
 
-    let y = 30;
+    const BAND_H = 38;
+    drawDarkBand(BAND_H, 'TU COACH ANCESTRAL');
 
-    // Greeting
+    let y = BAND_H + 14;
+
+    // Two-line greeting: small label then large name
     const firstName = name.split(' ')[0];
+    pdf.setTextColor(184, 131, 90);
+    pdf.setFontSize(11);
+    pdf.setFont('helvetica', 'italic');
+    pdf.text('Hola,', M, y);
+    y += lh(11) + 2;
+
     pdf.setTextColor(140, 64, 5);
-    pdf.setFontSize(30);
-    pdf.setFont('helvetica', 'bold');
-    pdf.text(`Hola, ${firstName}.`, M, y);
-    y += lh(30) + 4;
+    pdf.setFontSize(36);
+    pdf.setFont('times', 'bolditalic');
+    pdf.text(`${firstName}.`, M, y);
+    y += lh(36) + 6;
 
-    pdf.setDrawColor(184, 131, 90);
-    pdf.setLineWidth(0.5);
-    pdf.line(M, y, M + 65, y);
-    y += 10;
+    // Thin copper rule
+    pdf.setFillColor(184, 131, 90);
+    pdf.rect(M, y, 72, 0.7, 'F');
+    y += 9;
 
-    // Letter content
+    // Body paragraphs
     const stressTypeName = stressResult?.type || 'activación del sistema nervioso';
-
-    interface LetterEntry { text: string; style: string; }
-    const letterEntries: LetterEntry[] = [
-        { text: `Has completado un acto de valentía real: detenerte a escuchar a tu propio cuerpo. Y lo que encontré en tus respuestas no es casualidad ni debilidad —es la huella de un sistema nervioso que ha estado operando desde el estado de ${stressTypeName}.`, style: 'body' },
-        { text: '', style: 'gap' },
-        { text: 'El cuerpo no miente. Lleva la memoria exacta de cada emoción que no pudo ser procesada, de cada momento en que el entorno te exigió más de lo que tenías, o te pidió que sintieras menos. Esta inteligencia biológica que construiste te protegió. Y hoy comenzamos el proceso de actualizarla.', style: 'body' },
-        { text: '', style: 'gap' },
-        { text: 'Lo que encontrarás en estas páginas no son técnicas frías —son conversaciones respetuosas con tu sistema nervioso. Prácticas que le dicen a tu cuerpo, con cada repetición: "el peligro ya pasó, ahora hay espacio para vivir desde otro lugar".', style: 'body' },
-        { text: '', style: 'gap' },
-        { text: 'Este no es el final de un test. Es el primer movimiento consciente de tu nueva arquitectura corporal.', style: 'body' },
-        { text: '', style: 'gap' },
-        { text: '\u201CEl cuerpo que se regula, crea. El cuerpo que se libera, trasciende.\u201D', style: 'quote' },
-        { text: '', style: 'gap' },
-        { text: 'Con amor y certeza,', style: 'sign-pre' },
-        { text: '', style: 'gap-sm' },
-        { text: 'Yelitze Rangel', style: 'sign-name' },
-        { text: 'Tu Coach Ancestral', style: 'sign-title' },
+    const bodyParas = [
+        `Has completado un acto de valentía real: detenerte a escuchar a tu propio cuerpo. Lo que encontré en tus respuestas no es casualidad ni debilidad —es la huella de un sistema nervioso que ha estado operando desde el estado de ${stressTypeName}.`,
+        'El cuerpo no miente. Lleva la memoria exacta de cada emoción que no pudo ser procesada, de cada momento en que el entorno te exigió más de lo que tenías. Esta inteligencia biológica que construiste te protegió. Y hoy comenzamos el proceso de actualizarla.',
+        'Lo que encontrarás en estas páginas no son técnicas frías —son conversaciones respetuosas con tu sistema nervioso. Prácticas que le dicen a tu cuerpo, con cada repetición: el peligro ya pasó, ahora hay espacio para vivir desde otro lugar.',
+        'Este no es el final de un test. Es el primer movimiento consciente de tu nueva arquitectura corporal.',
     ];
 
-    for (const entry of letterEntries) {
-        if (entry.style === 'gap') { y += 5; continue; }
-        if (entry.style === 'gap-sm') { y += 2; continue; }
-
-        let fontSize = 11;
-        let fontStyle = 'normal';
-        let r = 45, g = 41, b = 38;
-        let lineSpacing = 6;
-
-        if (entry.style === 'quote') {
-            fontSize = 13; fontStyle = 'bolditalic';
-            r = 140; g = 64; b = 5;
-            lineSpacing = 7;
-        } else if (entry.style === 'sign-pre') {
-            fontSize = 10; fontStyle = 'bold';
-            r = 184; g = 131; b = 90;
-            lineSpacing = 5.5;
-        } else if (entry.style === 'sign-name') {
-            fontSize = 18; fontStyle = 'bold';
-            r = 140; g = 64; b = 5;
-            lineSpacing = 9;
-        } else if (entry.style === 'sign-title') {
-            fontSize = 9; fontStyle = 'italic';
-            r = 184; g = 131; b = 90;
-            lineSpacing = 5;
-        }
-
-        pdf.setFontSize(fontSize);
-        pdf.setFont('helvetica', fontStyle);
-        pdf.setTextColor(r, g, b);
-        const lines = pdf.splitTextToSize(entry.text, CW);
+    pdf.setFont('helvetica', 'normal');
+    pdf.setFontSize(10.5);
+    pdf.setTextColor(65, 58, 52);
+    for (const para of bodyParas) {
+        const lines = pdf.splitTextToSize(para, CW);
         pdf.text(lines, M, y);
-        y += lines.length * lineSpacing + (entry.style === 'quote' ? 4 : 2);
+        y += lines.length * lh(10.5) + 5;
     }
+
+    // Quote card (rounded rect with left accent, like the email template)
+    y += 2;
+    const quoteText = '\u201CEl cuerpo que se regula, crea. El cuerpo que se libera, trasciende.\u201D';
+    const quoteLines = pdf.splitTextToSize(quoteText, CW - 20);
+    const qPAD = 10;
+    const quoteBoxH = qPAD + quoteLines.length * lh(13) + qPAD;
+
+    pdf.setFillColor(246, 240, 233);
+    pdf.roundedRect(M, y, CW, quoteBoxH, 5, 5, 'F');
+    pdf.setFillColor(140, 64, 5);
+    pdf.rect(M, y, 3.5, quoteBoxH, 'F');
+
+    pdf.setTextColor(140, 64, 5);
+    pdf.setFontSize(13);
+    pdf.setFont('times', 'italic');
+    pdf.text(quoteLines, M + 11, y + qPAD);
+    y += quoteBoxH + 12;
+
+    // Signature block
+    pdf.setTextColor(184, 131, 90);
+    pdf.setFontSize(9.5);
+    pdf.setFont('helvetica', 'italic');
+    pdf.text('Con amor y certeza,', M, y);
+    y += lh(9.5) + 5;
+
+    pdf.setFillColor(184, 131, 90);
+    pdf.rect(M, y, 54, 0.5, 'F');
+    y += 6;
+
+    pdf.setTextColor(140, 64, 5);
+    pdf.setFontSize(20);
+    pdf.setFont('times', 'italic');
+    pdf.text('Yelitze Rangel', M, y);
+    y += lh(20) + 2;
+
+    pdf.setTextColor(184, 131, 90);
+    pdf.setFontSize(8.5);
+    pdf.setFont('helvetica', 'normal');
+    pdf.text('Tu Coach Ancestral', M, y);
 
     drawFooter('Carta de Yelitze  \u2022  01 / 02');
 
@@ -518,20 +533,18 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
     pdf.addPage();
     drawBackground(false);
     drawWatermark();
-    drawHeader();
 
-    y = 28;
+    const BAND2_H = 24;
+    drawDarkBand(BAND2_H, 'DIAGN\u00D3STICO SOM\u00C1TICO');
 
-    // Page title
+    y = BAND2_H + 10;
+
+    // Page subtitle
     pdf.setTextColor(140, 64, 5);
-    pdf.setFontSize(9);
-    pdf.setFont('helvetica', 'bold');
-    pdf.text('DIAGN\u00D3STICO SOM\u00C1TICO', M, y);
-    y += lh(9) + 2;
-    pdf.setFontSize(20);
-    pdf.setTextColor(45, 41, 38);
+    pdf.setFontSize(10);
+    pdf.setFont('times', 'italic');
     pdf.text(`An\u00E1lisis de ${name}`, M, y);
-    y += lh(20) + 6;
+    y += lh(10) + 6;
 
     // ── BOX 1: Estado de supervivencia ─────────────────────────────────────
 
