@@ -1,4 +1,6 @@
 import { jsPDF } from 'jspdf';
+import fs from 'fs';
+import path from 'path';
 
 // ---------------------------------------------------------------------------
 // Vision Board PDF — shared types & section config
@@ -62,6 +64,24 @@ export const PORTAL_LABELS: Record<string, string> = {
 
 // ---------------------------------------------------------------------------
 
+/**
+ * Loads a public asset as a base64 data URL for use in jsPDF.
+ * Returns null if the file cannot be read (e.g. in CI/test environments).
+ */
+function loadImageAsBase64(relativePath: string): string | null {
+    try {
+        const fullPath = path.join(process.cwd(), 'public', relativePath);
+        const buffer = fs.readFileSync(fullPath);
+        const ext = path.extname(relativePath).slice(1).toLowerCase();
+        const mime = (ext === 'jpg' || ext === 'jpeg') ? 'jpeg' : 'png';
+        return `data:image/${mime};base64,${buffer.toString('base64')}`;
+    } catch {
+        return null;
+    }
+}
+
+// ---------------------------------------------------------------------------
+
 export async function generateVisionBoardPDF(input: VisionBoardPDFInput) {
     const { name, gender, analysis, pillars, portals } = input;
     const pdf = new jsPDF('p', 'mm', 'a4');
@@ -70,6 +90,25 @@ export async function generateVisionBoardPDF(input: VisionBoardPDFInput) {
     const margin = 20;
     const isMale = gender === 'hombre';
     let y = 30;
+
+    const logoData = loadImageAsBase64('assets/images/logo-color.png');
+    const watermarkData = loadImageAsBase64('assets/images/watermark-logo.png');
+
+    const addLogo = () => {
+        if (!logoData) return;
+        try { pdf.addImage(logoData, 'PNG', pageWidth - margin - 32, 7, 32, 11); } catch { /* skip */ }
+    };
+
+    const addWatermark = () => {
+        if (!watermarkData) return;
+        try {
+            pdf.saveGraphicsState();
+            pdf.setGState((pdf as any).GState({ opacity: 0.06 }));
+            const sz = 110;
+            pdf.addImage(watermarkData, 'PNG', (pageWidth - sz) / 2, (pageHeight - sz) / 2, sz, sz);
+            pdf.restoreGraphicsState();
+        } catch { /* skip if GState unsupported */ }
+    };
 
     // Helper to add footer to every page
     const addFooter = (pageNum: number, totalPages: number) => {
@@ -80,8 +119,10 @@ export async function generateVisionBoardPDF(input: VisionBoardPDFInput) {
     };
 
     // --- PAGE 1: CARTA DE YELITZE ---
-    pdf.setFillColor(249, 247, 242); // Background #F9F7F2
+    pdf.setFillColor(249, 247, 242);
     pdf.rect(0, 0, pageWidth, pageHeight, 'F');
+    addLogo();
+    addWatermark();
 
     // Header Line
     pdf.setDrawColor(140, 64, 5);
@@ -148,11 +189,8 @@ export async function generateVisionBoardPDF(input: VisionBoardPDFInput) {
     pdf.addPage();
     pdf.setFillColor(255, 255, 255);
     pdf.rect(0, 0, pageWidth, pageHeight, 'F');
-
-    // Background decoration
-    pdf.setDrawColor(212, 175, 55, 0.1);
-    pdf.setLineWidth(0.1);
-    pdf.circle(pageWidth / 2, pageHeight / 2, 80, 'S');
+    addLogo();
+    addWatermark();
 
     y = 25;
     pdf.setTextColor(140, 64, 5);
@@ -166,32 +204,30 @@ export async function generateVisionBoardPDF(input: VisionBoardPDFInput) {
 
     // Render pillars in a grid-like structure
     const renderPillarBox = (p: PillarInput, x: number, yPos: number, label: string) => {
-        pdf.setDrawColor(184, 131, 90, 0.3);
+        pdf.setDrawColor(184, 131, 90);
+        pdf.setLineWidth(0.3);
         pdf.rect(x, yPos, 50, 65, 'S');
-        
+
         pdf.setFillColor(140, 64, 5);
         pdf.rect(x, yPos, 50, 5, 'F');
         pdf.setTextColor(255, 255, 255);
         pdf.setFontSize(6);
         pdf.text(label, x + 25, yPos + 3.5, { align: 'center' });
 
-        // Placeholder for image
         pdf.setFillColor(249, 247, 242);
         pdf.rect(x + 5, yPos + 8, 40, 30, 'F');
-        
-        // Try to add image if available (AI image is usually last)
+
         if (p.images && p.images.length > 0) {
             try {
                 const imgData = p.images.length >= 4 ? p.images[3] : p.images[0];
                 if (imgData.startsWith('data:image')) {
                     pdf.addImage(imgData, 'JPEG', x + 5, yPos + 8, 40, 30);
                 }
-            } catch (e) {
-                // Silently skip if image data is invalid
-            }
+            } catch { /* silently skip invalid image data */ }
         }
         pdf.setFontSize(7);
         pdf.setFont('helvetica', 'bold');
+        pdf.setTextColor(45, 41, 38);
         const titleLines = pdf.splitTextToSize(p.title || '', 40);
         pdf.text(titleLines, x + 25, yPos + 45, { align: 'center' });
 
@@ -201,19 +237,16 @@ export async function generateVisionBoardPDF(input: VisionBoardPDFInput) {
         pdf.text(actionLines, x + 25, yPos + 58, { align: 'center' });
     };
 
-    // Central Identity
     const centerX = pageWidth / 2;
     const centerY = pageHeight / 2;
 
-    // Position 1: Propósito (Top Center)
     if (pillars[0]) renderPillarBox(pillars[0], centerX - 25, 50, pillars[0].label);
-
-    // Middle row
     if (pillars[1]) renderPillarBox(pillars[1], margin, centerY - 32.5, pillars[1].label);
-    
+
     // Central Circle Identity
     pdf.setFillColor(253, 251, 247);
-    pdf.setDrawColor(184, 131, 90, 0.4);
+    pdf.setDrawColor(184, 131, 90);
+    pdf.setLineWidth(0.4);
     pdf.circle(centerX, centerY, 25, 'FD');
     pdf.setTextColor(140, 64, 5);
     pdf.setFontSize(6);
@@ -226,8 +259,6 @@ export async function generateVisionBoardPDF(input: VisionBoardPDFInput) {
     pdf.text(idLines, centerX, centerY + 2, { align: 'center' });
 
     if (pillars[2]) renderPillarBox(pillars[2], pageWidth - margin - 50, centerY - 32.5, pillars[2].label);
-
-    // Bottom row
     if (pillars[3]) renderPillarBox(pillars[3], margin + 15, pageHeight - 100, pillars[3].label);
     if (pillars[4]) renderPillarBox(pillars[4], pageWidth - margin - 65, pageHeight - 100, pillars[4].label);
 
@@ -237,6 +268,8 @@ export async function generateVisionBoardPDF(input: VisionBoardPDFInput) {
     pdf.addPage();
     pdf.setFillColor(255, 255, 255);
     pdf.rect(0, 0, pageWidth, pageHeight, 'F');
+    addLogo();
+    addWatermark();
 
     y = 25;
     pdf.setTextColor(140, 64, 5);
@@ -249,18 +282,19 @@ export async function generateVisionBoardPDF(input: VisionBoardPDFInput) {
     pdf.text(`La Ruta del ${isMale ? 'Arquitecto' : 'Arquitecta'}`, pageWidth / 2, y, { align: 'center' });
     y += 15;
 
-    // Actions Section - More compact
+    // Actions Section
     pdf.setFillColor(249, 247, 242);
     pdf.rect(margin, y, pageWidth - margin * 2, 55, 'F');
     let actionY = y + 8;
     pdf.setTextColor(140, 64, 5);
     pdf.setFontSize(11);
+    pdf.setFont('helvetica', 'bold');
     pdf.text('PASOS DE ACCIÓN INMEDIATA', margin + 10, actionY);
     actionY += 8;
     pdf.setTextColor(45, 41, 38);
     pdf.setFontSize(9);
     pdf.setFont('helvetica', 'normal');
-    
+
     const actionSteps = (analysis.guide_steps && analysis.guide_steps.length > 0)
         ? analysis.guide_steps
         : pillars.map(p => p.action).filter(a => a && a.trim() !== '');
@@ -281,15 +315,12 @@ export async function generateVisionBoardPDF(input: VisionBoardPDFInput) {
         pdf.text('REFLEXIONES DE LOS PORTALES', margin, y);
         y += 8;
 
-        pdf.setFont('helvetica', 'italic');
-        pdf.setFontSize(8);
-
-        // slice(0, 6) so any future portals beyond 4 are included automatically
         portals.slice(0, 6).forEach((portal, idx) => {
             const label = `P${idx + 1} (${portal.label}): `;
             const lines = pdf.splitTextToSize(label + `"${portal.text}"`, pageWidth - margin * 2);
             pdf.setTextColor(184, 131, 90);
             pdf.setFont('helvetica', 'bolditalic');
+            pdf.setFontSize(8);
             pdf.text(label, margin, y);
 
             pdf.setTextColor(80, 80, 80);
@@ -347,98 +378,178 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
     const H  = pdf.internal.pageSize.getHeight();  // 297 mm
     const M  = 20;           // margin
     const CW = W - M * 2;    // content width  = 170 mm
-    const PAD = 12;           // inner box padding
-    const TW  = CW - PAD * 2; // text width inside boxes = 146 mm
+    const PAD = 8;            // inner box padding (compact)
+    const TW  = CW - PAD * 2; // text width inside boxes = 154 mm
 
-    // Calibrated line-height for jsPDF Helvetica (fs * 1.15 / 2.835)
+    // Calibrated line-height for jsPDF Helvetica
     const lh = (fs: number) => Math.ceil(fs * 0.41 * 10) / 10;
+
+    const logoData = loadImageAsBase64('assets/images/logo-color.png');
+    const watermarkData = loadImageAsBase64('assets/images/watermark-logo.png');
 
     // ── Reusable page elements ──────────────────────────────────────────────
 
-    const drawBackground = () => {
-        pdf.setFillColor(249, 247, 242);
+    const drawBackground = (warm = true) => {
+        pdf.setFillColor(warm ? 249 : 253, warm ? 247 : 251, warm ? 242 : 248);
         pdf.rect(0, 0, W, H, 'F');
+    };
+
+    const drawWatermark = () => {
+        if (!watermarkData) return;
+        try {
+            pdf.saveGraphicsState();
+            pdf.setGState((pdf as any).GState({ opacity: 0.07 }));
+            const sz = 110;
+            pdf.addImage(watermarkData, 'PNG', (W - sz) / 2, (H - sz) / 2, sz, sz);
+            pdf.restoreGraphicsState();
+        } catch { /* skip if GState unsupported */ }
+    };
+
+    const drawLogo = () => {
+        if (!logoData) return;
+        try { pdf.addImage(logoData, 'PNG', W - M - 32, 6, 32, 11); } catch { /* skip */ }
     };
 
     const drawHeader = () => {
         pdf.setDrawColor(140, 64, 5);
         pdf.setLineWidth(0.4);
-        pdf.line(M, 18, W - M, 18);
+        pdf.line(M, 20, W - M, 20);
         pdf.setTextColor(140, 64, 5);
         pdf.setFontSize(7);
         pdf.setFont('helvetica', 'bold');
-        pdf.text('YELITZE RANGEL | TU COACH ANCESTRAL', W / 2, 15, { align: 'center' });
+        pdf.text('YELITZE RANGEL  |  TU COACH ANCESTRAL', M, 16);
+        drawLogo();
     };
 
     const drawFooter = (label: string) => {
         pdf.setFontSize(7);
         pdf.setTextColor(184, 131, 90);
         pdf.setFont('helvetica', 'normal');
-        pdf.text('YELITZE RANGEL • Tu Coach Ancestral • 2026', M, H - 8);
+        pdf.text('yelitzerangel.com  \u2022  2026', M, H - 8);
         pdf.text(label, W - M, H - 8, { align: 'right' });
     };
 
-    // Returns updated y; adds a new page when remaining space < needed.
-    // Footer reserve = 52 mm (signature + CTA + footer line).
-    const checkPage = (needed: number, y: number, footerReserve = 52): number => {
-        if (y + needed > H - footerReserve) {
-            pdf.addPage();
-            drawBackground();
-            drawHeader();
-            return 28;
-        }
-        return y;
-    };
-
-    // Accent bar on left edge of a box
     const accentBar = (color: [number, number, number], boxY: number, boxH: number) => {
-        pdf.setFillColor(...color);
+        pdf.setFillColor(color[0], color[1], color[2]);
         pdf.rect(M, boxY, 3, boxH, 'F');
     };
 
-    // ── PAGE 1 ──────────────────────────────────────────────────────────────
+    // ── PAGE 1: CARTA DE YELITZE ─────────────────────────────────────────────
 
-    drawBackground();
+    drawBackground(true);
+    drawWatermark();
     drawHeader();
 
-    let y = 28;
+    let y = 30;
 
-    // Title block
+    // Greeting
+    const firstName = name.split(' ')[0];
     pdf.setTextColor(140, 64, 5);
-    pdf.setFontSize(26);
+    pdf.setFontSize(30);
     pdf.setFont('helvetica', 'bold');
-    pdf.text('Diagnóstico Somático', M, y);
-    y += lh(26) + 2;
-
-    pdf.setTextColor(184, 131, 90);
-    pdf.setFontSize(10);
-    pdf.setFont('helvetica', 'normal');
-    pdf.text(`Análisis personalizado para ${name}`, M, y);
-    y += lh(10) + 2;
+    pdf.text(`Hola, ${firstName}.`, M, y);
+    y += lh(30) + 4;
 
     pdf.setDrawColor(184, 131, 90);
-    pdf.setLineWidth(0.3);
-    pdf.line(M, y, M + 55, y);
-    y += 8;
+    pdf.setLineWidth(0.5);
+    pdf.line(M, y, M + 65, y);
+    y += 10;
+
+    // Letter content
+    const stressTypeName = stressResult?.type || 'activación del sistema nervioso';
+
+    interface LetterEntry { text: string; style: string; }
+    const letterEntries: LetterEntry[] = [
+        { text: `Has completado un acto de valentía real: detenerte a escuchar a tu propio cuerpo. Y lo que encontré en tus respuestas no es casualidad ni debilidad —es la huella de un sistema nervioso que ha estado operando desde el estado de ${stressTypeName}.`, style: 'body' },
+        { text: '', style: 'gap' },
+        { text: 'El cuerpo no miente. Lleva la memoria exacta de cada emoción que no pudo ser procesada, de cada momento en que el entorno te exigió más de lo que tenías, o te pidió que sintieras menos. Esta inteligencia biológica que construiste te protegió. Y hoy comenzamos el proceso de actualizarla.', style: 'body' },
+        { text: '', style: 'gap' },
+        { text: 'Lo que encontrarás en estas páginas no son técnicas frías —son conversaciones respetuosas con tu sistema nervioso. Prácticas que le dicen a tu cuerpo, con cada repetición: "el peligro ya pasó, ahora hay espacio para vivir desde otro lugar".', style: 'body' },
+        { text: '', style: 'gap' },
+        { text: 'Este no es el final de un test. Es el primer movimiento consciente de tu nueva arquitectura corporal.', style: 'body' },
+        { text: '', style: 'gap' },
+        { text: '\u201CEl cuerpo que se regula, crea. El cuerpo que se libera, trasciende.\u201D', style: 'quote' },
+        { text: '', style: 'gap' },
+        { text: 'Con amor y certeza,', style: 'sign-pre' },
+        { text: '', style: 'gap-sm' },
+        { text: 'Yelitze Rangel', style: 'sign-name' },
+        { text: 'Tu Coach Ancestral', style: 'sign-title' },
+    ];
+
+    for (const entry of letterEntries) {
+        if (entry.style === 'gap') { y += 5; continue; }
+        if (entry.style === 'gap-sm') { y += 2; continue; }
+
+        let fontSize = 11;
+        let fontStyle = 'normal';
+        let r = 45, g = 41, b = 38;
+        let lineSpacing = 6;
+
+        if (entry.style === 'quote') {
+            fontSize = 13; fontStyle = 'bolditalic';
+            r = 140; g = 64; b = 5;
+            lineSpacing = 7;
+        } else if (entry.style === 'sign-pre') {
+            fontSize = 10; fontStyle = 'bold';
+            r = 184; g = 131; b = 90;
+            lineSpacing = 5.5;
+        } else if (entry.style === 'sign-name') {
+            fontSize = 18; fontStyle = 'bold';
+            r = 140; g = 64; b = 5;
+            lineSpacing = 9;
+        } else if (entry.style === 'sign-title') {
+            fontSize = 9; fontStyle = 'italic';
+            r = 184; g = 131; b = 90;
+            lineSpacing = 5;
+        }
+
+        pdf.setFontSize(fontSize);
+        pdf.setFont('helvetica', fontStyle);
+        pdf.setTextColor(r, g, b);
+        const lines = pdf.splitTextToSize(entry.text, CW);
+        pdf.text(lines, M, y);
+        y += lines.length * lineSpacing + (entry.style === 'quote' ? 4 : 2);
+    }
+
+    drawFooter('Carta de Yelitze  \u2022  01 / 02');
+
+    // ── PAGE 2: DIAGNÓSTICO SOMÁTICO ──────────────────────────────────────────
+
+    pdf.addPage();
+    drawBackground(false);
+    drawWatermark();
+    drawHeader();
+
+    y = 28;
+
+    // Page title
+    pdf.setTextColor(140, 64, 5);
+    pdf.setFontSize(9);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('DIAGN\u00D3STICO SOM\u00C1TICO', M, y);
+    y += lh(9) + 2;
+    pdf.setFontSize(20);
+    pdf.setTextColor(45, 41, 38);
+    pdf.text(`An\u00E1lisis de ${name}`, M, y);
+    y += lh(20) + 6;
 
     // ── BOX 1: Estado de supervivencia ─────────────────────────────────────
 
-    const stressTypeLines = pdf.splitTextToSize(stressResult.type || '', TW - 15);
-    const stressDescLines = pdf.splitTextToSize(stressResult.desc || '', TW);
+    const stressTypeLines = pdf.splitTextToSize(stressResult?.type || '', TW - 10);
+    const stressDescLines = pdf.splitTextToSize(stressResult?.desc || '', TW);
     const box1H = PAD
-        + lh(7) + 3           // label
-        + stressTypeLines.length * lh(19) + 4  // big title
-        + stressDescLines.length * lh(10)       // description
+        + lh(7) + 3
+        + stressTypeLines.length * lh(17) + 3
+        + stressDescLines.length * lh(9.5)
         + PAD;
 
-    y = checkPage(box1H, y);
     pdf.setFillColor(237, 231, 224);
-    pdf.roundedRect(M, y, CW, box1H, 5, 5, 'F');
+    pdf.roundedRect(M, y, CW, box1H, 4, 4, 'F');
     accentBar([140, 64, 5], y, box1H);
 
-    // Watermark "01" — bottom-right, very subtle
+    // Watermark number
     pdf.setTextColor(218, 205, 192);
-    pdf.setFontSize(48);
+    pdf.setFontSize(40);
     pdf.setFont('helvetica', 'bold');
     pdf.text('01', M + CW - 5, y + box1H - 3, { align: 'right' });
 
@@ -449,89 +560,74 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
     pdf.text('ANTES / ESTADO DE SUPERVIVENCIA', M + PAD, iy);
     iy += lh(7) + 3;
 
-    pdf.setTextColor(140, 64, 5);
-    pdf.setFontSize(19);
-    pdf.setFont('helvetica', 'bold');
+    pdf.setFontSize(17);
     pdf.text(stressTypeLines, M + PAD, iy);
-    iy += stressTypeLines.length * lh(19) + 4;
+    iy += stressTypeLines.length * lh(17) + 3;
 
     pdf.setTextColor(65, 58, 52);
-    pdf.setFontSize(10);
+    pdf.setFontSize(9.5);
     pdf.setFont('helvetica', 'normal');
     pdf.text(stressDescLines, M + PAD, iy);
 
-    y += box1H + 10;
+    y += box1H + 5;
 
     // ── BOX 2: Análisis personalizado ──────────────────────────────────────
 
-    const analysisLines = pdf.splitTextToSize(analysis.personalized_analysis || '', TW);
-    const box2H = PAD
-        + lh(8) + 5           // label
-        + analysisLines.length * lh(11)         // body
-        + PAD;
+    const analysisLines = pdf.splitTextToSize(analysis?.personalized_analysis || '', TW);
+    const box2H = PAD + lh(8) + 4 + analysisLines.length * lh(10) + PAD;
 
-    y = checkPage(box2H, y);
     pdf.setFillColor(255, 255, 255);
-    pdf.roundedRect(M, y, CW, box2H, 5, 5, 'F');
+    pdf.roundedRect(M, y, CW, box2H, 4, 4, 'F');
     accentBar([184, 131, 90], y, box2H);
 
     iy = y + PAD;
     pdf.setTextColor(184, 131, 90);
     pdf.setFontSize(8);
     pdf.setFont('helvetica', 'bold');
-    pdf.text('AUDITORÍA DE TU BIOLOGÍA', M + PAD, iy);
-    iy += lh(8) + 5;
+    pdf.text('AUDITOR\u00CDA DE TU BIOLOG\u00CDA', M + PAD, iy);
+    iy += lh(8) + 4;
 
     pdf.setTextColor(45, 41, 38);
-    pdf.setFontSize(11);
+    pdf.setFontSize(10);
     pdf.setFont('helvetica', 'italic');
     pdf.text(analysisLines, M + PAD, iy);
 
-    y += box2H + 10;
+    y += box2H + 5;
 
     // ── BOX 3: Insight somático ─────────────────────────────────────────────
 
-    const insightLines = pdf.splitTextToSize(`"${analysis.somatic_insight || ''}"`, TW);
-    const box3H = PAD
-        + lh(8) + 5           // label
-        + insightLines.length * lh(12)          // quote
-        + PAD;
+    const insightLines = pdf.splitTextToSize(`\u201C${analysis?.somatic_insight || ''}\u201D`, TW);
+    const box3H = PAD + lh(8) + 4 + insightLines.length * lh(11) + PAD;
 
-    y = checkPage(box3H, y);
     pdf.setFillColor(246, 240, 233);
-    pdf.roundedRect(M, y, CW, box3H, 5, 5, 'F');
+    pdf.roundedRect(M, y, CW, box3H, 4, 4, 'F');
     accentBar([140, 64, 5], y, box3H);
 
     iy = y + PAD;
     pdf.setTextColor(140, 64, 5);
     pdf.setFontSize(8);
     pdf.setFont('helvetica', 'bold');
-    pdf.text('INSIGHT SOMÁTICO', M + PAD, iy);
-    iy += lh(8) + 5;
+    pdf.text('INSIGHT SOM\u00C1TICO', M + PAD, iy);
+    iy += lh(8) + 4;
 
-    pdf.setTextColor(140, 64, 5);
-    pdf.setFontSize(12);
+    pdf.setFontSize(11);
     pdf.setFont('helvetica', 'bolditalic');
     pdf.text(insightLines, M + PAD, iy);
 
-    y += box3H + 10;
+    y += box3H + 5;
 
     // ── BOX 4: Paso de acción ───────────────────────────────────────────────
 
-    const actionLines = pdf.splitTextToSize(analysis.action_step || '', TW);
-    const box4H = PAD
-        + lh(7) + 6           // label
-        + actionLines.length * lh(12)           // action text
-        + PAD;
+    const actionLines = pdf.splitTextToSize(analysis?.action_step || '', TW);
+    const box4H = PAD + lh(7) + 4 + actionLines.length * lh(11) + PAD;
 
-    y = checkPage(box4H, y);
     pdf.setFillColor(35, 31, 28);
-    pdf.roundedRect(M, y, CW, box4H, 5, 5, 'F');
+    pdf.roundedRect(M, y, CW, box4H, 4, 4, 'F');
     accentBar([184, 131, 90], y, box4H);
 
-    // Watermark "02"
+    // Watermark number
     pdf.setTextColor(55, 50, 46);
-    pdf.setFontSize(48);
+    pdf.setFontSize(40);
     pdf.setFont('helvetica', 'bold');
     pdf.text('02', M + CW - 5, y + box4H - 3, { align: 'right' });
 
@@ -539,62 +635,58 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
     pdf.setTextColor(184, 131, 90);
     pdf.setFontSize(7);
     pdf.setFont('helvetica', 'bold');
-    pdf.text('DESPUÉS / ARQUITECTURA INTENCIONAL', M + PAD, iy);
-    iy += lh(7) + 6;
+    pdf.text('DESPU\u00C9S / ARQUITECTURA INTENCIONAL', M + PAD, iy);
+    iy += lh(7) + 4;
 
     pdf.setTextColor(249, 247, 242);
-    pdf.setFontSize(12);
+    pdf.setFontSize(11);
     pdf.setFont('helvetica', 'bold');
     pdf.text(actionLines, M + PAD, iy);
 
-    y += box4H + 12;
+    y += box4H + 8;
 
-    // ── SECCIÓN 5: Recursos diarios ─────────────────────────────────────────
-
-    const exercises = [
-        { t: 'Vibración',              d: 'Movimiento suave para liberar tensión acumulada en el cuerpo.' },
-        { t: 'Mirada periférica',      d: 'Amplía tu campo visual para activar el sistema de calma.' },
-        { t: 'Voz (VOO)',              d: 'Regula el nervio vago con sonido vibratorio sostenido.' },
-        { t: 'Respiración lenta',      d: 'Inhala 4 tiempos, exhala 6. Activa el freno vagal.' },
-    ];
-
-    // Estimate height: title + 4 exercises (each ~2 lines max)
-    const resourcesEstH = lh(8) + 6 + exercises.length * (lh(10) + lh(9) + 6);
-    y = checkPage(resourcesEstH, y);
+    // ── RECURSOS (compact) ──────────────────────────────────────────────────
 
     pdf.setTextColor(140, 64, 5);
-    pdf.setFontSize(8);
+    pdf.setFontSize(7);
     pdf.setFont('helvetica', 'bold');
-    pdf.text('RECURSOS DE SOSTENIMIENTO DIARIO', M, y);
-    y += lh(8) + 6;
+    pdf.text('RECURSOS DE SOSTENIMIENTO DIARIO:', M, y);
+    y += lh(7) + 3;
 
-    exercises.forEach(ex => {
-        // Title bullet
+    const resources = ['Vibración', 'Mirada perif\u00E9rica', 'Voz (VOO)', 'Respiraci\u00F3n lenta (4:6)'];
+    resources.forEach((res, i) => {
+        const xPos = M + i * (CW / 4);
         pdf.setFillColor(184, 131, 90);
-        pdf.circle(M + 1.5, y - 1.5, 1, 'F');
-
-        pdf.setTextColor(140, 64, 5);
-        pdf.setFontSize(10);
-        pdf.setFont('helvetica', 'bold');
-        pdf.text(ex.t, M + 5, y);
-        y += lh(10) + 1;
-
-        // Description indented
-        pdf.setTextColor(75, 68, 62);
-        pdf.setFontSize(9);
+        pdf.circle(xPos + 2, y - 1.2, 1, 'F');
+        pdf.setTextColor(65, 58, 52);
+        pdf.setFontSize(8.5);
         pdf.setFont('helvetica', 'normal');
-        const descLines = pdf.splitTextToSize(ex.d, CW - 8);
-        pdf.text(descLines, M + 5, y);
-        y += descLines.length * lh(9) + 5;
+        pdf.text(res, xPos + 5, y);
     });
+    y += lh(8.5) + 8;
 
-    // ── FIRMA ───────────────────────────────────────────────────────────────
+    // ── REFLEXIÓN (if provided, compact) ────────────────────────────────────
 
-    const sigY = H - 50;
-    if (y + 20 < sigY) {
+    if (reflection && reflection.trim().length > 10) {
+        const refLines = pdf.splitTextToSize(`\u201C${reflection}\u201D`, CW).slice(0, 3);
         pdf.setDrawColor(210, 195, 178);
         pdf.setLineWidth(0.3);
-        pdf.line(M, sigY - 6, M + 50, sigY - 6);
+        pdf.line(M, y, W - M, y);
+        y += 5;
+        pdf.setTextColor(80, 70, 65);
+        pdf.setFontSize(8.5);
+        pdf.setFont('helvetica', 'italic');
+        pdf.text(refLines, M, y);
+        y += refLines.length * lh(8.5) + 6;
+    }
+
+    // ── FIRMA ────────────────────────────────────────────────────────────────
+
+    const sigY = H - 42;
+    if (y + 15 < sigY) {
+        pdf.setDrawColor(210, 195, 178);
+        pdf.setLineWidth(0.3);
+        pdf.line(M, sigY - 4, M + 45, sigY - 4);
 
         pdf.setTextColor(140, 64, 5);
         pdf.setFontSize(13);
@@ -607,49 +699,21 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
         pdf.text('Tu Coach Ancestral', M, sigY + lh(13) + 1);
     }
 
-    // ── CTA ─────────────────────────────────────────────────────────────────
+    // ── CTA ──────────────────────────────────────────────────────────────────
 
     pdf.setDrawColor(184, 131, 90);
     pdf.setLineWidth(0.3);
-    pdf.line(M, H - 28, W - M, H - 28);
+    pdf.line(M, H - 26, W - M, H - 26);
 
     pdf.setTextColor(140, 64, 5);
     pdf.setFontSize(8);
     pdf.setFont('helvetica', 'bold');
     pdf.text(
         '\u00BFLISTA PARA PROFUNDIZAR? \u00DANETE AL TOUR \u201CVENEZUELA EN EL CUERPO\u201D',
-        W / 2, H - 20, { align: 'center' }
+        W / 2, H - 18, { align: 'center' }
     );
 
-    drawFooter('Diagnóstico Somático');
-
-    // ── PÁGINA 2: Reflexión ──────────────────────────────────────────────────
-
-    if (reflection && reflection.length > 10) {
-        pdf.addPage();
-        drawBackground();
-        drawHeader();
-
-        let ry = 30;
-        pdf.setTextColor(140, 64, 5);
-        pdf.setFontSize(11);
-        pdf.setFont('helvetica', 'bold');
-        pdf.text('TU ESCUCHA PROFUNDA', M, ry);
-        ry += lh(11) + 2;
-
-        pdf.setDrawColor(184, 131, 90);
-        pdf.setLineWidth(0.3);
-        pdf.line(M, ry, M + 45, ry);
-        ry += 8;
-
-        pdf.setTextColor(65, 58, 52);
-        pdf.setFontSize(11);
-        pdf.setFont('helvetica', 'italic');
-        const refLines = pdf.splitTextToSize(reflection, CW);
-        pdf.text(refLines, M, ry);
-
-        drawFooter('Tu Reflexión');
-    }
+    drawFooter('Diagn\u00F3stico Som\u00E1tico  \u2022  02 / 02');
 
     return Buffer.from(pdf.output('arraybuffer'));
 }

@@ -5,7 +5,6 @@ import { db } from '@/lib/db';
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API_KEY || '');
 
 export async function POST(req: Request) {
-    let resultId = null;
     try {
         if (!process.env.GOOGLE_GEMINI_API_KEY) {
             return NextResponse.json({ error: "Missing Gemini API Key" }, { status: 500 });
@@ -31,23 +30,27 @@ export async function POST(req: Request) {
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
         const prompt = `
-            Actúa como la inteligencia analítica de Yelitze Rangel, Coach Ancestral y Psicóloga. Tu objetivo es recibir las respuestas de 3 tests (Relaciones, Heridas Profundas, Heridas Femeninas) y devolver un resultado en formato JSON.
+            Actúa como **Yelitzé Rangel**: Coach Ancestral, terapeuta sistémica y consteladora familiar.
 
-            DATOS DEL USUARIO:
-            Nombre: ${userInfo.name}
-            Contexto del Test: ${context}
+            **IDENTIDAD Y VOZ:**
+            - Tu metodología une lo ancestral, lo somático y lo psicológico. No eres coaching motivacional.
+            - Vocabulario obligatorio: Lealtades Invisibles, Memorias del Linaje, Memorias Congeladas, Orden Sistémico, Soberanía Corporal, Fascia.
+            - Tono: Empático, sistémico, revelador. Dirígete directamente a ${userInfo.name}.
+            - PROHIBIDO: Diagnósticos clínicos, consejos médicos, lenguaje de autoayuda genérico.
 
-            TONO: Empático, profesional, revelador y premium. Usa el concepto de 'Memorias Congeladas' y 'Lealtades Invisibles'.
+            **USUARIO:** ${userInfo.name}
+            **DATOS DE LOS 3 TESTS:**
+            ${context}
 
-            ESTRUCTURA DEL JSON:
+            **MISIÓN:** Integra los hallazgos de los 3 tests en una visión sistémica única. Identifica el patrón común —la Lealtad Invisible o Memoria del Linaje— que conecta relaciones, heridas profundas y heridas femeninas en el cuerpo-linaje de ${userInfo.name}.
+
+            **RESPONDE ÚNICAMENTE CON UN JSON VÁLIDO:**
             {
-              "screen_message": "Un mensaje de 3 párrafos cortos para la pantalla. Resume los hallazgos de los 3 tests. Usa Markdown.",
-              "ritual": "Un ritual breve y simbólico para sanar el conjunto de estas heridas.",
-              "mantra": "Una frase poderosa o mantra global de sanación.",
-              "pdf_content": "El contenido completo en Markdown para un PDF descargable, integrando la visión de los 3 tests."
+              "screen_message": "3 párrafos en Markdown para pantalla. Párrafo 1 (**El Patrón del Linaje**): la Lealtad Invisible que conecta los 3 tests. Párrafo 2 (**El Cuerpo Recuerda**): en qué zona física específica vive este patrón y cómo se manifiesta somáticamente. Párrafo 3 (**El Primer Movimiento de Orden**): el paso sistémico inicial de liberación. (máx 200 palabras total)",
+              "ritual": "Ritual somático concreto y practicable: una acción con el cuerpo (respiración específica, voz, movimiento) para comenzar a liberar el patrón central. Que sea breve, físico y simbólico a la vez. (máx 50 palabras)",
+              "mantra": "Declaración de soberanía en PRIMERA PERSONA y PRESENTE que reprograme la creencia central que conecta los 3 tests. Que resuene como un cimiento, no como afirmación de autoayuda. (máx 15 palabras)",
+              "pdf_content": "Contenido completo en Markdown para PDF: bienvenida de Yelitzé a ${userInfo.name}, diagnóstico integrado de los 3 tests con vocabulario sistémico, análisis de la zona corporal afectada, ritual somático, mantra y cierre con invitación al trabajo profundo contigo."
             }
-
-            Restricción: No des consejos médicos. Mantén un lenguaje de soberanía y merecimiento. Max 400 palabras totales.
         `;
 
         const aiResult = await model.generateContent({

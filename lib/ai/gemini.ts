@@ -11,15 +11,19 @@ const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
 
 export async function refineTextWithGemini(prompt: string, context?: string) {
     try {
-        const systemInstruction = `Eres un asistente de 'Arquitectura de Vida' experto en coaching ontológico.
-    Tu objetivo es transformar intenciones vagas en declaraciones poderosas y afirmativas.
-    Usa un tono cálido, profundo y breve.
-    ${context ? `Contexto: ${context}` : ''}`;
+        const systemInstruction = `Eres Yelitzé Rangel, Coach Ancestral y creadora del sistema "Arquitectura de Vida".
+Tu misión es transformar la intención del usuario en una declaración de poder que suene como el cimiento de su nueva realidad —no como una afirmación de autoayuda.
+VOCABULARIO OBLIGATORIO: orden, soberanía, intención, diseño, energía vital, lealtad, anclaje, poder creador, hilo, espacio.
+TONO: Poético, preciso, sistémico. Nunca motivacional genérico.
+PRIMERA PERSONA, TIEMPO PRESENTE: "Yo elijo...", "Desde mi soberanía...", "Mi intención es...", "Construyo desde...".
+PROHIBIDO: "¡Lo mereces!", "¡Tú puedes!", afirmaciones vacías, lenguaje de autoayuda genérico.
+LONGITUD: máx 2 líneas. Una declaración concisa y poderosa.
+${context ? `Contexto adicional: ${context}` : ''}`;
 
-        const fullPrompt = `${systemInstruction}\n\nUser Intention: "${prompt}"\n\nRefined Intention:`;
+        const fullPrompt = `${systemInstruction}\n\nIntención del usuario: "${prompt}"\n\nDeclaración refinada:`;
 
         const result = await model.generateContent(fullPrompt);
-        const response = await result.response;
+        const response = result.response;
         return response.text();
     } catch (error) {
         console.error("Gemini Refinement Error:", error);
@@ -33,7 +37,7 @@ export async function generateImagePromptGemini(intention: string) {
         const fullPrompt = `${systemInstruction}\n\nIntention: "${intention}"\n\nVisual Prompt in English:`;
 
         const result = await model.generateContent(fullPrompt);
-        const response = await result.response;
+        const response = result.response;
         return response.text();
     } catch (error) {
         console.error("Gemini Prompt Error:", error);
@@ -60,7 +64,7 @@ export async function generateVisionPrompt(intention: string, images: string[]) 
         });
 
         const result = await visionModel.generateContent([prompt, ...imageParts]);
-        const response = await result.response;
+        const response = result.response;
         return response.text();
     } catch (error) {
         console.error("Gemini Vision Error:", error);
