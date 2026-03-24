@@ -264,7 +264,7 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
                                 {isGeneratingAI ? (
                                     <>
                                         <Loader2 className="w-4 h-4 animate-spin" />
-                                        Generando Arte en Alta Calidad...
+                                        Generando tu imagen...
                                     </>
                                 ) : (
                                     <>

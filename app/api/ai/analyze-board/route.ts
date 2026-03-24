@@ -107,27 +107,28 @@ export async function POST(req: Request) {
             });
         }
 
-        // 3. GENERATE PDF AND SEND EMAIL WITH RESULTS
+        // 3. GENERATE PDF AND SEND EMAIL — fire-and-forget so the response is immediate
         if (userEmail && userName) {
-            try {
-                const pdfInput = buildVisionBoardPDFInput({
-                    name: userName,
-                    gender: userGender,
-                    analysis: analysisObj,
-                    pillars: pillars as any[],
-                    reflections: reflections as Record<string, string>,
-                });
-                const pdfBuffer = await generateVisionBoardPDF(pdfInput);
-
-                await sendVisionBoardEmail({
-                    email: userEmail,
-                    name: userName,
-                    analysis: analysisObj,
-                    pdfBuffer
-                });
-            } catch (emailError) {
-                console.error("Failed to generate or send Vision Board email/PDF:", emailError);
-            }
+            (async () => {
+                try {
+                    const pdfInput = buildVisionBoardPDFInput({
+                        name: userName,
+                        gender: userGender,
+                        analysis: analysisObj,
+                        pillars: pillars as any[],
+                        reflections: reflections as Record<string, string>,
+                    });
+                    const pdfBuffer = await generateVisionBoardPDF(pdfInput);
+                    await sendVisionBoardEmail({
+                        email: userEmail,
+                        name: userName,
+                        analysis: analysisObj,
+                        pdfBuffer
+                    });
+                } catch (emailError) {
+                    console.error("Failed to generate or send Vision Board email/PDF:", emailError);
+                }
+            })();
         }
 
         return NextResponse.json(analysisObj);

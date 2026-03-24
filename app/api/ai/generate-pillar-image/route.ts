@@ -6,16 +6,7 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY || ''
 });
 
-export const maxDuration = 120; // 120 segundos para cubrir Gemini + DALL-E + base64
-
-// Configuración para permitir cuerpos grandes (necesario para 3 imágenes en Base64)
-export const config = {
-    api: {
-        bodyParser: {
-            sizeLimit: '10mb',
-        },
-    },
-};
+export const maxDuration = 120;
 
 export async function POST(req: Request) {
     try {
@@ -51,7 +42,7 @@ export async function POST(req: Request) {
         console.log('[AI Image Gen] Llamando a DALL-E 3...');
         const response = await openai.images.generate({
             model: "dall-e-3",
-            prompt: cleanPrompt + ", conceptual architectural photography, minimal aesthetic, high quality, 8k, realistic textures, high artistic precision",
+            prompt: cleanPrompt + ", conceptual architectural photography, minimal aesthetic, high quality, realistic textures, high artistic precision",
             n: 1,
             size: "1024x1024",
             quality: "standard",
@@ -63,7 +54,7 @@ export async function POST(req: Request) {
 
         const dalLeUrl = response.data[0].url;
         console.log('[AI Image Gen] Imagen generada por OpenAI, extrayendo Base64...');
-        
+
         // Convertir a Base64 para persistencia inmediata y evitar expiración de URL externa
         const imageRes = await fetch(dalLeUrl!);
         const arrayBuffer = await imageRes.arrayBuffer();
@@ -75,12 +66,20 @@ export async function POST(req: Request) {
 
     } catch (error: any) {
         console.error('[AI Image Gen Error]:', error);
-        
-        // Manejar errores de timeout específicos
+
+        // Rate limit de OpenAI — ocurre cuando muchos usuarios generan al mismo tiempo
+        if (error?.status === 429 || error?.code === 'rate_limit_exceeded') {
+            return NextResponse.json({
+                error: 'Servidor ocupado',
+                details: 'Hay mucha demanda en este momento. Espera unos segundos e intenta de nuevo.'
+            }, { status: 429 });
+        }
+
+        // Timeout del servidor
         if (error.message?.includes('timeout') || error.code === 'ETIMEDOUT') {
-            return NextResponse.json({ 
-                error: 'Timeout', 
-                details: 'La IA está tardando demasiado en procesar la imagen de alta resolución. Por favor, intenta de nuevo.' 
+            return NextResponse.json({
+                error: 'Timeout',
+                details: 'La generación tardó demasiado. Intenta de nuevo.'
             }, { status: 504 });
         }
 
