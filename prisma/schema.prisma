@@ -30,7 +30,7 @@ model Product {
   description String
   price       Float
   image       String
-  category    String   // 'libro' | 'oraculo' | 'accesorio'
+  category    String
   stock       Int      @default(0)
   featured    Boolean  @default(false)
   active      Boolean  @default(true)
@@ -46,37 +46,37 @@ model Order {
   city          String
   country       String
   paymentMethod String
-  status        String      @default("pending") // pending, paid, shipped, delivered
+  status        String      @default("pending")
   total         Float
   items         OrderItem[]
 }
 
 model OrderItem {
-  id        String  @id @default(uuid())
+  id        String @id @default(uuid())
   orderId   String
-  order     Order   @relation(fields: [orderId], references: [id])
   productId String
   name      String
   price     Float
   quantity  Int
+  order     Order  @relation(fields: [orderId], references: [id])
 }
 
 model SanateMujerRegistration {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   name      String
-  email     String   @unique
-  whatsapp  String   @unique
+  email     String
+  whatsapp  String
 }
 
 model VenezuelaEnElCuerpoRegistration {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
   name      String
-  email     String   @unique
-  whatsapp  String   @unique
+  email     String
+  whatsapp  String
   city      String
-  instagram String?
-  scanned   Boolean  @default(false)
+  scanned   Boolean   @default(false)
   scannedAt DateTime?
+  instagram String?
 }

@@ -1,5 +1,6 @@
 import OpenAI from 'openai';
 import { NextResponse } from 'next/server';
+import { db } from '@/lib/db';
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY || ''
@@ -65,7 +66,27 @@ export async function POST(req: Request) {
         });
 
         const analysisText = response.choices[0].message.content || '{}';
-        return NextResponse.json(JSON.parse(analysisText));
+        const parsedAnalysis = JSON.parse(analysisText);
+
+        // --- NEW: Save to DB ---
+        try {
+            await db.testResult.create({
+                data: {
+                    testTitle: 'Test Somático: El Psoas',
+                    score: stressResult.type === 'ALTA ACTIVACIÓN' ? 10 : 5, // Symbolic score
+                    maxScore: 10,
+                    answers: JSON.stringify({ answers, reflection, stressResult }),
+                    aiAnalysis: parsedAnalysis.personalized_analysis || 'Análisis somático generado',
+                    userName: name || 'Explorador/a',
+                    userEmail: '', // Usually added in a lead step, or can be passed
+                }
+            });
+            console.log('[Somatic Test] Result saved to DB');
+        } catch (dbError) {
+            console.error('[Somatic Test Save Error]:', dbError);
+        }
+
+        return NextResponse.json(parsedAnalysis);
 
     } catch (error: any) {
         console.error('GPT Somatic Error:', error);
