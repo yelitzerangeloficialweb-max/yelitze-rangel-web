@@ -200,7 +200,7 @@ export default function FinalBoardStep({
                                     
                                     return actionSteps.map((step: string, i: number) => (
                                         <div key={i} className="flex gap-4 items-start group">
-                                            <span className="w-8 h-8 rounded-full bg-[#B8835A15] text-[#8C4005] flex items-center justify-center font-bold font-editorial shrink-0 group-hover:bg-[#B8835A] group-hover:text-white transition-all duration-300">
+                                            <span className="w-8 h-8 rounded-full bg-[#B8835A15] text-[#8C4005] flex items-center justify-center font-bold font-editorial shrink-0 group-hover:bg-[#B8835A] group-hover:text-white transition-all duration-300 leading-none text-center">
                                                 {i + 1}
                                             </span>
                                             <p className="text-[#2D2926] font-editorial text-lg leading-snug pt-1 opacity-90">{step}</p>
