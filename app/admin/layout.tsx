@@ -17,6 +17,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                             <Link href="/admin/orders" className="hover:text-[var(--color-secondary)] transition-colors">
                                 Pedidos
                             </Link>
+                            <Link href="/admin/tests" className="hover:text-[var(--color-secondary)] transition-colors">
+                                Resultados Tests
+                            </Link>
                             <Link href="/admin/venezuela" className="hover:text-[var(--color-secondary)] transition-colors">
                                 Venezuela en el Cuerpo
                             </Link>
