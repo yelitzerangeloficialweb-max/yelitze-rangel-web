@@ -212,17 +212,23 @@ export default function SomaticQuiz() {
                     answers,
                     reflection,
                     name,
+                    email, // Send email to DB
                     stressResult: {
                         type: stressResult.type,
                         desc: stressResult.desc
                     }
                 })
             });
+
+            if (!response.ok) throw new Error('Error al generar diagnóstico');
+            
             const data = await response.json();
+            if (data.error) throw new Error(data.error);
             setAiResult(data);
+            setIsLoading(false); // Show results immediately
             
             if (email) {
-                await sendEmailWithData(data);
+                sendEmailWithData(data); // Background email sending
             }
         } catch (error) {
             console.error("AI Generation Error:", error);

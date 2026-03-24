@@ -174,6 +174,66 @@ export default function FinalBoardStep({
                         )}
                     </div>
                 </div>
+
+                {/* 2.5 BITÁCORA DE CONSTRUCCIÓN (Match PDF Content in Web UI) */}
+                <div className="max-w-4xl mx-auto space-y-12">
+                    <div className="text-center space-y-4">
+                        <h3 className="text-3xl md:text-5xl font-editorial text-[#2D2926]">Bitácora de Construcción</h3>
+                        <div className="flex items-center justify-center gap-4">
+                            <div className="h-px w-12 bg-[#B8835A]/30" />
+                            <p className="text-[#B8835A] font-guide text-[10px] uppercase tracking-[0.4em] font-bold">Ruta de Acción y Reflexión</p>
+                            <div className="h-px w-12 bg-[#B8835A]/30" />
+                        </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-10">
+                        {/* Action Steps */}
+                        <div className="bg-white p-12 rounded-[3rem] shadow-xl border border-[#B8835A10] space-y-8">
+                            <h4 className="text-[#8C4005] font-editorial text-2xl italic border-b border-[#B8835A20] pb-6">Pasos de Acción Inmediata</h4>
+                            <div className="space-y-6">
+                                {(() => {
+                                    const actionSteps = (data.analysis?.guide_steps && data.analysis.guide_steps.length > 0)
+                                        ? data.analysis.guide_steps
+                                        : data.pillars.map(p => p.action).filter(a => a && a.trim() !== '');
+                                    
+                                    if (actionSteps.length === 0) return <p className="text-[#2D2926]/40 italic font-editorial">Define tus micropasos en los Pilares para verlos aquí.</p>;
+                                    
+                                    return actionSteps.map((step: string, i: number) => (
+                                        <div key={i} className="flex gap-4 items-start group">
+                                            <span className="w-8 h-8 rounded-full bg-[#B8835A15] text-[#8C4005] flex items-center justify-center font-bold font-editorial shrink-0 group-hover:bg-[#B8835A] group-hover:text-white transition-all duration-300">
+                                                {i + 1}
+                                            </span>
+                                            <p className="text-[#2D2926] font-editorial text-lg leading-snug pt-1 opacity-90">{step}</p>
+                                        </div>
+                                    ));
+                                })()}
+                            </div>
+                        </div>
+
+                        {/* Portal reflections */}
+                        <div className="space-y-8">
+                            <h4 className="text-[#8C4005] font-editorial text-2xl italic pl-2">Eco de los Portales</h4>
+                            <div className="grid gap-4">
+                                {Object.entries(data.reflections).map(([id, text], idx) => {
+                                    const portalTitles: Record<string, string> = {
+                                        portal1: 'Cierre Consciente', portal2: 'Foco y Dispersión',
+                                        portal3: 'Recuperar Mi Poder', portal4: 'Arquitectura de Orden',
+                                    };
+                                    return (
+                                        <div key={idx} className="bg-white p-6 rounded-2xl border border-[#B8835A15] shadow-sm hover:shadow-md transition-all group">
+                                            <div className="flex justify-between items-center mb-2">
+                                                <span className="text-[#B8835A] font-guide font-bold text-[9px] uppercase tracking-widest block opacity-60">
+                                                    Portal {idx + 1} · {portalTitles[id] || ''}
+                                                </span>
+                                            </div>
+                                            <p className="text-[#2D2926] font-editorial italic text-lg leading-relaxed opacity-80">"{text}"</p>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             {/* 3. THE VISUAL BOARD (Web Interactive Version) */}

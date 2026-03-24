@@ -19,7 +19,7 @@ export async function POST(req: Request) {
             });
         }
 
-        const { answers, reflection, stressResult, name = 'Explorador/a' } = await req.json();
+        const { answers, reflection, stressResult, name = 'Explorador/a', email = '' } = await req.json();
 
         const prompt = `
         Actúa como **Yelitzé Rangel**: terapeuta sistémica, consteladora familiar y maestra en Somatización y Arquitectura Corporal.
@@ -78,10 +78,10 @@ export async function POST(req: Request) {
                     answers: JSON.stringify({ answers, reflection, stressResult }),
                     aiAnalysis: parsedAnalysis.personalized_analysis || 'Análisis somático generado',
                     userName: name || 'Explorador/a',
-                    userEmail: '', // Usually added in a lead step, or can be passed
+                    userEmail: email || '', 
                 }
             });
-            console.log('[Somatic Test] Result saved to DB');
+            console.log(`[Somatic Test] Result saved to DB for ${email}`);
         } catch (dbError) {
             console.error('[Somatic Test Save Error]:', dbError);
         }

@@ -43,7 +43,7 @@ export async function POST(req: Request) {
         console.log('[AI Image Gen] Llamando a DALL-E 3...');
         const response = await openai.images.generate({
             model: "dall-e-3",
-            prompt: cleanPrompt + ", conceptual architectural photography, minimal aesthetic, high quality, realistic textures, high artistic precision",
+            prompt: cleanPrompt + ", high quality, realistic textures, high artistic precision, minimalist aesthetic, professional photography",
             n: 1,
             size: "1024x1024",
             quality: "standard",

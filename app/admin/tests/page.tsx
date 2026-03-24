@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { useState, useEffect } from 'react';
 import { ClipboardList, Loader2, Mail, User, Calendar, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
 
@@ -26,7 +28,7 @@ export default function AdminTestsPage() {
 
     const fetchResults = async () => {
         try {
-            const res = await fetch('/api/admin/tests');
+            const res = await fetch('/api/admin/tests', { cache: 'no-store' });
             const data = await res.json();
             setResults(data);
         } catch (error) {

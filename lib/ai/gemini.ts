@@ -50,14 +50,20 @@ export async function generateVisionPrompt(intention: string, images: string[], 
 
         const prompt = `Estas son 3 imágenes de referencia que el usuario ha seleccionado para representar su pilar de arquitectura de vida: "${intention}".
         
-        CONTEXTO ADICIONAL DEL USUARIO:
+        CONTEXTO DEL USUARIO:
         - Propósito/Resultado esperado: "${direction || 'No especificado'}"
         - Acción concreta de anclaje: "${action || 'No especificada'}"
 
-        Tu misión es analizar visualmente estas 3 imágenes y el contexto textual para generar una descripción maestra en INGLÉS para una 4ta imagen (prompt para DALL-E) que combine los elementos clave, colores y estética de las referencias, pero elevándolas a un nivel de arte conceptual, minimalista y arquitectónico. 
+        Tu misión es analizar las imágenes y el texto para generar un prompt maestro en INGLÉS para DALL-E 3.
         
-        La imagen final debe capturar la ESENCIA del propósito ("${direction}") y la intención.
+        REQUISITOS DEL PROMPT:
+        1. DEBE capturar la ESENCIA EMOCIONAL y SIMBÓLICA del propósito ("${direction}"). 
+        2. Ejemplos de simbolismo: si habla de abundancia, usa luz dorada, texturas fluidas o semillas; si habla de vínculos, usa hilos, conexiones orgánicas o luz entrelazada; si habla de expansión, usa horizontes vastos o geometría abierta.
+        3. Estética: Minimalista, Arte Conceptual, Alta Costura, Fotografía de Galería.
+        4. NO te limites a edificios. La "Arquitectura" puede ser de objetos, de luz, de naturaleza o de formas abstractas sagradas.
         
+        Estilo Visual: Cinematic lighting, luxury textures, ethereal atmosphere, high-end professional photography.
+
         IMPORTANTE: Solo devuelve el prompt final en inglés, sin explicaciones ni introducciones.`;
 
         const imageParts = images.map(img => {
