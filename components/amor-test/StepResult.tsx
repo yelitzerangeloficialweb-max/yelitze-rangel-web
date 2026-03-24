@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Download, RefreshCw, Feather, Quote } from 'lucide-react';
+import { Download, RefreshCw, FileText, Sparkles } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { useRef, useState } from 'react';
 import html2canvas from 'html2canvas';
@@ -24,10 +24,11 @@ export default function StepResult({ resultData, userName, onFinalize }: StepRes
     const pdfRef = useRef<HTMLDivElement>(null);
     const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
 
+    const firstName = userName.split(' ')[0];
+
     const handleDownloadPDF = async () => {
         if (!pdfRef.current) return;
         setIsGeneratingPdf(true);
-
         try {
             await document.fonts.ready;
             const element = pdfRef.current;
@@ -36,211 +37,163 @@ export default function StepResult({ resultData, userName, onFinalize }: StepRes
             const canvas = await html2canvas(element, {
                 scale: 2,
                 useCORS: true,
+                allowTaint: true,
                 logging: false,
-                backgroundColor: '#ffffff'
+                backgroundColor: '#ffffff',
             });
 
             element.style.display = 'none';
 
             const imgData = canvas.toDataURL('image/jpeg', 0.9);
-
-            // Calculate height based on aspect ratio
-            const imgWidth = canvas.width;
-            const imgHeight = canvas.height;
-
-            // Create PDF based on the image size (custom format) rather than fixed A4
-            // This creates one long seamless page, which is often better for digital reading of generated content
-            const pdf = new jsPDF({
-                orientation: 'p',
-                unit: 'px',
-                format: [imgWidth, imgHeight]
-            });
-
-            pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
+            const pdf = new jsPDF({ orientation: 'p', unit: 'px', format: [canvas.width, canvas.height] });
+            pdf.addImage(imgData, 'JPEG', 0, 0, canvas.width, canvas.height);
             pdf.save(`Creencias_Amor_YelitzeRangel.pdf`);
-
         } catch (error) {
-            console.error("Error generating PDF", error);
-            alert("Hubo un error generando el PDF.");
+            console.error('Error generating PDF', error);
         } finally {
             setIsGeneratingPdf(false);
         }
     };
 
     return (
-        <div className="w-full max-w-4xl mx-auto px-4 pb-24 font-sans">
-            <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="relative"
-            >
-                {/* Paper Container */}
-                <div className="bg-[#FAF9F6] relative rounded-sm shadow-2xl overflow-hidden min-h-[600px]">
-
-                    {/* Top Torn Paper Effect */}
-                    <div className="h-4 bg-[var(--color-primary)]/10 w-full absolute top-0 left-0" style={{ clipPath: 'polygon(0% 0%, 5% 100%, 10% 0%, 15% 100%, 20% 0%, 25% 100%, 30% 0%, 35% 100%, 40% 0%, 45% 100%, 50% 0%, 55% 100%, 60% 0%, 65% 100%, 70% 0%, 75% 100%, 80% 0%, 85% 100%, 90% 0%, 95% 100%, 100% 0%)' }}></div>
-
-                    <div className="p-8 md:p-16 pt-20">
-                        {/* Header Branding */}
-                        <div className="text-center mb-12">
-                            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[var(--color-secondary)]/10 text-[var(--color-secondary)] mb-4">
-                                <Feather className="w-8 h-8" />
-                            </div>
-                            <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-[var(--color-primary)] mb-2">Carta del Alma</h2>
-                            <div className="w-12 h-0.5 bg-[var(--color-secondary)] mx-auto opacity-50"></div>
-                        </div>
-
-                        {/* Main Content */}
-                        <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed font-serif">
-                            {/* Styling improvements for markdown */}
-                            <div className="first-letter:text-5xl first-letter:font-heading first-letter:text-[var(--color-primary)] first-letter:float-left first-letter:mr-3">
-                                <ReactMarkdown components={{
-                                    p: ({ node, ...props }) => <p className="mb-6" {...props} />,
-                                    strong: ({ node, ...props }) => <strong className="font-bold text-[var(--color-primary)]" {...props} />
-                                }}>
-                                    {resultData.screen_message}
-                                </ReactMarkdown>
-                            </div>
-                        </div>
-
-                        {/* Ritual Section */}
-                        {resultData.ritual && (
-                            <div className="my-12 p-8 bg-[var(--color-primary)]/5 rounded-2xl border border-[var(--color-primary)]/10 relative">
-                                <h3 className="text-center font-heading text-2xl text-[var(--color-primary)] mb-6">Ritual Sugerido</h3>
-                                <p className="text-center text-gray-600 italic leading-relaxed max-w-lg mx-auto">
-                                    {resultData.ritual}
-                                </p>
-                            </div>
-                        )}
-
-                        {/* Mantra Box */}
-                        {resultData.mantra && (
-                            <div className="relative py-12 px-8 text-center mt-12 mb-8">
-                                <Quote className="w-12 h-12 text-[var(--color-secondary)]/20 absolute top-0 left-1/2 -translate-x-1/2" />
-                                <div className="border-t border-b border-[var(--color-secondary)]/30 py-8">
-                                    <h4 className="text-xs font-bold uppercase tracking-[0.4em] text-[var(--color-secondary)] mb-4">Tu Mantra de Sanación</h4>
-                                    <p className="text-2xl md:text-3xl font-heading text-[var(--color-primary)] italic leading-snug">
-                                        "{resultData.mantra}"
-                                    </p>
-                                </div>
-                            </div>
-                        )}
-
-                        {/* Signature */}
-                        <div className="text-right mt-16 pt-8 border-t border-gray-100/50">
-                            <p className="font-heading text-2xl text-[var(--color-secondary)]">Yelitzé Rangel</p>
-                            <p className="text-xs uppercase tracking-widest text-gray-400 mt-1">Facilitadora de Procesos de Vida</p>
-                        </div>
+        <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-7xl mx-auto space-y-16 pb-20"
+        >
+            {/* Dark header card */}
+            <div className="bg-[#2D2926] text-[#F9F7F2] p-8 rounded-[2rem] border border-[#B8835A30] flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-[#B8835A] opacity-5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+                <div className="flex items-center gap-6 relative z-10">
+                    <div className="w-16 h-16 bg-[#B8835A] text-[#2D2926] rounded-full flex items-center justify-center shadow-inner shrink-0">
+                        <Sparkles className="w-8 h-8" />
                     </div>
-
-                    {/* Bottom Torn Paper Effect */}
-                    <div className="h-4 bg-white w-full absolute bottom-0 left-0 transform rotate-180" style={{ clipPath: 'polygon(0% 0%, 5% 100%, 10% 0%, 15% 100%, 20% 0%, 25% 100%, 30% 0%, 35% 100%, 40% 0%, 45% 100%, 50% 0%, 55% 100%, 60% 0%, 65% 100%, 70% 0%, 75% 100%, 80% 0%, 85% 100%, 90% 0%, 95% 100%, 100% 0%)' }}></div>
+                    <div>
+                        <h3 className="font-editorial text-2xl md:text-3xl text-white">¡Diagnóstico Listo, {firstName}!</h3>
+                        <p className="text-[#B8835A] font-guide text-[10px] uppercase tracking-[0.3em] font-bold mt-1">
+                            Tu mapa de creencias sobre el amor está completo
+                        </p>
+                    </div>
                 </div>
-
-                {/* Actions */}
-                <div className="mt-12 flex flex-col items-center gap-6">
-                    <motion.button
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
+                <div className="flex flex-wrap gap-4 relative z-10">
+                    <button
                         onClick={handleDownloadPDF}
                         disabled={isGeneratingPdf}
-                        className="px-10 py-5 bg-[var(--color-primary)] text-white text-lg rounded-full font-bold shadow-xl hover:shadow-2xl hover:bg-[var(--color-primary-light)] transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-wait min-w-[300px]"
+                        className="px-6 py-3 rounded-xl bg-[#B8835A] text-[#2D2926] hover:bg-[#D4AF37] font-bold shadow-lg flex items-center gap-2 transition-all uppercase text-[10px] tracking-widest whitespace-nowrap disabled:opacity-70 disabled:cursor-wait"
                     >
-                        {isGeneratingPdf ? (
-                            <>
-                                <RefreshCw className="w-5 h-5 animate-spin" /> Preparando tu carta...
-                            </>
-                        ) : (
-                            <>
-                                Descargar Carta en PDF
-                                <Download className="w-5 h-5" />
-                            </>
-                        )}
-                    </motion.button>
-
-                    <button onClick={onFinalize} className="text-sm text-gray-400 underline hover:text-[var(--color-primary)] transition-colors">
-                        Finalizar experiencia
+                        {isGeneratingPdf
+                            ? <><RefreshCw className="w-3.5 h-3.5 animate-spin" /> Preparando...</>
+                            : <><Download className="w-3.5 h-3.5" /> Descargar PDF</>}
                     </button>
                 </div>
-            </motion.div>
+            </div>
+
+            {/* Letter card */}
+            <div className="max-w-4xl mx-auto bg-white p-12 md:p-20 rounded-[3rem] shadow-xl border border-[#3C2A2105] relative space-y-8 font-editorial leading-relaxed">
+                <div className="absolute top-12 left-12 opacity-5">
+                    <FileText className="w-32 h-32" />
+                </div>
+                <h4 className="text-[#8C4005] text-3xl italic mb-12 relative z-10">Hola, {firstName}.</h4>
+                <div className="space-y-6 text-[#2D2926] text-lg md:text-xl opacity-90 relative z-10">
+                    <ReactMarkdown components={{
+                        p: ({ ...props }) => <p className="mb-6 leading-relaxed" {...props} />,
+                        strong: ({ ...props }) => <strong className="font-bold text-[#8C4005]" {...props} />,
+                    }}>
+                        {resultData.screen_message}
+                    </ReactMarkdown>
+
+                    {resultData.ritual && (
+                        <div className="bg-[#F9F7F2] p-8 rounded-2xl border border-[#B8835A10]">
+                            <h5 className="text-[#8C4005] font-bold text-sm uppercase tracking-widest font-guide mb-4">Ritual Sugerido</h5>
+                            <p className="italic leading-relaxed">{resultData.ritual}</p>
+                        </div>
+                    )}
+
+                    {resultData.mantra && (
+                        <p className="text-[#8C4005] font-bold italic border-l-4 border-[#B8835A] pl-8 my-8 text-2xl">
+                            &ldquo;{resultData.mantra}&rdquo;
+                        </p>
+                    )}
+
+                    <div className="pt-12 border-t border-[#B8835A20]">
+                        <p className="text-sm uppercase tracking-[0.3em] font-guide text-[#B8835A] font-bold">Con amor y certeza,</p>
+                        <p className="text-2xl mt-2">YELITZE RANGEL</p>
+                        <p className="text-[#B8835A] text-sm italic">Tu Coach Ancestral</p>
+                    </div>
+                </div>
+            </div>
+
+            <div className="text-center">
+                <button onClick={onFinalize} className="text-sm text-[#B8835A]/60 underline hover:text-[#8C4005] transition-colors font-guide">
+                    Finalizar experiencia
+                </button>
+            </div>
 
             {/* HIDDEN PDF TEMPLATE */}
             <div className="absolute top-0 left-[-9999px]">
-                <div ref={pdfRef} className="w-[800px] bg-white p-20 text-[#2C3E50] font-sans relative overflow-hidden">
+                <div ref={pdfRef} className="bg-white overflow-hidden" style={{ width: '800px', display: 'none' }}>
+                    {/* Dark header band */}
+                    <div style={{ backgroundColor: '#231916', padding: '16px 0 12px' }}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src="/assets/images/logo-yelitze-new.png" alt="Yelitze Rangel" style={{ height: '36px', margin: '0 auto', display: 'block' }} />
+                        <p style={{ color: '#B8835A', fontSize: '9px', textAlign: 'center', fontWeight: '700', letterSpacing: '0.3em', marginTop: '8px', textTransform: 'uppercase', fontFamily: 'sans-serif' }}>
+                            TU COACH ANCESTRAL
+                        </p>
+                    </div>
+                    <div style={{ height: '3px', backgroundColor: '#B8835A' }} />
 
-                    {/* Watermark Background */}
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] z-0">
-                        {/* Using img tag directly for PDF compatibility */}
-                        <img
-                            src="/assets/images/watermark-logo.png"
-                            alt=""
-                            className="w-[500px] h-[500px] object-contain"
-                        />
+                    {/* Watermark */}
+                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none', opacity: 0.03, zIndex: 0 }}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src="/assets/images/watermark-logo.png" alt="" style={{ width: '500px', height: '500px', objectFit: 'contain' }} />
                     </div>
 
-                    <div className="relative z-10">
-                        {/* Header */}
-                        <div className="border-b-2 border-[#D4AF37]/20 pb-8 mb-12 flex justify-between items-center">
-                            <div className="flex-1">
-                                <h1 className="text-4xl font-heading text-[var(--color-primary)] mb-2">Carta del Alma</h1>
-                                <p className="text-xs uppercase tracking-[0.3em] text-[#D4AF37] font-bold mb-2">Creencias sobre el Amor</p>
-                                <p className="text-sm text-gray-400 font-serif italic">Preparado con amor para: <strong className="text-[var(--color-primary)]">{userName}</strong></p>
-                            </div>
-                            <div className="w-48">
-                                <img
-                                    src="/assets/images/logo-color-scroll.png"
-                                    alt="Yelitze Rangel"
-                                    className="w-full h-auto object-contain"
-                                />
+                    <div style={{ position: 'relative', zIndex: 1, padding: '48px 80px' }}>
+                        <div style={{ borderBottom: '1px solid rgba(184,131,90,0.3)', paddingBottom: '24px', marginBottom: '40px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                            <div>
+                                <p style={{ color: '#B8835A', fontSize: '10px', fontWeight: '700', letterSpacing: '0.3em', textTransform: 'uppercase', fontFamily: 'sans-serif', marginBottom: '6px' }}>
+                                    Carta del Alma · Creencias sobre el Amor
+                                </p>
+                                <p style={{ color: '#8C4005', fontSize: '14px', fontStyle: 'italic' }}>
+                                    Preparado para: <strong>{userName}</strong>
+                                </p>
                             </div>
                         </div>
 
-                        {/* Content */}
                         <div className="prose prose-xl max-w-none text-gray-700 leading-relaxed space-y-6 font-serif">
                             <ReactMarkdown>{resultData.pdf_content}</ReactMarkdown>
                         </div>
 
-                        {/* Ritual Box (For PDF) */}
                         {resultData.ritual && (
-                            <div className="my-8 p-8 bg-[var(--color-primary)]/5 rounded-xl border border-[var(--color-primary)]/10">
-                                <h3 className="font-heading text-xl text-[var(--color-primary)] mb-4 text-center">Ritual Sugerido</h3>
-                                <p className="text-gray-600 italic text-center leading-relaxed">
-                                    {resultData.ritual}
-                                </p>
+                            <div style={{ marginTop: '32px', padding: '24px 32px', backgroundColor: 'rgba(140,64,5,0.05)', borderRadius: '12px', borderLeft: '4px solid #8C4005' }}>
+                                <p style={{ color: '#8C4005', fontSize: '10px', fontWeight: '700', letterSpacing: '0.3em', textTransform: 'uppercase', fontFamily: 'sans-serif', marginBottom: '8px' }}>Ritual Sugerido</p>
+                                <p style={{ color: '#2D2926', fontStyle: 'italic', fontSize: '16px', lineHeight: '1.6' }}>{resultData.ritual}</p>
                             </div>
                         )}
 
                         {resultData.mantra && (
-                            <div className="mt-12 p-8 bg-[#FAF9F6] border-l-4 border-[#D4AF37] text-center rounded-r-xl">
-                                <p className="text-sm uppercase tracking-widest text-gray-400 mb-3">Mantra de Sanación</p>
-                                <p className="text-2xl font-heading text-[var(--color-primary)] italic">"{resultData.mantra}"</p>
+                            <div style={{ margin: '32px 0', padding: '24px 32px', borderLeft: '4px solid #B8835A' }}>
+                                <p style={{ color: '#B8835A', fontSize: '10px', fontWeight: '700', letterSpacing: '0.3em', textTransform: 'uppercase', fontFamily: 'sans-serif', marginBottom: '8px' }}>Tu Mantra de Sanación</p>
+                                <p style={{ color: '#8C4005', fontSize: '22px', fontStyle: 'italic', fontFamily: 'Georgia, serif' }}>&ldquo;{resultData.mantra}&rdquo;</p>
                             </div>
                         )}
 
-                        {/* Booking CTA */}
-                        <div className="mt-16 mb-8 text-center p-8 border border-dashed border-[#D4AF37]/50 rounded-xl bg-[#FFFBF0]">
-                            <p className="text-lg text-[var(--color-primary)] font-medium mb-4">¿Sientes el llamado a profundizar en tu sanación?</p>
-                            <div className="inline-flex items-center justify-center bg-[var(--color-secondary)] text-white px-10 py-4 rounded-full font-bold uppercase tracking-wider text-sm shadow-md">
-                                Reservar Sesión de Acompañamiento
-                            </div>
-                            <p className="text-xs text-gray-500 mt-3 font-mono">Agenda tu espacio en: <span className="text-[var(--color-primary)]">www.yelitzerangeloficial.com/reservas</span></p>
+                        <div style={{ marginTop: '48px', padding: '28px 32px', border: '1px solid rgba(184,131,90,0.4)', borderRadius: '12px', textAlign: 'center' }}>
+                            <p style={{ color: '#8C4005', fontSize: '15px', marginBottom: '8px' }}>¿Lista para profundizar en tu sanación?</p>
+                            <p style={{ color: '#B8835A', fontSize: '11px', fontFamily: 'sans-serif', letterSpacing: '0.1em' }}>yelitzerangeloficial.com</p>
                         </div>
 
-                        {/* Footer */}
-                        <div className="mt-12 pt-8 border-t border-gray-100 flex justify-between items-end">
-                            <div>
-                                <p className="text-xs text-gray-400 uppercase tracking-[0.2em] mb-1">Anatomía del Alma</p>
-                                <p className="text-[10px] text-gray-300">Guía espiritual · No sustituye terapia clínica</p>
-                            </div>
-                            <div className="text-right">
-                                <p className="text-base font-bold text-[var(--color-secondary)] font-heading">Yelitzé Rangel</p>
-                                <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">www.yelitzerangeloficial.com</p>
+                        <div style={{ marginTop: '48px', paddingTop: '24px', borderTop: '1px solid rgba(184,131,90,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                            <p style={{ color: '#9CA3AF', fontSize: '11px', fontFamily: 'sans-serif' }}>Guía espiritual · No sustituye terapia clínica</p>
+                            <div style={{ textAlign: 'right' }}>
+                                <p style={{ color: '#B8835A', fontSize: '16px', fontStyle: 'italic', fontFamily: 'Georgia, serif' }}>Yelitze Rangel</p>
+                                <p style={{ color: '#9CA3AF', fontSize: '9px', fontFamily: 'sans-serif', letterSpacing: '0.2em', textTransform: 'uppercase', marginTop: '2px' }}>Tu Coach Ancestral</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }

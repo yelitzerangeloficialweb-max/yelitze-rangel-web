@@ -2,65 +2,18 @@ import { jsPDF } from 'jspdf';
 import fs from 'fs';
 import path from 'path';
 
-// ---------------------------------------------------------------------------
-// Vision Board PDF — shared types & section config
-// ---------------------------------------------------------------------------
+// Re-export all shared types and constants from the pure utils module so that
+// existing imports from '@/lib/pdf-generator' keep working without changes.
+export type {
+    PillarInput,
+    PortalReflection,
+    BoardAnalysis,
+    VisionBoardPDFInput,
+} from './vision-board-utils';
+export { PILLAR_LABELS, PORTAL_LABELS } from './vision-board-utils';
 
-export interface PillarInput {
-    id: string;
-    title: string;
-    label: string;       // uppercase PDF grid label, e.g. "PROPÓSITO"
-    intention: string;
-    direction: string;
-    action: string;
-    images: string[];
-}
-
-export interface PortalReflection {
-    id: string;          // e.g. "portal1"
-    label: string;       // display name, e.g. "Cierre"
-    text: string;        // the user's written reflection
-}
-
-export interface BoardAnalysis {
-    release: string;
-    identity: string;
-    practice: string;
-    manifesto?: string;
-    guide_steps?: string[];
-    cta_message?: string;
-}
-
-export interface VisionBoardPDFInput {
-    name: string;
-    gender: string;
-    analysis: BoardAnalysis;
-    pillars: PillarInput[];
-    portals: PortalReflection[];
-}
-
-/**
- * Single source of truth for pillar grid labels.
- * Add a new entry here (and create the matching PillarsStep UI) to extend the board.
- */
-export const PILLAR_LABELS: Record<string, string> = {
-    '1': 'PROPÓSITO',
-    '2': 'RECURSOS',
-    '3': 'VÍNCULOS',
-    '4': 'EXPANSIÓN',
-    '5': 'VITALIDAD',
-};
-
-/**
- * Single source of truth for portal display names.
- * Add a new entry here (and create the matching PortalNStep UI) to extend the board.
- */
-export const PORTAL_LABELS: Record<string, string> = {
-    portal1: 'Cierre',
-    portal2: 'Foco',
-    portal3: 'Poder',
-    portal4: 'Orden',
-};
+// Local types needed within this file
+import type { VisionBoardPDFInput, PillarInput } from './vision-board-utils';
 
 // ---------------------------------------------------------------------------
 

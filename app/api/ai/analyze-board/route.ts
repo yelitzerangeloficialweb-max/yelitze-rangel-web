@@ -2,7 +2,8 @@ import OpenAI from 'openai';
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { sendVisionBoardEmail } from '@/lib/mail';
-import { generateVisionBoardPDF, VisionBoardPDFInput, PILLAR_LABELS, PORTAL_LABELS } from '@/lib/pdf-generator';
+import { generateVisionBoardPDF } from '@/lib/pdf-generator';
+import { buildVisionBoardPDFInput } from '@/lib/vision-board-utils';
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY || ''
@@ -109,20 +110,13 @@ export async function POST(req: Request) {
         // 3. GENERATE PDF AND SEND EMAIL WITH RESULTS
         if (userEmail && userName) {
             try {
-                const pdfInput: VisionBoardPDFInput = {
+                const pdfInput = buildVisionBoardPDFInput({
                     name: userName,
                     gender: userGender,
                     analysis: analysisObj,
-                    pillars: (pillars as any[]).map((p: any) => ({
-                        ...p,
-                        label: PILLAR_LABELS[p.id] ?? p.title.toUpperCase(),
-                    })),
-                    portals: Object.entries(reflections as Record<string, string>).map(([id, text]) => ({
-                        id,
-                        label: PORTAL_LABELS[id] ?? id,
-                        text,
-                    })),
-                };
+                    pillars: pillars as any[],
+                    reflections: reflections as Record<string, string>,
+                });
                 const pdfBuffer = await generateVisionBoardPDF(pdfInput);
 
                 await sendVisionBoardEmail({

@@ -254,133 +254,189 @@ export default function FinalBoardStep({
                 </div>
             </div>
 
-            {/* 4. PRINTABLE BLUEPRINT CONTAINER (Hidden from UI, visible on Export) */}
-            <div data-pdf-content ref={pdfContentRef} className="bg-[#F9F7F2] text-[#2D2926] overflow-hidden hidden" style={{ width: '210mm' }}>
+            {/* 4. PRINTABLE BLUEPRINT CONTAINER (Hidden from UI, captured on Export) */}
+            <div data-pdf-content ref={pdfContentRef} className="overflow-hidden hidden" style={{ width: '210mm', backgroundColor: '#F9F7F2' }}>
 
-                {/* PDF PAGE 1: LA CARTA */}
-                <div className="min-h-[1120px] p-24 relative flex flex-col page-break-after-always">
-                    <div className="border-b-2 border-[#8C4005] pb-8 mb-16 flex justify-between items-end">
-                        <div className="space-y-1">
-                            <p className="text-[10px] uppercase font-guide font-bold tracking-[0.4em] text-[#8C4005]">Proyecto de Vida</p>
-                            <h2 className="text-2xl font-editorial uppercase tracking-widest">Plano Maestro 2026</h2>
+                {/* ── PAGE 1: CARTA DE YELITZE ── */}
+                <div className="min-h-[1120px] relative flex flex-col" style={{ backgroundColor: '#F9F7F2', pageBreakAfter: 'always' }}>
+                    {/* Dark header band */}
+                    <div style={{ backgroundColor: '#231916', padding: '14px 0 10px' }}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src="/assets/images/logo-yelitze-new.png" alt="Yelitze Rangel" style={{ height: '30px', margin: '0 auto', display: 'block' }} />
+                        <p style={{ color: '#B8835A', fontSize: '8px', textAlign: 'center', fontWeight: '700', letterSpacing: '0.3em', marginTop: '6px', textTransform: 'uppercase', fontFamily: 'sans-serif' }}>
+                            TU COACH ANCESTRAL
+                        </p>
+                    </div>
+                    <div style={{ height: '3px', backgroundColor: '#B8835A' }} />
+
+                    {/* Letter body */}
+                    <div style={{ padding: '40px 64px 24px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                        <h3 className="text-[#8C4005] text-4xl font-editorial italic" style={{ marginBottom: '28px' }}>Hola, {firstName}.</h3>
+                        <div className="font-editorial text-xl leading-relaxed space-y-6 text-[#2D2926]" style={{ flex: 1 }}>
+                            <p>Has dado el primer paso más valioso: detenerte a mirar. Lo que tienes en tus manos no es solo un documento, es el <strong>Plano Maestro de tu nueva realidad</strong>. En mi camino acompañando a cientos de personas, he aprendido que el desequilibrio en nuestra vida rara vez es falta de voluntad; la mayoría de las veces es falta de orden.</p>
+                            <p>Este mapa que acabas de co-crear conmigo es tu brújula para el 2026. Es el primer paso de tu transformación sistémica porque, antes de construir los muros de tus sueños, necesitamos asegurar que los cimientos—tus lealtades, tus intenciones y tus hábitos—estén alineados con quien eres hoy, y no con quien otros esperaban que fueras.</p>
+                            <p>El equilibrio que buscas nace de habitar tu propia soberanía. Este diseño te permitirá dejar de cargar pesos ajenos y empezar a moverte con la ligereza de quien sabe exactamente hacia dónde va y desde qué paz decide.</p>
+                            <p className="text-[#8C4005] font-bold italic text-2xl" style={{ borderLeft: '4px solid #B8835A', paddingLeft: '24px', margin: '24px 0' }}>
+                                "Restaura el orden, y el equilibrio llegará por añadidura."
+                            </p>
+
+                            {/* Analysis summary cards */}
+                            {data.analysis && (
+                                <div className="grid grid-cols-2 gap-6" style={{ marginTop: '20px' }}>
+                                    <div style={{ backgroundColor: 'white', borderRadius: '12px', padding: '20px', borderLeft: '3px solid #8C4005' }}>
+                                        <p className="font-guide font-bold text-[#8C4005] uppercase text-[10px] tracking-widest" style={{ marginBottom: '8px' }}>Lo que suelto</p>
+                                        <p className="font-editorial text-base text-[#2D2926] opacity-80">{data.analysis.release}</p>
+                                    </div>
+                                    <div style={{ backgroundColor: 'white', borderRadius: '12px', padding: '20px', borderLeft: '3px solid #B8835A' }}>
+                                        <p className="font-guide font-bold text-[#B8835A] uppercase text-[10px] tracking-widest" style={{ marginBottom: '8px' }}>Mi identidad</p>
+                                        <p className="font-editorial text-base text-[#2D2926] opacity-80 italic">{data.analysis.identity}</p>
+                                    </div>
+                                </div>
+                            )}
                         </div>
-                        <div className="text-right">
-                            <p className="text-[10px] font-guide text-gray-400">PÁGINA 01/04</p>
+
+                        {/* Signature */}
+                        <div style={{ marginTop: '32px' }}>
+                            <p className="font-guide text-[#B8835A] uppercase text-xs font-bold tracking-widest" style={{ marginBottom: '6px' }}>Con amor y certeza,</p>
+                            <div style={{ width: '80px', height: '1px', backgroundColor: '#B8835A', marginBottom: '8px' }} />
+                            <p className="font-editorial text-[#8C4005] text-3xl">YELITZE RANGEL</p>
+                            <p className="font-editorial text-[#B8835A] italic text-sm">Tu Coach Ancestral</p>
                         </div>
                     </div>
 
-                    <div className="max-w-2xl mx-auto space-y-10 font-editorial text-xl pt-12 leading-relaxed">
-                        <h3 className="text-[#8C4005] text-4xl italic mb-16">Hola, {firstName}.</h3>
-                        <p>Has dado el primer paso más valioso: detenerte a mirar. Lo que tienes en tus manos no es solo un documento, es el <strong>Plano Maestro de tu nueva realidad</strong>. En mi camino acompañando a cientos de personas, he aprendido que el desequilibrio en nuestra vida rara vez es falta de voluntad; la mayoría de las veces es falta de orden.</p>
-                        <p>Este mapa que acabas de co-crear conmigo es tu brújula para el 2026. Es el primer paso de tu transformación sistémica porque, antes de construir los muros de tus sueños, necesitamos asegurar que los cimientos—tus lealtades, tus intenciones y tus habitos—estén alineados con quien eres hoy, y no con quien otros esperaban que fueras.</p>
-                        <p>El equilibrio que buscas nace de habitar tu propia soberanía. Este diseño te permitirá dejar de cargar pesos ajenos y empezar a moverte con la ligereza de quien sabe exactamente hacia dónde va y desde qué paz decide.</p>
-                        <p className="text-[#8C4005] font-bold text-center italic text-2xl py-12 px-8">"Restaura el orden, y el equilibrio llegará por añadidura."</p>
-                        <div className="pt-20">
-                            <p className="text-xs uppercase tracking-[0.4em] text-[#B8835A] font-guide font-bold mb-2">Con amor y certeza,</p>
-                            <p className="text-3xl">YELITZE RANGEL</p>
-                            <p className="text-[#B8835A] text-sm italic">Mentora de Vida y Diseño Intencional</p>
-                        </div>
-                    </div>
-                </div>
-
-                {/* PDF PAGE 2: TABLERO VISUAL (The "Vision Board" with Actual Images) */}
-                <div className="min-h-[1120px] p-16 bg-white relative flex flex-col page-break-after-always overflow-hidden">
-                    <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
-                        <svg width="100%" height="100%" viewBox="0 0 100 140">
-                             <circle cx="50" cy="70" r="45" fill="none" stroke="#D4AF37" strokeWidth="0.1" />
-                             <line x1="50" y1="0" x2="50" y2="140" stroke="#D4AF37" strokeWidth="0.1" />
-                        </svg>
-                    </div>
-
-                    <div className="relative z-10 flex flex-col h-full items-center">
-                        <div className="text-center mb-12">
-                             <span className="text-[10px] font-guide font-bold text-[#8C4005] uppercase tracking-[0.5em] block mb-2">Configuración Final</span>
-                             <h2 className="text-5xl font-editorial text-[#2D2926]">Tablero de Visión</h2>
-                             <div className="flex justify-center mt-4"><p className="text-[10px] font-guide text-gray-400">PÁGINA 02/04</p></div>
-                        </div>
-
-                        <div className="grid grid-cols-3 grid-rows-3 w-full gap-8 items-center justify-items-center flex-grow">
-                             <div className="col-start-2 row-start-1"><ArchitecturalCard pillar={data.pillars[0]} label="PROPÓSITO" /></div>
-                             <div className="col-start-1 row-start-2"><ArchitecturalCard pillar={data.pillars[1]} label="RECURSOS" small /></div>
-                             
-                             <div className="col-start-2 row-start-2 w-full aspect-square bg-[#FDFBF7] rounded-full border border-[#B8835A]/20 flex flex-col items-center justify-center p-6 text-center shadow-xl">
-                                  <span className="text-[8px] font-guide font-bold text-[#8C4005] uppercase tracking-[0.2em] mb-2">CENTRADO EN</span>
-                                  <h4 className="text-base font-editorial italic text-[#2D2926]">
-                                      {data.analysis?.identity || (isMale ? 'El Arquitecto' : 'La Arquitecta')}
-                                  </h4>
-                                  <div className="w-6 h-[1px] bg-[#B8835A]/30 my-2" />
-                                  <p className="text-[8px] font-guide text-[#B8835A] font-bold">2026</p>
-                             </div>
-
-                             <div className="col-start-3 row-start-2"><ArchitecturalCard pillar={data.pillars[2]} label="VÍNCULOS" small /></div>
-                             <div className="col-start-1 row-start-3"><ArchitecturalCard pillar={data.pillars[3]} label="EXPANSIÓN" small /></div>
-                             <div className="col-start-3 row-start-3"><ArchitecturalCard pillar={data.pillars[4]} label="VITALIDAD" small /></div>
-                        </div>
-
-                        <div className="mt-12 text-center text-[10px] font-mono text-[#B8835A] uppercase tracking-widest opacity-60">
-                             YELITZE RANGEL • DISEÑO INTENCIONAL • 2026
-                        </div>
+                    {/* Footer */}
+                    <div style={{ padding: '10px 64px', borderTop: '1px solid rgba(184,131,90,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>yelitzerangeloficial.com</span>
+                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>01 / 04</span>
                     </div>
                 </div>
 
-                {/* PDF PAGE 3: BITÁCORA (Reflections & Steps) */}
-                <div className="min-h-[1120px] p-24 bg-white flex flex-col">
-                    <div className="text-center space-y-6 mb-12">
-                        <div className="flex justify-center">
-                            <span className="bg-[#8C4005] text-[#F9F7F2] px-10 py-3 rounded-full text-[10px] font-bold uppercase tracking-[0.4em] font-guide inline-flex items-center justify-center leading-none">
-                                Bitácora de Construcción
-                            </span>
-                        </div>
-                        <h2 className="text-5xl font-editorial text-[#2D2926]">La Ruta del {isMale ? 'Arquitecto' : 'Arquitecta'}</h2>
-                        <div className="flex justify-center mt-2"><p className="text-[10px] font-guide text-gray-400">PÁGINA 03/04</p></div>
+                {/* ── PAGE 2: TABLERO VISUAL ── */}
+                <div className="min-h-[1120px] relative flex flex-col" style={{ backgroundColor: '#FFFFFF', pageBreakAfter: 'always' }}>
+                    {/* Dark header band */}
+                    <div style={{ backgroundColor: '#231916', padding: '14px 0 10px' }}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src="/assets/images/logo-yelitze-new.png" alt="Yelitze Rangel" style={{ height: '30px', margin: '0 auto', display: 'block' }} />
+                        <p style={{ color: '#B8835A', fontSize: '8px', textAlign: 'center', fontWeight: '700', letterSpacing: '0.3em', marginTop: '6px', textTransform: 'uppercase', fontFamily: 'sans-serif' }}>
+                            ARQUITECTURA DE VIDA INTENCIONAL
+                        </p>
+                    </div>
+                    <div style={{ height: '3px', backgroundColor: '#B8835A' }} />
+
+                    {/* Board title */}
+                    <div style={{ padding: '18px 48px 12px', textAlign: 'center' }}>
+                        <p className="font-guide font-bold text-[#8C4005] uppercase tracking-widest" style={{ fontSize: '10px', marginBottom: '4px' }}>Tablero de Visión 2026</p>
+                        <h2 className="font-editorial text-[#2D2926]" style={{ fontSize: '36px' }}>Diseño de Realidad</h2>
                     </div>
 
-                    {/* Steps Section */}
-                    <div className="grid grid-cols-1 gap-12 pt-12">
-                        <div className="bg-[#FDFBF7] p-12 rounded-[2rem] border border-[#B8835A20] space-y-10">
-                            <h3 className="text-2xl font-editorial text-[#8C4005] border-b border-[#B8835A30] pb-4">Pasos de Acción Inmediata</h3>
-                            <div className="space-y-8">
+                    {/* 3×3 Grid */}
+                    <div style={{ padding: '0 32px', flex: 1, display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gridTemplateRows: 'auto auto auto', gap: '16px', alignItems: 'center' }}>
+                        {/* Row 1: only center column */}
+                        <div style={{ gridColumn: '1', gridRow: '1', visibility: 'hidden' }} />
+                        <div style={{ gridColumn: '2', gridRow: '1' }}>
+                            <ArchitecturalCard pillar={data.pillars[0]} label="PROPÓSITO" printMode />
+                        </div>
+                        <div style={{ gridColumn: '3', gridRow: '1', visibility: 'hidden' }} />
+
+                        {/* Row 2: left card, center circle, right card */}
+                        <div style={{ gridColumn: '1', gridRow: '2' }}>
+                            <ArchitecturalCard pillar={data.pillars[1]} label="RECURSOS" small printMode />
+                        </div>
+                        <div style={{ gridColumn: '2', gridRow: '2', aspectRatio: '1/1', backgroundColor: '#FDFBF7', borderRadius: '50%', border: '1px solid rgba(184,131,90,0.3)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '20px' }}>
+                            <span className="font-guide font-bold text-[#8C4005] uppercase" style={{ fontSize: '8px', letterSpacing: '0.25em', marginBottom: '8px' }}>CENTRADO EN</span>
+                            <h4 className="font-editorial italic text-[#2D2926]" style={{ fontSize: '15px', lineHeight: '1.2', margin: '0 0 8px' }}>
+                                {data.analysis?.identity || (isMale ? 'El Arquitecto' : 'La Arquitecta')}
+                            </h4>
+                            <div style={{ width: '28px', height: '1px', backgroundColor: 'rgba(184,131,90,0.4)', margin: '0 auto 8px' }} />
+                            <p className="font-guide font-bold text-[#B8835A]" style={{ fontSize: '8px' }}>2026</p>
+                        </div>
+                        <div style={{ gridColumn: '3', gridRow: '2' }}>
+                            <ArchitecturalCard pillar={data.pillars[2]} label="VÍNCULOS" small printMode />
+                        </div>
+
+                        {/* Row 3: two cards + center quote */}
+                        <div style={{ gridColumn: '1', gridRow: '3' }}>
+                            <ArchitecturalCard pillar={data.pillars[3]} label="EXPANSIÓN" small printMode />
+                        </div>
+                        <div style={{ gridColumn: '2', gridRow: '3', backgroundColor: '#F9F7F2', borderRadius: '12px', padding: '16px', textAlign: 'center', border: '1px solid rgba(184,131,90,0.15)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                            <p className="font-guide font-bold text-[#8C4005] uppercase" style={{ fontSize: '7px', letterSpacing: '0.2em', marginBottom: '8px' }}>PRÁCTICA MAESTRA</p>
+                            <p className="font-editorial italic text-[#2D2926]" style={{ fontSize: '11px', lineHeight: '1.4', opacity: 0.85 }}>
+                                {data.analysis?.practice || '"El orden es la primera ley del cielo."'}
+                            </p>
+                        </div>
+                        <div style={{ gridColumn: '3', gridRow: '3' }}>
+                            <ArchitecturalCard pillar={data.pillars[4]} label="VITALIDAD" small printMode />
+                        </div>
+                    </div>
+
+                    {/* Footer */}
+                    <div style={{ padding: '10px 48px', borderTop: '1px solid rgba(184,131,90,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>yelitzerangeloficial.com</span>
+                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>02 / 04</span>
+                    </div>
+                </div>
+
+                {/* ── PAGE 3: BITÁCORA ── */}
+                <div className="min-h-[1120px] relative flex flex-col" style={{ backgroundColor: '#FFFFFF', pageBreakAfter: 'always' }}>
+                    {/* Dark header band */}
+                    <div style={{ backgroundColor: '#231916', padding: '14px 0 10px' }}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src="/assets/images/logo-yelitze-new.png" alt="Yelitze Rangel" style={{ height: '30px', margin: '0 auto', display: 'block' }} />
+                        <p style={{ color: '#B8835A', fontSize: '8px', textAlign: 'center', fontWeight: '700', letterSpacing: '0.3em', marginTop: '6px', textTransform: 'uppercase', fontFamily: 'sans-serif' }}>
+                            BIT&#193;CORA DE CONSTRUCCI&#211;N
+                        </p>
+                    </div>
+                    <div style={{ height: '3px', backgroundColor: '#B8835A' }} />
+
+                    <div style={{ padding: '32px 64px 24px', flex: 1, display: 'flex', flexDirection: 'column', gap: '28px' }}>
+                        <div>
+                            <h2 className="font-editorial text-[#2D2926]" style={{ fontSize: '40px', marginBottom: '4px' }}>La Ruta del {isMale ? 'Arquitecto' : 'Arquitecta'}</h2>
+                            <div style={{ width: '60px', height: '2px', backgroundColor: '#B8835A' }} />
+                        </div>
+
+                        {/* Action steps */}
+                        <div style={{ backgroundColor: '#F9F7F2', borderRadius: '16px', padding: '28px', borderLeft: '4px solid #8C4005' }}>
+                            <h3 className="font-editorial text-[#8C4005]" style={{ fontSize: '20px', marginBottom: '20px', borderBottom: '1px solid rgba(184,131,90,0.3)', paddingBottom: '10px' }}>
+                                Pasos de Acción Inmediata
+                            </h3>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                                 {(() => {
                                     const actionSteps = (data.analysis?.guide_steps && data.analysis.guide_steps.length > 0)
                                         ? data.analysis.guide_steps
                                         : data.pillars.map(p => p.action).filter(a => a && a.trim() !== '');
-
-                                    if (actionSteps.length === 0) return <p className="text-gray-400 italic">Define tus micropasos en la sección de Pilares para verlos aquí.</p>;
-
+                                    if (actionSteps.length === 0) return <p className="font-editorial text-gray-400 italic">Define tus micropasos en los Pilares.</p>;
                                     return actionSteps.map((step: string, i: number) => (
-                                        <div key={i} className="flex gap-8 items-start">
-                                            <span className="w-10 h-10 rounded-full bg-[#B8835A]/10 text-[#8C4005] flex items-center justify-center font-editorial text-xl font-bold shrink-0">{i + 1}</span>
-                                            <p className="text-[#2D2926] text-xl font-editorial leading-relaxed opacity-90 pt-1">{step}</p>
+                                        <div key={i} style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                                            <span className="font-editorial font-bold text-[#8C4005]" style={{ minWidth: '28px', height: '28px', borderRadius: '50%', backgroundColor: 'rgba(184,131,90,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', flexShrink: 0 }}>{i + 1}</span>
+                                            <p className="font-editorial text-[#2D2926]" style={{ fontSize: '16px', lineHeight: '1.5', opacity: 0.9, paddingTop: '4px' }}>{step}</p>
                                         </div>
                                     ));
                                 })()}
                             </div>
                         </div>
 
-                        {/* Reflections Section */}
-                        <div className="space-y-8">
-                            <h3 className="text-2xl font-editorial text-[#2D2926] border-b border-[#B8835A10] pb-4">Reflexiones de los Portales</h3>
-                            <div className="grid grid-cols-2 gap-8">
+                        {/* Portal reflections */}
+                        <div>
+                            <h3 className="font-editorial text-[#2D2926]" style={{ fontSize: '20px', marginBottom: '16px', borderBottom: '1px solid rgba(184,131,90,0.15)', paddingBottom: '8px' }}>
+                                Reflexiones de los Portales
+                            </h3>
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                                 {Object.entries(data.reflections).map(([id, text], idx) => {
                                     const portalTitles: Record<string, string> = {
-                                        'portal1': 'Cierre Consciente',
-                                        'portal2': 'Foco y Dispersión',
-                                        'portal3': 'Recuperar Mi Poder',
-                                        'portal4': 'Arquitectura de Orden'
+                                        portal1: 'Cierre Consciente', portal2: 'Foco y Dispersión',
+                                        portal3: 'Recuperar Mi Poder', portal4: 'Arquitectura de Orden',
                                     };
                                     const portalSubtitles: Record<string, string> = {
-                                        'portal1': '¿Dónde se fue mi energía?',
-                                        'portal2': '¿Dónde perdí mi centro?',
-                                        'portal3': 'Lo que dejo de cargar',
-                                        'portal4': 'Gestión Consciente de Energía'
+                                        portal1: '¿Dónde se fue mi energía?', portal2: '¿Dónde perdí mi centro?',
+                                        portal3: 'Lo que dejo de cargar', portal4: 'Gestión Consciente de Energía',
                                     };
                                     return (
-                                        <div key={idx} className="p-6 bg-[#FDFBF7] rounded-2xl border border-[#B8835A10]">
-                                            <span className="text-[10px] uppercase font-bold text-[#B8835A] font-guide tracking-widest block mb-1">
+                                        <div key={idx} style={{ padding: '16px', backgroundColor: '#F9F7F2', borderRadius: '12px', borderLeft: '2px solid rgba(184,131,90,0.4)' }}>
+                                            <span className="font-guide font-bold text-[#B8835A] uppercase tracking-widest" style={{ fontSize: '9px', display: 'block', marginBottom: '3px' }}>
                                                 Portal {idx + 1} · {portalTitles[id] || ''}
                                             </span>
-                                            <p className="text-[9px] italic text-[#8C4005]/60 font-editorial mb-3">{portalSubtitles[id] || ''}</p>
-                                            <p className="text-sm italic font-editorial text-[#2D2926] opacity-70 leading-relaxed">"{text}"</p>
+                                            <p className="font-editorial text-[#8C4005] italic" style={{ fontSize: '9px', opacity: 0.6, marginBottom: '6px' }}>{portalSubtitles[id] || ''}</p>
+                                            <p className="font-editorial text-[#2D2926] italic" style={{ fontSize: '13px', opacity: 0.75, lineHeight: '1.4' }}>"{text}"</p>
                                         </div>
                                     );
                                 })}
@@ -388,50 +444,59 @@ export default function FinalBoardStep({
                         </div>
                     </div>
 
-                    <div className="pt-12 text-center">
-                        <p className="text-[10px] uppercase font-guide font-bold tracking-[0.4em] text-[#B8835A] mb-2 opacity-40">Diseño Intencional 2026</p>
-                        <p className="text-[8px] font-guide text-gray-300">©{new Date().getFullYear()} Yelitze Rangel</p>
+                    {/* Footer */}
+                    <div style={{ padding: '10px 64px', borderTop: '1px solid rgba(184,131,90,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>yelitzerangeloficial.com</span>
+                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>03 / 04</span>
                     </div>
                 </div>
 
-                {/* PDF PAGE 4: MANIFIESTO Y COMPROMISO */}
-                <div className="min-h-[1120px] p-24 bg-white flex flex-col">
-                    <div className="text-center space-y-6 mb-16">
-                        <div className="flex justify-center">
-                            <span className="bg-[#B8835A] text-white px-10 py-3 rounded-full text-[10px] font-bold uppercase tracking-[0.4em] font-guide">
-                                Manifiesto y Compromiso
-                            </span>
-                        </div>
-                        <h2 className="text-5xl font-editorial text-[#2D2926]">Mi Nueva Realidad</h2>
-                        <div className="flex justify-center mt-2"><p className="text-[10px] font-guide text-gray-400">PÁGINA 04/04</p></div>
+                {/* ── PAGE 4: MANIFIESTO Y COMPROMISO ── */}
+                <div className="min-h-[1120px] relative flex flex-col" style={{ backgroundColor: '#FFFFFF' }}>
+                    {/* Dark header band */}
+                    <div style={{ backgroundColor: '#231916', padding: '14px 0 10px' }}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src="/assets/images/logo-yelitze-new.png" alt="Yelitze Rangel" style={{ height: '30px', margin: '0 auto', display: 'block' }} />
+                        <p style={{ color: '#B8835A', fontSize: '8px', textAlign: 'center', fontWeight: '700', letterSpacing: '0.3em', marginTop: '6px', textTransform: 'uppercase', fontFamily: 'sans-serif' }}>
+                            MANIFIESTO Y COMPROMISO
+                        </p>
                     </div>
+                    <div style={{ height: '3px', backgroundColor: '#B8835A' }} />
 
-                    <div className="flex-grow space-y-20 pt-10">
-                        <div className="text-center space-y-10 px-12">
-                            <p className="text-[10px] uppercase tracking-[0.5em] text-[#8C4005] font-guide font-bold opacity-60">Declaración de Poder</p>
-                            <p className="text-4xl font-editorial italic text-[#2D2926] leading-relaxed">
-                                "{data.analysis?.manifesto || 'Yo soy el arquitecto de mi propia paz y abundancia.'}"
+                    <div style={{ padding: '40px 64px 24px', flex: 1, display: 'flex', flexDirection: 'column', gap: '32px' }}>
+                        <div>
+                            <h2 className="font-editorial text-[#2D2926]" style={{ fontSize: '40px', marginBottom: '4px' }}>Mi Nueva Realidad</h2>
+                            <div style={{ width: '60px', height: '2px', backgroundColor: '#B8835A' }} />
+                        </div>
+
+                        {/* Manifesto quote */}
+                        <div style={{ textAlign: 'center', padding: '32px 48px', backgroundColor: '#F9F7F2', borderRadius: '20px' }}>
+                            <p className="font-guide font-bold text-[#8C4005] uppercase tracking-widest" style={{ fontSize: '10px', marginBottom: '16px', opacity: 0.7 }}>Declaración de Poder</p>
+                            <p className="font-editorial italic text-[#2D2926]" style={{ fontSize: '28px', lineHeight: '1.4' }}>
+                                "{data.analysis?.manifesto || 'Soy el arquitecto de mi propia paz y abundancia.'}"
                             </p>
-                            <div className="w-24 h-px bg-[#B8835A]/30 mx-auto" />
+                            <div style={{ width: '60px', height: '1px', backgroundColor: 'rgba(184,131,90,0.4)', margin: '20px auto 0' }} />
                         </div>
 
-                        <div className="grid grid-cols-1 gap-12">
-                            <div className="bg-[#FDFBF7] p-12 rounded-[2rem] border border-[#B8835A15] relative overflow-hidden">
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-[#B8835A] opacity-5 -translate-y-1/2 translate-x-1/2 rounded-full" />
-                                <h4 className="text-[10px] uppercase tracking-[0.3em] font-guide font-bold text-[#8C4005] mb-6">Soberanía Sistémica / Lo que hoy suelto</h4>
-                                <p className="text-2xl font-editorial text-[#2D2926] opacity-90">{data.analysis?.release || 'Las lealtades que ya no me pertenecen.'}</p>
+                        {/* Release & Practice */}
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '20px' }}>
+                            <div style={{ backgroundColor: '#F9F7F2', padding: '28px 32px', borderRadius: '16px', borderLeft: '4px solid #8C4005' }}>
+                                <h4 className="font-guide font-bold text-[#8C4005] uppercase tracking-widest" style={{ fontSize: '10px', marginBottom: '10px' }}>Soberanía Sistémica / Lo que hoy suelto</h4>
+                                <p className="font-editorial text-[#2D2926]" style={{ fontSize: '20px', opacity: 0.9 }}>{data.analysis?.release || 'Las lealtades que ya no me pertenecen.'}</p>
                             </div>
-
-                            <div className="bg-[#FDFBF7] p-12 rounded-[2rem] border border-[#B8835A15] relative overflow-hidden">
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-[#B8835A] opacity-5 -translate-y-1/2 translate-x-1/2 rounded-full" />
-                                <h4 className="text-[10px] uppercase tracking-[0.3em] font-guide font-bold text-[#8C4005] mb-6">Práctica Maestra / Mi ritual de orden</h4>
-                                <p className="text-2xl font-editorial text-[#2D2926] opacity-90">{data.analysis?.practice || 'Habitar mi presente con intención diaria.'}</p>
+                            <div style={{ backgroundColor: '#F9F7F2', padding: '28px 32px', borderRadius: '16px', borderLeft: '4px solid #B8835A' }}>
+                                <h4 className="font-guide font-bold text-[#B8835A] uppercase tracking-widest" style={{ fontSize: '10px', marginBottom: '10px' }}>Práctica Maestra / Mi ritual de orden</h4>
+                                <p className="font-editorial text-[#2D2926]" style={{ fontSize: '20px', opacity: 0.9 }}>{data.analysis?.practice || 'Habitar mi presente con intención diaria.'}</p>
                             </div>
                         </div>
                     </div>
 
-                    <div className="pt-20 text-center border-t border-gray-100 italic font-editorial text-[#B8835A] opacity-60">
-                        "La arquitectura de tu vida es el reflejo del orden en tu alma."
+                    {/* Footer */}
+                    <div style={{ padding: '10px 64px', borderTop: '1px solid rgba(184,131,90,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span className="font-guide text-[#B8835A] italic font-editorial" style={{ fontSize: '9px', opacity: 0.6 }}>
+                            "La arquitectura de tu vida es el reflejo del orden en tu alma."
+                        </span>
+                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>04 / 04</span>
                     </div>
                 </div>
             </div>
@@ -439,19 +504,19 @@ export default function FinalBoardStep({
     );
 }
 
-function ArchitecturalCard({ pillar, label, small }: { pillar: any, label: string, small?: boolean }) {
+function ArchitecturalCard({ pillar, label, small, printMode }: { pillar: any, label: string, small?: boolean, printMode?: boolean }) {
     if (!pillar) return null;
 
     const images = pillar.images || [];
     const hasImages = images.length > 0;
-    
+
     // Determine which image to show as "Main" or use AI priority
     // If we have >= 4 images, it means we have the AI one at index 3
     const aiImage = images.length >= 4 ? images[3] : null;
     const userImages = images.slice(0, 3);
 
     return (
-        <div className={`bg-white shadow-md border border-[#B8835A15] p-2 flex flex-col relative ${small ? 'w-48' : 'w-56'}`}>
+        <div className={`bg-white shadow-md border border-[#B8835A15] p-2 flex flex-col relative ${printMode ? 'w-full' : (small ? 'w-48' : 'w-56')}`}>
             <div className={`absolute top-3 left-3 bg-[#8C4005] text-white px-3 py-1 text-[8px] uppercase tracking-[0.2em] font-bold z-20 rounded-sm shadow-sm ${small ? 'scale-90' : ''}`}>
                 {label}
             </div>
