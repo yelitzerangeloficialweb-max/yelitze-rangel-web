@@ -57,12 +57,12 @@ export async function generateVisionPrompt(intention: string, images: string[], 
         Tu misión es analizar las imágenes y el texto para generar un prompt maestro en INGLÉS para DALL-E 3.
         
         REQUISITOS DEL PROMPT:
-        1. DEBE capturar la ESENCIA EMOCIONAL y SIMBÓLICA del propósito ("${direction}"). 
-        2. Ejemplos de simbolismo: si habla de abundancia, usa luz dorada, texturas fluidas o semillas; si habla de vínculos, usa hilos, conexiones orgánicas o luz entrelazada; si habla de expansión, usa horizontes vastos o geometría abierta.
+        1. DEBE capturar la ESENCIA EMOCIONAL y SIMBÓLICA del propósito ("${direction}") y permitir la **PRESENCIA HUMANA** (siluetas elegantes, gestos de manos, personas en espacios vastos o interactuando con la luz) para que el usuario se sienta reflejado.
+        2. Ejemplos de simbolismo: si habla de abundancia, usa luz dorada o manos recibiendo; si habla de vínculos, usa hilos o dos siluetas en conexión; si habla de vitalidad, usa un cuerpo en movimiento fluido o piel bajo luz natural.
         3. Estética: Minimalista, Arte Conceptual, Alta Costura, Fotografía de Galería.
-        4. NO te limites a edificios. La "Arquitectura" puede ser de objetos, de luz, de naturaleza o de formas abstractas sagradas.
+        4. NO te limites a edificios. La "Arquitectura" puede ser humana, de luz, de naturaleza o de objetos sagrados.
         
-        Estilo Visual: Cinematic lighting, luxury textures, ethereal atmosphere, high-end professional photography.
+        Estilo Visual: Cinematic lighting, luxury textures, ethereal atmosphere, high-end professional photography. Evita imágenes tipo stock, busca algo artístico.
 
         IMPORTANTE: Solo devuelve el prompt final en inglés, sin explicaciones ni introducciones.`;
 

@@ -237,12 +237,13 @@ export default function FinalBoardStep({
             </div>
 
             {/* 3. THE VISUAL BOARD (Web Interactive Version) */}
-            <div className="space-y-10 no-print">
-                <div className="text-center space-y-4">
-                    <h3 className="text-4xl md:text-5xl font-editorial text-[#2D2926]">Tu Diseño de Realidad 2026</h3>
-                    <div className="flex items-center justify-center gap-4">
+            <div className="space-y-16 pt-10 no-print">
+                <div className="text-center space-y-6 mb-12">
+                    <span className="text-[#B8835A] font-guide text-[10px] uppercase tracking-[0.4em] font-bold block">Tablero de Visión 2026</span>
+                    <h3 className="text-5xl md:text-7xl font-editorial text-[#2D2926]">Diseño de Realidad</h3>
+                    <div className="flex items-center justify-center gap-4 pt-2">
                         <div className="h-px w-12 bg-[#B8835A]/30" />
-                        <p className="text-[#B8835A] font-guide text-[10px] uppercase tracking-[0.4em] font-bold">Arquitectura de Vida Sistémica</p>
+                        <p className="text-[#B8835A] font-guide text-[9px] uppercase tracking-[0.2em] font-medium opacity-60">Arquitectura de Vida Sistémica</p>
                         <div className="h-px w-12 bg-[#B8835A]/30" />
                     </div>
                 </div>
