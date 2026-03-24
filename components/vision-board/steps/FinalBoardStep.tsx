@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { VisionData } from '../VisionBoardWizard';
 import { ArrowLeft, Download, FileText, Sparkles } from 'lucide-react';
 import html2canvas from 'html2canvas';
@@ -18,6 +18,29 @@ export default function FinalBoardStep({
     registrationData?: { name: string, email: string, gender: string }
 }) {
     const pdfContentRef = useRef<HTMLDivElement>(null);
+    const [yoSoy, setYoSoy] = useState<{ yo_soy: string; ancla: string; decreto_diario: string } | null>(null);
+    const [isGeneratingYoSoy, setIsGeneratingYoSoy] = useState(false);
+
+    // Generate YO SOY declaration once analysis is ready
+    useEffect(() => {
+        if (!isAnalyzing && data.analysis && !yoSoy && !isGeneratingYoSoy) {
+            setIsGeneratingYoSoy(true);
+            fetch('/api/ai/yo-soy', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    pillars: data.pillars,
+                    reflections: data.reflections,
+                    userName: registrationData?.name || '',
+                    userGender: registrationData?.gender || 'mujer'
+                })
+            })
+            .then(r => r.json())
+            .then(result => { if (result.yo_soy) setYoSoy(result); })
+            .catch(err => console.error('[YO SOY]:', err))
+            .finally(() => setIsGeneratingYoSoy(false));
+        }
+    }, [isAnalyzing, data.analysis]);
 
     const handleDownloadPDF = async () => {
         const element = pdfContentRef.current;
@@ -173,6 +196,39 @@ export default function FinalBoardStep({
                             </div>
                         )}
                     </div>
+                </div>
+                {/* 2.2 YO SOY DECLARATION */}
+                <div className="max-w-4xl mx-auto">
+                    {isGeneratingYoSoy ? (
+                        <div className="bg-[#2D2926] text-[#F9F7F2] p-16 rounded-[3rem] text-center space-y-4 animate-pulse">
+                            <Sparkles className="w-8 h-8 text-[#B8835A] mx-auto animate-spin" />
+                            <p className="text-[#B8835A] font-guide uppercase tracking-[0.3em] text-xs">Generando tu Declaración YO SOY...</p>
+                        </div>
+                    ) : yoSoy ? (
+                        <div className="bg-[#2D2926] text-[#F9F7F2] p-12 md:p-20 rounded-[3rem] md:rounded-[4rem] shadow-2xl relative overflow-hidden space-y-10">
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#B8835A]/10 to-transparent pointer-events-none" />
+                            <div className="relative z-10 text-center space-y-4">
+                                <span className="text-[#B8835A] font-guide text-[10px] font-bold uppercase tracking-[0.5em] block">Declaración de Identidad</span>
+                                <h3 className="text-4xl md:text-6xl font-editorial italic text-[#B8835A] leading-tight">YO SOY</h3>
+                                <div className="w-16 h-px bg-[#B8835A]/40 mx-auto" />
+                            </div>
+                            <div className="relative z-10">
+                                <p className="text-xl md:text-2xl font-editorial leading-relaxed text-center italic opacity-95">
+                                    {yoSoy.yo_soy}
+                                </p>
+                            </div>
+                            <div className="relative z-10 grid md:grid-cols-2 gap-6">
+                                <div className="bg-white/5 backdrop-blur-sm border border-[#B8835A]/20 p-6 rounded-2xl space-y-3">
+                                    <span className="text-[#B8835A] font-guide text-[9px] uppercase tracking-[0.3em] font-bold block">Ancla de Identidad</span>
+                                    <p className="text-[#F9F7F2] font-editorial text-xl italic">{yoSoy.ancla}</p>
+                                </div>
+                                <div className="bg-white/5 backdrop-blur-sm border border-[#B8835A]/20 p-6 rounded-2xl space-y-3">
+                                    <span className="text-[#B8835A] font-guide text-[9px] uppercase tracking-[0.3em] font-bold block">Decreto Diario</span>
+                                    <p className="text-[#F9F7F2] font-editorial text-xl italic">{yoSoy.decreto_diario}</p>
+                                </div>
+                            </div>
+                        </div>
+                    ) : null}
                 </div>
 
                 {/* 2.5 BITÁCORA DE CONSTRUCCIÓN (Match PDF Content in Web UI) */}
