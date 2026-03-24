@@ -120,11 +120,8 @@ export default function FinalBoardStep({
                         </div>
                     </div>
                     <div className="flex flex-wrap gap-4 relative z-10">
-                        <a href={getCalendarUrl()} target="_blank" rel="noopener noreferrer" className="px-6 py-3 rounded-xl border border-[#B8835A] text-[#B8835A] hover:bg-[#B8835A] hover:text-[#2D2926] transition-all font-bold text-[10px] uppercase tracking-widest whitespace-nowrap">
-                            📅 Agendar Clase
-                        </a>
-                        <button onClick={handleDownloadPDF} className="px-6 py-3 rounded-xl bg-[#B8835A] text-[#2D2926] hover:bg-[#D4AF37] font-bold shadow-lg flex items-center gap-2 transition-all uppercase text-[10px] tracking-widest whitespace-nowrap">
-                            <Download className="w-3.5 h-3.5" /> Exportar PDF
+                        <button onClick={handleDownloadPDF} className="px-8 py-4 rounded-xl bg-[#B8835A] text-[#2D2926] hover:bg-[#D4AF37] font-bold shadow-lg flex items-center gap-3 transition-all uppercase text-[11px] tracking-[0.2em] whitespace-nowrap group">
+                            <Download className="w-4 h-4 group-hover:-translate-y-1 transition-transform" /> descargar arquitectura Intencional en PDF
                         </button>
                     </div>
                 </div>
@@ -510,36 +507,41 @@ function ArchitecturalCard({ pillar, label, small, printMode }: { pillar: any, l
     const images = pillar.images || [];
     const hasImages = images.length > 0;
 
-    // Determine which image to show as "Main" or use AI priority
-    // If we have >= 4 images, it means we have the AI one at index 3
     const aiImage = images.length >= 4 ? images[3] : null;
     const userImages = images.slice(0, 3);
 
     return (
-        <div className={`bg-white shadow-md border border-[#B8835A15] p-2 flex flex-col relative ${printMode ? 'w-full' : (small ? 'w-48' : 'w-56')}`}>
-            <div className={`absolute top-3 left-3 bg-[#8C4005] text-white px-3 py-1 text-[8px] uppercase tracking-[0.2em] font-bold z-20 rounded-sm shadow-sm ${small ? 'scale-90' : ''}`}>
+        <div className={`bg-white shadow-xl border border-[#B8835A20] p-3 flex flex-col relative transition-all duration-500 hover:shadow-2xl ${printMode ? 'w-full' : (small ? 'w-52' : 'w-64')}`}>
+            {/* Label Badge */}
+            <div className={`absolute -top-3 left-4 bg-[#8C4005] text-white px-4 py-1.5 text-[9px] uppercase tracking-[0.25em] font-bold z-20 rounded-sm shadow-lg ${small ? 'scale-90' : ''}`}>
                 {label}
             </div>
 
-            <div className={`w-full ${small ? 'h-48' : 'h-64'} bg-[#F9F7F2] relative overflow-hidden mb-3 border border-[#3C2A21]/5`}>
+            {/* Image Section */}
+            <div className={`w-full ${small ? 'h-40' : 'h-52'} bg-[#F9F7F2] relative overflow-hidden mb-4 border border-[#3C2A21]/5 rounded-sm`}>
                 {!hasImages ? (
-                    <div className="w-full h-full flex items-center justify-center text-[#B8835A]/30 text-[8px] font-bold tracking-widest italic">ESTRUCTURA VACÍA</div>
+                    <div className="w-full h-full flex items-center justify-center text-[#B8835A]/30 text-[8px] font-bold tracking-widest italic">DISEÑO EN ORDEN</div>
                 ) : aiImage ? (
-                    <img src={aiImage} alt="" className="w-full h-full object-cover grayscale-[20%] sepia-[10%] contrast-110" />
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img src={aiImage} alt="" className="w-full h-full object-cover grayscale-[10%] sepia-[5%] contrast-105" />
                 ) : (
                     <div className="w-full h-full flex flex-col gap-0.5">
                         {images.length === 1 ? (
+                            /* eslint-disable-next-line @next/next/no-img-element */
                             <img src={images[0]} alt="" className="w-full h-full object-cover" />
                         ) : (
                             <>
                                 <div className="h-2/3 w-full">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */ }
                                     <img src={userImages[0]} alt="" className="w-full h-full object-cover" />
                                 </div>
                                 <div className="h-1/3 w-full flex gap-0.5">
                                     <div className="w-1/2 h-full">
+                                        {/* eslint-disable-next-line @next/next/no-img-element */ }
                                         <img src={userImages[1] || userImages[0]} alt="" className="w-full h-full object-cover" />
                                     </div>
                                     <div className="w-1/2 h-full">
+                                        {/* eslint-disable-next-line @next/next/no-img-element */ }
                                         <img src={userImages[2] || userImages[0]} alt="" className="w-full h-full object-cover" />
                                     </div>
                                 </div>
@@ -549,14 +551,31 @@ function ArchitecturalCard({ pillar, label, small, printMode }: { pillar: any, l
                 )}
             </div>
 
-            <div className="text-center px-2 py-1 space-y-2 mt-auto">
-                <p className={`font-editorial italic text-[#2D2926] leading-[1.1] ${small ? 'text-xs' : 'text-sm'}`}>
-                    "{pillar.intention ? (pillar.intention.length > 50 ? pillar.intention.substring(0, 47) + '...' : pillar.intention) : 'Sin intención'}"
-                </p>
-                <div className="w-6 h-[0.5px] bg-[#B8835A]/20 mx-auto" />
-                <p className={`font-guide font-bold text-[#8C4005] uppercase tracking-tighter ${small ? 'text-[8px]' : 'text-[9px]'}`}>
-                    {pillar.action || 'Pendiente'}
-                </p>
+            {/* Content Section */}
+            <div className="text-center px-1 space-y-3 mt-auto">
+                <div className="space-y-1">
+                    <p className={`font-guide font-bold text-[#8C4005] uppercase tracking-widest ${small ? 'text-[7px]' : 'text-[8px]'} opacity-50`}>Intención</p>
+                    <p className={`font-editorial italic text-[#2D2926] leading-snug ${small ? 'text-xs' : 'text-sm'}`}>
+                        "{pillar.intention || 'Por definir'}"
+                    </p>
+                </div>
+
+                {pillar.direction && (
+                    <div className="space-y-1">
+                        <p className={`font-guide font-bold text-[#B8835A] uppercase tracking-widest ${small ? 'text-[7px]' : 'text-[8px]'} opacity-60`}>Propósito / Resultado</p>
+                        <p className={`font-editorial text-[#2D2926] leading-tight ${small ? 'text-[10px]' : 'text-xs'} opacity-90`}>
+                            {pillar.direction}
+                        </p>
+                    </div>
+                )}
+
+                <div className="w-8 h-[0.5px] bg-[#B8835A]/30 mx-auto" />
+                
+                <div className="space-y-1 pb-1">
+                    <p className={`font-guide font-bold text-[#2D2926] uppercase tracking-[0.2em] ${small ? 'text-[8px]' : 'text-[9px]'}`}>
+                        {pillar.action || 'Micropaso pendiente'}
+                    </p>
+                </div>
             </div>
         </div>
     );
