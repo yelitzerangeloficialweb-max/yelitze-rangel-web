@@ -73,53 +73,76 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
 
     const content = PILLAR_CONTENT[currentPillarIndex];
 
+    // Resize an image file to max 800px and compress to JPEG 0.8 before storing
+    const resizeImage = (file: File): Promise<string> =>
+        new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const img = new window.Image();
+                img.onload = () => {
+                    const MAX = 800;
+                    let w = img.width, h = img.height;
+                    if (w > MAX || h > MAX) {
+                        if (w > h) { h = Math.round(h * MAX / w); w = MAX; }
+                        else { w = Math.round(w * MAX / h); h = MAX; }
+                    }
+                    const canvas = document.createElement('canvas');
+                    canvas.width = w; canvas.height = h;
+                    canvas.getContext('2d')!.drawImage(img, 0, 0, w, h);
+                    resolve(canvas.toDataURL('image/jpeg', 0.8));
+                };
+                img.src = reader.result as string;
+            };
+            reader.readAsDataURL(file);
+        });
+
     const handleGenerateAIImage = async () => {
         if (activePillar.images.length < 3) return;
 
         setIsGeneratingAI(true);
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 90000); // 90s client-side timeout
         try {
             const res = await fetch('/api/ai/generate-pillar-image', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+                signal: controller.signal,
                 body: JSON.stringify({
                     pillarTitle: activePillar.title,
                     intention: activePillar.intention,
                     images: activePillar.images
                 })
             });
+            clearTimeout(timeoutId);
             const data = await res.json();
             if (data.imageUrl) {
                 updatePillarImages(currentPillarIndex, [...activePillar.images, data.imageUrl]);
             } else if (data.error) {
                 console.error("AI Generation server error:", data.error, data.details);
-                if (data.details?.includes('timeout')) {
-                    alert("La IA está trabajando intensamente en tu imagen de alta calidad. Por favor, intenta de nuevo en unos segundos.");
-                } else {
-                    alert(`Error: ${data.details || data.error}`);
-                }
+                alert(`No se pudo generar la imagen: ${data.details || data.error}`);
             }
-        } catch (error) {
-            console.error("AI Generation failed:", error);
-            alert("El servidor está procesando muchas peticiones. Por favor, espera un momento e intenta de nuevo.");
+        } catch (error: any) {
+            clearTimeout(timeoutId);
+            if (error.name === 'AbortError') {
+                alert("La generación tardó demasiado. Intenta de nuevo.");
+            } else {
+                console.error("AI Generation failed:", error);
+                alert("Error al conectar con el servidor. Intenta de nuevo.");
+            }
         } finally {
             setIsGeneratingAI(false);
         }
     };
 
-    const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
-        if (file) {
-            if (activePillar.images.length >= 4) {
-                alert("Máximo 4 imágenes por pilar.");
-                return;
-            }
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                const base64 = reader.result as string;
-                updatePillarImages(currentPillarIndex, [...activePillar.images, base64]);
-            };
-            reader.readAsDataURL(file);
+        if (!file) return;
+        if (activePillar.images.length >= 3) {
+            alert("Sube hasta 3 imágenes; la IA genera la 4ª automáticamente.");
+            return;
         }
+        const resized = await resizeImage(file);
+        updatePillarImages(currentPillarIndex, [...activePillar.images, resized]);
     };
 
     const removeImage = (imgIndex: number) => {

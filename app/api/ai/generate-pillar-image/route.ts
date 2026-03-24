@@ -6,7 +6,7 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY || ''
 });
 
-export const maxDuration = 60; // 60 segundos (Vercel Pro max)
+export const maxDuration = 120; // 120 segundos para cubrir Gemini + DALL-E + base64
 
 // Configuración para permitir cuerpos grandes (necesario para 3 imágenes en Base64)
 export const config = {
@@ -54,7 +54,7 @@ export async function POST(req: Request) {
             prompt: cleanPrompt + ", conceptual architectural photography, minimal aesthetic, high quality, 8k, realistic textures, high artistic precision",
             n: 1,
             size: "1024x1024",
-            quality: "hd",
+            quality: "standard",
         });
 
         if (!response.data || response.data.length === 0 || !response.data[0].url) {
