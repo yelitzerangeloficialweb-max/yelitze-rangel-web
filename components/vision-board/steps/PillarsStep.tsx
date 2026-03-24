@@ -234,7 +234,7 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
                     <div className="text-center mb-8 space-y-3">
                         <h4 className="font-editorial text-3xl text-[#2D2926]">Mesa de Diseño Maestro</h4>
                         <p className="text-sm text-[#3C2A21]/70 font-guide max-w-xs mx-auto leading-relaxed">
-                            ¡Guarda tu energía! Sube **obligatoriamente 3 imágenes** que representen tu nueva estructura, fluidez o expansión para que la arquitectura se complete. <span className="italic block mt-1">No tienen que ser realistas.</span>
+                            ¡Guarda tu energía! Sube <strong>obligatoriamente 3 imágenes</strong> que representen tu nueva estructura, fluidez o expansión para que la arquitectura se complete. <span className="italic block mt-1">No tienen que ser realistas.</span>
                         </p>
                     </div>
 
