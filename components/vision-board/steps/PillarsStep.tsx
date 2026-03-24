@@ -234,7 +234,7 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
                     <div className="text-center mb-8 space-y-3">
                         <h4 className="font-editorial text-3xl text-[#2D2926]">Mesa de Diseño Maestro</h4>
                         <p className="text-sm text-[#3C2A21]/70 font-guide max-w-xs mx-auto leading-relaxed">
-                            ¡Guarda tu energía! Sube hasta <strong>3 imágenes</strong> o diseños que representen tu nueva estructura, fluidez o expansión para que la arquitectura se complete. <span className="italic block mt-1">No tienen que ser realistas.</span>
+                            ¡Guarda tu energía! Sube **obligatoriamente 3 imágenes** que representen tu nueva estructura, fluidez o expansión para que la arquitectura se complete. <span className="italic block mt-1">No tienen que ser realistas.</span>
                         </p>
                     </div>
 
@@ -319,21 +319,25 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
                 <div className="flex flex-col items-end gap-2">
                     <button
                         onClick={() => {
-                            if (!activePillar.intention.trim()) {
-                                alert("Por favor, escribe tu intención para poder avanzar.");
+                            if (!activePillar.intention.trim() || !activePillar.direction.trim() || !activePillar.action.trim()) {
+                                alert("Por favor, completa todos los campos de texto para este pilar.");
+                                return;
+                            }
+                            if (activePillar.images.length < 3) {
+                                alert("Es obligatorio subir al menos 3 imágenes de referencia para este pilar.");
                                 return;
                             }
                             if (!isLastPillar) setCurrentPillarIndex(c => c + 1);
                             else onNext();
                         }}
-                        className={`bg-[#8C4005] text-[#F9F7F2] px-14 py-6 rounded-2xl font-bold uppercase tracking-[0.25em] text-xs hover:scale-[1.02] shadow-[0_20px_40px_rgba(140,64,5,0.2)] transition-all active:scale-95 group flex items-center gap-4 font-guide ${!activePillar.intention.trim() ? 'opacity-40 cursor-not-allowed' : ''}`}
+                        className={`bg-[#8C4005] text-[#F9F7F2] px-14 py-6 rounded-2xl font-bold uppercase tracking-[0.25em] text-xs hover:scale-[1.02] shadow-[0_20px_40px_rgba(140,64,5,0.2)] transition-all active:scale-95 group flex items-center gap-4 font-guide ${(activePillar.images.length < 3 || !activePillar.intention.trim()) ? 'opacity-40 cursor-not-allowed' : ''}`}
                     >
                         {isLastPillar ? 'Confirmar mi Elevación' : 'Siguiente Pilar'}
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </button>
-                    {!activePillar.intention.trim() && (
-                        <span className="text-[10px] text-red-500 font-bold uppercase tracking-widest animate-pulse">
-                            * Escribe tu intención para continuar
+                    {(activePillar.images.length < 3 || !activePillar.intention.trim()) && (
+                        <span className="text-[10px] text-red-500 font-bold uppercase tracking-widest animate-pulse text-right">
+                            * Se requieren los textos y 3 imágenes para continuar
                         </span>
                     )}
                 </div>
