@@ -45,43 +45,48 @@ export async function generateImagePromptGemini(intention: string) {
     }
 }
 export async function generateVisionPrompt(intention: string, images: string[], direction?: string, action?: string) {
+    // Build a rich contextual fallback first so it's ALWAYS available if Gemini fails
+    const contextualFallback = buildContextualPrompt(intention, direction, action);
+
     try {
         const visionModel = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
-        const prompt = `Estas son 3 imágenes de referencia que el usuario ha seleccionado para representar su pilar de arquitectura de vida: "${intention}".
-        
-        CONTEXTO DEL USUARIO:
-        - Propósito/Resultado esperado: "${direction || 'No especificado'}"
-        - Acción concreta de anclaje: "${action || 'No especificada'}"
+        const prompt = `Analiza visualmente las ${images.length} imágenes adjuntas y el texto del usuario para crear un prompt de imagen en INGLÉS para DALL-E 3.
 
-        Tu misión es analizar las imágenes y el texto para generar un prompt maestro en INGLÉS para DALL-E 3.
-        
-        REQUISITOS DEL PROMPT:
-        1. DEBE capturar la ESENCIA EMOCIONAL y SIMBÓLICA del propósito ("${direction}") y permitir la **PRESENCIA HUMANA** (siluetas elegantes, gestos de manos, personas en espacios vastos o interactuando con la luz) para que el usuario se sienta reflejado.
-        2. Ejemplos de simbolismo: si habla de abundancia, usa luz dorada o manos recibiendo; si habla de vínculos, usa hilos o dos siluetas en conexión; si habla de vitalidad, usa un cuerpo en movimiento fluido o piel bajo luz natural.
-        3. Estética: Minimalista, Arte Conceptual, Alta Costura, Fotografía de Galería.
-        4. NO te limites a edificios. La "Arquitectura" puede ser humana, de luz, de naturaleza o de objetos sagrados.
-        
-        Estilo Visual: Cinematic lighting, luxury textures, ethereal atmosphere, high-end professional photography. Evita imágenes tipo stock, busca algo artístico.
+TEXTO DEL USUARIO:
+- Intención: "${intention}"
+- Propósito: "${direction || ''}"
+- Acción diaria: "${action || ''}"
 
-        IMPORTANTE: Solo devuelve el prompt final en inglés, sin explicaciones ni introducciones.`;
+REGLAS ESTRICTAS para el prompt:
+1. El prompt DEBE INCLUIR palabras clave o conceptos extraídos DIRECTAMENTE del texto del usuario. Si el usuario habla de "recursos con alegría", el prompt debe incluir algo relacionado con alegría y abundancia; si habla de "vínculos honestos", incluir conexión humana o manos juntas.
+2. Analiza los COLORES, TEXTURAS y ESTADO EMOCIONAL de las imágenes de referencia e inclúyelos en el estilo.
+3. Incluye presencia humana cuando sea simbólicamente relevante: siluetas, gestos de manos, cuerpos en movimiento, miradas.
+4. PROHIBIDO: arquitectura gris genérica, edificios sin contexto, stock photos estéticas sin alma.
+5. Estilo: Fine art photography, cinematic lighting, luxury editorial, ethereal and intentional.
+
+SOLO devuelve el prompt en inglés, sin explicaciones.`;
 
         const imageParts = images.map(img => {
             const [header, data] = img.split(',');
             const mimeType = header.match(/:(.*?);/)?.[1] || "image/jpeg";
-            return {
-                inlineData: {
-                    data,
-                    mimeType
-                }
-            };
+            return { inlineData: { data, mimeType } };
         });
 
         const result = await visionModel.generateContent([prompt, ...imageParts]);
-        const response = result.response;
-        return response.text();
-    } catch (error) {
-        console.error("Gemini Vision Error:", error);
-        return intention + ", conceptual art, minimalist, architectural, hyper-realistic"; // Fallback
+        const generatedPrompt = result.response.text().trim();
+        console.log('[Gemini Vision] Prompt generado:', generatedPrompt.substring(0, 150));
+        return generatedPrompt;
+
+    } catch (error: any) {
+        console.error('[Gemini Vision] Error — usando fallback contextual:', error?.message || error);
+        return contextualFallback;
     }
 }
+
+// Builds a meaningful contextual prompt from user text when Gemini is unavailable
+function buildContextualPrompt(intention: string, direction?: string, action?: string): string {
+    const core = direction || intention;
+    return `Fine art photography: ${core}. A human figure or expressive hands interacting with soft golden light, luxury textures, ethereal atmosphere. The scene symbolizes: ${intention}. Cinematic, minimalist, editorial, high-end professional photography. No grey buildings.`;
+}
+
