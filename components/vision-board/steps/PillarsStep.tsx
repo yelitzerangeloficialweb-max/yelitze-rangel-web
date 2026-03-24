@@ -110,6 +110,8 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
                 body: JSON.stringify({
                     pillarTitle: activePillar.title,
                     intention: activePillar.intention,
+                    direction: activePillar.direction,
+                    action: activePillar.action,
                     images: activePillar.images
                 })
             });

@@ -44,13 +44,21 @@ export async function generateImagePromptGemini(intention: string) {
         return "abstract spiritual minimalist art, golden light"; // Fallback
     }
 }
-export async function generateVisionPrompt(intention: string, images: string[]) {
+export async function generateVisionPrompt(intention: string, images: string[], direction?: string, action?: string) {
     try {
         const visionModel = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
-        const prompt = `Estas son 3 imágenes que el usuario ha subido para representar su pilar de arquitectura de vida: "${intention}".
-        Analiza visualmente estas 3 imágenes y genera una descripción maestra en INGLÉS para una 4ta imagen que combine los elementos clave, colores y estética de las anteriores, pero elevándolas a un nivel de arte conceptual, minimalista y arquitectónico.
-        Solo devuelve el prompt final en inglés, sin explicaciones.`;
+        const prompt = `Estas son 3 imágenes de referencia que el usuario ha seleccionado para representar su pilar de arquitectura de vida: "${intention}".
+        
+        CONTEXTO ADICIONAL DEL USUARIO:
+        - Propósito/Resultado esperado: "${direction || 'No especificado'}"
+        - Acción concreta de anclaje: "${action || 'No especificada'}"
+
+        Tu misión es analizar visualmente estas 3 imágenes y el contexto textual para generar una descripción maestra en INGLÉS para una 4ta imagen (prompt para DALL-E) que combine los elementos clave, colores y estética de las referencias, pero elevándolas a un nivel de arte conceptual, minimalista y arquitectónico. 
+        
+        La imagen final debe capturar la ESENCIA del propósito ("${direction}") y la intención.
+        
+        IMPORTANTE: Solo devuelve el prompt final en inglés, sin explicaciones ni introducciones.`;
 
         const imageParts = images.map(img => {
             const [header, data] = img.split(',');

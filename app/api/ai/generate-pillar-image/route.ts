@@ -16,9 +16,10 @@ export async function POST(req: Request) {
         }
 
         const body = await req.json();
-        const { intention, images, pillarTitle } = body;
+        const { intention, images, pillarTitle, direction, action } = body;
 
         console.log(`[AI Image Gen] Iniciando generación para Pilar: ${pillarTitle}`);
+        console.log(`[AI Image Gen] Con contexto: Propósito=${direction}, Acción=${action}`);
         console.log(`[AI Image Gen] Recibidas ${images?.length || 0} imágenes de referencia.`);
 
         if (!images || images.length === 0) {
@@ -26,10 +27,10 @@ export async function POST(req: Request) {
         }
 
         // 1. Generar prompt descriptivo basado en las imágenes (usando Gemini)
-        console.log('[AI Image Gen] Llamando a Gemini para análisis visual...');
+        console.log('[AI Image Gen] Llamando a Gemini para análisis visual con contexto...');
         let visualPrompt: string;
         try {
-            visualPrompt = await generateVisionPrompt(`${pillarTitle}: ${intention}`, images);
+            visualPrompt = await generateVisionPrompt(`${pillarTitle}: ${intention}`, images, direction, action);
             console.log(`[AI Image Gen] Gemini generó el prompt: ${visualPrompt.substring(0, 100)}...`);
         } catch (gemError) {
             console.warn('[AI Image Gen] Gemini falló, usando el prompt de respaldo.');

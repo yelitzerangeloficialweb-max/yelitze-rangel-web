@@ -23,6 +23,8 @@ export async function POST(req: Request) {
 
         // 1. FIRST SAVE TO DATABASE (Lead Capture)
         try {
+            const fs = require('fs');
+            fs.appendFileSync('api_logs.txt', `[${new Date().toISOString()}] Calling DB for ${userName}\n`);
             console.log("Saving lead to DB...");
             const saved = await db.testResult.create({
                 data: {
