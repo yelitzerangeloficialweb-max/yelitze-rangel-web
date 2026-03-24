@@ -565,7 +565,67 @@ export default function FinalBoardStep({
                     </div>
                 </div>
 
-                {/* ── PAGE 4: MANIFIESTO Y COMPROMISO ── */}
+                {/* ── PAGE 4: YO SOY ── */}
+                {yoSoy && (
+                    <div className="min-h-[1120px] relative flex flex-col" style={{ backgroundColor: '#231916', pageBreakAfter: 'always' }}>
+                        {/* Header */}
+                        <div style={{ backgroundColor: '#231916', padding: '14px 0 10px', borderBottom: '3px solid #B8835A' }}>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src="/assets/images/logo-yelitze-new.png" alt="Yelitze Rangel" style={{ height: '30px', margin: '0 auto', display: 'block', filter: 'brightness(0) invert(1) opacity(0.9)' }} />
+                            <p style={{ color: '#B8835A', fontSize: '8px', textAlign: 'center', fontWeight: '700', letterSpacing: '0.3em', marginTop: '6px', textTransform: 'uppercase', fontFamily: 'sans-serif' }}>
+                                DECLARACIÓN DE IDENTIDAD
+                            </p>
+                        </div>
+
+                        <div style={{ padding: '60px 64px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '40px' }}>
+                            {/* YO SOY Header */}
+                            <div style={{ textAlign: 'center', marginBottom: '12px' }}>
+                                <p style={{ color: '#B8835A', fontSize: '10px', fontWeight: '700', letterSpacing: '0.5em', textTransform: 'uppercase', fontFamily: 'sans-serif', marginBottom: '16px', opacity: 0.8 }}>
+                                    Tu Declaración Sagrada
+                                </p>
+                                <h2 className="font-editorial" style={{ color: '#B8835A', fontSize: '72px', lineHeight: '1', marginBottom: '16px', fontStyle: 'italic' }}>
+                                    YO SOY
+                                </h2>
+                                <div style={{ width: '80px', height: '1px', backgroundColor: 'rgba(184,131,90,0.4)', margin: '0 auto' }} />
+                            </div>
+
+                            {/* Declaration text */}
+                            <div style={{ backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '20px', padding: '40px 48px', border: '1px solid rgba(184,131,90,0.2)' }}>
+                                <p className="font-editorial" style={{ color: '#F9F7F2', fontSize: '22px', lineHeight: '1.7', textAlign: 'center', fontStyle: 'italic', opacity: 0.95 }}>
+                                    {yoSoy.yo_soy}
+                                </p>
+                            </div>
+
+                            {/* Ancla + Decreto */}
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                                <div style={{ backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '16px', padding: '28px 32px', borderLeft: '3px solid #B8835A' }}>
+                                    <p style={{ color: '#B8835A', fontSize: '9px', fontWeight: '700', letterSpacing: '0.3em', textTransform: 'uppercase', fontFamily: 'sans-serif', marginBottom: '12px' }}>
+                                        Ancla de Identidad
+                                    </p>
+                                    <p className="font-editorial" style={{ color: '#F9F7F2', fontSize: '18px', fontStyle: 'italic', lineHeight: '1.5' }}>
+                                        {yoSoy.ancla}
+                                    </p>
+                                </div>
+                                <div style={{ backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '16px', padding: '28px 32px', borderLeft: '3px solid #8C4005' }}>
+                                    <p style={{ color: '#B8835A', fontSize: '9px', fontWeight: '700', letterSpacing: '0.3em', textTransform: 'uppercase', fontFamily: 'sans-serif', marginBottom: '12px' }}>
+                                        Decreto Diario
+                                    </p>
+                                    <p className="font-editorial" style={{ color: '#F9F7F2', fontSize: '18px', fontStyle: 'italic', lineHeight: '1.5' }}>
+                                        {yoSoy.decreto_diario}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Footer */}
+                        <div style={{ padding: '10px 64px', borderTop: '1px solid rgba(184,131,90,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <span className="font-guide" style={{ fontSize: '9px', color: 'rgba(184,131,90,0.6)' }}>yelitzerangeloficial.com</span>
+                            <span className="font-guide" style={{ fontSize: '9px', color: 'rgba(184,131,90,0.6)' }}>04 / 05</span>
+                        </div>
+                    </div>
+                )}
+
+                {/* ── PAGE 5 (was 4): MANIFIESTO Y COMPROMISO ── */}
                 <div className="min-h-[1120px] relative flex flex-col" style={{ backgroundColor: '#FFFFFF' }}>
                     {/* Dark header band */}
                     <div style={{ backgroundColor: '#231916', padding: '14px 0 10px' }}>
@@ -610,7 +670,7 @@ export default function FinalBoardStep({
                         <span className="font-guide text-[#B8835A] italic font-editorial" style={{ fontSize: '9px', opacity: 0.6 }}>
                             "La arquitectura de tu vida es el reflejo del orden en tu alma."
                         </span>
-                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>04 / 04</span>
+                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>{yoSoy ? '05 / 05' : '04 / 04'}</span>
                     </div>
                 </div>
             </div>
