@@ -86,6 +86,27 @@ export async function POST(req: Request) {
             console.error('[Somatic Test Save Error]:', dbError);
         }
 
+        // --- NEW: Send Email in Background (Server side) ---
+        if (email && email.includes('@')) {
+            try {
+                // We don't await this so the user gets the JSON response immediately,
+                // but we trigger it here to ensure it uses server-side secrets.
+                const { sendSomaticEmail } = await import('@/lib/mail');
+                const { generateSomaticPDF } = await import('@/lib/pdf-generator');
+                
+                const pdfBuffer = await generateSomaticPDF(name, parsedAnalysis, stressResult, reflection);
+                await sendSomaticEmail({
+                    email,
+                    name,
+                    result: parsedAnalysis,
+                    pdfBuffer
+                });
+                console.log(`[Somatic Test] Email sent to ${email}`);
+            } catch (mailError) {
+                console.error('[Somatic Test Mail Error]:', mailError);
+            }
+        }
+
         return NextResponse.json(parsedAnalysis);
 
     } catch (error: any) {

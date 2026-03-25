@@ -193,9 +193,13 @@ export default function SomaticQuiz() {
                 document.body.appendChild(a);
                 a.click();
                 a.remove();
+            } else {
+                const err = await response.json();
+                throw new Error(err.error || 'Error al descargar');
             }
         } catch (error) {
             console.error("Error downloading PDF:", error);
+            alert("No se pudo descargar el PDF en este momento. Por favor intenta de nuevo en unos minutos.");
         } finally {
             setIsDownloading(false);
         }

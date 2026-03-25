@@ -2,6 +2,13 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// Diagnostic log to verify API Key availability in production
+if (!process.env.RESEND_API_KEY) {
+    console.warn('[MAIL SERVICE] WARNING: RESEND_API_KEY is not defined in environment variables.');
+} else {
+    console.log('[MAIL SERVICE] Resend API Key is configured correctly.');
+}
+
 interface SendRegistrationEmailProps {
     email: string;
     name: string;
@@ -83,10 +90,11 @@ export const sendVenezuelaRegistrationEmail = async ({
         });
 
         if (error) {
-            console.error('Resend error:', error);
+            console.error('[VisionBoard Mail] Resend client error:', error);
             return { success: false, error };
         }
 
+        console.log('[VisionBoard Mail] SUCCESS. ID:', data?.id);
         return { success: true, data };
     } catch (err) {
         console.error('Mail service error:', err);
@@ -108,6 +116,7 @@ export const sendVisionBoardEmail = async ({
     try {
         const logoUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/assets/images/logo-yelitze-new.png`;
 
+        console.log(`[VisionBoard Mail] Sending to: ${email}, hasPDF: ${!!pdfBuffer}`);
         const attachments = pdfBuffer ? [
             {
                 filename: 'Arquitectura-Intencional-Vida.pdf',
@@ -178,10 +187,11 @@ export const sendVisionBoardEmail = async ({
         });
 
         if (error) {
-            console.error('Resend error:', error);
+            console.error('[VisionBoard Mail] Resend client error:', error);
             return { success: false, error };
         }
 
+        console.log('[VisionBoard Mail] SUCCESS. ID:', data?.id);
         return { success: true, data };
     } catch (err) {
         console.error('Mail service error:', err);
@@ -201,6 +211,7 @@ export const sendSomaticEmail = async ({
     pdfBuffer: Buffer
 }) => {
     try {
+        console.log(`[Somatic Mail] Sending to: ${email}, PDF size: ${pdfBuffer?.length || 0} bytes`);
         const { data, error } = await resend.emails.send({
             from: 'Yelitze Rangel <info@yelitzerangeloficial.com>',
             to: [email],
@@ -214,13 +225,7 @@ export const sendSomaticEmail = async ({
             html: `
                 <!DOCTYPE html>
                 <html>
-                <head>
-                    <meta charset="utf-8">
-                    <style>
-                        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:italic,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
-                    </style>
-                </head>
-                <body style="margin: 0; padding: 0; background-color: #FDFBFA; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased;">
+                <body style="margin: 0; padding: 0; background-color: #FDFBFA; font-family: sans-serif; -webkit-font-smoothing: antialiased;">
                     <div style="max-width: 600px; margin: 40px auto; background-color: #F5EFE6; border-radius: 40px; overflow: hidden; box-shadow: 0 20px 50px rgba(140,64,5,0.1);">
                         
                         <!-- Header Decor -->
@@ -278,10 +283,11 @@ export const sendSomaticEmail = async ({
         });
 
         if (error) {
-            console.error('sendSomaticEmail error:', error);
+            console.error('[Somatic Mail] Resend client error:', error);
             return { success: false, error };
         }
 
+        console.log('[Somatic Mail] SUCCESS. ID:', data?.id);
         return { success: true, data };
     } catch (err) {
         console.error('Somatic mail service error:', err);

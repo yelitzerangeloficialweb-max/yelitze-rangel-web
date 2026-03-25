@@ -46,59 +46,76 @@ export default function FinalBoardStep({
         const element = pdfContentRef.current;
         if (!element) return;
 
-        // Ensure fonts and images are ready
-        await document.fonts.ready;
-        
-        // Temporary visibility for capture
-        element.style.display = 'block';
-        element.style.position = 'fixed';
-        element.style.left = '-9999px';
-        element.style.top = '0';
-
-        const images = Array.from(element.getElementsByTagName('img'));
-        await Promise.all(images.map(img => {
-            if (img.complete) return Promise.resolve();
-            return new Promise(resolve => {
-                img.onload = resolve;
-                img.onerror = resolve;
-            });
-        }));
-
-        const pdf = new jsPDF('p', 'mm', 'a4');
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = pdf.internal.pageSize.getHeight();
-        
-        // Capture each page separately to avoid information being cut between pages
-        const pages = Array.from(element.children);
-        
-        for (let i = 0; i < pages.length; i++) {
-            const page = pages[i] as HTMLElement;
+        try {
+            // Ensure fonts and images are ready
+            await document.fonts.ready;
             
-            // Skip non-page elements if any
-            if (!page.classList.contains('min-h-[1120px]')) continue;
+            // Temporary visibility for capture
+            element.style.display = 'block';
+            element.style.position = 'fixed';
+            element.style.left = '-9999px';
+            element.style.top = '0';
 
-            const canvas = await html2canvas(page, {
-                scale: 3, 
-                useCORS: true,
-                allowTaint: true,
-                logging: false,
-                backgroundColor: '#F9F7F2',
-                imageTimeout: 15000,
-            });
+            const images = Array.from(element.getElementsByTagName('img'));
+            await Promise.all(images.map(img => {
+                if (img.complete) return Promise.resolve();
+                return new Promise(resolve => {
+                    img.onload = resolve;
+                    img.onerror = resolve;
+                });
+            }));
 
-            const imgData = canvas.toDataURL('image/jpeg', 0.95);
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = pdf.internal.pageSize.getHeight();
             
-            if (pdf.internal.pages.length > 1 && i > 0) {
-                pdf.addPage();
+            // Capture each page separately
+            const pages = Array.from(element.children);
+            let capturedCount = 0;
+            
+            for (let i = 0; i < pages.length; i++) {
+                const page = pages[i] as HTMLElement;
+                
+                // Skip non-page elements if any
+                if (!page.classList.contains('min-h-[1120px]')) continue;
+
+                try {
+                    const canvas = await html2canvas(page, {
+                        scale: 2, // Reduced for better stability
+                        useCORS: true,
+                        allowTaint: false,
+                        logging: false,
+                        backgroundColor: '#F9F7F2',
+                        imageTimeout: 15000,
+                    });
+
+                    const imgData = canvas.toDataURL('image/jpeg', 0.9);
+                    
+                    if (capturedCount > 0) {
+                        pdf.addPage();
+                    }
+                    
+                    pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+                    capturedCount++;
+                } catch (pageErr) {
+                    console.error(`[PDF Export] Error capturing page ${i}:`, pageErr);
+                }
             }
-            
-            pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+
+            if (capturedCount > 0) {
+                const fileName = `Arquitectura_Intencional_${registrationData?.name?.replace(/\s/g, '_') || 'Vida'}.pdf`;
+                pdf.save(fileName);
+            } else {
+                alert("No se pudo generar el PDF. Por favor intenta de nuevo.");
+            }
+        } catch (err) {
+            console.error('[PDF Export] Critical error:', err);
+            alert("Error al generar el PDF. Revisa tu conexión.");
+        } finally {
+            if (element) {
+                element.style.display = 'none';
+            }
         }
-
-        element.style.display = 'none';
-
-        const fileName = `Arquitectura_Intencional_${registrationData?.name?.replace(/\s/g, '_') || 'Vida'}.pdf`;
-        pdf.save(fileName);
     };
 
     const getCalendarUrl = () => {

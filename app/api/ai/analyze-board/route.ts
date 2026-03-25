@@ -107,10 +107,12 @@ export async function POST(req: Request) {
             });
         }
 
-        // 3. GENERATE PDF AND SEND EMAIL — fire-and-forget so the response is immediate
+        // 3. TRIGGER PDF GENERATION AND EMAIL (Background)
         if (userEmail && userName) {
+            // NOTE: We don't await this so the user gets the JSON response immediately
             (async () => {
                 try {
+                    console.log(`[Vision Board Background] Starting PDF/Email for ${userEmail}...`);
                     const pdfInput = buildVisionBoardPDFInput({
                         name: userName,
                         gender: userGender,
@@ -118,15 +120,17 @@ export async function POST(req: Request) {
                         pillars: pillars as any[],
                         reflections: reflections as Record<string, string>,
                     });
+                    const { generateVisionBoardPDF } = await import('@/lib/pdf-generator');
                     const pdfBuffer = await generateVisionBoardPDF(pdfInput);
-                    await sendVisionBoardEmail({
+                    const mailRes = await sendVisionBoardEmail({
                         email: userEmail,
                         name: userName,
                         analysis: analysisObj,
                         pdfBuffer
                     });
+                    console.log('[Vision Board Mail] Result:', mailRes.success ? 'Success' : 'Failed', mailRes.error || '');
                 } catch (emailError) {
-                    console.error("Failed to generate or send Vision Board email/PDF:", emailError);
+                    console.error("[Vision Board Mail] background error:", emailError);
                 }
             })();
         }
