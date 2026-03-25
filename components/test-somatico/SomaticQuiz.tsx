@@ -1,6 +1,8 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
     Activity, 
@@ -76,6 +78,7 @@ const OPTIONS = [
 ];
 
 export default function SomaticQuiz() {
+    const pdfContentRef = useRef<HTMLDivElement>(null);
     const [step, setStep] = useState<'intro' | 'quiz' | 'reflection' | 'form' | 'result'>('intro');
     const [currentIndex, setCurrentIndex] = useState(0);
     const [answers, setAnswers] = useState<Record<number, number>>({});
@@ -169,41 +172,43 @@ export default function SomaticQuiz() {
     }
 
     const handleDownloadPDF = async () => {
-        if (!aiResult) return;
+        const element = pdfContentRef.current;
+        if (!element || !aiResult) return;
+
         setIsDownloading(true);
         try {
-            const response = await fetch('/api/ai/somatic-test/download', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    email,
-                    name,
-                    reflection,
-                    stressResult: { type: stressResult.type, desc: stressResult.desc },
-                    result: aiResult
-                })
+            await document.fonts.ready;
+            
+            // Temporary visibility for capture
+            element.style.display = 'block';
+            element.style.position = 'fixed';
+            element.style.left = '-9999px';
+            element.style.top = '0';
+
+            const canvas = await html2canvas(element, {
+                scale: 2,
+                useCORS: true,
+                logging: false,
+                backgroundColor: '#FDFBFA'
             });
 
-            if (response.ok) {
-                const blob = await response.blob();
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `Diagnostico_Somatico_${name.replace(/\s+/g, '_')}.pdf`;
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-            } else {
-                const err = await response.json();
-                throw new Error(err.error || 'Error al descargar');
-            }
+            const imgData = canvas.toDataURL('image/jpeg', 0.9);
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+            
+            pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+            pdf.save(`Diagnostico_Somatico_${name.replace(/\s+/g, '_')}.pdf`);
+            
+            element.style.display = 'none';
         } catch (error) {
-            console.error("Error downloading PDF:", error);
-            alert("No se pudo descargar el PDF en este momento. Por favor intenta de nuevo en unos minutos.");
+            console.error("Error generating local PDF:", error);
+            alert("No se pudo generar el PDF. Por favor intenta de nuevo.");
+            if (element) element.style.display = 'none';
         } finally {
             setIsDownloading(false);
         }
-    }
+    };
 
     const generateAIResult = async () => {
         setIsLoading(true);
@@ -589,6 +594,60 @@ export default function SomaticQuiz() {
                     </motion.div>
                 )}
             </AnimatePresence>
+
+            {/* HIDDEN PRINTABLE CONTENT (CAPTURED BY JS) */}
+            <div 
+                ref={pdfContentRef} 
+                className="hidden" 
+                style={{ width: '210mm', backgroundColor: '#FDFBFA', color: '#2D2926', fontFamily: 'serif' }}
+            >
+                {/* PDF Header */}
+                <div style={{ backgroundColor: '#F5EFE6', padding: '40px 60px', borderBottom: '2px solid #B8835A30', textAlign: 'center' }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/assets/images/logo-color.png" alt="Logo" style={{ height: '60px', margin: '0 auto 20px' }} />
+                    <h1 style={{ fontSize: '32px', fontStyle: 'italic', color: '#8C4005', margin: 0 }}>Diagnóstico de Reconexión Somática</h1>
+                    <p style={{ letterSpacing: '0.3em', fontSize: '10px', marginTop: '10px', fontWeight: 'bold', color: '#B8835A' }}>PROCESO PERSONALIZADO 2026</p>
+                </div>
+
+                <div style={{ padding: '60px' }}>
+                    {/* User Info */}
+                    <div style={{ marginBottom: '40px', borderBottom: '1px solid #B8835A20', paddingBottom: '20px' }}>
+                        <p style={{ fontSize: '14px', textTransform: 'uppercase', opacity: 0.6 }}>Preparado para:</p>
+                        <h2 style={{ fontSize: '28px', margin: '5px 0' }}>{name}</h2>
+                    </div>
+
+                    {/* Stress Result */}
+                    <div style={{ backgroundColor: '#FDFBF7', padding: '30px', borderRadius: '20px', borderLeft: '5px solid #8C4005', marginBottom: '40px' }}>
+                        <h3 style={{ margin: '0 0 10px 0', color: '#8C4005', fontStyle: 'italic' }}>Tu Estado Actual</h3>
+                        <p style={{ fontSize: '20px', fontWeight: 'bold', margin: '0 0 10px 0' }}>{stressResult.type}</p>
+                        <p style={{ fontSize: '16px', opacity: 0.8, lineHeight: '1.6' }}>{stressResult.desc}</p>
+                    </div>
+
+                    {/* AI Analysis */}
+                    {aiResult && (
+                        <div style={{ marginBottom: '40px' }}>
+                            <h3 style={{ fontSize: '18px', textTransform: 'uppercase', letterSpacing: '0.2em', color: '#B8835A', marginBottom: '20px' }}>Análisis Maestro de Yelitze</h3>
+                            <div style={{ fontSize: '17px', lineHeight: '1.8', fontStyle: 'italic', backgroundColor: 'white', padding: '30px', borderRadius: '20px', border: '1px solid #B8835A15' }}>
+                                {aiResult.personalized_analysis}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Reflection */}
+                    {reflection && (
+                        <div style={{ marginBottom: '40px' }}>
+                            <h3 style={{ fontSize: '12px', opacity: 0.5, textTransform: 'uppercase', marginBottom: '10px' }}>Tu Reflexión Inicial</h3>
+                            <p style={{ fontSize: '14px', opacity: 0.7 }}>"{reflection}"</p>
+                        </div>
+                    )}
+
+                    {/* CTA/Footer */}
+                    <div style={{ marginTop: '60px', paddingTop: '40px', borderTop: '1px solid #B8835A20', textAlign: 'center' }}>
+                        <p style={{ fontStyle: 'italic', fontSize: '18px', color: '#8C4005', marginBottom: '20px' }}>"No es magia, es orden. Restaura el orden y el equilibrio llega por añadidura."</p>
+                        <p style={{ fontSize: '10px', opacity: 0.4 }}>YELITZE RANGEL • COACH ANCESTRAL • YELITZERANGELOFICIAL.COM</p>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
