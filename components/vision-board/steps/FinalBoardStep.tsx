@@ -704,9 +704,6 @@ export default function FinalBoardStep({
                         <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>{yoSoy ? '06 / 06' : '05 / 05'}</span>
                     </div>
                 </div>
-ide text-[#B8835A]" style={{ fontSize: '9px' }}>{yoSoy ? '05 / 05' : '04 / 04'}</span>
-                    </div>
-                </div>
             </div>
         </div>
     );

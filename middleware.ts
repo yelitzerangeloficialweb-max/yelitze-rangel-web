@@ -8,9 +8,10 @@ export function middleware(request: NextRequest) {
     const isMaintenancePage = pathname === '/maintenance';
     const isQREntryInfo = pathname.includes('/admin/venezuela/entry/');
     const isVenezuelaLanding = pathname.startsWith('/venezuela-en-el-cuerpo');
+    const isSomaticTest = pathname.startsWith('/test-somatico');
     const isExperienciaGuiada = pathname.startsWith('/arquitectura-de-vida-intencional');
 
-    if (isAsset || isQREntryInfo || isVenezuelaLanding || isExperienciaGuiada) {
+    if (isAsset || isQREntryInfo || isVenezuelaLanding || isExperienciaGuiada || isSomaticTest) {
         return NextResponse.next();
     }
 
