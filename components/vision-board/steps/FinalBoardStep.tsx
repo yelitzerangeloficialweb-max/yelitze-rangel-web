@@ -435,10 +435,9 @@ export default function FinalBoardStep({
                         </div>
                     </div>
 
-                    {/* Footer */}
                     <div style={{ padding: '10px 64px', borderTop: '1px solid rgba(184,131,90,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>yelitzerangeloficial.com</span>
-                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>01 / 04</span>
+                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>YELITZE RANGEL • TU COACH ANCESTRAL • 2026</span>
+                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>01 / {yoSoy ? '06' : '05'}</span>
                     </div>
                 </div>
 
@@ -502,8 +501,12 @@ export default function FinalBoardStep({
 
                     {/* Footer */}
                     <div style={{ padding: '10px 48px', borderTop: '1px solid rgba(184,131,90,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>yelitzerangeloficial.com</span>
-                        <span className="font-guide text-[#B8835A]"                 {/* ── PAGE 3: BITÁCORA (Ruta) ── */}
+                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>YELITZE RANGEL • TU COACH ANCESTRAL • 2026</span>
+                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>02 / {yoSoy ? '06' : '05'}</span>
+                    </div>
+                </div>
+
+                {/* ── PAGE 3: BITÁCORA (Ruta) ── */}
                 <div className="min-h-[1120px] relative flex flex-col" style={{ backgroundColor: '#FFFFFF', pageBreakAfter: 'always' }}>
                     <div style={{ backgroundColor: '#231916', padding: '14px 0 10px' }}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -540,7 +543,7 @@ export default function FinalBoardStep({
                     </div>
 
                     <div style={{ padding: '10px 64px', borderTop: '1px solid rgba(184,131,90,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>yelitzerangeloficial.com</span>
+                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>YELITZE RANGEL • TU COACH ANCESTRAL • 2026</span>
                         <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>03 / {yoSoy ? '06' : '05'}</span>
                     </div>
                 </div>
@@ -589,7 +592,7 @@ export default function FinalBoardStep({
                     </div>
 
                     <div style={{ padding: '10px 64px', borderTop: '1px solid rgba(184,131,90,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>yelitzerangeloficial.com</span>
+                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>YELITZE RANGEL • TU COACH ANCESTRAL • 2026</span>
                         <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>04 / {yoSoy ? '06' : '05'}</span>
                     </div>
                 </div>
@@ -648,7 +651,7 @@ export default function FinalBoardStep({
 
                         {/* Footer */}
                         <div style={{ padding: '10px 64px', borderTop: '1px solid rgba(184,131,90,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <span className="font-guide" style={{ fontSize: '9px', color: 'rgba(184,131,90,0.6)' }}>yelitzerangeloficial.com</span>
+                            <span className="font-guide" style={{ fontSize: '9px', color: 'rgba(184,131,90,0.6)' }}>YELITZE RANGEL • TU COACH ANCESTRAL • 2026</span>
                             <span className="font-guide" style={{ fontSize: '9px', color: 'rgba(184,131,90,0.6)' }}>05 / 06</span>
                         </div>
                     </div>
@@ -697,9 +700,7 @@ export default function FinalBoardStep({
 
                     {/* Footer */}
                     <div style={{ padding: '10px 64px', borderTop: '1px solid rgba(184,131,90,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span className="font-guide text-[#B8835A] italic font-editorial" style={{ fontSize: '10px', opacity: 0.6 }}>
-                            "La arquitectura de tu vida es el reflejo del orden en tu alma."
-                        </span>
+                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>YELITZE RANGEL • TU COACH ANCESTRAL • 2026</span>
                         <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>{yoSoy ? '06 / 06' : '05 / 05'}</span>
                     </div>
                 </div>

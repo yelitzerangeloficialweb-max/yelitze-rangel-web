@@ -685,6 +685,12 @@ export default function SomaticQuiz() {
                                 </div>
                             </div>
                         )}
+                        
+                        {/* Footer Page 1 */}
+                        <div style={{ padding: '20px 0', borderTop: '1px solid rgba(184,131,90,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
+                            <span style={{ fontSize: '9px', color: '#B8835A', letterSpacing: '0.1em' }}>YELITZE RANGEL • TU COACH ANCESTRAL • 2026</span>
+                            <span style={{ fontSize: '9px', color: '#B8835A' }}>01 / 02</span>
+                        </div>
                     </div>
                 </div>
 
@@ -697,7 +703,7 @@ export default function SomaticQuiz() {
                         <p style={{ letterSpacing: '0.1em', fontSize: '10px', fontWeight: 'bold', color: '#B8835A', margin: 0 }}>RECURSOS DE SOSTENIBILIDAD • PÁGINA 2/2</p>
                     </div>
 
-                    <div style={{ padding: '60px', flex: 1 }}>
+                    <div style={{ padding: '60px', flex: 1, display: 'flex', flexDirection: 'column' }}>
                         {/* Dynamic Exercises - NOW FULLY ON PAGE 2 */}
                         <div style={{ marginBottom: '50px' }}>
                             <h3 style={{ fontSize: '24px', fontStyle: 'italic', color: '#8C4005', marginBottom: '30px', textAlign: 'center' }}>Prácticas de Sostenimiento Sugeridas</h3>
@@ -720,19 +726,20 @@ export default function SomaticQuiz() {
                         )}
 
                         {/* Quote & Closure */}
-                        <div style={{ marginTop: '80px', textAlign: 'center', borderTop: '1px solid #B8835A20', paddingTop: '60px' }}>
-                            <p style={{ fontStyle: 'italic', fontSize: '22px', color: '#8C4005', marginBottom: '40px', maxWidth: '80%', margin: '0 auto 40px' }}>
+                        <div style={{ marginTop: 'auto', textAlign: 'center', borderTop: '1px solid #B8835A20', paddingTop: '40px' }}>
+                            <p style={{ fontStyle: 'italic', fontSize: '20px', color: '#8C4005', marginBottom: '30px' }}>
                                 "No es magia, es orden. Restaura el orden y el equilibrio llega por añadidura."
                             </p>
                             
                             {/* Final Logo */}
                             {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src="/assets/images/logo-color.png" alt="Logo Yelitze" style={{ height: '70px', margin: '0 auto 20px', opacity: 0.9 }} />
-                            
-                            <p style={{ fontSize: '11px', opacity: 0.5, letterSpacing: '0.3em', fontWeight: 'bold' }}>
-                                YELITZE RANGEL • COACH ANCESTRAL • 2026
-                            </p>
-                            <p style={{ fontSize: '10px', opacity: 0.4, marginTop: '8px' }}>YELITZERANGELOFICIAL.COM</p>
+                            <img src="/assets/images/logo-color.png" alt="Logo Yelitze" style={{ height: '60px', margin: '0 auto 15px', opacity: 0.8 }} />
+                        </div>
+
+                        {/* Footer Page 2 */}
+                        <div style={{ padding: '20px 0', borderTop: '1px solid rgba(184,131,90,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '20px' }}>
+                            <span style={{ fontSize: '9px', color: '#B8835A', letterSpacing: '0.1em' }}>YELITZE RANGEL • TU COACH ANCESTRAL • 2026</span>
+                            <span style={{ fontSize: '9px', color: '#B8835A' }}>02 / 02</span>
                         </div>
                     </div>
                 </div>
