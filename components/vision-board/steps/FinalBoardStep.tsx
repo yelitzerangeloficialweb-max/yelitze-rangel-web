@@ -503,13 +503,8 @@ export default function FinalBoardStep({
                     {/* Footer */}
                     <div style={{ padding: '10px 48px', borderTop: '1px solid rgba(184,131,90,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>yelitzerangeloficial.com</span>
-                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>02 / 04</span>
-                    </div>
-                </div>
-
-                {/* ── PAGE 3: BITÁCORA ── */}
+                        <span className="font-guide text-[#B8835A]"                 {/* ── PAGE 3: BITÁCORA (Ruta) ── */}
                 <div className="min-h-[1120px] relative flex flex-col" style={{ backgroundColor: '#FFFFFF', pageBreakAfter: 'always' }}>
-                    {/* Dark header band */}
                     <div style={{ backgroundColor: '#231916', padding: '14px 0 10px' }}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src="/assets/images/logo-yelitze-new.png" alt="Yelitze Rangel" style={{ height: '30px', margin: '0 auto', display: 'block' }} />
@@ -519,70 +514,87 @@ export default function FinalBoardStep({
                     </div>
                     <div style={{ height: '3px', backgroundColor: '#B8835A' }} />
 
-                    <div style={{ padding: '32px 64px 24px', flex: 1, display: 'flex', flexDirection: 'column', gap: '28px' }}>
+                    <div style={{ padding: '60px 64px 24px', flex: 1, display: 'flex', flexDirection: 'column', gap: '28px' }}>
                         <div>
                             <h2 className="font-editorial text-[#2D2926]" style={{ fontSize: '40px', marginBottom: '4px' }}>La Ruta del {isMale ? 'Arquitecto' : 'Arquitecta'}</h2>
-                            <div style={{ width: '60px', height: '2px', backgroundColor: '#B8835A' }} />
+                            <p className="font-guide text-[#B8835A] uppercase tracking-[0.2em] text-[10px] font-bold">Micropasos de Acción Inmediata</p>
+                            <div style={{ width: '60px', height: '2px', backgroundColor: '#B8835A', marginTop: '10px' }} />
                         </div>
 
-                        {/* Action steps */}
-                        <div style={{ backgroundColor: '#F9F7F2', borderRadius: '16px', padding: '28px', borderLeft: '4px solid #8C4005' }}>
-                            <h3 className="font-editorial text-[#8C4005]" style={{ fontSize: '20px', marginBottom: '20px', borderBottom: '1px solid rgba(184,131,90,0.3)', paddingBottom: '10px' }}>
-                                Pasos de Acción Inmediata
-                            </h3>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                        <div style={{ backgroundColor: '#F9F7F2', borderRadius: '16px', padding: '40px', borderLeft: '4px solid #8C4005', marginTop: '20px' }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                                 {(() => {
                                     const actionSteps = (data.analysis?.guide_steps && data.analysis.guide_steps.length > 0)
                                         ? data.analysis.guide_steps
                                         : data.pillars.map(p => p.action).filter(a => a && a.trim() !== '');
                                     if (actionSteps.length === 0) return <p className="font-editorial text-gray-400 italic">Define tus micropasos en los Pilares.</p>;
                                     return actionSteps.map((step: string, i: number) => (
-                                        <div key={i} style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                                            <span className="font-editorial font-bold text-[#8C4005]" style={{ minWidth: '28px', height: '28px', borderRadius: '50%', backgroundColor: 'rgba(184,131,90,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', flexShrink: 0 }}>{i + 1}</span>
-                                            <p className="font-editorial text-[#2D2926]" style={{ fontSize: '16px', lineHeight: '1.5', opacity: 0.9, paddingTop: '4px' }}>{step}</p>
+                                        <div key={i} style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
+                                            <span className="font-editorial font-bold text-[#8C4005]" style={{ minWidth: '32px', height: '32px', borderRadius: '50%', backgroundColor: 'rgba(184,131,90,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', flexShrink: 0 }}>{i + 1}</span>
+                                            <p className="font-editorial text-[#2D2926]" style={{ fontSize: '18px', lineHeight: '1.6', opacity: 0.9 }}>{step}</p>
                                         </div>
                                     ));
                                 })()}
                             </div>
                         </div>
-
-                        {/* Portal reflections */}
-                        <div>
-                            <h3 className="font-editorial text-[#2D2926]" style={{ fontSize: '20px', marginBottom: '16px', borderBottom: '1px solid rgba(184,131,90,0.15)', paddingBottom: '8px' }}>
-                                Reflexiones de los Portales
-                            </h3>
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                                {Object.entries(data.reflections).map(([id, text], idx) => {
-                                    const portalTitles: Record<string, string> = {
-                                        portal1: 'Cierre Consciente', portal2: 'Foco y Dispersión',
-                                        portal3: 'Recuperar Mi Poder', portal4: 'Arquitectura de Orden',
-                                    };
-                                    const portalSubtitles: Record<string, string> = {
-                                        portal1: '¿Dónde se fue mi energía?', portal2: '¿Dónde perdí mi centro?',
-                                        portal3: 'Lo que dejo de cargar', portal4: 'Gestión Consciente de Energía',
-                                    };
-                                    return (
-                                        <div key={idx} style={{ padding: '16px', backgroundColor: '#F9F7F2', borderRadius: '12px', borderLeft: '2px solid rgba(184,131,90,0.4)' }}>
-                                            <span className="font-guide font-bold text-[#B8835A] uppercase tracking-widest" style={{ fontSize: '9px', display: 'block', marginBottom: '3px' }}>
-                                                Portal {idx + 1} · {portalTitles[id] || ''}
-                                            </span>
-                                            <p className="font-editorial text-[#8C4005] italic" style={{ fontSize: '9px', opacity: 0.6, marginBottom: '6px' }}>{portalSubtitles[id] || ''}</p>
-                                            <p className="font-editorial text-[#2D2926] italic" style={{ fontSize: '13px', opacity: 0.75, lineHeight: '1.4' }}>"{text}"</p>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </div>
                     </div>
 
-                    {/* Footer */}
                     <div style={{ padding: '10px 64px', borderTop: '1px solid rgba(184,131,90,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>yelitzerangeloficial.com</span>
-                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>03 / 04</span>
+                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>03 / {yoSoy ? '06' : '05'}</span>
                     </div>
                 </div>
 
-                {/* ── PAGE 4: YO SOY ── */}
+                {/* ── PAGE 4: PORTALES ── */}
+                <div className="min-h-[1120px] relative flex flex-col" style={{ backgroundColor: '#FFFFFF', pageBreakAfter: 'always' }}>
+                    <div style={{ backgroundColor: '#231916', padding: '14px 0 10px' }}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src="/assets/images/logo-yelitze-new.png" alt="Yelitze Rangel" style={{ height: '30px', margin: '0 auto', display: 'block' }} />
+                        <p style={{ color: '#B8835A', fontSize: '8px', textAlign: 'center', fontWeight: '700', letterSpacing: '0.3em', marginTop: '6px', textTransform: 'uppercase', fontFamily: 'sans-serif' }}>
+                            REFLEXIONES DE PORTALES
+                        </p>
+                    </div>
+                    <div style={{ height: '3px', backgroundColor: '#B8835A' }} />
+
+                    <div style={{ padding: '60px 64px', flex: 1, display: 'flex', flexDirection: 'column', gap: '32px' }}>
+                        <div>
+                            <h2 className="font-editorial text-[#2D2926]" style={{ fontSize: '40px', marginBottom: '4px' }}>Integración de Orden</h2>
+                            <p className="font-guide text-[#B8835A] uppercase tracking-[0.2em] text-[10px] font-bold">Puentes hacia tu nueva realidad</p>
+                            <div style={{ width: '60px', height: '2px', backgroundColor: '#B8835A', marginTop: '10px' }} />
+                        </div>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '20px' }}>
+                            {Object.entries(data.reflections).map(([id, text], idx) => {
+                                const portalTitles: Record<string, string> = {
+                                    portal1: 'Cierre Consciente', portal2: 'Foco y Dispersión',
+                                    portal3: 'Recuperar Mi Poder', portal4: 'Arquitectura de Orden',
+                                };
+                                const portalSubtitles: Record<string, string> = {
+                                    portal1: '¿Dónde se fue mi energía?', portal2: '¿Dónde perdí mi centro?',
+                                    portal3: 'Lo que dejo de cargar', portal4: 'Gestión Consciente de Energía',
+                                };
+                                return (
+                                    <div key={idx} style={{ padding: '24px 32px', backgroundColor: '#F9F7F2', borderRadius: '16px', borderLeft: '3px solid rgba(184,131,90,0.4)' }}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                                            <span className="font-guide font-bold text-[#B8835A] uppercase tracking-widest" style={{ fontSize: '10px' }}>
+                                                Portal {idx + 1} · {portalTitles[id] || ''}
+                                            </span>
+                                            <p className="font-editorial text-[#8C4005] italic" style={{ fontSize: '10px', opacity: 0.6 }}>{portalSubtitles[id] || ''}</p>
+                                        </div>
+                                        <p className="font-editorial text-[#2D2926] italic" style={{ fontSize: '16px', opacity: 0.85, lineHeight: '1.6' }}>"{text}"</p>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+
+                    <div style={{ padding: '10px 64px', borderTop: '1px solid rgba(184,131,90,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>yelitzerangeloficial.com</span>
+                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>04 / {yoSoy ? '06' : '05'}</span>
+                    </div>
+                </div>
+
+                {/* ── PAGE 5 (was 4): YO SOY ── */}
                 {yoSoy && (
                     <div className="min-h-[1120px] relative flex flex-col" style={{ backgroundColor: '#231916', pageBreakAfter: 'always' }}>
                         {/* Header */}
@@ -637,12 +649,12 @@ export default function FinalBoardStep({
                         {/* Footer */}
                         <div style={{ padding: '10px 64px', borderTop: '1px solid rgba(184,131,90,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                             <span className="font-guide" style={{ fontSize: '9px', color: 'rgba(184,131,90,0.6)' }}>yelitzerangeloficial.com</span>
-                            <span className="font-guide" style={{ fontSize: '9px', color: 'rgba(184,131,90,0.6)' }}>04 / 05</span>
+                            <span className="font-guide" style={{ fontSize: '9px', color: 'rgba(184,131,90,0.6)' }}>05 / 06</span>
                         </div>
                     </div>
                 )}
 
-                {/* ── PAGE 5 (was 4): MANIFIESTO Y COMPROMISO ── */}
+                {/* ── PAGE 6 (was 5): MANIFIESTO Y COMPROMISO ── */}
                 <div className="min-h-[1120px] relative flex flex-col" style={{ backgroundColor: '#FFFFFF' }}>
                     {/* Dark header band */}
                     <div style={{ backgroundColor: '#231916', padding: '14px 0 10px' }}>
@@ -654,40 +666,44 @@ export default function FinalBoardStep({
                     </div>
                     <div style={{ height: '3px', backgroundColor: '#B8835A' }} />
 
-                    <div style={{ padding: '40px 64px 24px', flex: 1, display: 'flex', flexDirection: 'column', gap: '32px' }}>
+                    <div style={{ padding: '60px 64px 24px', flex: 1, display: 'flex', flexDirection: 'column', gap: '32px' }}>
                         <div>
                             <h2 className="font-editorial text-[#2D2926]" style={{ fontSize: '40px', marginBottom: '4px' }}>Mi Nueva Realidad</h2>
-                            <div style={{ width: '60px', height: '2px', backgroundColor: '#B8835A' }} />
+                            <p className="font-guide text-[#B8835A] uppercase tracking-[0.2em] text-[10px] font-bold">Consagración de Intenciones</p>
+                            <div style={{ width: '60px', height: '2px', backgroundColor: '#B8835A', marginTop: '10px' }} />
                         </div>
 
                         {/* Manifesto quote */}
-                        <div style={{ textAlign: 'center', padding: '32px 48px', backgroundColor: '#F9F7F2', borderRadius: '20px' }}>
-                            <p className="font-guide font-bold text-[#8C4005] uppercase tracking-widest" style={{ fontSize: '10px', marginBottom: '16px', opacity: 0.7 }}>Declaración de Poder</p>
-                            <p className="font-editorial italic text-[#2D2926]" style={{ fontSize: '28px', lineHeight: '1.4' }}>
+                        <div style={{ textAlign: 'center', padding: '40px 48px', backgroundColor: '#F9F7F2', borderRadius: '24px', border: '1px solid rgba(184,131,90,0.1)' }}>
+                            <p className="font-guide font-bold text-[#8C4005] uppercase tracking-widest" style={{ fontSize: '10px', marginBottom: '20px', opacity: 0.7 }}>Declaración de Poder</p>
+                            <p className="font-editorial italic text-[#2D2926]" style={{ fontSize: '32px', lineHeight: '1.4' }}>
                                 "{data.analysis?.manifesto || 'Soy el arquitecto de mi propia paz y abundancia.'}"
                             </p>
-                            <div style={{ width: '60px', height: '1px', backgroundColor: 'rgba(184,131,90,0.4)', margin: '20px auto 0' }} />
+                            <div style={{ width: '80px', height: '1px', backgroundColor: 'rgba(184,131,90,0.4)', margin: '30px auto 0' }} />
                         </div>
 
                         {/* Release & Practice */}
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '20px' }}>
-                            <div style={{ backgroundColor: '#F9F7F2', padding: '28px 32px', borderRadius: '16px', borderLeft: '4px solid #8C4005' }}>
-                                <h4 className="font-guide font-bold text-[#8C4005] uppercase tracking-widest" style={{ fontSize: '10px', marginBottom: '10px' }}>Soberanía Sistémica / Lo que hoy suelto</h4>
-                                <p className="font-editorial text-[#2D2926]" style={{ fontSize: '20px', opacity: 0.9 }}>{data.analysis?.release || 'Las lealtades que ya no me pertenecen.'}</p>
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '24px' }}>
+                            <div style={{ backgroundColor: '#FDFBF7', padding: '32px 40px', borderRadius: '20px', borderLeft: '4px solid #8C4005' }}>
+                                <h4 className="font-guide font-bold text-[#8C4005] uppercase tracking-widest" style={{ fontSize: '11px', marginBottom: '12px' }}>Lo que hoy suelto</h4>
+                                <p className="font-editorial text-[#2D2926]" style={{ fontSize: '22px', opacity: 0.9 }}>{data.analysis?.release || 'Las lealtades que ya no me pertenecen.'}</p>
                             </div>
-                            <div style={{ backgroundColor: '#F9F7F2', padding: '28px 32px', borderRadius: '16px', borderLeft: '4px solid #B8835A' }}>
-                                <h4 className="font-guide font-bold text-[#B8835A] uppercase tracking-widest" style={{ fontSize: '10px', marginBottom: '10px' }}>Práctica Maestra / Mi ritual de orden</h4>
-                                <p className="font-editorial text-[#2D2926]" style={{ fontSize: '20px', opacity: 0.9 }}>{data.analysis?.practice || 'Habitar mi presente con intención diaria.'}</p>
+                            <div style={{ backgroundColor: '#FDFBF7', padding: '32px 40px', borderRadius: '20px', borderLeft: '4px solid #B8835A' }}>
+                                <h4 className="font-guide font-bold text-[#B8835A] uppercase tracking-widest" style={{ fontSize: '11px', marginBottom: '12px' }}>Mi práctica de orden</h4>
+                                <p className="font-editorial text-[#2D2926]" style={{ fontSize: '22px', opacity: 0.9 }}>{data.analysis?.practice || 'Habitar mi presente con intención diaria.'}</p>
                             </div>
                         </div>
                     </div>
 
                     {/* Footer */}
                     <div style={{ padding: '10px 64px', borderTop: '1px solid rgba(184,131,90,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span className="font-guide text-[#B8835A] italic font-editorial" style={{ fontSize: '9px', opacity: 0.6 }}>
+                        <span className="font-guide text-[#B8835A] italic font-editorial" style={{ fontSize: '10px', opacity: 0.6 }}>
                             "La arquitectura de tu vida es el reflejo del orden en tu alma."
                         </span>
-                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>{yoSoy ? '05 / 05' : '04 / 04'}</span>
+                        <span className="font-guide text-[#B8835A]" style={{ fontSize: '9px' }}>{yoSoy ? '06 / 06' : '05 / 05'}</span>
+                    </div>
+                </div>
+ide text-[#B8835A]" style={{ fontSize: '9px' }}>{yoSoy ? '05 / 05' : '04 / 04'}</span>
                     </div>
                 </div>
             </div>
