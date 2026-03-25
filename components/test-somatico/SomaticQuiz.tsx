@@ -218,33 +218,34 @@ export default function SomaticQuiz() {
             element.style.left = '-9999px';
             element.style.top = '0';
 
-            const canvas = await html2canvas(element, {
-                scale: 2,
-                useCORS: true,
-                logging: false,
-                backgroundColor: '#FDFBFA'
-            });
+            const images = Array.from(element.getElementsByTagName('img'));
+            await Promise.all(images.map(img => {
+                if (img.complete) return Promise.resolve();
+                return new Promise(resolve => {
+                    img.onload = resolve;
+                    img.onerror = resolve;
+                });
+            }));
 
-            const imgData = canvas.toDataURL('image/jpeg', 0.9);
             const pdf = new jsPDF('p', 'mm', 'a4');
             const pdfWidth = pdf.internal.pageSize.getWidth();
             const pdfHeight = pdf.internal.pageSize.getHeight();
             
-            // Calculate total pages based on canvas height vs A4 page height
-            const imgHeight = (canvas.height * pdfWidth) / canvas.width;
-            let heightLeft = imgHeight;
-            let position = 0;
+            // Capture each page (child div with class somatic-pdf-page)
+            const pages = Array.from(element.querySelectorAll('.somatic-pdf-page'));
+            
+            for (let i = 0; i < pages.length; i++) {
+                const page = pages[i] as HTMLElement;
+                const canvas = await html2canvas(page, {
+                    scale: 2,
+                    useCORS: true,
+                    logging: false,
+                    backgroundColor: '#FDFBFA'
+                });
 
-            // Add first page
-            pdf.addImage(imgData, 'JPEG', 0, position, pdfWidth, imgHeight);
-            heightLeft -= pdfHeight;
-
-            // Add more pages if content overflows
-            while (heightLeft > 0) {
-                position = heightLeft - imgHeight;
-                pdf.addPage();
-                pdf.addImage(imgData, 'JPEG', 0, position, pdfWidth, imgHeight);
-                heightLeft -= pdfHeight;
+                const imgData = canvas.toDataURL('image/jpeg', 0.9);
+                if (i > 0) pdf.addPage();
+                pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
             }
 
             pdf.save(`Diagnostico_Somatico_${name.replace(/\s+/g, '_')}.pdf`);
@@ -646,65 +647,93 @@ export default function SomaticQuiz() {
             <div 
                 ref={pdfContentRef} 
                 className="hidden" 
-                style={{ width: '210mm', backgroundColor: '#FDFBFA', color: '#2D2926', fontFamily: 'serif' }}
+                style={{ width: '210mm' }}
             >
-                {/* PDF Header */}
-                <div style={{ backgroundColor: '#F5EFE6', padding: '40px 60px', borderBottom: '2px solid #B8835A30', textAlign: 'center' }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/assets/images/logo-color.png" alt="Logo" style={{ height: '60px', margin: '0 auto 20px' }} />
-                    <h1 style={{ fontSize: '32px', fontStyle: 'italic', color: '#8C4005', margin: 0 }}>Diagnóstico de Reconexión Somática</h1>
-                    <p style={{ letterSpacing: '0.3em', fontSize: '10px', marginTop: '10px', fontWeight: 'bold', color: '#B8835A' }}>PROCESO PERSONALIZADO 2026</p>
+                {/* --- PAGE 1: DIAGNOSIS --- */}
+                <div 
+                    className="somatic-pdf-page"
+                    style={{ minHeight: '1120px', backgroundColor: '#FDFBFA', color: '#2D2926', fontFamily: 'serif', padding: 0 }}
+                >
+                    {/* PDF Header */}
+                    <div style={{ backgroundColor: '#F5EFE6', padding: '40px 60px', borderBottom: '2px solid #B8835A30', textAlign: 'center' }}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src="/assets/images/logo-color.png" alt="Logo" style={{ height: '60px', margin: '0 auto 20px' }} />
+                        <h1 style={{ fontSize: '32px', fontStyle: 'italic', color: '#8C4005', margin: 0 }}>Diagnóstico de Reconexión Somática</h1>
+                        <p style={{ letterSpacing: '0.3em', fontSize: '10px', marginTop: '10px', fontWeight: 'bold', color: '#B8835A' }}>PROCESO PERSONALIZADO 2026 • PÁGINA 1/2</p>
+                    </div>
+
+                    <div style={{ padding: '60px' }}>
+                        {/* User Info */}
+                        <div style={{ marginBottom: '40px', borderBottom: '1px solid #B8835A20', paddingBottom: '20px' }}>
+                            <p style={{ fontSize: '14px', textTransform: 'uppercase', opacity: 0.6 }}>Preparado para:</p>
+                            <h2 style={{ fontSize: '28px', margin: '5px 0' }}>{name}</h2>
+                        </div>
+
+                        {/* Stress Result */}
+                        <div style={{ backgroundColor: '#FDFBF7', padding: '30px', borderRadius: '20px', borderLeft: '5px solid #8C4005', marginBottom: '40px' }}>
+                            <h3 style={{ margin: '0 0 10px 0', color: '#8C4005', fontStyle: 'italic' }}>Tu Estado Actual</h3>
+                            <p style={{ fontSize: '20px', fontWeight: 'bold', margin: '0 0 10px 0' }}>{stressResult.type}</p>
+                            <p style={{ fontSize: '16px', opacity: 0.8, lineHeight: '1.6' }}>{stressResult.desc}</p>
+                        </div>
+
+                        {/* AI Analysis */}
+                        {aiResult && (
+                            <div style={{ marginBottom: '40px' }}>
+                                <h3 style={{ fontSize: '18px', textTransform: 'uppercase', letterSpacing: '0.2em', color: '#B8835A', marginBottom: '20px' }}>Análisis Maestro de Yelitze</h3>
+                                <div style={{ fontSize: '17px', lineHeight: '1.8', fontStyle: 'italic', backgroundColor: 'white', padding: '30px', borderRadius: '20px', border: '1px solid #B8835A15' }}>
+                                    {aiResult.personalized_analysis}
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
 
-                <div style={{ padding: '60px' }}>
-                    {/* User Info */}
-                    <div style={{ marginBottom: '40px', borderBottom: '1px solid #B8835A20', paddingBottom: '20px' }}>
-                        <p style={{ fontSize: '14px', textTransform: 'uppercase', opacity: 0.6 }}>Preparado para:</p>
-                        <h2 style={{ fontSize: '28px', margin: '5px 0' }}>{name}</h2>
+                {/* --- PAGE 2: PRACTICES & CLOSURE --- */}
+                <div 
+                    className="somatic-pdf-page"
+                    style={{ minHeight: '1120px', backgroundColor: '#FDFBFA', color: '#2D2926', fontFamily: 'serif', padding: 0 }}
+                >
+                    <div style={{ backgroundColor: '#F5EFE6', padding: '20px 60px', borderBottom: '1px solid #B8835A15', textAlign: 'center' }}>
+                        <p style={{ letterSpacing: '0.1em', fontSize: '10px', fontWeight: 'bold', color: '#B8835A', margin: 0 }}>RECURSOS DE SOSTENIBILIDAD • PÁGINA 2/2</p>
                     </div>
 
-                    {/* Stress Result */}
-                    <div style={{ backgroundColor: '#FDFBF7', padding: '30px', borderRadius: '20px', borderLeft: '5px solid #8C4005', marginBottom: '40px' }}>
-                        <h3 style={{ margin: '0 0 10px 0', color: '#8C4005', fontStyle: 'italic' }}>Tu Estado Actual</h3>
-                        <p style={{ fontSize: '20px', fontWeight: 'bold', margin: '0 0 10px 0' }}>{stressResult.type}</p>
-                        <p style={{ fontSize: '16px', opacity: 0.8, lineHeight: '1.6' }}>{stressResult.desc}</p>
-                    </div>
-
-                    {/* AI Analysis */}
-                    {aiResult && (
-                        <div style={{ marginBottom: '40px' }}>
-                            <h3 style={{ fontSize: '18px', textTransform: 'uppercase', letterSpacing: '0.2em', color: '#B8835A', marginBottom: '20px' }}>Análisis Maestro de Yelitze</h3>
-                            <div style={{ fontSize: '17px', lineHeight: '1.8', fontStyle: 'italic', backgroundColor: 'white', padding: '30px', borderRadius: '20px', border: '1px solid #B8835A15' }}>
-                                {aiResult.personalized_analysis}
+                    <div style={{ padding: '60px', flex: 1 }}>
+                        {/* Dynamic Exercises - NOW FULLY ON PAGE 2 */}
+                        <div style={{ marginBottom: '50px' }}>
+                            <h3 style={{ fontSize: '24px', fontStyle: 'italic', color: '#8C4005', marginBottom: '30px', textAlign: 'center' }}>Prácticas de Sostenimiento Sugeridas</h3>
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                                {recommendedExercises.map((ex, idx) => (
+                                    <div key={idx} style={{ backgroundColor: '#FDFBF7', padding: '25px', borderRadius: '20px', border: '1px solid #B8835A10' }}>
+                                        <h4 style={{ color: '#8C4005', fontSize: '18px', margin: '0 0 12px 0' }}>{ex.title}</h4>
+                                        <p style={{ fontSize: '15px', opacity: 0.75, lineHeight: '1.5', margin: 0 }}>{ex.desc}</p>
+                                    </div>
+                                ))}
                             </div>
                         </div>
-                    )}
 
-                    {/* Resources for sustainability - DYNAMIC SECTION */}
-                    <div style={{ marginBottom: '40px' }}>
-                        <h3 style={{ fontSize: '14px', textTransform: 'uppercase', letterSpacing: '0.2em', color: '#B8835A', marginBottom: '20px', textAlign: 'center' }}>Recursos de Sostenibilidad / Prácticas de Sostenimiento</h3>
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-                            {recommendedExercises.map((ex, idx) => (
-                                <div key={idx} style={{ backgroundColor: '#FDFBF7', padding: '20px', borderRadius: '15px' }}>
-                                    <h4 style={{ color: '#8C4005', fontSize: '16px', margin: '0 0 10px 0' }}>{ex.title}</h4>
-                                    <p style={{ fontSize: '13px', opacity: 0.7, margin: 0 }}>{ex.desc}</p>
-                                </div>
-                            ))}
+                        {/* Reflection */}
+                        {reflection && (
+                            <div style={{ marginBottom: '50px', backgroundColor: 'white', padding: '30px', borderRadius: '20px', border: '1px solid rgba(184,131,90,0.1)' }}>
+                                <h3 style={{ fontSize: '12px', opacity: 0.5, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '15px' }}>Tu Reflexión Inicial</h3>
+                                <p style={{ fontSize: '15px', color: '#4A3B32', fontStyle: 'italic', lineHeight: '1.6' }}>"{reflection}"</p>
+                            </div>
+                        )}
+
+                        {/* Quote & Closure */}
+                        <div style={{ marginTop: '80px', textAlign: 'center', borderTop: '1px solid #B8835A20', paddingTop: '60px' }}>
+                            <p style={{ fontStyle: 'italic', fontSize: '22px', color: '#8C4005', marginBottom: '40px', maxWidth: '80%', margin: '0 auto 40px' }}>
+                                "No es magia, es orden. Restaura el orden y el equilibrio llega por añadidura."
+                            </p>
+                            
+                            {/* Final Logo */}
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src="/assets/images/logo-color.png" alt="Logo Yelitze" style={{ height: '70px', margin: '0 auto 20px', opacity: 0.9 }} />
+                            
+                            <p style={{ fontSize: '11px', opacity: 0.5, letterSpacing: '0.3em', fontWeight: 'bold' }}>
+                                YELITZE RANGEL • COACH ANCESTRAL • 2026
+                            </p>
+                            <p style={{ fontSize: '10px', opacity: 0.4, marginTop: '8px' }}>YELITZERANGELOFICIAL.COM</p>
                         </div>
-                    </div>
-
-                    {/* Reflection */}
-                    {reflection && (
-                        <div style={{ marginBottom: '40px' }}>
-                            <h3 style={{ fontSize: '12px', opacity: 0.5, textTransform: 'uppercase', marginBottom: '10px' }}>Tu Reflexión Inicial</h3>
-                            <p style={{ fontSize: '14px', opacity: 0.7 }}>"{reflection}"</p>
-                        </div>
-                    )}
-
-                    {/* CTA/Footer */}
-                    <div style={{ marginTop: '60px', paddingTop: '40px', borderTop: '1px solid #B8835A20', textAlign: 'center' }}>
-                        <p style={{ fontStyle: 'italic', fontSize: '18px', color: '#8C4005', marginBottom: '20px' }}>"No es magia, es orden. Restaura el orden y el equilibrio llega por añadidura."</p>
-                        <p style={{ fontSize: '10px', opacity: 0.4 }}>YELITZE RANGEL • COACH ANCESTRAL • YELITZERANGELOFICIAL.COM</p>
                     </div>
                 </div>
             </div>
