@@ -149,10 +149,10 @@ export default function BonosVenezuelaPage() {
                                 <div className="flex flex-col md:flex-row items-center gap-8 w-full max-w-lg">
                                     <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-[#B8835A]/30 shadow-xl">
                                         <Image
-                                            src="/assets/images/about-portrait-new.jpg"
+                                            src="/assets/images/yelitze-insta-bonos.png"
                                             alt="Yelitze Rangel"
                                             fill
-                                            className="object-cover"
+                                            className="object-cover object-top"
                                         />
                                     </div>
                                     <div className="text-left flex-grow">
