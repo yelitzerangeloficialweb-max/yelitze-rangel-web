@@ -134,6 +134,39 @@ export default function SomaticQuiz() {
         };
     }, [answers]);
 
+    const recommendedExercises = useMemo(() => {
+        const type = stressResult.type;
+        
+        if (type.includes("Supervivencia")) {
+            return [
+                { title: "Sonido VOO", desc: "Vibración profunda que regula el nervio vago y despierta el diafragma." },
+                { title: "Vibración Consciente", desc: "Sacudidas muy suaves de las manos para soltar la energía de congelamiento." },
+                { title: "Apoyo en el Suelo", desc: "Acostarse con las rodillas dobladas para permitir que el psoas empiece a ceder." }
+            ];
+        }
+        if (type.includes("Anticipación")) {
+            return [
+                { title: "Liberación de Psoas", desc: "Estiramiento suave estilo corredor para soltar la tensión del diafragma." },
+                { title: "Respiración Abdominal", desc: "Habitar el vientre para expandir la fascia endurecida por la alerta." },
+                { title: "Mirada Orientativa", desc: "Mirar lentamente el espacio para indicar al cerebro que no hay peligro inminente." }
+            ];
+        }
+        if (type.includes("Hipersensibilidad")) {
+            return [
+                { title: "Contención Física", desc: "Manos al pecho para sentir tus límites físicos y calmar la desregulación." },
+                { title: "Foco Visual", desc: "Mirar un punto fijo para estabilizar el sistema nervioso cuando está saturado." },
+                { title: "Voz Suave", desc: "Tararear un tono constante para masajear internamente los tejidos del cuello." }
+            ];
+        }
+        
+        // Default / Optimal
+        return [
+            { title: "Expansión Fascial", desc: "Estiramientos globales lentos para mantener la elasticidad biológica." },
+            { title: "Respiración Coherente", desc: "Ritmo constante para mantener el equilibrio entre alerta y calma." },
+            { title: "Escucha Interna", desc: "Sentir el pulso y la temperatura para fortalecer la interocepsión." }
+        ];
+    }, [stressResult.type]);
+
     const handleAnswer = (value: number) => {
         const newAnswers = { ...answers, [currentQuestion.id]: value };
         setAnswers(newAnswers);
@@ -195,11 +228,26 @@ export default function SomaticQuiz() {
             const imgData = canvas.toDataURL('image/jpeg', 0.9);
             const pdf = new jsPDF('p', 'mm', 'a4');
             const pdfWidth = pdf.internal.pageSize.getWidth();
-            const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+            const pdfHeight = pdf.internal.pageSize.getHeight();
             
-            pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+            // Calculate total pages based on canvas height vs A4 page height
+            const imgHeight = (canvas.height * pdfWidth) / canvas.width;
+            let heightLeft = imgHeight;
+            let position = 0;
+
+            // Add first page
+            pdf.addImage(imgData, 'JPEG', 0, position, pdfWidth, imgHeight);
+            heightLeft -= pdfHeight;
+
+            // Add more pages if content overflows
+            while (heightLeft > 0) {
+                position = heightLeft - imgHeight;
+                pdf.addPage();
+                pdf.addImage(imgData, 'JPEG', 0, position, pdfWidth, imgHeight);
+                heightLeft -= pdfHeight;
+            }
+
             pdf.save(`Diagnostico_Somatico_${name.replace(/\s+/g, '_')}.pdf`);
-            
             element.style.display = 'none';
         } catch (error) {
             console.error("Error generating local PDF:", error);
@@ -556,11 +604,10 @@ export default function SomaticQuiz() {
                                 <span className="text-[#8C4005] font-bold tracking-[0.2em] uppercase text-[10px] block font-guide">Recursos de sostenibilidad</span>
                                 <h4 className="text-3xl md:text-4xl font-editorial text-[#2D2926]">Prácticas de Sostenimiento</h4>
                             </div>
-                            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                                <ExerciseCard title="Vibración" desc="Movimiento suave para soltar cargas." />
-                                <ExerciseCard title="Mirada" desc="Orienta tu sistema al espacio seguro." />
-                                <ExerciseCard title="Voz (VOO)" desc="Regula el nervio vago profundamente." />
-                                <ExerciseCard title="Respiración" desc="Habita el aire en tu fascia corporal." />
+                            <div className="grid md:grid-cols-3 gap-6">
+                                {recommendedExercises.map((ex, idx) => (
+                                    <ExerciseCard key={idx} title={ex.title} desc={ex.desc} />
+                                ))}
                             </div>
                         </div>
 
@@ -632,6 +679,19 @@ export default function SomaticQuiz() {
                             </div>
                         </div>
                     )}
+
+                    {/* Resources for sustainability - DYNAMIC SECTION */}
+                    <div style={{ marginBottom: '40px' }}>
+                        <h3 style={{ fontSize: '14px', textTransform: 'uppercase', letterSpacing: '0.2em', color: '#B8835A', marginBottom: '20px', textAlign: 'center' }}>Recursos de Sostenibilidad / Prácticas de Sostenimiento</h3>
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                            {recommendedExercises.map((ex, idx) => (
+                                <div key={idx} style={{ backgroundColor: '#FDFBF7', padding: '20px', borderRadius: '15px' }}>
+                                    <h4 style={{ color: '#8C4005', fontSize: '16px', margin: '0 0 10px 0' }}>{ex.title}</h4>
+                                    <p style={{ fontSize: '13px', opacity: 0.7, margin: 0 }}>{ex.desc}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
 
                     {/* Reflection */}
                     {reflection && (
