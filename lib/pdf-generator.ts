@@ -684,3 +684,131 @@ export async function generateSomaticPDF(name: string, analysis: any, stressResu
 
     return Buffer.from(pdf.output('arraybuffer'));
 }
+
+export async function generateGenericTestPDF(name: string, testTitle: string, analysis: string) {
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    const margin = 20;
+    
+    const logoData = loadImageAsBase64('assets/images/logo-yelitze-new.png');
+    const watermarkData = loadImageAsBase64('assets/images/watermark-logo.png');
+
+    // Background
+    pdf.setFillColor(253, 251, 248);
+    pdf.rect(0, 0, pageWidth, pageHeight, 'F');
+
+    // Watermark
+    if (watermarkData) {
+        try {
+            pdf.saveGraphicsState();
+            pdf.setGState((pdf as any).GState({ opacity: 0.05 }));
+            const sz = 120;
+            pdf.addImage(watermarkData, 'PNG', (pageWidth - sz) / 2, (pageHeight - sz) / 2, sz, sz);
+            pdf.restoreGraphicsState();
+        } catch {}
+    }
+
+    // Header Band
+    pdf.setFillColor(45, 41, 38);
+    pdf.rect(0, 0, pageWidth, 35, 'F');
+    if (logoData) {
+        try { pdf.addImage(logoData, 'PNG', margin, 7, 45, 15); } catch {}
+    }
+    
+    pdf.setTextColor(184, 131, 90);
+    pdf.setFontSize(8);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text(testTitle.toUpperCase(), margin, 28);
+
+    // Content
+    let y = 55;
+    pdf.setTextColor(140, 64, 5);
+    pdf.setFontSize(24);
+    pdf.setFont('times', 'bolditalic');
+    pdf.text(`Hola, ${name.split(' ')[0]}.`, margin, y);
+    y += 12;
+
+    pdf.setFillColor(184, 131, 90);
+    pdf.rect(margin, y, 60, 0.5, 'F');
+    y += 15;
+
+    pdf.setTextColor(45, 41, 38);
+    pdf.setFontSize(11);
+    pdf.setFont('helvetica', 'normal');
+    
+    const paragraphs = analysis.split('\n').filter(p => p.trim() !== '');
+    paragraphs.forEach(paragraph => {
+        // If it looks like a header (starts with ** or #)
+        const isHeader = paragraph.startsWith('**') || paragraph.startsWith('#');
+        
+        if (isHeader) {
+            pdf.setFont('helvetica', 'bold');
+            pdf.setTextColor(140, 64, 5);
+            
+            // Determine font size based on level
+            let fontSize = 12;
+            if (paragraph.startsWith('# ')) fontSize = 18;
+            else if (paragraph.startsWith('## ')) fontSize = 15;
+            else if (paragraph.startsWith('### ')) fontSize = 13;
+            
+            pdf.setFontSize(fontSize);
+            
+            const clean = paragraph.replace(/^#+\s+/, '').replace(/\*\*/g, '');
+            const lines = pdf.splitTextToSize(clean, pageWidth - margin * 2);
+            pdf.text(lines, margin, y);
+            y += (lines.length * (fontSize * 0.5)) + 4;
+            
+            pdf.setFont('helvetica', 'normal');
+            pdf.setTextColor(45, 41, 38);
+            pdf.setFontSize(11);
+        } else {
+            const lines = pdf.splitTextToSize(paragraph, pageWidth - margin * 2);
+            pdf.text(lines, margin, y);
+            y += (lines.length * 6) + 3;
+        }
+
+        if (y > pageHeight - 30) {
+            pdf.addPage();
+            pdf.setFillColor(253, 251, 248);
+            pdf.rect(0, 0, pageWidth, pageHeight, 'F');
+            y = 20;
+        }
+    });
+
+    // Signature
+    y += 15;
+    if (y > pageHeight - 40) {
+        pdf.addPage();
+        y = 30;
+    }
+    
+    pdf.setTextColor(184, 131, 90);
+    pdf.setFontSize(10);
+    pdf.setFont('helvetica', 'italic');
+    pdf.text('Con amor y certeza,', margin, y);
+    y += 8;
+    
+    pdf.setTextColor(140, 64, 5);
+    pdf.setFontSize(18);
+    pdf.setFont('times', 'italic');
+    pdf.text('Yelitze Rangel', margin, y);
+    y += 6;
+    
+    pdf.setTextColor(184, 131, 90);
+    pdf.setFontSize(9);
+    pdf.setFont('helvetica', 'normal');
+    pdf.text('Tu Coach Ancestral', margin, y);
+
+    // Footer
+    const totalPages = pdf.getNumberOfPages();
+    for (let i = 1; i <= totalPages; i++) {
+        pdf.setPage(i);
+        pdf.setFontSize(7);
+        pdf.setTextColor(184, 131, 90);
+        pdf.text('yelitzerangeloficial.com  \u2022  2026', margin, pageHeight - 10);
+        pdf.text(`P\u00C1GINA ${i}/${totalPages}`, pageWidth - margin, pageHeight - 10, { align: 'right' });
+    }
+
+    return Buffer.from(pdf.output('arraybuffer'));
+}

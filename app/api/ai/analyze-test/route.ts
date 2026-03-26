@@ -101,6 +101,27 @@ export async function POST(req: Request) {
             }
         }
 
+        // 4. SEND EMAIL (LIKE SOMATIC TEST)
+        if (userEmail && userEmail.includes('@')) {
+            try {
+                console.log(`[Analyze Test] Sending email for ${testTitle} to ${userEmail}...`);
+                const { sendGenericTestEmail } = await import('@/lib/mail');
+                const { generateGenericTestPDF } = await import('@/lib/pdf-generator');
+                
+                const pdfBuffer = await generateGenericTestPDF(userName || 'Explorador/a', testTitle, analysis);
+                await sendGenericTestEmail({
+                    email: userEmail,
+                    name: userName || 'Explorador/a',
+                    testTitle,
+                    analysis,
+                    pdfBuffer
+                });
+                console.log(`[Analyze Test] Email sent successfully`);
+            } catch (mailError) {
+                console.error('[Analyze Test Mail Error]:', mailError);
+            }
+        }
+
         return NextResponse.json({
             analysis,
             success: true,

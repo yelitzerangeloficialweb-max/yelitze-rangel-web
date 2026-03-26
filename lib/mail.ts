@@ -294,3 +294,84 @@ export const sendSomaticEmail = async ({
         return { success: false, error: err };
     }
 };
+
+export const sendGenericTestEmail = async ({
+    email,
+    name,
+    testTitle,
+    analysis,
+    pdfBuffer
+}: {
+    email: string,
+    name: string,
+    testTitle: string,
+    analysis: string,
+    pdfBuffer?: Buffer
+}) => {
+    try {
+        const logoUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/assets/images/logo-yelitze-new.png`;
+
+        console.log(`[Generic Test Mail] Sending ${testTitle} to: ${email}`);
+        const attachments = pdfBuffer ? [
+            {
+                filename: `Resultado_${testTitle.replace(/\s+/g, '_')}.pdf`,
+                content: pdfBuffer,
+            }
+        ] : [];
+
+        const { data, error } = await resend.emails.send({
+            from: 'Yelitze Rangel <info@yelitzerangeloficial.com>',
+            to: [email],
+            subject: `Tu Resultado: ${testTitle} 🌿`,
+            text: `Hola ${name}, aquí tienes el resultado de tu test: ${testTitle}.`,
+            attachments,
+            html: `
+                <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background-color: #FDFBFA; border-radius: 32px; overflow: hidden; border: 1px solid #B8835A20;">
+                    <div style="background-color: #2D2926; padding: 40px 20px; text-align: center;">
+                        <img src="${logoUrl}" alt="Yelitze Rangel" style="max-width: 150px; height: auto; margin-bottom: 20px;">
+                        <h1 style="color: #FDFBFA; margin: 0; font-size: 16px; letter-spacing: 2px; text-transform: uppercase;">${testTitle}</h1>
+                    </div>
+                    
+                    <div style="padding: 50px 40px; color: #2D2926; line-height: 1.8;">
+                        <h2 style="color: #8C4005; font-size: 24px; margin-bottom: 30px;">Hola, ${name}.</h2>
+                        
+                        <p style="font-size: 16px; color: #4A4540; margin-bottom: 30px;">
+                            Has dado un paso valioso al realizar este test. El autoconocimiento es la base de cualquier transformación real. Aquí tienes el análisis de tus respuestas:
+                        </p>
+
+                        <div style="background-color: white; padding: 30px; border-radius: 20px; border: 1px solid #B8835A15; margin-bottom: 40px; font-size: 16px; color: #2D2926;">
+                            ${analysis.replace(/\n/g, '<br/>')}
+                        </div>
+
+                        ${pdfBuffer ? `
+                        <div style="margin-bottom: 30px; text-align: center; background-color: #F5EFE6; padding: 20px; border-radius: 15px;">
+                            <p style="font-size: 14px; color: #8C4005; font-weight: bold; margin: 0;">
+                                Hemos adjuntado tu reporte completo en formato PDF a este correo para que puedas conservarlo.
+                            </p>
+                        </div>
+                        ` : ''}
+                        
+                        <p style="margin-top: 50px; text-align: center; color: #8C4005; font-weight: bold; font-style: italic;">
+                            "No es magia, es orden."
+                        </p>
+                    </div>
+                    
+                    <div style="background-color: #EFE9E0; padding: 30px; text-align: center; color: #3C2A21; font-size: 12px;">
+                        <p style="margin: 0;"><strong>YELITZE RANGEL</strong></p>
+                        <p style="margin-top: 5px; opacity: 0.6;">Tu Coach Ancestral</p>
+                    </div>
+                </div>
+            `
+        });
+
+        if (error) {
+            console.error('[Generic Test Mail] Resend error:', error);
+            return { success: false, error };
+        }
+
+        return { success: true, data };
+    } catch (err) {
+        console.error('Generic test mail error:', err);
+        return { success: false, error: err };
+    }
+};
