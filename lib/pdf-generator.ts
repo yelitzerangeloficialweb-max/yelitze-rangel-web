@@ -44,38 +44,29 @@ export async function generateVisionBoardPDF(input: VisionBoardPDFInput) {
     const isMale = gender === 'hombre';
     let y = 30;
 
-    const logoData = loadImageAsBase64('assets/images/logo-color.png');
+    const logoData = loadImageAsBase64('assets/images/logo-yelitze-new.png');
     const watermarkData = loadImageAsBase64('assets/images/watermark-logo.png');
 
-    const addLogo = () => {
-        if (!logoData) return;
-        try { pdf.addImage(logoData, 'PNG', pageWidth - margin - 32, 7, 32, 11); } catch { /* skip */ }
-    };
-
-    const addWatermark = () => {
-        if (!watermarkData) return;
-        try {
-            pdf.saveGraphicsState();
-            pdf.setGState((pdf as any).GState({ opacity: 0.06 }));
-            const sz = 110;
-            pdf.addImage(watermarkData, 'PNG', (pageWidth - sz) / 2, (pageHeight - sz) / 2, sz, sz);
-            pdf.restoreGraphicsState();
-        } catch { /* skip if GState unsupported */ }
-    };
-
-    // Helper to add footer to every page
-    const addFooter = (pageNum: number, totalPages: number) => {
-        pdf.setFontSize(8);
-        pdf.setTextColor(184, 131, 90);
-        pdf.text(`PÁGINA 0${pageNum}/0${totalPages}`, pageWidth - margin, pageHeight - 10, { align: 'right' });
-        pdf.text('YELITZE RANGEL • Tu Coach Ancestral • 2026', margin, pageHeight - 10);
+    // Helper to add decorations to any page (background, logo, watermark)
+    const addDecorations = (withWatermark = true) => {
+        if (logoData) {
+            try { pdf.addImage(logoData, 'PNG', pageWidth - margin - 32, 7, 32, 11); } catch { /* skip */ }
+        }
+        if (withWatermark && watermarkData) {
+            try {
+                pdf.saveGraphicsState();
+                pdf.setGState((pdf as any).GState({ opacity: 0.06 }));
+                const sz = 110;
+                pdf.addImage(watermarkData, 'PNG', (pageWidth - sz) / 2, (pageHeight - sz) / 2, sz, sz);
+                pdf.restoreGraphicsState();
+            } catch { /* skip */ }
+        }
     };
 
     // --- PAGE 1: CARTA DE YELITZE ---
     pdf.setFillColor(249, 247, 242);
     pdf.rect(0, 0, pageWidth, pageHeight, 'F');
-    addLogo();
-    addWatermark();
+    addDecorations();
 
     // Header Line
     pdf.setDrawColor(140, 64, 5);
@@ -136,54 +127,46 @@ export async function generateVisionBoardPDF(input: VisionBoardPDFInput) {
         y += (lines.length * 6) + 3;
     });
 
-    addFooter(1, 3);
-
-    // --- PAGE 2: TABLERO VISUAL ---
+    // --- PAGE 2: TABLERO VISUAL (TABLERO MAESTRO) ---
     pdf.addPage();
     pdf.setFillColor(255, 255, 255);
     pdf.rect(0, 0, pageWidth, pageHeight, 'F');
-    addLogo();
-    addWatermark();
+    addDecorations();
 
     y = 25;
-    pdf.setTextColor(140, 64, 5);
-    pdf.setFontSize(10);
+    pdf.setTextColor(184, 131, 90);
+    pdf.setFontSize(9);
     pdf.setFont('helvetica', 'bold');
-    pdf.text('ESTRUCTURA VISUAL 2026', pageWidth / 2, y, { align: 'center' });
-    y += 10;
-    pdf.setFontSize(24);
+    pdf.text('DISEÑO DE REALIDAD 2026', pageWidth / 2, y, { align: 'center' });
+    y += 8;
+    pdf.setFontSize(26);
     pdf.setTextColor(45, 41, 38);
-    pdf.text('Tablero de Visión', pageWidth / 2, y, { align: 'center' });
+    pdf.text('Tablero Maestro', pageWidth / 2, y, { align: 'center' });
 
-    // Render pillars in a grid-like structure
     const renderPillarBox = (p: PillarInput, x: number, yPos: number, label: string) => {
         pdf.setDrawColor(184, 131, 90);
         pdf.setLineWidth(0.3);
         pdf.rect(x, yPos, 50, 65, 'S');
-
         pdf.setFillColor(140, 64, 5);
         pdf.rect(x, yPos, 50, 5, 'F');
         pdf.setTextColor(255, 255, 255);
         pdf.setFontSize(6);
         pdf.text(label, x + 25, yPos + 3.5, { align: 'center' });
-
         pdf.setFillColor(249, 247, 242);
         pdf.rect(x + 5, yPos + 8, 40, 30, 'F');
-
         if (p.images && p.images.length > 0) {
             try {
                 const imgData = p.images.length >= 4 ? p.images[3] : p.images[0];
                 if (imgData.startsWith('data:image')) {
                     pdf.addImage(imgData, 'JPEG', x + 5, yPos + 8, 40, 30);
                 }
-            } catch { /* silently skip invalid image data */ }
+            } catch { /* skip */ }
         }
-        pdf.setFontSize(7);
+        pdf.setFontSize(7.5);
         pdf.setFont('helvetica', 'bold');
         pdf.setTextColor(45, 41, 38);
         const titleLines = pdf.splitTextToSize(p.title || '', 40);
         pdf.text(titleLines, x + 25, yPos + 45, { align: 'center' });
-
         pdf.setTextColor(140, 64, 5);
         pdf.setFontSize(6);
         const actionLines = pdf.splitTextToSize(p.action || '', 40);
@@ -193,7 +176,7 @@ export async function generateVisionBoardPDF(input: VisionBoardPDFInput) {
     const centerX = pageWidth / 2;
     const centerY = pageHeight / 2;
 
-    if (pillars[0]) renderPillarBox(pillars[0], centerX - 25, 50, pillars[0].label);
+    if (pillars[0]) renderPillarBox(pillars[0], centerX - 25, 45, pillars[0].label);
     if (pillars[1]) renderPillarBox(pillars[1], margin, centerY - 32.5, pillars[1].label);
 
     // Central Circle Identity
@@ -201,7 +184,7 @@ export async function generateVisionBoardPDF(input: VisionBoardPDFInput) {
     pdf.setDrawColor(184, 131, 90);
     pdf.setLineWidth(0.4);
     pdf.circle(centerX, centerY, 25, 'FD');
-    pdf.setTextColor(140, 64, 5);
+    pdf.setTextColor(184, 131, 90);
     pdf.setFontSize(6);
     pdf.text('CENTRADO EN', centerX, centerY - 8, { align: 'center' });
     pdf.setTextColor(45, 41, 38);
@@ -212,115 +195,199 @@ export async function generateVisionBoardPDF(input: VisionBoardPDFInput) {
     pdf.text(idLines, centerX, centerY + 2, { align: 'center' });
 
     if (pillars[2]) renderPillarBox(pillars[2], pageWidth - margin - 50, centerY - 32.5, pillars[2].label);
-    if (pillars[3]) renderPillarBox(pillars[3], margin + 15, pageHeight - 100, pillars[3].label);
-    if (pillars[4]) renderPillarBox(pillars[4], pageWidth - margin - 65, pageHeight - 100, pillars[4].label);
+    if (pillars[3]) renderPillarBox(pillars[3], margin + 15, pageHeight - 95, pillars[3].label);
+    if (pillars[4]) renderPillarBox(pillars[4], pageWidth - margin - 65, pageHeight - 95, pillars[4].label);
 
-    addFooter(2, 3);
+    // --- PAGE 3: PORTALES Y REFLEXIONES ---
+    pdf.addPage();
+    pdf.setFillColor(253, 251, 247);
+    pdf.rect(0, 0, pageWidth, pageHeight, 'F');
+    addDecorations();
 
-    // --- PAGE 3: BITÁCORA ---
+    y = 30;
+    pdf.setTextColor(184, 131, 90);
+    pdf.setFontSize(10);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('PORTALES DE PODER', margin, y);
+    y += 10;
+    pdf.setFontSize(22);
+    pdf.setTextColor(45, 41, 38);
+    pdf.text('Tus Reflexiones de Apertura', margin, y);
+    y += 15;
+
+    portals.forEach((portal, idx) => {
+        pdf.setFillColor(255, 255, 255);
+        pdf.setDrawColor(184, 131, 90, 0.3);
+        pdf.rect(margin, y, pageWidth - margin * 2, 35, 'FD');
+        
+        pdf.setTextColor(140, 64, 5);
+        pdf.setFontSize(7.5);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text(`PORTAL 0${idx + 1}: ${portal.label.toUpperCase()}`, margin + 8, y + 8);
+        
+        pdf.setTextColor(65, 58, 52);
+        pdf.setFontSize(10);
+        pdf.setFont('helvetica', 'italic');
+        const lines = pdf.splitTextToSize(`"${portal.text}"`, pageWidth - margin * 2 - 16);
+        pdf.text(lines, margin + 8, y + 18);
+        y += 42;
+    });
+
+    // --- PAGE 4: BITÁCORA DE OBRA I (PILOTES 1-3) ---
     pdf.addPage();
     pdf.setFillColor(255, 255, 255);
     pdf.rect(0, 0, pageWidth, pageHeight, 'F');
-    addLogo();
-    addWatermark();
+    addDecorations();
 
-    y = 25;
-    pdf.setTextColor(140, 64, 5);
+    y = 30;
+    pdf.setTextColor(184, 131, 90);
     pdf.setFontSize(10);
     pdf.setFont('helvetica', 'bold');
-    pdf.text('BITÁCORA DE CONSTRUCCIÓN', pageWidth / 2, y, { align: 'center' });
+    pdf.text('BITÁCORA DE OBRA I', margin, y);
     y += 10;
+    pdf.setFontSize(22);
     pdf.setTextColor(45, 41, 38);
-    pdf.setFontSize(20);
-    pdf.text(`La Ruta del ${isMale ? 'Arquitecto' : 'Arquitecta'}`, pageWidth / 2, y, { align: 'center' });
+    pdf.text('Desglose de Pilares', margin, y);
     y += 15;
 
-    // Actions Section
-    pdf.setFillColor(249, 247, 242);
-    pdf.rect(margin, y, pageWidth - margin * 2, 55, 'F');
-    let actionY = y + 8;
-    pdf.setTextColor(140, 64, 5);
-    pdf.setFontSize(11);
-    pdf.setFont('helvetica', 'bold');
-    pdf.text('PASOS DE ACCIÓN INMEDIATA', margin + 10, actionY);
-    actionY += 8;
-    pdf.setTextColor(45, 41, 38);
-    pdf.setFontSize(9);
-    pdf.setFont('helvetica', 'normal');
-
-    const actionSteps = (analysis.guide_steps && analysis.guide_steps.length > 0)
-        ? analysis.guide_steps
-        : pillars.map(p => p.action).filter(a => a && a.trim() !== '');
-
-    actionSteps.slice(0, 4).forEach((step: string, i: number) => {
-        const stepLines = pdf.splitTextToSize(`${i + 1}. ${step}`, pageWidth - margin * 2 - 20);
-        pdf.text(stepLines, margin + 10, actionY);
-        actionY += (stepLines.length * 4.5) + 1.5;
-    });
-
-    y += 65;
-
-    // Reflections Section
-    if (portals.length > 0) {
+    const renderPillarDetail = (p: PillarInput, idx: number) => {
+        pdf.setFillColor(249, 247, 242);
+        const boxH = 65;
+        pdf.rect(margin, y, pageWidth - margin * 2, boxH, 'F');
+        
         pdf.setTextColor(140, 64, 5);
-        pdf.setFontSize(11);
+        pdf.setFontSize(13);
         pdf.setFont('helvetica', 'bold');
-        pdf.text('REFLEXIONES DE LOS PORTALES', margin, y);
-        y += 8;
+        pdf.text(`${idx + 1}. ${p.label}`, margin + 8, y + 10);
+        
+        pdf.setFontSize(8.5);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text('INTENCIÓN:', margin + 8, y + 20);
+        pdf.setFont('helvetica', 'normal');
+        pdf.setTextColor(45, 41, 38);
+        pdf.text(pdf.splitTextToSize(p.intention || 'Sin intención definida.', pageWidth - margin * 2 - 35), margin + 32, y + 20);
 
-        portals.slice(0, 6).forEach((portal, idx) => {
-            const label = `P${idx + 1} (${portal.label}): `;
-            const lines = pdf.splitTextToSize(label + `"${portal.text}"`, pageWidth - margin * 2);
-            pdf.setTextColor(184, 131, 90);
-            pdf.setFont('helvetica', 'bolditalic');
-            pdf.setFontSize(8);
-            pdf.text(label, margin, y);
+        pdf.setTextColor(140, 64, 5);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text('DIRECCIÓN:', margin + 8, y + 32);
+        pdf.setFont('helvetica', 'normal');
+        pdf.setTextColor(45, 41, 38);
+        pdf.text(pdf.splitTextToSize(p.direction || 'Hacia el orden sistémico.', pageWidth - margin * 2 - 35), margin + 32, y + 32);
 
-            pdf.setTextColor(80, 80, 80);
-            pdf.setFont('helvetica', 'italic');
-            const labelWidth = pdf.getTextWidth(label);
-            pdf.text(pdf.splitTextToSize(`"${portal.text}"`, pageWidth - margin * 2 - labelWidth), margin + labelWidth, y);
+        pdf.setFillColor(35, 31, 28);
+        pdf.rect(margin + 8, y + 42, pageWidth - margin * 2 - 16, 16, 'F');
+        pdf.setTextColor(184, 131, 90);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text('ACCIÓN MAESTRA:', margin + 14, y + 52);
+        pdf.setTextColor(255, 255, 255);
+        pdf.setFont('helvetica', 'normal');
+        const actLines = pdf.splitTextToSize(p.action || 'Dar el primer paso.', pageWidth - margin * 2 - 55);
+        pdf.text(actLines, margin + 46, y + 52);
+        
+        y += boxH + 10;
+    };
 
-            y += (lines.length * 4) + 2;
-        });
-        y += 5;
-    }
+    if (pillars[0]) renderPillarDetail(pillars[0], 0);
+    if (pillars[1]) renderPillarDetail(pillars[1], 1);
+    if (pillars[2]) renderPillarDetail(pillars[2], 2);
 
-    // Manifesto Section
-    pdf.setFont('helvetica', 'bold');
-    pdf.setFontSize(11);
-    pdf.setTextColor(140, 64, 5);
-    pdf.text('MI MANIFIESTO DE PODER:', margin, y);
-    y += 7;
-    pdf.setTextColor(45, 41, 38);
-    pdf.setFont('helvetica', 'italic');
+    // --- PAGE 5: BITÁCORA DE OBRA II (PILOTES 4-5) ---
+    pdf.addPage();
+    pdf.setFillColor(255, 255, 255);
+    pdf.rect(0, 0, pageWidth, pageHeight, 'F');
+    addDecorations();
+    y = 30;
+    pdf.setTextColor(184, 131, 90);
     pdf.setFontSize(10);
-    const manifestoLines = pdf.splitTextToSize(analysis.manifesto || 'No hay manifiesto disponible.', pageWidth - margin * 2);
-    pdf.text(manifestoLines, margin, y);
-    y += (manifestoLines.length * 5) + 12;
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('BITÁCORA DE OBRA II', margin, y);
+    y += 25;
+
+    if (pillars[3]) renderPillarDetail(pillars[3], 3);
+    if (pillars[4]) renderPillarDetail(pillars[4], 4);
+
+    y += 10;
+    pdf.setFillColor(35, 25, 22);
+    const idBoxH = 40;
+    pdf.rect(margin, y, pageWidth - margin * 2, idBoxH, 'F');
+    pdf.setTextColor(184, 131, 90);
+    pdf.setFontSize(8);
+    pdf.text('NUEVA IDENTIDAD ARQUITECTÓNICA', pageWidth / 2, y + 10, { align: 'center' });
+    pdf.setTextColor(255, 255, 255);
+    pdf.setFontSize(24);
+    pdf.setFont('helvetica', 'bolditalic');
+    pdf.text(idText, pageWidth / 2, y + 25, { align: 'center' });
+
+    // --- PAGE 6: MANIFIESTO Y PRÁCTICA MAESTRA ---
+    pdf.addPage();
+    pdf.setFillColor(249, 247, 242);
+    pdf.rect(0, 0, pageWidth, pageHeight, 'F');
+    addDecorations();
+
+    y = 30;
+    pdf.setTextColor(140, 64, 5);
+    pdf.setFontSize(10);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('DECRETO DE PODER', pageWidth / 2, y, { align: 'center' });
+    y += 12;
+    pdf.setTextColor(45, 41, 38);
+    pdf.setFontSize(22);
+    pdf.text('Mi Manifiesto 2026', pageWidth / 2, y, { align: 'center' });
+    y += 20;
+
+    // Manifesto Box
+    pdf.setDrawColor(184, 131, 90);
+    pdf.setLineWidth(0.8);
+    const manLines = pdf.splitTextToSize(analysis.manifesto || 'Yo habito mi soberanía.', pageWidth - margin * 2 - 30);
+    const manH = manLines.length * 8 + 30;
+    pdf.rect(margin, y, pageWidth - margin * 2, manH, 'S');
+    pdf.setFont('helvetica', 'italic');
+    pdf.setFontSize(14);
+    pdf.setTextColor(65, 58, 52);
+    pdf.text(manLines, pageWidth / 2, y + 20, { align: 'center' });
+    y += manH + 20;
 
     // Release & Practice
-    pdf.setFont('helvetica', 'bold');
+    pdf.setTextColor(140, 64, 5);
     pdf.setFontSize(9);
-    pdf.setTextColor(140, 64, 5);
-    pdf.text('SOBERANÍA SISTÉMICA / LO QUE SUELTO:', margin, y);
-    y += 5;
-    pdf.setFont('helvetica', 'normal');
-    pdf.setTextColor(45, 41, 38);
-    const releaseLines = pdf.splitTextToSize(analysis.release || 'Lo que ya no me pertenece.', pageWidth - margin * 2);
-    pdf.text(releaseLines, margin, y);
-    y += (releaseLines.length * 4.5) + 8;
-
     pdf.setFont('helvetica', 'bold');
-    pdf.setTextColor(140, 64, 5);
-    pdf.text('PRÁCTICA MAESTRA / HÁBITO:', margin, y);
-    y += 5;
+    pdf.text('LO QUE SUELTO (SOBERANÍA):', margin, y);
     pdf.setFont('helvetica', 'normal');
-    pdf.setTextColor(45, 41, 38);
-    const practiceLines = pdf.splitTextToSize(analysis.practice || 'Mi ritual de orden diario.', pageWidth - margin * 2);
-    pdf.text(practiceLines, margin, y);
+    pdf.setTextColor(65, 58, 52);
+    pdf.text(pdf.splitTextToSize(analysis.release || 'Viejas lealtades.', pageWidth - margin * 2), margin, y + 5);
+    y += 15;
 
-    addFooter(3, 3);
+    pdf.setTextColor(140, 64, 5);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('RITUAL DE ORDEN DIARIO:', margin, y);
+    pdf.setFont('helvetica', 'normal');
+    pdf.setTextColor(65, 58, 52);
+    pdf.text(pdf.splitTextToSize(analysis.practice || 'Ritual de anclaje.', pageWidth - margin * 2), margin, y + 5);
+    y += 20;
+
+    // Final Action Steps
+    pdf.setFillColor(35, 31, 28);
+    pdf.rect(margin, y, pageWidth - margin * 2, 45, 'F');
+    pdf.setTextColor(184, 131, 90);
+    pdf.setFontSize(8.5);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('PASOS DE CONSTRUCCIÓN INMEDIATA:', margin + 10, y + 10);
+    pdf.setTextColor(255, 255, 255);
+    pdf.setFontSize(8);
+    pdf.setFont('helvetica', 'normal');
+    (analysis.guide_steps || []).slice(0, 3).forEach((step: string, i: number) => {
+        pdf.text(`• ${step}`, margin + 10, y + 20 + (i * 7));
+    });
+
+    // Final Footer Loop
+    const totalPages = pdf.getNumberOfPages();
+    for (let i = 1; i <= totalPages; i++) {
+        pdf.setPage(i);
+        pdf.setFontSize(8);
+        pdf.setTextColor(184, 131, 90);
+        pdf.text(`PÁGINA 0${i}/0${totalPages}`, pageWidth - margin, pageHeight - 10, { align: 'right' });
+        pdf.text('YELITZE RANGEL • Tu Coach Ancestral • 2026', margin, pageHeight - 10);
+    }
 
     return Buffer.from(pdf.output('arraybuffer'));
 }
