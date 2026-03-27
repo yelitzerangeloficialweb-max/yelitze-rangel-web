@@ -186,7 +186,7 @@ export default function FinalBoardStep({
                                          top: i === 0 ? '5%' : i === 1 ? '35%' : i === 2 ? '35%' : i === 3 ? '65%' : '65%',
                                          transform: i === 0 ? 'translateX(-50%)' : 'none'
                                      }}>
-                                    <div className="bg-[#8C4005] text-white text-[8px] text-center p-1 mb-1 font-bold">{p.label || p.title.toUpperCase()}</div>
+                                    <div className="bg-[#8C4005] text-white text-[8px] text-center p-1 mb-1 font-bold">{p.title.toUpperCase()}</div>
                                     <div className="h-24 bg-white overflow-hidden">
                                         {p.images?.[0] && <img src={p.images[0]} className="w-full h-full object-cover" />}
                                     </div>
@@ -238,7 +238,7 @@ export default function FinalBoardStep({
                         <div className="space-y-6">
                             {data.pillars.slice(0, 3).map((p, i) => (
                                 <div key={p.id} className="bg-[#F9F7F2] p-8 space-y-4">
-                                    <h4 className="text-[#8C4005] font-bold text-xl">{i + 1}. {p.label || p.title.toUpperCase()}</h4>
+                                    <h4 className="text-[#8C4005] font-bold text-xl">{i + 1}. {p.title.toUpperCase()}</h4>
                                     <div className="grid grid-cols-4 gap-4 text-sm">
                                         <div className="font-bold text-[#B8835A]">INTENCIÓN:</div>
                                         <div className="col-span-3 text-[#2D2926]">{p.intention}</div>
@@ -269,7 +269,7 @@ export default function FinalBoardStep({
                         <div className="space-y-6">
                             {data.pillars.slice(3, 5).map((p, i) => (
                                 <div key={p.id} className="bg-[#F9F7F2] p-8 space-y-4">
-                                    <h4 className="text-[#8C4005] font-bold text-xl">{i + 4}. {p.label || p.title.toUpperCase()}</h4>
+                                    <h4 className="text-[#8C4005] font-bold text-xl">{i + 4}. {p.title.toUpperCase()}</h4>
                                     <div className="grid grid-cols-4 gap-4 text-sm">
                                         <div className="font-bold text-[#B8835A]">INTENCIÓN:</div>
                                         <div className="col-span-3 text-[#2D2926]">{p.intention}</div>
