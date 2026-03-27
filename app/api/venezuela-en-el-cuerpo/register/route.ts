@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import { sendVenezuelaRegistrationEmail } from '@/lib/mail';
+import { sendVenezuelaRegistrationEmail, sendVenezuelaPostEventEmail } from '@/lib/mail';
 
 export async function POST(req: Request) {
     try {
