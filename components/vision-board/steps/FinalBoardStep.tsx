@@ -188,7 +188,7 @@ export default function FinalBoardStep({
                                      }}>
                                     <div className="bg-[#8C4005] text-white text-[8px] text-center p-1 mb-1 font-bold">{p.title.toUpperCase()}</div>
                                     <div className="h-24 bg-white overflow-hidden">
-                                        {p.images?.[0] && <img src={p.images[0]} className="w-full h-full object-cover" />}
+                                        {p.images && p.images.length > 0 && <img src={p.images[p.images.length - 1]} className="w-full h-full object-cover" />}
                                     </div>
                                     <div className="mt-2 text-[10px] font-bold text-center text-[#2D2926] truncate">{p.title}</div>
                                     <div className="mt-1 text-[8px] text-center text-[#8C4005] leading-tight line-clamp-2">{p.action}</div>

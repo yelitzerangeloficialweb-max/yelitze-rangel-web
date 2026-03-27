@@ -156,7 +156,7 @@ export async function generateVisionBoardPDF(input: VisionBoardPDFInput) {
         pdf.rect(x + 5, yPos + 8, 40, 30, 'F');
         if (p.images && p.images.length > 0) {
             try {
-                const imgData = p.images.length >= 4 ? p.images[3] : p.images[0];
+                const imgData = p.images[p.images.length - 1];
                 if (imgData.startsWith('data:image')) {
                     pdf.addImage(imgData, 'JPEG', x + 5, yPos + 8, 40, 30);
                 }
