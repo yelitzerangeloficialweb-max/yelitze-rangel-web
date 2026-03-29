@@ -128,6 +128,14 @@ export default function AdminTestsPage() {
                                     {expandedId === result.id && (
                                         <tr className="bg-stone-50/50">
                                             <td colSpan={5} className="px-8 py-8">
+                                                <div className="flex items-center justify-between mb-8 border-b border-stone-200 pb-4">
+                                                    <h4 className="text-sm font-bold uppercase tracking-widest text-[var(--color-primary)]">Detalles Completos</h4>
+                                                    { (result.testTitle.includes('Somático') || result.testTitle.includes('Arquitectura')) && (
+                                                        <a href={`/api/admin/tests/download-pdf/${result.id}`} download target="_blank" className="flex items-center gap-2 px-4 py-2 bg-[#B8835A] text-white text-xs font-bold rounded-lg hover:bg-[#D4AF37] transition-colors shadow-sm">
+                                                            📄 Descargar / Ver PDF
+                                                        </a>
+                                                    )}
+                                                </div>
                                                 <div className="grid md:grid-cols-2 gap-12">
                                                     <div className="space-y-4">
                                                         <h4 className="text-sm font-bold uppercase tracking-widest text-[var(--color-primary)] border-b border-stone-200 pb-2">Respuestas</h4>
