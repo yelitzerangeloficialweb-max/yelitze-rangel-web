@@ -5,9 +5,9 @@ import { buildVisionBoardPDFInput } from '@/lib/vision-board-utils';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET(req: Request, { params }: { params: { id: string } }) {
+export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
     try {
-        const id = params.id;
+        const { id } = await params;
         const result = await db.testResult.findUnique({ where: { id } });
 
         if (!result) {
