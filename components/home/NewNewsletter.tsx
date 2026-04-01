@@ -11,13 +11,13 @@ export default function NewNewsletter() {
             {/* Background Image - Sunset/Field theme */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="/images/home_redesign/Home_02.png"
+                    src="/images/home_redesign/Home_02.jpg"
                     alt="Newsletter Background"
                     fill
-                    className="object-cover object-[center_25%]"
+                    className="object-cover object-top"
                 />
-                <div className="absolute inset-0 bg-black/20" />
-                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent" />
+                <div className="absolute inset-0 bg-black/10" />
+                <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/30 to-transparent" />
             </div>
 
             <div className="container mx-auto px-4 relative z-10 text-center text-white">
@@ -52,15 +52,6 @@ export default function NewNewsletter() {
                             SUSCRIBIRME
                         </button>
                     </form>
-
-                    {/* Flower of Life or Sacred Geometry Decoration */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-10 pointer-events-none z-0">
-                        <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-white stroke-[0.2]">
-                            <circle cx="50" cy="50" r="45" />
-                            {/* Simple sacred geo shape placeholder */}
-                            <path d="M50,5 L50,95 M5,50 L95,50 M20,20 L80,80 M80,20 L20,80" />
-                        </svg>
-                    </div>
                 </motion.div>
             </div>
         </section>
