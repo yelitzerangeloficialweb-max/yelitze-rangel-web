@@ -14,10 +14,10 @@ export default function NewNewsletter() {
                     src="/images/home_redesign/Home_02.png"
                     alt="Newsletter Background"
                     fill
-                    className="object-cover"
+                    className="object-cover object-center"
                 />
-                <div className="absolute inset-0 bg-black/40" />
-                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute inset-0 bg-black/30" />
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent" />
             </div>
 
             <div className="container mx-auto px-4 relative z-10 text-center text-white">
