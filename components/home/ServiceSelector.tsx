@@ -136,13 +136,13 @@ export default function ServiceSelector() {
                 {/* Decorative Lines and Glows */}
                 <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-tr from-[#ff9a5c]/5 via-transparent to-[#ff9a5c]/10 pointer-events-none" />
                 
-                {/* Vertical Curly Line Decoration */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-lg pointer-events-none opacity-40 z-0">
+                {/* Vertical Curly Line Decoration - Stuck to bottom */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-full max-w-lg pointer-events-none opacity-40 z-0">
                     <Image
                         src="/images/home_redesign/lineavertical.png"
                         alt=""
                         fill
-                        className="object-contain"
+                        className="object-contain object-bottom"
                     />
                 </div>
 
