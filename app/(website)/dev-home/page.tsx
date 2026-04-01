@@ -88,7 +88,7 @@ export default function HomePage() {
                 <ScaleIn>
                   <div className="relative aspect-[4/3] rounded-[4rem] overflow-hidden shadow-2xl group">
                     <Image
-                      src="/images/home_redesign/service_coaching_clean.png"
+                      src="/images/home_redesign/service_coaching_clean.jpg"
                       alt="Coaching Ancestral"
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-[2000ms]"

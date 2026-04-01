@@ -68,10 +68,10 @@ export default function NewHero() {
                 </motion.div>
             </div>
 
-            {/* Pagination/Scroll Indicator - Match Screenshot Positioning */}
-            <div className="absolute bottom-40 md:bottom-44 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4 opacity-90">
-                <div className="w-[1px] h-20 bg-gradient-to-b from-transparent via-white/70 to-white/90" />
-                <div className="relative w-24 h-24">
+            {/* Pagination/Scroll Indicator - Lowered to avoid button overlap */}
+            <div className="absolute bottom-16 md:bottom-20 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-90">
+                <div className="w-[1px] h-12 bg-gradient-to-b from-transparent via-white/70 to-white/90" />
+                <div className="relative w-20 h-20">
                     <Image
                         src="/assets/images/watermark-logo.png"
                         alt=""
