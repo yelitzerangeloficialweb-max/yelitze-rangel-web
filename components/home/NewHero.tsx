@@ -69,8 +69,8 @@ export default function NewHero() {
             </div>
 
             {/* Pagination/Scroll Indicator - Match Screenshot Positioning */}
-            <div className="absolute bottom-44 md:bottom-48 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-6 opacity-80">
-                <div className="w-[1px] h-16 bg-gradient-to-b from-transparent via-white/50 to-white/70" />
+            <div className="absolute bottom-40 md:bottom-44 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4 opacity-90">
+                <div className="w-[1px] h-20 bg-gradient-to-b from-transparent via-white/70 to-white/90" />
                 <div className="relative w-24 h-24">
                     <Image
                         src="/assets/images/watermark-logo.png"
@@ -84,7 +84,7 @@ export default function NewHero() {
 
             {/* Organic Bottom Divider - WHITE BRUSH */}
             <div className="absolute bottom-0 left-0 right-0 z-30 pointer-events-none">
-                <div className="relative w-full flex justify-center overflow-hidden leading-none translate-y-[1px]">
+                <div className="relative w-full flex justify-center overflow-hidden leading-none translate-y-16 md:translate-y-24">
                     <Image
                         src="/assets/images/brush-separator.png"
                         alt=""
