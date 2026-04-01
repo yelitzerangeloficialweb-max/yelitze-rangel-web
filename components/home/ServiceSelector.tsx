@@ -24,7 +24,7 @@ const services = [
         description: "Libera las memorias atrapadas en tu piel. Desde masajes ancestrales hasta shirodhara, el cuerpo es el templo donde ocurre la verdadera liberación.",
         cta: "ENTRAR AL PORTAL",
         link: "/servicios/sesiones-corporales",
-        image: "/images/home_redesign/service_sanctuary.png",
+        image: "/images/home_redesign/Web-Yelitze-03.png",
     },
 ];
 
