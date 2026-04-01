@@ -31,6 +31,15 @@ const services = [
 export default function ServiceSelector() {
     return (
         <section className="relative overflow-hidden bg-white">
+            {/* Corner Glow Effect */}
+            <div className="absolute bottom-0 left-0 w-64 h-64 md:w-[600px] md:h-[600px] pointer-events-none opacity-50 z-0">
+                <Image
+                    src="/images/home_redesign/bluer.png"
+                    alt=""
+                    fill
+                    className="object-contain object-left-bottom"
+                />
+            </div>
             {/* White Header Area */}
             <div className="relative pt-32 pb-48 z-20">
                 <div className="container mx-auto px-4 text-center">
