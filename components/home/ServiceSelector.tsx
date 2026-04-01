@@ -217,6 +217,9 @@ export default function ServiceSelector() {
                         </Link>
                     </motion.div>
                 </div>
+                
+                {/* Wavy transition to the next dark section (ArchitectureSector) */}
+                <WaveDivider position="bottom" fill="#2D2926" />
             </div>
         </section>
     );
