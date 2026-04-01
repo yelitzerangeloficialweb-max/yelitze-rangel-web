@@ -15,11 +15,7 @@ export default function Home() {
             <NewHero />
             <WelcomeSection />
             <ServiceSelector />
-            <TestSpotlight />
-            <HomeEvents />
-
-            <BooksBanner />
-            <BlogSpotlight />
+            <ArchitectureSector />
             <WisdomChest />
             <NewNewsletter />
         </main>
