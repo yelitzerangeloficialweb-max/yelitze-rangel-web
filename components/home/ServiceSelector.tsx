@@ -22,7 +22,7 @@ const services = [
         title: "Cuerpo y Santuario",
         tag: "PORTAL 02",
         description: "Libera las memorias atrapadas en tu piel. Desde masajes ancestrales hasta shirodhara, el cuerpo es el templo donde ocurre la verdadera liberación.",
-        cta: "CONOCE MI HISTORIA",
+        cta: "ENTRAR AL PORTAL",
         link: "/servicios/sesiones-corporales",
         image: "/images/home_redesign/service_sanctuary.png",
     },

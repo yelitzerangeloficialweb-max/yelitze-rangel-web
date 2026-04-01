@@ -127,7 +127,7 @@ export default function HomePage() {
                   </p>
                   <div className="flex lg:justify-end">
                     <Link href="/servicios/sesiones-corporales" className="btn-premium px-10 py-4 group w-fit">
-                      Honrar mi Templo
+                      Entrar al Portal
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
