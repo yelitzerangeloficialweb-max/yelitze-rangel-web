@@ -11,7 +11,7 @@ export default function NewNewsletter() {
             {/* Background Image - Sunset/Field theme */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="/images/home_redesign/newsletter_bg.png"
+                    src="/images/home_redesign/Home_02.png"
                     alt="Newsletter Background"
                     fill
                     className="object-cover"
