@@ -63,18 +63,29 @@ export default function ServiceSelector() {
 
 
 
-            {/* PORTAL 01 - DARK SECTION */}
-            <div className="relative bg-[#2D2926] pt-40 pb-56 z-20 mt-16">
-                {/* Wave Transition Top */}
-                <WaveDivider position="top" fill="#FFFFFF" />
+            {/* PORTAL 01 - WHITE SECTION WITH BRUSH BACKGROUND */}
+            <div className="relative bg-white pt-40 pb-64 z-20 mt-16 overflow-hidden">
+                {/* Huge Brush Shape Background */}
+                <div 
+                    className="absolute inset-0 z-0 origin-bottom scale-y-125 translate-y-[5%]"
+                    style={{
+                        maskImage: 'url(/images/home_redesign/brush-bottom.svg)',
+                        WebkitMaskImage: 'url(/images/home_redesign/brush-bottom.svg)',
+                        maskRepeat: 'no-repeat',
+                        WebkitMaskRepeat: 'no-repeat',
+                        maskPosition: 'bottom center',
+                        WebkitMaskPosition: 'bottom center',
+                        maskSize: '100% 100%',
+                        WebkitMaskSize: '100% 100%',
+                        backgroundColor: '#2D2926'
+                    }} 
+                />
+
+                {/* Background Glows (inside the brush) */}
+                <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-l from-[#ff9a5c]/10 via-transparent to-transparent pointer-events-none z-10" />
 
 
-                
-                {/* Background Glows */}
-                <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-l from-[#ff9a5c]/10 via-transparent to-transparent pointer-events-none" />
-
-
-                <div className="container mx-auto px-4 relative max-w-7xl">
+                <div className="container mx-auto px-4 relative max-w-7xl z-20">
                     <div className="relative flex flex-col lg:flex-row items-center gap-16 lg:gap-0">
                         {/* Circular Image Container */}
                         <div className="lg:w-1/2 flex justify-center lg:justify-start">
@@ -126,9 +137,6 @@ export default function ServiceSelector() {
                         </div>
                     </div>
                 </div>
-
-                {/* Wave Transition Bottom */}
-                <WaveDivider position="bottom" fill="#FFFFFF" />
             </div>
 
             {/* PORTAL 02 - LIGHT SECTION */}
