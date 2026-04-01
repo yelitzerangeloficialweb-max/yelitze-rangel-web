@@ -10,10 +10,10 @@ export default function NewHero() {
             {/* Background Image with Premium Overlays */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="/images/home_redesign/hero_bg.png"
+                    src="/assets/images/hero/hero-fusion-group.jpg"
                     alt="Ancestral Background"
                     fill
-                    className="object-cover scale-105 opacity-100"
+                    className="object-cover scale-110 opacity-100 blur-[2px] md:blur-[4px]"
                     priority
                 />
                 {/* Global Overlays - Softer for more visibility */}
@@ -56,7 +56,7 @@ export default function NewHero() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 1.2, duration: 1 }}
-                        className="pt-16 flex justify-center"
+                        className="pt-12 md:pt-14 flex justify-center -translate-y-6 md:-translate-y-8"
                     >
                         <Link
                             href="/tests"
@@ -69,7 +69,7 @@ export default function NewHero() {
             </div>
 
             {/* Pagination/Scroll Indicator - Match Screenshot Positioning */}
-            <div className="absolute bottom-32 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-6 opacity-80">
+            <div className="absolute bottom-44 md:bottom-48 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-6 opacity-80">
                 <div className="w-[1px] h-16 bg-gradient-to-b from-transparent via-white/50 to-white/70" />
                 <div className="relative w-24 h-24">
                     <Image
