@@ -43,7 +43,7 @@ export default function WisdomChest() {
                     >
                         <div className="relative w-full aspect-[3/4] max-w-[450px] rounded-[40px] rounded-tr-[150px] overflow-hidden shadow-2xl">
                             <Image
-                                src="/assets/images/yelitze-reading-books.jpg"
+                                src="/images/home_redesign/wisdom_chest.png"
                                 alt="Cofre de Sabiduría"
                                 fill
                                 className="object-cover"

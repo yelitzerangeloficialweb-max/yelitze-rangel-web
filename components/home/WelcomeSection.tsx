@@ -28,12 +28,12 @@ export default function WelcomeSection() {
 
                         <div className="space-y-6 text-xl md:text-2xl text-text/80 leading-relaxed font-body font-light max-w-xl mx-auto lg:mx-0">
                             <p>
-                                Soy Yelitze Rangel, de origen, un puente de amor y sanación.
-                                Mi propósito es acompañarte a recordar la sabiduría que ya habita en ti.
+                                Soy Yelitzé Rangel. Acompaño a personas valientes a mirar con amor su historia familiar, 
+                                para liberar cargas que no les pertenecen y tomar la fuerza de sus ancestros.
                             </p>
                             <p>
-                                Especialista en Psicología Sistémica y Constelaciones Familiares, 
-                                con un enfoque integral que une lo humano y lo divino.
+                                Durante años he integrado la Psicología, la Tanatología y las Constelaciones Familiares 
+                                para crear un método que no solo se queda en la mente, sino que baja al corazón y al cuerpo. 
                             </p>
                         </div>
 

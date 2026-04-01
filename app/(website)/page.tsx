@@ -6,6 +6,8 @@ import HomeEvents from "@/components/home/HomeEvents";
 import WisdomChest from "@/components/home/WisdomChest";
 import BlogSpotlight from "@/components/home/BlogSpotlight";
 import NewNewsletter from "@/components/home/NewNewsletter";
+import TestSpotlight from "@/components/home/TestSpotlight";
+import BooksBanner from "@/components/home/BooksBanner";
 
 export default function Home() {
     return (
@@ -13,9 +15,14 @@ export default function Home() {
             <NewHero />
             <WelcomeSection />
             <ServiceSelector />
-            <ArchitectureSector />
+            <TestSpotlight />
+            <HomeEvents />
+
+            <BooksBanner />
+            <BlogSpotlight />
             <WisdomChest />
             <NewNewsletter />
         </main>
     );
 }
+

@@ -15,7 +15,7 @@ const services = [
         description: "Un viaje profundo de 'Anatomía del Alma'. Utilizamos psicología sistémica y rituales para restaurar el orden en tus vínculos y propósitos.",
         cta: "ENTRAR AL PORTAL",
         link: "/servicios/coaching-ancestral",
-        image: "/images/home_redesign/service_coaching.png",
+        image: "/assets/images/diplomado-ancestral.png",
     },
     {
         id: "02",

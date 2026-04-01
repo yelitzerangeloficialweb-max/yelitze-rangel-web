@@ -27,12 +27,12 @@ export default function NewHero() {
             </div>
 
             {/* Content Container */}
-            <div className="container mx-auto px-4 relative z-10 text-center text-white -translate-y-16 md:-translate-y-24">
+            <div className="container mx-auto px-4 relative z-10 text-center text-white">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1.8, ease: "easeOut" }}
-                    className="space-y-8"
+                    className="space-y-12"
                 >
                     <motion.span 
                         initial={{ opacity: 0, y: 15 }}
@@ -42,6 +42,7 @@ export default function NewHero() {
                     >
                         Test Gratuitos
                     </motion.span>
+
                     <div className="space-y-2 md:space-y-0">
                         <h1 className="text-5xl md:text-[7.5rem] font-sans font-black tracking-[0.02em] leading-none uppercase drop-shadow-2xl">
                             DESCUBRE TU HISTORIA
@@ -55,7 +56,7 @@ export default function NewHero() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 1.2, duration: 1 }}
-                        className="pt-4 flex justify-center"
+                        className="pt-12 md:pt-14 flex justify-center -translate-y-6 md:-translate-y-8"
                     >
                         <Link
                             href="/tests"
@@ -68,7 +69,7 @@ export default function NewHero() {
             </div>
 
             {/* Pagination/Scroll Indicator - Match Screenshot Positioning */}
-            <div className="absolute bottom-20 md:bottom-24 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4 opacity-90">
+            <div className="absolute bottom-40 md:bottom-44 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-4 opacity-90">
                 <div className="w-[1px] h-20 bg-gradient-to-b from-transparent via-white/70 to-white/90" />
                 <div className="relative w-24 h-24">
                     <Image
@@ -83,7 +84,7 @@ export default function NewHero() {
 
             {/* Organic Bottom Divider - WHITE BRUSH */}
             <div className="absolute bottom-0 left-0 right-0 z-30 pointer-events-none">
-                <div className="relative w-full flex justify-center overflow-hidden leading-none translate-y-24 md:translate-y-32">
+                <div className="relative w-full flex justify-center overflow-hidden leading-none translate-y-16 md:translate-y-24">
                     <Image
                         src="/assets/images/brush-separator.png"
                         alt=""
