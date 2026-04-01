@@ -127,11 +127,14 @@ export default function ServiceSelector() {
                 {/* Decorative Lines and Glows */}
                 <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-tr from-[#ff9a5c]/5 via-transparent to-[#ff9a5c]/10 pointer-events-none" />
                 
-                {/* Spiral Line Decoration (Using SVG for precision if possible, or placeholder/css) */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none opacity-20">
-                    <svg viewBox="0 0 1000 1000" className="w-full h-full stroke-[#B8835A] fill-none stroke-[0.5]">
-                        <path d="M100,200 Q500,0 900,200 T100,600 T900,1000" />
-                    </svg>
+                {/* Vertical Curly Line Decoration */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-lg pointer-events-none opacity-40 z-0">
+                    <Image
+                        src="/images/home_redesign/lineavertical.png"
+                        alt=""
+                        fill
+                        className="object-contain"
+                    />
                 </div>
 
 
