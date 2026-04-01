@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function NewNewsletter() {
     return (
-        <section className="relative py-48 overflow-hidden font-body bg-white">
+        <section className="relative py-64 min-h-[750px] flex items-center overflow-hidden font-body bg-white">
 
 
             {/* Background Image - Sunset/Field theme */}
