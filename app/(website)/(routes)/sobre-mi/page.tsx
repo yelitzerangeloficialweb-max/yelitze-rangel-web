@@ -111,10 +111,17 @@ export default function AboutPage() {
                                     </div>
                                 </div>
 
-                                {/* Intermediate Quote (Horizontal Line + Text) */}
-                                <FadeIn className="relative py-4 pr-0">
-                                    <div className="w-48 h-[1px] bg-[var(--color-secondary)]/40 ml-auto mb-6" />
-                                    <p className="text-lg lg:text-xl italic font-medium text-[var(--color-secondary)] text-right max-w-lg ml-auto leading-relaxed">
+                                {/* Intermediate Quote (Gradient Background Design) */}
+                                <FadeIn className="relative w-full py-10 lg:py-16 overflow-hidden flex items-center justify-center">
+                                    <div className="absolute inset-0 z-0 pr-0">
+                                        <Image 
+                                            src="/images/home_redesign/quote-gradient.png" 
+                                            alt="" 
+                                            fill 
+                                            className="object-cover opacity-60"
+                                        />
+                                    </div>
+                                    <p className="relative z-10 text-xl lg:text-3xl font-heading font-bold text-primary text-center px-8 lg:px-20 italic leading-relaxed max-w-4xl">
                                         « Hoy acompaño desde la presencia, la integración y el respeto profundo por cada historia. »
                                     </p>
                                 </FadeIn>
