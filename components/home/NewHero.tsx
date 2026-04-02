@@ -84,14 +84,14 @@ export default function NewHero() {
 
             {/* Organic Bottom Divider - WHITE BRUSH */}
             <div className="absolute bottom-0 left-0 right-0 z-30 pointer-events-none">
-                <div className="relative w-full flex justify-center overflow-hidden leading-none translate-y-16 md:translate-y-24">
+                <div className="relative w-full flex justify-center overflow-hidden leading-none translate-y-2 md:translate-y-4">
                     <Image
-                        src="/assets/images/brush-separator.png"
+                        src="/images/home_redesign/brush-overlay-v2.png"
                         alt=""
                         width={2560}
-                        height={400}
+                        height={600}
                         quality={100}
-                        className="w-full h-auto min-h-[140px] object-cover object-bottom"
+                        className="w-full h-auto min-h-[160px] object-cover object-bottom"
                     />
                 </div>
             </div>
