@@ -112,7 +112,7 @@ export default function AboutPage() {
                                 </div>
 
                                 {/* Intermediate Quote (Gradient Background Design - Right Aligned) */}
-                                <FadeIn className="relative w-full py-12 px-10 lg:py-16 lg:px-14 overflow-hidden rounded-2xl">
+                                <FadeIn className="relative w-full py-12 px-10 lg:py-16 lg:px-14 overflow-hidden">
                                     <div className="absolute inset-0 z-0">
                                         <Image 
                                             src="/images/home_redesign/quote-gradient.png" 
@@ -121,7 +121,7 @@ export default function AboutPage() {
                                             className="object-cover opacity-80"
                                         />
                                     </div>
-                                    <p className="relative z-10 text-xl lg:text-3xl font-heading font-bold text-[var(--color-secondary)] text-right italic leading-relaxed ml-auto max-w-2xl">
+                                    <p className="relative z-10 text-xl lg:text-3xl font-heading font-bold text-black text-right italic leading-relaxed ml-auto max-w-2xl">
                                         « Hoy acompaño desde la presencia, la integración y el respeto profundo por cada historia. »
                                     </p>
                                 </FadeIn>
