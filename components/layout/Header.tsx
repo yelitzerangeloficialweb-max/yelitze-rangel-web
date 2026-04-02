@@ -50,10 +50,10 @@ export default function Header() {
     };
 
     // Logic: Show "Scrolled" style (White BG, Dark Text) if:
-    // 1. We differ from Home page (internal pages usually have light bg)
+    // 1. We differ from Home or About page (these have dark/hero backgrounds)
     // 2. We are scrolled down
-    const isHome = pathname === '/';
-    const showScrolled = isScrolled || !isHome;
+    const isTransparentPage = pathname === '/' || pathname === '/sobre-mi';
+    const showScrolled = isScrolled || !isTransparentPage;
 
     const navLinks = [
         { name: 'Inicio', href: '/' },

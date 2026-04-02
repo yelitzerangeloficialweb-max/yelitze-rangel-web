@@ -10,37 +10,51 @@ export default function AboutPage() {
     return (
         <main className="bg-black text-white selection:bg-[var(--color-secondary)] selection:text-white">
 
-            {/* 1. Hero Section (Split Layout) */}
-            <section className="min-h-screen grid lg:grid-cols-2">
-                {/* Text Content */}
-                <div className="flex flex-col justify-center px-8 lg:px-20 py-32 lg:py-0 order-2 lg:order-1 relative z-10">
-                    <FadeIn>
-                        <span className="text-[var(--color-secondary)] uppercase tracking-[0.2em] text-sm font-medium mb-6 block">
-                            Sobre Mi
-                        </span>
-                        <h1 className="text-4xl lg:text-7xl font-heading text-white mb-8 leading-tight font-bold">
-                            Donde la mente comprende <br />
-                            <span className="italic font-light text-[var(--color-secondary)] opacity-90">el cuerpo y el alma recuerdan.</span>
-                        </h1>
-                        <div className="space-y-6 max-w-xl">
-                            <p className="text-xl text-gray-300 italic border-l-4 border-[var(--color-secondary)] pl-6">
-                                Mi misión es ser el puente, cuando la ciencia ya explicó el dolor y el alma aún pide ser escuchada… ahí comienza mi trabajo.
-                            </p>
-                        </div>
-                    </FadeIn>
-                </div>
-
-                {/* Hero Image */}
-                <div className="relative h-[60vh] lg:h-auto order-1 lg:order-2">
-                    <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-black via-transparent to-transparent z-10" />
+            {/* 1. Hero Section (New Redesign) */}
+            <section className="relative min-h-[90vh] flex items-center pt-24 overflow-hidden">
+                {/* Background Layer */}
+                <div className="absolute inset-0 z-0">
                     <Image
-                        src="/assets/images/about-hero-portrait.jpg"
-                        alt="Yelitze Rangel - Coach Ancestral"
+                        src="/images/home_redesign/Sobre-Mi_01.png"
+                        alt=""
                         fill
-                        className="object-cover object-top"
+                        className="object-cover opacity-60"
                         priority
-                        quality={100}
                     />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent" />
+                </div>
+                
+                <div className="container mx-auto px-4 lg:px-20 relative z-10 grid lg:grid-cols-2 items-center gap-12 lg:gap-24">
+                    {/* Left: Text Content */}
+                    <div className="order-2 lg:order-1">
+                        <FadeIn>
+                            <span className="text-[var(--color-secondary)] uppercase tracking-[0.2em] text-sm font-medium mb-6 block">
+                                Sobre Mi
+                            </span>
+                            <h1 className="text-4xl lg:text-7xl font-heading text-white mb-8 leading-tight font-bold">
+                                Donde la mente comprende <br />
+                                <span className="italic font-light text-[var(--color-secondary)] opacity-90">el cuerpo y el alma recuerdan.</span>
+                            </h1>
+                            <div className="space-y-6 max-w-xl">
+                                <p className="text-xl text-gray-300 italic border-l-4 border-[var(--color-secondary)] pl-6">
+                                    Mi misión es ser el puente, cuando la ciencia ya explicó el dolor y el alma aún pide ser escuchada… ahí comienza mi trabajo.
+                                </p>
+                            </div>
+                        </FadeIn>
+                    </div>
+
+                    {/* Right: Yelitze Portrait */}
+                    <div className="relative h-[50vh] lg:h-[80vh] order-1 lg:order-2">
+                        <FadeIn className="h-full w-full">
+                            <Image
+                                src="/images/home_redesign/Sobremi1.png"
+                                alt="Yelitze Rangel - Re escribe tu historia"
+                                fill
+                                className="object-contain object-right"
+                                priority
+                            />
+                        </FadeIn>
+                    </div>
                 </div>
             </section>
 
