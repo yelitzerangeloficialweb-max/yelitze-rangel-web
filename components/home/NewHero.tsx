@@ -83,7 +83,7 @@ export default function NewHero() {
 
 
             {/* Organic Bottom Divider - WHITE BRUSH */}
-            <div className="absolute bottom-0 left-[-40%] right-[-40%] z-30 pointer-events-none h-48 md:h-[600px] overflow-hidden">
+            <div className="absolute bottom-0 left-[-100%] right-[-100%] z-30 pointer-events-none h-48 md:h-[600px] overflow-hidden">
                 <div 
                     className="w-full h-full"
                     style={{
