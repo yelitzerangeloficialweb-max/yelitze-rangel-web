@@ -10,18 +10,17 @@ export default function AboutPage() {
     return (
         <main className="bg-black text-white selection:bg-[var(--color-secondary)] selection:text-white">
 
-            {/* 1. Hero Section (New Redesign) */}
-            <section className="relative min-h-[90vh] flex items-center pt-24 overflow-hidden">
+            {/* 1. Hero Section (White Background Redesign) */}
+            <section className="relative min-h-[90vh] flex items-center pt-24 overflow-hidden bg-white">
                 {/* Background Layer */}
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="/images/home_redesign/Sobre-Mi_01.png"
                         alt=""
                         fill
-                        className="object-cover opacity-60"
+                        className="object-cover opacity-30"
                         priority
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent" />
                 </div>
                 
                 <div className="container mx-auto px-4 lg:px-20 relative z-10 grid lg:grid-cols-2 items-center gap-12 lg:gap-24">
@@ -31,12 +30,12 @@ export default function AboutPage() {
                             <span className="text-[var(--color-secondary)] uppercase tracking-[0.2em] text-sm font-medium mb-6 block">
                                 Sobre Mi
                             </span>
-                            <h1 className="text-4xl lg:text-7xl font-heading text-white mb-8 leading-tight font-bold">
+                            <h1 className="text-4xl lg:text-7xl font-heading text-primary mb-8 leading-tight font-bold">
                                 Donde la mente comprende <br />
                                 <span className="italic font-light text-[var(--color-secondary)] opacity-90">el cuerpo y el alma recuerdan.</span>
                             </h1>
                             <div className="space-y-6 max-w-xl">
-                                <p className="text-xl text-gray-300 italic border-l-4 border-[var(--color-secondary)] pl-6">
+                                <p className="text-xl text-gray-700 italic border-l-4 border-[var(--color-secondary)] pl-6">
                                     Mi misión es ser el puente, cuando la ciencia ya explicó el dolor y el alma aún pide ser escuchada… ahí comienza mi trabajo.
                                 </p>
                             </div>

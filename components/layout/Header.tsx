@@ -107,7 +107,7 @@ export default function Header() {
                 <Link href="/" className="flex items-center gap-3 group">
                     <div className="relative w-48 h-20">
                         <Image
-                            src={showScrolled ? "/assets/images/logo-color-scroll.png" : "/assets/images/logo-yelitze-new.png"}
+                            src={showScrolled || pathname === '/sobre-mi' ? "/assets/images/logo-color-scroll.png" : "/assets/images/logo-yelitze-new.png"}
                             alt="Yelitze Rangel Logo"
                             fill
                             className="object-contain object-left transition-opacity duration-300"
@@ -131,7 +131,7 @@ export default function Header() {
                                     "text-sm font-medium font-body tracking-[0.05em] transition-colors hover:text-secondary flex items-center gap-1 py-2",
                                     pathname === link.href || (link.children && pathname.startsWith(link.href))
                                         ? "text-secondary"
-                                        : (showScrolled ? "text-primary" : "text-white/90 hover:text-white")
+                                        : (showScrolled || pathname === '/sobre-mi' ? "text-primary" : "text-white/90 hover:text-white")
                                 )}
                             >
                                 {link.name}
@@ -203,7 +203,7 @@ export default function Header() {
                                     onClick={() => setIsSearchOpen(true)}
                                     className={cn(
                                         "p-2 rounded-full transition-colors hover:bg-primary/5",
-                                        showScrolled ? "text-primary" : "text-white/90"
+                                        showScrolled || pathname === '/sobre-mi' ? "text-primary" : "text-white/90"
                                     )}
                                 >
                                     <EyeGeometricIcon size={20} />
@@ -225,7 +225,7 @@ export default function Header() {
                     className="md:hidden p-2 text-primary"
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 >
-                    {mobileMenuOpen ? <CloseThinIcon /> : <MenuThinIcon className={showScrolled ? "text-primary" : "text-white"} />}
+                    {mobileMenuOpen ? <CloseThinIcon /> : <MenuThinIcon className={showScrolled || pathname === '/sobre-mi' ? "text-primary" : "text-white"} />}
                 </button>
             </div>
 
