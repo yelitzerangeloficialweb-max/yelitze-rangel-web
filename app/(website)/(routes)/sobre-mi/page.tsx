@@ -141,7 +141,7 @@ export default function AboutPage() {
                                         <h3 className="text-2xl lg:text-3xl font-serif italic text-[var(--color-secondary)] mb-6">
                                             ¿Quién soy yo para acompañarte?
                                         </h3>
-                                        <ul className="space-y-4 text-gray-800 text-base lg:text-xl font-medium tracking-wide">
+                                        <ul className="space-y-6 text-gray-800 text-base lg:text-xl font-medium tracking-wide leading-relaxed">
                                             <li>Sanadora ancestral por linaje y memoria.</li>
                                             <li>Administradora de empresas por estructura y orden.</li>
                                             <li>Psicóloga por vocación de comprender la mente.</li>
