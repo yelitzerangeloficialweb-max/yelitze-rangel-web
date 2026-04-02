@@ -60,10 +60,10 @@ export default function AboutPage() {
             {/* 2 & 3. Combined Story & Credentials Section (Mockup Redesign) */}
             <section className="py-24 lg:py-32 bg-white text-primary">
                 <div className="container mx-auto px-4 lg:px-20">
-                    <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-stretch">
+                    <div className="grid lg:grid-cols-12 gap-12 lg:gap-24 items-stretch">
                         
-                        {/* Left Column: Main Image */}
-                        <FadeIn className="lg:col-span-5 relative min-h-[600px] lg:min-h-[900px] rounded-[3rem] overflow-hidden">
+                        {/* Left Column: Main Image (Asymmetrical Rounding) */}
+                        <FadeIn className="lg:col-span-5 relative min-h-[600px] lg:min-h-[900px] rounded-[3rem] rounded-tr-[10rem] overflow-hidden">
                             <Image
                                 src="/images/home_redesign/Sobremi-02.png"
                                 alt="Yelitze Rangel - Herencia y Memoria"
@@ -71,72 +71,70 @@ export default function AboutPage() {
                                 className="object-cover"
                                 priority
                             />
-                            {/* Subtle bottom fade to blend if needed */}
-                            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white/20 to-transparent" />
                         </FadeIn>
 
                         {/* Right Column: Content Composition */}
                         <div className="lg:col-span-7 flex flex-col justify-center relative">
-                            {/* Background Watermark Flor */}
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] opacity-[0.03] pointer-events-none z-0">
+                            {/* Background Watermark Flor (Increased visibility to match mockup layers) */}
+                            <div className="absolute top-[30%] lg:top-[40%] right-0 lg:right-[-10%] w-[100%] opacity-10 pointer-events-none z-0">
                                 <Image 
                                     src="/assets/images/watermark-logo.png" 
                                     alt="" 
                                     width={800} 
                                     height={800} 
-                                    className="w-full h-auto"
+                                    className="w-full h-auto opacity-70"
                                 />
                             </div>
 
                             <div className="relative z-10 space-y-12">
                                 {/* Part A: Mi Historia */}
-                                <div className="space-y-6 text-center lg:text-right">
+                                <div className="space-y-6 text-right">
                                     <FadeIn>
                                         <span className="text-[var(--color-secondary)] uppercase tracking-[0.2em] text-xs font-bold block mb-2">
                                             Sobre Mi
                                         </span>
-                                        <h2 className="text-4xl lg:text-5xl font-heading font-bold text-primary">
+                                        <h2 className="text-5xl lg:text-7xl font-heading font-bold text-primary leading-tight">
                                             Mi Historia
                                         </h2>
                                     </FadeIn>
                                     
-                                    <StaggerContainer className="text-gray-600 leading-relaxed text-sm lg:text-base max-w-2xl ml-auto">
-                                        <StaggerItem>
+                                    <div className="text-gray-600 leading-relaxed text-base lg:text-lg max-w-2xl ml-auto space-y-4">
+                                        <p>
                                             Después de la pérdida de dos bebés y de un divorcio, mi vida quedó en pausa. No sabía cómo reiniciar ni desde dónde volver a empezar.
-                                        </StaggerItem>
-                                        <StaggerItem>
-                                            Ese quiebre me llevó a la India, donde inicié lo que llamo mi <strong className="text-primary">camino de fuego</strong>: un proceso de transformación que marcó un giro profundo en mi vida y me reconectó con mis dones, mis raíces y mis recursos internos.
-                                        </StaggerItem>
-                                        <StaggerItem>
+                                        </p>
+                                        <p>
+                                            Ese quiebre me llevó a la India, donde inicié lo que llamo mi <strong className="text-primary font-bold">camino de fuego</strong>: un proceso de transformación que marcó un giro profundo en mi vida y me reconectó con mis dones, mis raíces y mis recursos internos.
+                                        </p>
+                                        <p>
                                             Allí comprendí que la sanación no ocurre cuando mente, cuerpo y alma caminan separados. El equilibrio nace cuando se integran. Desde ese despertar comencé a dar forma a una nueva vida y a un método que une ciencia, experiencia terapéutica y sabiduría ancestral para acompañar procesos.
-                                        </StaggerItem>
-                                    </StaggerContainer>
+                                        </p>
+                                    </div>
                                 </div>
 
-                                {/* Intermediate Quote */}
-                                <FadeIn className="relative py-8">
-                                    <div className="absolute right-0 top-0 w-32 h-[1px] bg-[var(--color-secondary)]/30" />
-                                    <p className="text-sm italic font-medium text-[var(--color-secondary)] text-right max-w-lg ml-auto">
+                                {/* Intermediate Quote (Horizontal Line + Text) */}
+                                <FadeIn className="relative py-4 pr-0">
+                                    <div className="w-48 h-[1px] bg-[var(--color-secondary)]/40 ml-auto mb-6" />
+                                    <p className="text-lg lg:text-xl italic font-medium text-[var(--color-secondary)] text-right max-w-lg ml-auto leading-relaxed">
                                         « Hoy acompaño desde la presencia, la integración y el respeto profundo por cada historia. »
                                     </p>
                                 </FadeIn>
 
                                 {/* Part B: Soy Yelitze */}
-                                <div className="space-y-8 text-center lg:text-right">
+                                <div className="space-y-8 text-right">
                                     <FadeIn>
-                                        <h2 className="text-4xl lg:text-6xl font-heading font-bold text-primary">
+                                        <h2 className="text-5xl lg:text-8xl font-heading font-bold text-primary leading-none">
                                             Soy Yelitze
                                         </h2>
-                                        <p className="tracking-[0.3em] text-xs font-bold text-gray-400 mt-2">
+                                        <p className="tracking-[0.4em] text-sm font-bold text-gray-400 mt-4">
                                             TU COACH ANCESTRAL
                                         </p>
                                     </FadeIn>
 
-                                    <div className="space-y-4 text-right">
-                                        <h3 className="text-xl font-serif italic text-[var(--color-secondary)] mb-6">
+                                    <div className="space-y-4">
+                                        <h3 className="text-2xl lg:text-3xl font-serif italic text-[var(--color-secondary)] mb-6">
                                             ¿Quién soy yo para acompañarte?
                                         </h3>
-                                        <ul className="space-y-4 text-gray-700 text-sm lg:text-base font-medium">
+                                        <ul className="space-y-4 text-gray-800 text-base lg:text-xl font-medium tracking-wide">
                                             <li>Sanadora ancestral por linaje y memoria.</li>
                                             <li>Administradora de empresas por estructura y orden.</li>
                                             <li>Psicóloga por vocación de comprender la mente.</li>
@@ -146,12 +144,12 @@ export default function AboutPage() {
                                     </div>
                                 </div>
 
-                                {/* Final Credentials Quote */}
-                                <FadeIn className="bg-[var(--color-secondary)]/5 p-8 rounded-2xl border-r-4 border-[var(--color-secondary)] text-right">
-                                    <p className="text-sm italic text-gray-600 leading-relaxed mb-4">
+                                {/* Final Credentials Quote (The Box Layer) */}
+                                <FadeIn className="bg-[#fcf8f5] p-10 rounded-2xl border-r-8 border-[var(--color-secondary)] text-right shadow-sm">
+                                    <p className="text-base lg:text-lg italic text-gray-700 leading-relaxed mb-8">
                                         « No elegí todos estos caminos al azar. Cada uno me enseñó algo distinto sobre el ser humano: cómo piensa, cómo siente, cómo se protege y cómo, cuando es escuchado con verdad, sana. »
                                     </p>
-                                    <p className="text-sm font-bold text-primary leading-relaxed">
+                                    <p className="text-base lg:text-lg font-bold text-primary leading-relaxed">
                                         Hoy integro todo eso en un solo método. Uno que honra la ciencia sin olvidar el espíritu. Uno que acompaña sin imponer. Uno que devuelve soberanía interior.
                                     </p>
                                 </FadeIn>
