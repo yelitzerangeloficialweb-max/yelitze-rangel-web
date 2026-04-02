@@ -94,7 +94,7 @@ export default function ServiceSelector() {
                                 whileInView={{ scale: 1, opacity: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8 }}
-                                className="relative w-64 h-64 md:w-[480px] md:h-[480px] lg:w-[580px] lg:h-[580px] rounded-full overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,0,0,1)] z-50 -mt-56 lg:-mt-[280px] lg:-ml-12"
+                                className="relative w-64 h-64 md:w-[480px] md:h-[480px] lg:w-[580px] lg:h-[580px] rounded-full shadow-[0_40px_80px_-15px_rgba(0,0,0,1)] z-50 -mt-56 lg:-mt-[280px] lg:-ml-12"
                             >
                                 <Image
                                     src={services[0].image}
@@ -107,7 +107,7 @@ export default function ServiceSelector() {
                         </div>
 
                         {/* Text Content */}
-                        <div className="lg:w-1/2 text-white space-y-8 text-center lg:text-left z-20 pt-24 lg:pt-72 lg:pl-12">
+                        <div className="lg:w-1/2 text-white space-y-8 text-center lg:text-left z-20 pt-24 lg:pt-80 lg:pl-12">
                             <motion.div
                                 initial={{ opacity: 0, x: 30 }}
                                 whileInView={{ opacity: 1, x: 0 }}
