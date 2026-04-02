@@ -94,7 +94,7 @@ export default function ServiceSelector() {
                                 whileInView={{ scale: 1, opacity: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8 }}
-                                className="relative w-64 h-64 md:w-[480px] md:h-[480px] lg:w-[580px] lg:h-[580px] rounded-full shadow-[0_40px_80px_-15px_rgba(0,0,0,1)] z-50 -mt-56 lg:-mt-[280px] lg:-ml-12"
+                                className="relative w-64 h-64 md:w-[480px] md:h-[480px] lg:w-[580px] lg:h-[580px] rounded-full overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,0,0,1)] z-50 -mt-56 lg:-mt-[280px] lg:-ml-12"
                             >
                                 <Image
                                     src={services[0].image}
