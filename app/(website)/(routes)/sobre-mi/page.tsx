@@ -180,7 +180,7 @@ export default function AboutPage() {
                 {/* Background Image: Aligned Right */}
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/images/home_redesign/Sobremi-03.png"
+                        src="/images/home_redesign/Sobremi-03.jpg"
                         alt=""
                         fill
                         className="object-cover object-right lg:object-center"
