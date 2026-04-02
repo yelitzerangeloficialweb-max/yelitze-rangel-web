@@ -247,7 +247,7 @@ export default function AboutPage() {
                         {/* Text Content: Left Column */}
                         <div className="space-y-10 order-2 lg:order-1">
                             <FadeIn>
-                                <h2 className="text-6xl lg:text-9xl font-script text-[var(--color-secondary)] mb-8">
+                                <h2 className="text-4xl lg:text-7xl font-script text-[var(--color-secondary)] mb-8 whitespace-nowrap">
                                     La experiencia que sostiene
                                 </h2>
                                 
