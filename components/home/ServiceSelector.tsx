@@ -30,7 +30,7 @@ const services = [
 
 export default function ServiceSelector() {
     return (
-        <section className="relative overflow-hidden bg-white">
+        <section className="relative bg-white">
             {/* Corner Glow Effect */}
             <div className="absolute bottom-0 left-0 w-64 h-64 md:w-[600px] md:h-[600px] pointer-events-none opacity-50 z-0">
                 <Image
@@ -64,7 +64,7 @@ export default function ServiceSelector() {
 
 
             {/* PORTAL 01 - WHITE SECTION WITH BRUSH BACKGROUND */}
-            <div className="relative bg-white pt-40 pb-64 z-20 mt-16 overflow-hidden">
+            <div className="relative bg-white pt-40 pb-64 z-20 mt-16">
                 {/* Huge Brush Shape Background */}
                 <div 
                     className="absolute inset-0 z-0 origin-bottom scale-y-125 translate-y-[5%]"
@@ -94,7 +94,7 @@ export default function ServiceSelector() {
                                 whileInView={{ scale: 1, opacity: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8 }}
-                                className="relative w-64 h-64 md:w-[480px] md:h-[480px] lg:w-[580px] lg:h-[580px] rounded-full overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,0,0,1)] z-50 -mt-56 lg:-mt-[380px] lg:-ml-12"
+                                className="relative w-64 h-64 md:w-[480px] md:h-[480px] lg:w-[580px] lg:h-[580px] rounded-full overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,0,0,1)] z-50 -mt-56 lg:-mt-[280px] lg:-ml-12"
                             >
                                 <Image
                                     src={services[0].image}
@@ -107,7 +107,7 @@ export default function ServiceSelector() {
                         </div>
 
                         {/* Text Content */}
-                        <div className="lg:w-1/2 text-white space-y-8 text-center lg:text-left z-20 pt-12 lg:pt-0 lg:pl-12">
+                        <div className="lg:w-1/2 text-white space-y-8 text-center lg:text-left z-20 pt-24 lg:pt-20 lg:pl-12">
                             <motion.div
                                 initial={{ opacity: 0, x: 30 }}
                                 whileInView={{ opacity: 1, x: 0 }}
