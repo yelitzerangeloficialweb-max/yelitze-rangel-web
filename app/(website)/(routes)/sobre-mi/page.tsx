@@ -312,7 +312,7 @@ export default function AboutPage() {
                 <div className="container mx-auto px-8 lg:px-40 relative z-30">
                     <div className="max-w-3xl ml-auto text-right space-y-16 lg:space-y-24">
                         <FadeIn>
-                            <h2 className="text-5xl lg:text-9xl font-[var(--font-allison)] text-white leading-[1.1] drop-shadow-md">
+                            <h2 className="text-5xl lg:text-9xl font-script text-white leading-[1.1] drop-shadow-md">
                                 Cuando el cuerpo <br className="hidden lg:block" /> recuerda, <br />
                                 la vida encuentra <br className="hidden lg:block" /> una nueva dirección.
                             </h2>
