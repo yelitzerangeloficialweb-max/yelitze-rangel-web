@@ -280,33 +280,57 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* 6. Closing Principles (Refined Dark Design) */}
-            <section className="py-32 lg:py-48 bg-[#12100e] text-center px-8 relative overflow-hidden">
-                {/* Subtle dark texture/glow */}
-                <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--color-secondary)/0.05_0%,_transparent_70%)] z-0" />
-                
-                <div className="container mx-auto max-w-5xl relative z-10">
-                    <FadeIn className="space-y-12">
-                        <h2 className="text-3xl lg:text-6xl font-serif italic text-white font-bold leading-tight max-w-4xl mx-auto">
-                            Cuando el cuerpo recuerda,<br /> la vida encuentra una nueva dirección.
-                        </h2>
-                        
-                        <div className="w-24 h-[1px] bg-[var(--color-secondary)] mx-auto opacity-60" />
+            {/* 6. Closing Principles (Breathtaking Forest Finale) */}
+            <section className="relative min-h-[700px] lg:min-h-[1000px] w-full overflow-hidden flex items-center justify-end">
+                {/* Background Image: Forest */}
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="/images/home_redesign/forest-bg.jpg"
+                        alt="Bosque Sagrado"
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+                    {/* Top Fade to blend with previous section */}
+                    <div className="absolute top-0 left-0 w-full h-80 bg-gradient-to-b from-white via-white/80 to-transparent z-10" />
+                </div>
 
-                        <div className="grid md:grid-cols-3 gap-6 lg:gap-10 mt-20">
+                {/* Branded Watermark Logo */}
+                <div className="absolute top-12 left-12 lg:top-32 lg:left-32 z-20 opacity-30 mix-blend-multiply pointer-events-none">
+                    <Image
+                        src="/images/home_redesign/ElementoIcono.png"
+                        alt=""
+                        width={250}
+                        height={250}
+                        className="grayscale-0 lg:w-[350px]"
+                    />
+                </div>
+
+                <div className="container mx-auto px-8 lg:px-40 relative z-30">
+                    <div className="max-w-3xl ml-auto text-right space-y-16 lg:space-y-24">
+                        <FadeIn>
+                            <h2 className="text-4xl lg:text-8xl font-serif italic text-[var(--color-secondary)] font-bold leading-[1.1] drop-shadow-sm">
+                                Cuando el cuerpo <br className="hidden lg:block" /> recuerda, <br />
+                                la vida encuentra <br className="hidden lg:block" /> una nueva dirección.
+                            </h2>
+                        </FadeIn>
+                        
+                        <div className="flex flex-col items-end space-y-4 lg:space-y-6">
                             {[
-                                "EL CUERPO GUARDA LA MEMORIA.",
-                                "LA ENERGÍA MARCA EL RUMBO.",
-                                "LA CONCIENCIA ABRE EL CAMINO."
+                                "EL CUERPO GUARDA LA MEMORIA",
+                                "LA ENERGÍA MARCA EL RUMBO",
+                                "LA CONCIENCIA ABRE EL CAMINO"
                             ].map((text, idx) => (
-                                <FadeIn key={idx} delay={idx * 0.2} className="p-8 lg:p-12 bg-white/[0.03] border border-white/[0.05] flex items-center justify-center rounded-lg group hover:border-[var(--color-secondary)]/30 transition-colors">
-                                    <span className="text-xs lg:text-sm uppercase tracking-[0.3em] font-bold text-gray-400 group-hover:text-white transition-colors">
-                                        {text}
-                                    </span>
+                                <FadeIn key={idx} delay={idx * 0.2 + 0.5}>
+                                    <div className="px-8 py-3 bg-black/60 backdrop-blur-md rounded-full border border-white/10 flex items-center justify-center">
+                                        <span className="text-[10px] lg:text-xs uppercase tracking-[0.4em] font-bold text-white leading-none pt-1">
+                                            {text}
+                                        </span>
+                                    </div>
                                 </FadeIn>
                             ))}
                         </div>
-                    </FadeIn>
+                    </div>
                 </div>
             </section>
 
