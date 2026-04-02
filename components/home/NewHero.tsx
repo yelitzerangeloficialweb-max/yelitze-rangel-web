@@ -56,7 +56,7 @@ export default function NewHero() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 1.2, duration: 1 }}
-                        className="pt-12 md:pt-14 flex justify-center -translate-y-6 md:-translate-y-8"
+                        className="pt-12 md:pt-14 flex justify-center -translate-y-12 md:-translate-y-24"
                     >
                         <Link
                             href="/tests"
