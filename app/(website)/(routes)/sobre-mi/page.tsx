@@ -63,7 +63,7 @@ export default function AboutPage() {
                     <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-stretch">
                         
                         {/* Left Column: Main Image */}
-                        <FadeIn className="lg:col-span-5 relative min-h-[600px] lg:min-h-[900px] rounded-[3rem] overflow-hidden shadow-2xl">
+                        <FadeIn className="lg:col-span-5 relative min-h-[600px] lg:min-h-[900px] rounded-[3rem] overflow-hidden">
                             <Image
                                 src="/images/home_redesign/Sobremi-02.png"
                                 alt="Yelitze Rangel - Herencia y Memoria"
