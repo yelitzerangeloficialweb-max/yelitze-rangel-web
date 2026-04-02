@@ -57,34 +57,34 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* 2 & 3. Combined Story & Credentials Section (Mockup Redesign) */}
-            <section className="py-24 lg:py-32 bg-white text-primary">
-                <div className="container mx-auto px-4 lg:px-20">
-                    <div className="grid lg:grid-cols-12 gap-12 lg:gap-24 items-stretch">
-                        
-                        {/* Left Column: Main Image (Asymmetrical Rounding) */}
-                        <FadeIn className="lg:col-span-5 relative min-h-[600px] lg:min-h-[900px] rounded-[3rem] rounded-tr-[10rem] overflow-hidden">
-                            <Image
-                                src="/images/home_redesign/Sobremi-02.png"
-                                alt="Yelitze Rangel - Herencia y Memoria"
-                                fill
-                                className="object-cover"
-                                priority
-                            />
-                        </FadeIn>
+            {/* 2 & 3. Combined Story & Credentials Section (Full Bleed Redesign) */}
+            <section className="bg-white text-primary overflow-hidden">
+                <div className="grid lg:grid-cols-2 items-stretch min-h-screen lg:min-h-[1400px]">
+                    
+                    {/* Left Side: Main Image (Full Bleed) */}
+                    <FadeIn className="relative h-[600px] lg:h-full overflow-hidden rounded-tr-[10rem]">
+                        <Image
+                            src="/images/home_redesign/Sobremi-02.png"
+                            alt="Yelitze Rangel - Herencia y Memoria"
+                            fill
+                            className="object-cover"
+                            priority
+                            quality={100}
+                        />
+                    </FadeIn>
 
-                        {/* Right Column: Content Composition */}
-                        <div className="lg:col-span-7 flex flex-col justify-center relative">
-                            {/* Background Watermark Flor (Increased visibility to match mockup layers) */}
-                            <div className="absolute top-[30%] lg:top-[40%] right-0 lg:right-[-10%] w-[100%] opacity-10 pointer-events-none z-0">
-                                <Image 
-                                    src="/assets/images/watermark-logo.png" 
-                                    alt="" 
-                                    width={800} 
-                                    height={800} 
-                                    className="w-full h-auto opacity-70"
-                                />
-                            </div>
+                    {/* Right Side: Content Composition */}
+                    <div className="flex flex-col justify-center relative py-20 px-8 lg:pr-32 lg:pl-20">
+                        {/* Background Watermark Flor (Layered behind text) */}
+                        <div className="absolute top-[35%] right-0 w-[110%] opacity-[0.08] pointer-events-none z-0">
+                            <Image 
+                                src="/assets/images/watermark-logo.png" 
+                                alt="" 
+                                width={1200} 
+                                height={1200} 
+                                className="w-full h-auto"
+                            />
+                        </div>
 
                             <div className="relative z-10 space-y-12">
                                 {/* Part A: Mi Historia */}
@@ -156,8 +156,7 @@ export default function AboutPage() {
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
             {/* 4. Turning Point & Methodology */}
             <section className="py-24 relative overflow-hidden">
