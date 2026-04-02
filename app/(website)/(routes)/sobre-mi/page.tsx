@@ -236,51 +236,46 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* 5. Experience Section (Environmental) */}
-            <section className="py-24 bg-[#0a0a0a] px-4 relative overflow-hidden">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[var(--color-secondary)]/5 rounded-full blur-[120px]" />
-
-                <div className="container mx-auto max-w-6xl relative z-10">
-                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                        <FadeIn className="relative h-[650px] lg:h-[700px] rounded-2xl overflow-hidden shadow-2xl order-2 lg:order-1">
-                            <Image
-                                src="/assets/images/about-experience-new.jpg"
-                                alt="Danza Lunar y Solar - Yelitze Rangel"
-                                fill
-                                className="object-cover object-top"
-                                quality={100}
-                            />
-                            <div className="absolute inset-0 bg-black/20" />
-                        </FadeIn>
-
-                        <div className="text-center lg:text-left order-1 lg:order-2">
+            {/* 5. Experience Section (Environmental - Redesigned) */}
+            {/* 5. Experience Section (Environmental - Redesigned) */}
+            <section className="py-24 lg:py-40 bg-white relative overflow-hidden">
+                {/* Subtle Sidebar Orange Glow */}
+                <div className="absolute top-0 left-0 w-64 h-full bg-gradient-to-r from-[var(--color-secondary)]/10 to-transparent z-0" />
+                
+                <div className="container mx-auto px-8 lg:px-32 relative z-10">
+                    <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                        {/* Text Content: Left Column */}
+                        <div className="space-y-10 order-2 lg:order-1">
                             <FadeIn>
-                                <span className="text-[var(--color-secondary)] text-4xl mb-6 block font-serif">
-                                    ⸻
-                                </span>
-
-                                <h3 className="text-3xl lg:text-5xl font-heading text-white mb-8 italic font-bold">
+                                <h2 className="text-4xl lg:text-5xl font-serif italic text-[var(--color-secondary)] font-bold mb-8">
                                     La experiencia que sostiene
-                                </h3>
-
-                                <div className="text-lg lg:text-xl text-gray-300 leading-relaxed space-y-6">
+                                </h2>
+                                
+                                <div className="space-y-8 text-lg lg:text-xl text-gray-700 leading-relaxed max-w-xl">
                                     <p>
                                         La Danza Lunar, la Danza del Sol en México y muchas otras experiencias fueron dando forma a grandes experiencias que hoy comparto.
                                     </p>
-                                    <p className="italic text-white font-light text-2xl">
-                                        No como una verdad única, <br />
-                                        sino como un camino posible
+                                    <p className="font-medium text-gray-900">
+                                        No como una verdad única, <br className="hidden lg:block" /> sino como un camino posible
                                     </p>
-                                    <p>
-                                        para volver al cuerpo, a la energía, al linaje <br /> y a la coherencia interior.
+                                    <p className="font-bold text-gray-900 border-l-4 border-[var(--color-secondary)] pl-6">
+                                        para volver al cuerpo, a la energía, al linaje y a la coherencia interior.
                                     </p>
                                 </div>
-
-                                <span className="text-[var(--color-secondary)] text-4xl mt-8 block font-serif lg:hidden">
-                                    ⸻
-                                </span>
                             </FadeIn>
                         </div>
+
+                        {/* Image Frame: Right Column */}
+                        <FadeIn delay={0.2} className="relative order-1 lg:order-2">
+                            <div className="relative h-[500px] lg:h-[650px] w-full rounded-tl-2xl rounded-tr-[12rem] rounded-bl-[12rem] rounded-br-2xl overflow-hidden shadow-[0_50px_100px_-30px_rgba(0,0,0,0.3)]">
+                                <Image
+                                    src="/assets/images/about-experience-new.jpg"
+                                    alt="Experiencias Ancestrales"
+                                    fill
+                                    className="object-cover"
+                                />
+                            </div>
+                        </FadeIn>
                     </div>
                 </div>
             </section>
