@@ -83,12 +83,12 @@ export default function NewHero() {
 
 
             {/* Organic Bottom Divider - WHITE BRUSH */}
-            <div className="absolute bottom-0 left-0 right-0 z-30 pointer-events-none h-48 md:h-72 w-full">
-                <div
+            <div className="absolute bottom-0 left-[-40%] right-[-40%] z-30 pointer-events-none h-48 md:h-[600px] overflow-hidden">
+                <div 
                     className="w-full h-full"
                     style={{
-                        maskImage: 'url(/images/home_redesign/brush-bottom.svg)',
-                        WebkitMaskImage: 'url(/images/home_redesign/brush-bottom.svg)',
+                        maskImage: 'url(/images/home_redesign/hero.svg)',
+                        WebkitMaskImage: 'url(/images/home_redesign/hero.svg)',
                         maskRepeat: 'no-repeat',
                         WebkitMaskRepeat: 'no-repeat',
                         maskPosition: 'bottom center',
@@ -96,7 +96,7 @@ export default function NewHero() {
                         maskSize: '100% 100%',
                         WebkitMaskSize: '100% 100%',
                         backgroundColor: 'white'
-                    }}
+                    }} 
                 />
             </div>
         </section>
