@@ -285,7 +285,7 @@ export default function AboutPage() {
                 {/* Background Image: Forest */}
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/images/home_redesign/forest-bg-clean.jpg"
+                        src="/images/home_redesign/Web-Yelitze13 copia.png"
                         alt="Bosque Sagrado"
                         fill
                         className="object-cover"
