@@ -87,8 +87,8 @@ export default function NewHero() {
                 <div 
                     className="w-full h-full"
                     style={{
-                        maskImage: 'url(/images/home_redesign/hero.svg)',
-                        WebkitMaskImage: 'url(/images/home_redesign/hero.svg)',
+                        maskImage: 'url(/images/home_redesign/Lineas-Hero.svg)',
+                        WebkitMaskImage: 'url(/images/home_redesign/Lineas-Hero.svg)',
                         maskRepeat: 'no-repeat',
                         WebkitMaskRepeat: 'no-repeat',
                         maskPosition: 'bottom center',
