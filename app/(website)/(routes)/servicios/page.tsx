@@ -13,66 +13,56 @@ export default function ServicesPage() {
     return (
         <main className="bg-[#fafcfe] min-h-screen selection:bg-[var(--color-secondary)] selection:text-white pb-20">
 
-            {/* 1. SECTION: COACHING ANCESTRAL */}
-            <section className="relative min-h-[90vh] flex flex-col lg:flex-row overflow-hidden pt-20">
-                {/* Left Panel: BRAND NEW BLACK BACKGROUND */}
-                <div className="lg:w-[45%] bg-black p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
-                    {/* Subtle Watermark - Larger & More Transparent */}
-                    <div className="absolute -left-32 -bottom-32 w-[1000px] h-[1000px] opacity-[0.015] pointer-events-none">
-                        <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
-                    </div>
-
-                    <FadeIn>
-                        {/* Pill Badge Style */}
-                        <div className="inline-block mb-12">
-                            <span className="px-8 py-3 rounded-full border border-white/30 bg-white/5 text-white text-sm md:text-base font-light tracking-[0.2em] uppercase backdrop-blur-sm shadow-xl">
-                                Coaching Ancestral
-                            </span>
-                        </div>
-
-                        <div className="space-y-8 mb-16">
-                            <h3 className="text-white text-4xl md:text-5xl lg:text-7xl font-light italic leading-none">
-                                No es magia. <br /> Es alineación.
-                            </h3>
-                            <p className="text-white/80 text-lg md:text-xl font-light tracking-wide max-w-md leading-relaxed">
-                                Activación consciente del creador deliberado a través de la Anatomía del Alma.
-                            </p>
-                        </div>
-                        <Link
-                            href="/servicios/coaching-ancestral"
-                            className="inline-flex items-center gap-4 text-white group border-b border-white/20 pb-2 w-fit hover:border-white transition-all text-lg font-medium"
-                        >
-                            Ver Sesiones Íntimas
-                            <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-                        </Link>
-                    </FadeIn>
-
-                    {/* Logo detail at bottom */}
-                    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-30 hidden lg:block">
-                        <div className="relative w-32 h-12">
-                            <Image
-                                src="/assets/images/logo-white.png"
-                                alt="Yelitze Logo"
-                                fill
-                                className="object-contain"
-                            />
-                        </div>
-                        <p className="text-[10px] text-white text-center tracking-[0.3em] uppercase mt-2">"Por la Vida"</p>
-                    </div>
-                </div>
-
-                {/* Right Panel: Ethereal Image */}
-                <div className="lg:w-[55%] relative min-h-[500px] lg:min-h-full">
+            {/* 1. SECTION: COACHING ANCESTRAL (Full Redesign) */}
+            <section className="relative min-h-screen flex items-center pt-24 overflow-hidden">
+                {/* Background Image */}
+                <div className="absolute inset-0 z-0">
                     <Image
-                        src="/assets/images/coaching-ancestral-hero-new.jpg"
-                        alt="Alineación y Vórtice"
+                        src="/images/home_redesign/services-hero.jpg"
+                        alt="Coaching Ancestral - Yelitze Rangel"
                         fill
-                        className="object-cover"
+                        className="object-cover object-center"
                         priority
                     />
-                    {/* Soft gradient transition from the color panel */}
-                    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent hidden lg:block" />
-                    <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-black/10 lg:to-transparent" />
+                    {/* Subtle Overlay to ensure text readability */}
+                    <div className="absolute inset-0 bg-black/20 z-10" />
+                </div>
+                
+                <div className="container mx-auto px-8 lg:px-40 relative z-20">
+                    <div className="max-w-2xl ml-auto text-right space-y-12 lg:space-y-16">
+                        <FadeIn>
+                            {/* Pill Badge */}
+                            <div className="inline-block border border-white/40 bg-black/20 backdrop-blur-sm px-8 py-3 rounded-full mb-8">
+                                <span className="text-white text-xs lg:text-sm font-bold uppercase tracking-[0.4em]">
+                                    Coaching Ancestral
+                                </span>
+                            </div>
+
+                            {/* Main Heading */}
+                            <div className="space-y-2 mb-12">
+                                <h1 className="text-5xl lg:text-8xl font-bold text-white uppercase tracking-tight leading-none">
+                                    NO ES MAGIA
+                                </h1>
+                                <p className="font-script text-5xl lg:text-9xl text-white leading-[0.6] lg:leading-[0.5] mt-[-0.1em] lg:mt-[-0.2em]">
+                                    es alineación
+                                </p>
+                            </div>
+
+                            {/* Description */}
+                            <div className="space-y-8 max-w-sm ml-auto">
+                                <p className="text-white text-lg lg:text-xl font-medium leading-relaxed opacity-90">
+                                    Activación consciente del creador deliberado a través de la Anatomía del Alma.
+                                </p>
+                                
+                                <Link
+                                    href="/servicios/coaching-ancestral"
+                                    className="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors group text-sm uppercase tracking-[0.3em] font-bold"
+                                >
+                                    ver sesiones íntimas »
+                                </Link>
+                            </div>
+                        </FadeIn>
+                    </div>
                 </div>
             </section>
 
