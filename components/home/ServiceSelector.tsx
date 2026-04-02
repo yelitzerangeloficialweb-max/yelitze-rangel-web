@@ -107,7 +107,7 @@ export default function ServiceSelector() {
                         </div>
 
                         {/* Text Content */}
-                        <div className="lg:w-1/2 text-white space-y-8 text-center lg:text-left z-20 pt-24 lg:pt-20 lg:pl-12">
+                        <div className="lg:w-1/2 text-white space-y-8 text-center lg:text-left z-20 pt-24 lg:pt-72 lg:pl-12">
                             <motion.div
                                 initial={{ opacity: 0, x: 30 }}
                                 whileInView={{ opacity: 1, x: 0 }}
