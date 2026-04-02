@@ -151,14 +151,24 @@ export default function AboutPage() {
                                     </div>
                                 </div>
 
-                                {/* Final Credentials Quote (The Box Layer) */}
-                                <FadeIn className="bg-[#fcf8f5] p-10 rounded-2xl border-r-8 border-[var(--color-secondary)] text-right shadow-sm">
-                                    <p className="text-base lg:text-lg italic text-gray-700 leading-relaxed mb-8">
-                                        « No elegí todos estos caminos al azar. Cada uno me enseñó algo distinto sobre el ser humano: cómo piensa, cómo siente, cómo se protege y cómo, cuando es escuchado con verdad, sana. »
-                                    </p>
-                                    <p className="text-base lg:text-lg font-bold text-primary leading-relaxed">
-                                        Hoy integro todo eso en un solo método. Uno que honra la ciencia sin olvidar el espíritu. Uno que acompaña sin imponer. Uno que devuelve soberanía interior.
-                                    </p>
+                                {/* Final Credentials Quote (The Box Layer - Refined to match Gradient Style) */}
+                                <FadeIn className="relative w-full p-10 lg:p-14 overflow-hidden">
+                                    <div className="absolute inset-0 z-0">
+                                        <Image 
+                                            src="/images/home_redesign/quote-gradient.png" 
+                                            alt="" 
+                                            fill 
+                                            className="object-cover opacity-90"
+                                        />
+                                    </div>
+                                    <div className="relative z-10 space-y-8">
+                                        <p className="text-lg lg:text-xl italic text-black leading-relaxed font-medium text-right">
+                                            « No elegí todos estos caminos al azar. Cada uno me enseñó algo distinto sobre el ser humano: cómo piensa, cómo siente, cómo se protege y cómo, cuando es escuchado con verdad, sana. »
+                                        </p>
+                                        <p className="text-lg lg:text-xl font-bold text-black leading-relaxed text-right">
+                                            Hoy integro todo eso en un solo método. Uno que honra la ciencia sin olvidar el espíritu. Uno que acompaña sin imponer. Uno que devuelve soberanía interior.
+                                        </p>
+                                    </div>
                                 </FadeIn>
                             </div>
                         </div>
