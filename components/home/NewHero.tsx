@@ -87,14 +87,14 @@ export default function NewHero() {
                 <div
                     className="w-full h-full"
                     style={{
-                        maskImage: 'url(/images/home_redesign/hero.svg)',
-                        WebkitMaskImage: 'url(/images/home_redesign/hero.svg)',
+                        maskImage: 'url(/images/home_redesign/brush-bottom.svg)',
+                        WebkitMaskImage: 'url(/images/home_redesign/brush-bottom.svg)',
                         maskRepeat: 'no-repeat',
                         WebkitMaskRepeat: 'no-repeat',
                         maskPosition: 'bottom center',
                         WebkitMaskPosition: 'bottom center',
-                        maskSize: '200% 100%',
-                        WebkitMaskSize: '200% 100%',
+                        maskSize: '100% 100%',
+                        WebkitMaskSize: '100% 100%',
                         backgroundColor: 'white'
                     }}
                 />
