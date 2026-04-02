@@ -87,8 +87,8 @@ export default function NewHero() {
                 <div 
                     className="absolute inset-0 z-0 origin-top scale-y-125"
                     style={{
-                        maskImage: 'url(/images/home_redesign/brush-bottom.svg)',
-                        WebkitMaskImage: 'url(/images/home_redesign/brush-bottom.svg)',
+                        maskImage: 'url(/images/home_redesign/hero.svg)',
+                        WebkitMaskImage: 'url(/images/home_redesign/hero.svg)',
                         maskRepeat: 'no-repeat',
                         WebkitMaskRepeat: 'no-repeat',
                         maskPosition: 'bottom center',
