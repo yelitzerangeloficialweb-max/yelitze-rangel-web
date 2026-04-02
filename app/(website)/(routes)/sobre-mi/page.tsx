@@ -57,96 +57,106 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* 2. Credentials Section (Dark Texture Background) */}
-            <section className="bg-stone-900/50 py-24 px-4 relative overflow-hidden border-y border-white/5">
-                <div className="absolute top-0 right-0 w-96 h-96 bg-[var(--color-secondary)]/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
+            {/* 2 & 3. Combined Story & Credentials Section (Mockup Redesign) */}
+            <section className="py-24 lg:py-32 bg-white text-primary">
+                <div className="container mx-auto px-4 lg:px-20">
+                    <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-stretch">
+                        
+                        {/* Left Column: Main Image */}
+                        <FadeIn className="lg:col-span-5 relative min-h-[600px] lg:min-h-[900px] rounded-[3rem] overflow-hidden shadow-2xl">
+                            <Image
+                                src="/images/home_redesign/Sobremi-02.png"
+                                alt="Yelitze Rangel - Herencia y Memoria"
+                                fill
+                                className="object-cover"
+                                priority
+                            />
+                            {/* Subtle bottom fade to blend if needed */}
+                            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white/20 to-transparent" />
+                        </FadeIn>
 
-                <div className="container mx-auto relative z-10">
-                    <FadeIn className="max-w-5xl mx-auto text-center mb-16">
-                        <h2 className="text-3xl lg:text-5xl font-heading mb-6 text-white font-bold">
-                            Soy Yelitze Rangel
-                        </h2>
-                        <div className="w-24 h-1 bg-[var(--color-secondary)] mx-auto mb-6" />
-                        <p className="text-xl lg:text-2xl font-light text-gray-300 tracking-widest">
-                            TU COACH ANCESTRAL
-                        </p>
-                    </FadeIn>
+                        {/* Right Column: Content Composition */}
+                        <div className="lg:col-span-7 flex flex-col justify-center relative">
+                            {/* Background Watermark Flor */}
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] opacity-[0.03] pointer-events-none z-0">
+                                <Image 
+                                    src="/assets/images/watermark-logo.png" 
+                                    alt="" 
+                                    width={800} 
+                                    height={800} 
+                                    className="w-full h-auto"
+                                />
+                            </div>
 
-                    <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto items-center">
-                        <div className="space-y-8">
-                            <FadeIn>
-                                <p className="text-2xl font-serif italic text-[var(--color-secondary)]">
-                                    ¿Quién soy yo para acompañarte?
-                                </p>
-                            </FadeIn>
-                            <StaggerContainer className="space-y-6">
-                                {[
-                                    { icon: Sparkles, text: "Sanadora ancestral por linaje y memoria." },
-                                    { icon: Anchor, text: "Administradora de empresas por estructura y orden." },
-                                    { icon: Brain, text: "Psicóloga por vocación de comprender la mente." },
-                                    { icon: Heart, text: "Terapeuta en duelo y tanatóloga por respeto." },
-                                    { icon: Star, text: "Facilitadora de descongelamiento de trauma." },
-                                ].map((item, idx) => (
-                                    <StaggerItem key={idx} className="flex items-center gap-4 text-lg text-gray-300 group">
-                                        <div className="p-2 rounded-full bg-white/5 group-hover:bg-[var(--color-secondary)] transition-colors duration-300">
-                                            <item.icon className="w-5 h-5 text-current group-hover:text-white" />
-                                        </div>
-                                        <span>{item.text}</span>
-                                    </StaggerItem>
-                                ))}
-                            </StaggerContainer>
+                            <div className="relative z-10 space-y-12">
+                                {/* Part A: Mi Historia */}
+                                <div className="space-y-6 text-center lg:text-right">
+                                    <FadeIn>
+                                        <span className="text-[var(--color-secondary)] uppercase tracking-[0.2em] text-xs font-bold block mb-2">
+                                            Sobre Mi
+                                        </span>
+                                        <h2 className="text-4xl lg:text-5xl font-heading font-bold text-primary">
+                                            Mi Historia
+                                        </h2>
+                                    </FadeIn>
+                                    
+                                    <StaggerContainer className="text-gray-600 leading-relaxed text-sm lg:text-base max-w-2xl ml-auto">
+                                        <StaggerItem>
+                                            Después de la pérdida de dos bebés y de un divorcio, mi vida quedó en pausa. No sabía cómo reiniciar ni desde dónde volver a empezar.
+                                        </StaggerItem>
+                                        <StaggerItem>
+                                            Ese quiebre me llevó a la India, donde inicié lo que llamo mi <strong className="text-primary">camino de fuego</strong>: un proceso de transformación que marcó un giro profundo en mi vida y me reconectó con mis dones, mis raíces y mis recursos internos.
+                                        </StaggerItem>
+                                        <StaggerItem>
+                                            Allí comprendí que la sanación no ocurre cuando mente, cuerpo y alma caminan separados. El equilibrio nace cuando se integran. Desde ese despertar comencé a dar forma a una nueva vida y a un método que une ciencia, experiencia terapéutica y sabiduría ancestral para acompañar procesos.
+                                        </StaggerItem>
+                                    </StaggerContainer>
+                                </div>
+
+                                {/* Intermediate Quote */}
+                                <FadeIn className="relative py-8">
+                                    <div className="absolute right-0 top-0 w-32 h-[1px] bg-[var(--color-secondary)]/30" />
+                                    <p className="text-sm italic font-medium text-[var(--color-secondary)] text-right max-w-lg ml-auto">
+                                        « Hoy acompaño desde la presencia, la integración y el respeto profundo por cada historia. »
+                                    </p>
+                                </FadeIn>
+
+                                {/* Part B: Soy Yelitze */}
+                                <div className="space-y-8 text-center lg:text-right">
+                                    <FadeIn>
+                                        <h2 className="text-4xl lg:text-6xl font-heading font-bold text-primary">
+                                            Soy Yelitze
+                                        </h2>
+                                        <p className="tracking-[0.3em] text-xs font-bold text-gray-400 mt-2">
+                                            TU COACH ANCESTRAL
+                                        </p>
+                                    </FadeIn>
+
+                                    <div className="space-y-4 text-right">
+                                        <h3 className="text-xl font-serif italic text-[var(--color-secondary)] mb-6">
+                                            ¿Quién soy yo para acompañarte?
+                                        </h3>
+                                        <ul className="space-y-4 text-gray-700 text-sm lg:text-base font-medium">
+                                            <li>Sanadora ancestral por linaje y memoria.</li>
+                                            <li>Administradora de empresas por estructura y orden.</li>
+                                            <li>Psicóloga por vocación de comprender la mente.</li>
+                                            <li>Terapeuta en duelo y tanatóloga por respeto.</li>
+                                            <li>Facilitadora de descongelamiento de trauma.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                {/* Final Credentials Quote */}
+                                <FadeIn className="bg-[var(--color-secondary)]/5 p-8 rounded-2xl border-r-4 border-[var(--color-secondary)] text-right">
+                                    <p className="text-sm italic text-gray-600 leading-relaxed mb-4">
+                                        « No elegí todos estos caminos al azar. Cada uno me enseñó algo distinto sobre el ser humano: cómo piensa, cómo siente, cómo se protege y cómo, cuando es escuchado con verdad, sana. »
+                                    </p>
+                                    <p className="text-sm font-bold text-primary leading-relaxed">
+                                        Hoy integro todo eso en un solo método. Uno que honra la ciencia sin olvidar el espíritu. Uno que acompaña sin imponer. Uno que devuelve soberanía interior.
+                                    </p>
+                                </FadeIn>
+                            </div>
                         </div>
-
-                        <FadeIn delay={0.3} className="relative p-8 border border-white/10 rounded-2xl bg-white/5 backdrop-blur-sm">
-                            <p className="text-lg leading-relaxed text-gray-300 italic">
-                                No elegí todos estos caminos al azar. Cada uno me enseñó algo distinto sobre el ser humano: cómo piensa, cómo siente, cómo se protege y cómo, cuando es escuchado con verdad, sana. <br /><br />
-                                <span className="font-semibold text-[var(--color-secondary)] not-italic">Hoy integro todo eso en un solo método.</span> Uno que honra la ciencia sin olvidar el espíritu. Uno que acompaña sin imponer. Uno que devuelve soberanía interior.
-                            </p>
-                        </FadeIn>
-                    </div>
-                </div>
-            </section>
-
-            {/* 3. My Story (Narrative) */}
-            <section className="py-24 lg:py-32 px-4 container mx-auto">
-                <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-                    <FadeIn className="lg:col-span-5 relative h-[500px] lg:h-[700px] rounded-2xl overflow-hidden shadow-2xl">
-                        <Image
-                            src="/assets/images/about-story-portrait.jpg"
-                            alt="Mi Historia - Yelitze Rangel"
-                            fill
-                            className="object-cover object-top"
-                        />
-                        <div className="absolute inset-0 bg-black/10" />
-                    </FadeIn>
-                    <div className="lg:col-span-7 flex flex-col justify-center space-y-8">
-                        <FadeIn>
-                            <span className="text-sm font-bold tracking-widest text-[var(--color-secondary)] uppercase">
-                                El Camino
-                            </span>
-                            <h2 className="text-4xl lg:text-7xl font-heading text-white font-bold">
-                                Mi Historia
-                            </h2>
-                        </FadeIn>
-                        <StaggerContainer className="prose prose-lg text-gray-300">
-                            <StaggerItem className="mb-8">
-                                Después de la pérdida de dos bebés y de un divorcio, mi vida quedó en pausa. No sabía cómo reiniciar ni desde dónde volver a empezar.
-                            </StaggerItem>
-                            <StaggerItem className="mb-8">
-                                Ese quiebre me llevó a la India, donde inicié lo que llamo mi <strong className="text-white">camino de fuego</strong>: un proceso de transformación que marcó un giro profundo en mi vida y me reconectó con mis dones, mis raíces y mis recursos internos.
-                            </StaggerItem>
-                            <StaggerItem className="mb-8">
-                                Allí comprendí que la sanación no ocurre cuando mente, cuerpo y alma caminan separados. <strong className="text-white">El equilibrio nace cuando se integran.</strong>
-                            </StaggerItem>
-                            <StaggerItem className="mb-8">
-                                Desde ese despertar comencé a dar forma a una nueva vida y a un método que une ciencia, experiencia terapéutica y sabiduría ancestral para acompañar procesos de duelo, trauma y reconexión interior, dándole una mirada circular a tu destino.
-                            </StaggerItem>
-                        </StaggerContainer>
-                        <FadeIn delay={0.4} className="bg-white/5 p-8 rounded-xl border-l-2 border-[var(--color-secondary)] mt-4">
-                            <p className="text-xl font-light italic text-white m-0">
-                                Hoy acompaño desde la presencia, la integración y el respeto profundo por cada historia.
-                            </p>
-                        </FadeIn>
                     </div>
                 </div>
             </section>
