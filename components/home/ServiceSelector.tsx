@@ -54,7 +54,7 @@ export default function ServiceSelector() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="mt-4 text-5xl md:text-6xl font-script text-[#B8835A] italic"
+                        className="mt-4 text-7xl md:text-[9.5rem] font-script text-[#B8835A] italic leading-tight"
                     >
                         ¿Cómo quieres comenzar?
                     </motion.h2>
