@@ -280,35 +280,33 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* 6. Closing Quotes / Footer */}
-            <section className="py-32 bg-gradient-to-b from-black to-stone-950 text-center px-4">
-                <div className="container mx-auto max-w-4xl">
-                    <div className="mb-20 min-h-[160px] flex flex-col justify-center items-center">
-                        <h2 className="text-3xl lg:text-5xl font-serif italic text-white mb-10 leading-tight">
-                            <TypewriterText
-                                text="Cuando el cuerpo recuerda,"
-                                delay={0.5}
-                            />
-                            <br />
-                            <TypewriterText
-                                text="la vida encuentra una nueva dirección."
-                                delay={2.0}
-                            />
+            {/* 6. Closing Principles (Refined Dark Design) */}
+            <section className="py-32 lg:py-48 bg-[#12100e] text-center px-8 relative overflow-hidden">
+                {/* Subtle dark texture/glow */}
+                <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--color-secondary)/0.05_0%,_transparent_70%)] z-0" />
+                
+                <div className="container mx-auto max-w-5xl relative z-10">
+                    <FadeIn className="space-y-12">
+                        <h2 className="text-3xl lg:text-6xl font-serif italic text-white font-bold leading-tight max-w-4xl mx-auto">
+                            Cuando el cuerpo recuerda,<br /> la vida encuentra una nueva dirección.
                         </h2>
-                        <div className="w-16 h-[1px] bg-[var(--color-secondary)] mx-auto" />
-                    </div>
+                        
+                        <div className="w-24 h-[1px] bg-[var(--color-secondary)] mx-auto opacity-60" />
 
-                    <StaggerContainer className="grid md:grid-cols-3 gap-8 text-sm uppercase tracking-widest font-medium text-gray-500 mt-12">
-                        <StaggerItem className="p-8 border border-white/5 hover:border-[var(--color-secondary)] hover:text-white transition-all duration-300 rounded-xl bg-white/5 cursor-default">
-                            El cuerpo guarda la memoria.
-                        </StaggerItem>
-                        <StaggerItem className="p-8 border border-white/5 hover:border-[var(--color-secondary)] hover:text-white transition-all duration-300 rounded-xl bg-white/5 cursor-default">
-                            La energía marca el rumbo.
-                        </StaggerItem>
-                        <StaggerItem className="p-8 border border-white/5 hover:border-[var(--color-secondary)] hover:text-white transition-all duration-300 rounded-xl bg-white/5 cursor-default">
-                            La conciencia abre el camino.
-                        </StaggerItem>
-                    </StaggerContainer>
+                        <div className="grid md:grid-cols-3 gap-6 lg:gap-10 mt-20">
+                            {[
+                                "EL CUERPO GUARDA LA MEMORIA.",
+                                "LA ENERGÍA MARCA EL RUMBO.",
+                                "LA CONCIENCIA ABRE EL CAMINO."
+                            ].map((text, idx) => (
+                                <FadeIn key={idx} delay={idx * 0.2} className="p-8 lg:p-12 bg-white/[0.03] border border-white/[0.05] flex items-center justify-center rounded-lg group hover:border-[var(--color-secondary)]/30 transition-colors">
+                                    <span className="text-xs lg:text-sm uppercase tracking-[0.3em] font-bold text-gray-400 group-hover:text-white transition-colors">
+                                        {text}
+                                    </span>
+                                </FadeIn>
+                            ))}
+                        </div>
+                    </FadeIn>
                 </div>
             </section>
 
