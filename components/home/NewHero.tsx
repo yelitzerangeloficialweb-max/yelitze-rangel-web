@@ -83,16 +83,16 @@ export default function NewHero() {
 
 
             {/* Organic Bottom Divider - WHITE BRUSH */}
-            <div className="absolute bottom-0 left-0 right-0 z-30 pointer-events-none h-32 md:h-48 overflow-visible">
+            <div className="absolute bottom-0 left-0 right-0 z-30 pointer-events-none h-32 md:h-64">
                 <div 
-                    className="absolute inset-0 z-0 origin-top scale-y-125"
+                    className="w-full h-full"
                     style={{
                         maskImage: 'url(/images/home_redesign/hero.svg)',
                         WebkitMaskImage: 'url(/images/home_redesign/hero.svg)',
                         maskRepeat: 'no-repeat',
                         WebkitMaskRepeat: 'no-repeat',
-                        maskPosition: 'bottom center',
-                        WebkitMaskPosition: 'bottom center',
+                        maskPosition: 'bottom',
+                        WebkitMaskPosition: 'bottom',
                         maskSize: '100% 100%',
                         WebkitMaskSize: '100% 100%',
                         backgroundColor: 'white'
