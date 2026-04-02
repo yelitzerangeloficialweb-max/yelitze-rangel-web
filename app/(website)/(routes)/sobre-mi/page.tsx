@@ -269,7 +269,7 @@ export default function AboutPage() {
                         <FadeIn delay={0.2} className="relative order-1 lg:order-2">
                             <div className="relative h-[500px] lg:h-[650px] w-full rounded-tl-2xl rounded-tr-[12rem] rounded-bl-[12rem] rounded-br-2xl overflow-hidden shadow-[0_50px_100px_-30px_rgba(0,0,0,0.3)]">
                                 <Image
-                                    src="/assets/images/about-experience-new.jpg"
+                                    src="/images/home_redesign/experience-main.jpg"
                                     alt="Experiencias Ancestrales"
                                     fill
                                     className="object-cover"
