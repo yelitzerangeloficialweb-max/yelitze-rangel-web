@@ -237,10 +237,17 @@ export default function AboutPage() {
             </section>
 
             {/* 5. Experience Section (Environmental - Redesigned) */}
-            {/* 5. Experience Section (Environmental - Redesigned) */}
             <section className="py-24 lg:py-40 bg-white relative overflow-hidden">
-                {/* Subtle Sidebar Orange Glow */}
-                <div className="absolute top-0 left-0 w-64 h-full bg-gradient-to-r from-[var(--color-secondary)]/10 to-transparent z-0" />
+                {/* Visual Bluer Blur - Top Left */}
+                <div className="absolute top-0 left-0 z-0 opacity-40 pointer-events-none">
+                    <Image
+                        src="/images/home_redesign/bluer.png"
+                        alt=""
+                        width={600}
+                        height={600}
+                        className="w-auto h-auto max-w-full"
+                    />
+                </div>
                 
                 <div className="container mx-auto px-8 lg:px-32 relative z-10">
                     <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
