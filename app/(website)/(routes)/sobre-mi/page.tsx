@@ -175,66 +175,63 @@ export default function AboutPage() {
                     </div>
                 </section>
 
-            {/* 4. Turning Point & Methodology */}
-            <section className="py-24 relative overflow-hidden">
-                {/* Cosmic Background Effect */}
-                <div className="absolute inset-0 z-0 opacity-30">
-                    <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-indigo-900/40 via-black to-black" />
+            {/* 4. Turning Point & Methodology (Dark Faded Design) */}
+            <section className="relative min-h-screen flex items-center bg-black overflow-hidden py-24">
+                {/* Background Image: Aligned Right */}
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="/images/home_redesign/Sobremi-03.png"
+                        alt=""
+                        fill
+                        className="object-cover object-right lg:object-center"
+                        priority
+                    />
+                    {/* Deep Left Gradient Overlay (Creating the dark space for text) */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 lg:via-black/60 to-transparent z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10" />
                 </div>
 
-                <div className="container mx-auto px-4 relative z-10">
-                    <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-                        {/* The Shift */}
-                        <div className="space-y-8">
+                <div className="container mx-auto px-8 lg:px-32 relative z-20">
+                    <div className="max-w-2xl space-y-16">
+                        {/* Part A: El Giro */}
+                        <div className="space-y-6">
                             <FadeIn>
-                                <h3 className="text-3xl lg:text-4xl font-heading text-white font-bold">
+                                <h2 className="text-4xl lg:text-6xl font-serif italic text-[var(--color-secondary)] mb-6 font-bold leading-tight">
                                     Cuando todo cambió
-                                </h3>
-                                <p className="text-lg text-gray-400 leading-relaxed">
-                                    El giro de 180 grados no solo transformó mi vida. <strong>Cambió la historia.</strong> <br />
-                                    Después de comprender e integrar todo lo aprendido, el llamado fue claro: llevarlo a la acción. Elegí acompañar desde la integración, especialmente a personas desconectadas de su cuerpo y de su sensación de presencia.
-                                </p>
-                            </FadeIn>
-
-                            <FadeIn delay={0.2} className="mt-12 pt-12 border-t border-white/10">
-                                <h3 className="text-3xl lg:text-4xl font-heading text-white mb-4 font-bold">
-                                    Inteligencia Corporal System
-                                </h3>
-                                <p className="text-lg text-gray-400 leading-relaxed">
-                                    Así nació este método de integración profunda, con el que he acompañado a más de 800 personas alrededor del mundo, descongelando memorias atrapadas en el cuerpo y favoreciendo la regeneración del sistema nervioso central.
-                                </p>
+                                </h2>
+                                <div className="space-y-4 text-gray-300 text-lg lg:text-xl leading-relaxed">
+                                    <p>
+                                        El giro de 180 grados no solo transformó mi vida. <strong className="text-white font-bold underline decoration-[var(--color-secondary)]/50">Cambió la historia.</strong>
+                                    </p>
+                                    <p>
+                                        Después de comprender e integrar todo lo aprendido, el llamado fue claro: llevarlo a la acción. Elegí acompañar desde la integración, especialmente a personas desconectadas de su cuerpo y de su sensación de presencia.
+                                    </p>
+                                </div>
                             </FadeIn>
                         </div>
 
-                        {/* The Expansion */}
-                        <FadeIn delay={0.4} className="bg-[#1a1a1a] p-10 lg:p-14 rounded-3xl shadow-2xl relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500 border border-white/5">
-                            <div className="absolute inset-0 bg-[url('/assets/images/coaching-ancestral-new.jpg')] bg-cover bg-center opacity-40 group-hover:opacity-50 transition-opacity duration-700" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-
-                            <div className="relative z-10 flex flex-col h-full justify-between">
-                                <div>
-                                    <span className="inline-block px-4 py-1 rounded-full border border-[var(--color-secondary)]/30 text-[var(--color-secondary)] text-xs font-bold tracking-widest uppercase mb-6">
-                                        Evolución
-                                    </span>
-                                    <h3 className="text-3xl lg:text-4xl font-heading text-white mb-6 font-bold">
-                                        Coaching Ancestral
-                                    </h3>
-                                    <p className="text-xl text-gray-300 leading-relaxed font-light">
-                                        Un sistema terapéutico donde, a través de un tablero, <strong className="text-white">la anatomía del alma —lo invisible— cobra voz</strong> y una nueva dirección comienza a cambiar el rumbo de la vida.
+                        {/* Part B: Método */}
+                        <div className="space-y-6">
+                            <FadeIn delay={0.2}>
+                                <h2 className="text-3xl lg:text-6xl font-serif italic text-[var(--color-secondary)] mb-6 font-bold leading-tight">
+                                    Inteligencia Corporal Sistémica
+                                </h2>
+                                <div className="space-y-4 text-gray-300 text-lg lg:text-xl leading-relaxed">
+                                    <p>
+                                        Así nació este método de integración profunda, con el que he acompañado a muchas personas alrededor del mundo, descongelando memorias atrapadas en el cuerpo y favoreciendo la regeneración del sistema nervioso central.
                                     </p>
-                                    <p className="mt-6 text-[var(--color-secondary)] font-medium italic">
-                                        Esto no es motivación. Es entrenamiento energético.
-                                    </p>
+                                    <div className="pt-8">
+                                        <Link
+                                            href="/servicios/coaching-ancestral"
+                                            className="inline-flex items-center gap-4 text-white hover:text-[var(--color-secondary)] transition-colors group text-sm uppercase tracking-[0.3em] font-bold"
+                                        >
+                                            Conocer el método
+                                            <MoveRight className="group-hover:translate-x-2 transition-transform" />
+                                        </Link>
+                                    </div>
                                 </div>
-
-                                <Link
-                                    href="/servicios/coaching-ancestral"
-                                    className="inline-flex items-center gap-3 mt-10 text-white font-bold tracking-wide hover:gap-5 transition-all group-hover:text-[var(--color-secondary)]"
-                                >
-                                    Descubre el Método <MoveRight />
-                                </Link>
-                            </div>
-                        </FadeIn>
+                            </FadeIn>
+                        </div>
                     </div>
                 </div>
             </section>
