@@ -310,7 +310,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="container mx-auto px-8 lg:px-40 relative z-30">
-                    <div className="max-w-3xl ml-auto text-right space-y-16 lg:space-y-24">
+                    <div className="max-w-3xl ml-auto text-center space-y-16 lg:space-y-24">
                         <FadeIn>
                             <h2 className="text-3xl lg:text-6xl font-script text-white leading-[0.7] lg:leading-[0.6] drop-shadow-md">
                                 Cuando el cuerpo <br className="hidden lg:block" /> recuerda, <br />
@@ -318,7 +318,7 @@ export default function AboutPage() {
                             </h2>
                         </FadeIn>
                         
-                        <div className="flex flex-col items-end space-y-4 lg:space-y-6">
+                        <div className="flex flex-col items-center space-y-4 lg:space-y-6">
                             {[
                                 "EL CUERPO GUARDA LA MEMORIA",
                                 "LA ENERGÍA MARCA EL RUMBO",
