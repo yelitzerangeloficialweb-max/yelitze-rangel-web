@@ -203,15 +203,25 @@ export default function ServicesPage() {
                 </div>
             </section>
 
-            {/* 4. SECTION: CORPORATIVO (Dark Editorial Continuity) */}
+            {/* 4. SECTION: CORPORATIVO (Full Background Redesign) */}
             <section className="py-24 lg:py-48 bg-[#1c1c1c] relative overflow-hidden">
-                {/* Continuity Glow */}
-                <div className="absolute top-0 right-0 w-[80%] h-full bg-[radial-gradient(circle_at_top_right,_rgba(77,56,45,0.25),_transparent_70%)] pointer-events-none" />
+                {/* Full-bleed Background Image with Gradient Overlay */}
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="/assets/images/corporate-vortex.png"
+                        alt="Sesiones Corporativas"
+                        fill
+                        className="object-cover grayscale-[0.2] brightness-75 transition-all duration-1000"
+                        priority
+                    />
+                    {/* Deep gradient from left to ensure text legibility */}
+                    <div className="absolute inset-y-0 left-0 w-full lg:w-[65%] bg-gradient-to-r from-[#1c1c1c] via-[#1c1c1c]/50 to-transparent z-10" />
+                </div>
                 
-                <div className="container mx-auto px-8 lg:px-40 relative">
-                    <div className="flex flex-col lg:flex-row gap-20 lg:gap-32 items-center">
-                        {/* Content Side */}
-                        <div className="lg:w-1/2 space-y-12 py-12 lg:py-0">
+                <div className="container mx-auto px-8 lg:px-40 relative z-20">
+                    <div className="flex flex-col lg:flex-row items-center min-h-[80vh] lg:min-h-screen">
+                        {/* Content Side Overlay */}
+                        <div className="lg:w-3/5 space-y-12 py-24 lg:py-0">
                             <FadeIn>
                                 <div className="space-y-4">
                                     <span className="font-script text-4xl lg:text-5xl text-[#b8835a] leading-none block">
@@ -227,7 +237,7 @@ export default function ServicesPage() {
                                         Impulsa el potencial de tu equipo a través de la visión sistémica.
                                     </p>
                                     
-                                    <p className="text-lg text-white/70 leading-relaxed font-light">
+                                    <p className="text-lg text-white/70 leading-relaxed font-light max-w-xl">
                                         Sanamos la cultura organizacional para alcanzar objetivos extraordinarios enfocándonos en el alma de la empresa y su propósito original.
                                     </p>
 
@@ -257,20 +267,6 @@ export default function ServicesPage() {
                                     </div>
                                 </div>
                             </FadeIn>
-                        </div>
-
-                        {/* Image Side: Full-bleed Right with Gradient Overlay */}
-                        <div className="lg:w-1/2 absolute top-0 right-0 h-full w-full lg:relative min-h-[500px] lg:min-h-screen">
-                            <Image
-                                src="/assets/images/corporate-vortex.png"
-                                alt="Sesiones Corporativas"
-                                fill
-                                className="object-cover grayscale-[0.2] brightness-90 group-hover:grayscale-0 transition-all duration-1000"
-                            />
-                            {/* Blend gradient from image to text area */}
-                            <div className="absolute inset-y-0 left-0 w-full lg:w-48 bg-gradient-to-r from-[#1c1c1c] via-[#1c1c1c]/40 to-transparent" />
-                            {/* Mobile fade from bottom */}
-                            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#1c1c1c] to-transparent lg:hidden" />
                         </div>
                     </div>
                 </div>
