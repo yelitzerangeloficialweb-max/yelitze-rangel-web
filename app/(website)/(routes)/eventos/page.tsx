@@ -176,17 +176,17 @@ export default function EventsPage() {
             </section>
 
             {/* 3. SECTION: TRIBU & RECONEXIÓN (ATMOSPHERE) */}
-            <section className="py-32 bg-stone-950 relative overflow-hidden">
+            <section className="py-32 bg-[#e0ddd8] relative overflow-hidden">
                 {/* Subtle Watermark */}
-                <div className="absolute -right-40 -top-40 w-[1000px] h-[1000px] opacity-[0.05] pointer-events-none rotate-12">
+                <div className="absolute -right-40 -top-40 w-[1000px] h-[1000px] opacity-20 pointer-events-none rotate-12">
                     <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
                 </div>
-
+ 
                 <div className="container mx-auto px-4 relative">
                     <div className="max-w-4xl mx-auto text-center mb-24">
                         <FadeIn>
                             <h2 className="text-[var(--color-secondary)] text-4xl md:text-6xl font-heading mb-8">Vivir la Experiencia</h2>
-                            <p className="text-gray-400 text-xl font-light italic leading-relaxed">
+                            <p className="text-stone-600 text-xl font-light italic leading-relaxed">
                                 “No solo venimos a aprender, venimos a recordar quiénes somos cuando estamos en paz y en tribu.”
                             </p>
                         </FadeIn>
