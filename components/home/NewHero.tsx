@@ -56,7 +56,7 @@ export default function NewHero() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 1.2, duration: 1 }}
-                        className="pt-12 md:pt-14 flex justify-center -translate-y-24 md:-translate-y-56"
+                        className="pt-12 md:pt-14 flex justify-center -translate-y-8 md:-translate-y-12"
                     >
                         <Link
                             href="/tests"
@@ -67,15 +67,15 @@ export default function NewHero() {
                     </motion.div>
                 </motion.div>
             </div>
-
-            {/* Pagination/Scroll Indicator - Lowered to avoid button overlap */}
-            <div className="absolute bottom-32 md:bottom-48 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-90">
-                <div className="relative w-20 h-20">
+ 
+            {/* Pagination/Scroll Indicator - Lowered & Whipped White */}
+            <div className="absolute bottom-12 md:bottom-20 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2">
+                <div className="relative w-16 h-16 opacity-60 transition-opacity hover:opacity-100">
                     <Image
                         src="/assets/images/watermark-logo.png"
                         alt=""
                         fill
-                        className="object-contain"
+                        className="object-contain brightness-0 invert"
                     />
                 </div>
             </div>
