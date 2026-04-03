@@ -203,9 +203,10 @@ export default function ServicesPage() {
                 </div>
             </section>
 
-            {/* 4. SECTION: CORPORATIVO (Redesigned Light Mode) */}
-            <section className="py-24 lg:py-48 bg-stone-50 relative overflow-hidden">
-                <div className="absolute right-0 top-0 w-1/3 h-full bg-[var(--color-secondary)]/5 pointer-events-none" />
+            {/* 4. SECTION: CORPORATIVO (Dark Editorial Continuity) */}
+            <section className="py-24 lg:py-48 bg-[#1c1c1c] relative overflow-hidden">
+                {/* Continuity Glow */}
+                <div className="absolute top-0 right-0 w-[80%] h-full bg-[radial-gradient(circle_at_top_right,_rgba(77,56,45,0.25),_transparent_70%)] pointer-events-none" />
                 
                 <div className="container mx-auto px-8 lg:px-40 relative">
                     <div className="flex flex-col lg:flex-row gap-20 lg:gap-32 items-center">
@@ -213,20 +214,20 @@ export default function ServicesPage() {
                         <div className="lg:w-1/2 space-y-12">
                             <FadeIn>
                                 <div className="space-y-4">
-                                    <span className="font-script text-4xl lg:text-6xl text-[var(--color-secondary)] leading-none block">
+                                    <span className="font-script text-4xl lg:text-5xl text-[#b8835a] leading-none block">
                                         Liderazgo & Origen
                                     </span>
-                                    <h2 className="text-4xl lg:text-7xl font-bold text-[var(--color-primary)] leading-[0.9] tracking-tighter uppercase">
+                                    <h2 className="text-4xl lg:text-7xl font-bold text-white leading-[0.9] tracking-tighter uppercase">
                                         SESIONES <br /> CORPORATIVAS
                                     </h2>
                                 </div>
 
                                 <div className="space-y-10">
-                                    <p className="text-xl lg:text-2xl text-[var(--color-primary)]/80 font-serif italic border-l-4 border-[var(--color-secondary)] pl-8 py-2">
+                                    <p className="text-xl lg:text-2xl text-white/90 font-serif italic border-l-4 border-[#b8835a] pl-8 py-2">
                                         Impulsa el potencial de tu equipo a través de la visión sistémica.
                                     </p>
                                     
-                                    <p className="text-lg text-[var(--color-text-light)] leading-relaxed font-light">
+                                    <p className="text-lg text-white/70 leading-relaxed font-light">
                                         Sanamos la cultura organizacional para alcanzar objetivos extraordinarios enfocándonos en el alma de la empresa y su propósito original.
                                     </p>
 
@@ -236,9 +237,9 @@ export default function ServicesPage() {
                                             "Dinámicas de equipo con mirada circular",
                                             "Resolución de conflictos sistémicos"
                                         ].map((item, i) => (
-                                            <li key={i} className="flex items-center gap-4 text-[var(--color-text-light)]">
-                                                <Sparkles className="w-5 h-5 text-[var(--color-secondary)]" />
-                                                <span className="text-lg font-medium">{item}</span>
+                                            <li key={i} className="flex items-center gap-4 text-white/80 font-light">
+                                                <Sparkles className="w-5 h-5 text-[#b8835a]" />
+                                                <span className="text-lg">{item}</span>
                                             </li>
                                         ))}
                                     </ul>
@@ -248,7 +249,7 @@ export default function ServicesPage() {
                                             href="https://wa.me/17867268717"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center justify-center bg-[var(--color-primary)] text-white hover:brightness-110 transition-all px-10 py-5 rounded-xl font-bold uppercase tracking-[0.2em] text-xs lg:text-sm shadow-xl group"
+                                            className="inline-flex items-center justify-center bg-[#b8835a] text-white hover:brightness-110 transition-all px-10 py-5 rounded-xl font-bold uppercase tracking-[0.2em] text-xs lg:text-sm shadow-2xl group"
                                         >
                                             Solicitar Propuesta »
                                             <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" />
@@ -258,21 +259,21 @@ export default function ServicesPage() {
                             </FadeIn>
                         </div>
 
-                        {/* Image Side: Asymmetric Design */}
+                        {/* Image Side: Asymmetric Design (Darkened Frame) */}
                         <div className="lg:w-1/2 relative">
                             <FadeIn>
-                                <div className="relative aspect-square lg:aspect-[4/5] rounded-[3rem] lg:rounded-[5rem] rounded-tl-[10rem] lg:rounded-tl-[150px] overflow-hidden shadow-2xl group border-8 border-white">
+                                <div className="relative aspect-square lg:aspect-[4/5] rounded-[3rem] lg:rounded-[5rem] rounded-tl-[10rem] lg:rounded-tl-[150px] overflow-hidden shadow-[0_40px_100px_-15px_rgba(0,0,0,0.6)] group border border-white/5">
                                     <Image
                                         src="/assets/images/corporate-vortex.png"
                                         alt="Sesiones Corporativas"
                                         fill
-                                        className="object-cover group-hover:scale-105 transition-transform duration-1000"
+                                        className="object-cover group-hover:scale-105 transition-transform duration-1000 grayscale-[0.1] group-hover:grayscale-0"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-700" />
                                 </div>
                             </FadeIn>
                             {/* Decoration element */}
-                            <div className="absolute -top-10 -right-10 w-40 h-40 bg-[var(--color-secondary)]/10 rounded-full blur-3xl -z-10" />
+                            <div className="absolute -top-20 -right-20 w-64 h-64 bg-[#b8835a]/5 rounded-full blur-3xl -z-10" />
                         </div>
                     </div>
                 </div>
