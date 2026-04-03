@@ -211,7 +211,7 @@ export default function ServicesPage() {
                 <div className="container mx-auto px-8 lg:px-40 relative">
                     <div className="flex flex-col lg:flex-row gap-20 lg:gap-32 items-center">
                         {/* Content Side */}
-                        <div className="lg:w-1/2 space-y-12">
+                        <div className="lg:w-1/2 space-y-12 py-12 lg:py-0">
                             <FadeIn>
                                 <div className="space-y-4">
                                     <span className="font-script text-4xl lg:text-5xl text-[#b8835a] leading-none block">
@@ -259,21 +259,18 @@ export default function ServicesPage() {
                             </FadeIn>
                         </div>
 
-                        {/* Image Side: Asymmetric Design (Darkened Frame) */}
-                        <div className="lg:w-1/2 relative">
-                            <FadeIn>
-                                <div className="relative aspect-square lg:aspect-[4/5] rounded-[3rem] lg:rounded-[5rem] rounded-tl-[10rem] lg:rounded-tl-[150px] overflow-hidden shadow-[0_40px_100px_-15px_rgba(0,0,0,0.6)] group border border-white/5">
-                                    <Image
-                                        src="/assets/images/corporate-vortex.png"
-                                        alt="Sesiones Corporativas"
-                                        fill
-                                        className="object-cover group-hover:scale-105 transition-transform duration-1000 grayscale-[0.1] group-hover:grayscale-0"
-                                    />
-                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-700" />
-                                </div>
-                            </FadeIn>
-                            {/* Decoration element */}
-                            <div className="absolute -top-20 -right-20 w-64 h-64 bg-[#b8835a]/5 rounded-full blur-3xl -z-10" />
+                        {/* Image Side: Full-bleed Right with Gradient Overlay */}
+                        <div className="lg:w-1/2 absolute top-0 right-0 h-full w-full lg:relative min-h-[500px] lg:min-h-screen">
+                            <Image
+                                src="/assets/images/corporate-vortex.png"
+                                alt="Sesiones Corporativas"
+                                fill
+                                className="object-cover grayscale-[0.2] brightness-90 group-hover:grayscale-0 transition-all duration-1000"
+                            />
+                            {/* Blend gradient from image to text area */}
+                            <div className="absolute inset-y-0 left-0 w-full lg:w-48 bg-gradient-to-r from-[#1c1c1c] via-[#1c1c1c]/40 to-transparent" />
+                            {/* Mobile fade from bottom */}
+                            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#1c1c1c] to-transparent lg:hidden" />
                         </div>
                     </div>
                 </div>
