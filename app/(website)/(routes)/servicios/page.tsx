@@ -203,19 +203,20 @@ export default function ServicesPage() {
                 </div>
             </section>
 
-            {/* 4. SECTION: CORPORATIVO (Full Background Redesign) */}
-            <section className="py-24 lg:py-48 bg-[#1c1c1c] relative overflow-hidden">
+            {/* 4. SECTION: CORPORATIVO (Full Background Redesign - Forced Edge-to-Edge) */}
+            <section className="py-24 lg:py-48 bg-[#1c1c1c] relative overflow-hidden w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
                 {/* Full-bleed Background Image with Gradient Overlay */}
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="/assets/images/corporate-vortex.png"
                         alt="Sesiones Corporativas"
                         fill
-                        className="object-cover grayscale-[0.2] brightness-75 transition-all duration-1000"
+                        className="object-cover grayscale-[0.2] brightness-75 transition-all duration-1000 w-full h-full"
                         priority
+                        unoptimized
                     />
                     {/* Deep gradient from left to ensure text legibility */}
-                    <div className="absolute inset-y-0 left-0 w-full lg:w-[65%] bg-gradient-to-r from-[#1c1c1c] via-[#1c1c1c]/50 to-transparent z-10" />
+                    <div className="absolute inset-y-0 left-0 w-full lg:w-[70%] bg-gradient-to-r from-[#1c1c1c] via-[#1c1c1c]/60 to-transparent z-10" />
                 </div>
                 
                 <div className="container mx-auto px-8 lg:px-40 relative z-20">
