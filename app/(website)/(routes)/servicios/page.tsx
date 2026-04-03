@@ -120,43 +120,44 @@ export default function ServicesPage() {
                 </div>
             </section>
 
-            {/* 3. SECTION: SABIDURÍA & LEGADO (Moved and Redesigned) */}
-            <section className="py-24 lg:py-40 bg-[#fafcfe] relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none">
-                    <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain scale-150 rotate-12" />
+            {/* 3. SECTION: SABIDURÍA & LEGADO (Dark Editorial Redesign) */}
+            <section className="py-24 lg:py-40 bg-stone-950 relative overflow-hidden">
+                {/* Background Decoration */}
+                <div className="absolute top-0 right-0 w-full h-full opacity-[0.02] pointer-events-none">
+                    <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain scale-150 -rotate-12" />
                 </div>
                 
                 <div className="container mx-auto px-8 lg:px-40 relative">
-                    <FadeIn className="text-center mb-24 space-y-6">
-                        <h2 className="text-5xl lg:text-8xl font-bold text-[var(--color-primary)] uppercase tracking-tighter leading-none mb-4">
-                            SABIDURÍA <br className="lg:hidden" /> & LEGADO
+                    <FadeIn className="text-center mb-24 space-y-4">
+                        <span className="text-white/40 text-[10px] lg:text-xs font-bold uppercase tracking-[0.6em] block mb-4">
+                            ECOSISTEMA DE EVOLUCIÓN
+                        </span>
+                        <h2 className="font-script text-6xl lg:text-[10rem] text-[var(--color-secondary)] leading-[0.8] mb-8">
+                            Sabiduría & Legado
                         </h2>
-                        <p className="font-script text-4xl lg:text-6xl text-[var(--color-secondary)] leading-none italic">
+                        <p className="text-white/60 text-xs lg:text-sm font-bold uppercase tracking-[0.4em] max-w-2xl mx-auto">
                             Espacios para sanar en tribu y herramientas para tu propio ritmo.
                         </p>
                     </FadeIn>
 
-                    <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 max-w-7xl mx-auto items-start">
+                    <div className="grid lg:grid-cols-2 gap-16 lg:gap-32 max-w-7xl mx-auto">
                         {/* Eventos / Grupales */}
                         <FadeIn>
                             <div className="group space-y-10">
-                                <Link href="/eventos" className="block relative aspect-[16/10] rounded-[2.5rem] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] border border-stone-100">
+                                <Link href="/eventos" className="block relative aspect-[16/10] rounded-tl-[80px] rounded-br-[80px] rounded-tr-xl rounded-bl-xl overflow-hidden shadow-2xl border border-white/5">
                                     <Image
                                         src="/assets/images/group-vortex.png"
                                         alt="Capacitaciones Grupales"
                                         fill
-                                        className="object-cover group-hover:scale-105 transition-transform duration-1000"
+                                        className="object-cover group-hover:scale-105 transition-transform duration-1000 grayscale-[0.2] group-hover:grayscale-0"
                                     />
-                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-700" />
-                                    <div className="absolute inset-x-8 bottom-8">
-                                        <span className="inline-block px-8 py-3 rounded-full border border-white/40 bg-black/20 text-white text-xs uppercase tracking-[0.3em] backdrop-blur-md opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
-                                            Ver Talleres »
-                                        </span>
-                                    </div>
+                                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-700" />
                                 </Link>
-                                <div className="space-y-4 px-4">
-                                    <h3 className="text-3xl font-heading text-[var(--color-primary)]">Capacitaciones Grupales</h3>
-                                    <p className="text-[var(--color-text-light)] leading-relaxed text-lg font-light">
+                                <div className="space-y-6 px-2">
+                                    <h3 className="font-script text-5xl lg:text-7xl text-[var(--color-secondary)] leading-none">
+                                        Capacitaciones Grupales
+                                    </h3>
+                                    <p className="text-white/70 leading-relaxed text-lg lg:text-xl font-light">
                                         Talleres intensivos para sanar en tribu. La energía del grupo potencia el trabajo individual mediante espejos sistémicos.
                                     </p>
                                 </div>
@@ -166,14 +167,14 @@ export default function ServicesPage() {
                         {/* Libros & Recursos */}
                         <FadeIn delay={0.2}>
                             <div className="group space-y-10">
-                                <Link href="/libros" className="block relative aspect-[16/10] rounded-[2.5rem] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] border border-stone-100">
-                                    <div className="grid grid-cols-2 h-full gap-1">
+                                <Link href="/libros" className="block relative aspect-[16/10] rounded-tr-[80px] rounded-bl-[80px] rounded-tl-xl rounded-br-xl overflow-hidden shadow-2xl border border-white/5">
+                                    <div className="grid grid-cols-2 h-full gap-[2px] bg-white/5">
                                         <div className="relative h-full">
                                             <Image
                                                 src="/assets/images/chamana-bg.png"
                                                 alt="Conversaciones con mi Chamana"
                                                 fill
-                                                className="object-cover group-hover:scale-105 transition-transform duration-1000"
+                                                className="object-cover group-hover:scale-105 transition-transform duration-1000 grayscale-[0.2] group-hover:grayscale-0"
                                             />
                                         </div>
                                         <div className="relative h-full">
@@ -181,20 +182,17 @@ export default function ServicesPage() {
                                                 src="/assets/images/hilos-bg.png"
                                                 alt="Hilos de Conexión"
                                                 fill
-                                                className="object-cover group-hover:scale-105 transition-transform duration-1000"
+                                                className="object-cover group-hover:scale-105 transition-transform duration-1000 grayscale-[0.2] group-hover:grayscale-0"
                                             />
                                         </div>
                                     </div>
-                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-700" />
-                                    <div className="absolute inset-x-8 bottom-8">
-                                        <span className="inline-block px-8 py-3 rounded-full border border-white/40 bg-black/20 text-white text-xs uppercase tracking-[0.3em] backdrop-blur-md opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
-                                            Explorar Librería »
-                                        </span>
-                                    </div>
+                                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-700" />
                                 </Link>
-                                <div className="space-y-4 px-4">
-                                    <h3 className="text-3xl font-heading text-[var(--color-primary)]">Libros y Recursos</h3>
-                                    <p className="text-[var(--color-text-light)] leading-relaxed text-lg font-light text-left">
+                                <div className="space-y-6 px-2">
+                                    <h3 className="font-script text-5xl lg:text-7xl text-[var(--color-secondary)] leading-none">
+                                        Libros y Recursos
+                                    </h3>
+                                    <p className="text-white/70 leading-relaxed text-lg lg:text-xl font-light">
                                         'Hilos de Conexión' y 'Conversaciones con mi Chamana': herramientas diseñadas para tu viaje de autodescubrimiento cotidiano.
                                     </p>
                                 </div>
