@@ -192,6 +192,17 @@ export default function EventsPage() {
                         </FadeIn>
                     </div>
                     <DynamicExperienceGallery />
+                    
+                    {/* Botón de Galería */}
+                    <div className="mt-16 text-center">
+                        <Link 
+                            href="/galeria"
+                            className="inline-flex items-center gap-3 px-12 py-5 border border-[var(--color-secondary)] text-[var(--color-secondary)] hover:bg-[var(--color-secondary)] hover:text-white transition-all duration-500 rounded-full text-base uppercase tracking-[0.3em] font-normal group"
+                        >
+                            Ver Galería Completa
+                            <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                        </Link>
+                    </div>
                 </div>
             </section>
 
