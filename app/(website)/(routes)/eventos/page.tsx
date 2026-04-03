@@ -76,24 +76,39 @@ export default function EventsPage() {
                 </div>
             </section>
 
-            {/* 2. FILTERS & AGENDA */}
-            <section id="agenda" className="py-24 px-4 relative overflow-hidden">
-                <div className="container mx-auto max-w-7xl">
+            {/* 2. FILTERS & AGENDA (Organic & Soft Design) */}
+            <section id="agenda" className="py-24 px-4 relative overflow-hidden bg-[#e0ddd8]">
+                {/* Background Decor */}
+                <div className="absolute inset-0 z-0">
+                    <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_rgba(224,159,106,0.3),_transparent_70%)]" />
+                    <div className="absolute bottom-0 left-0 w-full h-full bg-[radial-gradient(circle_at_bottom_left,_rgba(224,159,106,0.2),_transparent_60%)]" />
+                    {/* SVG Curve Graphic from Mockup */}
+                    <svg className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full opacity-[0.1] pointer-events-none" viewBox="0 0 1000 500">
+                        <path d="M-100 400 Q300 100 600 350 T1100 150" fill="none" stroke="#b8835a" strokeWidth="2" />
+                    </svg>
+                </div>
 
-                    {/* Minimalist Filters */}
-                    <FadeIn className="flex justify-center mb-20">
-                        <div className="inline-flex flex-wrap gap-3 p-2 bg-stone-100/50 backdrop-blur-sm rounded-full border border-stone-200">
+                <div className="container mx-auto max-w-7xl relative z-10">
+                    <FadeIn className="text-center mb-16 space-y-4">
+                        <h2 className="text-4xl lg:text-7xl font-bold text-[#b8835a] uppercase tracking-widest leading-none">
+                            PRÓXIMOS EVENTOS
+                        </h2>
+                    </FadeIn>
+
+                    {/* Minimalist Copper Filter Pills */}
+                    <FadeIn className="flex justify-center mb-24">
+                        <div className="flex flex-wrap justify-center gap-3 md:gap-6 p-4">
                             {[
                                 { id: 'Todos', label: 'Toda la Agenda' },
-                                { id: 'Semillas de consciencia', label: 'Semillas de Consciencia' },
+                                { id: 'Semillas de consciencia', label: 'Semillas de Conciencia' },
                                 { id: 'Círculo de expansión', label: 'Círculos de Expansión' }
                             ].map((f) => (
                                 <button
                                     key={f.id}
                                     onClick={() => setFilter(f.id as any)}
-                                    className={`px-8 py-3 rounded-full text-xs md:text-sm tracking-widest uppercase transition-all duration-500 font-medium ${filter === f.id
-                                        ? 'bg-[var(--color-primary)] text-white shadow-xl scale-105'
-                                        : 'text-[var(--color-text-light)] hover:bg-white hover:text-[var(--color-primary)]'
+                                    className={`px-10 py-4 rounded-3xl text-sm md:text-base tracking-[0.1em] uppercase transition-all duration-500 font-bold shadow-lg ${filter === f.id
+                                        ? 'bg-[#b8835a] text-white scale-105 shadow-[#b8835a]/30'
+                                        : 'bg-[#b8835a]/80 text-white/90 hover:bg-[#b8835a] hover:scale-105'
                                         }`}
                                 >
                                     {f.label}
@@ -101,55 +116,49 @@ export default function EventsPage() {
                             ))}
                         </div>
                     </FadeIn>
-
+ 
                     {/* Events Narrative Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
                         {filteredEvents.map((event, idx) => (
                             <FadeIn key={event.id} delay={idx * 0.1}>
-                                <div className="group relative bg-white rounded-[2.5rem] overflow-hidden border border-stone-100 shadow-sm hover:shadow-2xl transition-all duration-700">
+                                <div className="group relative bg-white rounded-[3.5rem] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:shadow-2xl transition-all duration-700 h-full flex flex-col">
                                     {/* Image Container */}
-                                    <div className="relative aspect-[16/10] overflow-hidden">
+                                    <div className="relative aspect-[16/11] overflow-hidden">
                                         <Image
                                             src={event.image}
                                             alt={event.title}
                                             fill
                                             className="object-cover group-hover:scale-110 transition-transform duration-1000"
+                                            unoptimized
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
-
-                                        {/* Date Badge */}
-                                        <div className="absolute top-6 left-6 px-4 py-2 bg-white/90 backdrop-blur-md rounded-full text-[var(--color-primary)] text-[10px] font-bold tracking-widest uppercase flex items-center gap-2">
-                                            <Calendar className="w-3 h-3" />
-                                            {event.date}
-                                        </div>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-40" />
                                     </div>
-
+ 
                                     {/* Content */}
-                                    <div className="p-10 space-y-6">
-                                        <div className="space-y-2">
-                                            <span className="text-[var(--color-secondary)] font-bold tracking-[0.2em] uppercase text-[10px]">
+                                    <div className="p-12 space-y-8 flex-grow flex flex-col">
+                                        <div className="space-y-4">
+                                            <span className="text-stone-400 font-bold tracking-[0.2em] uppercase text-[10px] block">
                                                 {event.type}
                                             </span>
-                                            <h3 className="text-3xl font-heading text-[var(--color-primary)] leading-tight group-hover:text-[var(--color-secondary)] transition-colors">
+                                            <h3 className="font-script text-5xl lg:text-6xl text-[#b8835a] leading-none mb-4 italic">
                                                 {event.title}
                                             </h3>
                                         </div>
-
-                                        <p className="text-[var(--color-text-light)] leading-relaxed line-clamp-2">
+ 
+                                        <p className="text-stone-500 leading-relaxed font-light text-lg italic line-clamp-3">
                                             {event.aida.attention}
                                         </p>
-
-                                        <div className="flex items-center justify-between pt-4 border-t border-stone-50">
-                                            <div className="flex items-center gap-2 text-stone-400 text-sm">
-                                                <MapPin className="w-4 h-4" />
-                                                <span>{event.location}</span>
+ 
+                                        <div className="pt-8 mt-auto flex items-center justify-between">
+                                            <div className="flex items-center gap-2 text-[#b8835a]/60 text-sm font-medium">
+                                                <Calendar className="w-4 h-4" />
+                                                <span>{event.date}</span>
                                             </div>
                                             <Link
                                                 href={`/eventos/${event.slug}`}
-                                                className="inline-flex items-center gap-2 text-[var(--color-primary)] font-bold text-sm tracking-wide group/btn"
+                                                className="text-[#b8835a] hover:brightness-75 transition-all text-sm font-bold tracking-wide flex items-center gap-2"
                                             >
-                                                Saber Más
-                                                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                                                Saber más »
                                             </Link>
                                         </div>
                                     </div>
@@ -157,11 +166,11 @@ export default function EventsPage() {
                             </FadeIn>
                         ))}
                     </div>
-
+ 
                     {/* Empty State */}
                     {filteredEvents.length === 0 && (
-                        <FadeIn className="text-center py-32 border-2 border-dashed border-stone-100 rounded-[3rem]">
-                            <Sparkles className="w-12 h-12 text-stone-200 mx-auto mb-6" />
+                        <FadeIn className="text-center py-32 border-2 border-dashed border-stone-300 rounded-[3rem]">
+                            <Sparkles className="w-12 h-12 text-stone-300 mx-auto mb-6" />
                             <p className="text-xl text-stone-400 italic">No hay encuentros de este tipo agendados pronto. Quédate cerca.</p>
                         </FadeIn>
                     )}
