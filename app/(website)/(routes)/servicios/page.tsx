@@ -145,7 +145,7 @@ export default function ServicesPage() {
                             <div className="group space-y-10">
                                 <Link href="/eventos" className="block relative aspect-[16/10] rounded-tl-[80px] rounded-br-[80px] rounded-tr-xl rounded-bl-xl overflow-hidden shadow-2xl border border-white/5">
                                     <Image
-                                        src="/assets/images/group-vortex.png"
+                                        src="/images/home_redesign/capacitacionesgrupales.png"
                                         alt="Capacitaciones Grupales"
                                         fill
                                         className="object-cover group-hover:scale-105 transition-transform duration-1000 grayscale-[0.2] group-hover:grayscale-0"
