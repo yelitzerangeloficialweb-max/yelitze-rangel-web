@@ -72,7 +72,7 @@ export default function ServicesPage() {
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/images/home_redesign/sesiones-bg-final.png"
+                        src="/images/home_redesign/Web-Yelitze-servicios.png"
                         alt="Sesiones Corporales - Alquimia del Tacto"
                         fill
                         className="object-cover object-center"
