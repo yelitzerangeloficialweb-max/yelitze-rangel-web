@@ -67,44 +67,54 @@ export default function ServicesPage() {
                 </div>
             </section>
 
-            <section className="py-32 px-4 bg-white relative overflow-hidden">
-                {/* Subtle Watermark - Larger & More Transparent */}
-                <div className="absolute -left-32 -bottom-32 w-[900px] h-[900px] opacity-[0.015] pointer-events-none rotate-12">
-                    <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
+            {/* 2. SECTION: SESIONES CORPORALES (Full-bleed redesign) */}
+            <section className="relative min-h-screen flex items-center overflow-hidden">
+                {/* Background Image */}
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="/images/home_redesign/sesiones-corporales-bg.png"
+                        alt="Sesiones Corporales - Alquimia del Tacto"
+                        fill
+                        className="object-cover object-center"
+                        priority
+                    />
+                    {/* Dark gradient overlay on the left for text readability */}
+                    <div className="absolute inset-y-0 left-0 w-full lg:w-3/4 bg-gradient-to-r from-black/90 via-black/40 to-transparent z-10" />
                 </div>
-                <div className="container mx-auto relative">
-                    <div className="flex flex-col lg:flex-row-reverse gap-16 items-center">
-                        <div className="lg:w-1/2 space-y-8">
-                            <FadeIn>
-                                <span className="text-[var(--color-secondary)] font-bold tracking-[0.3em] uppercase text-xs">Alquimia del Tacto</span>
-                                <h2 className="text-4xl md:text-6xl font-heading text-[var(--color-primary)] leading-tight">Sesiones Corporales</h2>
-                                <p className="text-xl text-[var(--color-text-light)] leading-relaxed italic border-l-2 border-[var(--color-secondary)] pl-6">
+
+                <div className="container mx-auto px-8 lg:px-40 relative z-20">
+                    <div className="max-w-2xl space-y-12">
+                        <FadeIn>
+                            {/* Accent Subtitle */}
+                            <p className="text-[var(--color-secondary)] font-bold uppercase tracking-[0.4em] text-xs lg:text-sm mb-6">
+                                Alquimia del Tacto
+                            </p>
+
+                            {/* Main Script Heading */}
+                            <h2 className="font-script text-6xl lg:text-9xl text-[var(--color-secondary)] leading-none mb-12">
+                                Sesiones Corporales
+                            </h2>
+
+                            {/* Narrative Content */}
+                            <div className="space-y-8 max-w-lg">
+                                <p className="text-white lg:text-xl font-light italic leading-relaxed opacity-90">
                                     “El lenguaje más antiguo que hace vibrar la piel, nutre el corazón y acaricia el alma.”
                                 </p>
-                                <p className="text-lg text-[var(--color-text-light)] leading-relaxed">
+                                
+                                <p className="text-white/80 text-lg lg:text-xl leading-relaxed font-light">
                                     Reconexión profunda a través del santuario del cuerpo. Liberamos memorias estancadas para que el alma pueda expresarse con libertad.
                                 </p>
+
                                 <div className="pt-8">
-                                    <Link href="/servicios/sesiones-corporales" className="btn-premium px-10 py-4 group">
-                                        Explorar Todas las Técnicas
-                                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                    <Link
+                                        href="/servicios/sesiones-corporales"
+                                        className="inline-flex items-center justify-center bg-[var(--color-secondary)] text-white hover:brightness-110 transition-all px-10 py-5 rounded-xl font-bold uppercase tracking-[0.2em] text-xs lg:text-sm shadow-xl group"
+                                    >
+                                        Explorar Todas las Técnicas »
                                     </Link>
                                 </div>
-                            </FadeIn>
-                        </div>
-                        <div className="lg:w-1/2 relative">
-                            <FadeIn>
-                                <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl border border-stone-100 group">
-                                    <Image
-                                        src="/assets/images/body-alignment.png"
-                                        alt="Sesiones Corporales Alignment"
-                                        fill
-                                        className="object-cover group-hover:scale-105 transition-transform duration-1000"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-white/40 to-transparent" />
-                                </div>
-                            </FadeIn>
-                        </div>
+                            </div>
+                        </FadeIn>
                     </div>
                 </div>
             </section>
