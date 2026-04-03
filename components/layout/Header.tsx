@@ -50,9 +50,10 @@ export default function Header() {
     };
 
     // Logic: Show "Scrolled" style (White BG, Dark Text) if:
-    // 1. We differ from Home or About page (these have dark/hero backgrounds)
+    // 1. We differ from Home, About or Services page (these have dark/hero backgrounds or intentional transparent headers)
     // 2. We are scrolled down
-    const isTransparentPage = pathname === '/' || pathname === '/sobre-mi';
+    const normalizedPath = pathname.toLowerCase();
+    const isTransparentPage = normalizedPath === '/' || normalizedPath.startsWith('/sobre-mi') || normalizedPath.startsWith('/servicios');
     const showScrolled = isScrolled || !isTransparentPage;
 
     const navLinks = [
@@ -107,7 +108,7 @@ export default function Header() {
                 <Link href="/" className="flex items-center gap-3 group">
                     <div className="relative w-48 h-20">
                         <Image
-                            src={showScrolled || pathname === '/sobre-mi' ? "/assets/images/logo-color-scroll.png" : "/assets/images/logo-yelitze-new.png"}
+                            src={showScrolled || normalizedPath.startsWith('/sobre-mi') ? "/assets/images/logo-color-scroll.png" : "/assets/images/logo-yelitze-new.png"}
                             alt="Yelitze Rangel Logo"
                             fill
                             className="object-contain object-left transition-opacity duration-300"
@@ -115,7 +116,7 @@ export default function Header() {
                         />
                     </div>
                 </Link>
-
+                
                 {/* Desktop Nav */}
                 <nav className="hidden md:flex items-center gap-8">
                     {navLinks.map((link) => (
@@ -131,7 +132,7 @@ export default function Header() {
                                     "text-sm font-medium font-body tracking-[0.05em] transition-colors hover:text-secondary flex items-center gap-1 py-2",
                                     pathname === link.href || (link.children && pathname.startsWith(link.href))
                                         ? "text-secondary"
-                                        : (showScrolled || pathname === '/sobre-mi' ? "text-primary" : "text-white/90 hover:text-white")
+                                        : (showScrolled || normalizedPath.startsWith('/sobre-mi') ? "text-primary" : "text-white/90 hover:text-white")
                                 )}
                             >
                                 {link.name}
