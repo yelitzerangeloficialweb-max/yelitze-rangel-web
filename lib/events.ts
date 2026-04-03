@@ -25,7 +25,7 @@ export const EVENTS_DATA: EventData[] = [
         date: "22 de Mayo",
         time: "10:00 AM",
         location: "Online (Zoom)",
-        image: "/assets/images/img-sanate.jpg",
+        image: "/images/home_redesign/Web-Yelitze18.png",
         aida: {
             attention: "¿Te has preguntado por qué repites las mismas historias que vivió tu madre o tu abuela? Si creciste viendo a las mujeres de tu familia sacrificarlo todo y sin darte cuenta estás siguiendo el mismo patrón, hoy puedes detener ese ciclo.",
             interest: "Dirigido a mujeres que dudan de sí mismas, que sienten que son 'demasiado intensas' y que, por más que intentan, terminan en relaciones que lastiman o trabajos frustrantes.",
@@ -50,7 +50,7 @@ export const EVENTS_DATA: EventData[] = [
         type: "Círculo de expansión",
         date: "Inscripciones Abiertas",
         location: "Formación Online",
-        image: "/assets/images/img-linaje.jpg",
+        image: "/images/home_redesign/Web-Yelitze19.png",
         aida: {
             attention: "¿Sientes que estás viviendo una historia que no te pertenece? Esa sensación de vacío no es falta de esfuerzo; es el eco de heridas emocionales heredadas. No tienes que cargar con el peso de las generaciones que te precedieron.",
             interest: "Para mujeres profesionales, madres o buscadoras espirituales que sienten un cansancio emocional inexplicable, les cuesta poner límites y buscan sanar su relación con la abundancia sin procesos eternos.",
@@ -79,7 +79,7 @@ export const EVENTS_DATA: EventData[] = [
         date: "Por Definir",
         time: "9:00 - 16:30",
         location: "Maracaibo",
-        image: "/assets/images/diplomado-ancestral.png",
+        image: "/images/home_redesign/Web-Yelitze-11.png",
         aida: {
             attention: "“Los Órdenes del Chamanismo en la Terapia Sistémica”. Un viaje profundo donde el Chamanismo y las Constelaciones Familiares se encuentran para sanar el alma.",
             interest: "Una formación intensiva de 3 módulos para terapeutas, psicólogos y buscadores que desean integrar herramientas chamánicas y sistémicas en sus procesos de sanación propios y con clientes.",
