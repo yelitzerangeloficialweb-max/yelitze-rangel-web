@@ -63,7 +63,7 @@ export default function DynamicExperienceGallery() {
                                 src={src}
                                 alt="Experiencia Yelitze"
                                 fill
-                                className="object-cover grayscale group-hover:grayscale-0 transition-all duration-[2000ms] group-hover:scale-110"
+                                className="object-cover transition-all duration-[2000ms] group-hover:scale-110"
                             />
                         </motion.div>
                     </AnimatePresence>
