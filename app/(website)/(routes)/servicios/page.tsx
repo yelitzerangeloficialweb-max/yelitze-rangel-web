@@ -23,7 +23,6 @@ export default function ServicesPage() {
                         fill
                         className="object-cover object-center"
                         priority
-                        unoptimized
                     />
                     {/* Subtle Overlay to ensure text readability */}
                     <div className="absolute inset-0 bg-black/20 z-10" />
@@ -77,7 +76,6 @@ export default function ServicesPage() {
                         fill
                         className="object-cover object-center brightness-90 transition-all duration-1000"
                         priority
-                        unoptimized
                     />
                     {/* Charcoal/Dark Grey gradient overlay for editorial look */}
                     <div className="absolute inset-y-0 left-0 w-full lg:w-[65%] bg-gradient-to-r from-stone-950 via-stone-950/40 to-transparent z-10" />
@@ -215,7 +213,6 @@ export default function ServicesPage() {
                         fill
                         className="object-cover grayscale-[0.2] brightness-75 transition-all duration-1000 w-full h-full"
                         priority
-                        unoptimized
                     />
                     {/* Deep gradient from left to ensure text legibility */}
                     <div className="absolute inset-y-0 left-0 w-full lg:w-[70%] bg-gradient-to-r from-[#1c1c1c] via-[#1c1c1c]/60 to-transparent z-10" />
@@ -285,7 +282,6 @@ export default function ServicesPage() {
                         fill
                         className="object-cover"
                         priority
-                        unoptimized
                     />
                     {/* Warm Cinematic Overlay */}
                     <div className="absolute inset-0 bg-stone-950/60 lg:bg-stone-950/40 z-10" />
