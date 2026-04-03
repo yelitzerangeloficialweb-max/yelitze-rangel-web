@@ -29,7 +29,6 @@ export default function EventsPage() {
                         fill
                         className="object-cover"
                         priority
-                        unoptimized
                     />
                     {/* Bottom Brush Stroke Effect - Blending with White Page */}
                     <div className="absolute bottom-0 left-0 w-full h-[20%] z-10 pointer-events-none" 
@@ -129,7 +128,6 @@ export default function EventsPage() {
                                             alt={event.title}
                                             fill
                                             className="object-cover group-hover:scale-110 transition-transform duration-1000"
-                                            unoptimized
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-40" />
                                     </div>
