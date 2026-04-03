@@ -69,13 +69,13 @@ export default function ServicesPage() {
 
             {/* 2. SECTION: SESIONES CORPORALES (Full-bleed redesign with Grayscale effect) */}
             <section className="relative min-h-screen flex items-center overflow-hidden bg-stone-900">
-                {/* Background Image with Artistic Grayscale */}
+                {/* Background Image Restored to Color */}
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="/images/home_redesign/Web-Yelitze-servicios-03.png"
                         alt="Sesiones Corporales - Alquimia del Tacto"
                         fill
-                        className="object-cover object-center grayscale brightness-75 transition-all duration-1000"
+                        className="object-cover object-center brightness-90 transition-all duration-1000"
                         priority
                         unoptimized
                     />
