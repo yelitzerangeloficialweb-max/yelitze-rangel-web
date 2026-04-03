@@ -136,7 +136,7 @@ export default function ServicesPage() {
                         <h2 className="font-script text-6xl lg:text-[10rem] text-[#b8835a] leading-[0.8] mb-8">
                             Sabiduría & Legado
                         </h2>
-                        <p className="text-white/60 text-xs lg:text-sm font-bold uppercase tracking-[0.4em] max-w-2xl mx-auto">
+                        <p className="font-script text-2xl lg:text-4xl text-white/70 leading-relaxed max-w-3xl mx-auto italic">
                             Espacios para sanar en tribu y herramientas para tu propio ritmo.
                         </p>
                     </FadeIn>
