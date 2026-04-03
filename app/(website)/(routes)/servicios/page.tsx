@@ -11,7 +11,7 @@ import TypewriterText from "@/components/ui/TypewriterText";
 
 export default function ServicesPage() {
     return (
-        <main className="bg-[#fafcfe] min-h-screen selection:bg-[var(--color-secondary)] selection:text-white pb-20">
+        <main className="bg-[#fafcfe] min-h-screen selection:bg-[var(--color-secondary)] selection:text-white">
 
             {/* 1. SECTION: COACHING ANCESTRAL (Full Redesign) */}
             <section className="relative min-h-screen flex items-center pt-24 overflow-hidden">
