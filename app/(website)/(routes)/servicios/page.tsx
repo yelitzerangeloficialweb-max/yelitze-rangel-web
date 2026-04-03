@@ -120,99 +120,60 @@ export default function ServicesPage() {
                 </div>
             </section>
 
-            {/* 3. SECTION: CORPORATIVO (OBSIDIAN) */}
-            <section className="relative min-h-[80vh] flex flex-col lg:flex-row-reverse overflow-hidden">
-                {/* Right Panel (Content in Obsidian) */}
-                <div className="lg:w-1/2 bg-stone-950 p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
-                    {/* Subtle Watermark - Larger & More Transparent */}
-                    <div className="absolute -right-32 -bottom-32 w-[800px] h-[800px] opacity-[0.025] pointer-events-none rotate-[-12deg]">
-                        <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
-                    </div>
-                    <FadeIn>
-                        <span className="text-[var(--color-secondary)] font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Liderazgo & Origen</span>
-                        <h2 className="text-white text-4xl md:text-6xl font-heading mb-8 leading-tight">Sesiones Corporativas</h2>
-                        <p className="text-gray-400 text-lg md:text-xl mb-12 font-light italic">
-                            Impulsa el potencial de tu equipo a través de la visión sistémica. Sanamos la cultura organizacional para alcanzar objetivos extraordinarios.
+            {/* 3. SECTION: SABIDURÍA & LEGADO (Moved and Redesigned) */}
+            <section className="py-24 lg:py-40 bg-[#fafcfe] relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none">
+                    <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain scale-150 rotate-12" />
+                </div>
+                
+                <div className="container mx-auto px-8 lg:px-40 relative">
+                    <FadeIn className="text-center mb-24 space-y-6">
+                        <h2 className="text-5xl lg:text-8xl font-bold text-[var(--color-primary)] uppercase tracking-tighter leading-none mb-4">
+                            SABIDURÍA <br className="lg:hidden" /> & LEGADO
+                        </h2>
+                        <p className="font-script text-4xl lg:text-6xl text-[var(--color-secondary)] leading-none italic">
+                            Espacios para sanar en tribu y herramientas para tu propio ritmo.
                         </p>
-                        <ul className="space-y-6 mb-16">
-                            {["Coaching para líderes y alta gerencia", "Dinámicas de equipo con mirada circular", "Resolución de conflictos sistémicos"].map((item, i) => (
-                                <li key={i} className="flex items-center gap-4 text-gray-300">
-                                    <Sparkles className="w-5 h-5 text-[var(--color-secondary)]" />
-                                    <span className="text-lg">{item}</span>
-                                </li>
-                            ))}
-                        </ul>
-                        <a
-                            href="https://wa.me/17867268717"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="btn-premium px-10 py-4 group bg-white !text-stone-900 hover:!bg-stone-200 shadow-xl"
-                        >
-                            Solicitar Propuesta
-                            <ArrowRight className="w-5 h-5" />
-                        </a>
-                    </FadeIn>
-                </div>
-
-                {/* Left Panel: Corporate Imagery */}
-                <div className="lg:w-1/2 relative min-h-[500px] lg:min-h-full">
-                    <Image
-                        src="/assets/images/corporate-vortex.png"
-                        alt="Estrategia y Alineación Corporativa"
-                        fill
-                        className="object-cover"
-                    />
-                    <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-stone-950 to-transparent hidden lg:block" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-stone-950 lg:to-stone-950/20" />
-                </div>
-            </section>
-
-            {/* 4. SECTION: GRUPALES & LIBROS */}
-            <section className="py-32 bg-[#fafcfe] relative overflow-hidden">
-                {/* Subtle Watermark - Larger & More Transparent */}
-                <div className="absolute -left-40 -bottom-40 w-[1200px] h-[1200px] opacity-[0.01] pointer-events-none rotate-[-6deg]">
-                    <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
-                </div>
-                <div className="container mx-auto px-4 relative">
-                    <FadeIn className="text-center mb-24">
-                        <h2 className="text-4xl md:text-6xl font-heading text-[var(--color-primary)] mb-6">Sabiduría & Legado</h2>
-                        <p className="text-xl text-[var(--color-text-light)] italic">Espacios para sanar en tribu y herramientas para tu propio ritmo.</p>
                     </FadeIn>
 
-                    <div className="grid lg:grid-cols-2 gap-16 max-w-7xl mx-auto items-start">
+                    <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 max-w-7xl mx-auto items-start">
                         {/* Eventos / Grupales */}
                         <FadeIn>
-                            <div className="group space-y-8">
-                                <Link href="/eventos" className="block relative aspect-video rounded-3xl overflow-hidden shadow-2xl border border-stone-100">
+                            <div className="group space-y-10">
+                                <Link href="/eventos" className="block relative aspect-[16/10] rounded-[2.5rem] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] border border-stone-100">
                                     <Image
                                         src="/assets/images/group-vortex.png"
                                         alt="Capacitaciones Grupales"
                                         fill
-                                        className="object-cover group-hover:scale-110 transition-transform duration-1000"
+                                        className="object-cover group-hover:scale-105 transition-transform duration-1000"
                                     />
-                                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <span className="px-8 py-3 rounded-full border border-white/40 bg-white/10 text-white text-xs uppercase tracking-[0.2em] backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity">Ver Talleres</span>
+                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-700" />
+                                    <div className="absolute inset-x-8 bottom-8">
+                                        <span className="inline-block px-8 py-3 rounded-full border border-white/40 bg-black/20 text-white text-xs uppercase tracking-[0.3em] backdrop-blur-md opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                                            Ver Talleres »
+                                        </span>
                                     </div>
                                 </Link>
-                                <div className="space-y-4">
+                                <div className="space-y-4 px-4">
                                     <h3 className="text-3xl font-heading text-[var(--color-primary)]">Capacitaciones Grupales</h3>
-                                    <p className="text-[var(--color-text-light)] leading-relaxed text-lg">Talleres intensivos para sanar en tribu. La energía del grupo potencia el trabajo individual mediante espejos sistémicos.</p>
+                                    <p className="text-[var(--color-text-light)] leading-relaxed text-lg font-light">
+                                        Talleres intensivos para sanar en tribu. La energía del grupo potencia el trabajo individual mediante espejos sistémicos.
+                                    </p>
                                 </div>
                             </div>
                         </FadeIn>
 
-                        {/* Libros (Combined Image logic in section) */}
+                        {/* Libros & Recursos */}
                         <FadeIn delay={0.2}>
-                            <div className="group space-y-8">
-                                <Link href="/libros" className="block relative aspect-video rounded-3xl overflow-hidden shadow-2xl border border-stone-100">
-                                    <div className="grid grid-cols-2 h-full">
-                                        <div className="relative h-full border-r border-white/10">
+                            <div className="group space-y-10">
+                                <Link href="/libros" className="block relative aspect-[16/10] rounded-[2.5rem] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] border border-stone-100">
+                                    <div className="grid grid-cols-2 h-full gap-1">
+                                        <div className="relative h-full">
                                             <Image
                                                 src="/assets/images/chamana-bg.png"
                                                 alt="Conversaciones con mi Chamana"
                                                 fill
-                                                className="object-cover group-hover:scale-110 transition-transform duration-1000"
+                                                className="object-cover group-hover:scale-105 transition-transform duration-1000"
                                             />
                                         </div>
                                         <div className="relative h-full">
@@ -220,21 +181,100 @@ export default function ServicesPage() {
                                                 src="/assets/images/hilos-bg.png"
                                                 alt="Hilos de Conexión"
                                                 fill
-                                                className="object-cover group-hover:scale-110 transition-transform duration-1000"
+                                                className="object-cover group-hover:scale-105 transition-transform duration-1000"
                                             />
                                         </div>
                                     </div>
-                                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <span className="px-8 py-3 rounded-full border border-white/40 bg-white/10 text-white text-xs uppercase tracking-[0.2em] backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity">Ver Librería</span>
+                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-700" />
+                                    <div className="absolute inset-x-8 bottom-8">
+                                        <span className="inline-block px-8 py-3 rounded-full border border-white/40 bg-black/20 text-white text-xs uppercase tracking-[0.3em] backdrop-blur-md opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                                            Explorar Librería »
+                                        </span>
                                     </div>
                                 </Link>
-                                <div className="space-y-4 text-left">
+                                <div className="space-y-4 px-4">
                                     <h3 className="text-3xl font-heading text-[var(--color-primary)]">Libros y Recursos</h3>
-                                    <p className="text-[var(--color-text-light)] leading-relaxed text-lg">'Hilos de Conexión' y 'Conversaciones con mi Chamana': herramientas para tu viaje de autodescubrimiento.</p>
+                                    <p className="text-[var(--color-text-light)] leading-relaxed text-lg font-light text-left">
+                                        'Hilos de Conexión' y 'Conversaciones con mi Chamana': herramientas diseñadas para tu viaje de autodescubrimiento cotidiano.
+                                    </p>
                                 </div>
                             </div>
                         </FadeIn>
+                    </div>
+                </div>
+            </section>
+
+            {/* 4. SECTION: CORPORATIVO (Redesigned Light Mode) */}
+            <section className="py-24 lg:py-48 bg-stone-50 relative overflow-hidden">
+                <div className="absolute right-0 top-0 w-1/3 h-full bg-[var(--color-secondary)]/5 pointer-events-none" />
+                
+                <div className="container mx-auto px-8 lg:px-40 relative">
+                    <div className="flex flex-col lg:flex-row gap-20 lg:gap-32 items-center">
+                        {/* Content Side */}
+                        <div className="lg:w-1/2 space-y-12">
+                            <FadeIn>
+                                <div className="space-y-4">
+                                    <span className="font-script text-4xl lg:text-6xl text-[var(--color-secondary)] leading-none block">
+                                        Liderazgo & Origen
+                                    </span>
+                                    <h2 className="text-4xl lg:text-7xl font-bold text-[var(--color-primary)] leading-[0.9] tracking-tighter uppercase">
+                                        SESIONES <br /> CORPORATIVAS
+                                    </h2>
+                                </div>
+
+                                <div className="space-y-10">
+                                    <p className="text-xl lg:text-2xl text-[var(--color-primary)]/80 font-serif italic border-l-4 border-[var(--color-secondary)] pl-8 py-2">
+                                        Impulsa el potencial de tu equipo a través de la visión sistémica.
+                                    </p>
+                                    
+                                    <p className="text-lg text-[var(--color-text-light)] leading-relaxed font-light">
+                                        Sanamos la cultura organizacional para alcanzar objetivos extraordinarios enfocándonos en el alma de la empresa y su propósito original.
+                                    </p>
+
+                                    <ul className="space-y-6">
+                                        {[
+                                            "Coaching para líderes y alta gerencia",
+                                            "Dinámicas de equipo con mirada circular",
+                                            "Resolución de conflictos sistémicos"
+                                        ].map((item, i) => (
+                                            <li key={i} className="flex items-center gap-4 text-[var(--color-text-light)]">
+                                                <Sparkles className="w-5 h-5 text-[var(--color-secondary)]" />
+                                                <span className="text-lg font-medium">{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                    <div className="pt-8 text-left">
+                                        <a
+                                            href="https://wa.me/17867268717"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center justify-center bg-[var(--color-primary)] text-white hover:brightness-110 transition-all px-10 py-5 rounded-xl font-bold uppercase tracking-[0.2em] text-xs lg:text-sm shadow-xl group"
+                                        >
+                                            Solicitar Propuesta »
+                                            <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </FadeIn>
+                        </div>
+
+                        {/* Image Side: Asymmetric Design */}
+                        <div className="lg:w-1/2 relative">
+                            <FadeIn>
+                                <div className="relative aspect-square lg:aspect-[4/5] rounded-[3rem] lg:rounded-[5rem] rounded-tl-[10rem] lg:rounded-tl-[150px] overflow-hidden shadow-2xl group border-8 border-white">
+                                    <Image
+                                        src="/assets/images/corporate-vortex.png"
+                                        alt="Sesiones Corporativas"
+                                        fill
+                                        className="object-cover group-hover:scale-105 transition-transform duration-1000"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                                </div>
+                            </FadeIn>
+                            {/* Decoration element */}
+                            <div className="absolute -top-10 -right-10 w-40 h-40 bg-[var(--color-secondary)]/10 rounded-full blur-3xl -z-10" />
+                        </div>
                     </div>
                 </div>
             </section>
