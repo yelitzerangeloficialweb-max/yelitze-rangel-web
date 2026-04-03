@@ -19,57 +19,30 @@ export default function EventsPage() {
     );
 
     return (
-        <main className="bg-[#fafcfe] min-h-screen selection:bg-[var(--color-secondary)] selection:text-white pb-20">
-            {/* 1. HERO SECTION: TRIBU & ALINEACIÓN (Asymmetric Editorial Design) */}
-            <section className="relative min-h-screen flex items-center overflow-hidden bg-stone-900 pt-0">
-                {/* Background Composite Wrapper */}
-                <div className="absolute inset-0 z-0 flex flex-col lg:flex-row">
-                    {/* Left: Textured Slate with Symbols */}
-                    <div className="lg:w-1/2 h-full bg-[#333333] relative overflow-hidden">
-                        {/* Sacred Geometry Overlays */}
-                        <div className="absolute inset-0 opacity-20 pointer-events-none">
-                            {/* SVG Patterns for Symbols from mockup */}
-                            <svg className="absolute top-1/4 left-1/4 w-32 h-32 text-stone-400 -rotate-12" viewBox="0 0 100 100">
-                                <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="0.5" />
-                                <path d="M50 5 L60 40 L95 40 L67 60 L78 95 L50 75 L22 95 L33 60 L5 40 L40 40 Z" fill="none" stroke="currentColor" strokeWidth="0.5" />
-                            </svg>
-                            <svg className="absolute bottom-1/4 right-1/4 w-48 h-48 text-stone-500 rotate-45" viewBox="0 0 100 100">
-                                <path d="M50 10 Q70 50 50 90 Q30 50 50 10" fill="none" stroke="currentColor" strokeWidth="0.5" />
-                                <path d="M10 50 Q50 70 90 50 Q50 30 10 50" fill="none" stroke="currentColor" strokeWidth="0.5" />
-                                <circle cx="50" cy="50" r="10" fill="none" stroke="currentColor" strokeWidth="0.5" />
-                            </svg>
-                        </div>
-                        {/* Film Grain / Stone Texture */}
-                        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-40 mix-blend-overlay" />
-                    </div>
-
-                    {/* Right: The Portrait/Community side */}
-                    <div className="lg:w-1/2 h-full relative">
-                        <Image
-                            src="/images/home_redesign/Web-Yelitze-10.png"
-                            alt="Ritual de Sanación en Tribu"
-                            fill
-                            className="object-cover"
-                            priority
-                            unoptimized
-                        />
-                    </div>
-
-                    {/* Organic Brush Overlay/Transition */}
-                    <div className="absolute inset-0 z-10 pointer-events-none">
-                        <div className="h-full w-full bg-gradient-to-r from-[#333333] via-[#333333]/95 to-transparent lg:w-[55%] hidden lg:block" 
-                             style={{ 
-                                maskImage: 'radial-gradient(ellipse at center right, transparent 0%, black 70%)',
-                                WebkitMaskImage: 'radial-gradient(ellipse at center right, transparent 0%, black 70%)'
-                             }} 
-                        />
-                        {/* Mobile Gradient */}
-                        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#333333] to-transparent lg:hidden" />
-                    </div>
+        <main className="bg-[#fafcfe] min-h-screen selection:bg-[var(--color-secondary)] selection:text-white pb-20">            {/* 1. HERO SECTION: TRIBU & ALINEACIÓN (Exact Composed Asset) */}
+            <section className="relative min-h-[90vh] lg:min-h-screen flex items-center overflow-hidden bg-white pt-0">
+                {/* Full Cinematic Asset as Background */}
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="/images/home_redesign/eventos.png"
+                        alt="Ritual de Sanación y Agenda del Alma"
+                        fill
+                        className="object-cover"
+                        priority
+                        unoptimized
+                    />
+                    {/* Bottom Brush Stroke Effect - Blending with White Page */}
+                    <div className="absolute bottom-0 left-0 w-full h-[20%] z-10 pointer-events-none" 
+                         style={{ 
+                            background: 'linear-gradient(to top, white, transparent)',
+                            maskImage: 'radial-gradient(ellipse at 50% 100%, black 0%, transparent 80%)',
+                            WebkitMaskImage: 'radial-gradient(ellipse at 50% 100%, black 0%, transparent 80%)'
+                         }} 
+                    />
                 </div>
 
                 <div className="container mx-auto px-8 lg:px-40 relative z-20">
-                    <div className="max-w-2xl space-y-12 py-32 lg:py-0">
+                    <div className="max-w-2xl space-y-12">
                         <FadeIn>
                             <div className="space-y-4">
                                 <span className="font-script text-4xl lg:text-5xl text-[#b8835a] leading-none block">
