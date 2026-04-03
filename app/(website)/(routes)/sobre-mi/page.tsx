@@ -18,7 +18,7 @@ export default function AboutPage() {
                         src="/images/home_redesign/Sobre-Mi_01.png"
                         alt=""
                         fill
-                        className="object-cover opacity-30"
+                        className="object-cover opacity-60 brightness-[0.80]"
                         priority
                     />
                 </div>
@@ -30,12 +30,12 @@ export default function AboutPage() {
                             <span className="text-[var(--color-secondary)] uppercase tracking-[0.2em] text-sm font-medium mb-6 block">
                                 Sobre Mi
                             </span>
-                            <h1 className="text-4xl lg:text-7xl font-heading text-primary mb-8 leading-tight font-bold">
+                            <h1 className="text-5xl lg:text-[7.5rem] font-heading text-black mb-8 leading-[0.9] font-bold">
                                 Donde la mente comprende <br />
-                                <span className="font-script text-3xl lg:text-6xl text-[var(--color-secondary)] opacity-90">el cuerpo y el alma recuerdan.</span>
+                                <span className="font-script text-4xl lg:text-[6.5rem] text-black">el cuerpo y el alma recuerdan.</span>
                             </h1>
-                            <div className="space-y-6 max-w-xl">
-                                <p className="text-xl text-gray-700 italic border-l-4 border-[var(--color-secondary)] pl-6">
+                            <div className="space-y-6 max-w-2xl">
+                                <p className="text-xl lg:text-2xl text-gray-800 italic border-l-4 border-[var(--color-secondary)] pl-6 leading-relaxed">
                                     Mi misión es ser el puente, cuando la ciencia ya explicó el dolor y el alma aún pide ser escuchada… ahí comienza mi trabajo.
                                 </p>
                             </div>
