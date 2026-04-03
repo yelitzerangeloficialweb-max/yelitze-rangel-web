@@ -10,7 +10,6 @@ export const GALLERY_IMAGES = [
     { src: '/assets/images/gallery/gallery-6.jpg', alt: 'Lectura Intuitiva' },
     { src: '/assets/images/gallery/gallery-23.jpg', alt: 'Legado Escrito' },
     { src: '/assets/images/gallery/gallery-22.jpg', alt: 'Sabiduría en Papel' },
-    { src: '/assets/images/gallery/gallery-16.jpg', alt: 'Naturaleza' },
     { src: '/assets/images/gallery/gallery-17.jpg', alt: 'Viaje del Alma' },
     { src: '/assets/images/gallery/gallery-18.jpg', alt: 'Esencia' },
     { src: '/assets/images/gallery/gallery-19.jpg', alt: 'Paz' },
