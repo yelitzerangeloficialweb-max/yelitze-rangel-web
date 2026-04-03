@@ -206,55 +206,62 @@ export default function EventsPage() {
                 </div>
             </section>
 
-            {/* 4. SECTION: RETIROS A MEDIDA (LUXURY) */}
-            <section className="py-32 bg-white relative overflow-hidden">
-                <div className="container mx-auto max-w-7xl px-4">
+            {/* 4. SECTION: RETIROS A MEDIDA (EDITORIAL REDESIGN) */}
+            <section className="py-32 bg-[#e0ddd8] relative overflow-hidden">
+                {/* Decorative Glow */}
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[40%] h-[80%] bg-[radial-gradient(circle_at_center,_rgba(224,152,106,0.15),_transparent_70%)] pointer-events-none" />
+                
+                <div className="container mx-auto max-w-7xl px-8 lg:px-40 relative z-10">
                     <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
-                        <div className="lg:w-1/2 space-y-10">
+                        <div className="lg:w-1/2 space-y-12">
                             <FadeIn>
-                                <span className="text-[var(--color-secondary)] font-bold tracking-[0.3em] uppercase text-xs">Exclusividad & Alma</span>
-                                <h2 className="text-4xl md:text-6xl font-heading text-[var(--color-primary)] leading-tight">Retiros & Grupos <br /> Privados</h2>
-                                <p className="text-xl text-[var(--color-text-light)] italic border-l-2 border-[var(--color-secondary)] pl-6">
-                                    Creamos experiencias transformadoras diseñadas exclusivamente para tu grupo, organización o círculo íntimo.
-                                </p>
-                                <ul className="space-y-6">
-                                    {[
-                                        "Inmersiones de sanación para grupos cerrados",
-                                        "Workshops sistémicos para juntas directivas",
-                                        "Rituales de paso y celebraciones conscientes"
-                                    ].map((text, i) => (
-                                        <li key={i} className="flex items-start gap-4 text-[var(--color-text-light)]">
-                                            <Star className="w-5 h-5 text-[var(--color-secondary)] mt-1 shrink-0" />
-                                            <span className="text-lg">{text}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                                <div className="pt-6">
-                                    <a
-                                        href="https://wa.me/17867268717"
-                                        target="_blank"
-                                        className="btn-premium px-12 py-5"
-                                    >
-                                        Diseña tu Propia Experiencia
-                                        <ArrowRight className="w-6 h-6" />
-                                    </a>
+                                <h2 className="text-6xl lg:text-8xl font-heading text-[#d0a080] leading-[1.1] mb-8">
+                                    Retiros & Grupos <br /> Privados
+                                </h2>
+                                
+                                <div className="space-y-8">
+                                    <p className="text-xl text-stone-700 leading-relaxed font-light max-w-lg">
+                                        Creamos experiencias transformadoras diseñadas exclusivamente para tu grupo, organización o círculo íntimo.
+                                    </p>
+                                    
+                                    <ul className="space-y-6">
+                                        {[
+                                            "Inmersiones de sanación para grupos cerrados",
+                                            "Workshops sistémicos para juntas directivas",
+                                            "Rituales de paso y celebraciones conscientes"
+                                        ].map((text, i) => (
+                                            <li key={i} className="flex items-center gap-4 text-stone-800 font-bold group hover:translate-x-2 transition-transform duration-300">
+                                                <span className="text-[#d0a080] text-xl font-bold">»</span>
+                                                <span className="text-lg lg:text-xl">{text}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    
+                                    <div className="pt-10">
+                                        <a
+                                            href="https://wa.me/17867268717"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center justify-center bg-[#b8835a] text-white hover:brightness-110 transition-all px-12 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-xs lg:text-sm shadow-xl group"
+                                        >
+                                            DISEÑA TU PROPIA EXPERIENCIA »
+                                        </a>
+                                    </div>
                                 </div>
                             </FadeIn>
                         </div>
+                        
                         <div className="lg:w-1/2 relative">
                             <FadeIn>
-                                <div className="relative aspect-[16/10] lg:aspect-square rounded-[3rem] overflow-hidden shadow-2xl group">
+                                <div className="relative aspect-[16/10] lg:aspect-square rounded-[3rem] lg:rounded-[5rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] group">
                                     <Image
                                         src="/assets/images/gallery/custom-retreat-group.jpg"
                                         alt="Sesión Grupal de Sanación"
                                         fill
                                         className="object-cover group-hover:scale-105 transition-transform duration-1000"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-tr from-[var(--color-primary)]/10 to-transparent" />
-                                </div>
-                                {/* Ornamental tag */}
-                                <div className="absolute -bottom-10 -left-10 bg-white p-8 rounded-3xl shadow-xl hidden md:block">
-                                    <p className="text-[var(--color-secondary)] font-whisper text-4xl">A tu medida...</p>
+                                    {/* Subtle Overlay to match editorial reference */}
+                                    <div className="absolute inset-0 bg-stone-900/10 pointer-events-none" />
                                 </div>
                             </FadeIn>
                         </div>
