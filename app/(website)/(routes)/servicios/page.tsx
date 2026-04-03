@@ -72,14 +72,15 @@ export default function ServicesPage() {
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/images/home_redesign/sesiones-corporales-bg.png"
+                        src="/images/home_redesign/sesiones-bg-final.png"
                         alt="Sesiones Corporales - Alquimia del Tacto"
                         fill
                         className="object-cover object-center"
                         priority
+                        unoptimized
                     />
                     {/* Dark gradient overlay on the left for text readability */}
-                    <div className="absolute inset-y-0 left-0 w-full lg:w-3/4 bg-gradient-to-r from-black/90 via-black/40 to-transparent z-10" />
+                    <div className="absolute inset-y-0 left-0 w-full lg:w-[60%] bg-gradient-to-r from-black/85 via-black/40 to-transparent z-10" />
                 </div>
 
                 <div className="container mx-auto px-8 lg:px-40 relative z-20">
