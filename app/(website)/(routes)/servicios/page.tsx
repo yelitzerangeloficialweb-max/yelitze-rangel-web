@@ -120,10 +120,11 @@ export default function ServicesPage() {
                 </div>
             </section>
 
-            {/* 3. SECTION: SABIDURÍA & LEGADO (Dark Editorial Redesign) */}
-            <section className="py-24 lg:py-40 bg-stone-950 relative overflow-hidden">
-                {/* Background Decoration */}
-                <div className="absolute top-0 right-0 w-full h-full opacity-[0.02] pointer-events-none">
+            {/* 3. SECTION: SABIDURÍA & LEGADO (Exact Color Calibration) */}
+            <section className="py-24 lg:py-40 bg-[#1c1c1c] relative overflow-hidden">
+                {/* Background Glows to match mockup exactly */}
+                <div className="absolute top-0 right-0 w-[80%] h-full bg-[radial-gradient(circle_at_top_right,_rgba(77,56,45,0.4),_transparent_70%)] pointer-events-none" />
+                <div className="absolute top-0 left-0 w-full h-full opacity-[0.02] pointer-events-none">
                     <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain scale-150 -rotate-12" />
                 </div>
                 
@@ -132,7 +133,7 @@ export default function ServicesPage() {
                         <span className="text-white/40 text-[10px] lg:text-xs font-bold uppercase tracking-[0.6em] block mb-4">
                             ECOSISTEMA DE EVOLUCIÓN
                         </span>
-                        <h2 className="font-script text-6xl lg:text-[10rem] text-[var(--color-secondary)] leading-[0.8] mb-8">
+                        <h2 className="font-script text-6xl lg:text-[10rem] text-[#b8835a] leading-[0.8] mb-8">
                             Sabiduría & Legado
                         </h2>
                         <p className="text-white/60 text-xs lg:text-sm font-bold uppercase tracking-[0.4em] max-w-2xl mx-auto">
@@ -154,7 +155,7 @@ export default function ServicesPage() {
                                     <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-700" />
                                 </Link>
                                 <div className="space-y-6 px-2">
-                                    <h3 className="font-script text-5xl lg:text-7xl text-[var(--color-secondary)] leading-none">
+                                    <h3 className="font-script text-5xl lg:text-7xl text-[#b8835a] leading-none">
                                         Capacitaciones Grupales
                                     </h3>
                                     <p className="text-white/70 leading-relaxed text-lg lg:text-xl font-light">
@@ -189,7 +190,7 @@ export default function ServicesPage() {
                                     <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-700" />
                                 </Link>
                                 <div className="space-y-6 px-2">
-                                    <h3 className="font-script text-5xl lg:text-7xl text-[var(--color-secondary)] leading-none">
+                                    <h3 className="font-script text-5xl lg:text-7xl text-[#b8835a] leading-none">
                                         Libros y Recursos
                                     </h3>
                                     <p className="text-white/70 leading-relaxed text-lg lg:text-xl font-light">
