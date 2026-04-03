@@ -275,20 +275,44 @@ export default function ServicesPage() {
                 </div>
             </section>
 
-            {/* Final CTA */}
-            <section className="py-24 bg-white border-t border-stone-100">
-                <div className="container mx-auto px-4 text-center">
+            {/* 5. FINAL CTA (Cinematic Redesign) */}
+            <section className="relative py-32 lg:py-48 overflow-hidden">
+                {/* Background Image */}
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="/images/home_redesign/Web-Yelitze15.png"
+                        alt="Final CTA - Evolución Sistémica"
+                        fill
+                        className="object-cover"
+                        priority
+                        unoptimized
+                    />
+                    {/* Warm Cinematic Overlay */}
+                    <div className="absolute inset-0 bg-stone-950/60 lg:bg-stone-950/40 z-10" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(224,159,106,0.2),_transparent_70%)] z-10" />
+                </div>
+
+                <div className="container mx-auto px-8 relative z-20 text-center">
                     <FadeIn>
-                        <h2 className="text-3xl md:text-5xl font-heading text-[var(--color-primary)] mb-10">¿Buscas una solución a medida?</h2>
-                        <a
-                            href="https://wa.me/17867268717"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="btn-premium px-12 py-5 text-xl shadow-2xl"
-                        >
-                            Agenda una Llamada de Claridad
-                            <ArrowRight className="w-6 h-6 ml-2" />
-                        </a>
+                        <div className="space-y-4 mb-16">
+                            <span className="font-script text-6xl lg:text-[10rem] text-white leading-none block">
+                                ¿Buscas una solución
+                            </span>
+                            <h2 className="text-4xl lg:text-8xl font-bold text-white/90 uppercase tracking-widest leading-none mt-[-0.2em]">
+                                A TU MEDIDA?
+                            </h2>
+                        </div>
+
+                        <div className="flex justify-center">
+                            <a
+                                href="https://wa.me/17867268717"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center justify-center bg-[#de9862] text-white hover:brightness-110 transition-all px-12 py-6 rounded-full font-bold uppercase tracking-[0.2em] text-sm lg:text-lg shadow-[0_20px_50px_rgba(0,0,0,0.3)] group"
+                            >
+                                Agenda una Llamada de Claridad »
+                            </a>
+                        </div>
                     </FadeIn>
                 </div>
             </section>
