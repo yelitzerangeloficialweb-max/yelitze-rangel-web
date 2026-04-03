@@ -140,7 +140,7 @@ export default function EventsPage() {
                                             <span className="text-stone-400 font-bold tracking-[0.2em] uppercase text-[10px] block">
                                                 {event.type}
                                             </span>
-                                            <h3 className="font-heading text-4xl lg:text-5xl text-[#b8835a] leading-[1.1] mb-4 italic font-bold">
+                                            <h3 className="font-heading text-2xl lg:text-3xl text-[#b8835a] leading-[1.2] mb-4 italic font-bold whitespace-nowrap overflow-hidden text-ellipsis">
                                                 {event.title}
                                             </h3>
                                         </div>
