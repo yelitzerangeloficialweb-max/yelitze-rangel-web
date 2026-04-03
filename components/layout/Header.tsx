@@ -53,7 +53,10 @@ export default function Header() {
     // 1. We differ from Home, About or Services page (these have dark/hero backgrounds or intentional transparent headers)
     // 2. We are scrolled down
     const normalizedPath = pathname.toLowerCase();
-    const isTransparentPage = normalizedPath === '/' || normalizedPath.startsWith('/sobre-mi') || normalizedPath.startsWith('/servicios');
+    const isTransparentPage = normalizedPath === '/' || 
+                             normalizedPath.startsWith('/sobre-mi') || 
+                             normalizedPath.startsWith('/servicios') ||
+                             normalizedPath.startsWith('/eventos');
     const showScrolled = isScrolled || !isTransparentPage;
 
     const navLinks = [

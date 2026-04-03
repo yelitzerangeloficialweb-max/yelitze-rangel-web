@@ -20,51 +20,86 @@ export default function EventsPage() {
 
     return (
         <main className="bg-[#fafcfe] min-h-screen selection:bg-[var(--color-secondary)] selection:text-white pb-20">
-
-            {/* 1. HERO SECTION: AGENDA DEL ALMA */}
-            <section className="relative min-h-[80vh] flex flex-col lg:flex-row overflow-hidden pt-20 bg-stone-950">
-                {/* Left Panel: Midnight Burst */}
-                <div className="lg:w-[45%] bg-stone-950 p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
-                    {/* Subtle Watermark - Brand Beige Feel */}
-                    <div className="absolute -left-32 -bottom-32 w-[900px] h-[900px] opacity-[0.04] pointer-events-none">
-                        <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
+            {/* 1. HERO SECTION: TRIBU & ALINEACIÓN (Asymmetric Editorial Design) */}
+            <section className="relative min-h-screen flex items-center overflow-hidden bg-stone-900 pt-0">
+                {/* Background Composite Wrapper */}
+                <div className="absolute inset-0 z-0 flex flex-col lg:flex-row">
+                    {/* Left: Textured Slate with Symbols */}
+                    <div className="lg:w-1/2 h-full bg-[#333333] relative overflow-hidden">
+                        {/* Sacred Geometry Overlays */}
+                        <div className="absolute inset-0 opacity-20 pointer-events-none">
+                            {/* SVG Patterns for Symbols from mockup */}
+                            <svg className="absolute top-1/4 left-1/4 w-32 h-32 text-stone-400 -rotate-12" viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                                <path d="M50 5 L60 40 L95 40 L67 60 L78 95 L50 75 L22 95 L33 60 L5 40 L40 40 Z" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                            </svg>
+                            <svg className="absolute bottom-1/4 right-1/4 w-48 h-48 text-stone-500 rotate-45" viewBox="0 0 100 100">
+                                <path d="M50 10 Q70 50 50 90 Q30 50 50 10" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                                <path d="M10 50 Q50 70 90 50 Q50 30 10 50" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                                <circle cx="50" cy="50" r="10" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                            </svg>
+                        </div>
+                        {/* Film Grain / Stone Texture */}
+                        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-40 mix-blend-overlay" />
                     </div>
 
-                    <FadeIn>
-                        {/* Pill Badge Style */}
-                        <div className="inline-block mb-10">
-                            <span className="px-8 py-3 rounded-full border border-[var(--color-secondary)]/20 bg-[var(--color-secondary)]/[0.05] text-[var(--color-secondary)] text-sm md:text-base font-light tracking-[0.2em] uppercase backdrop-blur-sm shadow-sm">
-                                Experiencias & Encuentros
-                            </span>
-                        </div>
+                    {/* Right: The Portrait/Community side */}
+                    <div className="lg:w-1/2 h-full relative">
+                        <Image
+                            src="/images/home_redesign/Web-Yelitze-10.png"
+                            alt="Ritual de Sanación en Tribu"
+                            fill
+                            className="object-cover"
+                            priority
+                            unoptimized
+                        />
+                    </div>
 
-                        <h1 className="text-white text-4xl md:text-5xl lg:text-7xl font-heading mb-8 leading-tight">
-                            Agenda del <br /> <span className="opacity-40">Alma</span>
-                        </h1>
-                        <p className="text-stone-400 text-lg md:text-xl font-light italic leading-relaxed max-w-md">
-                            Espacios sagrados diseñados para tu sanación, expansión y reconexión con tu poder ancestral en comunidad.
-                        </p>
-                        <Link
-                            href="#agenda"
-                            className="inline-flex items-center gap-4 text-white group border-b border-white/10 pb-2 w-fit hover:border-[var(--color-secondary)] transition-all text-lg font-medium mt-10"
-                        >
-                            Ver toda la Agenda
-                            <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform text-[var(--color-secondary)]" />
-                        </Link>
-                    </FadeIn>
+                    {/* Organic Brush Overlay/Transition */}
+                    <div className="absolute inset-0 z-10 pointer-events-none">
+                        <div className="h-full w-full bg-gradient-to-r from-[#333333] via-[#333333]/95 to-transparent lg:w-[55%] hidden lg:block" 
+                             style={{ 
+                                maskImage: 'radial-gradient(ellipse at center right, transparent 0%, black 70%)',
+                                WebkitMaskImage: 'radial-gradient(ellipse at center right, transparent 0%, black 70%)'
+                             }} 
+                        />
+                        {/* Mobile Gradient */}
+                        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#333333] to-transparent lg:hidden" />
+                    </div>
                 </div>
 
-                {/* Right Panel: Ethereal Image */}
-                <div className="lg:w-[55%] relative min-h-[500px] lg:min-h-full">
-                    <Image
-                        src="/assets/images/group-vortex.png"
-                        alt="Ritual y Conexión Grupal"
-                        fill
-                        className="object-cover"
-                        priority
-                    />
-                    {/* Soft gradient transition */}
-                    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-stone-950 to-transparent hidden lg:block" />
+                <div className="container mx-auto px-8 lg:px-40 relative z-20">
+                    <div className="max-w-2xl space-y-12 py-32 lg:py-0">
+                        <FadeIn>
+                            <div className="space-y-4">
+                                <span className="font-script text-4xl lg:text-5xl text-[#b8835a] leading-none block">
+                                    Encuentros & Rituales
+                                </span>
+                                <h1 className="text-5xl lg:text-8xl font-bold text-white uppercase tracking-tighter leading-[0.9]">
+                                    AGENDA DEL <br /> <span className="opacity-60">ALMA</span>
+                                </h1>
+                            </div>
+
+                            <div className="space-y-10">
+                                <p className="text-xl lg:text-2xl text-white/90 font-serif italic border-l-4 border-[#b8835a] pl-8 py-2">
+                                    "No solo venimos a aprender, venimos a recordar quiénes somos cuando estamos en tribu."
+                                </p>
+                                
+                                <p className="text-lg text-white/70 leading-relaxed font-light max-w-lg">
+                                    Espacios sagrados diseñados para tu sanación profunda, expansión y reconexión mediante la maestría sistémica.
+                                </p>
+
+                                <div className="pt-8">
+                                    <Link
+                                        href="#agenda"
+                                        className="inline-flex items-center justify-center bg-[#b8835a] text-white hover:brightness-110 transition-all px-12 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-xs lg:text-sm shadow-2xl group"
+                                    >
+                                        Explorar Calendario »
+                                    </Link>
+                                </div>
+                            </div>
+                        </FadeIn>
+                    </div>
                 </div>
             </section>
 
