@@ -67,20 +67,20 @@ export default function ServicesPage() {
                 </div>
             </section>
 
-            {/* 2. SECTION: SESIONES CORPORALES (Full-bleed redesign) */}
-            <section className="relative min-h-screen flex items-center overflow-hidden">
-                {/* Background Image */}
+            {/* 2. SECTION: SESIONES CORPORALES (Full-bleed redesign with Grayscale effect) */}
+            <section className="relative min-h-screen flex items-center overflow-hidden bg-stone-900">
+                {/* Background Image with Artistic Grayscale */}
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/images/home_redesign/Web-Yelitze-servicios.png"
+                        src="/images/home_redesign/Web-Yelitze-servicios-03.png"
                         alt="Sesiones Corporales - Alquimia del Tacto"
                         fill
-                        className="object-cover object-center"
+                        className="object-cover object-center grayscale brightness-75 transition-all duration-1000"
                         priority
                         unoptimized
                     />
-                    {/* Dark gradient overlay on the left for text readability */}
-                    <div className="absolute inset-y-0 left-0 w-full lg:w-[60%] bg-gradient-to-r from-black/85 via-black/40 to-transparent z-10" />
+                    {/* Charcoal/Dark Grey gradient overlay for editorial look */}
+                    <div className="absolute inset-y-0 left-0 w-full lg:w-[65%] bg-gradient-to-r from-stone-950 via-stone-950/40 to-transparent z-10" />
                 </div>
 
                 <div className="container mx-auto px-8 lg:px-40 relative z-20">
