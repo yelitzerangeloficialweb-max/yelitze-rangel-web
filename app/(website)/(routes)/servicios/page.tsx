@@ -168,8 +168,8 @@ export default function ServicesPage() {
                         {/* Libros & Recursos */}
                         <FadeIn delay={0.2}>
                             <div className="group space-y-10">
-                                <Link href="/libros" className="block relative aspect-[16/10] rounded-tr-[80px] rounded-bl-[80px] rounded-tl-xl rounded-br-xl overflow-hidden shadow-2xl border border-white/5">
-                                    <div className="grid grid-cols-2 h-full gap-[2px] bg-white/5">
+                                <Link href="/libros" className="block relative aspect-[16/10] rounded-tr-[80px] rounded-bl-[80px] rounded-tl-xl rounded-br-xl overflow-hidden shadow-2xl border border-white/5 group">
+                                    <div className="grid grid-cols-2 h-full bg-white/5">
                                         <div className="relative h-full">
                                             <Image
                                                 src="/assets/images/chamana-bg.png"
@@ -178,7 +178,7 @@ export default function ServicesPage() {
                                                 className="object-cover group-hover:scale-105 transition-transform duration-1000 grayscale-[0.2] group-hover:grayscale-0"
                                             />
                                         </div>
-                                        <div className="relative h-full">
+                                        <div className="relative h-full border-l border-white/5">
                                             <Image
                                                 src="/assets/images/hilos-bg.png"
                                                 alt="Hilos de Conexión"
@@ -187,6 +187,8 @@ export default function ServicesPage() {
                                             />
                                         </div>
                                     </div>
+                                    {/* Central Dissipate Gradient to blend both images */}
+                                    <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-40 bg-gradient-to-r from-transparent via-[#1c1c1c]/90 to-transparent z-10" />
                                     <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-700" />
                                 </Link>
                                 <div className="space-y-6 px-2">
