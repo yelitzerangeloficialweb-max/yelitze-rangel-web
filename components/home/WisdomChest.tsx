@@ -54,15 +54,6 @@ export default function WisdomChest() {
                     </motion.div>
                 </div>
             </div>
-            {/* White Transition Brush Separator at the Bottom - Moved down as requested earlier */}
-            <div className="absolute bottom-0 left-0 w-full h-[300px] lg:h-[500px] z-20 pointer-events-none translate-y-[80%]">
-                <Image
-                    src="/assets/images/brush-separator.png"
-                    alt=""
-                    fill
-                    className="object-fill object-top brightness-100 scale-y-125"
-                />
-            </div>
 
             {/* Floating curly line and logo decoration on the left */}
             <div className="absolute bottom-12 left-8 md:left-12 lg:left-20 flex items-center gap-4 opacity-30 pointer-events-none hidden lg:flex">

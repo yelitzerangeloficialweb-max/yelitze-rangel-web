@@ -17,6 +17,7 @@ export default function NewNewsletter() {
                     className="object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-black/10" />
+                <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-[#2D2926] to-transparent z-10" />
                 <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/30 to-transparent" />
             </div>
 
