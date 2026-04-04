@@ -361,17 +361,17 @@ export default function SesionesCorporalesPage() {
 
             {/* ─── 7. TANTRA SISTÉMICO (REDESIGN) ────────────────────────────── */}
             <section className="relative min-h-screen lg:min-h-[100vh] flex items-center overflow-hidden bg-stone-950 px-6">
-                {/* Full Background Image */}
+                {/* Full Background Image - Subject positioned to the left */}
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="/images/Imagenes-Reediseno/Web-Yelitze22.png"
                         alt="Tantra Sistémico Intencional"
                         fill
-                        className="object-cover"
+                        className="object-cover object-left md:object-center lg:object-left"
                         priority
                     />
-                    {/* Deep Right-to-Left Gradient Overlay for Cinematic Legibility */}
-                    <div className="absolute inset-0 bg-gradient-to-l from-[#1E1208]/95 via-[#1E1208]/60 to-transparent z-10" />
+                    {/* Deep Right-side Gradient starting from the middle for legibility */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-stone-950/20 to-stone-950/95 z-10" />
                 </div>
 
                 <div className="container mx-auto max-w-7xl relative z-20">
