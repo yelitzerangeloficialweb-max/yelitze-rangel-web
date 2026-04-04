@@ -254,7 +254,7 @@ export default function EventsPage() {
 
                         <div className="lg:w-1/2 relative">
                             <FadeIn>
-                                <div className="relative aspect-[16/11] rounded-[4rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] group">
+                                <div className="relative aspect-[16/11] rounded-tl-[80px] rounded-br-[80px] rounded-tr-3xl rounded-bl-3xl overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] group">
                                     <Image
                                         src="/assets/images/gallery/custom-retreat-group.jpg"
                                         alt="Sesión Grupal de Sanación"
