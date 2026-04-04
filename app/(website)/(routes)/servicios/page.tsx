@@ -295,7 +295,7 @@ export default function ServicesPage() {
                             <span className="font-script text-7xl lg:text-[11rem] text-white/95 leading-none block drop-shadow-2xl">
                                 ¿Buscas una solución...
                             </span>
-                            <h2 className="text-4xl lg:text-9xl font-bold text-white uppercase tracking-[0.2em] leading-none mt-[-0.2em] drop-shadow-xl">
+                            <h2 className="text-3xl md:text-6xl lg:text-7xl font-bold text-white uppercase tracking-widest leading-none mt-[-0.2em] drop-shadow-xl">
                                 A TU MEDIDA?
                             </h2>
                             <div className="w-24 h-[2px] bg-[var(--color-secondary)] mx-auto mt-12 opacity-60" />
