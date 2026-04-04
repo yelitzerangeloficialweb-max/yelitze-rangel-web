@@ -276,6 +276,9 @@ export default function EventsPage() {
 
             {/* FINAL CTA (Premium Redesign) */}
             <section className="relative py-48 md:py-64 overflow-hidden bg-stone-950">
+                {/* Top Integration Gradient (Blur between sections) */}
+                <div className="absolute top-0 left-0 w-full h-48 bg-gradient-to-b from-[#d4d4d4] to-transparent z-20" />
+
                 {/* Background Image: High-Fidelity Andean Landscape */}
                 <div className="absolute inset-0 z-0">
                     <Image
