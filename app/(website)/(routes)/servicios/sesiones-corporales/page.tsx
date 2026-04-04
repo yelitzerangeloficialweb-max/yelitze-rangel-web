@@ -161,17 +161,20 @@ export default function SesionesCorporalesPage() {
                 </div>
             </section>
 
-            {/* ─── 4. SINCRONÍA ANCESTRAL ───────────────────────────────────── */}
-            <section className="py-28 px-6 bg-[#1E1208]">
-                <div className="container mx-auto max-w-6xl">
-                    <FadeIn className="text-center mb-16">
+            {/* ─── 4. SINCRONÍA ANCESTRAL (REDESIGN) ────────────────────────── */}
+            <section className="py-28 px-6 bg-[#333333] relative overflow-hidden">
+                {/* Subtle Copper Blur */}
+                <div className="absolute -bottom-48 -left-48 w-[600px] h-[600px] bg-[#B8835A]/10 rounded-full blur-[140px] pointer-events-none" />
+
+                <div className="container mx-auto max-w-7xl relative z-10">
+                    <FadeIn className="text-center mb-20">
                         <h2 className="text-5xl md:text-7xl font-editorial text-white leading-tight">
                             Sincronía Ancestral
                         </h2>
-                        <div className="h-px w-24 bg-[#B8835A] mx-auto mt-5" />
+                        <div className="h-px w-24 bg-[#B8835A] mx-auto mt-6 opacity-30" />
                     </FadeIn>
 
-                    <div className="grid md:grid-cols-3 gap-6">
+                    <div className="grid md:grid-cols-3 gap-8">
                         {[
                             {
                                 title: "Sincronización a 4 y 6 Manos",
@@ -202,18 +205,20 @@ export default function SesionesCorporalesPage() {
                             },
                         ].map((item, i) => (
                             <FadeIn key={i} delay={i * 0.1}>
-                                <div className="bg-[#2D2926]/50 border border-[#B8835A]/10 rounded-[2rem] p-8 h-full flex flex-col">
-                                    <div className="w-8 h-px bg-[#B8835A] mb-6" />
-                                    <h3 className="text-lg font-bold text-white mb-2 leading-snug">{item.title}</h3>
-                                    <p className="text-[#B8835A] text-sm italic mb-6">{item.sub}</p>
-                                    <ul className="space-y-3 mt-auto">
-                                        {item.items.map((f, j) => (
-                                            <li key={j} className="flex items-center gap-3 text-sm text-white/45">
-                                                <span className="w-1 h-1 rounded-full bg-[#B8835A]/50 shrink-0" />
-                                                {f}
-                                            </li>
+                                <div className="group relative bg-[#1E1208]/20 border border-[#B8835A]/30 rounded-[100px] px-10 py-20 flex flex-col items-center text-center h-full transition-all duration-700 hover:bg-[#1E1208]/40 hover:border-[#B8835A]/60 shadow-2xl">
+                                    <h3 className="text-3xl md:text-4xl font-editorial italic text-white mb-6 leading-tight group-hover:scale-105 transition-transform duration-500">
+                                        {item.title}
+                                    </h3>
+                                    <p className="text-[#B8835A] font-guide italic text-base mb-10 tracking-wide uppercase">
+                                        {item.sub}
+                                    </p>
+                                    <div className="space-y-4 mt-auto">
+                                        {item.items.map((line, j) => (
+                                            <p key={j} className="text-white/60 text-sm italic font-light">
+                                                {line}
+                                            </p>
                                         ))}
-                                    </ul>
+                                    </div>
                                 </div>
                             </FadeIn>
                         ))}
