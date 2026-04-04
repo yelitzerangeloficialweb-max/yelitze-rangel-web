@@ -208,9 +208,9 @@ export default function EventsPage() {
 
             {/* 4. SECTION: RETIROS A MEDIDA (REDESIGN) */}
             <section className="py-32 bg-[#d4d4d4] relative overflow-hidden">
-                {/* Atmospheric Glows */}
-                <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-[radial-gradient(circle_at_top_right,_rgba(224,152,106,0.3),_transparent_70%)] pointer-events-none" />
-                <div className="absolute bottom-0 left-0 w-[40%] h-[40%] bg-[radial-gradient(circle_at_bottom_left,_rgba(224,152,106,0.2),_transparent_70%)] pointer-events-none" />
+                {/* Atmospheric Deep Blur Glows */}
+                <div className="absolute -top-[20%] -right-[10%] w-[60%] h-[60%] bg-[#de986a]/40 blur-[120px] rounded-full pointer-events-none mix-blend-multiply opacity-60" />
+                <div className="absolute -bottom-[20%] -left-[10%] w-[60%] h-[60%] bg-[#de986a]/30 blur-[150px] rounded-full pointer-events-none mix-blend-multiply opacity-50" />
 
                 <div className="container mx-auto max-w-7xl px-8 lg:px-16 relative z-10">
                     <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
