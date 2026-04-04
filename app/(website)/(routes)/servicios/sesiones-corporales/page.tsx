@@ -10,13 +10,13 @@ export default function SesionesCorporalesPage() {
         <main className="bg-[#1E1208] text-white">
 
             {/* ─── 1. HERO ──────────────────────────────────────────────────── */}
-            <section className="relative min-h-screen flex items-center justify-center pt-24 pb-20 overflow-hidden">
+            <section className="relative min-h-screen flex items-center justify-center pt-24 pb-20 overflow-hidden group">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="/images/Imagenes-Reediseno/Web-Yelitze.png"
                         alt="Reconexión Integral"
                         fill
-                        className="object-cover"
+                        className="object-cover transition-transform duration-[3000ms] group-hover:scale-110"
                         priority
                         quality={100}
                     />
@@ -159,12 +159,12 @@ export default function SesionesCorporalesPage() {
 
                         {/* Right: Image Content */}
                         <FadeIn delay={0.2}>
-                            <div className="relative aspect-[3/4] rounded-[4rem] overflow-hidden shadow-2xl border border-white/5">
+                            <div className="relative aspect-[3/4] rounded-[4rem] overflow-hidden shadow-2xl border border-white/5 group">
                                 <Image
                                     src="/images/home_redesign/ayurveda_ritual.png"
                                     alt="Gotas de Sabiduría"
                                     fill
-                                    className="object-cover"
+                                    className="object-cover transition-transform duration-[3000ms] group-hover:scale-110"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/40 to-transparent" />
                             </div>
@@ -256,27 +256,27 @@ export default function SesionesCorporalesPage() {
                             </p>
                             
                             <div className="grid grid-cols-2 gap-6">
-                                <div className="relative aspect-[4/5] rounded-t-[3.5rem] rounded-br-[3.5rem] overflow-hidden shadow-2xl">
+                                <div className="relative aspect-[4/5] rounded-t-[3.5rem] rounded-br-[3.5rem] overflow-hidden shadow-2xl group">
                                     <Image
                                         src="/assets/images/relief-mental.png"
                                         alt="Alivio Mental"
                                         fill
-                                        className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                                        className="object-cover grayscale group-hover:grayscale-0 transition-all duration-[2000ms] group-hover:scale-110"
                                     />
-                                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-6 z-10">
                                         <p className="text-white text-[11px] font-guide font-medium leading-relaxed text-center">
                                             Resuelve dolores de cabeza, migrañas y fatiga crónica.
                                         </p>
                                     </div>
                                 </div>
-                                <div className="relative aspect-[4/5] rounded-t-[3.5rem] rounded-bl-[3.5rem] overflow-hidden shadow-2xl">
+                                <div className="relative aspect-[4/5] rounded-t-[3.5rem] rounded-bl-[3.5rem] overflow-hidden shadow-2xl group">
                                     <Image
                                         src="/assets/images/circulation-vital.png"
                                         alt="Circulación Vital"
                                         fill
-                                        className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                                        className="object-cover grayscale group-hover:grayscale-0 transition-all duration-[2000ms] group-hover:scale-110"
                                     />
-                                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-6 z-10">
                                         <p className="text-white text-[11px] font-guide font-medium leading-relaxed text-center">
                                             Mejora la circulación y la toma de oxígeno celular.
                                         </p>
@@ -386,12 +386,12 @@ export default function SesionesCorporalesPage() {
             {/* ─── 7. TANTRA SISTÉMICO (REDESIGN) ────────────────────────────── */}
             <section className="relative min-h-screen lg:min-h-[100vh] flex items-center overflow-hidden bg-stone-950 px-6">
                 {/* Full Background Image - Subject positioned to the left */}
-                <div className="absolute inset-0 z-0">
+                <div className="absolute inset-0 z-0 group">
                     <Image
                         src="/images/Imagenes-Reediseno/Web-Yelitze22.png"
                         alt="Tantra Sistémico Intencional"
                         fill
-                        className="object-cover object-left md:object-center lg:object-left"
+                        className="object-cover object-left md:object-center lg:object-left transition-transform duration-[5000ms] group-hover:scale-110"
                         priority
                     />
                     {/* Deep Right-side Gradient starting from the middle for legibility */}
@@ -456,13 +456,13 @@ export default function SesionesCorporalesPage() {
             </section>
 
             {/* ─── 8. FINAL CTA ─────────────────────────────────────────────── */}
-            <section className="relative py-40 px-6 overflow-hidden">
+            <section className="relative py-40 px-6 overflow-hidden group">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="/images/Imagenes-Reediseno/Web-Yelitze19.png"
                         alt="Tu cuerpo es un Santuario"
                         fill
-                        className="object-cover"
+                        className="object-cover transition-transform duration-[3000ms] group-hover:scale-110"
                         quality={90}
                     />
                     <div className="absolute inset-0 bg-[#1E1208]/72" />
