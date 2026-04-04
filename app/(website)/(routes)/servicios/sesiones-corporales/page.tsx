@@ -64,35 +64,38 @@ export default function SesionesCorporalesPage() {
                 <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#EDE2D0] to-transparent z-10" />
             </section>
 
-            {/* ─── 2. FILOSOFÍA ─────────────────────────────────────────────── */}
-            <section className="py-28 px-6 bg-[#EDE2D0]">
-                <div className="container mx-auto max-w-5xl">
-                    <FadeIn className="text-center mb-16">
-                        <span className="text-[#B8835A] font-guide font-bold tracking-[0.4em] uppercase text-[10px] block mb-6">
+            {/* ─── 2. FILOSOFÍA (REDESIGN) ─────────────────────────────────── */}
+            <section className="py-28 px-6 bg-[#333333] relative overflow-hidden">
+                {/* Atmospheric Glow */}
+                <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#B8835A]/10 rounded-full blur-[140px] pointer-events-none" />
+
+                <div className="container mx-auto max-w-6xl relative z-10">
+                    <FadeIn className="text-center mb-20">
+                        <span className="text-white/40 font-guide font-bold tracking-[0.4em] uppercase text-[10px] block mb-6">
                             La Filosofía
                         </span>
-                        <h2 className="text-3xl md:text-5xl font-editorial italic text-[#2D2926] leading-tight mb-8">
-                            Un sistema de integración humana<br className="hidden md:block" /> y renovación celular
+                        <h2 className="text-5xl md:text-8xl font-script text-[#B8835A] leading-none mb-10">
+                            Un sistema de integración humana y renovación celular
                         </h2>
-                        <p className="text-[#2D2926]/65 text-lg leading-relaxed max-w-3xl mx-auto">
+                        <p className="text-white/80 text-lg leading-relaxed max-w-3xl mx-auto font-light">
                             Trabajaremos con la propuesta de disolución de las defensas instaladas en el músculo en forma de estrés y tensión.
                             Mediante un viaje que combina medicina ancestral, herbolaria y rituales chamánicos, buscaremos la armonía total
                             del estado de ánimo, el cuerpo y la mente.
                         </p>
                     </FadeIn>
 
-                    <div className="grid md:grid-cols-3 gap-5">
+                    <div className="grid md:grid-cols-3 gap-8">
                         {[
                             { title: "Renovación", desc: "Integración celular y orgánica." },
                             { title: "Re-educación", desc: "Gestión emocional profunda." },
                             { title: "Vitalidad", desc: "Despertar de la energía vital." },
                         ].map((item, i) => (
                             <FadeIn key={i} delay={i * 0.1}>
-                                <div className="bg-[#2D2926] rounded-[2rem] px-10 py-10 text-center">
-                                    <h4 className="text-[#B8835A] font-guide font-bold text-xs uppercase tracking-[0.3em] mb-3">
+                                <div className="group relative bg-[#1E1208]/20 border border-[#B8835A]/30 rounded-[100px] px-10 py-16 flex flex-col items-center text-center h-full transition-all duration-700 hover:bg-[#1E1208]/40 hover:border-[#B8835A]/60 shadow-2xl">
+                                    <h4 className="text-3xl md:text-4xl font-editorial italic text-white mb-4 transition-transform duration-500 group-hover:scale-105">
                                         {item.title}
                                     </h4>
-                                    <p className="text-white/60 text-sm leading-relaxed">{item.desc}</p>
+                                    <p className="text-white/50 text-sm italic font-light">{item.desc}</p>
                                 </div>
                             </FadeIn>
                         ))}
