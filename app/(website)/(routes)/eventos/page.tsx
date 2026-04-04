@@ -274,40 +274,48 @@ export default function EventsPage() {
                 </div>
             </section>
 
-            {/* FINAL CTA: LLAMADA DE CLARIDAD (REDESIGN) */}
-            <section className="relative py-40 md:py-60 overflow-hidden bg-stone-900">
-                {/* Background Image with Gradient Overlay */}
-                <div className="absolute inset-0">
-                    <Image 
-                        src="/images/home_redesign/clarity-call-bg.jpg"
-                        alt="Sesión de Claridad en la Naturaleza"
+            {/* FINAL CTA (Premium Redesign) */}
+            <section className="relative py-48 md:py-64 overflow-hidden bg-stone-950">
+                {/* Background Image: High-Fidelity Andean Landscape */}
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="/images/home_redesign/cta-clarity-bg.png"
+                        alt="Sesión de Claridad - Evolución Sistémica"
                         fill
-                        className="object-cover"
+                        className="object-cover opacity-80"
+                        priority
                     />
-                    {/* Atmospheric Glow Overlay (Matches mockup orange tint) */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-stone-900/60 via-transparent to-[#de9862]/30" />
-                    <div className="absolute inset-0 bg-black/20" />
+                    {/* Deep Cinematic Vignette & Warm Glow */}
+                    <div className="absolute inset-0 bg-stone-950/40 z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-stone-950/20 z-10" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(224,159,106,0.15),_transparent_70%)] z-10" />
                 </div>
 
-                <div className="container mx-auto px-4 relative z-10 text-center">
+                <div className="container mx-auto px-8 relative z-20 text-center">
                     <FadeIn>
-                        <div className="space-y-4 mb-14">
-                            <span className="block text-4xl md:text-7xl text-white font-whisper leading-none">
+                        <div className="space-y-6 mb-20 max-w-5xl mx-auto">
+                            <span className="font-script text-7xl lg:text-[11rem] text-white/95 leading-none block drop-shadow-2xl">
                                 ¿Buscas una solución...
                             </span>
-                            <h2 className="text-4xl md:text-7xl font-heading text-white opacity-90 tracking-tighter uppercase">
+                            <h2 className="text-4xl lg:text-9xl font-bold text-white uppercase tracking-[0.2em] leading-none mt-[-0.2em] drop-shadow-xl">
                                 A TU MEDIDA?
                             </h2>
+                            <div className="w-24 h-[2px] bg-[var(--color-secondary)] mx-auto mt-12 opacity-60" />
                         </div>
-                        
-                        <div className="pt-8">
-                            <Link 
-                                href="https://wa.me/17867268717"
-                                target="_blank"
-                                className="inline-flex items-center justify-center bg-[#b17a46] text-white px-12 py-5 rounded-2xl text-lg font-bold uppercase tracking-[0.1em] hover:scale-105 hover:bg-[#9a6a3b] transition-all shadow-2xl group"
-                            >
-                                Agenda una llamada de claridad »
-                            </Link>
+
+                        <div className="flex justify-center flex-col items-center gap-8">
+                            <p className="text-white/70 text-xl lg:text-2xl font-serif italic max-w-2xl">
+                                Permíteme acompañarte en el proceso de encontrar la alineación perfecta para tu momento actual.
+                            </p>
+                            <div className="flex justify-center pt-8">
+                                <Link
+                                    href="https://wa.me/17867268717"
+                                    target="_blank"
+                                    className="inline-flex items-center justify-center bg-[var(--color-secondary)] text-white hover:scale-105 hover:brightness-110 transition-all px-16 py-7 rounded-full font-bold uppercase tracking-[0.3em] text-sm lg:text-lg shadow-[0_20px_50px_rgba(184,131,90,0.3)] group"
+                                >
+                                    Agendar Sesión de Claridad »
+                                </Link>
+                            </div>
                         </div>
                     </FadeIn>
                 </div>

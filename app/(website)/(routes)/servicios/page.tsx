@@ -272,42 +272,49 @@ export default function ServicesPage() {
                 </div>
             </section>
 
-            {/* 5. FINAL CTA (Cinematic Redesign) */}
-            <section className="relative py-32 lg:py-48 overflow-hidden">
-                {/* Background Image */}
+            {/* 5. FINAL CTA (Premium Redesign) */}
+            <section className="relative py-48 md:py-64 overflow-hidden bg-stone-950">
+                {/* Background Image: High-Fidelity Andean Landscape */}
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/images/home_redesign/Web-Yelitze15.png"
-                        alt="Final CTA - Evolución Sistémica"
+                        src="/images/home_redesign/cta-clarity-bg.png"
+                        alt="Sesión de Claridad - Evolución Sistémica"
                         fill
-                        className="object-cover"
+                        className="object-cover opacity-80"
                         priority
                     />
-                    {/* Warm Cinematic Overlay */}
-                    <div className="absolute inset-0 bg-stone-950/60 lg:bg-stone-950/40 z-10" />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(224,159,106,0.2),_transparent_70%)] z-10" />
+                    {/* Deep Cinematic Vignette & Warm Glow */}
+                    <div className="absolute inset-0 bg-stone-950/40 z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-stone-950/20 z-10" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(224,159,106,0.15),_transparent_70%)] z-10" />
                 </div>
 
                 <div className="container mx-auto px-8 relative z-20 text-center">
                     <FadeIn>
-                        <div className="space-y-4 mb-16">
-                            <span className="font-script text-6xl lg:text-[10rem] text-white leading-none block">
-                                ¿Buscas una solución
+                        <div className="space-y-6 mb-20 max-w-5xl mx-auto">
+                            <span className="font-script text-7xl lg:text-[11rem] text-white/95 leading-none block drop-shadow-2xl">
+                                ¿Buscas una solución...
                             </span>
-                            <h2 className="text-4xl lg:text-8xl font-bold text-white/90 uppercase tracking-widest leading-none mt-[-0.2em]">
+                            <h2 className="text-4xl lg:text-9xl font-bold text-white uppercase tracking-[0.2em] leading-none mt-[-0.2em] drop-shadow-xl">
                                 A TU MEDIDA?
                             </h2>
+                            <div className="w-24 h-[2px] bg-[var(--color-secondary)] mx-auto mt-12 opacity-60" />
                         </div>
 
-                        <div className="flex justify-center">
-                            <a
-                                href="https://wa.me/17867268717"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center bg-[#de9862] text-white hover:brightness-110 transition-all px-12 py-6 rounded-full font-bold uppercase tracking-[0.2em] text-sm lg:text-lg shadow-[0_20px_50px_rgba(0,0,0,0.3)] group"
-                            >
-                                Agenda una Llamada de Claridad »
-                            </a>
+                        <div className="flex justify-center flex-col items-center gap-8">
+                            <p className="text-white/70 text-xl lg:text-2xl font-serif italic max-w-2xl">
+                                Permíteme acompañarte en el proceso de encontrar la alineación perfecta para tu momento actual.
+                            </p>
+                            <div className="flex justify-center pt-8">
+                                <a
+                                    href="https://wa.me/17867268717"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center justify-center bg-[var(--color-secondary)] text-white hover:scale-105 hover:brightness-110 transition-all px-16 py-7 rounded-full font-bold uppercase tracking-[0.3em] text-sm lg:text-lg shadow-[0_20px_50px_rgba(184,131,90,0.3)] group"
+                                >
+                                    Agendar Sesión de Claridad »
+                                </a>
+                            </div>
                         </div>
                     </FadeIn>
                 </div>
