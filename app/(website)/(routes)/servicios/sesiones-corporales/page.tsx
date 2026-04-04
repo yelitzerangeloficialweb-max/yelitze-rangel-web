@@ -108,6 +108,26 @@ export default function SesionesCorporalesPage() {
 
             {/* ─── 3. GOTAS DE SABIDURÍA (REDESIGN) ───────────────────────── */}
             <section className="py-28 px-6 bg-[#333333] relative overflow-hidden">
+                {/* Background Decor: Brush Stroke Watermark */}
+                <div 
+                    className="absolute inset-0 z-0 pointer-events-none opacity-20"
+                >
+                    <div 
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-7xl aspect-[16/9]"
+                        style={{
+                            WebkitMaskImage: 'url(/images/diseno-elementos/gota-sabiduria.png)',
+                            maskImage: 'url(/images/diseno-elementos/gota-sabiduria.png)',
+                            WebkitMaskRepeat: 'no-repeat',
+                            maskRepeat: 'no-repeat',
+                            WebkitMaskPosition: 'center',
+                            maskPosition: 'center',
+                            WebkitMaskSize: 'contain',
+                            maskSize: 'contain',
+                            backgroundColor: '#594d40'
+                        }}
+                    />
+                </div>
+
                 {/* Boundary Shadow (Top) */}
                 <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/30 to-transparent pointer-events-none z-20" />
 
