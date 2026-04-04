@@ -19,7 +19,7 @@ export default function EventsPage() {
     );
 
     return (
-        <main className="bg-[#fafcfe] min-h-screen selection:bg-[var(--color-secondary)] selection:text-white pb-20">            {/* 1. HERO SECTION: TRIBU & ALINEACIÓN (Exact Composed Asset) */}
+        <main className="min-h-screen selection:bg-[var(--color-secondary)] selection:text-white bg-stone-950">
             <section className="relative min-h-[90vh] lg:min-h-screen flex items-center overflow-hidden bg-white pt-0">
                 {/* Full Cinematic Asset as Background */}
                 <div className="absolute inset-0 z-0">
