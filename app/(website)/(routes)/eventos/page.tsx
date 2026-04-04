@@ -33,7 +33,7 @@ export default function EventsPage() {
                     {/* Bottom Brush Stroke Effect - Blending with White Page */}
                     <div className="absolute bottom-0 left-0 w-full h-[20%] z-10 pointer-events-none" 
                          style={{ 
-                            background: 'linear-gradient(to top, white, transparent)',
+                            background: 'linear-gradient(to top, #e0ddd8, transparent)',
                             maskImage: 'radial-gradient(ellipse at 50% 100%, black 0%, transparent 80%)',
                             WebkitMaskImage: 'radial-gradient(ellipse at 50% 100%, black 0%, transparent 80%)'
                          }} 
