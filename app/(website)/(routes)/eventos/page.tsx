@@ -279,7 +279,7 @@ export default function EventsPage() {
                 {/* Background Image with Gradient Overlay */}
                 <div className="absolute inset-0">
                     <Image 
-                        src="/public/images/home_redesign/clarity-call-bg.jpg"
+                        src="/images/home_redesign/clarity-call-bg.jpg"
                         alt="Sesión de Claridad en la Naturaleza"
                         fill
                         className="object-cover"
