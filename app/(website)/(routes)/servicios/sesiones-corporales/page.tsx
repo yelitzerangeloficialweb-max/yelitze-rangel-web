@@ -297,25 +297,26 @@ export default function SesionesCorporalesPage() {
                 </div>
             </section>
 
-            {/* ─── 6. LIBERACIÓN DE TRAUMAS ─────────────────────────────────── */}
-            <section className="py-28 px-6 bg-[#1E1208] relative overflow-hidden">
-                <div className="absolute top-1/2 left-1/3 w-[600px] h-[600px] bg-[#B8835A]/4 rounded-full blur-[130px] -translate-y-1/2 pointer-events-none" />
+            {/* ─── 6. LIBERACIÓN DE TRAUMAS (REDESIGN) ─────────────────────── */}
+            <section className="py-28 px-6 bg-[#333333] relative overflow-hidden">
+                <div className="absolute top-1/2 left-1/3 w-[600px] h-[600px] bg-[#B8835A]/5 rounded-full blur-[130px] -translate-y-1/2 pointer-events-none" />
 
                 <div className="container mx-auto max-w-6xl relative z-10">
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
 
                         {/* Left */}
                         <FadeIn>
-                            <span className="text-[#B8835A] font-guide font-bold tracking-[0.4em] uppercase text-[10px] block mb-5">
+                            <span className="text-white/40 font-guide font-bold tracking-[0.4em] uppercase text-[10px] block mb-5">
                                 Santuario de Sanación
                             </span>
-                            <h2 className="text-4xl md:text-6xl font-editorial text-white mb-8 leading-tight">
-                                Liberación de<br />Traumas
+                            <h2 className="text-5xl md:text-7xl font-script text-[#B8835A] mb-8 leading-none">
+                                Liberación de Traumas
                             </h2>
-                            <p className="text-white/75 italic text-lg leading-relaxed mb-8 border-l-2 border-[#B8835A] pl-6">
+                            <p className="text-white italic text-lg leading-relaxed mb-10">
                                 "El trauma es energía estancada que no pudo manifestarse. Liberar las memorias atrapadas en el cuerpo es recorrer el camino hacia la libertad."
                             </p>
-                            <div className="space-y-4 text-white/45 text-sm leading-relaxed mb-10">
+                            
+                            <div className="space-y-6 text-white/80 text-base leading-relaxed mb-12">
                                 <p>
                                     Fusión de medicinas egipcias, africanas y orientales. Usamos Zen Shiatsu y Ayurveda Yoga Massage
                                     para disolver los nudos de tensión que se manifiestan como fatiga, angustia o insomnio.
@@ -326,33 +327,32 @@ export default function SesionesCorporalesPage() {
                                 </p>
                             </div>
 
-                            <div className="grid grid-cols-2 gap-3">
-                                {["Limpia el Aura", "Ordena el Acuerdo", "Libera el Linaje", "Regula Chakras"].map(
-                                    (b, i) => (
-                                        <div
-                                            key={i}
-                                            className="flex items-center gap-3 px-4 py-3 bg-white/5 border border-[#B8835A]/15 rounded-xl"
-                                        >
-                                            <span className="w-1.5 h-1.5 rounded-full bg-[#B8835A] shrink-0" />
-                                            <span className="text-xs font-guide font-bold text-white/60 uppercase tracking-wider">
-                                                {b}
-                                            </span>
-                                        </div>
-                                    )
-                                )}
+                            <div className="grid grid-cols-2 gap-y-6 gap-x-8">
+                                {[
+                                    "LIMPIA EL AURA", 
+                                    "ORDENA EL ACUERDO", 
+                                    "LIBERA EL LINAJE", 
+                                    "REGULA CHAKRAS"
+                                ].map((b, i) => (
+                                    <div key={i} className="flex items-center gap-3">
+                                        <span className="text-xs font-guide font-bold text-white uppercase tracking-[0.2em]">
+                                            {b}
+                                        </span>
+                                    </div>
+                                ))}
                             </div>
                         </FadeIn>
 
                         {/* Right: Photo */}
                         <FadeIn delay={0.2}>
-                            <div className="relative aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl">
+                            <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl group">
                                 <Image
-                                    src="/images/Imagenes-Reediseno/Web-Yelitze21.png"
-                                    alt="Liberación de Traumas"
+                                    src="/images/Imagenes-Reediseno/Web-Yelitze24.png"
+                                    alt="Liberación de Traumas - Ritual de Sanación"
                                     fill
-                                    className="object-cover"
+                                    className="object-cover group-hover:scale-105 transition-transform duration-[2s]"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#1E1208]/50 to-transparent" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                             </div>
                         </FadeIn>
                     </div>
