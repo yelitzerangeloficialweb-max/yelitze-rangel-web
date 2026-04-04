@@ -78,9 +78,9 @@ export default function GalleryPage() {
 
             {/* 1. HERO SECTION: PREMIUM EDITORIAL */}
             <section className="relative min-h-[70vh] flex items-center pt-40 pb-20 overflow-hidden bg-[#333333]">
-                {/* Background accents */}
-                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[var(--color-secondary)]/10 rounded-full blur-[120px] -mr-40 -mt-40" />
-                <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-white/5 rounded-full blur-[100px] -ml-20 -mb-20" />
+                {/* Atmospheric Glows */}
+                <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#B8835A]/15 rounded-full blur-[140px] pointer-events-none" />
+                <div className="absolute -bottom-40 -right-40 w-[500px] h-[500px] bg-[#B8835A]/10 rounded-full blur-[120px] pointer-events-none" />
 
                 <div className="container mx-auto px-4 relative z-10">
                     <div className="max-w-4xl">
