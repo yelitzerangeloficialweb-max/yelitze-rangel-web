@@ -56,7 +56,8 @@ export default function Header() {
     const isTransparentPage = normalizedPath === '/' || 
                              normalizedPath.startsWith('/sobre-mi') || 
                              normalizedPath.startsWith('/servicios') ||
-                             normalizedPath.startsWith('/eventos');
+                             normalizedPath.startsWith('/eventos') ||
+                             normalizedPath.startsWith('/galeria');
     const showScrolled = isScrolled || !isTransparentPage;
 
     const navLinks = [

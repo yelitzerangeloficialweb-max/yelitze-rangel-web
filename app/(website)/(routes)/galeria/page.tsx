@@ -77,7 +77,7 @@ export default function GalleryPage() {
         <main className="bg-[#FAF9F6] min-h-screen selection:bg-[var(--color-secondary)] selection:text-white pb-32">
 
             {/* 1. HERO SECTION: PREMIUM EDITORIAL */}
-            <section className="relative min-h-[70vh] flex items-center pt-40 pb-20 overflow-hidden bg-stone-950">
+            <section className="relative min-h-[70vh] flex items-center pt-40 pb-20 overflow-hidden bg-[#333333]">
                 {/* Background accents */}
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[var(--color-secondary)]/10 rounded-full blur-[120px] -mr-40 -mt-40" />
                 <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-white/5 rounded-full blur-[100px] -ml-20 -mb-20" />
