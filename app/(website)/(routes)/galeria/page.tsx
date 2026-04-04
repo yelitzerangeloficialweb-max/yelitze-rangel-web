@@ -57,7 +57,6 @@ const CATEGORIES = [
         icon: Camera,
         description: 'Viajes, naturaleza y la esencia de Yelitzé en su cotidianeidad sagrada.',
         images: [
-            { src: '/assets/images/gallery/gallery-16.jpg', alt: 'Naturaleza' },
             { src: '/assets/images/gallery/gallery-17.jpg', alt: 'Viaje del Alma' },
             { src: '/assets/images/gallery/gallery-18.jpg', alt: 'Esencia' },
             { src: '/assets/images/gallery/gallery-19.jpg', alt: 'Paz' },
