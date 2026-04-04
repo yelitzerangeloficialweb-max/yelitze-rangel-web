@@ -221,42 +221,46 @@ export default function SesionesCorporalesPage() {
                 </div>
             </section>
 
-            {/* ─── 5. EL LENGUAJE MÁS ANTIGUO ──────────────────────────────── */}
-            <section className="py-28 px-6 bg-[#EDE2D0]">
-                <div className="container mx-auto max-w-6xl">
-                    <div className="grid lg:grid-cols-2 gap-14 items-start">
+            {/* ─── 5. EL LENGUAJE MÁS ANTIGUO (REDESIGN) ─────────────────────── */}
+            <section className="py-28 px-6 bg-[#333333] relative overflow-hidden">
+                {/* Atmospheric Blur */}
+                <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#B8835A]/10 rounded-full blur-[140px] pointer-events-none" />
 
-                        {/* Left */}
+                <div className="container mx-auto max-w-6xl relative z-10">
+                    <div className="grid lg:grid-cols-2 gap-14 items-center">
+
+                        {/* Left Column */}
                         <FadeIn>
-                            <h3 className="text-4xl md:text-5xl font-editorial text-[#2D2926] mb-8 leading-snug">
+                            <h3 className="text-5xl md:text-6xl font-editorial text-[#B8835A] mb-8 leading-tight">
                                 El lenguaje<br />más antiguo...
                             </h3>
-                            <p className="text-[#2D2926]/55 italic text-lg leading-relaxed border-l-2 border-[#B8835A] pl-6 mb-12">
+                            <p className="text-white/80 italic text-lg leading-relaxed border-l-2 border-[#B8835A]/30 pl-6 mb-12">
                                 "Escucha el Santuario del Alma. Los cimientos del organismo exigen ser tratados con la profundidad del amor para liberar los bloqueos acumulados."
                             </p>
-                            <div className="grid grid-cols-2 gap-4">
-                                <div className="relative aspect-square rounded-2xl overflow-hidden">
+                            
+                            <div className="grid grid-cols-2 gap-6">
+                                <div className="relative aspect-[4/5] rounded-t-[3.5rem] rounded-br-[3.5rem] overflow-hidden shadow-2xl">
                                     <Image
                                         src="/assets/images/relief-mental.png"
                                         alt="Alivio Mental"
                                         fill
-                                        className="object-cover"
+                                        className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
                                     />
-                                    <div className="absolute inset-0 bg-[#2D2926]/55 flex items-end p-4">
-                                        <p className="text-white text-[11px] font-guide leading-relaxed">
+                                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                                        <p className="text-white text-[11px] font-guide font-medium leading-relaxed text-center">
                                             Resuelve dolores de cabeza, migrañas y fatiga crónica.
                                         </p>
                                     </div>
                                 </div>
-                                <div className="relative aspect-square rounded-2xl overflow-hidden">
+                                <div className="relative aspect-[4/5] rounded-t-[3.5rem] rounded-bl-[3.5rem] overflow-hidden shadow-2xl">
                                     <Image
                                         src="/assets/images/circulation-vital.png"
                                         alt="Circulación Vital"
                                         fill
-                                        className="object-cover"
+                                        className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
                                     />
-                                    <div className="absolute inset-0 bg-[#2D2926]/55 flex items-end p-4">
-                                        <p className="text-white text-[11px] font-guide leading-relaxed">
+                                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                                        <p className="text-white text-[11px] font-guide font-medium leading-relaxed text-center">
                                             Mejora la circulación y la toma de oxígeno celular.
                                         </p>
                                     </div>
@@ -264,30 +268,30 @@ export default function SesionesCorporalesPage() {
                             </div>
                         </FadeIn>
 
-                        {/* Right: dark card */}
+                        {/* Right Column: Modern Dark Card */}
                         <FadeIn delay={0.2}>
-                            <div className="bg-[#2D2926] rounded-[2.5rem] p-10 lg:p-12">
-                                <span className="text-[#B8835A] font-guide font-bold tracking-[0.35em] uppercase text-[10px] block mb-10">
+                            <div className="bg-black rounded-[4rem] p-12 lg:p-16 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] border border-white/5">
+                                <span className="text-white/40 font-guide font-bold tracking-[0.35em] uppercase text-[10px] block mb-12">
                                     Equilibrio Estructural
                                 </span>
-                                <div className="space-y-0 divide-y divide-white/10">
+                                <div className="space-y-12">
                                     {[
                                         {
                                             title: "Masaje Cráneo Sacral",
-                                            text: "Los cimientos del organismo exigen ser tratados con la profundidad del amor para liberar los bloqueos acumulados.",
+                                            text: "\"Los cimientos del organismo exigen ser tratados con la profundidad del amor para liberar los bloqueos acumulados.\"",
                                         },
                                         {
                                             title: "Shiat-Yurveda Yoga Massage",
                                             text: "Combinación de silla ergonómica (yoga asistida) y camilla (Abhyanga) para despertar la memoria celular.",
                                         },
                                         {
-                                            title: "Camino (Masaje de Pies)",
+                                            title: "El Camino (Masaje de Pies)",
                                             text: "Liberación de tensiones a través de los portales terrenales. Refresca tus cimientos y sincroniza tu energía vital.",
                                         },
                                     ].map((item, i) => (
-                                        <div key={i} className="py-8 first:pt-0 last:pb-0">
-                                            <h4 className="text-white font-bold text-base mb-2">{item.title}</h4>
-                                            <p className="text-white/45 text-sm leading-relaxed">{item.text}</p>
+                                        <div key={i} className="group">
+                                            <h4 className="text-[#B8835A] font-editorial text-2xl md:text-3xl mb-4 group-hover:translate-x-2 transition-transform duration-500">{item.title}</h4>
+                                            <p className="text-white/60 text-base leading-relaxed font-light">{item.text}</p>
                                         </div>
                                     ))}
                                 </div>
