@@ -329,19 +329,20 @@ export default function SesionesCorporalesPage() {
                                 </p>
                             </div>
 
-                            <div className="grid grid-cols-2 gap-y-6 gap-x-8">
-                                {[
-                                    "LIMPIA EL AURA", 
-                                    "ORDENA EL ACUERDO", 
-                                    "LIBERA EL LINAJE", 
-                                    "REGULA CHAKRAS"
-                                ].map((b, i) => (
-                                    <div key={i} className="flex items-center gap-3">
-                                        <span className="text-xs font-guide font-bold text-white uppercase tracking-[0.2em]">
-                                            {b}
-                                        </span>
-                                    </div>
-                                ))}
+                            <div className="grid grid-cols-2 gap-3">
+                                {["Limpia el Aura", "Ordena el Acuerdo", "Libera el Linaje", "Regula Chakras"].map(
+                                    (b, i) => (
+                                        <div
+                                            key={i}
+                                            className="flex items-center gap-3 px-4 py-3 bg-white/5 border border-[#B8835A]/15 rounded-xl"
+                                        >
+                                            <span className="w-1.5 h-1.5 rounded-full bg-[#B8835A] shrink-0" />
+                                            <span className="text-xs font-guide font-bold text-white/60 uppercase tracking-wider">
+                                                {b}
+                                            </span>
+                                        </div>
+                                    )
+                                )}
                             </div>
                         </FadeIn>
 
