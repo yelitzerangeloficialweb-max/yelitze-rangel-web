@@ -359,59 +359,74 @@ export default function SesionesCorporalesPage() {
                 </div>
             </section>
 
-            {/* ─── 7. TANTRA SISTÉMICO ──────────────────────────────────────── */}
-            <section className="py-28 px-6 bg-[#231916]">
-                <div className="container mx-auto max-w-6xl">
-                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* ─── 7. TANTRA SISTÉMICO (REDESIGN) ────────────────────────────── */}
+            <section className="relative min-h-screen lg:min-h-[100vh] flex items-center overflow-hidden bg-stone-950 px-6">
+                {/* Full Background Image */}
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="/images/Imagenes-Reediseno/Web-Yelitze22.png"
+                        alt="Tantra Sistémico Intencional"
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+                    {/* Deep Right-to-Left Gradient Overlay for Cinematic Legibility */}
+                    <div className="absolute inset-0 bg-gradient-to-l from-[#1E1208]/95 via-[#1E1208]/60 to-transparent z-10" />
+                </div>
 
-                        {/* Left: Image */}
-                        <FadeIn>
-                            <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl">
-                                <Image
-                                    src="/images/Imagenes-Reediseno/Web-Yelitze22.png"
-                                    alt="Tantra Sistémico Intencional"
-                                    fill
-                                    className="object-cover"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#231916]/60 to-transparent" />
-                            </div>
-                        </FadeIn>
-
-                        {/* Right: Text */}
-                        <FadeIn delay={0.2}>
-                            <span className="text-[#B8835A] font-guide font-bold tracking-[0.4em] uppercase text-[10px] block mb-5">
-                                Alquimia de la Intimidad
-                            </span>
-                            <h2 className="text-4xl md:text-5xl font-editorial italic text-white mb-8 leading-snug">
-                                Tantra Sistémico<br />Intencional
-                            </h2>
-                            <p className="text-white/75 italic text-lg leading-relaxed mb-6 border-l-2 border-[#B8835A] pl-6">
-                                "Tocar el alma a través del cuerpo es entrar en relación con la energía del otro y hacer de él ¡UN TODO!"
-                            </p>
-                            <p className="text-white/45 text-sm leading-relaxed mb-8">
-                                Un viaje de 2 horas de magia y reconexión. Incluye rituales de amor, esencias aromáticas y
-                                herramientas para transformar tu relación con la intimidad. No es un ayuno, es un banquete
-                                continuo de vida.
-                            </p>
-                            <div className="space-y-3 mb-10">
-                                {[
-                                    "Equilibrio de Chakras y Vitalidad Real",
-                                    "Sanación de Traumas y Bloqueos de Afectividad",
-                                ].map((b, i) => (
-                                    <div key={i} className="flex items-center gap-3 text-sm text-white/60">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-[#B8835A] shrink-0" />
-                                        {b}
+                <div className="container mx-auto max-w-7xl relative z-20">
+                    <div className="flex justify-end">
+                        <div className="max-w-2xl text-right space-y-12">
+                            <FadeIn>
+                                <div className="space-y-4">
+                                    <span className="text-[#B8835A] font-guide font-bold tracking-[0.4em] uppercase text-[10px] block">
+                                        Alquimia de la Intimidad
+                                    </span>
+                                    <div className="space-y-0">
+                                        <span className="font-script text-7xl md:text-[10rem] text-[#B8835A] leading-[0.5] block drop-shadow-2xl">
+                                            Tantra Sistémico
+                                        </span>
+                                        <h2 className="text-5xl md:text-[6.5rem] font-bold text-white tracking-tighter leading-none mt-4 uppercase">
+                                            Intencional
+                                        </h2>
                                     </div>
-                                ))}
-                            </div>
-                            <Link
-                                href="/contacto"
-                                className="btn-premium text-xs font-guide tracking-[0.25em] uppercase px-10 py-4 inline-flex items-center gap-2"
-                            >
-                                Vive la Maestría Tántrica
-                                <ArrowRight className="w-4 h-4" />
-                            </Link>
-                        </FadeIn>
+                                </div>
+                                
+                                <div className="space-y-10 mt-12">
+                                    <p className="text-xl md:text-2xl text-white italic leading-relaxed font-editorial border-r-2 border-[#B8835A] pr-8 py-2 block max-w-lg ml-auto">
+                                        "Tocar el alma a través del cuerpo es entrar en relación con la energía del otro y hacer de él ¡UN TODO!"
+                                    </p>
+                                    
+                                    <p className="text-lg text-white/70 leading-relaxed font-light max-w-lg ml-auto">
+                                        Un viaje de 2 horas de magia y reconexión. Incluye rituales de amor, esencias aromáticas y
+                                        herramientas para transformar tu relación con la intimidad. No es un ayuno, es un banquete
+                                        continuo de vida.
+                                    </p>
+
+                                    <ul className="space-y-4 text-white/80 font-medium">
+                                        {[
+                                            "Equilibrio de Chakras y Vitalidad Real",
+                                            "Sanación de Traumas y Bloqueos de Afectividad",
+                                        ].map((text, i) => (
+                                            <li key={i} className="flex items-center justify-end gap-4 text-lg">
+                                                {text}
+                                                <span className="w-2 h-2 rounded-full bg-[#B8835A] shrink-0 shadow-[0_0_10px_rgba(184,131,90,0.5)]" />
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                    <div className="pt-8">
+                                        <Link
+                                            href="https://wa.me/17867268717"
+                                            target="_blank"
+                                            className="inline-flex items-center justify-center bg-[#B8835A] text-white hover:brightness-110 transition-all px-12 py-5 rounded-2xl font-bold uppercase tracking-[0.2em] text-xs lg:text-sm shadow-2xl group"
+                                        >
+                                            Vive la Maestría Tántrica »
+                                        </Link>
+                                    </div>
+                                </div>
+                            </FadeIn>
+                        </div>
                     </div>
                 </div>
             </section>
