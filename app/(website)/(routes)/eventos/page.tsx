@@ -274,18 +274,41 @@ export default function EventsPage() {
                 </div>
             </section>
 
-            {/* FINAL CTA */}
-            <section className="py-24 bg-[#fafcfe] border-t border-stone-100">
-                <div className="container mx-auto px-4 text-center">
+            {/* FINAL CTA: LLAMADA DE CLARIDAD (REDESIGN) */}
+            <section className="relative py-40 md:py-60 overflow-hidden bg-stone-900">
+                {/* Background Image with Gradient Overlay */}
+                <div className="absolute inset-0">
+                    <Image 
+                        src="/public/images/home_redesign/clarity-call-bg.jpg"
+                        alt="Sesión de Claridad en la Naturaleza"
+                        fill
+                        className="object-cover"
+                    />
+                    {/* Atmospheric Glow Overlay (Matches mockup orange tint) */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-stone-900/60 via-transparent to-[#de9862]/30" />
+                    <div className="absolute inset-0 bg-black/20" />
+                </div>
+
+                <div className="container mx-auto px-4 relative z-10 text-center">
                     <FadeIn>
-                        <h2 className="text-3xl md:text-5xl font-heading text-[var(--color-primary)] mb-12">¿Quieres estar al tanto de todo?</h2>
-                        <Link
-                            href="/newsletter"
-                            className="inline-flex items-center gap-4 px-12 py-5 bg-[var(--color-secondary)] text-white rounded-full text-xl font-medium hover:scale-105 transition-transform shadow-2xl"
-                        >
-                            Suscríbete a la Agenda Mensual
-                            <Sparkles className="w-5 h-5" />
-                        </Link>
+                        <div className="space-y-4 mb-14">
+                            <span className="block text-4xl md:text-7xl text-white font-whisper leading-none">
+                                ¿Buscas una solución...
+                            </span>
+                            <h2 className="text-4xl md:text-7xl font-heading text-white opacity-90 tracking-tighter uppercase">
+                                A TU MEDIDA?
+                            </h2>
+                        </div>
+                        
+                        <div className="pt-8">
+                            <Link 
+                                href="https://wa.me/17867268717"
+                                target="_blank"
+                                className="inline-flex items-center justify-center bg-[#b17a46] text-white px-12 py-5 rounded-2xl text-lg font-bold uppercase tracking-[0.1em] hover:scale-105 hover:bg-[#9a6a3b] transition-all shadow-2xl group"
+                            >
+                                Agenda una llamada de claridad »
+                            </Link>
+                        </div>
                     </FadeIn>
                 </div>
             </section>
