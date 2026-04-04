@@ -103,24 +103,29 @@ export default function SesionesCorporalesPage() {
                 </div>
             </section>
 
-            {/* ─── 3. GOTAS DE SABIDURÍA ────────────────────────────────────── */}
-            <section className="py-28 px-6 bg-[#E8D9C5]">
-                <div className="container mx-auto max-w-6xl">
+            {/* ─── 3. GOTAS DE SABIDURÍA (REDESIGN) ───────────────────────── */}
+            <section className="py-28 px-6 bg-[#333333] relative overflow-hidden">
+                {/* Atmospheric Glow */}
+                <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#B8835A]/10 rounded-full blur-[140px] pointer-events-none" />
+
+                <div className="container mx-auto max-w-6xl relative z-10">
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
 
-                        {/* Left: Text */}
+                        {/* Left: Text Content */}
                         <FadeIn>
-                            <span className="text-[#B8835A] font-guide font-bold tracking-[0.4em] uppercase text-[10px] block mb-5">
-                                Medicina Ayurveda
-                            </span>
-                            <h2 className="text-5xl lg:text-6xl font-editorial italic text-[#2D2926] mb-8 leading-tight">
-                                Gotas de Sabiduría
-                            </h2>
-                            <p className="text-[#2D2926]/55 italic text-lg leading-relaxed mb-12 border-l-2 border-[#B8835A] pl-6">
-                                "Un contacto de cuerpo a cuerpo que restaura la creatividad y la expansión del espíritu."
-                            </p>
+                            <div className="mb-12">
+                                <span className="text-white/40 font-guide font-bold tracking-[0.4em] uppercase text-[10px] block mb-6">
+                                    Medicina Ayurveda
+                                </span>
+                                <h3 className="text-5xl lg:text-7xl font-editorial italic text-[#B8835A] leading-tight mb-8">
+                                    Gotas de Sabiduría
+                                </h3>
+                                <p className="text-white/80 italic text-lg leading-relaxed border-l-2 border-[#B8835A]/30 pl-6 mb-12">
+                                    "Un contacto de cuerpo a cuerpo que restaura la creatividad y la expansión del espíritu."
+                                </p>
+                            </div>
 
-                            <div className="space-y-8">
+                            <div className="space-y-4">
                                 {[
                                     {
                                         title: "Shirodhara & Shirobtana",
@@ -135,29 +140,27 @@ export default function SesionesCorporalesPage() {
                                         text: "Toque amoroso que nivela el centro de las emociones, activando la oxigenación cerebral y el chakra coronario.",
                                     },
                                 ].map((item, i) => (
-                                    <div key={i} className="flex gap-5">
-                                        <div className="w-0.5 bg-[#B8835A]/40 rounded-full shrink-0" />
-                                        <div>
-                                            <h4 className="font-guide font-bold text-[#2D2926] text-xs uppercase tracking-[0.2em] mb-2">
-                                                {item.title}
-                                            </h4>
-                                            <p className="text-[#2D2926]/60 text-sm leading-relaxed">{item.text}</p>
-                                        </div>
+                                    <div 
+                                        key={i} 
+                                        className="bg-black/20 backdrop-blur-sm border-l-4 border-[#B8835A]/50 p-6 transition-all duration-500 hover:bg-black/40 group"
+                                    >
+                                        <h4 className="text-[#B8835A] font-editorial text-xl md:text-2xl mb-2 group-hover:translate-x-1 transition-transform">{item.title}</h4>
+                                        <p className="text-white/60 text-sm leading-relaxed">{item.text}</p>
                                     </div>
                                 ))}
                             </div>
                         </FadeIn>
 
-                        {/* Right: Image */}
+                        {/* Right: Image Content */}
                         <FadeIn delay={0.2}>
-                            <div className="relative aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl">
+                            <div className="relative aspect-[3/4] rounded-[4rem] overflow-hidden shadow-2xl border border-white/5">
                                 <Image
-                                    src="/images/Imagenes-Reediseno/Web-Yelitze-03.png"
-                                    alt="Medicina Ayurveda"
+                                    src="/images/home_redesign/ayurveda_ritual.png"
+                                    alt="Gotas de Sabiduría"
                                     fill
                                     className="object-cover"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#2D2926]/30 to-transparent" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/40 to-transparent" />
                             </div>
                         </FadeIn>
                     </div>
