@@ -299,7 +299,9 @@ export default function SesionesCorporalesPage() {
 
             {/* ─── 6. LIBERACIÓN DE TRAUMAS (REDESIGN) ─────────────────────── */}
             <section className="py-28 px-6 bg-[#333333] relative overflow-hidden">
-                <div className="absolute top-1/2 left-1/3 w-[600px] h-[600px] bg-[#B8835A]/5 rounded-full blur-[130px] -translate-y-1/2 pointer-events-none" />
+                {/* Decorative Blurs */}
+                <div className="absolute -top-24 -left-24 w-[500px] h-[500px] bg-[#B8835A]/10 rounded-full blur-[120px] pointer-events-none" />
+                <div className="absolute -bottom-24 -right-24 w-[400px] h-[400px] bg-[#B8835A]/15 rounded-full blur-[100px] pointer-events-none" />
 
                 <div className="container mx-auto max-w-6xl relative z-10">
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
