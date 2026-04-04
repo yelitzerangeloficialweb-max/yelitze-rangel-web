@@ -68,6 +68,9 @@ export default function SesionesCorporalesPage() {
             <section className="py-28 px-6 bg-[#333333] relative overflow-hidden">
                 {/* Atmospheric Glow */}
                 <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#B8835A]/10 rounded-full blur-[140px] pointer-events-none" />
+                
+                {/* Boundary Shadow (Bottom) */}
+                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/30 to-transparent pointer-events-none z-20" />
 
                 <div className="container mx-auto max-w-6xl relative z-10">
                     <FadeIn className="text-center mb-20">
@@ -105,6 +108,9 @@ export default function SesionesCorporalesPage() {
 
             {/* ─── 3. GOTAS DE SABIDURÍA (REDESIGN) ───────────────────────── */}
             <section className="py-28 px-6 bg-[#333333] relative overflow-hidden">
+                {/* Boundary Shadow (Top) */}
+                <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/30 to-transparent pointer-events-none z-20" />
+
                 {/* Atmospheric Glow */}
                 <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#B8835A]/10 rounded-full blur-[140px] pointer-events-none" />
 
