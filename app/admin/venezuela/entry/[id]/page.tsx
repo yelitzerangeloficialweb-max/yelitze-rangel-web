@@ -211,7 +211,7 @@ export default function ParticipantEntryPage() {
 
                         <button
                             onClick={() => router.push('/admin/venezuela')}
-                            className={`w-full ${alreadyScanned ? 'bg-amber-600 hover:bg-amber-700' : 'bg-stone-900 hover:bg-stone-800'} text-white py-5 rounded-[2rem] font-bold text-sm tracking-widest uppercase transition-all shadow-xl shadow-stone-200`}
+                            className={`w-full ${alreadyScanned ? 'bg-amber-600 hover:bg-amber-700' : 'bg-black hover:bg-stone-800'} text-white py-5 rounded-[2rem] font-bold text-sm tracking-widest uppercase transition-all shadow-xl shadow-stone-200`}
                         >
                             Volver al Listado
                         </button>

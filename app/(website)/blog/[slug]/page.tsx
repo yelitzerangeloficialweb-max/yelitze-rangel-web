@@ -115,7 +115,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
                         {/* Sidebar CTAs */}
                         <div className="lg:col-span-4 space-y-8">
                             <FadeIn className="sticky top-32">
-                                <div className="p-10 bg-stone-900 rounded-[3rem] shadow-2xl text-white relative overflow-hidden mb-8">
+                                <div className="p-10 bg-black rounded-[3rem] shadow-2xl text-white relative overflow-hidden mb-8">
                                     <div className="absolute top-0 right-0 p-10 opacity-10">
                                         <Sparkles className="w-20 h-20" />
                                     </div>

@@ -16,7 +16,7 @@ export default function StepLanding({ onNext }: StepLandingProps) {
                 transition={{ duration: 0.8 }}
                 className="relative w-48 h-48 md:w-64 md:h-64 mb-4 flex items-center justify-center"
             >
-                <div className="absolute inset-0 bg-emerald-100 rounded-full blur-3xl opacity-60 animate-pulse" />
+                <div className="absolute inset-0 bg-blackmerald-100 rounded-full blur-3xl opacity-60 animate-pulse" />
                 <div className="relative z-10 text-[var(--color-primary)] opacity-80">
                     <Coins className="w-32 h-32 stroke-1" />
                 </div>

@@ -74,7 +74,7 @@ export default function IntroStep({ onNext }: { onNext: () => void }) {
 
                 <div className="relative aspect-square z-10">
                     <div className="absolute inset-0 bg-[var(--color-secondary)]/20 rounded-[3rem] transform -rotate-6 scale-95 blur-xl" />
-                    <div className="relative w-full h-full p-4 bg-stone-900 rounded-[3rem] border border-white/10 shadow-2xl transform rotate-1 hover:rotate-0 transition-all duration-1000">
+                    <div className="relative w-full h-full p-4 bg-black rounded-[3rem] border border-white/10 shadow-2xl transform rotate-1 hover:rotate-0 transition-all duration-1000">
                         <div className="w-full h-full relative rounded-[2.5rem] overflow-hidden">
                             <Image
                                 src="/assets/images/philosophy-transforma.jpg"

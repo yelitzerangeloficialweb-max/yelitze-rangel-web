@@ -75,7 +75,7 @@ export default function CoachingAncestralPage() {
             </section>
 
             {/* 2. The Method (The Board & Totems) */}
-            <section className="bg-stone-900/50 py-32 px-4 relative overflow-hidden border-y border-white/5">
+            <section className="bg-black/50 py-32 px-4 relative overflow-hidden border-y border-white/5">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-[var(--color-secondary)]/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
 
                 <div className="container mx-auto relative z-10">
@@ -97,7 +97,7 @@ export default function CoachingAncestralPage() {
                                         </span>
                                     </div>
                                 </div>
-                                <div className="absolute -bottom-6 -right-6 bg-stone-900/90 backdrop-blur-md p-6 rounded-xl border border-white/10 shadow-xl max-w-xs hidden md:block z-20">
+                                <div className="absolute -bottom-6 -right-6 bg-black/90 backdrop-blur-md p-6 rounded-xl border border-white/10 shadow-xl max-w-xs hidden md:block z-20">
                                     <p className="text-sm italic text-gray-300 m-0">
                                         "No es ajedrez, no es Jumanji, ni una ouija. Es el protagonista de mi coaching ancestral: la anatomía del alma."
                                     </p>
@@ -173,7 +173,7 @@ export default function CoachingAncestralPage() {
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[var(--color-secondary)]/5 blur-[120px] rounded-full pointer-events-none" />
 
                         {/* Pain Points */}
-                        <FadeIn className="bg-stone-900/40 p-10 lg:p-12 rounded-[2rem] border border-white/5 hover:border-white/10 transition-all duration-500 backdrop-blur-sm self-stretch">
+                        <FadeIn className="bg-black/40 p-10 lg:p-12 rounded-[2rem] border border-white/5 hover:border-white/10 transition-all duration-500 backdrop-blur-sm self-stretch">
                             <h3 className="text-2xl font-heading text-white mb-8 flex items-center gap-4 opacity-90">
                                 <div className="p-2 rounded-lg bg-white/5">
                                     <AlertCircle className="w-6 h-6 text-gray-400" />
@@ -228,7 +228,7 @@ export default function CoachingAncestralPage() {
             </section>
 
             {/* 4. Modalities Experience */}
-            <section className="py-32 px-4 bg-stone-950">
+            <section className="py-32 px-4 bg-black">
                 <div className="container mx-auto">
                     <FadeIn className="text-center mb-16">
                         <span className="text-[var(--color-secondary)] font-bold tracking-[0.2em] text-xs uppercase mb-4 block">

@@ -46,7 +46,7 @@ export default function StepProcessing({ onComplete }: StepProcessingProps) {
                 }}
                 className="mb-10 relative w-32 h-32"
             >
-                <div className="absolute inset-0 bg-emerald-100 rounded-full blur-2xl animate-pulse delay-100" />
+                <div className="absolute inset-0 bg-blackmerald-100 rounded-full blur-2xl animate-pulse delay-100" />
                 <div className="relative w-full h-full">
                     {/* Using the same breathing logo */}
                     <img

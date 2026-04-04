@@ -211,7 +211,7 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
                         {/* Sidebar / CTA */}
                         <div className="lg:col-span-4">
                             <FadeIn className="sticky top-32">
-                                <div className="p-10 bg-stone-900 rounded-[3rem] shadow-2xl text-white relative overflow-hidden">
+                                <div className="p-10 bg-black rounded-[3rem] shadow-2xl text-white relative overflow-hidden">
                                     {/* Background decoration */}
                                     <div className="absolute top-0 right-0 p-10 opacity-10">
                                         <Sparkles className="w-20 h-20" />

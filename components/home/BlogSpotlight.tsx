@@ -92,7 +92,7 @@ export default function BlogSpotlight() {
 
                         {/* Newsletter Mini Card */}
                         <FadeIn delay={0.5}>
-                            <div className="mt-4 p-8 rounded-[2rem] bg-stone-900 overflow-hidden relative group">
+                            <div className="mt-4 p-8 rounded-[2rem] bg-black overflow-hidden relative group">
                                 <div className="absolute -right-8 -bottom-8 w-32 h-32 opacity-[0.05] group-hover:scale-110 transition-transform duration-1000">
                                     <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
                                 </div>

@@ -100,7 +100,7 @@ export default function BioPage() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border border-stone-800/20 rounded-full -z-1" />
 
                 <ScaleIn>
-                    <div className="relative w-32 h-32 mx-auto mb-8 p-1 rounded-full border border-stone-700 bg-stone-900/50 backdrop-blur-md shadow-2xl">
+                    <div className="relative w-32 h-32 mx-auto mb-8 p-1 rounded-full border border-stone-700 bg-black/50 backdrop-blur-md shadow-2xl">
                         <div className="relative w-full h-full rounded-full overflow-hidden">
                             <Image
                                 src="/assets/images/yelitze/manifesto-new.jpg"
@@ -160,7 +160,7 @@ export default function BioPage() {
             {/* Modality & Socials Wrapper */}
             <div className="w-full max-w-xs text-center">
                 <FadeIn className="mb-10">
-                    <div className="inline-flex items-center gap-4 text-stone-500 text-[10px] tracking-[0.3em] font-bold uppercase bg-stone-900/30 px-6 py-2 rounded-full border border-stone-800/50">
+                    <div className="inline-flex items-center gap-4 text-stone-500 text-[10px] tracking-[0.3em] font-bold uppercase bg-black/30 px-6 py-2 rounded-full border border-stone-800/50">
                         <span>Presencial</span>
                         <span className="w-1 h-1 bg-[var(--color-secondary)] rounded-full animate-pulse" />
                         <span>Online</span>
@@ -174,7 +174,7 @@ export default function BioPage() {
                                 key={i}
                                 href={social.href}
                                 aria-label={social.label}
-                                className="group relative p-4 rounded-full bg-stone-900/40 border border-stone-800 text-stone-500 hover:text-white transition-all backdrop-blur-sm"
+                                className="group relative p-4 rounded-full bg-black/40 border border-stone-800 text-stone-500 hover:text-white transition-all backdrop-blur-sm"
                             >
                                 <div className="absolute inset-0 bg-[var(--color-secondary)] rounded-full scale-0 group-hover:scale-100 transition-transform duration-300 -z-1 opacity-20" />
                                 <social.icon className="w-5 h-5 transition-transform group-hover:scale-110" />

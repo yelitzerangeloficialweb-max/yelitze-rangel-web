@@ -11,7 +11,7 @@ import TypewriterText from "@/components/ui/TypewriterText";
 
 export default function ServicesPage() {
     return (
-        <main className="min-h-screen selection:bg-[var(--color-secondary)] selection:text-white bg-stone-950">
+        <main className="min-h-screen selection:bg-[var(--color-secondary)] selection:text-white bg-black">
 
             {/* 1. SECTION: COACHING ANCESTRAL (Full Redesign) */}
             <section className="relative min-h-screen flex items-center pt-24 overflow-hidden">
@@ -67,7 +67,7 @@ export default function ServicesPage() {
             </section>
 
             {/* 2. SECTION: SESIONES CORPORALES (Full-bleed redesign with Grayscale effect) */}
-            <section className="relative min-h-screen flex items-center overflow-hidden bg-stone-900">
+            <section className="relative min-h-screen flex items-center overflow-hidden bg-black">
                 {/* Background Image Restored to Color */}
                 <div className="absolute inset-0 z-0">
                     <Image
@@ -273,7 +273,7 @@ export default function ServicesPage() {
             </section>
 
             {/* 5. FINAL CTA (Premium Redesign) */}
-            <section className="relative py-48 md:py-64 overflow-hidden bg-stone-950">
+            <section className="relative py-48 md:py-64 overflow-hidden bg-black">
                 {/* Top Integration Gradient (Blur between sections) */}
                 <div className="absolute top-0 left-0 w-full h-48 bg-gradient-to-b from-[#1c1c1c] to-transparent z-20" />
 
@@ -287,7 +287,7 @@ export default function ServicesPage() {
                         priority
                     />
                     {/* Deep Cinematic Vignette & Warm Glow */}
-                    <div className="absolute inset-0 bg-stone-950/40 z-10" />
+                    <div className="absolute inset-0 bg-black/40 z-10" />
                     <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-stone-950/20 z-10" />
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(224,159,106,0.15),_transparent_70%)] z-10" />
                 </div>

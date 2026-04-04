@@ -8,7 +8,7 @@ import { FadeIn } from '@/components/ui/motion';
 
 export default function TestSpotlight() {
     return (
-        <section className="relative py-32 bg-stone-950 overflow-hidden">
+        <section className="relative py-32 bg-black overflow-hidden">
             {/* Subtle Watermark Background */}
             {/* Subtle Watermark Background */}
             <div className="absolute -left-32 -bottom-32 w-[800px] h-[800px] opacity-[0.05] pointer-events-none rotate-12">
@@ -72,7 +72,7 @@ export default function TestSpotlight() {
                                 <div className="absolute inset-0 bg-gradient-to-t from-stone-950/40 to-transparent" />
 
                                 {/* Floating element */}
-                                <div className="absolute bottom-12 left-1/2 -translate-x-1/2 bg-stone-900/40 backdrop-blur-xl border border-white/10 px-6 py-3 rounded-full flex items-center gap-4 z-20">
+                                <div className="absolute bottom-12 left-1/2 -translate-x-1/2 bg-black/40 backdrop-blur-xl border border-white/10 px-6 py-3 rounded-full flex items-center gap-4 z-20">
                                     <div className="flex -space-x-3">
                                         {['ana', 'carolina', 'sofia'].map(name => (
                                             <div key={name} className="relative w-8 h-8 rounded-full border-2 border-stone-950 bg-stone-800 overflow-hidden ring-1 ring-white/10">

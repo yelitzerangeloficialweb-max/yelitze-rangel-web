@@ -471,7 +471,7 @@ export default function AdminVenezuelaPage() {
             {isScanning && (
                 <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
                     <div
-                        className="absolute inset-0 bg-stone-900/95 backdrop-blur-md"
+                        className="absolute inset-0 bg-black/90 backdrop-blur-md"
                         onClick={() => setIsScanning(false)}
                     />
                     <div className="relative w-full max-w-md bg-white rounded-[3rem] p-8 shadow-2xl">
@@ -503,7 +503,7 @@ export default function AdminVenezuelaPage() {
             {editingRegistration && (
                 <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
                     <div
-                        className="absolute inset-0 bg-stone-900/60 backdrop-blur-sm"
+                        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
                         onClick={() => setEditingRegistration(null)}
                     />
                     <div className="relative w-full max-w-md bg-white rounded-[2rem] p-8 shadow-2xl animate-in zoom-in-95 duration-200">

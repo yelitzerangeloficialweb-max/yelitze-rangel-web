@@ -20,7 +20,7 @@ export default function BlogPage() {
             {/* 1. HERO SECTION: CRÓNICAS DEL ALMA */}
             <section className="relative min-h-[80vh] flex flex-col lg:flex-row overflow-hidden pt-20">
                 {/* Left Panel: Luminous Obsidian */}
-                <div className="lg:w-[45%] bg-stone-950 p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
+                <div className="lg:w-[45%] bg-black p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
                     {/* Subtle Watermark */}
                     <div className="absolute -left-32 -bottom-32 w-[900px] h-[900px] opacity-[0.05] pointer-events-none">
                         <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
@@ -130,7 +130,7 @@ export default function BlogPage() {
                                                 fill
                                                 className="object-cover group-hover:scale-110 transition-transform duration-1000"
                                             />
-                                            <div className="absolute inset-0 bg-stone-900/10 group-hover:bg-transparent transition-colors" />
+                                            <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
                                             {/* Tag */}
                                             <div className="absolute top-6 left-6 px-4 py-2 bg-white/90 backdrop-blur-md rounded-full text-[var(--color-primary)] text-[10px] font-bold tracking-widest uppercase shadow-sm">
                                                 {post.category}
@@ -171,7 +171,7 @@ export default function BlogPage() {
             </section>
 
             {/* 4. NEWSLETTER / CALL TO ACTION */}
-            <section className="py-32 bg-stone-900 relative overflow-hidden">
+            <section className="py-32 bg-black relative overflow-hidden">
                 {/* Subtle Watermark Decoration */}
                 <div className="absolute -right-40 -bottom-40 w-[800px] h-[800px] opacity-[0.05] pointer-events-none rotate-12">
                     <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />

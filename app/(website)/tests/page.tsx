@@ -93,7 +93,7 @@ export default function TestsHubPage() {
         <main className="bg-[#FAF9F6] min-h-screen selection:bg-[var(--color-secondary)] selection:text-white pb-32">
 
             {/* 1. HERO SECTION */}
-            <section className="relative min-h-[60vh] flex items-center pt-40 pb-20 overflow-hidden bg-stone-950">
+            <section className="relative min-h-[60vh] flex items-center pt-40 pb-20 overflow-hidden bg-black">
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[var(--color-secondary)]/10 rounded-full blur-[140px] -mr-40 -mt-40 animate-pulse" />
                 <div className="container mx-auto px-4 relative z-10 text-center">
                     <FadeIn className="max-w-4xl mx-auto">
@@ -223,7 +223,7 @@ export default function TestsHubPage() {
             </section>
 
             {/* 5. ARQUITECTURA DE VIDA - FULL GALLERY IMMERSION */}
-            <FadeIn delay={0.4} className="mt-60 relative rounded-[5rem] overflow-hidden bg-stone-950 shadow-3xl mx-4">
+            <FadeIn delay={0.4} className="mt-60 relative rounded-[5rem] overflow-hidden bg-black shadow-3xl mx-4">
                 {/* Background decoration */}
                 <div className="absolute inset-0 opacity-[0.05] grayscale brightness-200">
                     <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain scale-125 translate-x-1/4 translate-y-1/4" />

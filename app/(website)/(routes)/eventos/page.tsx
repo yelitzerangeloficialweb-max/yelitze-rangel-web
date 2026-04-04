@@ -19,7 +19,7 @@ export default function EventsPage() {
     );
 
     return (
-        <main className="min-h-screen selection:bg-[var(--color-secondary)] selection:text-white bg-stone-950">
+        <main className="min-h-screen selection:bg-[var(--color-secondary)] selection:text-white bg-black">
             <section className="relative min-h-[90vh] lg:min-h-screen flex items-center overflow-hidden bg-white pt-0">
                 {/* Full Cinematic Asset as Background */}
                 <div className="absolute inset-0 z-0">
@@ -262,7 +262,7 @@ export default function EventsPage() {
                                         className="object-cover group-hover:scale-105 transition-transform duration-1000"
                                     />
                                     {/* Subtle Overlay to match mockup tint */}
-                                    <div className="absolute inset-0 bg-stone-900/10 pointer-events-none" />
+                                    <div className="absolute inset-0 bg-black/10 pointer-events-none" />
                                 </div>
                             </FadeIn>
                         </div>
@@ -271,7 +271,7 @@ export default function EventsPage() {
             </section>
 
             {/* FINAL CTA (Premium Redesign) */}
-            <section className="relative py-48 md:py-64 overflow-hidden bg-stone-950">
+            <section className="relative py-48 md:py-64 overflow-hidden bg-black">
                 {/* Top Integration Gradient (Blur between sections) */}
                 <div className="absolute top-0 left-0 w-full h-48 bg-gradient-to-b from-[#d4d4d4] to-transparent z-20" />
 
@@ -285,7 +285,7 @@ export default function EventsPage() {
                         priority
                     />
                     {/* Deep Cinematic Vignette & Warm Glow */}
-                    <div className="absolute inset-0 bg-stone-950/40 z-10" />
+                    <div className="absolute inset-0 bg-black/40 z-10" />
                     <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-stone-950/20 z-10" />
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(224,159,106,0.15),_transparent_70%)] z-10" />
                 </div>

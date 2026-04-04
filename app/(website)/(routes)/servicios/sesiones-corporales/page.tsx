@@ -7,7 +7,7 @@ import { FadeIn } from "@/components/ui/motion";
 
 export default function SesionesCorporalesPage() {
     return (
-        <main className="bg-[#1E1208] text-white">
+        <main className="bg-black text-white">
 
             {/* ─── 1. HERO ──────────────────────────────────────────────────── */}
             <section className="relative min-h-screen flex items-center justify-center pt-24 pb-20 overflow-hidden group">
@@ -94,7 +94,7 @@ export default function SesionesCorporalesPage() {
                             { title: "Vitalidad", desc: "Despertar de la energía vital." },
                         ].map((item, i) => (
                             <FadeIn key={i} delay={i * 0.1}>
-                                <div className="group relative bg-[#1E1208]/20 border border-[#B8835A]/30 rounded-[100px] px-10 py-16 flex flex-col items-center text-center h-full transition-all duration-700 hover:bg-[#1E1208]/40 hover:border-[#B8835A]/60 shadow-2xl">
+                                <div className="group relative bg-black/20 border border-[#B8835A]/30 rounded-[100px] px-10 py-16 flex flex-col items-center text-center h-full transition-all duration-700 hover:bg-black/40 hover:border-[#B8835A]/60 shadow-2xl">
                                     <h4 className="text-3xl md:text-4xl font-editorial italic text-white mb-4 transition-transform duration-500 group-hover:scale-105">
                                         {item.title}
                                     </h4>
@@ -217,7 +217,7 @@ export default function SesionesCorporalesPage() {
                             },
                         ].map((item, i) => (
                             <FadeIn key={i} delay={i * 0.1}>
-                                <div className="group relative bg-[#1E1208]/20 border border-[#B8835A]/30 rounded-[100px] px-10 py-20 flex flex-col items-center text-center h-full transition-all duration-700 hover:bg-[#1E1208]/40 hover:border-[#B8835A]/60 shadow-2xl">
+                                <div className="group relative bg-black/20 border border-[#B8835A]/30 rounded-[100px] px-10 py-20 flex flex-col items-center text-center h-full transition-all duration-700 hover:bg-black/40 hover:border-[#B8835A]/60 shadow-2xl">
                                     <h3 className="text-3xl md:text-4xl font-editorial italic text-white mb-6 leading-tight group-hover:scale-105 transition-transform duration-500">
                                         {item.title}
                                     </h3>
@@ -384,7 +384,7 @@ export default function SesionesCorporalesPage() {
             </section>
 
             {/* ─── 7. TANTRA SISTÉMICO (REDESIGN) ────────────────────────────── */}
-            <section className="relative min-h-screen lg:min-h-[100vh] flex items-center overflow-hidden bg-stone-950 px-6">
+            <section className="relative min-h-screen lg:min-h-[100vh] flex items-center overflow-hidden bg-black px-6">
                 {/* Full Background Image - Subject positioned to the left */}
                 <div className="absolute inset-0 z-0 group">
                     <Image
@@ -465,7 +465,7 @@ export default function SesionesCorporalesPage() {
                         className="object-cover transition-transform duration-[3000ms] group-hover:scale-110"
                         quality={90}
                     />
-                    <div className="absolute inset-0 bg-[#1E1208]/72" />
+                    <div className="absolute inset-0 bg-black/72" />
                 </div>
 
                 <div className="container mx-auto max-w-3xl text-center relative z-10">

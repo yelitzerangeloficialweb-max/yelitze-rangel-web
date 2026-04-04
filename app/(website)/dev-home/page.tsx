@@ -25,7 +25,7 @@ export default function HomePage() {
       <HeroSlider />
 
       {/* 2. MANIFIESTO SECTION: OBSIDIAN ELEGANCE */}
-      <section id="manifiesto" className="py-24 bg-stone-950 relative overflow-hidden border-b border-stone-800">
+      <section id="manifiesto" className="py-24 bg-black relative overflow-hidden border-b border-stone-800">
         <div className="absolute inset-0 bg-[url('/assets/images/noise.png')] opacity-[0.03] pointer-events-none" />
         <div className="absolute -right-40 -top-40 w-[800px] h-[800px] opacity-[0.05] pointer-events-none brightness-0 invert">
           <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
@@ -93,7 +93,7 @@ export default function HomePage() {
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-[2000ms]"
                     />
-                    <div className="absolute inset-0 bg-stone-900/10" />
+                    <div className="absolute inset-0 bg-black/10" />
                   </div>
                   <div className="absolute -bottom-10 -right-10 bg-white p-8 rounded-[3rem] shadow-xl border border-stone-50 max-w-xs hidden md:block">
                     <Heart className="w-10 h-10 text-[var(--color-secondary)] mb-4" />
@@ -142,7 +142,7 @@ export default function HomePage() {
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-[2000ms]"
                     />
-                    <div className="absolute inset-0 bg-stone-900/10" />
+                    <div className="absolute inset-0 bg-black/10" />
                   </div>
                   <div className="absolute -top-10 -left-10 bg-white p-8 rounded-[3rem] shadow-xl border border-stone-50 max-w-xs hidden md:block">
                     <Waves className="w-10 h-10 text-[var(--color-secondary)] mb-4" />

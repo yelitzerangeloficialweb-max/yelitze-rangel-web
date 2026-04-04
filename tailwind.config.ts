@@ -19,7 +19,7 @@ const config: Config = {
                 "text-light": "var(--color-text-light)",
                 neutral: "var(--color-neutral)",
                 white: "#FFFFFF",
-                black: "#2D2926",
+                black: "#333333",
             },
             fontFamily: {
                 heading: ["var(--font-playfair)", "serif"],

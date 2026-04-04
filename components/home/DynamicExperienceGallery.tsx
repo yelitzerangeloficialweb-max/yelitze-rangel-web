@@ -67,7 +67,7 @@ export default function DynamicExperienceGallery() {
                             />
                         </motion.div>
                     </AnimatePresence>
-                    <div className="absolute inset-0 bg-stone-950/20 group-hover:bg-transparent transition-colors pointer-events-none" />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors pointer-events-none" />
                     
                     {/* Subtle aesthetic frame */}
                     <div className="absolute inset-0 border border-white/5 rounded-3xl pointer-events-none" />

@@ -41,7 +41,7 @@ export default function BooksPage() {
         <main className="bg-[#FAF9F6] min-h-screen selection:bg-[var(--color-secondary)] selection:text-white pb-32">
 
             {/* 1. HERO SECTION: MIDNIGHT BURST EDITORIAL */}
-            <section className="relative min-h-[85vh] flex items-center pt-32 pb-20 overflow-hidden bg-stone-950">
+            <section className="relative min-h-[85vh] flex items-center pt-32 pb-20 overflow-hidden bg-black">
                 {/* Background accents */}
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[var(--color-secondary)]/10 rounded-full blur-[120px] -mr-40 -mt-40" />
                 <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-white/5 rounded-full blur-[100px] -ml-20 -mb-20" />
@@ -143,7 +143,7 @@ export default function BooksPage() {
                                     <a
                                         href={book.amazonLink}
                                         target="_blank"
-                                        className="btn-premium py-6 px-12 group !bg-stone-900 !text-white flex items-center justify-center gap-4 border-none"
+                                        className="btn-premium py-6 px-12 group !bg-black !text-white flex items-center justify-center gap-4 border-none"
                                     >
                                         <div className="flex flex-col items-center">
                                             <span className="text-[9px] uppercase tracking-widest opacity-60">Adquirir en</span>
@@ -193,7 +193,7 @@ export default function BooksPage() {
                                             fill
                                             className="object-cover group-hover:scale-110 transition-transform duration-[3000ms]"
                                         />
-                                        <div className="absolute inset-0 bg-stone-900/20 group-hover:opacity-0 transition-opacity duration-700" />
+                                        <div className="absolute inset-0 bg-black/20 group-hover:opacity-0 transition-opacity duration-700" />
                                     </div>
                                 </StaggerItem>
                             ))}
@@ -203,7 +203,7 @@ export default function BooksPage() {
             </section>
 
             {/* 4. QUOTE: THE POWER OF WORD */}
-            <section className="py-40 bg-stone-950 relative overflow-hidden">
+            <section className="py-40 bg-black relative overflow-hidden">
                 <div className="absolute inset-0 opacity-[0.03] pointer-events-none grayscale brightness-200 contrast-150">
                     <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain scale-150" />
                 </div>

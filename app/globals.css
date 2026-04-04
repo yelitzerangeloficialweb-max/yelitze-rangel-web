@@ -26,8 +26,8 @@
   --color-surface: #FFFFFF;
 
   /* Gris Carbón Profundo - Para bloques de texto largos, evitando el negro puro */
-  --color-text: #2D2926;
-  --color-text-light: #2D2926;
+  --color-text: #333333;
+  --color-text-light: #333333;
 
   /* Base Variables */
   --background: var(--color-background);
