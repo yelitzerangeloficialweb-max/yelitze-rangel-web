@@ -264,10 +264,6 @@ export default function EventsPage() {
                                     {/* Subtle Overlay to match mockup tint */}
                                     <div className="absolute inset-0 bg-stone-900/10 pointer-events-none" />
                                 </div>
-                                {/* Floating Label matching the new simpler design */}
-                                <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-md px-10 py-6 rounded-3xl shadow-2xl">
-                                    <p className="text-[#b17a46] font-heading text-4xl whitespace-nowrap">A tu medida...</p>
-                                </div>
                             </FadeIn>
                         </div>
                     </div>
