@@ -107,13 +107,13 @@ export default function SesionesCorporalesPage() {
             </section>
 
             {/* ─── 3. GOTAS DE SABIDURÍA (REDESIGN) ───────────────────────── */}
-            <section className="py-28 px-6 bg-[#333333] relative overflow-hidden">
-                {/* Background Decor: Brush Stroke Watermark */}
+            <section className="py-28 px-6 bg-[#594d40] relative overflow-hidden">
+                {/* Background Decor: Large Sweep Watermark */}
                 <div 
-                    className="absolute inset-0 z-0 pointer-events-none opacity-20"
+                    className="absolute inset-0 z-0 pointer-events-none opacity-30"
                 >
                     <div 
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-7xl aspect-[16/9]"
+                        className="absolute -top-20 -left-20 -right-20 -bottom-20"
                         style={{
                             WebkitMaskImage: 'url(/images/diseno-elementos/gota-sabiduria.png)',
                             maskImage: 'url(/images/diseno-elementos/gota-sabiduria.png)',
@@ -121,18 +121,15 @@ export default function SesionesCorporalesPage() {
                             maskRepeat: 'no-repeat',
                             WebkitMaskPosition: 'center',
                             maskPosition: 'center',
-                            WebkitMaskSize: 'contain',
-                            maskSize: 'contain',
-                            backgroundColor: '#594d40'
+                            WebkitMaskSize: '110% 110%',
+                            maskSize: '110% 110%',
+                            backgroundColor: '#1E1208'
                         }}
                     />
                 </div>
 
                 {/* Boundary Shadow (Top) */}
-                <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/30 to-transparent pointer-events-none z-20" />
-
-                {/* Atmospheric Glow */}
-                <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#B8835A]/10 rounded-full blur-[140px] pointer-events-none" />
+                <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/20 to-transparent pointer-events-none z-20" />
 
                 <div className="container mx-auto max-w-6xl relative z-10">
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -140,18 +137,18 @@ export default function SesionesCorporalesPage() {
                         {/* Left: Text Content */}
                         <FadeIn>
                             <div className="mb-12">
-                                <span className="text-white/40 font-guide font-bold tracking-[0.4em] uppercase text-[10px] block mb-6">
+                                <span className="text-white/60 font-guide font-bold tracking-[0.4em] uppercase text-[10px] block mb-4">
                                     Medicina Ayurveda
                                 </span>
-                                <h3 className="text-5xl lg:text-7xl font-editorial italic text-[#B8835A] leading-tight mb-8">
+                                <h3 className="text-6xl lg:text-[7.5rem] font-editorial italic text-[#B8835A] leading-none mb-8 drop-shadow-xl">
                                     Gotas de Sabiduría
                                 </h3>
-                                <p className="text-white/80 italic text-lg leading-relaxed border-l-2 border-[#B8835A]/30 pl-6 mb-12">
+                                <p className="text-white font-editorial italic text-xl leading-relaxed max-w-md drop-shadow-sm">
                                     "Un contacto de cuerpo a cuerpo que restaura la creatividad y la expansión del espíritu."
                                 </p>
                             </div>
 
-                            <div className="space-y-4">
+                            <div className="space-y-3">
                                 {[
                                     {
                                         title: "Shirodhara & Shirobtana",
@@ -168,10 +165,11 @@ export default function SesionesCorporalesPage() {
                                 ].map((item, i) => (
                                     <div 
                                         key={i} 
-                                        className="bg-black/20 backdrop-blur-sm border-l-4 border-[#B8835A]/50 p-6 transition-all duration-500 hover:bg-black/40 group"
+                                        className="bg-black/30 backdrop-blur-md border-y border-white/5 py-8 px-10 transition-all duration-700 hover:bg-black/50 group relative overflow-hidden"
                                     >
-                                        <h4 className="text-[#B8835A] font-editorial text-xl md:text-2xl mb-2 group-hover:translate-x-1 transition-transform">{item.title}</h4>
-                                        <p className="text-white/60 text-sm leading-relaxed">{item.text}</p>
+                                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-12 bg-[#B8835A]/0 group-hover:bg-[#B8835A] transition-all duration-500" />
+                                        <h4 className="text-[#B8835A] font-bold text-2xl md:text-3xl mb-1 transition-transform duration-500 group-hover:translate-x-2">{item.title}</h4>
+                                        <p className="text-white/80 text-sm md:text-base leading-relaxed font-light transition-transform duration-500 group-hover:translate-x-2">{item.text}</p>
                                     </div>
                                 ))}
                             </div>
@@ -179,14 +177,14 @@ export default function SesionesCorporalesPage() {
 
                         {/* Right: Image Content */}
                         <FadeIn delay={0.2}>
-                            <div className="relative aspect-[3/4] rounded-[4rem] overflow-hidden shadow-2xl border border-white/5 group">
+                            <div className="relative aspect-square rounded-[5rem] md:rounded-[8rem] rounded-br-[2rem] overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.5)] group">
                                 <Image
                                     src="/images/home_redesign/ayurveda_ritual.png"
                                     alt="Gotas de Sabiduría"
                                     fill
                                     className="object-cover transition-transform duration-[3000ms] group-hover:scale-110"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/40 to-transparent" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
                             </div>
                         </FadeIn>
                     </div>
