@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { EyeGeometricIcon, MenuThinIcon, CloseThinIcon } from '@/components/icons/CustomIcons';
@@ -52,14 +52,24 @@ export default function Header() {
     // Logic: Show "Scrolled" style (White BG, Dark Text) if:
     // 1. We differ from Home, About or Services page (these have dark/hero backgrounds or intentional transparent headers)
     // 2. We are scrolled down
-    const normalizedPath = pathname.toLowerCase();
-    const isTransparentPage = normalizedPath === '/' || 
-                             normalizedPath.startsWith('/sobre-mi') || 
-                             normalizedPath.startsWith('/servicios') ||
-                             normalizedPath.startsWith('/eventos') ||
-                             normalizedPath.startsWith('/galeria') ||
-                             normalizedPath.startsWith('/blog') ||
-                             normalizedPath.startsWith('/tienda');
+    const isTransparentPage = useMemo(() => {
+        const path = pathname.toLowerCase().replace(/\/$/, '') || '/';
+        
+        // 1. Home is always transparent
+        if (path === '/') return true;
+        
+        // 2. Section landings with dark heroes
+        const mainLandings = ['/blog', '/tienda', '/libros', '/galeria', '/servicios', '/eventos'];
+        if (mainLandings.includes(path)) return true;
+        
+        // 3. Specific sub-sections where dark heroes are known to continue
+        const transparentSubSections = ['/servicios/', '/eventos/'];
+        if (transparentSubSections.some(prefix => path.startsWith(prefix))) return true;
+        
+        // 4. Default to solid (for details, Sobre Mi, tests, etc.)
+        return false;
+    }, [pathname]);
+
     const showScrolled = isScrolled || !isTransparentPage;
 
     const navLinks = [
@@ -114,7 +124,7 @@ export default function Header() {
                 <Link href="/" className="flex items-center gap-3 group">
                     <div className="relative w-48 h-20">
                         <Image
-                            src={showScrolled || normalizedPath.startsWith('/sobre-mi') ? "/assets/images/logo-color-scroll.png" : "/assets/images/logo-yelitze-new.png"}
+                            src={showScrolled ? "/assets/images/logo-color-scroll.png" : "/assets/images/logo-yelitze-new.png"}
                             alt="Yelitze Rangel Logo"
                             fill
                             className="object-contain object-left transition-opacity duration-300"
@@ -138,7 +148,7 @@ export default function Header() {
                                     "text-sm font-medium font-body tracking-[0.05em] transition-colors hover:text-secondary flex items-center gap-1 py-2",
                                     pathname === link.href || (link.children && pathname.startsWith(link.href))
                                         ? "text-secondary"
-                                        : (showScrolled || normalizedPath.startsWith('/sobre-mi') ? "text-primary" : "text-white/90 hover:text-white")
+                                        : (showScrolled ? "text-primary" : "text-white/90 hover:text-white")
                                 )}
                             >
                                 {link.name}

@@ -68,7 +68,12 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
                         className="object-cover"
                         priority
                     />
-                    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent hidden lg:block" />
+                    {/* Much softer, wider blurred transition - Desktop (Left to Right) */}
+                    <div className="absolute inset-y-0 left-[-1px] w-full bg-gradient-to-r from-white via-white/60 to-transparent hidden lg:block z-10" />
+                    <div className="absolute inset-y-0 left-[-40px] w-64 bg-white/80 blur-[80px] hidden lg:block z-0" />
+                    
+                    {/* Mobile Transition (Top to Bottom) - From White to Image */}
+                    <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white to-transparent lg:hidden z-10" />
                 </div>
             </section>
 
