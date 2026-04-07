@@ -18,7 +18,7 @@ export default function BlogPage() {
         <main className="bg-[#fafcfe] min-h-screen selection:bg-[var(--color-secondary)] selection:text-white pb-20">
 
             {/* 1. HERO SECTION: CRÓNICAS DEL ALMA */}
-            <section className="relative min-h-[80vh] flex flex-col lg:flex-row overflow-hidden pt-20">
+            <section className="relative min-h-[80vh] flex flex-col lg:flex-row overflow-hidden">
                 {/* Left Panel: Luminous Obsidian */}
                 <div className="lg:w-[45%] bg-black p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
                     {/* Subtle Watermark */}
@@ -28,7 +28,7 @@ export default function BlogPage() {
 
                     <FadeIn>
                         {/* Pill Badge Style */}
-                        <div className="inline-block mb-10">
+                        <div className="inline-block mb-10 mt-12 lg:mt-0">
                             <span className="px-8 py-3 rounded-full border border-[var(--color-secondary)]/20 bg-[var(--color-secondary)]/[0.05] text-[var(--color-secondary)] text-sm md:text-base font-light tracking-[0.2em] uppercase backdrop-blur-sm shadow-sm">
                                 Letras que Sanan
                             </span>
@@ -60,8 +60,12 @@ export default function BlogPage() {
                         className="object-cover"
                         priority
                     />
-                    {/* Soft gradient transition */}
-                    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-stone-950 to-transparent hidden lg:block" />
+                    {/* Much softer, wider blurred transition - Desktop (Left to Right) */}
+                    <div className="absolute inset-y-0 left-[-1px] w-full bg-gradient-to-r from-black via-black/60 to-transparent hidden lg:block z-10" />
+                    <div className="absolute inset-y-0 left-[-40px] w-64 bg-black/80 blur-[80px] hidden lg:block z-0" />
+                    
+                    {/* Mobile Transition (Top to Bottom) */}
+                    <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black to-transparent lg:hidden z-10" />
                 </div>
             </section>
 

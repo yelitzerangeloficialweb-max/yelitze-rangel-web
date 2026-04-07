@@ -66,7 +66,13 @@ export default function TiendaPage() {
             <section className="relative w-full bg-[#0a0a0a] text-white border-b border-white/5 overflow-hidden flex flex-col md:flex-row items-stretch min-h-[500px] md:min-h-[600px] lg:min-h-[700px]">
                 {/* Right side: Image Background (visible on mobile, takes right half on desktop) */}
                 <div className="absolute md:relative inset-0 md:inset-auto md:w-1/2 md:ml-auto h-[400px] md:h-auto z-0 overflow-hidden group">
-                    <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent z-10" />
+                    {/* Much softer, wider blurred transition - Desktop (Left to Right) */}
+                    <div className="absolute inset-y-0 left-[-1px] w-full bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/60 to-transparent hidden md:block z-10" />
+                    <div className="absolute inset-y-0 left-[-40px] w-64 bg-[#0a0a0a]/80 blur-[80px] hidden md:block z-0" />
+                    
+                    {/* Mobile Transition (Top to Bottom) */}
+                    <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent md:hidden z-10" />
+                    
                     <Image
                         src="/assets/images/cronicas-del-alma-hero.png"
                         alt="Crónicas del Alma"

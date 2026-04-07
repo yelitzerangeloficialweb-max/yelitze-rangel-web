@@ -57,7 +57,9 @@ export default function Header() {
                              normalizedPath.startsWith('/sobre-mi') || 
                              normalizedPath.startsWith('/servicios') ||
                              normalizedPath.startsWith('/eventos') ||
-                             normalizedPath.startsWith('/galeria');
+                             normalizedPath.startsWith('/galeria') ||
+                             normalizedPath.startsWith('/blog') ||
+                             normalizedPath.startsWith('/tienda');
     const showScrolled = isScrolled || !isTransparentPage;
 
     const navLinks = [

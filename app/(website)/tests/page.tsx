@@ -147,7 +147,7 @@ export default function TestsHubPage() {
 
                         <FadeIn delay={0.2} className="relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl border-8 border-stone-50">
                             <Image
-                                src="/assets/images/about-experience-new.jpg"
+                                src="/assets/images/about-experience.jpg"
                                 alt="Propósito de los Diagnósticos"
                                 fill
                                 className="object-cover"
