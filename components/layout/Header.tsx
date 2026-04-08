@@ -74,38 +74,45 @@ export default function Header() {
 
     const navLinks = [
         { name: 'Inicio', href: '/' },
-        { name: 'Sobre Mí', href: '/sobre-mi' },
-        { name: 'Servicios', href: '/servicios' },
         {
-            name: 'Eventos',
-            href: '/eventos',
+            name: 'La Esencia',
+            href: '#',
             children: [
-                { name: 'Ver Todos', href: '/eventos' },
+                { name: 'Sobre Mí', href: '/sobre-mi' },
+                { name: 'Galería', href: '/galeria' },
+                { name: 'Blog', href: '/blog' },
+            ]
+        },
+        {
+            name: 'Acompañamiento',
+            href: '#',
+            children: [
+                { name: 'Servicios', href: '/servicios' },
+                { name: 'Eventos & Talleres', href: '/eventos' },
+                { name: 'Sanando el Linaje', href: '/eventos/sanando-linaje-femenino' },
                 { name: 'Sánate Mujer', href: '/eventos/sanate-mujer' },
-                { name: 'Sanando el Linaje', href: '/eventos/sanando-linaje-femenino' }
-            ]
-        },
-        { name: 'Galería', href: '/galeria' },
-        { name: 'Blog', href: '/blog' },
-        { name: 'Tienda', href: '/tienda' },
-        {
-            name: 'Libros',
-            href: '/libros',
-            children: [
-                { name: 'Ver Todos', href: '/libros' },
-                { name: 'Hilos de Conexión', href: '/libros/hilos-de-conexion' },
-                { name: 'Conversaciones con mi Chamana', href: '/libros/conversaciones-con-mi-chamana' }
             ]
         },
         {
-            name: 'Tests',
-            href: '/tests',
+            name: 'Herramientas',
+            href: '#',
             children: [
-                { name: 'Ver Todos', href: '/tests' },
-                { name: 'Arquitectura Intencional de Vida', href: '/arquitectura-de-vida-intencional' },
+                { name: 'Tests de Autoconocimiento', href: '/tests' },
+                { name: 'Test Somático', href: '/test-somatico' },
+                { name: 'Arquitectura Intencional', href: '/arquitectura-de-vida-intencional' },
                 { name: 'Heridas de la Infancia', href: '/tests/heridas-infancia' },
                 { name: 'Creencias sobre el Amor', href: '/tests/creencias-amor' },
                 { name: 'Creencias sobre el Dinero', href: '/tests/creencias-dinero' }
+            ]
+        },
+        {
+            name: 'Tienda',
+            href: '#',
+            children: [
+                { name: 'Tienda Online', href: '/tienda' },
+                { name: 'Libros', href: '/libros' },
+                { name: 'Hilos de Conexión', href: '/libros/hilos-de-conexion' },
+                { name: 'Conversaciones con mi Chamana', href: '/libros/conversaciones-con-mi-chamana' }
             ]
         },
     ];
@@ -144,9 +151,10 @@ export default function Header() {
                         >
                             <Link
                                 href={link.href}
+                                onClick={(e) => link.href === '#' && e.preventDefault()}
                                 className={cn(
                                     "text-sm font-medium font-body tracking-[0.05em] transition-colors hover:text-secondary flex items-center gap-1 py-2",
-                                    pathname === link.href || (link.children && pathname.startsWith(link.href))
+                                    pathname === link.href || (link.children && link.children.some(child => pathname === child.href))
                                         ? "text-secondary"
                                         : (showScrolled ? "text-primary" : "text-white/90 hover:text-white")
                                 )}
@@ -253,7 +261,13 @@ export default function Header() {
                         <div key={link.name}>
                             <Link
                                 href={link.href}
-                                onClick={() => !link.children && setMobileMenuOpen(false)}
+                                onClick={(e) => {
+                                    if (link.href === '#') {
+                                        e.preventDefault();
+                                    } else if (!link.children) {
+                                        setMobileMenuOpen(false);
+                                    }
+                                }}
                                 className="flex items-center justify-between text-primary font-medium py-3 px-4 hover:bg-background rounded-lg border-b border-gray-100"
                             >
                                 {link.name}
