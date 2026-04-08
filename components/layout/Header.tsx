@@ -63,7 +63,7 @@ export default function Header() {
         if (mainLandings.includes(path)) return true;
         
         // 3. Specific sub-sections where dark heroes are known to continue
-        const transparentSubSections = ['/servicios/', '/eventos/'];
+        const transparentSubSections = ['/servicios/', '/eventos/', '/libros/'];
         if (transparentSubSections.some(prefix => path.startsWith(prefix))) return true;
         
         // 4. Default to solid (for details, Sobre Mi, tests, etc.)
@@ -71,6 +71,8 @@ export default function Header() {
     }, [pathname]);
 
     const showScrolled = isScrolled || !isTransparentPage;
+    // Pages that are transparent but need dark logo/text (light or split-panel hero)
+    const useDarkText = showScrolled || pathname.startsWith('/sobre-mi') || pathname.startsWith('/libros/');
 
     const navLinks = [
         { name: 'Inicio', href: '/' },
@@ -131,7 +133,7 @@ export default function Header() {
                 <Link href="/" className="flex items-center gap-3 group">
                     <div className="relative w-48 h-20">
                         <Image
-                            src={showScrolled || pathname.startsWith('/sobre-mi') ? "/assets/images/logo-color-scroll.png" : "/assets/images/logo-yelitze-new.png"}
+                            src={useDarkText ? "/assets/images/logo-color-scroll.png" : "/assets/images/logo-yelitze-new.png"}
                             alt="Yelitze Rangel Logo"
                             fill
                             className="object-contain object-left transition-opacity duration-300"
@@ -156,7 +158,7 @@ export default function Header() {
                                     "text-sm font-medium font-body tracking-[0.05em] transition-colors hover:text-secondary flex items-center gap-1 py-2",
                                     pathname === link.href || (link.children && link.children.some(child => pathname === child.href))
                                         ? "text-secondary"
-                                        : (showScrolled || pathname.startsWith('/sobre-mi') ? "text-primary" : "text-white/90 hover:text-white")
+                                        : (useDarkText ? "text-primary" : "text-white/90 hover:text-white")
                                 )}
                             >
                                 {link.name}
@@ -228,7 +230,7 @@ export default function Header() {
                                     onClick={() => setIsSearchOpen(true)}
                                     className={cn(
                                         "p-2 rounded-full transition-colors hover:bg-primary/5",
-                                        showScrolled || pathname === '/sobre-mi' ? "text-primary" : "text-white/90"
+                                        useDarkText ? "text-primary" : "text-white/90"
                                     )}
                                 >
                                     <EyeGeometricIcon size={20} />
@@ -236,7 +238,7 @@ export default function Header() {
                             )}
                         </AnimatePresence>
                     </div>
-                    <CartButton iconColor={showScrolled || pathname.startsWith('/sobre-mi') ? 'text-primary' : 'text-white/90'} />
+                    <CartButton iconColor={useDarkText ? 'text-primary' : 'text-white/90'} />
                     <Link
                         href="/reservas"
                         className="btn-premium px-6 py-2 text-sm font-heading bg-[var(--color-accent)] text-[var(--color-background)] hover:brightness-110"
@@ -250,7 +252,7 @@ export default function Header() {
                     className="md:hidden p-2 text-primary"
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 >
-                    {mobileMenuOpen ? <CloseThinIcon /> : <MenuThinIcon className={showScrolled || pathname === '/sobre-mi' ? "text-primary" : "text-white"} />}
+                    {mobileMenuOpen ? <CloseThinIcon /> : <MenuThinIcon className={useDarkText ? "text-primary" : "text-white"} />}
                 </button>
             </div>
 

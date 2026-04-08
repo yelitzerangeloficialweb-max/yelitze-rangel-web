@@ -63,10 +63,10 @@ export default function BookShowcase({
                 </div>
 
                 {/* Right Panel: Immersive Image with 3D Book */}
-                <div className="lg:w-[55%] relative min-h-[500px] lg:min-h-full flex items-center justify-center p-12 bg-[#333333]">
+                <div className="lg:w-[55%] relative min-h-[500px] lg:min-h-full flex items-center justify-center p-12 bg-[#333333] overflow-hidden">
                     {/* Atmospheric orange glows */}
-                    <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-[#B8835A]/20 rounded-full blur-[140px] pointer-events-none" />
-                    <div className="absolute -bottom-40 -left-20 w-[400px] h-[400px] bg-[#B8835A]/15 rounded-full blur-[120px] pointer-events-none" />
+                    <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-[#B8835A]/35 rounded-full blur-[130px] pointer-events-none" />
+                    <div className="absolute -bottom-40 -left-20 w-[500px] h-[500px] bg-[#B8835A]/25 rounded-full blur-[110px] pointer-events-none" />
                     <Image
                         src="/assets/images/about-ritual.jpg"
                         alt="Background"
@@ -78,7 +78,7 @@ export default function BookShowcase({
                     <FadeIn className="relative z-10">
                         {/* 3D Book Display */}
                         <div className="relative w-64 md:w-80 h-[400px] md:h-[500px] perspective-1000 group">
-                            <div className="relative w-full h-full transform-gpu rotate-y-12 -rotate-x-6 shadow-[-40px_40px_100px_rgba(0,0,0,0.3)] rounded-lg overflow-hidden border border-stone-200">
+                            <div className="relative w-full h-full transform-gpu rotate-y-12 -rotate-x-6 shadow-[-40px_40px_100px_rgba(0,0,0,0.3)] rounded-lg overflow-hidden">
                                 <Image
                                     src={coverImage}
                                     alt={title}
