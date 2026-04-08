@@ -59,7 +59,7 @@ export default function Header() {
         if (path === '/') return true;
         
         // 2. Section landings with dark heroes
-        const mainLandings = ['/blog', '/tienda', '/libros', '/galeria', '/servicios', '/eventos'];
+        const mainLandings = ['/blog', '/tienda', '/libros', '/galeria', '/servicios', '/eventos', '/sobre-mi'];
         if (mainLandings.includes(path)) return true;
         
         // 3. Specific sub-sections where dark heroes are known to continue
@@ -131,7 +131,7 @@ export default function Header() {
                 <Link href="/" className="flex items-center gap-3 group">
                     <div className="relative w-48 h-20">
                         <Image
-                            src={showScrolled ? "/assets/images/logo-color-scroll.png" : "/assets/images/logo-yelitze-new.png"}
+                            src={showScrolled || pathname.startsWith('/sobre-mi') ? "/assets/images/logo-color-scroll.png" : "/assets/images/logo-yelitze-new.png"}
                             alt="Yelitze Rangel Logo"
                             fill
                             className="object-contain object-left transition-opacity duration-300"
@@ -156,7 +156,7 @@ export default function Header() {
                                     "text-sm font-medium font-body tracking-[0.05em] transition-colors hover:text-secondary flex items-center gap-1 py-2",
                                     pathname === link.href || (link.children && link.children.some(child => pathname === child.href))
                                         ? "text-secondary"
-                                        : (showScrolled ? "text-primary" : "text-white/90 hover:text-white")
+                                        : (showScrolled || pathname.startsWith('/sobre-mi') ? "text-primary" : "text-white/90 hover:text-white")
                                 )}
                             >
                                 {link.name}
@@ -236,7 +236,7 @@ export default function Header() {
                             )}
                         </AnimatePresence>
                     </div>
-                    <CartButton iconColor={showScrolled ? 'text-primary' : 'text-white/90'} />
+                    <CartButton iconColor={showScrolled || pathname.startsWith('/sobre-mi') ? 'text-primary' : 'text-white/90'} />
                     <Link
                         href="/reservas"
                         className="btn-premium px-6 py-2 text-sm font-heading bg-[var(--color-accent)] text-[var(--color-background)] hover:brightness-110"
