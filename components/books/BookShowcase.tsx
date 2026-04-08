@@ -30,7 +30,7 @@ export default function BookShowcase({
     features
 }: BookShowcaseProps) {
     return (
-        <section className="min-h-screen bg-[#fafcfe] pb-20 pt-20">
+        <section className="min-h-screen bg-[#FAF9F6] pb-20 pt-20">
             {/* Header: Split-Panel Aesthetic */}
             <div className="flex flex-col lg:flex-row min-h-[70vh] relative overflow-hidden">
                 {/* Left Panel: Ivory Content */}
@@ -63,14 +63,17 @@ export default function BookShowcase({
                 </div>
 
                 {/* Right Panel: Immersive Image with 3D Book */}
-                <div className="lg:w-[55%] relative min-h-[500px] lg:min-h-full flex items-center justify-center p-12 bg-stone-50">
+                <div className="lg:w-[55%] relative min-h-[500px] lg:min-h-full flex items-center justify-center p-12 bg-[#333333]">
+                    {/* Atmospheric orange glows */}
+                    <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-[#B8835A]/20 rounded-full blur-[140px] pointer-events-none" />
+                    <div className="absolute -bottom-40 -left-20 w-[400px] h-[400px] bg-[#B8835A]/15 rounded-full blur-[120px] pointer-events-none" />
                     <Image
                         src="/assets/images/about-ritual.jpg"
                         alt="Background"
                         fill
-                        className="object-cover opacity-30 grayscale"
+                        className="object-cover opacity-10 grayscale"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-stone-50 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#333333] to-transparent" />
 
                     <FadeIn className="relative z-10">
                         {/* 3D Book Display */}
