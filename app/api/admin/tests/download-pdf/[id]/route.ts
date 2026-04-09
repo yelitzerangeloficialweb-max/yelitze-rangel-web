@@ -2,10 +2,14 @@ import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { generateSomaticPDF, generateVisionBoardPDF } from '@/lib/pdf-generator';
 import { buildVisionBoardPDFInput } from '@/lib/vision-board-utils';
+import { requireAdminAuth } from '@/lib/admin-auth';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
+    const authError = await requireAdminAuth();
+    if (authError) return authError;
+
     try {
         const { id } = await params;
         const result = await db.testResult.findUnique({ where: { id } });

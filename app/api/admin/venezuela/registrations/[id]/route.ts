@@ -1,10 +1,14 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
+import { requireAdminAuth } from '@/lib/admin-auth';
 
 export async function PATCH(
     req: Request,
     { params }: { params: Promise<{ id: string }> }
 ) {
+    const authError = await requireAdminAuth();
+    if (authError) return authError;
+
     try {
         const { id } = await params;
         const body = await req.json();
@@ -34,6 +38,9 @@ export async function DELETE(
     req: Request,
     { params }: { params: Promise<{ id: string }> }
 ) {
+    const authError = await requireAdminAuth();
+    if (authError) return authError;
+
     try {
         const { id } = await params;
         await db.venezuelaEnElCuerpoRegistration.delete({

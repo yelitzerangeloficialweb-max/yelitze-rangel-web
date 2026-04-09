@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
+import { requireAdminAuth } from '@/lib/admin-auth';
 
 interface RouteParams {
     params: Promise<{ id: string }>;
@@ -7,6 +8,9 @@ interface RouteParams {
 
 // GET single product
 export async function GET(request: NextRequest, { params }: RouteParams) {
+    const authError = await requireAdminAuth();
+    if (authError) return authError;
+
     try {
         const { id } = await params;
         const product = await db.product.findUnique({
@@ -26,6 +30,9 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 
 // PUT update product
 export async function PUT(request: NextRequest, { params }: RouteParams) {
+    const authError = await requireAdminAuth();
+    if (authError) return authError;
+
     try {
         const { id } = await params;
         const data = await request.json();
@@ -54,6 +61,9 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
 
 // DELETE product
 export async function DELETE(request: NextRequest, { params }: RouteParams) {
+    const authError = await requireAdminAuth();
+    if (authError) return authError;
+
     try {
         const { id } = await params;
         await db.product.delete({

@@ -1,7 +1,11 @@
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
+import { requireAdminAuth } from "@/lib/admin-auth";
 
 export async function GET() {
+    const authError = await requireAdminAuth();
+    if (authError) return authError;
+
     const results: string[] = [];
 
     try {

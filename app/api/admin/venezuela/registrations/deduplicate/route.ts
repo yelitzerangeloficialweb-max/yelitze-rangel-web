@@ -1,7 +1,11 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
+import { requireAdminAuth } from '@/lib/admin-auth';
 
 export async function POST() {
+    const authError = await requireAdminAuth();
+    if (authError) return authError;
+
     try {
         const registrations = await db.venezuelaEnElCuerpoRegistration.findMany({
             orderBy: { createdAt: 'asc' }
