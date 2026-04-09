@@ -68,8 +68,8 @@ export default function NewHero() {
                 </motion.div>
             </div>
  
-            {/* Pagination/Scroll Indicator - Lowered & Whipped White */}
-            <div className="absolute bottom-12 md:bottom-20 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2">
+            {/* Pagination/Scroll Indicator - Higher to be closer to button */}
+            <div className="absolute bottom-28 md:bottom-44 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2">
                 <div className="relative w-16 h-16 opacity-60 transition-opacity hover:opacity-100">
                     <Image
                         src="/assets/images/watermark-logo.png"
