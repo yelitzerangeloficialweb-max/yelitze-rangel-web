@@ -68,7 +68,7 @@ export default function ServiceSelector() {
                     <motion.span 
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        className="text-xs font-bold tracking-[0.4em] uppercase text-white/50"
+                        className="text-xs font-bold tracking-[0.4em] uppercase text-black"
                     >
                         ECOSISTEMA DE EVOLUCIÓN
                     </motion.span>
@@ -107,8 +107,8 @@ export default function ServiceSelector() {
                             </motion.div>
                         </div>
 
-                        {/* Text Content */}
-                        <div className="lg:w-1/2 text-white space-y-8 text-center lg:text-left z-20 pt-24 lg:pt-80 lg:pl-12">
+                        {/* Text Content - Moved up to keep button inside dark section */}
+                        <div className="lg:w-1/2 text-white space-y-8 text-center lg:text-left z-20 pt-16 lg:pt-48 lg:pl-12">
                             <motion.div
                                 initial={{ opacity: 0, x: 30 }}
                                 whileInView={{ opacity: 1, x: 0 }}
@@ -119,7 +119,7 @@ export default function ServiceSelector() {
                                 <span className="block text-xs font-bold tracking-[0.4em] uppercase text-white/50">
                                     {services[0].tag}
                                 </span>
-                                <h3 className="text-6xl md:text-[7.5rem] font-script text-[#B8835A] italic leading-[0.75] drop-shadow-md pb-6">
+                                <h3 className="text-5xl md:text-7xl lg:text-[6.5rem] font-script text-[#B8835A] italic leading-tight lg:whitespace-nowrap drop-shadow-md pb-6">
                                     {services[0].title}
                                 </h3>
                                 <p className="text-xl md:text-2xl font-body font-light leading-relaxed text-white/80 max-w-xl mx-auto lg:mx-0">
