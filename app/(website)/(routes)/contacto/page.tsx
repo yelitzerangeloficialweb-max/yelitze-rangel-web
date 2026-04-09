@@ -1,6 +1,12 @@
+"use client";
+
+import { useState } from "react";
 import { Mail, MessageSquare, MapPin, Send } from "lucide-react";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 export default function ContactPage() {
+    const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+
     return (
         <div className="min-h-screen bg-[var(--color-background)] pt-36 pb-20">
             <div className="container mx-auto px-4 text-center mb-16">
@@ -102,13 +108,44 @@ export default function ContactPage() {
                                 <textarea rows={4} className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:bg-white focus:outline-none focus:border-[var(--color-secondary)] transition-colors resize-none" placeholder="¿En qué puedo ayudarte hoy?"></textarea>
                             </div>
 
-                            <button type="button" className="w-full py-4 bg-[var(--color-primary)] hover:bg-[var(--color-primary-light)] text-white rounded-xl font-bold transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+                            <div className="flex justify-center">
+                                <Turnstile
+                                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                                    onSuccess={(token) => setTurnstileToken(token)}
+                                    options={{ theme: "light" }}
+                                />
+                            </div>
+
+                            <button 
+                                type="button" 
+                                disabled={!turnstileToken}
+                                className={`w-full py-4 text-white rounded-xl font-bold transition-all shadow-lg flex items-center justify-center gap-2 ${turnstileToken ? 'bg-[var(--color-primary)] hover:bg-[var(--color-primary-light)] hover:shadow-xl' : 'bg-gray-400 cursor-not-allowed opacity-70'}`}
+                            >
                                 Enviar Mensaje
                                 <Send className="w-5 h-5" />
                             </button>
                         </form>
                     </div>
 
+                </div>
+
+                {/* Map Section */}
+                <div className="mt-12 group">
+                    <div className="rounded-3xl overflow-hidden shadow-2xl h-[450px] border-8 border-white transition-transform duration-500 hover:scale-[1.01]">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d489.2890520421876!2d-71.60634621008912!3d10.664585149692994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e8998e8cfaaaaab%3A0x158dc20e5bf0fe66!2sCentro%20Comercial%20Salto%20%C3%81ngel!5e0!3m2!1ses-419!2sve!4v1712683000000!5m2!1ses-419!2sve"
+                            width="100%" 
+                            height="100%" 
+                            style={{ border: 0 }} 
+                            allowFullScreen={true} 
+                            loading="lazy" 
+                            referrerPolicy="no-referrer-when-downgrade"
+                            title="Ubicación Yelitze Rangel - CC Salto Ángel"
+                        ></iframe>
+                    </div>
+                    <p className="text-center mt-4 text-[var(--color-text-light)] text-sm italic">
+                        📍 Encuéntranos en el Centro Comercial Salto Ángel, Maracaibo.
+                    </p>
                 </div>
             </div>
         </div>
