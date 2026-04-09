@@ -40,26 +40,8 @@ export default function ServiceSelector() {
                     className="object-contain object-left-bottom"
                 />
             </div>
-            {/* White Header Area */}
-            <div className="relative pt-32 pb-48 z-20">
-                <div className="container mx-auto px-4 text-center">
-                    <motion.span 
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        className="text-xs font-bold tracking-[0.4em] uppercase text-text/60"
-                    >
-                        ECOSISTEMA DE EVOLUCIÓN
-                    </motion.span>
-                    <motion.h2 
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="mt-4 text-7xl md:text-[9.5rem] font-script text-[#B8835A] italic leading-tight"
-                    >
-                        ¿Cómo quieres comenzar?
-                    </motion.h2>
-                </div>
-            </div>
+            {/* Section Header moved inside the dark block for focus */}
+
 
 
 
@@ -80,6 +62,25 @@ export default function ServiceSelector() {
                         backgroundColor: '#2D2926'
                     }} 
                 />
+
+                {/* Centered Header Text inside the dark block */}
+                <div className="container mx-auto px-4 text-center relative z-20 mb-24">
+                    <motion.span 
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        className="text-xs font-bold tracking-[0.4em] uppercase text-white/50"
+                    >
+                        ECOSISTEMA DE EVOLUCIÓN
+                    </motion.span>
+                    <motion.h2 
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                        className="mt-4 text-7xl md:text-[9.5rem] font-script text-[#B8835A] italic leading-[0.75]"
+                    >
+                        ¿Cómo quieres comenzar?
+                    </motion.h2>
+                </div>
 
                 {/* Background Glows (inside the brush) */}
                 <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-l from-[#ff9a5c]/10 via-transparent to-transparent pointer-events-none z-10" />
