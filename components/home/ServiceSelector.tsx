@@ -194,10 +194,10 @@ export default function ServiceSelector() {
                         <div className="lg:w-1/2 flex justify-center lg:justify-end">
                             <motion.div
                                 initial={{ scale: 0.9, opacity: 0 }}
-                                whileInView={{ scale: 1, opacity: 1 }}
+                                whileInView={{ scale: 1, opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8, delay: 0.2 }}
-                                className="relative w-full aspect-[4/5] max-w-[550px] rounded-[40px] rounded-tr-[150px] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.2)]"
+                                className="relative w-full aspect-[4/5] max-w-[550px] rounded-[40px] rounded-tr-[150px] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.2)] lg:translate-x-12"
                             >
                                 <Image
                                     src={services[1].image}
