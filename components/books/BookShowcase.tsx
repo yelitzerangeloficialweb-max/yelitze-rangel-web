@@ -63,17 +63,18 @@ export default function BookShowcase({
                 </div>
 
                 {/* Right Panel: Immersive Image with 3D Book */}
-                <div className="lg:w-[55%] relative min-h-[500px] lg:min-h-full flex items-center justify-center p-12 bg-[#333333] overflow-hidden">
-                    {/* Atmospheric orange glows */}
-                    <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-[#B8835A]/35 rounded-full blur-[130px] pointer-events-none" />
-                    <div className="absolute -bottom-40 -left-20 w-[500px] h-[500px] bg-[#B8835A]/25 rounded-full blur-[110px] pointer-events-none" />
+                <div
+                    className="lg:w-[55%] relative min-h-[500px] lg:min-h-full flex items-center justify-center p-12"
+                    style={{
+                        background: 'radial-gradient(ellipse 60% 55% at 85% 15%, rgba(184,131,90,0.55) 0%, transparent 70%), radial-gradient(ellipse 50% 45% at 15% 88%, rgba(184,131,90,0.40) 0%, transparent 65%), #333333'
+                    }}
+                >
                     <Image
                         src="/assets/images/about-ritual.jpg"
                         alt="Background"
                         fill
-                        className="object-cover opacity-10 grayscale"
+                        className="object-cover opacity-5 grayscale"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#333333] to-transparent" />
 
                     <FadeIn className="relative z-10">
                         {/* 3D Book Display */}
