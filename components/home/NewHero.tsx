@@ -20,7 +20,7 @@ export default function NewHero() {
                 <div className="absolute inset-0 bg-black/25" />
                 
                 {/* Specific Orange Light Effect - Top Left - Warmer */}
-                <div className="absolute -top-[15%] -left-[10%] w-[70%] h-[70%] bg-[#ff9a5c]/35 blur-[180px] rounded-full pointer-events-none" />
+                <div className="absolute -top-[15%] -left-[10%] w-[70%] h-[70%] bg-[#ff9a5c]/95 blur-[240px] rounded-full pointer-events-none" />
                 
                 {/* Bottom Seam Overlay */}
                 <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60" />
