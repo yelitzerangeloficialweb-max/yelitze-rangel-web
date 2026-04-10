@@ -23,7 +23,6 @@ const config: Config = {
             },
             fontFamily: {
                 heading: ["var(--font-playfair)", "serif"],
-                serif: ["var(--font-playfair)", "serif"],
                 body: ["var(--font-inter)", "sans-serif"],
                 script: ["var(--font-allison)", "cursive"],
                 editorial: ["var(--font-cormorant)", "serif"],
