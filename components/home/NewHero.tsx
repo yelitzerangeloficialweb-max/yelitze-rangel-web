@@ -19,8 +19,7 @@ export default function NewHero() {
                 {/* Global Overlays - Softer for more visibility */}
                 <div className="absolute inset-0 bg-black/10" />
                 
-                {/* Specific Orange Light Effect - Concentrated Top Left */}
-                <div className="absolute -top-[10%] -left-[20%] w-[60%] h-[80%] bg-[#FF6B00]/95 blur-[200px] rounded-full pointer-events-none" />
+                {/* Atmosphere - Sharp and clean on the left now */}
                 
                 {/* Bottom Seam Overlay */}
                 <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60" />
