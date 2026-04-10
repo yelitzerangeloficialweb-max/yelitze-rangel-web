@@ -14,7 +14,7 @@ const TESTS = [
     {
         id: 'diagnostico-ancestral',
         title: 'Diagnóstico Ancestral Completo',
-        description: 'Análisis integral de Relaciones, Heridas Profundas y Linaje Femenino en un solo viaje guiado por IA.',
+        description: 'Análisis integral de Relaciones, Heridas Profundas y Linaje Femenino en un solo viaje guiado por Yelitzé.',
         image: '/assets/images/tests/test_femeninas.png',
         icon: <Sparkles className="w-6 h-6" />,
         href: '/tests/diagnostico-ancestral',
@@ -181,7 +181,7 @@ export default function TestsHubPage() {
                                     </p>
                                     <div className="pt-8">
                                         <Link href={PREMIUM_TEST.href} className="btn-premium px-12 py-5 bg-white !text-[var(--color-primary)] hover:!bg-stone-100 group text-lg">
-                                            Iniciar Diagnóstico IA
+                                            Iniciar Diagnóstico
                                             <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                                         </Link>
                                     </div>

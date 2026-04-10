@@ -8,7 +8,7 @@ interface MagicStepProcessingProps {
 }
 
 const MESSAGES = [
-    "Yelitze Rangel AI está analizando tu linaje...",
+    "Analizando tu linaje ancestral...",
     "Conectando con tus memorias congeladas...",
     "Identificando lealtades invisibles...",
     "Tejiendo tu mapa de sanación ancestral...",

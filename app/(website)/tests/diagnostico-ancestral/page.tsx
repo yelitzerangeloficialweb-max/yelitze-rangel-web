@@ -5,7 +5,7 @@ import MasterDiagnosticWizard from '@/components/heridas-test/MasterDiagnosticWi
 
 export const metadata: Metadata = {
     title: 'Diagnóstico Ancestral Completo | Yelitze Rangel • Tu coach ancestral',
-    description: 'Análisis integral de Relaciones, Heridas Profundas y Linaje Femenino guiado por IA.',
+    description: 'Análisis integral de Relaciones, Heridas Profundas y Linaje Femenino guiado por Yelitzé.',
 };
 
 export default function DiagnosticoAncestralPage() {

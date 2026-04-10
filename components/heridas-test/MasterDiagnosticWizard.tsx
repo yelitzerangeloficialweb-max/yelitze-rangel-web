@@ -88,7 +88,7 @@ export default function MasterDiagnosticWizard() {
 
             if (!response.ok) {
                 const errorData = await response.json().catch(() => ({}));
-                throw new Error(errorData.details || errorData.error || "Error en el análisis de IA");
+                throw new Error(errorData.details || errorData.error || "Error en el análisis ancestral");
             }
 
             const data = await response.json();
