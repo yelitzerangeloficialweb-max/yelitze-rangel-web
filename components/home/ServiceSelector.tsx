@@ -82,7 +82,7 @@ export default function ServiceSelector() {
                 />
 
                 {/* Background Glows (inside the brush) */}
-                <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-l from-[#ff9a5c]/10 via-transparent to-transparent pointer-events-none z-10" />
+                <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-l from-white/10 via-transparent to-transparent pointer-events-none z-10" />
 
 
                 <div className="container mx-auto px-4 relative max-w-7xl z-20">
@@ -142,7 +142,7 @@ export default function ServiceSelector() {
             {/* PORTAL 02 - LIGHT SECTION */}
             <div className="relative bg-white pt-48 pb-32 z-10 overflow-hidden">
                 {/* Decorative Lines and Glows */}
-                <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-tr from-[#ff9a5c]/5 via-transparent to-[#ff9a5c]/10 pointer-events-none" />
+                <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-tr from-white/5 via-transparent to-white/10 pointer-events-none" />
                 
                 {/* Animated Subtle Rings - From maintenance page */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
