@@ -13,14 +13,14 @@ export default function NewHero() {
                     src="/assets/images/hero/hero-fusion-group.jpg"
                     alt="Ancestral Background"
                     fill
-                    className="object-cover scale-110 opacity-100 blur-[2px] md:blur-[4px]"
+                    className="object-cover scale-110 opacity-100"
                     priority
                 />
                 {/* Global Overlays - Softer for more visibility */}
-                <div className="absolute inset-0 bg-black/25" />
+                <div className="absolute inset-0 bg-black/10" />
                 
-                {/* Specific Orange Light Effect - Top Left - Warmer */}
-                <div className="absolute -top-[15%] -left-[10%] w-[70%] h-[70%] bg-[#FF6B00]/95 blur-[240px] rounded-full pointer-events-none" />
+                {/* Specific Orange Light Effect - Concentrated Top Left */}
+                <div className="absolute -top-[10%] -left-[20%] w-[60%] h-[80%] bg-[#FF6B00]/95 blur-[200px] rounded-full pointer-events-none" />
                 
                 {/* Bottom Seam Overlay */}
                 <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60" />
