@@ -87,6 +87,9 @@ export default function RootLayout({
         {/* Right Side (Service area junction) */}
         <div className="absolute top-[200vh] right-[-20vw] w-[40vw] h-[40vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.85)_40%,rgba(233,123,50,0.3)_65%,transparent_85%)] blur-[90px] pointer-events-none z-[100]" />
         
+        {/* Left Side (Bottom of services / transition) */}
+        <div className="absolute top-[330vh] left-[-20vw] w-[40vw] h-[40vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.85)_40%,rgba(233,123,50,0.3)_65%,transparent_85%)] blur-[90px] pointer-events-none z-[100]" />
+        
         {children}
       </body>
     </html>
