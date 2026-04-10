@@ -66,7 +66,7 @@ export default function ServiceSelector() {
             <div className="relative bg-white pt-40 pb-64 z-20 mt-16">
                 {/* Huge Brush Shape Background */}
                 <div 
-                    className="absolute inset-0 z-0 origin-bottom scale-y-125 translate-y-[5%]"
+                    className="absolute inset-0 z-0 origin-bottom scale-y-125 translate-y-[calc(5%+15px)]"
                     style={{
                         maskImage: 'url(/images/home_redesign/brush-bottom.svg)',
                         WebkitMaskImage: 'url(/images/home_redesign/brush-bottom.svg)',
