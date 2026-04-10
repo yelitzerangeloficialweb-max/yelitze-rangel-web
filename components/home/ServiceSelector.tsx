@@ -149,34 +149,24 @@ export default function ServiceSelector() {
                         animate={{
                             scale: [1, 1.1, 1],
                             rotate: [0, 45, 0],
-                            opacity: [0.05, 0.12, 0.05],
+                            opacity: [0.2, 0.4, 0.2],
                         }}
                         transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-                        className="absolute -top-[10%] -left-[10%] w-[60%] h-[60%] border border-[#B8835A] rounded-full"
+                        className="absolute -top-[10%] -left-[10%] w-[60%] h-[60%] border-2 border-[#B8835A] rounded-full"
                     />
                     <motion.div
                         animate={{
                             scale: [1.1, 1, 1.1],
                             rotate: [0, -35, 0],
-                            opacity: [0.05, 0.1, 0.05],
+                            opacity: [0.2, 0.4, 0.2],
                         }}
                         transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-                        className="absolute -bottom-[15%] -right-[10%] w-[70%] h-[70%] border border-[#8C4005] rounded-full"
+                        className="absolute -bottom-[15%] -right-[10%] w-[70%] h-[70%] border-2 border-[#8C4005] rounded-full"
                     />
                 </div>
                 
                 {/* CSS Based Glow - Bottom Left */}
                 <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[radial-gradient(circle_at_bottom_left,_rgba(184,131,90,0.15)_0%,_transparent_70%)] pointer-events-none z-0" />
-                
-                {/* Vertical Curly Line Decoration - Stuck to bottom */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-full max-w-lg pointer-events-none opacity-40 z-0">
-                    <Image
-                        src="/images/home_redesign/lineavertical.png"
-                        alt=""
-                        fill
-                        className="object-contain object-bottom"
-                    />
-                </div>
 
 
                 <div className="container mx-auto px-4 relative max-w-7xl">
