@@ -80,8 +80,8 @@ export default function RootLayout({
             alt="facebook pixel"
           />
         </noscript>
-        {/* Global Orange Flare Overlay (#e97b32) - Positioned at the bottom-left joint of the first section (ends of slider) */}
-        <div className="absolute top-[80vh] left-[-220px] w-[50vw] h-[50vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.5)_35%,transparent_70%)] blur-[110px] pointer-events-none z-[100]" />
+        {/* Global Orange Flare Overlay (#e97b32) - Positioned slightly higher for better transition visibility */}
+        <div className="absolute top-[65vh] left-[-220px] w-[50vw] h-[50vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.5)_35%,transparent_70%)] blur-[110px] pointer-events-none z-[100]" />
         {children}
       </body>
     </html>
