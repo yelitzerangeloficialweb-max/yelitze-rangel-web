@@ -251,8 +251,8 @@ export default function ServiceSelector() {
                 </div>
             </div>
 
-            {/* Bottom Left Corner Glow - Lowered even more to align with the very bottom transition */}
-            <div className="absolute bottom-[-15vh] left-[-10vw] w-[24vw] h-[24vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.85)_40%,rgba(233,123,50,0.3)_65%,transparent_85%)] blur-[70px] pointer-events-none z-20" />
+            {/* Bottom Left Corner Glow - Lowered even more and more intense */}
+            <div className="absolute bottom-[-15vh] left-[-12vw] w-[24vw] h-[24vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.95)_50%,rgba(233,123,50,0.5)_75%,transparent_90%)] blur-[70px] pointer-events-none z-20" />
         </section>
     );
 }

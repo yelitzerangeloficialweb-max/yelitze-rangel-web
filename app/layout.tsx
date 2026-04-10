@@ -81,11 +81,11 @@ export default function RootLayout({
           />
         </noscript>
         {/* Global Orange Flare Overlays (#e97b32) */}
-        {/* Left Side (Hero area) */}
-        <div className="absolute top-[50vh] left-[-20vw] w-[40vw] h-[40vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.85)_40%,rgba(233,123,50,0.3)_65%,transparent_85%)] blur-[90px] pointer-events-none z-[100]" />
+        {/* Top Left Corner Glow */}
+        <div className="absolute top-[50vh] left-[-20vw] w-[40vw] h-[40vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.95)_50%,rgba(233,123,50,0.5)_75%,transparent_90%)] blur-[90px] pointer-events-none z-[100]" />
         
         {/* Right Side (Service area junction) */}
-        <div className="absolute top-[200vh] right-[-20vw] w-[40vw] h-[40vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.85)_40%,rgba(233,123,50,0.3)_65%,transparent_85%)] blur-[90px] pointer-events-none z-[100]" />
+        <div className="absolute top-[200vh] right-[-20vw] w-[40vw] h-[40vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.95)_50%,rgba(233,123,50,0.5)_75%,transparent_90%)] blur-[90px] pointer-events-none z-[100]" />
         
         
         {children}
