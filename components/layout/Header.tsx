@@ -91,8 +91,6 @@ export default function Header() {
             children: [
                 { name: 'Servicios', href: '/servicios' },
                 { name: 'Eventos & Talleres', href: '/eventos' },
-                { name: 'Sanando el Linaje', href: '/eventos/sanando-linaje-femenino' },
-                { name: 'Sánate Mujer', href: '/eventos/sanate-mujer' },
             ]
         },
         {
