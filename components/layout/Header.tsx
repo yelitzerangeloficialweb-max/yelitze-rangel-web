@@ -125,13 +125,16 @@ export default function Header() {
         <header
             className={cn(
                 "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-                showScrolled ? "bg-white/95 backdrop-blur-2xl shadow-sm py-4" : "bg-transparent py-6"
+                showScrolled ? "bg-white/95 backdrop-blur-2xl shadow-sm py-2" : "bg-transparent py-6"
             )}
         >
             <div className="container mx-auto px-4 flex items-center justify-between">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-3 group">
-                    <div className="relative w-64 h-24">
+                    <div className={cn(
+                        "relative transition-all duration-500",
+                        showScrolled ? "w-48 h-12" : "w-64 h-24"
+                    )}>
                         <Image
                             src={useDarkText ? "/assets/images/logo-color-scroll.png" : "/assets/images/logo-yelitze-new.png"}
                             alt="Yelitze Rangel Logo"
