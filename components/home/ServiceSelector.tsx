@@ -250,6 +250,8 @@ export default function ServiceSelector() {
                         </Link>
                     </motion.div>
                 </div>
+                {/* Bottom Left Corner Glow - Custom size and position */}
+                <div className="absolute bottom-0 left-[-10vw] w-[25vw] h-[25vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.85)_40%,rgba(233,123,50,0.3)_65%,transparent_85%)] blur-[60px] pointer-events-none z-0" />
             </div>
         </section>
     );
