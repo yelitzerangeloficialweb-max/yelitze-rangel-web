@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function WisdomChest() {
     return (
-        <section className="relative py-32 bg-[#2D2926] overflow-hidden">
+        <section className="relative py-32 bg-white overflow-hidden">
             {/* Minimalist Background - No glows or shapes */}
             
             <div className="container mx-auto px-4 relative z-10 max-w-7xl">
@@ -20,7 +20,7 @@ export default function WisdomChest() {
                         className="lg:w-1/2 space-y-8 text-center lg:text-left order-2 lg:order-1"
                     >
                         <div className="space-y-4">
-                            <span className="text-[10px] md:text-xs font-bold tracking-[0.4em] text-white/40 uppercase">
+                            <span className="text-[10px] md:text-xs font-bold tracking-[0.4em] text-black/40 uppercase">
                                 BIBLIOTERAPIA
                             </span>
                             <h2 className="text-6xl md:text-[7rem] font-script text-[#B8835A] leading-[0.9] drop-shadow-sm tracking-[0.03em]">
@@ -28,7 +28,7 @@ export default function WisdomChest() {
                             </h2>
                         </div>
 
-                        <p className="text-xl md:text-2xl text-white/70 font-body font-light leading-relaxed max-w-md mx-auto lg:mx-0">
+                        <p className="text-xl md:text-2xl text-black/70 font-body font-light leading-relaxed max-w-md mx-auto lg:mx-0">
                             Libros diseñados para ser espejos de tu alma. El conocimiento que buscas ya habita en ti; estos libros solo te ayudan a recordarlo
                         </p>
                     </motion.div>
