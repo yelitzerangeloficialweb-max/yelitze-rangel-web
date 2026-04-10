@@ -6,12 +6,12 @@ import { motion } from "framer-motion";
 export default function WisdomChest() {
     return (
         <section className="relative py-48 bg-white overflow-hidden">
-            {/* Background Organic Shape - Adjusted for full coverage and no cutting */}
+            {/* Background Organic Shape - Updated to v2 */}
             <div 
-                className="absolute inset-0 z-0 scale-y-125 scale-x-125 md:scale-x-115 -translate-y-[2%]"
+                className="absolute inset-0 z-0 scale-y-110 scale-x-125 md:scale-x-115 -translate-y-[2%]"
                 style={{
-                    maskImage: 'url(/images/home_redesign/SVG/curva_inferiro.svg)',
-                    WebkitMaskImage: 'url(/images/home_redesign/SVG/curva_inferiro.svg)',
+                    maskImage: 'url(/images/home_redesign/SVG/curva_inferiro2.svg)',
+                    WebkitMaskImage: 'url(/images/home_redesign/SVG/curva_inferiro2.svg)',
                     maskRepeat: 'no-repeat',
                     WebkitMaskRepeat: 'no-repeat',
                     maskPosition: 'center',
