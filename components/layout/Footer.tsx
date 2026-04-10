@@ -74,7 +74,7 @@ export default function Footer() {
                 </div>
 
                 <div className="pt-8 border-t border-white/10 text-center text-white/40 text-xs">
-                    <p>© {new Date().getFullYear()} Yelitze Rangel. Todos los derechos reservados. | Desarrollado por Kick-Off Development | Diseñado por Digital Marketing DMK</p>
+                    <p>© {new Date().getFullYear()} Yelitze Rangel. Todos los derechos reservados. | Desarrollado por <a href="https://kickoffdevelopment.com/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors underline decoration-white/20 underline-offset-4">Kick-Off Development</a> | Diseñado por Digital Marketing DMK</p>
                 </div>
             </div>
         </footer>

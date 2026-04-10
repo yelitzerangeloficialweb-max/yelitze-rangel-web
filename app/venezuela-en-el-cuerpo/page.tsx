@@ -721,7 +721,7 @@ export default function VenezuelaEnElCuerpoPage() {
 
                 {/* Final Credits */}
                 <div className="container mx-auto px-4 mt-32 border-t border-[#F5EFE6]/5 pt-12 flex flex-col md:flex-row justify-between items-center gap-8 opacity-40">
-                    &copy; 2026 Yelitze Rangel. Todos los derechos reservados. | Desarrollado por Kick-Off Development | Diseñado por Digital Marketing DMK
+                    &copy; 2026 Yelitze Rangel. Todos los derechos reservados. | Desarrollado por <a href="https://kickoffdevelopment.com/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all underline decoration-white/20 underline-offset-4">Kick-Off Development</a> | Diseñado por Digital Marketing DMK
                     <div className="flex gap-8">
                         <Heart className="w-4 h-4" />
                         <Sparkles className="w-4 h-4" />
