@@ -62,8 +62,8 @@ export default function ServiceSelector() {
                 <div 
                     className="absolute inset-0 z-0 origin-bottom scale-y-125 translate-y-[calc(5%+15px)]"
                     style={{
-                        maskImage: 'url(/images/home_redesign/brush-bottom.svg)',
-                        WebkitMaskImage: 'url(/images/home_redesign/brush-bottom.svg)',
+                        maskImage: 'url(/images/home_redesign/SVG/curva_inferiro.svg)',
+                        WebkitMaskImage: 'url(/images/home_redesign/SVG/curva_inferiro.svg)',
                         maskRepeat: 'no-repeat',
                         WebkitMaskRepeat: 'no-repeat',
                         maskPosition: 'bottom center',
