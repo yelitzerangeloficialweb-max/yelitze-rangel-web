@@ -240,8 +240,8 @@ export default function ServiceSelector() {
                 </div>
             </div>
 
-            {/* Right Screen Side Flare - Aligned with Portal 02 edge */}
-            <div className="absolute top-[65%] right-[-20vw] w-[40vw] h-[40vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.95)_50%,rgba(233,123,50,0.5)_75%,transparent_90%)] blur-[90px] pointer-events-none z-0" />
+            {/* Right Screen Side Flare - Aligned with Portal 02 edge - peeking 20% */}
+            <div className="absolute top-[58%] right-[-32vw] w-[40vw] h-[40vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.95)_50%,rgba(233,123,50,0.5)_75%,transparent_90%)] blur-[90px] pointer-events-none z-0" />
 
             {/* Bottom Left Corner Glow - Lowered even more and more intense */}
             <div className="absolute bottom-[-15vh] left-[-12vw] w-[24vw] h-[24vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.95)_50%,rgba(233,123,50,0.5)_75%,transparent_90%)] blur-[70px] pointer-events-none z-20" />
