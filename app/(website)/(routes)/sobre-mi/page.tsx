@@ -250,7 +250,7 @@ export default function AboutPage() {
                         repeat: Infinity,
                         ease: "easeInOut"
                     }}
-                    className="absolute -top-[25%] -left-[25%] w-[80%] h-[80%] bg-[radial-gradient(circle_at_center,#ff9a5c_0%,#ff9a5c_60%,transparent_100%)] blur-[120px] pointer-events-none z-[1]"
+                    className="absolute -top-[15%] -left-[15%] w-[55%] h-[55%] bg-[radial-gradient(circle_at_center,#ff9a5c_0%,#ff9a5c_60%,transparent_100%)] blur-[100px] pointer-events-none z-[1]"
                 />
                 
                 <div className="container mx-auto px-8 lg:px-32 relative z-10">
