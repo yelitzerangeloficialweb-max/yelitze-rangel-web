@@ -190,13 +190,28 @@ export default function ServiceSelector() {
                                     {services[1].description}
                                 </p>
                                 
-                                <div className="pt-10">
+                                <div className="pt-10 flex flex-col items-center lg:items-start gap-8">
                                     <Link
                                         href={services[1].link}
                                         className="inline-block px-14 py-5 bg-[#B8835A] text-white rounded-2xl font-body font-bold tracking-[0.2em] uppercase transition-all hover:scale-105 hover:bg-[#c9956d] shadow-[0_20px_40px_-10px_rgba(184,131,90,0.4)] active:scale-95"
                                     >
                                         {services[1].cta}
                                     </Link>
+
+                                    <motion.div 
+                                        initial={{ opacity: 0, y: 10 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ duration: 0.6, delay: 0.4 }}
+                                    >
+                                        <Link 
+                                            href="/servicios" 
+                                            className="group flex items-center gap-3 text-xs font-body font-bold tracking-[0.4em] uppercase text-text/40 hover:text-[#B8835A] transition-colors"
+                                        >
+                                            VER TODOS LOS SERVICIOS
+                                            <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                                        </Link>
+                                    </motion.div>
                                 </div>
                             </motion.div>
                         </div>
@@ -221,22 +236,7 @@ export default function ServiceSelector() {
                         </div>
                     </div>
 
-                    {/* Ver Todos Los Servicios */}
-                    <motion.div 
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                        className="mt-32 flex justify-center lg:justify-start"
-                    >
-                        <Link 
-                            href="/servicios" 
-                            className="group flex items-center gap-3 text-xs font-bold tracking-[0.4em] uppercase text-text/40 hover:text-[#B8835A] transition-colors"
-                        >
-                            VER TODOS LOS SERVICIOS
-                            <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                        </Link>
-                    </motion.div>
+
                 </div>
             </div>
 
