@@ -30,7 +30,7 @@ export default function NewNewsletter() {
                     className="max-w-4xl mx-auto space-y-12"
                 >
                     <div className="space-y-6">
-                        <h2 className="text-6xl md:text-[8rem] font-script text-white italic leading-[0.7] drop-shadow-lg">
+                        <h2 className="text-6xl md:text-[8rem] font-script text-white leading-[0.8] drop-shadow-lg tracking-[0.03em]">
                             Únete al Círculo
                         </h2>
                         <p className="text-xl md:text-2xl text-white/90 font-body font-light leading-relaxed max-w-2xl mx-auto">

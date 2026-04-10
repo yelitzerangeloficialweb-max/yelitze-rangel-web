@@ -18,7 +18,7 @@ export default function HomeEvents() {
                     <span className="text-xs font-bold font-body tracking-[0.3em] text-secondary uppercase opacity-80">
                         Espacios de Sanación
                     </span>
-                    <h2 className="mt-4 text-4xl md:text-6xl font-script text-accent italic">
+                    <h2 className="mt-4 text-4xl md:text-6xl font-script text-accent tracking-[0.03em]">
                         Próximos Encuentros
                     </h2>
                 </div>

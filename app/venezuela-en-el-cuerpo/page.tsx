@@ -112,7 +112,7 @@ export default function VenezuelaEnElCuerpoPage() {
                         <h2 className="text-2xl md:text-3xl font-body text-[#8C4005] mb-4 font-semibold leading-snug">
                             Tu ansiedad no es el problema, es la solución que tu cuerpo encontró
                         </h2>
-                        <h1 className="text-6xl md:text-8xl lg:text-[7rem] font-script text-[#8C4005] mb-6 leading-none pt-4 tracking-normal font-normal">
+                        <h1 className="text-6xl md:text-8xl lg:text-[7rem] font-script text-[#8C4005] mb-6 leading-[1.1] pt-4 tracking-[0.03em] font-normal">
                             Venezuela en el Cuerpo
                         </h1>
                         <p className="text-[#C1530A] text-lg font-bold mb-6 max-w-xl uppercase tracking-widest">
@@ -521,7 +521,7 @@ export default function VenezuelaEnElCuerpoPage() {
                         <h2 className="text-3xl md:text-5xl font-heading mb-8 font-bold leading-tight">
                             "La transformación social no comienza afuera. Comienza en la biología de cada persona."
                         </h2>
-                        <p className="text-5xl md:text-6xl font-script text-[#F5EFE6]/70 -mt-4 mb-8">— Yelitze Rangel</p>
+                        <p className="text-5xl md:text-6xl font-script text-[#F5EFE6]/70 -mt-4 mb-8 tracking-[0.03em]">— Yelitze Rangel</p>
                         <div className="w-24 h-px bg-[#F5EFE6]/30 mx-auto mb-10" />
                         <p className="text-xl font-light mb-12 max-w-2xl mx-auto">
                             Sella tu compromiso. Ve ahora mismo al perfil de Instagram de Yelitze Rangel, busca la publicación oficial del evento y <strong>comenta tu asistencia</strong>.

@@ -32,7 +32,7 @@ export default function AboutPage() {
                             </span>
                             <h1 className="text-4xl lg:text-6xl font-heading text-black mb-8 leading-[1.1] font-bold">
                                 Donde la mente comprende <br />
-                                <span className="font-script text-3xl lg:text-5xl text-black">el cuerpo y el alma recuerdan.</span>
+                                <span className="font-script text-3xl lg:text-5xl text-black tracking-[0.03em]">el cuerpo y el alma recuerdan.</span>
                             </h1>
                             <div className="space-y-6 max-w-2xl">
                                 <p className="text-xl lg:text-2xl text-gray-800 italic border-l-4 border-[var(--color-secondary)] pl-6 leading-relaxed">
@@ -254,7 +254,7 @@ export default function AboutPage() {
                         {/* Text Content: Left Column */}
                         <div className="space-y-10 order-2 lg:order-1">
                             <FadeIn>
-                                <h2 className="text-4xl lg:text-7xl font-script text-[var(--color-secondary)] mb-8 whitespace-nowrap">
+                                <h2 className="text-4xl lg:text-7xl font-script text-[var(--color-secondary)] mb-8 whitespace-nowrap tracking-[0.03em]">
                                     La experiencia que sostiene
                                 </h2>
                                 
@@ -319,7 +319,7 @@ export default function AboutPage() {
                 <div className="container mx-auto px-8 lg:px-40 relative z-30">
                     <div className="max-w-3xl ml-auto text-center space-y-16 lg:space-y-24">
                         <FadeIn>
-                            <h2 className="text-3xl lg:text-6xl font-script text-white leading-[0.7] lg:leading-[0.6] drop-shadow-md">
+                            <h2 className="text-3xl lg:text-6xl font-script text-white leading-[0.8] drop-shadow-md tracking-[0.03em]">
                                 Cuando el cuerpo <br className="hidden lg:block" /> recuerda, <br />
                                 la vida encuentra <br className="hidden lg:block" /> una nueva dirección.
                             </h2>

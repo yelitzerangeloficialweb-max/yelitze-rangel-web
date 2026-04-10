@@ -54,7 +54,7 @@ export default function ServiceSelector() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="mt-4 text-7xl md:text-[9.5rem] font-script text-[#B8835A] italic leading-tight"
+                        className="mt-4 text-7xl md:text-[9.5rem] font-script text-[#B8835A] leading-tight tracking-[0.03em]"
                     >
                         ¿Cómo quieres comenzar?
                     </motion.h2>
@@ -118,7 +118,7 @@ export default function ServiceSelector() {
                                 <span className="block text-xs font-bold tracking-[0.4em] uppercase text-white/50">
                                     {services[0].tag}
                                 </span>
-                                <h3 className="text-5xl md:text-7xl lg:text-[6.5rem] font-script text-[#B8835A] italic leading-tight lg:whitespace-nowrap drop-shadow-md pb-6">
+                                <h3 className="text-5xl md:text-7xl lg:text-[6.5rem] font-script text-[#B8835A] leading-tight lg:whitespace-nowrap drop-shadow-md pb-6 tracking-[0.03em]">
                                     {services[0].title}
                                 </h3>
                                 <p className="text-xl md:text-2xl font-body font-light leading-relaxed text-white/80 max-w-xl mx-auto lg:mx-0">
@@ -172,7 +172,7 @@ export default function ServiceSelector() {
                                 <span className="block text-xs font-bold tracking-[0.4em] uppercase text-text/40">
                                     {services[1].tag}
                                 </span>
-                                <h3 className="text-6xl md:text-[7rem] font-script text-[#B8835A] italic leading-[0.75] pb-6">
+                                <h3 className="text-6xl md:text-[7rem] font-script text-[#B8835A] leading-[1] pb-6 tracking-[0.03em]">
                                     {services[1].title}
                                 </h3>
                                 <p className="text-xl md:text-2xl font-body font-light leading-relaxed text-text/70 max-w-xl mx-auto lg:mx-0">

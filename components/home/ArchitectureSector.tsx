@@ -40,7 +40,7 @@ export default function ArchitectureSector() {
                                 DIAGNÓSTICO DEL ALMA
                             </span>
                             <div className="space-y-0">
-                                <h2 className="text-5xl md:text-7xl lg:text-[5.5rem] font-script text-[#B8835A] italic leading-[0.8] drop-shadow-sm">
+                                <h2 className="text-5xl md:text-7xl lg:text-[5.5rem] font-script text-[#B8835A] leading-[0.9] drop-shadow-sm tracking-[0.03em]">
                                     Arquitectura de Vida
                                 </h2>
                                 <h3 className="text-4xl md:text-6xl lg:text-[4.5rem] font-medium text-white leading-tight">

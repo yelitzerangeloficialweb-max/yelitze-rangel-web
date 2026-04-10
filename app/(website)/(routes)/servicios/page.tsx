@@ -43,7 +43,7 @@ export default function ServicesPage() {
                                 <h1 className="text-5xl lg:text-8xl font-bold text-white uppercase tracking-tight leading-none">
                                     NO ES MAGIA
                                 </h1>
-                                <p className="font-script text-5xl lg:text-9xl text-white leading-[0.6] lg:leading-[0.5] mt-[-0.1em] lg:mt-[-0.2em]">
+                                <p className="font-script text-5xl lg:text-9xl text-white leading-[0.6] lg:leading-[0.5] mt-[-0.1em] lg:mt-[-0.2em] tracking-[0.03em]">
                                     es alineación
                                 </p>
                             </div>
@@ -90,7 +90,7 @@ export default function ServicesPage() {
                             </p>
 
                             {/* Main Script Heading */}
-                            <h2 className="font-script text-6xl lg:text-9xl text-[var(--color-secondary)] leading-none mb-12">
+                            <h2 className="font-script text-6xl lg:text-9xl text-[var(--color-secondary)] leading-none mb-12 tracking-[0.03em]">
                                 Sesiones Corporales
                             </h2>
 
@@ -131,10 +131,10 @@ export default function ServicesPage() {
                         <span className="text-white/40 text-[10px] lg:text-xs font-bold uppercase tracking-[0.6em] block mb-4">
                             ECOSISTEMA DE EVOLUCIÓN
                         </span>
-                        <h2 className="font-script text-6xl lg:text-[10rem] text-[#b8835a] leading-[0.8] mb-8">
+                        <h2 className="font-script text-6xl lg:text-[9rem] text-[#b8835a] leading-[0.9] mb-8 tracking-[0.03em]">
                             Sabiduría & Legado
                         </h2>
-                        <p className="font-script text-2xl lg:text-4xl text-white/70 leading-relaxed max-w-3xl mx-auto italic">
+                        <p className="font-script text-2xl lg:text-4xl text-white/70 leading-relaxed max-w-3xl mx-auto tracking-[0.03em]">
                             Espacios para sanar en tribu y herramientas para tu propio ritmo.
                         </p>
                     </FadeIn>
@@ -153,7 +153,7 @@ export default function ServicesPage() {
                                     <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-700" />
                                 </Link>
                                 <div className="space-y-6 px-2">
-                                    <h3 className="font-script text-5xl lg:text-7xl text-[#b8835a] leading-none">
+                                    <h3 className="font-script text-5xl lg:text-7xl text-[#b8835a] leading-tight tracking-[0.04em]">
                                         Capacitaciones Grupales
                                     </h3>
                                     <p className="text-white/70 leading-relaxed text-lg lg:text-xl font-light">
@@ -190,7 +190,7 @@ export default function ServicesPage() {
                                     <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-700" />
                                 </Link>
                                 <div className="space-y-6 px-2">
-                                    <h3 className="font-script text-5xl lg:text-7xl text-[#b8835a] leading-none">
+                                    <h3 className="font-script text-5xl lg:text-7xl text-[#b8835a] leading-tight tracking-[0.04em]">
                                         Libros y Recursos
                                     </h3>
                                     <p className="text-white/70 leading-relaxed text-lg lg:text-xl font-light">
@@ -224,7 +224,7 @@ export default function ServicesPage() {
                         <div className="lg:w-3/5 space-y-12 py-24 lg:py-0">
                             <FadeIn>
                                 <div className="space-y-4">
-                                    <span className="font-script text-4xl lg:text-5xl text-[#b8835a] leading-none block">
+                                    <span className="font-script text-4xl lg:text-5xl text-[#b8835a] leading-none block tracking-[0.03em]">
                                         Liderazgo & Origen
                                     </span>
                                     <h2 className="text-4xl lg:text-7xl font-bold text-white leading-[0.9] tracking-tighter uppercase">
@@ -295,7 +295,7 @@ export default function ServicesPage() {
                 <div className="container mx-auto px-8 relative z-20 text-center">
                     <FadeIn>
                         <div className="space-y-6 mb-20 max-w-5xl mx-auto">
-                            <span className="font-script text-7xl lg:text-[11rem] text-white/95 leading-none block drop-shadow-2xl">
+                            <span className="font-script text-7xl lg:text-[10rem] text-white/95 leading-none block drop-shadow-2xl tracking-[0.03em]">
                                 ¿Buscas una solución...
                             </span>
                             <h2 className="text-3xl md:text-6xl lg:text-7xl font-bold text-white uppercase tracking-widest leading-none mt-[-0.2em] drop-shadow-xl">
