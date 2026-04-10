@@ -29,7 +29,7 @@ const services = [
 
 export default function ServiceSelector() {
     return (
-        <section id="como-comenzar" className="relative bg-white pb-32 overflow-visible">
+        <section id="como-comenzar" className="relative bg-white overflow-visible">
             {/* High Level Global Flares for this section */}
             <div className="absolute top-[55%] right-[-32vw] w-[40vw] h-[40vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.95)_50%,rgba(233,123,50,0.5)_75%,transparent_90%)] blur-[90px] pointer-events-none z-[999]" />
 
