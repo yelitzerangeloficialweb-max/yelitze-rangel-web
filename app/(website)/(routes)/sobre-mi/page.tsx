@@ -321,9 +321,9 @@ export default function AboutPage() {
                 </div>
 
                 <div className="container mx-auto px-8 lg:px-32 relative z-30">
-                    <div className="max-w-3xl ml-auto text-center space-y-16 lg:space-y-24 lg:translate-x-24">
+                    <div className="max-w-3xl ml-auto text-center space-y-16 lg:space-y-24 lg:translate-x-24 lg:translate-y-5">
                         <FadeIn>
-                            <h2 className="text-3xl lg:text-6xl font-script text-white leading-[0.8] drop-shadow-md tracking-[0.03em]">
+                            <h2 className="text-4xl lg:text-7xl font-script text-white leading-[0.8] drop-shadow-md tracking-[0.03em]">
                                 Cuando el cuerpo <br className="hidden lg:block" /> recuerda, <br />
                                 la vida encuentra <br className="hidden lg:block" /> una nueva dirección.
                             </h2>
