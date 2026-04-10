@@ -76,7 +76,7 @@ export default function AboutPage() {
                     {/* Right Side: Content Composition */}
                     <div className="flex flex-col justify-center relative py-20 px-8 lg:pr-32 lg:pl-20">
                         {/* Background Watermark Flor (Layered behind text) */}
-                        <div className="absolute top-[35%] right-0 w-[110%] opacity-20 pointer-events-none z-0">
+                        <div className="absolute top-[35%] left-0 w-[75%] opacity-20 pointer-events-none z-0">
                             <Image 
                                 src="/assets/images/watermark-logo.png" 
                                 alt="" 
