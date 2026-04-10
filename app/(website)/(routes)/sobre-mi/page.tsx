@@ -242,17 +242,17 @@ export default function AboutPage() {
                 {/* Animated Portal Blur Flare - Top Left */}
                 <motion.div 
                     animate={{
-                        scale: [1, 1.2, 1],
-                        opacity: [0.15, 0.3, 0.15],
-                        x: [0, 30, 0],
-                        y: [0, -20, 0],
+                        scale: [1, 1.3, 1],
+                        opacity: [0.3, 0.6, 0.3],
+                        x: [0, 50, 0],
+                        y: [0, -30, 0],
                     }}
                     transition={{
-                        duration: 15,
+                        duration: 12,
                         repeat: Infinity,
                         ease: "easeInOut"
                     }}
-                    className="absolute -top-[10%] -left-[10%] w-[60%] h-[60%] bg-[radial-gradient(circle_at_center,#ff9a5c_0%,transparent_70%)] blur-[120px] pointer-events-none z-0" 
+                    className="absolute -top-[15%] -left-[15%] w-[80%] h-[80%] bg-[radial-gradient(circle_at_center,#ff9a5c_0%,#ff9a5c_30%,transparent_70%)] blur-[100px] pointer-events-none z-0" 
                 />
                 
                 <div className="container mx-auto px-8 lg:px-32 relative z-10">
