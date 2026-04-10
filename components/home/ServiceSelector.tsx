@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
-import { WaveDivider } from "@/components/ui/MysticalElements";
 
 
 const services = [
@@ -30,7 +29,7 @@ const services = [
 
 export default function ServiceSelector() {
     return (
-        <section className="relative bg-white">
+        <section className="relative bg-white pb-32">
             {/* Corner Glow Effect */}
             <div className="absolute bottom-0 left-0 w-64 h-64 md:w-[600px] md:h-[600px] pointer-events-none opacity-50 z-0">
                 <Image
@@ -250,9 +249,10 @@ export default function ServiceSelector() {
                         </Link>
                     </motion.div>
                 </div>
-                {/* Bottom Left Corner Glow - Custom size and position */}
-                <div className="absolute bottom-0 left-[-10vw] w-[25vw] h-[25vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.85)_40%,rgba(233,123,50,0.3)_65%,transparent_85%)] blur-[60px] pointer-events-none z-0" />
             </div>
+
+            {/* Bottom Left Corner Glow - Lowered even more to align with the very bottom transition */}
+            <div className="absolute bottom-[-15vh] left-[-10vw] w-[24vw] h-[24vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.85)_40%,rgba(233,123,50,0.3)_65%,transparent_85%)] blur-[70px] pointer-events-none z-20" />
         </section>
     );
 }
