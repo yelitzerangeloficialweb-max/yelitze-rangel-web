@@ -201,8 +201,10 @@ export default function ServiceSelector() {
                             </motion.div>
                         </div>
 
-                        {/* Image Content Right - Rectangular with organic corner */}
-                        <div className="lg:w-1/2 flex justify-center lg:justify-end">
+                        <div className="lg:w-1/2 flex justify-center lg:justify-end relative">
+                            {/* Peeking Orange Flare - 20% visible on the right */}
+                            <div className="absolute top-[15%] -right-[150px] w-[300px] h-[300px] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.95)_50%,rgba(233,123,50,0.5)_75%,transparent_90%)] blur-[80px] pointer-events-none z-0" />
+                            
                             <motion.div
                                 initial={{ scale: 0.9, opacity: 0 }}
                                 whileInView={{ scale: 1, opacity: 1, x: 0 }}
