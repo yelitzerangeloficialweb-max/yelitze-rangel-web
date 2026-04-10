@@ -10,7 +10,7 @@ export default function Footer() {
                     {/* Brand */}
                     <div className="col-span-1 md:col-span-1">
                         <div className="mb-6">
-                            <div className="relative w-48 h-16">
+                            <div className="relative w-60 h-20">
                                 <Image
                                     src="/assets/images/logo-yelitze-new.png"
                                     alt="Yelitze Rangel Logo"

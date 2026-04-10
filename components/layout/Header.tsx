@@ -131,7 +131,7 @@ export default function Header() {
             <div className="container mx-auto px-4 flex items-center justify-between">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-3 group">
-                    <div className="relative w-48 h-20">
+                    <div className="relative w-64 h-24">
                         <Image
                             src={useDarkText ? "/assets/images/logo-color-scroll.png" : "/assets/images/logo-yelitze-new.png"}
                             alt="Yelitze Rangel Logo"

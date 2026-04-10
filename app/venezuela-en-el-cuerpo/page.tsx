@@ -148,7 +148,7 @@ export default function VenezuelaEnElCuerpoPage() {
                             <div className="absolute inset-0 bg-gradient-to-t from-[#2D2926]/40 to-transparent" />
 
                             {/* Logo Overlay */}
-                            <div className="absolute bottom-8 right-8 w-24 h-10 md:w-32 md:h-12 opacity-80 z-20 pointer-events-none">
+                            <div className="absolute bottom-8 right-8 w-28 h-12 md:w-40 md:h-16 opacity-80 z-20 pointer-events-none">
                                 <Image
                                     src="/assets/images/logo-yelitze-new.png"
                                     alt="Yelitze Logo"
@@ -572,7 +572,7 @@ export default function VenezuelaEnElCuerpoPage() {
                                     </div>
                                 </div>
                                 <div className="flex justify-center mt-12 w-full">
-                                    <div className="relative w-64 h-24 opacity-80 hover:opacity-100 transition-opacity">
+                                    <div className="relative w-72 h-32 opacity-80 hover:opacity-100 transition-opacity">
                                         <Image
                                             src="/assets/images/logo-yelitze-new.png"
                                             alt="Yelitze Rangel"
