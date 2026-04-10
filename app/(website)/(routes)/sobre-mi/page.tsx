@@ -30,7 +30,7 @@ export default function AboutPage() {
                             <span className="text-black uppercase tracking-[0.2em] text-sm font-medium mb-6 block">
                                 Sobre Mi
                             </span>
-                            <h1 className="text-4xl lg:text-6xl font-heading text-black mb-8 leading-[1.1] font-bold">
+                            <h1 className="text-4xl lg:text-6xl font-heading text-black mb-8 leading-[1.1] font-medium">
                                 DONDE LA MENTE COMPRENDE <br />
                                 <span className="font-script text-4xl lg:text-6xl text-black tracking-[0.03em]">el cuerpo y el alma recuerdan.</span>
                             </h1>
