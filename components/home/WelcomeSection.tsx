@@ -37,12 +37,12 @@ export default function WelcomeSection() {
                             </p>
                         </div>
 
-                        <div className="pt-6">
+                        <div className="pt-8">
                             <Link
                                 href="/sobre-mi"
-                                className="inline-block px-12 py-4 border border-[#B8835A] text-[#B8835A] rounded-2xl font-body font-bold tracking-widest uppercase transition-all hover:bg-[#B8835A] hover:text-white active:scale-95"
+                                className="inline-block px-14 py-5 text-sm md:text-base font-body font-bold tracking-[0.25em] uppercase border border-[#b7835a] text-[#b7835a] rounded-full hover:bg-[#b7835a] hover:text-white transition-all bg-transparent shadow-xl active:scale-95 group"
                             >
-                                CONOCER MI HISTORIA
+                                CONOCE MI HISTORIA
                             </Link>
                         </div>
                     </motion.div>
