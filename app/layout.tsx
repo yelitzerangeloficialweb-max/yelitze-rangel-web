@@ -80,8 +80,8 @@ export default function RootLayout({
             alt="facebook pixel"
           />
         </noscript>
-        {/* Global Darker Orange/Terracotta Flare Overlay - More saturated and smaller */}
-        <div className="fixed top-[-15%] left-[-20%] w-[55vw] h-[55vw] bg-[radial-gradient(circle_at_center,rgba(193,83,10,1)_0%,rgba(140,64,5,0.7)_30%,rgba(140,64,5,0.3)_55%,transparent_80%)] blur-[120px] pointer-events-none z-[100]" />
+        {/* Global Orange Flare Overlay (#e97b32) - Absolute position to stay at the top corner of the page */}
+        <div className="absolute top-[-180px] left-[-220px] w-[50vw] h-[50vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.5)_35%,transparent_70%)] blur-[110px] pointer-events-none z-[100]" />
         {children}
       </body>
     </html>
