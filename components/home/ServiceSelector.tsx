@@ -34,7 +34,7 @@ export default function ServiceSelector() {
             <div className="absolute top-[55%] right-[-32vw] w-[40vw] h-[40vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.95)_50%,rgba(233,123,50,0.5)_75%,transparent_90%)] blur-[90px] pointer-events-none z-[999]" />
 
             {/* Main Header - Now above the dark section to avoid overlap */}
-            <div className="relative pt-32 pb-12 z-20">
+            <div className="relative pt-[148px] pb-12 z-20">
                 <div className="container mx-auto px-4 text-center">
                     <motion.span 
                         initial={{ opacity: 0, y: 10 }}
