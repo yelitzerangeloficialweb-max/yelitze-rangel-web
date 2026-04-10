@@ -60,7 +60,7 @@ export default function NewHero() {
                     >
                         <Link
                             href="/tests"
-                            className="inline-block px-16 py-6 text-sm md:text-base font-body font-bold tracking-[0.25em] uppercase border border-white/40 text-white rounded-full hover:bg-white hover:text-black transition-all bg-transparent backdrop-blur-md shadow-2xl group"
+                            className="inline-block px-16 py-6 text-sm md:text-base font-body font-bold tracking-[0.25em] uppercase border border-[#b7835a] text-white rounded-full hover:bg-[#b7835a] hover:text-white transition-all bg-transparent backdrop-blur-md shadow-2xl group"
                         >
                             INICIA MI EXPLORACIÓN
                         </Link>
