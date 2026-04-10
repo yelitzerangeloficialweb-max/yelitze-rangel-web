@@ -31,7 +31,7 @@ export default function ServiceSelector() {
     return (
         <section id="como-comenzar" className="relative bg-white overflow-visible">
             {/* High Level Global Flares for this section */}
-            <div className="absolute top-[55%] right-[-32vw] w-[40vw] h-[40vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.95)_50%,rgba(233,123,50,0.5)_75%,transparent_90%)] blur-[180px] pointer-events-none z-[999]" />
+            <div className="absolute top-[55%] right-[-32vw] w-[40vw] h-[40vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,0.95)_0%,rgba(233,123,50,0.95)_60%,transparent_90%)] blur-[180px] pointer-events-none z-[999]" />
 
             {/* Main Header - Now above the dark section to avoid overlap */}
             <div className="relative pt-[220px] pb-12 z-20">
@@ -159,7 +159,7 @@ export default function ServiceSelector() {
                 </div>
                 
                 {/* CSS Based Glow - Bottom Left */}
-                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[radial-gradient(circle_at_bottom_left,_rgba(184,131,90,0.15)_0%,_transparent_70%)] pointer-events-none z-0" />
+                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[radial-gradient(circle_at_bottom_left,_rgba(184,131,90,0.95)_0%,_transparent_75%)] pointer-events-none z-0" />
 
 
                 <div className="container mx-auto px-4 relative max-w-7xl">
@@ -236,7 +236,7 @@ export default function ServiceSelector() {
 
 
             {/* Bottom Left Corner Glow - Lowered even more and more intense */}
-            <div className="absolute bottom-[-15vh] left-[-12vw] w-[24vw] h-[24vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.95)_50%,rgba(233,123,50,0.5)_75%,transparent_90%)] blur-[140px] pointer-events-none z-20" />
+            <div className="absolute bottom-[-15vh] left-[-12vw] w-[24vw] h-[24vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,0.95)_0%,rgba(233,123,50,0.95)_60%,transparent_90%)] blur-[140px] pointer-events-none z-20" />
         </section>
     );
 }

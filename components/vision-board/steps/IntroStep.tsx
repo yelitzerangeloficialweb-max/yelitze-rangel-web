@@ -48,7 +48,7 @@ export default function IntroStep({ onNext }: { onNext: () => void }) {
             {/* 2. THE PHILOSOPHY (Dark Editorial Version) */}
             <section className="grid lg:grid-cols-2 gap-12 items-center bg-[#2D2926] p-10 md:p-24 rounded-[4rem] shadow-2xl relative overflow-hidden group">
                 {/* Subtle Orange Gradient Glow (like the references) */}
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--color-secondary)]/10 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--color-secondary)]/95 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 
                 <div className="space-y-10 relative z-10">
                     <div className="flex items-center gap-4">

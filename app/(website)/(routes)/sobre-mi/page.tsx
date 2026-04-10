@@ -243,7 +243,7 @@ export default function AboutPage() {
                 <motion.div 
                     animate={{
                         scale: [1, 1.15, 1],
-                        opacity: [0.55, 0.95, 0.55],
+                        opacity: [0.85, 0.95, 0.85],
                     }}
                     transition={{
                         duration: 8,

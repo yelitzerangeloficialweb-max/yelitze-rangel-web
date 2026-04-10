@@ -157,8 +157,8 @@ export default function PillarsStep({ data, updatePillar, updatePillarImages, on
     return (
         <div className="max-w-6xl mx-auto px-4 py-8 bg-[#F5EFE6] rounded-[3rem] min-h-[85vh] flex flex-col relative">
             {/* Brand Graphic Elements */}
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#8C4005]/10 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-            <div className="absolute -bottom-24 -left-24 w-[500px] h-[500px] bg-[#B8835A]/5 blur-[120px] rounded-full pointer-events-none" />
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#8C4005]/95 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+            <div className="absolute -bottom-24 -left-24 w-[500px] h-[500px] bg-[#B8835A]/95 blur-[120px] rounded-full pointer-events-none" />
 
 
             {/* Header Section */}
