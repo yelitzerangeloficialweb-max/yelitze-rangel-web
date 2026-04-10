@@ -137,7 +137,7 @@ export default function ServiceSelector() {
                 {/* Decorative Glows */}
                 
                 {/* Animated Subtle Rings - From maintenance page */}
-                <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
                     <motion.div
                         animate={{
                             scale: [1, 1.1, 1],
