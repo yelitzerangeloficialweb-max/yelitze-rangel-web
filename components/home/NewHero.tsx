@@ -44,7 +44,7 @@ export default function NewHero() {
                     </motion.span>
 
                     <div className="space-y-2 md:space-y-0">
-                        <h1 className="text-5xl md:text-[7.5rem] font-sans font-black tracking-[0.02em] leading-none uppercase drop-shadow-2xl">
+                        <h1 className="text-4xl md:text-[60pt] font-sans font-semibold tracking-[0.02em] leading-none uppercase drop-shadow-2xl">
                             DESCUBRE TU HISTORIA
                         </h1>
                         <p className="text-4xl md:text-[5.5rem] font-script text-white/95 italic leading-none drop-shadow-xl -mt-2 md:-mt-4">
