@@ -239,20 +239,18 @@ export default function AboutPage() {
 
             {/* 5. Experience Section (Environmental - Redesigned) */}
             <section className="py-24 lg:py-40 bg-white relative overflow-hidden">
-                {/* Animated Portal Blur Flare - Top Left (Softer) */}
+                {/* Intense Portal Blur Flare - top-left Corner */}
                 <motion.div 
                     animate={{
-                        scale: [1, 1.2, 1],
-                        opacity: [0.15, 0.35, 0.15],
-                        x: [0, 30, 0],
-                        y: [0, -20, 0],
+                        scale: [1, 1.15, 1],
+                        opacity: [0.55, 0.95, 0.55],
                     }}
                     transition={{
-                        duration: 15,
+                        duration: 8,
                         repeat: Infinity,
                         ease: "easeInOut"
                     }}
-                    className="absolute -top-[10%] -left-[10%] w-[70%] h-[70%] bg-[radial-gradient(circle_at_center,#ff9a5c_0%,#ff9a5c_30%,transparent_75%)] blur-[130px] pointer-events-none z-0" 
+                    className="absolute -top-[25%] -left-[25%] w-[80%] h-[80%] bg-[radial-gradient(circle_at_center,#ff9a5c_0%,#ff9a5c_60%,transparent_100%)] blur-[120px] pointer-events-none z-0"
                 />
                 
                 <div className="container mx-auto px-8 lg:px-32 relative z-10">
