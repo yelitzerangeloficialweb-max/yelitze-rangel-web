@@ -222,43 +222,62 @@ export default function TestsHubPage() {
                 </div>
             </section>
 
-            {/* 5. ARQUITECTURA DE VIDA - FULL GALLERY IMMERSION */}
-            <FadeIn delay={0.4} className="mt-60 relative rounded-[5rem] overflow-hidden bg-black shadow-3xl mx-4">
-                {/* Background decoration */}
-                <div className="absolute inset-0 opacity-[0.05] grayscale brightness-200">
-                    <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain scale-125 translate-x-1/4 translate-y-1/4" />
+            {/* 5. ARQUITECTURA DE VIDA - IMMERSIVE PHOTOGRAPHIC SECTION */}
+            <FadeIn delay={0.4} className="mt-60 relative min-h-[800px] flex items-center overflow-hidden bg-[#2D2926] mx-4 rounded-[5rem] shadow-3xl">
+                {/* Background Image Container with Gradient Fade */}
+                <div className="absolute inset-0 z-0">
+                    <div className="relative w-full h-full lg:w-[85%] lg:-left-24">
+                        <Image
+                            src="/images/home_redesign/Web-Yelitze12.png"
+                            alt="Arquitectura de Vida"
+                            fill
+                            className="object-cover object-left opacity-40 lg:opacity-100"
+                            priority
+                        />
+                        {/* Gradient Overlays for smooth blending into dark background */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#2D2926]/40 to-[#2D2926]" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#2D2926] via-transparent to-transparent" />
+                    </div>
                 </div>
 
-                <div className="grid lg:grid-cols-2 items-stretch relative z-10">
-                    <div className="p-16 md:p-24 space-y-10 flex flex-col justify-center">
-                        <span className="text-[var(--color-secondary)] font-bold tracking-[0.5em] uppercase text-xs">Agenda del Alma 2026</span>
-                        <h2 className="text-white text-4xl md:text-7xl font-heading leading-[1.1] italic">
-                            Arquitectura <br />
-                            <span className="text-white/30">Intencional de Vida</span>
-                        </h2>
-                        <p className="text-stone-400 text-xl font-light italic leading-relaxed max-w-lg">
-                            Un viaje de 12 meses diseñado para quienes deciden dejar de sobrevivir y comenzar a co-crear su realidad desde el alma.
-                        </p>
-                        <div className="pt-8">
-                            <Link
-                                href="/arquitectura-de-vida-intencional"
-                                className="btn-premium px-16 py-6 bg-white !text-stone-900 shadow-2xl hover:!bg-stone-100 group gap-6 text-xl"
-                            >
-                                Explorar la Experiencia
-                                <Compass className="w-6 h-6 text-[var(--color-secondary)] group-hover:rotate-45 transition-transform" />
-                            </Link>
+                <div className="container mx-auto px-8 relative z-10 w-full">
+                    <div className="flex flex-col lg:flex-row items-center justify-end">
+                        
+                        {/* Text Area - Aligned to the right */}
+                        <div className="lg:w-3/5 space-y-10 text-center lg:text-left">
+                            <div className="space-y-4">
+                                <span className="text-[10px] md:text-xs font-bold tracking-[0.4em] text-[var(--color-secondary)] uppercase">
+                                    Agenda del Alma 2026
+                                </span>
+                                <div className="space-y-0">
+                                    <h2 className="text-6xl md:text-8xl lg:text-[8rem] font-script text-[#B8835A] leading-[0.85] drop-shadow-sm tracking-[0.03em]">
+                                        Arquitectura de Vida
+                                    </h2>
+                                    <h3 className="text-4xl md:text-6xl lg:text-[6rem] font-heading text-white leading-tight">
+                                        Intencional
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <p className="text-xl md:text-2xl text-white/70 font-body font-light italic leading-relaxed max-w-xl mx-auto lg:mx-0">
+                                Un viaje de 12 meses diseñado para quienes deciden dejar de sobrevivir y comenzar a co-crear su realidad desde el alma.
+                            </p>
+
+                            <div className="pt-8">
+                                <Link
+                                    href="/arquitectura-de-vida-intencional"
+                                    className="inline-flex items-center gap-6 px-14 py-6 bg-[#B8835A] text-white rounded-2xl font-body font-bold tracking-[0.2em] uppercase transition-all hover:scale-105 hover:bg-[#c9956d] shadow-2xl active:scale-95 group text-lg"
+                                >
+                                    Explorar la Experiencia
+                                    <Compass className="w-6 h-6 text-white group-hover:rotate-45 transition-transform" />
+                                </Link>
+                            </div>
                         </div>
                     </div>
-                    <div className="relative min-h-[500px] lg:min-h-full">
-                        <Image
-                            src="/assets/images/circulation-vital.png"
-                            alt="Orden y Propósito"
-                            fill
-                            className="object-cover"
-                        />
-                        <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-stone-950 to-transparent hidden lg:block" />
-                    </div>
                 </div>
+
+                {/* Subtle atmospheric light effect */}
+                <div className="absolute top-1/4 right-[10%] w-96 h-96 bg-[#FF6B00]/95 blur-[120px] rounded-full pointer-events-none opacity-20" />
             </FadeIn>
 
             {/* 6. FINAL QUOTE & CTA */}
