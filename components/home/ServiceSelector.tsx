@@ -29,7 +29,10 @@ const services = [
 
 export default function ServiceSelector() {
     return (
-        <section id="como-comenzar" className="relative bg-white pb-32">
+        <section id="como-comenzar" className="relative bg-white pb-32 overflow-visible">
+            {/* High Level Global Flares for this section */}
+            <div className="absolute top-[55%] right-[-32vw] w-[40vw] h-[40vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.95)_50%,rgba(233,123,50,0.5)_75%,transparent_90%)] blur-[90px] pointer-events-none z-[999]" />
+
             {/* Main Header - Now above the dark section to avoid overlap */}
             <div className="relative pt-32 pb-12 z-20">
                 <div className="container mx-auto px-4 text-center">
@@ -134,7 +137,7 @@ export default function ServiceSelector() {
                 {/* Decorative Glows */}
                 
                 {/* Animated Subtle Rings - From maintenance page */}
-                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute inset-0 pointer-events-none">
                     <motion.div
                         animate={{
                             scale: [1, 1.1, 1],
@@ -230,8 +233,7 @@ export default function ServiceSelector() {
                 </div>
             </div>
 
-            {/* Right Screen Side Flare - Aligned with Portal 02 edge - peeking 20% */}
-            <div className="absolute top-[58%] right-[-32vw] w-[40vw] h-[40vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.95)_50%,rgba(233,123,50,0.5)_75%,transparent_90%)] blur-[90px] pointer-events-none z-[100]" />
+
 
             {/* Bottom Left Corner Glow - Lowered even more and more intense */}
             <div className="absolute bottom-[-15vh] left-[-12vw] w-[24vw] h-[24vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.95)_50%,rgba(233,123,50,0.5)_75%,transparent_90%)] blur-[70px] pointer-events-none z-20" />
