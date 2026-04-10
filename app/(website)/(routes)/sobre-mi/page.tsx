@@ -27,12 +27,12 @@ export default function AboutPage() {
                     {/* Left: Text Content */}
                     <div className="order-2 lg:order-1">
                         <FadeIn>
-                            <span className="text-[var(--color-secondary)] uppercase tracking-[0.2em] text-sm font-medium mb-6 block">
+                            <span className="text-black uppercase tracking-[0.2em] text-sm font-medium mb-6 block">
                                 Sobre Mi
                             </span>
                             <h1 className="text-4xl lg:text-6xl font-heading text-black mb-8 leading-[1.1] font-bold">
-                                Donde la mente comprende <br />
-                                <span className="font-script text-3xl lg:text-5xl text-black tracking-[0.03em]">el cuerpo y el alma recuerdan.</span>
+                                DONDE LA MENTE COMPRENDE <br />
+                                <span className="font-script text-4xl lg:text-6xl text-black tracking-[0.03em]">el cuerpo y el alma recuerdan.</span>
                             </h1>
                             <div className="space-y-6 max-w-2xl">
                                 <p className="text-xl lg:text-2xl text-gray-800 italic border-l-4 border-[var(--color-secondary)] pl-6 leading-relaxed">
