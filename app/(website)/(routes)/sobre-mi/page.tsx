@@ -90,7 +90,7 @@ export default function AboutPage() {
                                 {/* Part A: Mi Historia */}
                                 <div className="space-y-6 text-right">
                                     <FadeIn>
-                                        <span className="text-[var(--color-secondary)] uppercase tracking-[0.2em] text-xs font-bold block mb-2">
+                                        <span className="text-black uppercase tracking-[0.2em] text-xs font-bold block mb-2">
                                             Sobre Mi
                                         </span>
                                         <h2 className="text-5xl lg:text-7xl font-heading font-bold text-primary leading-tight">
