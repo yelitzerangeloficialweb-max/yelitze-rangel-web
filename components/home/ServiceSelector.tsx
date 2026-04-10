@@ -29,16 +29,7 @@ const services = [
 
 export default function ServiceSelector() {
     return (
-        <section className="relative bg-white pb-32">
-            {/* Corner Glow Effect */}
-            <div className="absolute bottom-0 left-0 w-64 h-64 md:w-[600px] md:h-[600px] pointer-events-none opacity-50 z-0">
-                <Image
-                    src="/images/home_redesign/bluer.png"
-                    alt=""
-                    fill
-                    className="object-contain object-left-bottom"
-                />
-            </div>
+        <section id="como-comenzar" className="relative bg-white pb-32">
             {/* Main Header - Now above the dark section to avoid overlap */}
             <div className="relative pt-32 pb-12 z-20">
                 <div className="container mx-auto px-4 text-center">
@@ -139,9 +130,8 @@ export default function ServiceSelector() {
             </div>
 
             {/* PORTAL 02 - LIGHT SECTION */}
-            <div className="relative bg-white pt-48 pb-32 z-10 overflow-hidden">
-                {/* Decorative Lines and Glows */}
-                <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-tr from-white/5 via-transparent to-white/10 pointer-events-none" />
+            <div className="relative bg-white pt-48 pb-32 z-10">
+                {/* Decorative Glows */}
                 
                 {/* Animated Subtle Rings - From maintenance page */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -241,7 +231,7 @@ export default function ServiceSelector() {
             </div>
 
             {/* Right Screen Side Flare - Aligned with Portal 02 edge - peeking 20% */}
-            <div className="absolute top-[58%] right-[-32vw] w-[40vw] h-[40vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.95)_50%,rgba(233,123,50,0.5)_75%,transparent_90%)] blur-[90px] pointer-events-none z-0" />
+            <div className="absolute top-[58%] right-[-32vw] w-[40vw] h-[40vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.95)_50%,rgba(233,123,50,0.5)_75%,transparent_90%)] blur-[90px] pointer-events-none z-[100]" />
 
             {/* Bottom Left Corner Glow - Lowered even more and more intense */}
             <div className="absolute bottom-[-15vh] left-[-12vw] w-[24vw] h-[24vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.95)_50%,rgba(233,123,50,0.5)_75%,transparent_90%)] blur-[70px] pointer-events-none z-20" />
