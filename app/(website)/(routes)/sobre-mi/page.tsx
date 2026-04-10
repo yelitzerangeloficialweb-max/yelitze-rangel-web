@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { MoveRight, Star, Heart, Brain, Anchor, Sparkles } from "lucide-react";
 import TypewriterText from "@/components/ui/TypewriterText";
+import { motion } from "framer-motion";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 
 export default function AboutPage() {
@@ -238,16 +239,21 @@ export default function AboutPage() {
 
             {/* 5. Experience Section (Environmental - Redesigned) */}
             <section className="py-24 lg:py-40 bg-white relative overflow-hidden">
-                {/* Visual Bluer Blur - Top Left */}
-                <div className="absolute top-0 left-0 z-0 opacity-40 pointer-events-none">
-                    <Image
-                        src="/images/home_redesign/bluer.png"
-                        alt=""
-                        width={600}
-                        height={600}
-                        className="w-auto h-auto max-w-full"
-                    />
-                </div>
+                {/* Animated Portal Blur Flare - Top Left */}
+                <motion.div 
+                    animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [0.15, 0.3, 0.15],
+                        x: [0, 30, 0],
+                        y: [0, -20, 0],
+                    }}
+                    transition={{
+                        duration: 15,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                    }}
+                    className="absolute -top-[10%] -left-[10%] w-[60%] h-[60%] bg-[radial-gradient(circle_at_center,#ff9a5c_0%,transparent_70%)] blur-[120px] pointer-events-none z-0" 
+                />
                 
                 <div className="container mx-auto px-8 lg:px-32 relative z-10">
                     <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
