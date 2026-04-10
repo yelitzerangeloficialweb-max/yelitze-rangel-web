@@ -40,7 +40,7 @@ export default function WelcomeSection() {
                         <div className="pt-8">
                             <Link
                                 href="/sobre-mi"
-                                className="inline-block px-14 py-5 text-sm md:text-base font-body font-bold tracking-[0.25em] uppercase border border-[#b7835a] text-[#b7835a] rounded-full hover:bg-[#b7835a] hover:text-white transition-all bg-transparent shadow-xl active:scale-95 group"
+                                className="inline-block px-14 py-5 bg-[#B8835A] text-white rounded-2xl font-body font-bold tracking-[0.25em] uppercase transition-all hover:scale-105 hover:bg-[#c9956d] shadow-2xl active:scale-95"
                             >
                                 CONOCE MI HISTORIA
                             </Link>
