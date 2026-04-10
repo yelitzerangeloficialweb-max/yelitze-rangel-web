@@ -80,8 +80,8 @@ export default function RootLayout({
             alt="facebook pixel"
           />
         </noscript>
-        {/* Global Orange Flare Overlay (#e97b32) - Positioned at 50vh with intensified opacity */}
-        <div className="absolute top-[50vh] left-[-220px] w-[50vw] h-[50vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.8)_40%,rgba(233,123,50,0.3)_65%,transparent_85%)] blur-[100px] pointer-events-none z-[100]" />
+        {/* Global Orange Flare Overlay (#e97b32) - Smaller and half-offscreen for a subtle but intense effect */}
+        <div className="absolute top-[50vh] left-[-20vw] w-[40vw] h-[40vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,1)_0%,rgba(233,123,50,0.85)_40%,rgba(233,123,50,0.3)_65%,transparent_85%)] blur-[90px] pointer-events-none z-[100]" />
         {children}
       </body>
     </html>
