@@ -94,7 +94,7 @@ export default function AboutPage() {
                                         <span className="text-black uppercase tracking-[0.2em] text-xs font-bold block mb-2">
                                             Sobre Mi
                                         </span>
-                                        <h2 className="text-5xl lg:text-7xl font-heading font-bold text-primary leading-tight">
+                                        <h2 className="text-5xl lg:text-7xl font-heading font-bold text-[#cc9966] leading-tight">
                                             Mi Historia
                                         </h2>
                                     </FadeIn>
@@ -130,7 +130,7 @@ export default function AboutPage() {
                                 {/* Part B: Soy Yelitze */}
                                 <div className="space-y-8 text-right">
                                     <FadeIn>
-                                        <h2 className="text-5xl lg:text-8xl font-heading font-bold text-primary leading-none">
+                                        <h2 className="text-5xl lg:text-8xl font-heading font-bold text-[#cc9966] leading-none">
                                             Soy Yelitze
                                         </h2>
                                         <p className="tracking-[0.4em] text-sm font-bold text-gray-400 mt-4">
