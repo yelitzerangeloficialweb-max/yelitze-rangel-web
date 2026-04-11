@@ -12,7 +12,7 @@ export default function ArchitectureSector() {
             <div className="absolute inset-0 top-0 z-0">
                 <div className="relative w-full h-full lg:w-[80%] lg:-left-24">
                     <Image
-                        src="/images/home_redesign/Web-Yelitze12.png"
+                        src="/images/home_redesign/PortadaServicio.png"
                         alt="Arquitectura de Vida"
                         fill
                         className="object-cover object-left"
