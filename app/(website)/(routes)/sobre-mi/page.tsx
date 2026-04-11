@@ -292,7 +292,7 @@ export default function AboutPage() {
             </section>
 
             {/* 6. Closing Principles (Breathtaking Forest Finale with Allison Font) */}
-            <section className="relative min-h-[700px] lg:min-h-[1000px] w-full overflow-hidden flex items-center justify-end">
+            <section className="relative min-h-[700px] lg:min-h-[1000px] w-full overflow-hidden flex items-center justify-end bg-white">
                 {/* Background Image: Forest */}
                 <div className="absolute inset-0 z-0 text-white">
                     <Image
