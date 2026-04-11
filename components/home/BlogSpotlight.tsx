@@ -16,7 +16,7 @@ export default function BlogSpotlight() {
             <div className="container mx-auto px-4 max-w-7xl">
                 <div className="flex flex-col lg:flex-row justify-between items-end mb-20 gap-8">
                     <FadeIn>
-                        <span className="text-secondary font-script text-3xl md:text-4xl mb-4 block tracking-[0.03em]">Letras que Sanan</span>
+                        <span className="text-secondary font-script text-4xl mb-4 block tracking-[0.03em]">Letras que Sanan</span>
                         <h2 className="text-primary text-4xl md:text-6xl font-heading leading-tight italic">
                             Crónicas <br />
                             <span className="opacity-40">del Alma</span>
@@ -25,10 +25,10 @@ export default function BlogSpotlight() {
                     <FadeIn delay={0.2}>
                         <Link
                             href="/blog"
-                            className="inline-flex items-center gap-4 text-primary font-bold font-heading tracking-widest uppercase border-b border-primary/10 pb-4 hover:border-secondary transition-all group"
+                            className="inline-flex items-center gap-4 text-primary font-script text-4xl tracking-normal transition-all group"
                         >
                             Ver toda la Bitácora
-                            <ArrowRight className="w-5 h-5 text-secondary group-hover:translate-x-1 transition-transform" />
+                            <ArrowRight className="w-6 h-6 text-secondary group-hover:translate-x-1 transition-transform" />
                         </Link>
                     </FadeIn>
                 </div>
