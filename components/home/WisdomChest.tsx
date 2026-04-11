@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function WisdomChest() {
     return (
-        <section className="relative py-48 bg-[#F4EFE9] overflow-hidden">
+        <section className="relative py-48 bg-white overflow-hidden">
             {/* Background Organic Shape - Corrected for no bottom cut */}
             <div 
                 className="absolute inset-0 z-0 scale-y-150 scale-x-125 md:scale-x-115 -translate-y-[10%]"
