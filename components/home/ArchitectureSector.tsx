@@ -65,8 +65,6 @@ export default function ArchitectureSector() {
                 </div>
             </div>
 
-            {/* Subtle light effects */}
-            <div className="absolute top-1/4 right-[10%] w-96 h-96 bg-[#ff9a5c]/95 blur-[120px] rounded-full pointer-events-none" />
         </section>
     );
 }

@@ -14,11 +14,8 @@ export default function Home() {
         <main className="relative flex flex-col min-h-screen bg-background text-text overflow-x-clip">
             {/* Home Specific Global Orange Flare Overlays (#e97b32) */}
             {/* Top Left Corner Glow */}
-            <div className="absolute top-[50vh] left-[-20vw] w-[40vw] h-[40vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,0.9)_0%,rgba(233,123,50,0.4)_50%,transparent_80%)] blur-[100px] pointer-events-none z-[50]" />
+            <div className="absolute top-[40vh] left-[-10vw] w-[20vw] h-[20vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,0.6)_0%,rgba(233,123,50,0.2)_50%,transparent_80%)] blur-[60px] pointer-events-none z-[50]" />
             
-            {/* Right Side (Service area junction) */}
-            <div className="absolute top-[200vh] right-[-20vw] w-[40vw] h-[40vw] bg-[radial-gradient(circle_at_center,rgba(233,123,50,0.9)_0%,rgba(233,123,50,0.4)_50%,transparent_80%)] blur-[100px] pointer-events-none z-[50]" />
-
             <NewHero />
             <WelcomeSection />
             <ServiceSelector />
