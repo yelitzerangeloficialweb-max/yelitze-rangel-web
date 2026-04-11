@@ -20,7 +20,7 @@ export default function NewHero() {
                 <div className="absolute inset-0 bg-black/10" />
                 
                 {/* Atmosphere - Intense 95% blur on bottom left */}
-                <div className="absolute -bottom-[20%] -left-[5%] w-[30%] h-[40%] bg-[#FF6B00]/40 blur-[60px] rounded-full pointer-events-none" />
+                <div className="absolute -bottom-[12%] -left-[5%] w-[35%] h-[45%] bg-[#FF6B00]/70 blur-[100px] rounded-full pointer-events-none" />
                 
                 {/* Bottom Seam Overlay */}
                 <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60" />
