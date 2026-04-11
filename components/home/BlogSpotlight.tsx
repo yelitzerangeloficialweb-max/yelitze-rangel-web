@@ -16,7 +16,7 @@ export default function BlogSpotlight() {
             <div className="container mx-auto px-4 max-w-7xl">
                 <div className="flex flex-col lg:flex-row justify-between items-end mb-20 gap-8">
                     <FadeIn>
-                        <span className="text-secondary font-bold font-body tracking-[0.4em] uppercase text-xs mb-4 block">Letras que Sanan</span>
+                        <span className="text-secondary font-script text-3xl md:text-4xl mb-4 block tracking-[0.03em]">Letras que Sanan</span>
                         <h2 className="text-primary text-4xl md:text-6xl font-heading leading-tight italic">
                             Crónicas <br />
                             <span className="opacity-40">del Alma</span>
