@@ -93,7 +93,7 @@ export default function GalleryPage() {
                                 <span className="text-[10px] font-bold tracking-[0.4em] uppercase">Regresar al Origen</span>
                             </Link>
 
-                            <span className="text-[var(--color-secondary)] font-bold tracking-[0.5em] uppercase text-xs mb-6 block">Memoria Sagrada</span>
+                            <span className="text-[var(--color-secondary)] font-script text-3xl md:text-5xl mb-6 block tracking-[0.03em]">Memoria Sagrada</span>
                             <h1 className="text-white text-6xl md:text-9xl font-heading leading-[0.9] italic mb-12">
                                 Bitácora <br />
                                 <span className="opacity-20 pl-20 md:pl-40">Visual</span>
