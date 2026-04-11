@@ -18,7 +18,7 @@ export default function ServicesPage() {
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/images/home_redesign/servicios-hero-v1.png"
+                        src="/images/home_redesign/PortadaServicio.png"
                         alt="Coaching Ancestral - Yelitze Rangel"
                         fill
                         className="object-cover object-center"
