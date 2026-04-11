@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 export default function ArchitectureSector() {
     return (
-        <section className="relative min-h-[850px] flex items-center overflow-hidden bg-[#2D2926] pt-32 pb-32">
+        <section className="relative min-h-[850px] flex items-center overflow-hidden bg-white pt-32 pb-32">
             {/* Background Image Container with Gradient Fade */}
             <div className="absolute inset-0 top-0 z-0">
                 <div className="relative w-full h-full lg:w-[80%] lg:-left-24">
@@ -15,12 +15,12 @@ export default function ArchitectureSector() {
                         src="/images/home_redesign/Web-Yelitze12.png"
                         alt="Arquitectura de Vida"
                         fill
-                        className="object-cover object-left opacity-30 lg:opacity-100"
+                        className="object-cover object-left"
                         priority
                     />
-                    {/* Gradient Overlays for smooth blending into dark background */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#2D2926]/40 to-[#2D2926]" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#2D2926] via-transparent to-transparent" />
+                    {/* Gradient Overlays for smooth blending into white */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-white" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
                 </div>
             </div>
 
@@ -36,20 +36,20 @@ export default function ArchitectureSector() {
                         className="lg:w-1/2 space-y-8 text-center lg:text-left"
                     >
                         <div className="space-y-2">
-                            <span className="text-[10px] md:text-xs font-bold tracking-[0.4em] text-white/40 uppercase">
+                            <span className="text-[10px] md:text-xs font-bold tracking-[0.4em] text-[#2D2926]/50 uppercase">
                                 DIAGNÓSTICO DEL ALMA
                             </span>
                             <div className="space-y-0">
                                 <h2 className="text-5xl md:text-7xl lg:text-[5.5rem] font-script text-[#B8835A] leading-[0.9] drop-shadow-sm tracking-[0.03em]">
                                     Arquitectura de Vida
                                 </h2>
-                                <h3 className="text-4xl md:text-6xl lg:text-[4.5rem] font-medium text-white leading-tight">
+                                <h3 className="text-4xl md:text-6xl lg:text-[4.5rem] font-medium text-[#2D2926] leading-tight">
                                     Intencional
                                 </h3>
                             </div>
                         </div>
 
-                        <p className="text-lg md:text-xl text-white/70 font-body font-light leading-relaxed max-w-xl mx-auto lg:mx-0">
+                        <p className="text-lg md:text-xl text-[#2D2926]/80 font-body font-light leading-relaxed max-w-xl mx-auto lg:mx-0">
                             Un viaje diseñado para quienes deciden dejar de sobrevivir y comenzar a co-crear su realidad desde el alma. Descubre si estás listo para este movimiento
                         </p>
 
