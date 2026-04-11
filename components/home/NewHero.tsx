@@ -6,9 +6,10 @@ import { motion } from "framer-motion";
 
 export default function NewHero() {
     return (
-        <section className="relative h-[95vh] min-h-[750px] flex items-center justify-center overflow-hidden bg-[#2D2926]">
-            {/* Background Image with Premium Overlays */}
-            <div className="absolute inset-0 z-0">
+        <section className="relative h-[95vh] min-h-[750px] flex items-center justify-center bg-[#2D2926] z-20">
+            {/* We add z-20 here so this entire section stacks above the WelcomeSection below it */}
+            {/* Background Image with Premium Overlays - Clips the image but allows elements outside to spill */}
+            <div className="absolute inset-0 z-0 overflow-hidden">
                 <Image
                     src="/assets/images/hero/hero-fusion-group.jpg"
                     alt="Ancestral Background"
@@ -19,12 +20,12 @@ export default function NewHero() {
                 {/* Global Overlays - Softer for more visibility */}
                 <div className="absolute inset-0 bg-black/10" />
                 
-                {/* Atmosphere - Intense 95% blur on bottom left */}
-                <div className="absolute -bottom-[10%] -left-[15%] w-[60%] h-[70%] bg-[#FF6B00]/95 blur-[200px] rounded-full pointer-events-none" />
-                
                 {/* Bottom Seam Overlay */}
                 <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60" />
             </div>
+
+            {/* Atmosphere - Intense 95% blur on bottom left (Moved outside the overflow-hidden container so it spills to the next section) */}
+            <div className="absolute -bottom-[20%] -left-[15%] w-[60%] h-[70%] bg-[#FF6B00]/95 blur-[200px] rounded-full pointer-events-none" />
 
             {/* Content Container */}
             <div className="container mx-auto px-4 relative z-10 text-center text-white">
