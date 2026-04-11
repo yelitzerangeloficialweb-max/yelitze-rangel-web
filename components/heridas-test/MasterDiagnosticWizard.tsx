@@ -122,7 +122,7 @@ export default function MasterDiagnosticWizard() {
                         <StepLanding
                             onNext={() => nextStep('CONTAINMENT')}
                             title="Diagnóstico Ancestral Completo"
-                            subtitle="Un viaje integral por tus relaciones, tus heridas somáticas y tu linaje femenino.\nDetecta las lealtades invisibles que detienen tu poder."
+                            subtitle={`Un viaje integral por tus relaciones, tus heridas somáticas y tu linaje femenino.\nDetecta las lealtades invisibles que detienen tu poder.`}
                             image="/assets/images/tests/test_femeninas.png"
                         />
                     )}
