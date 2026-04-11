@@ -30,8 +30,8 @@ const services = [
 export default function ServiceSelector() {
     return (
         <section id="como-comenzar" className="relative bg-white overflow-visible">
-            {/* High Level Global Flares for this section */}
-            <div className="absolute top-[55%] right-[-32vw] w-[40vw] h-[40vw] bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.95)_0%,rgba(255,107,0,0.95)_60%,transparent_90%)] blur-[180px] pointer-events-none z-[999]" />
+            {/* High Level Global Flares for this section - Intense side glow as shown in the photo */}
+            <div className="absolute top-[15%] right-[-15vw] w-[60vw] h-[60vw] bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.85)_0%,rgba(255,107,0,0.4)_60%,transparent_90%)] blur-[200px] pointer-events-none z-10" />
 
             {/* Main Header - Now above the dark section to avoid overlap */}
             <div className="relative pt-[220px] pb-12 z-20">
