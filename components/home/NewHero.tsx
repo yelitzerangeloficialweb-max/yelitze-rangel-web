@@ -19,6 +19,9 @@ export default function NewHero() {
                 {/* Global Overlays - Softer for more visibility */}
                 <div className="absolute inset-0 bg-black/10" />
                 
+                {/* Atmosphere - Intense 95% blur on bottom left */}
+                <div className="absolute -bottom-[10%] -left-[15%] w-[60%] h-[70%] bg-[#FF6B00]/95 blur-[200px] rounded-full pointer-events-none" />
+                
                 {/* Bottom Seam Overlay */}
                 <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60" />
             </div>
@@ -95,9 +98,6 @@ export default function NewHero() {
                     }} 
                 />
             </div>
-
-            {/* Atmosphere - Intense 95% blur on bottom left (Moved to top layer) */}
-            <div className="absolute -bottom-[18%] -left-[5%] w-[35%] h-[45%] bg-[#FF6B00]/95 blur-[60px] rounded-full pointer-events-none z-50" />
         </section>
     );
 }
