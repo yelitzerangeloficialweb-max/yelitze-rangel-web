@@ -65,8 +65,9 @@ export default function ArchitectureSector() {
                 </div>
             </div>
 
-            {/* Subtle light effects */}
-            <div className="absolute top-1/4 right-[10%] w-96 h-96 bg-[#ff9a5c]/10 blur-[120px] rounded-full pointer-events-none" />
+            {/* Atmospheric Orange Flares - Symmetrical balance for the transition */}
+            <div className="absolute top-[5%] left-[-15vw] w-[35vw] h-[35vw] bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.85)_0%,transparent_80%)] blur-[140px] pointer-events-none z-10" />
+            <div className="absolute top-[15%] right-[-15vw] w-[35vw] h-[35vw] bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.85)_0%,transparent_80%)] blur-[140px] pointer-events-none z-10" />
         </section>
     );
 }
