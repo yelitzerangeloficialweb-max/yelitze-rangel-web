@@ -212,22 +212,45 @@ export default function BlogPage() {
                 </div>
             </section>
 
-            {/* FINAL CTA: RESERVAS */}
-            <section className="py-24 bg-white">
-                <div className="container mx-auto px-4 text-center">
+            {/* FINAL CTA: PREMIUM EXPERIENCE */}
+            <section className="relative py-40 px-6 overflow-hidden group">
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="/images/Imagenes-Reediseno/sesion-espiritual.jpg"
+                        alt="Final CTA Background"
+                        fill
+                        className="object-cover scale-105 group-hover:scale-110 transition-transform duration-[3000ms]"
+                    />
+                    <div className="absolute inset-0 bg-black/80" />
+                </div>
+
+                <div className="container mx-auto px-4 relative z-10 text-center max-w-4xl">
                     <FadeIn>
-                        <h2 className="text-3xl md:text-5xl font-heading text-[var(--color-primary)] mb-12 italic">¿Sientes el llamado a profundizar?</h2>
-                        <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+                        <span className="font-script text-white text-4xl md:text-5xl mb-6 block drop-shadow-lg">
+                            ¿Sientes el llamado a profundizar?
+                        </span>
+                        
+                        <h2 className="text-white text-5xl md:text-8xl font-heading mb-8 uppercase tracking-tight leading-none">
+                            Tu Proceso <br /> <span className="text-[var(--color-secondary)]">Empieza Aquí</span>
+                        </h2>
+
+                        <div className="w-24 h-px bg-[var(--color-secondary)] mx-auto mb-10" />
+
+                        <p className="text-stone-300 text-xl font-light italic mb-16 max-w-2xl mx-auto leading-relaxed">
+                            Únete a nuestros círculos sagrados o inicia tu proceso individual. La bitácora sigue creciendo con cada alma que despierta.
+                        </p>
+
+                        <div className="flex flex-col sm:flex-row gap-8 justify-center items-center">
                             <Link
                                 href="/servicios"
-                                className="btn-premium px-12 py-5 text-xl"
+                                className="btn-premium px-12 py-5 shadow-2xl group min-w-[280px]"
                             >
                                 Sesiones Individuales
-                                <ArrowRight className="w-5 h-5" />
+                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </Link>
                             <Link
                                 href="/eventos"
-                                className="px-12 py-5 rounded-full border border-stone-200 text-stone-600 hover:bg-stone-50 transition-colors text-xl font-medium"
+                                className="px-12 py-5 rounded-full border border-white/20 text-white hover:bg-white/10 transition-all font-bold tracking-widest uppercase text-xs backdrop-blur-sm min-w-[280px]"
                             >
                                 Ver Próximos Eventos
                             </Link>
