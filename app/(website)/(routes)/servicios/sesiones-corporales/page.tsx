@@ -115,8 +115,8 @@ export default function SesionesCorporalesPage() {
                     <div 
                         className="absolute inset-0"
                         style={{
-                            WebkitMaskImage: 'url(/images/home_redesign/SVG/Fondo_GotasSabiduria.svg)',
-                            maskImage: 'url(/images/home_redesign/SVG/Fondo_GotasSabiduria.svg)',
+                            WebkitMaskImage: 'url(/images/home_redesign/SVG/Fondo_GotasSabiduria-2.svg)',
+                            maskImage: 'url(/images/home_redesign/SVG/Fondo_GotasSabiduria-2.svg)',
                             WebkitMaskRepeat: 'no-repeat',
                             maskRepeat: 'no-repeat',
                             WebkitMaskPosition: 'center',
