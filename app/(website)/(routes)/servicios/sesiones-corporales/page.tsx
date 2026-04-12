@@ -31,11 +31,8 @@ export default function SesionesCorporalesPage() {
                         </span>
 
                         {/* Title */}
-                        <h1 className="text-6xl lg:text-[7rem] font-bold text-white mb-2 leading-none tracking-tight uppercase">
-                            Reconexión
-                        </h1>
-                        <h1 className="text-6xl lg:text-[7rem] font-bold text-white mb-10 leading-none tracking-tight uppercase">
-                            Integral
+                        <h1 className="text-4xl md:text-6xl lg:text-[7rem] font-bold text-white mb-10 leading-none tracking-tight uppercase">
+                            Reconexión Integral
                         </h1>
 
                         {/* Subtitle */}
