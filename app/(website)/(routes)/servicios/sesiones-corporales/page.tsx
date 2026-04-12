@@ -489,7 +489,7 @@ export default function SesionesCorporalesPage() {
                         className="object-cover transition-transform duration-[3000ms] group-hover:scale-110"
                         quality={90}
                     />
-                    <div className="absolute inset-0 bg-black/72" />
+                    <div className="absolute inset-0 bg-black/80" />
                 </div>
 
                 <div className="container mx-auto max-w-7xl text-center relative z-10">
