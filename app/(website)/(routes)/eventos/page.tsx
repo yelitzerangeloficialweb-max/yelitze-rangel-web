@@ -20,7 +20,7 @@ export default function EventsPage() {
 
     return (
         <main className="min-h-screen selection:bg-[var(--color-secondary)] selection:text-white bg-black">
-            <section className="relative min-h-[90vh] lg:min-h-screen flex items-center overflow-hidden bg-white pt-0">
+            <section className="relative min-h-[90vh] lg:min-h-screen flex items-center overflow-hidden bg-[#cccccc] pt-0">
                 {/* Full Cinematic Asset as Background */}
                 <div className="absolute inset-0 z-0">
                     <Image
@@ -30,14 +30,8 @@ export default function EventsPage() {
                         className="object-cover"
                         priority
                     />
-                    {/* Bottom Brush Stroke Effect - Blending with the section below */}
-                    <div className="absolute bottom-0 left-0 w-full h-[20%] z-10 pointer-events-none" 
-                         style={{ 
-                            background: 'linear-gradient(to top, #cccccc, transparent)',
-                            maskImage: 'radial-gradient(ellipse at 50% 100%, black 0%, transparent 80%)',
-                            WebkitMaskImage: 'radial-gradient(ellipse at 50% 100%, black 0%, transparent 80%)'
-                         }} 
-                    />
+                    {/* Bottom Soft Blend - Blending evenly into the section below */}
+                    <div className="absolute bottom-0 left-0 w-full h-[30%] z-10 pointer-events-none bg-gradient-to-t from-[#cccccc] via-[#cccccc]/80 to-transparent" />
                 </div>
 
                 <div className="container mx-auto px-8 lg:px-40 relative z-20">
