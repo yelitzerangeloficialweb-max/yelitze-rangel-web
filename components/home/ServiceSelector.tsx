@@ -34,7 +34,7 @@ export default function ServiceSelector() {
             <div className="absolute top-[-8vh] right-[-15vw] w-[35vw] h-[35vw] bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.95)_0%,rgba(255,107,0,0.85)_50%,transparent_90%)] blur-[140px] pointer-events-none z-[9999]" />
 
             {/* Main Header - Now above the dark section to avoid overlap */}
-            <div className="relative pt-24 pb-12 md:pt-[220px] z-20">
+            <div className="relative pt-16 pb-12 md:pt-28 z-20">
                 <div className="container mx-auto px-4 text-center">
                     <motion.span
                         initial={{ opacity: 0, y: 10 }}
@@ -57,7 +57,7 @@ export default function ServiceSelector() {
 
 
             {/* PORTAL 01 - WHITE SECTION WITH BRUSH BACKGROUND */}
-            <div className="relative bg-white pt-20 pb-40 md:pt-40 md:pb-64 z-20 mt-16">
+            <div className="relative bg-white pt-20 pb-40 md:pt-40 md:pb-64 z-20 mt-6">
                 {/* Huge Brush Shape Background */}
                 <div
                     className="absolute inset-0 z-0 origin-bottom scale-y-125 translate-y-[calc(5%+15px)]"
