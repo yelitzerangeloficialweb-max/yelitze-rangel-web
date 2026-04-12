@@ -356,7 +356,7 @@ export default function SesionesCorporalesPage() {
                             <span className="text-white/40 font-guide font-bold tracking-[0.4em] uppercase text-[10px] block mb-5">
                                 Santuario de Sanación
                             </span>
-                            <h2 className="text-5xl md:text-7xl font-script text-[#B8835A] mb-8 leading-none">
+                            <h2 className="text-6xl md:text-7xl font-script text-[#B8835A] mb-8 leading-none">
                                 Liberación de Traumas
                             </h2>
                             <p className="text-white italic text-lg leading-relaxed mb-10">
