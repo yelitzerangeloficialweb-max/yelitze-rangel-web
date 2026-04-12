@@ -31,7 +31,7 @@ export default function ServiceSelector() {
     return (
         <section id="como-comenzar" className="relative bg-white overflow-visible">
             {/* High Level Global Flares for this section - Targets the Title area */}
-            <div className="absolute top-[-5vh] right-[-15vw] w-[35vw] h-[35vw] bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.95)_0%,rgba(255,107,0,0.85)_50%,transparent_90%)] blur-[140px] pointer-events-none z-[9999]" />
+            <div className="absolute top-[-8vh] right-[-15vw] w-[35vw] h-[35vw] bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.95)_0%,rgba(255,107,0,0.85)_50%,transparent_90%)] blur-[140px] pointer-events-none z-[9999]" />
 
             {/* Main Header - Now above the dark section to avoid overlap */}
             <div className="relative pt-24 pb-12 md:pt-[220px] z-20">
