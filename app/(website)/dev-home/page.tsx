@@ -57,7 +57,7 @@ export default function HomePage() {
                 </h2>
                 <div className="w-24 h-px bg-[var(--color-secondary)]/30 mx-auto lg:mx-0 mb-10" />
                 <p className="text-lg md:text-xl text-stone-400 font-light leading-relaxed max-w-xl mx-auto lg:mx-0 mb-8">
-                  Soy <strong>Yelitzé Rangel</strong>. Acompaño a personas valientes a mirar con amor su historia familiar, para liberar cargas que no les pertenecen y tomar la fuerza de sus ancestros.
+                  Soy Yelitzé Rangel. Acompaño a personas valientes a mirar con amor su historia familiar, para liberar cargas que no les pertenecen y tomar la fuerza de sus ancestros.
                 </p>
                 <p className="text-lg md:text-xl text-stone-400 font-light leading-relaxed max-w-xl mx-auto lg:mx-0 mb-8">
                   Durante años he integrado la Psicología, la Tanatología y las Constelaciones Familiares para crear un método que no solo se queda en la mente, sino que baja al corazón y al cuerpo.

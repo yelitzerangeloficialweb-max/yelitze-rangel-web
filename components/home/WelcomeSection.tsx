@@ -26,7 +26,7 @@ export default function WelcomeSection() {
                             </h2>
                         </div>
 
-                        <div className="space-y-6 text-xl md:text-2xl text-text/90 leading-relaxed font-body font-semibold max-w-xl mx-auto lg:mx-0">
+                        <div className="space-y-6 text-xl md:text-2xl text-text/90 leading-relaxed font-body max-w-xl mx-auto lg:mx-0">
                             <p>
                                 Soy Yelitzé Rangel. Acompaño a personas valientes a mirar con amor su historia familiar, 
                                 para liberar cargas que no les pertenecen y tomar la fuerza de sus ancestros.
