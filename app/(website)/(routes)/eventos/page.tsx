@@ -76,7 +76,7 @@ export default function EventsPage() {
             </section>
 
             {/* 2. FILTERS & AGENDA (Organic & Soft Design) */}
-            <section id="agenda" className="py-24 px-4 relative overflow-hidden bg-[#e0ddd8]">
+            <section id="agenda" className="py-24 px-4 relative overflow-hidden bg-[#cccccc]">
                 {/* Background Decor */}
                 <div className="absolute inset-0 z-0">
                     <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_rgba(224,159,106,0.3),_transparent_70%)]" />
