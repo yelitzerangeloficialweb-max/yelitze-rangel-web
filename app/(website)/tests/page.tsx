@@ -114,8 +114,8 @@ export default function TestsHubPage() {
 
                             <span className="text-[var(--color-secondary)] font-script text-3xl md:text-5xl mb-6 block tracking-[0.03em]">Alquimia Interior</span>
                             <h1 className="text-white text-6xl md:text-9xl font-heading leading-[0.9] italic mb-12 text-balance">
-                                Portales <br />
-                                <span className="opacity-20 pl-20 md:pl-40 block">de Autoconocimiento</span>
+                                Portales de <br />
+                                <span className="opacity-20 pl-20 md:pl-40 block">Autoconocimiento</span>
                             </h1>
 
                             <div className="flex flex-col md:flex-row gap-12 items-start md:items-center">
