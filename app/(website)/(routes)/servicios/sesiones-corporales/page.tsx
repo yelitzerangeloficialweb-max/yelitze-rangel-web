@@ -134,7 +134,7 @@ export default function SesionesCorporalesPage() {
                                 <span className="text-white/60 font-guide font-bold tracking-[0.4em] uppercase text-[10px] block mb-4">
                                     Medicina Ayurveda
                                 </span>
-                                <h3 className="text-6xl lg:text-[7.5rem] font-editorial italic text-[#B8835A] leading-none mb-8 drop-shadow-xl">
+                                <h3 className="text-6xl lg:text-[7.5rem] font-heading font-semibold italic text-[#B8835A] leading-none mb-8 drop-shadow-xl">
                                     Gotas de Sabiduría
                                 </h3>
                                 <p className="text-white font-editorial italic text-xl leading-relaxed max-w-md drop-shadow-sm">
