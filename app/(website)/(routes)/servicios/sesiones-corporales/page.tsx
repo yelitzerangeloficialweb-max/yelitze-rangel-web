@@ -39,8 +39,8 @@ export default function SesionesCorporalesPage() {
                         </h1>
 
                         {/* Subtitle */}
-                        <p className="text-5xl md:text-8xl font-script text-white mb-20 max-w-5xl mx-auto leading-tight">
-                            El lenguaje existencial que habita<br className="hidden md:block" /> en el santuario de tu alma
+                        <p className="text-5xl md:text-8xl font-script text-white mb-20 max-w-none mx-auto leading-tight">
+                            El lenguaje existencial que habita en el santuario de tu alma
                         </p>
 
                         {/* CTAs */}
