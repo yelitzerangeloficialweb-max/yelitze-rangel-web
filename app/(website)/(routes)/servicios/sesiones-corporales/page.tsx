@@ -65,7 +65,7 @@ export default function SesionesCorporalesPage() {
             </section>
 
             {/* ─── 2. FILOSOFÍA (REDESIGN) ─────────────────────────────────── */}
-            <section className="py-28 px-6 bg-[#333333] relative overflow-hidden">
+            <section className="py-28 px-6 bg-[#333333] relative">
                 {/* Atmospheric Glow */}
                 <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#B8835A]/10 rounded-full blur-[140px] pointer-events-none" />
                 
@@ -107,10 +107,10 @@ export default function SesionesCorporalesPage() {
             </section>
 
             {/* ─── 3. GOTAS DE SABIDURÍA (REDESIGN) ───────────────────────── */}
-            <section className="py-28 px-6 bg-[#333333] relative overflow-hidden">
-                {/* Background Decor: Large Sweep Watermark */}
+            <section className="py-28 px-6 bg-[#333333] relative">
+                {/* Background Decor: Large Sweep Watermark (Bleeding) */}
                 <div 
-                    className="absolute inset-0 z-0 pointer-events-none opacity-40"
+                    className="absolute -top-56 -bottom-56 left-0 right-0 z-0 pointer-events-none opacity-40"
                 >
                     <div 
                         className="absolute inset-0"
@@ -121,15 +121,15 @@ export default function SesionesCorporalesPage() {
                             maskRepeat: 'no-repeat',
                             WebkitMaskPosition: 'center',
                             maskPosition: 'center',
-                            WebkitMaskSize: '100% auto',
-                            maskSize: '100% auto',
+                            WebkitMaskSize: 'cover',
+                            maskSize: 'cover',
                             backgroundColor: '#594d40'
                         }}
                     />
                 </div>
 
-                {/* Boundary Shadow (Top) */}
-                <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/20 to-transparent pointer-events-none z-20" />
+                {/* Boundary Shadow (Top) - Adjusted for bleed visibility */}
+                <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/10 to-transparent pointer-events-none z-20" />
 
                 <div className="container mx-auto max-w-6xl relative z-10">
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -192,7 +192,7 @@ export default function SesionesCorporalesPage() {
             </section>
 
             {/* ─── 4. SINCRONÍA ANCESTRAL (REDESIGN) ────────────────────────── */}
-            <section className="py-28 px-6 bg-[#333333] relative overflow-hidden">
+            <section className="py-28 px-6 bg-[#333333] relative">
                 {/* Subtle Copper Blur */}
                 <div className="absolute -bottom-48 -left-48 w-[600px] h-[600px] bg-[#B8835A]/10 rounded-full blur-[140px] pointer-events-none" />
 
