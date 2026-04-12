@@ -65,7 +65,7 @@ export default function SesionesCorporalesPage() {
             </section>
 
             {/* ─── 2. FILOSOFÍA (REDESIGN) ─────────────────────────────────── */}
-            <section className="py-28 px-6 bg-[#333333] relative">
+            <section className="py-28 px-6 relative">
                 {/* Atmospheric Glow */}
                 <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#B8835A]/10 rounded-full blur-[140px] pointer-events-none" />
                 
@@ -104,7 +104,7 @@ export default function SesionesCorporalesPage() {
             </section>
 
             {/* ─── 3. GOTAS DE SABIDURÍA (REDESIGN) ───────────────────────── */}
-            <section className="py-28 px-6 bg-[#333333] relative">
+            <section className="py-28 px-6 relative">
                 {/* Background Decor: Large Sweep Watermark (Bleeding) */}
                 <div 
                     className="absolute -top-[60%] -bottom-[60%] left-0 right-0 z-0 pointer-events-none opacity-40"
@@ -186,7 +186,7 @@ export default function SesionesCorporalesPage() {
             </section>
 
             {/* ─── 4. SINCRONÍA ANCESTRAL (REDESIGN) ────────────────────────── */}
-            <section className="py-28 px-6 bg-[#333333] relative">
+            <section className="py-28 px-6 relative">
                 {/* Subtle Copper Blur */}
                 <div className="absolute -bottom-48 -left-48 w-[600px] h-[600px] bg-[#B8835A]/10 rounded-full blur-[140px] pointer-events-none" />
 
@@ -251,7 +251,7 @@ export default function SesionesCorporalesPage() {
             </section>
 
             {/* ─── 5. EL LENGUAJE MÁS ANTIGUO (REDESIGN) ─────────────────────── */}
-            <section className="py-28 px-6 bg-[#333333] relative">
+            <section className="py-28 px-6 relative">
                 {/* Atmospheric Blur */}
                 <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#B8835A]/10 rounded-full blur-[140px] pointer-events-none" />
 
@@ -331,7 +331,7 @@ export default function SesionesCorporalesPage() {
             </section>
 
             {/* ─── 6. LIBERACIÓN DE TRAUMAS (REDESIGN) ─────────────────────── */}
-            <section className="py-28 px-6 bg-[#333333] relative">
+            <section className="py-28 px-6 relative">
                 {/* Decorative Blurs */}
                 <div className="absolute -top-24 -left-24 w-[500px] h-[500px] bg-[#B8835A]/10 rounded-full blur-[120px] pointer-events-none" />
                 <div className="absolute -bottom-24 -right-24 w-[400px] h-[400px] bg-[#B8835A]/15 rounded-full blur-[100px] pointer-events-none" />
