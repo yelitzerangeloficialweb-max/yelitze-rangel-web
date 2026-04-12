@@ -7,7 +7,7 @@ import { FadeIn } from "@/components/ui/motion";
 
 export default function SesionesCorporalesPage() {
     return (
-        <main className="bg-black text-white">
+        <main className="bg-[#333333] text-white">
 
             {/* ─── 1. HERO ──────────────────────────────────────────────────── */}
             <section className="relative min-h-screen flex items-center justify-center pt-24 pb-20 overflow-hidden group">
@@ -69,9 +69,6 @@ export default function SesionesCorporalesPage() {
                 {/* Atmospheric Glow */}
                 <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#B8835A]/10 rounded-full blur-[140px] pointer-events-none" />
                 
-                {/* Boundary Shadow (Bottom) */}
-                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/30 to-transparent pointer-events-none z-20" />
-
                 <div className="container mx-auto max-w-6xl relative z-10">
                     <FadeIn className="text-center mb-20">
                         <span className="text-white/40 font-guide font-bold tracking-[0.4em] uppercase text-[10px] block mb-6">
@@ -127,9 +124,6 @@ export default function SesionesCorporalesPage() {
                         }}
                     />
                 </div>
-
-                {/* Boundary Shadow (Top) - Adjusted for bleed visibility */}
-                <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/10 to-transparent pointer-events-none z-20" />
 
                 <div className="container mx-auto max-w-6xl relative z-10">
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -402,7 +396,7 @@ export default function SesionesCorporalesPage() {
             </section>
 
             {/* ─── 7. TANTRA SISTÉMICO (REDESIGN) ────────────────────────────── */}
-            <section className="relative min-h-screen lg:min-h-[100vh] flex items-center overflow-hidden bg-black px-6">
+            <section className="relative min-h-screen lg:min-h-[100vh] flex items-center overflow-hidden bg-[#333333] px-6">
                 {/* Full Background Image - Subject positioned to the left */}
                 <div className="absolute inset-0 z-0 group">
                     <Image
