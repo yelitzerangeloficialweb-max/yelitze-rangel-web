@@ -20,7 +20,7 @@ export default function SesionesCorporalesPage() {
                         priority
                         quality={100}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#cccccc]/40 via-[#cccccc]/20 to-[#cccccc]/60" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#333333]/40 via-[#333333]/20 to-[#333333]/60" />
                 </div>
 
                 <div className="container mx-auto px-6 relative z-10 text-center">
@@ -61,7 +61,7 @@ export default function SesionesCorporalesPage() {
                 </div>
 
                 {/* Bottom fade */}
-                <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#cccccc] to-transparent z-10" />
+                <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#333333] to-transparent z-10" />
             </section>
 
             {/* ─── 2. FILOSOFÍA (REDESIGN) ─────────────────────────────────── */}
