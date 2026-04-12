@@ -74,6 +74,7 @@ export default function EventsPage() {
             <section id="agenda" className="py-24 px-4 relative bg-[#cccccc]">
                 {/* Intense offset blur visible only 50%, placed outside overflow to bleed over all layers */}
                 <div className="absolute -top-[10%] -left-[15vw] w-[30vw] h-[600px] bg-[#de986a]/80 blur-[120px] rounded-full pointer-events-none mix-blend-multiply opacity-95 z-0" />
+                <div className="absolute -bottom-[5%] -right-[15vw] w-[30vw] h-[600px] bg-[#de986a]/80 blur-[120px] rounded-full pointer-events-none mix-blend-multiply opacity-95 z-0" />
 
                 {/* Background Decor */}
                 <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
