@@ -68,6 +68,9 @@ export default function BlogPage() {
                     <span className="[writing-mode:vertical-rl] text-white/20 text-[10px] uppercase tracking-[0.4em] font-bold">Explorar Bitácora</span>
                     <div className="w-px h-12 bg-gradient-to-t from-[var(--color-secondary)] to-transparent" />
                 </div>
+
+                {/* Bottom Fade Gradient */}
+                <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#FAF9F6] to-transparent z-10" />
             </section>
 
             {/* 2. FEATURED SPOTLIGHT */}
