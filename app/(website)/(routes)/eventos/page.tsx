@@ -24,7 +24,7 @@ export default function EventsPage() {
                 {/* Full Cinematic Asset as Background */}
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/images/home_redesign/eventos.png"
+                        src="/images/home_redesign/eventos-2.png"
                         alt="Ritual de Sanación y Agenda del Alma"
                         fill
                         className="object-cover"
