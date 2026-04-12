@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 export default function ArchitectureSector() {
     return (
-        <section className="relative min-h-[850px] flex items-center overflow-hidden bg-[#2D2926] pt-16 pb-16 md:pt-32 md:pb-32">
+        <section className="relative min-h-[850px] flex items-center overflow-x-clip bg-[#2D2926] pt-16 pb-16 md:pt-32 md:pb-32">
             {/* Background Image Container with Gradient Fade */}
             <div className="absolute inset-0 top-0 z-0">
                 <div className="relative w-full h-full lg:w-[80%] lg:-left-24">
