@@ -128,7 +128,7 @@ export default function BlogPage() {
                                     {/* Card Container */}
                                     <div className="bg-white rounded-[2.5rem] overflow-hidden border border-stone-100 shadow-sm hover:shadow-2xl transition-all duration-700 flex flex-col h-full">
                                         {/* Image wrapper */}
-                                        <Link href={`/blog/${post.slug}`} className="relative aspect-[16/10] overflow-hidden block">
+                                        <Link href={`/blog/${post.slug}`} className="relative aspect-[4/5] overflow-hidden block">
                                             <Image
                                                 src={post.image}
                                                 alt={post.title}
