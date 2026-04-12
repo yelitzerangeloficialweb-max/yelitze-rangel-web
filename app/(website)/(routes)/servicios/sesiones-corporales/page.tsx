@@ -107,7 +107,7 @@ export default function SesionesCorporalesPage() {
             <section className="py-28 px-6 bg-[#333333] relative">
                 {/* Background Decor: Large Sweep Watermark (Bleeding) */}
                 <div 
-                    className="absolute -top-56 -bottom-[200%] left-0 right-0 z-0 pointer-events-none opacity-40"
+                    className="absolute -top-32 -bottom-32 left-0 right-0 z-0 pointer-events-none opacity-40"
                 >
                     <div 
                         className="absolute inset-0"
@@ -116,10 +116,10 @@ export default function SesionesCorporalesPage() {
                             maskImage: 'url(/images/home_redesign/SVG/Fondo_GotasSabiduria-2.svg)',
                             WebkitMaskRepeat: 'no-repeat',
                             maskRepeat: 'no-repeat',
-                            WebkitMaskPosition: 'center',
-                            maskPosition: 'center',
-                            WebkitMaskSize: 'cover',
-                            maskSize: 'cover',
+                            WebkitMaskPosition: 'bottom center',
+                            maskPosition: 'bottom center',
+                            WebkitMaskSize: '100% auto',
+                            maskSize: '100% auto',
                             backgroundColor: '#594d40'
                         }}
                     />
