@@ -107,22 +107,22 @@ export default function SesionesCorporalesPage() {
             </section>
 
             {/* ─── 3. GOTAS DE SABIDURÍA (REDESIGN) ───────────────────────── */}
-            <section className="py-28 px-6 bg-[#333333] relative overflow-hidden">
+            <section className="py-28 px-6 bg-[#594d40] relative overflow-hidden">
                 {/* Background Decor: Large Sweep Watermark */}
                 <div 
                     className="absolute inset-0 z-0 pointer-events-none opacity-40"
                 >
                     <div 
-                        className="absolute -top-20 -left-20 -right-20 -bottom-20"
+                        className="absolute inset-0"
                         style={{
-                            WebkitMaskImage: 'url(/images/diseno-elementos/gota-sabiduria.png)',
-                            maskImage: 'url(/images/diseno-elementos/gota-sabiduria.png)',
+                            WebkitMaskImage: 'url(/images/home_redesign/SVG/Fondo_GotasSabiduria.svg)',
+                            maskImage: 'url(/images/home_redesign/SVG/Fondo_GotasSabiduria.svg)',
                             WebkitMaskRepeat: 'no-repeat',
                             maskRepeat: 'no-repeat',
                             WebkitMaskPosition: 'center',
                             maskPosition: 'center',
-                            WebkitMaskSize: '110% 110%',
-                            maskSize: '110% 110%',
+                            WebkitMaskSize: 'contain',
+                            maskSize: 'contain',
                             backgroundColor: '#333333'
                         }}
                     />
