@@ -74,7 +74,7 @@ export default function SesionesCorporalesPage() {
                         <span className="text-white/40 font-guide font-bold tracking-[0.4em] uppercase text-[10px] block mb-6">
                             La Filosofía
                         </span>
-                        <h2 className="text-5xl md:text-8xl font-script text-[#B8835A] leading-none mb-10">
+                        <h2 className="text-6xl md:text-8xl font-script text-[#B8835A] leading-none mb-10">
                             Un sistema de integración humana y renovación celular
                         </h2>
                         <p className="text-white/80 text-lg leading-relaxed max-w-3xl mx-auto font-light">
