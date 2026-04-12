@@ -7,6 +7,8 @@ import { motion } from "framer-motion";
 export default function WelcomeSection() {
     return (
         <section className="py-16 md:py-32 bg-white relative overflow-hidden z-30">
+            {/* Atmospheric Transition Flare */}
+            <div className="absolute -top-24 -left-[20%] w-[50%] h-[400px] bg-[#FF6B00]/95 blur-[150px] rounded-full pointer-events-none z-0" />
 
 
             <div className="container mx-auto px-4 relative z-10">

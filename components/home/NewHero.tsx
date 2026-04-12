@@ -24,8 +24,7 @@ export default function NewHero() {
                 <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60" />
             </div>
 
-            {/* Atmosphere - Intense 95% blur on bottom left (Moved outside the overflow-hidden container so it spills to the next section) */}
-            <div className="absolute -bottom-[30%] -left-[40%] w-[50%] h-[60%] bg-[#FF6B00]/95 blur-[200px] rounded-full pointer-events-none z-50" />
+            {/* Atmosphere moved to WelcomeSection for visibility */}
 
             {/* Content Container */}
             <div className="container mx-auto px-4 relative z-10 text-center text-white">
