@@ -93,7 +93,7 @@ export default function TestsHubPage() {
     const testsCount = TESTS.length;
 
     return (
-        <main className="bg-[#FAF9F6] min-h-screen selection:bg-[var(--color-secondary)] selection:text-white pb-32">
+        <main className="bg-[#FAF9F6] min-h-screen selection:bg-[var(--color-secondary)] selection:text-white">
 
             {/* 1. HERO SECTION: PREMIUM EDITORIAL */}
             <section className="relative min-h-[75vh] flex items-center pt-40 pb-20 overflow-hidden bg-[#333333]">
