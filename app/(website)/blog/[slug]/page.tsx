@@ -40,7 +40,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
                                 {post.category}
                             </span>
                             
-                            <h1 className="text-white text-5xl md:text-7xl lg:text-8xl font-heading leading-[1.1] italic mb-12">
+                            <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-heading leading-[1.2] italic mb-12">
                                 {post.title}
                             </h1>
 
