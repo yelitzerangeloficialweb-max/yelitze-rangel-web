@@ -23,7 +23,7 @@ export default function SesionesCorporalesPage() {
                     <div className="absolute inset-0 bg-gradient-to-b from-[#333333]/40 via-[#333333]/20 to-[#333333]/60" />
                 </div>
 
-                <div className="container mx-auto px-6 relative z-10 text-center">
+                <div className="container mx-auto px-10 md:px-6 relative z-10 text-center">
                     <FadeIn>
                         {/* Tag */}
                         <span className="inline-block px-6 py-2 rounded-full border border-[#B8835A]/50 text-white text-[10px] font-guide font-bold tracking-[0.4em] uppercase mt-12 lg:mt-0 mb-10">
@@ -77,7 +77,7 @@ export default function SesionesCorporalesPage() {
             </section>
 
             {/* ─── 2. FILOSOFÍA (REDESIGN) ─────────────────────────────────── */}
-            <section className="py-28 px-6 relative">
+            <section className="py-28 px-10 md:px-6 relative">
                 {/* Atmospheric Glow */}
                 <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#B8835A]/10 rounded-full blur-[140px] pointer-events-none" />
                 
@@ -116,7 +116,7 @@ export default function SesionesCorporalesPage() {
             </section>
 
             {/* ─── 3. GOTAS DE SABIDURÍA (REDESIGN) ───────────────────────── */}
-            <section className="py-28 px-6 relative">
+            <section className="py-28 px-10 md:px-6 relative">
                 {/* Background Decor: Large Sweep Watermark (Bleeding) */}
                 <div 
                     className="absolute -top-[60%] -bottom-[60%] left-0 right-0 z-0 pointer-events-none opacity-40"
@@ -198,7 +198,7 @@ export default function SesionesCorporalesPage() {
             </section>
 
             {/* ─── 4. SINCRONÍA ANCESTRAL (REDESIGN) ────────────────────────── */}
-            <section className="py-28 px-6 relative">
+            <section className="py-28 px-10 md:px-6 relative">
                 {/* Subtle Copper Blur */}
                 <div className="absolute -bottom-48 -left-48 w-[600px] h-[600px] bg-[#B8835A]/10 rounded-full blur-[140px] pointer-events-none" />
 
@@ -263,7 +263,7 @@ export default function SesionesCorporalesPage() {
             </section>
 
             {/* ─── 5. EL LENGUAJE MÁS ANTIGUO (REDESIGN) ─────────────────────── */}
-            <section className="py-28 px-6 relative">
+            <section className="py-28 px-10 md:px-6 relative">
                 {/* Atmospheric Blur */}
                 <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#B8835A]/10 rounded-full blur-[140px] pointer-events-none" />
 
@@ -343,7 +343,7 @@ export default function SesionesCorporalesPage() {
             </section>
 
             {/* ─── 6. LIBERACIÓN DE TRAUMAS (REDESIGN) ─────────────────────── */}
-            <section className="py-28 px-6 relative">
+            <section className="py-28 px-10 md:px-6 relative">
                 {/* Decorative Blurs */}
                 <div className="absolute -top-24 -left-24 w-[500px] h-[500px] bg-[#B8835A]/10 rounded-full blur-[120px] pointer-events-none" />
                 <div className="absolute -bottom-24 -right-24 w-[400px] h-[400px] bg-[#B8835A]/15 rounded-full blur-[100px] pointer-events-none" />
@@ -408,7 +408,7 @@ export default function SesionesCorporalesPage() {
             </section>
 
             {/* ─── 7. TANTRA SISTÉMICO (REDESIGN) ────────────────────────────── */}
-            <section className="relative min-h-screen lg:min-h-[100vh] flex items-center overflow-hidden bg-[#333333] px-6">
+            <section className="relative min-h-screen lg:min-h-[100vh] flex items-center overflow-hidden bg-[#333333] px-10 md:px-6">
                 {/* Full Background Image - Subject positioned to the left */}
                 <div className="absolute inset-0 z-0 group">
                     <Image
@@ -480,7 +480,7 @@ export default function SesionesCorporalesPage() {
             </section>
 
             {/* ─── 8. FINAL CTA ─────────────────────────────────────────────── */}
-            <section className="relative py-40 px-6 overflow-hidden group">
+            <section className="relative py-40 px-10 md:px-6 overflow-hidden group">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="/images/Imagenes-Reediseno/sesion-espiritual.jpg"
