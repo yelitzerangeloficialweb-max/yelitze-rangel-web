@@ -488,7 +488,7 @@ export default function SesionesCorporalesPage() {
 
                 <div className="container mx-auto max-w-3xl text-center relative z-10">
                     <FadeIn>
-                        <h2 className="text-5xl md:text-7xl font-editorial italic text-white mb-8 leading-tight">
+                        <h2 className="text-6xl md:text-[9rem] font-script text-white mb-12 leading-tight">
                             Tu cuerpo es un Santuario
                         </h2>
                         <p className="text-xl text-white/65 mb-12 italic font-editorial">
