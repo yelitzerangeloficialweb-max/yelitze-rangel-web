@@ -13,7 +13,7 @@ export default function SesionesCorporalesPage() {
             <section className="relative min-h-screen flex items-center justify-center pt-24 pb-20 overflow-hidden group">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/images/Imagenes-Reediseno/Web-Yelitze.png"
+                        src="/images/home_redesign/Web-Yelitze20.png"
                         alt="Reconexión Integral"
                         fill
                         className="object-cover transition-transform duration-[3000ms] group-hover:scale-110"
