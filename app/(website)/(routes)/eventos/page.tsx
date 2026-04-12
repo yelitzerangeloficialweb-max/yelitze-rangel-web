@@ -204,6 +204,8 @@ export default function EventsPage() {
 
             {/* 4. SECTION: RETIROS A MEDIDA (REDESIGN) */}
             <section className="py-32 bg-[#d4d4d4] relative overflow-hidden">
+                {/* Intense offset blur visible only 50% on the right side */}
+                <div className="absolute top-1/2 -translate-y-1/2 -right-[15vw] w-[30vw] h-[600px] bg-[#de986a]/80 blur-[120px] rounded-full pointer-events-none mix-blend-multiply opacity-95 z-0" />
 
                 <div className="container mx-auto max-w-7xl px-8 lg:px-16 relative z-10">
                     <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
