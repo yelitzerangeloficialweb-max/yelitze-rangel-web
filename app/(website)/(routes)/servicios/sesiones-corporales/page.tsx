@@ -39,7 +39,7 @@ export default function SesionesCorporalesPage() {
                         </h1>
 
                         {/* Subtitle */}
-                        <p className="text-2xl md:text-3xl font-editorial italic text-white mb-14 max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-4xl md:text-6xl font-script text-[#D4B896] mb-14 max-w-4xl mx-auto leading-tight">
                             El lenguaje existencial que habita<br className="hidden md:block" /> en el santuario de tu alma
                         </p>
 
