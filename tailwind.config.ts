@@ -25,7 +25,7 @@ const config: Config = {
                 heading: ["var(--font-playfair)", "serif"],
                 body: ["var(--font-inter)", "sans-serif"],
                 script: ["var(--font-allison)", "cursive"],
-                editorial: ["var(--font-cormorant)", "serif"],
+                editorial: ["var(--font-playfair)", "serif"],
                 guide: ["var(--font-montserrat)", "sans-serif"],
                 sans: ["var(--font-inter)", "sans-serif"],
             },

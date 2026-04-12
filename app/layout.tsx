@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
-import { Allison, Playfair_Display, Inter, Cormorant_Garamond, Montserrat } from 'next/font/google';
+import { Allison, Playfair_Display, Inter, Montserrat } from 'next/font/google';
 import './globals.css';
 
 const allison = Allison({
@@ -22,11 +22,6 @@ const inter = Inter({
     display: 'swap',
 });
 
-const cormorant = Cormorant_Garamond({
-    subsets: ['latin'],
-    variable: '--font-cormorant',
-    display: 'swap',
-});
 
 const montserrat = Montserrat({
     subsets: ['latin'],
@@ -53,7 +48,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={`${allison.variable} ${playfair.variable} ${inter.variable} ${cormorant.variable} ${montserrat.variable}`}>
+    <html lang="es" className={`${allison.variable} ${playfair.variable} ${inter.variable} ${montserrat.variable}`}>
       <head>
         <Script id="fb-pixel" strategy="afterInteractive">
           {`
