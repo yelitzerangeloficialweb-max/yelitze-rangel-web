@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function WelcomeSection() {
     return (
-        <section className="py-16 md:py-32 bg-white relative overflow-hidden">
+        <section className="py-16 md:py-32 bg-white relative overflow-hidden z-30">
 
 
             <div className="container mx-auto px-4 relative z-10">
@@ -49,7 +49,7 @@ export default function WelcomeSection() {
 
                     {/* Portrait Image Content - Right */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
+                        initial={{ opacity: 1, scale: 1 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 1 }}
@@ -67,7 +67,7 @@ export default function WelcomeSection() {
                         </div>
 
                         {/* Portrait Image with Organic Clipping/Rounding */}
-                        <div className="relative z-10 w-full max-w-[550px] aspect-[4/5] rounded-[40px] rounded-tr-[150px] overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,0,0,0.15)] mx-auto lg:ml-auto">
+                        <div className="relative z-10 w-full max-w-[550px] aspect-[4/5] rounded-[40px] overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,0,0,0.15)] mx-auto lg:ml-auto">
                             <Image
                                 src="/assets/images/yelitze-home-portrait.jpg"
                                 alt="Yelitze Rangel"
