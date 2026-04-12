@@ -30,10 +30,10 @@ export default function EventsPage() {
                         className="object-cover"
                         priority
                     />
-                    {/* Bottom Brush Stroke Effect - Blending with White Page */}
+                    {/* Bottom Brush Stroke Effect - Blending with the section below */}
                     <div className="absolute bottom-0 left-0 w-full h-[20%] z-10 pointer-events-none" 
                          style={{ 
-                            background: 'linear-gradient(to top, #e0ddd8, transparent)',
+                            background: 'linear-gradient(to top, #cccccc, transparent)',
                             maskImage: 'radial-gradient(ellipse at 50% 100%, black 0%, transparent 80%)',
                             WebkitMaskImage: 'radial-gradient(ellipse at 50% 100%, black 0%, transparent 80%)'
                          }} 
@@ -79,8 +79,6 @@ export default function EventsPage() {
             <section id="agenda" className="py-24 px-4 relative overflow-hidden bg-[#cccccc]">
                 {/* Background Decor */}
                 <div className="absolute inset-0 z-0">
-                    <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_rgba(224,159,106,0.3),_transparent_70%)]" />
-                    <div className="absolute bottom-0 left-0 w-full h-full bg-[radial-gradient(circle_at_bottom_left,_rgba(224,159,106,0.2),_transparent_60%)]" />
                     {/* SVG Curve Graphic from Mockup */}
                     <svg className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full opacity-[0.1] pointer-events-none" viewBox="0 0 1000 500">
                         <path d="M-100 400 Q300 100 600 350 T1100 150" fill="none" stroke="#b8835a" strokeWidth="2" />
