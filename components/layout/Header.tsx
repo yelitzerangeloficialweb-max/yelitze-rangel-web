@@ -59,7 +59,7 @@ export default function Header() {
         if (path === '/') return true;
         
         // 2. Section landings with dark heroes
-        const mainLandings = ['/blog', '/tienda', '/libros', '/galeria', '/servicios', '/eventos', '/sobre-mi'];
+        const mainLandings = ['/blog', '/tienda', '/libros', '/galeria', '/servicios', '/eventos', '/sobre-mi', '/tests'];
         if (mainLandings.includes(path)) return true;
         
         // 3. Specific sub-sections where dark heroes are known to continue
