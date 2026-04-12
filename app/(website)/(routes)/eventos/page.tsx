@@ -74,7 +74,6 @@ export default function EventsPage() {
             <section id="agenda" className="py-24 px-4 relative bg-[#cccccc]">
                 {/* Intense offset blur visible only 50%, placed outside overflow to bleed over all layers */}
                 <div className="absolute -top-[10%] -left-[15vw] w-[30vw] h-[600px] bg-[#de986a]/80 blur-[120px] rounded-full pointer-events-none mix-blend-multiply opacity-95 z-0" />
-                <div className="absolute -bottom-[5%] -right-[15vw] w-[30vw] h-[600px] bg-[#de986a]/80 blur-[120px] rounded-full pointer-events-none mix-blend-multiply opacity-95 z-0" />
 
                 {/* Background Decor */}
                 <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -205,8 +204,9 @@ export default function EventsPage() {
 
             {/* 4. SECTION: RETIROS A MEDIDA (REDESIGN) */}
             <section className="py-32 bg-[#d4d4d4] relative overflow-hidden">
-                {/* Intense offset blur visible only 50% on the right side */}
+                {/* Intense offset blurs */}
                 <div className="absolute top-1/2 -translate-y-1/2 -right-[15vw] w-[30vw] h-[600px] bg-[#de986a]/80 blur-[120px] rounded-full pointer-events-none mix-blend-multiply opacity-95 z-0" />
+                <div className="absolute -top-[10%] -right-[10vw] w-[25vw] h-[500px] bg-[#de986a]/80 blur-[120px] rounded-full pointer-events-none mix-blend-multiply opacity-95 z-0" />
 
                 <div className="container mx-auto max-w-7xl px-8 lg:px-16 relative z-10">
                     <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
