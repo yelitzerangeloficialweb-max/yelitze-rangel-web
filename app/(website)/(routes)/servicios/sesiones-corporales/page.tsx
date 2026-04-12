@@ -107,7 +107,7 @@ export default function SesionesCorporalesPage() {
             </section>
 
             {/* ─── 3. GOTAS DE SABIDURÍA (REDESIGN) ───────────────────────── */}
-            <section className="py-28 px-6 bg-[#594d40] relative overflow-hidden">
+            <section className="py-28 px-6 bg-[#333333] relative overflow-hidden">
                 {/* Background Decor: Large Sweep Watermark */}
                 <div 
                     className="absolute inset-0 z-0 pointer-events-none opacity-40"
@@ -123,7 +123,7 @@ export default function SesionesCorporalesPage() {
                             maskPosition: 'center',
                             WebkitMaskSize: 'contain',
                             maskSize: 'contain',
-                            backgroundColor: '#333333'
+                            backgroundColor: '#594d40'
                         }}
                     />
                 </div>
