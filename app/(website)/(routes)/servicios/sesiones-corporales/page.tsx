@@ -16,11 +16,11 @@ export default function SesionesCorporalesPage() {
                         src="/images/home_redesign/Web-Yelitze20.png"
                         alt="Reconexión Integral"
                         fill
-                        className="object-cover transition-transform duration-[3000ms] group-hover:scale-110"
+                        className="object-cover transition-transform duration-[3000ms] group-hover:scale-110 opacity-90"
                         priority
                         quality={100}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#1E1208]/40 via-[#1E1208]/20 to-[#1E1208]/60" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#cccccc]/40 via-[#cccccc]/20 to-[#cccccc]/60" />
                 </div>
 
                 <div className="container mx-auto px-6 relative z-10 text-center">
@@ -39,7 +39,7 @@ export default function SesionesCorporalesPage() {
                         </h1>
 
                         {/* Subtitle */}
-                        <p className="text-2xl md:text-3xl font-editorial italic text-[#D4B896] mb-14 max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-2xl md:text-3xl font-editorial italic text-white mb-14 max-w-2xl mx-auto leading-relaxed">
                             El lenguaje existencial que habita<br className="hidden md:block" /> en el santuario de tu alma
                         </p>
 
@@ -61,7 +61,7 @@ export default function SesionesCorporalesPage() {
                 </div>
 
                 {/* Bottom fade */}
-                <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#EDE2D0] to-transparent z-10" />
+                <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#cccccc] to-transparent z-10" />
             </section>
 
             {/* ─── 2. FILOSOFÍA (REDESIGN) ─────────────────────────────────── */}
