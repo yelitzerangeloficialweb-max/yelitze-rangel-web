@@ -7,21 +7,18 @@ import { motion } from "framer-motion";
 
 export default function ArchitectureSector() {
     return (
-        <section className="relative min-h-[850px] flex items-center overflow-x-clip bg-[#2D2926] pt-16 pb-16 md:pt-32 md:pb-32">
-            {/* Background Image Container with Gradient Fade */}
-            <div className="absolute inset-0 top-0 z-0">
-                <div className="relative w-full h-full">
-                    <Image
-                        src="/images/home_redesign/Arquitectura_intencional.png"
-                        alt="Arquitectura de Vida"
-                        fill
-                        className="object-cover object-left opacity-100"
-                        priority
-                    />
-                    {/* Gradient Overlays for smooth blending - Softened to see subject better */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#2D2926]/10 to-[#2D2926]" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#2D2926]/60 via-transparent to-transparent" />
-                </div>
+        <section className="relative min-h-[600px] md:min-h-[800px] flex items-center overflow-x-clip bg-[#2D2926] pt-16 pb-16 md:pt-32 md:pb-32">
+            {/* Background Image Container - Set to contain to see full image without zoom */}
+            <div className="absolute inset-0 z-0">
+                <Image
+                    src="/images/home_redesign/Arquitectura_intencional.png"
+                    alt="Arquitectura de Vida"
+                    fill
+                    className="object-contain object-left opacity-100"
+                    priority
+                />
+                {/* Lateral gradient only for text readability, removed bottom gradient that was hiding the image */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#2D2926]/5 to-[#2D2926]/90" />
             </div>
 
             <div className="container mx-auto px-4 relative z-10">
