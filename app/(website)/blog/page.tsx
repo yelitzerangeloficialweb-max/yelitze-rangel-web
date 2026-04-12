@@ -14,58 +14,59 @@ export default function BlogPage() {
     const featuredPost = BLOG_POSTS[0];
     const recentPosts = BLOG_POSTS.slice(1);
 
+    const uniqueCategoriesCount = new Set(BLOG_POSTS.map(p => p.category)).size;
+    const articlesCount = BLOG_POSTS.length;
+
     return (
-        <main className="bg-[#fafcfe] min-h-screen selection:bg-[var(--color-secondary)] selection:text-white pb-20">
+        <main className="bg-[#FAF9F6] min-h-screen selection:bg-[var(--color-secondary)] selection:text-white pb-32">
 
-            {/* 1. HERO SECTION: CRÓNICAS DEL ALMA */}
-            <section className="relative min-h-[80vh] flex flex-col lg:flex-row overflow-hidden">
-                {/* Left Panel: Luminous Obsidian */}
-                <div className="lg:w-[45%] bg-black p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
-                    {/* Subtle Watermark */}
-                    <div className="absolute -left-32 -bottom-32 w-[900px] h-[900px] opacity-[0.05] pointer-events-none">
-                        <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
+            {/* 1. HERO SECTION: PREMIUM EDITORIAL */}
+            <section className="relative min-h-[75vh] flex items-center pt-40 pb-20 overflow-hidden bg-[#333333]">
+                {/* Atmospheric Glows */}
+                <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#B8835A]/15 rounded-full blur-[140px] pointer-events-none" />
+                <div className="absolute -bottom-40 -right-40 w-[500px] h-[500px] bg-[#B8835A]/10 rounded-full blur-[120px] pointer-events-none" />
+
+                <div className="container mx-auto px-4 relative z-10">
+                    <div className="max-w-4xl">
+                        <FadeIn>
+                            <Link
+                                href="/"
+                                className="inline-flex items-center gap-3 text-white/40 hover:text-[var(--color-secondary)] transition-all mb-12 group"
+                            >
+                                <ArrowRight className="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" />
+                                <span className="text-[10px] font-bold tracking-[0.4em] uppercase">Regresar al Origen</span>
+                            </Link>
+
+                            <span className="text-[var(--color-secondary)] font-script text-3xl md:text-5xl mb-6 block tracking-[0.03em]">Letras que Sanan</span>
+                            <h1 className="text-white text-6xl md:text-9xl font-heading leading-[0.9] italic mb-12 text-balance">
+                                Crónicas <br />
+                                <span className="opacity-20 pl-20 md:pl-40 block">del Alma</span>
+                            </h1>
+
+                            <div className="flex flex-col md:flex-row gap-12 items-start md:items-center">
+                                <p className="text-stone-400 text-xl font-light italic leading-relaxed max-w-md">
+                                    "Reflexiones profundas, sabiduría ancestral y herramientas sistémicas para acompañar tu proceso de evolución."
+                                </p>
+                                <div className="hidden md:block w-px h-24 bg-white/10" />
+                                <div className="flex gap-10">
+                                    <div className="text-center">
+                                        <span className="text-white text-3xl font-heading block">+{articlesCount}</span>
+                                        <span className="text-stone-500 text-[9px] uppercase tracking-widest">Artículos</span>
+                                    </div>
+                                    <div className="text-center">
+                                        <span className="text-white text-3xl font-heading block">0{uniqueCategoriesCount}</span>
+                                        <span className="text-stone-500 text-[9px] uppercase tracking-widest">Dimensiones</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </FadeIn>
                     </div>
-
-                    <FadeIn>
-                        {/* Pill Badge Style */}
-                        <div className="inline-block mb-10 mt-12 lg:mt-0">
-                            <span className="px-8 py-3 rounded-full border border-[var(--color-secondary)]/20 bg-[var(--color-secondary)]/[0.05] text-[var(--color-secondary)] text-sm md:text-base font-light tracking-[0.2em] uppercase backdrop-blur-sm shadow-sm">
-                                Letras que Sanan
-                            </span>
-                        </div>
-
-                        <h1 className="text-white text-4xl md:text-5xl lg:text-7xl font-heading mb-8 leading-tight">
-                            Crónicas <br /> del Alma
-                        </h1>
-                        <p className="text-gray-400 text-lg md:text-xl font-light italic leading-relaxed max-w-md">
-                            Reflexiones profundas, sabiduría ancestral y herramientas sistémicas para acompañar tu proceso de evolución.
-                        </p>
-
-                        <Link
-                            href="#articulos"
-                            className="inline-flex items-center gap-4 text-white group border-b border-white/10 pb-2 w-fit hover:border-[var(--color-secondary)] transition-all text-lg font-medium mt-12"
-                        >
-                            Explorar la Bitácora
-                            <ArrowDown className="w-5 h-5 group-hover:translate-y-1 transition-transform text-[var(--color-secondary)]" />
-                        </Link>
-                    </FadeIn>
                 </div>
 
-                {/* Right Panel: Ethereal Image */}
-                <div className="lg:w-[55%] relative min-h-[500px] lg:min-h-full">
-                    <Image
-                        src="/assets/images/blog-hero-new.png"
-                        alt="Crónicas del Alma - Inspiración y Sabiduría"
-                        fill
-                        className="object-cover"
-                        priority
-                    />
-                    {/* Much softer, wider blurred transition - Desktop (Left to Right) */}
-                    <div className="absolute inset-y-0 left-[-1px] w-full bg-gradient-to-r from-black via-black/60 to-transparent hidden lg:block z-10" />
-                    <div className="absolute inset-y-0 left-[-40px] w-64 bg-black/80 blur-[80px] hidden lg:block z-0" />
-                    
-                    {/* Mobile Transition (Top to Bottom) */}
-                    <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black to-transparent lg:hidden z-10" />
+                {/* Vertical Indicator */}
+                <div className="absolute right-12 bottom-12 hidden lg:flex flex-col items-center gap-6">
+                    <span className="[writing-mode:vertical-rl] text-white/20 text-[10px] uppercase tracking-[0.4em] font-bold">Explorar Bitácora</span>
+                    <div className="w-px h-12 bg-gradient-to-t from-[var(--color-secondary)] to-transparent" />
                 </div>
             </section>
 
