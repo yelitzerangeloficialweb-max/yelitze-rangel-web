@@ -21,7 +21,7 @@ export default function WelcomeSection() {
                         className="flex-1 space-y-8 text-center lg:text-left"
                     >
                         <div className="space-y-4">
-                            <h2 className="text-5xl md:text-7xl lg:text-[8rem] font-script text-[#B8835A] leading-tight drop-shadow-sm tracking-[0.03em]">
+                            <h2 className="text-5xl md:text-7xl lg:text-[5.5rem] font-script text-[#B8835A] leading-tight drop-shadow-sm lg:whitespace-nowrap tracking-[0.03em]">
                                 Bienvenida familia de Almas
                             </h2>
                         </div>
