@@ -41,8 +41,9 @@ export default function EventsPage() {
                                 <span className="font-script text-4xl lg:text-5xl text-[#b8835a] leading-none block">
                                     Encuentros & Rituales
                                 </span>
-                                <h1 className="text-5xl lg:text-8xl font-bold text-white uppercase tracking-tighter leading-[0.9]">
-                                    AGENDA DEL <br /> <span className="opacity-60">ALMA</span>
+                                <h1 className="text-5xl lg:text-8xl font-bold text-white tracking-tighter leading-[0.9]">
+                                    AGENDA DEL <br /> 
+                                    <span className="font-script font-normal normal-case tracking-normal opacity-90 text-white text-7xl lg:text-[10rem] block -mt-4 lg:-mt-8">Alma</span>
                                 </h1>
                             </div>
 
