@@ -483,7 +483,7 @@ export default function SesionesCorporalesPage() {
             <section className="relative py-40 px-6 overflow-hidden group">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/images/Imagenes-Reediseno/Web-Yelitze19.png"
+                        src="/images/Imagenes-Reediseno/sesion-espiritual.png"
                         alt="Tu cuerpo es un Santuario"
                         fill
                         className="object-cover transition-transform duration-[3000ms] group-hover:scale-110"
