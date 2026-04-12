@@ -121,8 +121,8 @@ export default function SesionesCorporalesPage() {
                             maskRepeat: 'no-repeat',
                             WebkitMaskPosition: 'center',
                             maskPosition: 'center',
-                            WebkitMaskSize: '100% auto',
-                            maskSize: '100% auto',
+                            WebkitMaskSize: 'contain',
+                            maskSize: 'contain',
                             backgroundColor: '#594d40'
                         }}
                     />
