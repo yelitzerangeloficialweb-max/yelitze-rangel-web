@@ -20,7 +20,7 @@ export default function SesionesCorporalesPage() {
                         priority
                         quality={100}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#1E1208]/75 via-[#1E1208]/40 to-[#1E1208]/85" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#1E1208]/40 via-[#1E1208]/20 to-[#1E1208]/60" />
                 </div>
 
                 <div className="container mx-auto px-6 relative z-10 text-center">
