@@ -91,9 +91,6 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
                     <span className="[writing-mode:vertical-rl] text-white/20 text-[10px] uppercase tracking-[0.4em] font-bold">Lectura • Bitácora</span>
                     <div className="w-px h-12 bg-gradient-to-t from-[var(--color-secondary)] to-transparent" />
                 </div>
-                
-                {/* Bottom Fade Gradient to dissolve the line */}
-                <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[#FAF9F6] z-10" />
             </section>
 
             {/* Article Content Section */}
