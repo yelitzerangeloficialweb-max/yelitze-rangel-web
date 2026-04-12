@@ -238,8 +238,9 @@ export default function ServiceSelector() {
 
 
 
-            {/* Bottom Left Corner Glow - Lowered even more and more intense */}
+            {/* Bottom Corner Glows - Mirroring left and right for balance */}
             <div className="absolute bottom-[-15vh] left-[-12vw] w-[24vw] h-[24vw] bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.95)_0%,rgba(255,107,0,0.95)_60%,transparent_90%)] blur-[140px] pointer-events-none z-[9999]" />
+            <div className="absolute bottom-[-15vh] right-[-12vw] w-[24vw] h-[24vw] bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.95)_0%,rgba(255,107,0,0.95)_60%,transparent_90%)] blur-[140px] pointer-events-none z-[9999]" />
         </section>
     );
 }
