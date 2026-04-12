@@ -315,25 +315,51 @@ export default function TestsHubPage() {
                 <div className="absolute top-1/4 right-[10%] w-96 h-96 bg-[#FF6B00]/95 blur-[120px] rounded-full pointer-events-none opacity-20" />
             </FadeIn>
 
-            {/* 6. FINAL QUOTE & CTA */}
-            <section className="py-40 bg-white relative">
-                <div className="container mx-auto px-4 text-center max-w-4xl">
-                    <FadeIn className="space-y-12">
-                        <Star className="w-16 h-16 text-[var(--color-secondary)] mx-auto opacity-20" />
-                        <h2 className="text-4xl md:text-6xl font-heading text-[var(--color-primary)] italic leading-tight">
-                            ¿Los resultados te movieron <br /> <span className="text-stone-300">profundamente?</span>
+            {/* 6. FINAL QUOTE & CTA: DARK PREMIUM */}
+            <section className="relative py-40 px-6 overflow-hidden group">
+                {/* Top Transition Gradient to match Arquitectura Section */}
+                <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#2D2926] to-transparent z-10" />
+                
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="/images/Imagenes-Reediseno/sesion-espiritual.jpg"
+                        alt="Sesión de Sanación"
+                        fill
+                        className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-black/70 backdrop-blur-[2px]" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#333333] via-transparent to-transparent" />
+                </div>
+
+                <div className="container mx-auto max-w-5xl relative z-10 text-center">
+                    <FadeIn>
+                        <span className="text-[var(--color-secondary)] font-script text-3xl md:text-5xl mb-8 block select-none">
+                            ¿Sientes el llamado a profundizar?
+                        </span>
+                        
+                        <h2 className="text-white text-5xl md:text-8xl font-heading mb-4 tracking-tight uppercase">
+                            Tu Proceso <br />
+                            <span className="text-[var(--color-secondary)]">Empieza Aquí</span>
                         </h2>
-                        <p className="text-stone-500 text-2xl font-light italic max-w-3xl mx-auto leading-relaxed">
+                        
+                        <div className="w-24 h-px bg-[var(--color-secondary)]/30 mx-auto my-12" />
+                        
+                        <p className="text-white/60 text-lg md:text-xl font-light max-w-2xl mx-auto mb-16 italic leading-relaxed">
                             "Hacer consciente el bloqueo es el primer paso, pero el movimiento sistémico se completa a través de la mirada asistida."
                         </p>
 
-                        <div className="pt-12">
+                        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                             <Link
                                 href="/contacto"
-                                className="inline-flex items-center gap-6 text-[var(--color-secondary)] font-bold tracking-[0.3em] uppercase text-xs border-b-2 border-transparent hover:border-current pb-4 transition-all"
+                                className="btn-premium px-12 py-5 bg-[var(--color-secondary)] text-white hover:brightness-110 shadow-2xl transition-all"
                             >
-                                Solicitar Sesión de Claridad
-                                <ArrowRight className="w-5 h-5" />
+                                Reservar Sesión de Claridad
+                            </Link>
+                            <Link
+                                href="/sobre-mi"
+                                className="group px-12 py-5 border border-white/20 text-white backdrop-blur-md rounded-full hover:bg-white hover:text-[#333333] transition-all"
+                            >
+                                Conocer el Método
                             </Link>
                         </div>
                     </FadeIn>

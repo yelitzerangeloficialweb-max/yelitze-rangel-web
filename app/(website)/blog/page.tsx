@@ -214,7 +214,7 @@ export default function BlogPage() {
 
             {/* FINAL CTA: PREMIUM EXPERIENCE */}
             <section className="relative py-40 px-6 overflow-hidden group">
-                <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#FAF9F6] to-transparent z-10" />
+                <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#333333] to-transparent z-10" />
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="/images/Imagenes-Reediseno/sesion-espiritual.jpg"
