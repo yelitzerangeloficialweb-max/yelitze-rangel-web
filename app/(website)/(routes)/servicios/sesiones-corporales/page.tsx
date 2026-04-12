@@ -26,7 +26,7 @@ export default function SesionesCorporalesPage() {
                 <div className="container mx-auto px-6 relative z-10 text-center">
                     <FadeIn>
                         {/* Tag */}
-                        <span className="inline-block px-6 py-2 rounded-full border border-[#B8835A]/50 text-[#B8835A] text-[10px] font-guide font-bold tracking-[0.4em] uppercase mt-12 lg:mt-0 mb-10">
+                        <span className="inline-block px-6 py-2 rounded-full border border-[#B8835A]/50 text-white text-[10px] font-guide font-bold tracking-[0.4em] uppercase mt-12 lg:mt-0 mb-10">
                             Alquimia del Tacto
                         </span>
 
