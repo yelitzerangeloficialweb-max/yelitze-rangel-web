@@ -37,7 +37,7 @@ export default function WisdomChest() {
                             <span className="text-[10px] md:text-xs font-bold tracking-[0.4em] text-white/40 uppercase">
                                 BIBLIOTERAPIA
                             </span>
-                            <h2 className="text-6xl md:text-[7rem] font-script text-[#B8835A] leading-[0.9] drop-shadow-sm tracking-[0.03em]">
+                            <h2 className="text-5xl md:text-7xl lg:text-[7.5rem] font-script text-[#B8835A] leading-[0.9] drop-shadow-sm tracking-[0.03em]">
                                 Cofre de Sabiduría
                             </h2>
                         </div>

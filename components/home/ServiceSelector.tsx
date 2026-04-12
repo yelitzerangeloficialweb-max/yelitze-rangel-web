@@ -179,7 +179,7 @@ export default function ServiceSelector() {
                                 <span className="block text-xs font-bold tracking-[0.4em] uppercase text-text/40">
                                     {services[1].tag}
                                 </span>
-                                <h3 className="text-6xl md:text-[7rem] font-script text-[#B8835A] leading-[1] pb-6 tracking-[0.03em]">
+                                <h3 className="text-5xl md:text-8xl lg:text-[9.5rem] font-script text-[#B8835A] leading-[1] pb-6 tracking-[0.03em]">
                                     {services[1].title}
                                 </h3>
                                 <p className="text-xl md:text-2xl font-body font-light leading-relaxed text-text/70 max-w-xl mx-auto lg:mx-0">
