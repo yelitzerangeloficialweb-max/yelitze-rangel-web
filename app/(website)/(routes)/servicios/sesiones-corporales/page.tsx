@@ -123,7 +123,7 @@ export default function SesionesCorporalesPage() {
                             maskPosition: 'center',
                             WebkitMaskSize: '110% 110%',
                             maskSize: '110% 110%',
-                            backgroundColor: '#594d40'
+                            backgroundColor: '#333333'
                         }}
                     />
                 </div>
