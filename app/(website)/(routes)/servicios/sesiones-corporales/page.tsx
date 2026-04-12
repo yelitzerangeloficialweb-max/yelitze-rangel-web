@@ -57,6 +57,18 @@ export default function SesionesCorporalesPage() {
                                 Consulta Disponibilidad
                             </a>
                         </div>
+
+                        {/* Decoration Icon */}
+                        <div className="mt-16 flex justify-center opacity-40">
+                            <div className="relative w-16 h-16">
+                                <Image
+                                    src="/assets/images/watermark-logo.png"
+                                    alt="Yelitze Icon"
+                                    fill
+                                    className="object-contain brightness-0 invert"
+                                />
+                            </div>
+                        </div>
                     </FadeIn>
                 </div>
 
