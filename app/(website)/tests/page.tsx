@@ -89,24 +89,59 @@ const SPECIALTY_TESTS = TESTS.filter(t => t.category === 'Nuevo');
 const CLASSIC_TESTS = TESTS.filter(t => ['Raíces', 'Relaciones', 'Abundancia'].includes(t.category));
 
 export default function TestsHubPage() {
+    const uniqueCategoriesCount = new Set(TESTS.map(t => t.category)).size;
+    const testsCount = TESTS.length;
+
     return (
         <main className="bg-[#FAF9F6] min-h-screen selection:bg-[var(--color-secondary)] selection:text-white pb-32">
 
-            {/* 1. HERO SECTION */}
-            <section className="relative min-h-[60vh] flex items-center pt-40 pb-20 overflow-hidden bg-black">
-                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[var(--color-secondary)]/10 rounded-full blur-[140px] -mr-40 -mt-40 animate-pulse" />
-                <div className="container mx-auto px-4 relative z-10 text-center">
-                    <FadeIn className="max-w-4xl mx-auto">
-                        <Link href="/" className="inline-flex items-center gap-3 text-white/30 hover:text-[var(--color-secondary)] transition-all mb-16 group">
-                            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                            <span className="text-[10px] font-bold tracking-[0.4em] uppercase">Regresar al Origen</span>
-                        </Link>
-                        <span className="text-[var(--color-secondary)] font-bold tracking-[0.6em] uppercase text-xs mb-8 block">Alquimia Interior</span>
-                        <h1 className="text-white text-5xl md:text-8xl font-heading leading-tight mb-12 italic">
-                            Portal Test de <br />
-                            <span className="opacity-20">Autoconocimiento</span>
-                        </h1>
-                    </FadeIn>
+            {/* 1. HERO SECTION: PREMIUM EDITORIAL */}
+            <section className="relative min-h-[75vh] flex items-center pt-40 pb-20 overflow-hidden bg-[#333333]">
+                {/* Atmospheric Glows */}
+                <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#B8835A]/15 rounded-full blur-[140px] pointer-events-none" />
+                <div className="absolute -bottom-40 -right-40 w-[500px] h-[500px] bg-[#B8835A]/10 rounded-full blur-[120px] pointer-events-none" />
+
+                <div className="container mx-auto px-4 relative z-10">
+                    <div className="max-w-4xl">
+                        <FadeIn>
+                            <Link
+                                href="/"
+                                className="inline-flex items-center gap-3 text-white/40 hover:text-[var(--color-secondary)] transition-all mb-12 group"
+                            >
+                                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                                <span className="text-[10px] font-bold tracking-[0.4em] uppercase">Regresar al Origen</span>
+                            </Link>
+
+                            <span className="text-[var(--color-secondary)] font-script text-3xl md:text-5xl mb-6 block tracking-[0.03em]">Alquimia Interior</span>
+                            <h1 className="text-white text-6xl md:text-9xl font-heading leading-[0.9] italic mb-12 text-balance">
+                                Portales <br />
+                                <span className="opacity-20 pl-20 md:pl-40 block">de Autoconocimiento</span>
+                            </h1>
+
+                            <div className="flex flex-col md:flex-row gap-12 items-start md:items-center">
+                                <p className="text-stone-400 text-xl font-light italic leading-relaxed max-w-md">
+                                    "Hacer consciente lo inconsciente es la llave para reclamar tu soberanía y libertad."
+                                </p>
+                                <div className="hidden md:block w-px h-24 bg-white/10" />
+                                <div className="flex gap-10">
+                                    <div className="text-center">
+                                        <span className="text-white text-3xl font-heading block">0{testsCount}</span>
+                                        <span className="text-stone-500 text-[9px] uppercase tracking-widest">Diagnósticos</span>
+                                    </div>
+                                    <div className="text-center">
+                                        <span className="text-white text-3xl font-heading block">0{uniqueCategoriesCount}</span>
+                                        <span className="text-stone-500 text-[9px] uppercase tracking-widest">Dimensiones</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </FadeIn>
+                    </div>
+                </div>
+
+                {/* Vertical Indicator */}
+                <div className="absolute right-12 bottom-12 hidden lg:flex flex-col items-center gap-6">
+                    <span className="[writing-mode:vertical-rl] text-white/20 text-[10px] uppercase tracking-[0.4em] font-bold">Descubrir Bloqueos</span>
+                    <div className="w-px h-12 bg-gradient-to-t from-[var(--color-secondary)] to-transparent" />
                 </div>
             </section>
 
