@@ -52,7 +52,7 @@ export default function SesionesCorporalesPage() {
                                 href="https://wa.me/17867268717"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="btn-outline text-xs font-guide tracking-[0.25em] uppercase px-10 py-4"
+                                className="bg-white/10 backdrop-blur-md border border-white/30 text-white hover:bg-white/20 transition-all text-xs font-guide tracking-[0.25em] uppercase px-10 py-4 rounded-full"
                             >
                                 Consulta Disponibilidad
                             </a>
