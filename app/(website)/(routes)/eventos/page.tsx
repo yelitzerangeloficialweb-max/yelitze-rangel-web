@@ -79,6 +79,8 @@ export default function EventsPage() {
             <section id="agenda" className="py-24 px-4 relative overflow-hidden bg-[#cccccc]">
                 {/* Background Decor */}
                 <div className="absolute inset-0 z-0">
+                    {/* Intense offset blur visible only 50% */}
+                    <div className="absolute top-1/4 -left-[25vw] w-[50vw] h-[800px] bg-[#de986a]/30 blur-[150px] rounded-full pointer-events-none mix-blend-multiply opacity-80" />
                     {/* SVG Curve Graphic from Mockup */}
                     <svg className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full opacity-[0.1] pointer-events-none" viewBox="0 0 1000 500">
                         <path d="M-100 400 Q300 100 600 350 T1100 150" fill="none" stroke="#b8835a" strokeWidth="2" />
