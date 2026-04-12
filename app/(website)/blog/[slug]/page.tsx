@@ -20,61 +20,80 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
     }
 
     return (
-        <main className="bg-[#fafcfe] min-h-screen pb-20">
-            {/* Split-Panel Header */}
-            <section className="relative min-h-[70vh] flex flex-col lg:flex-row overflow-hidden pt-20">
-                {/* Left Panel: Content & Title */}
-                <div className="lg:w-[45%] bg-white p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
-                    {/* Subtle Watermark */}
-                    <div className="absolute -left-32 -bottom-32 w-[800px] h-[800px] opacity-[0.02] pointer-events-none">
-                        <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
-                    </div>
+        <main className="bg-[#FAF9F6] min-h-screen selection:bg-[var(--color-secondary)] selection:text-white pb-20">
+            {/* 1. HERO SECTION: PREMIUM EDITORIAL ARTICLE */}
+            <section className="relative min-h-[85vh] flex items-center pt-40 pb-20 overflow-hidden bg-[#333333]">
+                {/* Background Glows */}
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[var(--color-secondary)] opacity-[0.08] blur-[150px] -translate-y-1/2 translate-x-1/4" />
+                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[var(--color-primary)] opacity-[0.05] blur-[130px] translate-y-1/2 -translate-x-1/4" />
 
-                    <FadeIn>
-                        <Link href="/blog" className="inline-flex items-center gap-2 text-stone-400 hover:text-[var(--color-secondary)] mb-12 transition-colors uppercase text-xs tracking-widest font-bold">
-                            <ArrowLeft className="w-4 h-4" />
-                            Volver a la Bitácora
-                        </Link>
+                <div className="container mx-auto px-4 relative z-10">
+                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+                        {/* Left Content */}
+                        <FadeIn>
+                            <Link href="/blog" className="inline-flex items-center gap-3 text-white/30 hover:text-white mb-16 transition-all group uppercase text-[10px] tracking-[0.3em] font-bold">
+                                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                                Volver a la Bitácora
+                            </Link>
 
-                        <div className="inline-block mb-8">
-                            <span className="px-6 py-2 rounded-full border border-[var(--color-secondary)]/20 bg-[var(--color-secondary)]/[0.03] text-[var(--color-secondary)] text-[10px] font-bold tracking-[0.2em] uppercase">
+                            <span className="text-[var(--color-secondary)] font-script text-3xl md:text-5xl mb-6 block tracking-[0.03em]">
                                 {post.category}
                             </span>
-                        </div>
+                            
+                            <h1 className="text-white text-5xl md:text-7xl lg:text-8xl font-heading leading-[1.1] italic mb-12">
+                                {post.title}
+                            </h1>
 
-                        <h1 className="text-[var(--color-primary)] text-4xl md:text-5xl lg:text-7xl font-heading mb-10 leading-tight">
-                            {post.title}
-                        </h1>
+                            <div className="flex flex-col md:flex-row gap-12 items-start md:items-center">
+                                <div className="flex flex-wrap gap-12 text-sm text-white/40 uppercase tracking-[0.15em] font-medium">
+                                    <div className="flex flex-col gap-2">
+                                        <span className="text-[var(--color-secondary)] text-[10px] opacity-60">Publicado</span>
+                                        <span>{post.date}</span>
+                                    </div>
+                                    <div className="flex flex-col gap-2">
+                                        <span className="text-[var(--color-secondary)] text-[10px] opacity-60">Escrito por</span>
+                                        <span>{post.author}</span>
+                                    </div>
+                                    <div className="flex flex-col gap-2">
+                                        <span className="text-[var(--color-secondary)] text-[10px] opacity-60">Tiempo</span>
+                                        <span>8 min • Lectura</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </FadeIn>
 
-                        <div className="flex flex-wrap gap-8 text-sm text-stone-400">
-                            <div className="flex items-center gap-2">
-                                <Calendar className="w-5 h-5 text-[var(--color-secondary)]" />
-                                <span className="font-medium">{post.date}</span>
+                        {/* Right Image: Editorial 4:5 Frame */}
+                        <FadeIn delay={0.2} className="relative">
+                            <div className="relative aspect-[4/5] w-full max-w-[500px] mx-auto lg:ml-auto">
+                                <div className="absolute -inset-4 border border-white/5 rounded-2xl" />
+                                <div className="absolute inset-0 rounded-xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+                                    <Image
+                                        src={post.image}
+                                        alt={post.title}
+                                        fill
+                                        className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                                        priority
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                                </div>
+                                
+                                {/* Decorator Badge */}
+                                <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-[var(--color-secondary)] rounded-full flex items-center justify-center p-4 shadow-xl border-4 border-[#333333]">
+                                    <Sparkles className="text-white w-8 h-8 opacity-40" />
+                                </div>
                             </div>
-                            <div className="flex items-center gap-2">
-                                <User className="w-5 h-5 text-[var(--color-secondary)]" />
-                                <span className="font-medium">{post.author}</span>
-                            </div>
-                        </div>
-                    </FadeIn>
+                        </FadeIn>
+                    </div>
                 </div>
 
-                {/* Right Panel: Feature Image */}
-                <div className="lg:w-[55%] relative min-h-[400px] lg:min-h-full">
-                    <Image
-                        src={post.image}
-                        alt={post.title}
-                        fill
-                        className="object-cover"
-                        priority
-                    />
-                    {/* Much softer, wider blurred transition - Desktop (Left to Right) */}
-                    <div className="absolute inset-y-0 left-[-1px] w-full bg-gradient-to-r from-white via-white/60 to-transparent hidden lg:block z-10" />
-                    <div className="absolute inset-y-0 left-[-40px] w-64 bg-white/80 blur-[80px] hidden lg:block z-0" />
-                    
-                    {/* Mobile Transition (Top to Bottom) - From White to Image */}
-                    <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white to-transparent lg:hidden z-10" />
+                {/* Vertical Indicator */}
+                <div className="absolute right-12 bottom-12 hidden lg:flex flex-col items-center gap-6">
+                    <span className="[writing-mode:vertical-rl] text-white/20 text-[10px] uppercase tracking-[0.4em] font-bold">Lectura • Bitácora</span>
+                    <div className="w-px h-12 bg-gradient-to-t from-[var(--color-secondary)] to-transparent" />
                 </div>
+                
+                {/* Bottom Fade Gradient to dissolve the line */}
+                <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[#FAF9F6] z-10" />
             </section>
 
             {/* Article Content Section */}

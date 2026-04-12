@@ -63,7 +63,7 @@ export default function Header() {
         if (mainLandings.includes(path)) return true;
         
         // 3. Specific sub-sections where dark heroes are known to continue
-        const transparentSubSections = ['/servicios/', '/eventos/', '/libros/'];
+        const transparentSubSections = ['/servicios/', '/eventos/', '/libros/', '/blog/'];
         if (transparentSubSections.some(prefix => path.startsWith(prefix))) return true;
         
         // 4. Default to solid (for details, Sobre Mi, tests, etc.)
