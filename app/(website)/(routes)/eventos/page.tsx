@@ -273,7 +273,7 @@ export default function EventsPage() {
                 {/* Background Image: High-Fidelity Andean Landscape */}
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/images/home_redesign/cta-clarity-bg.png"
+                        src="/images/home_redesign/solucion-a-tu-medida.jpg"
                         alt="Sesión de Claridad - Evolución Sistémica"
                         fill
                         className="object-cover opacity-80"
