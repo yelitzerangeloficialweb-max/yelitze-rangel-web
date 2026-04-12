@@ -123,7 +123,7 @@ export default function HomePage() {
                   <span className="text-[var(--color-secondary)] font-bold tracking-[0.3em] uppercase text-[10px]">Portal 02</span>
                   <h3 className="text-4xl md:text-5xl font-heading text-[var(--color-primary)] leading-tight">Cuerpo <br /> & Santuario</h3>
                   <p className="text-lg text-stone-500 font-light leading-relaxed">
-                    Libera las memorias atrapadas en la piel. Desde masajes ancestrales hasta shirodhara, el cuerpo es el templo donde ocurre la verdadera liberación.
+                    Libera las memorias atrapadas en el cuerpo. Desde masajes ancestrales hasta shirodhara, el cuerpo es el templo donde ocurre la verdadera liberación.
                   </p>
                   <div className="flex lg:justify-end">
                     <Link href="/servicios/sesiones-corporales" className="btn-premium px-10 py-4 group w-fit">

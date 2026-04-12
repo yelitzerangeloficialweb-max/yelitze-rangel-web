@@ -11,7 +11,7 @@ export default function WelcomeSection() {
 
             <div className="container mx-auto px-4 relative z-10">
                 <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
-                    
+
                     {/* Text Content - Left */}
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
@@ -28,12 +28,12 @@ export default function WelcomeSection() {
 
                         <div className="space-y-6 text-xl md:text-2xl text-text/90 leading-relaxed font-body max-w-xl mx-auto lg:mx-0">
                             <p>
-                                Soy Yelitzé Rangel. Acompaño a personas valientes a mirar con amor su historia 
+                                Soy Yelitzé Rangel. Acompaño a personas valientes a mirar con amor su historia
                                 para liberar cargas que no les pertenecen y tomen la fuerza de sus ancestros para vivir el presente.
                             </p>
                             <p>
-                                Durante años he integrado la Psicología, la Tanatología, el descongelamiento del trauma 
-                                para crear un método que no solo se queda en la mente, sino que baja al corazón y al cuerpo. 
+                                Durante años he integrado la Psicología, la Tanatología, el descongelamiento del trauma
+                                para crear un método que no solo se queda en la mente, sino que baja al corazón y al cuerpo.
                             </p>
                         </div>
 
@@ -56,7 +56,7 @@ export default function WelcomeSection() {
                         className="flex-1 relative"
                     >
 
-                        
+
 
 
                         {/* Decorative squiggly line (svg for better control) */}

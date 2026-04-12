@@ -20,7 +20,7 @@ const services = [
         id: "02",
         title: "Cuerpo y Santuario",
         tag: "PORTAL 02",
-        description: "Libera las memorias atrapadas en tu piel. Desde masajes ancestrales hasta shirodhara, el cuerpo es el templo donde ocurre la verdadera liberación.",
+        description: "Libera las memorias atrapadas en tu cuerpo. Desde masajes ancestrales hasta shirodhara, el cuerpo es el templo donde ocurre la verdadera liberación.",
         cta: "ENTRAR AL PORTAL",
         link: "/servicios/sesiones-corporales",
         image: "/images/home_redesign/Web-Yelitze-03.png",
@@ -36,14 +36,14 @@ export default function ServiceSelector() {
             {/* Main Header - Now above the dark section to avoid overlap */}
             <div className="relative pt-[220px] pb-12 z-20">
                 <div className="container mx-auto px-4 text-center">
-                    <motion.span 
+                    <motion.span
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         className="text-xs font-bold tracking-[0.4em] uppercase text-black"
                     >
                         ECOSISTEMA DE EVOLUCIÓN
                     </motion.span>
-                    <motion.h2 
+                    <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
@@ -59,7 +59,7 @@ export default function ServiceSelector() {
             {/* PORTAL 01 - WHITE SECTION WITH BRUSH BACKGROUND */}
             <div className="relative bg-white pt-40 pb-64 z-20 mt-16">
                 {/* Huge Brush Shape Background */}
-                <div 
+                <div
                     className="absolute inset-0 z-0 origin-bottom scale-y-125 translate-y-[calc(5%+15px)]"
                     style={{
                         maskImage: 'url(/images/home_redesign/brush-bottom.svg)',
@@ -71,7 +71,7 @@ export default function ServiceSelector() {
                         maskSize: '100% 100%',
                         WebkitMaskSize: '100% 100%',
                         backgroundColor: '#2D2926'
-                    }} 
+                    }}
                 />
 
                 {/* Background Glows (inside the brush) */}
@@ -117,7 +117,7 @@ export default function ServiceSelector() {
                                 <p className="text-xl md:text-2xl font-body font-light leading-relaxed text-white/80 max-w-xl mx-auto lg:mx-0">
                                     {services[0].description}
                                 </p>
-                                
+
                                 <div className="pt-12">
                                     <Link
                                         href={services[0].link}
@@ -135,7 +135,7 @@ export default function ServiceSelector() {
             {/* PORTAL 02 - LIGHT SECTION */}
             <div className="relative bg-white pt-48 pb-32 z-10">
                 {/* Decorative Glows */}
-                
+
                 {/* Animated Subtle Rings - From maintenance page */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
                     <motion.div
@@ -157,10 +157,10 @@ export default function ServiceSelector() {
                         className="absolute -bottom-[15%] -right-[10%] w-[70%] h-[70%] border-2 border-[#8C4005] rounded-full"
                     />
                 </div>
-                
+
                 {/* Portal 02 Specific Flare - Right Side */}
                 <div className="absolute top-[20%] right-[-15vw] w-[35vw] h-[35vw] bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.9)_0%,transparent_80%)] blur-[150px] pointer-events-none z-[9999]" />
-                
+
                 {/* CSS Based Glow - Bottom Left */}
                 <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[radial-gradient(circle_at_bottom_left,_rgba(255,107,0,0.95)_0%,_transparent_75%)] pointer-events-none z-0" />
 
@@ -185,7 +185,7 @@ export default function ServiceSelector() {
                                 <p className="text-xl md:text-2xl font-body font-light leading-relaxed text-text/70 max-w-xl mx-auto lg:mx-0">
                                     {services[1].description}
                                 </p>
-                                
+
                                 <div className="pt-10 flex flex-col items-center lg:items-start gap-8">
                                     <Link
                                         href={services[1].link}
@@ -194,14 +194,14 @@ export default function ServiceSelector() {
                                         {services[1].cta}
                                     </Link>
 
-                                    <motion.div 
+                                    <motion.div
                                         initial={{ opacity: 0, y: 10 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ duration: 0.6, delay: 0.4 }}
                                     >
-                                        <Link 
-                                            href="/servicios" 
+                                        <Link
+                                            href="/servicios"
                                             className="group flex items-center gap-3 text-xs font-body font-bold tracking-[0.4em] uppercase text-text/40 hover:text-[#B8835A] transition-colors"
                                         >
                                             VER TODOS LOS SERVICIOS
