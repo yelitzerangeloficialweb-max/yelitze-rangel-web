@@ -24,8 +24,8 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
             {/* 1. HERO SECTION: PREMIUM EDITORIAL ARTICLE */}
             <section className="relative min-h-[85vh] flex items-center pt-40 pb-20 overflow-hidden bg-[#333333]">
                 {/* Background Glows */}
-                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[var(--color-secondary)] opacity-[0.08] blur-[150px] -translate-y-1/2 translate-x-1/4" />
-                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[var(--color-primary)] opacity-[0.05] blur-[130px] translate-y-1/2 -translate-x-1/4" />
+                <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-[var(--color-secondary)] opacity-[0.08] blur-[150px] -translate-y-1/2 -translate-x-1/4" />
+                <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[var(--color-primary)] opacity-[0.05] blur-[130px] translate-y-1/2 translate-x-1/4" />
 
                 <div className="container mx-auto px-4 relative z-10">
                     <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
