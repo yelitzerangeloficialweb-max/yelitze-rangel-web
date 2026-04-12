@@ -10,17 +10,17 @@ export default function ArchitectureSector() {
         <section className="relative min-h-[850px] flex items-center overflow-x-clip bg-[#2D2926] pt-16 pb-16 md:pt-32 md:pb-32">
             {/* Background Image Container with Gradient Fade */}
             <div className="absolute inset-0 top-0 z-0">
-                <div className="relative w-full h-full lg:w-[80%] lg:-left-24">
+                <div className="relative w-full h-full">
                     <Image
-                        src="/images/home_redesign/Web-Yelitze12.png"
+                        src="/images/home_redesign/Arquitectura_intencional.png"
                         alt="Arquitectura de Vida"
                         fill
                         className="object-cover object-left opacity-100"
                         priority
                     />
-                    {/* Gradient Overlays for smooth blending into dark background */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#2D2926]/40 to-[#2D2926]" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#2D2926] via-transparent to-transparent" />
+                    {/* Gradient Overlays for smooth blending - Softened to see subject better */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#2D2926]/10 to-[#2D2926]" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#2D2926]/60 via-transparent to-transparent" />
                 </div>
             </div>
 
