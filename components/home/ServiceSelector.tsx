@@ -31,10 +31,10 @@ export default function ServiceSelector() {
     return (
         <section id="como-comenzar" className="relative bg-white overflow-visible">
             {/* High Level Global Flares for this section - Targets the Title area */}
-            <div className="absolute top-0 right-[-25vw] w-[35vw] h-[35vw] bg-[radial-gradient(circle_at_center,rgba(255,107,0,1)_0%,rgba(255,107,0,0.8)_50%,transparent_90%)] blur-[140px] pointer-events-none z-[9999]" />
+            <div className="absolute top-[-5vh] right-[-15vw] w-[35vw] h-[35vw] bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.95)_0%,rgba(255,107,0,0.85)_50%,transparent_90%)] blur-[140px] pointer-events-none z-[9999]" />
 
             {/* Main Header - Now above the dark section to avoid overlap */}
-            <div className="relative pt-[220px] pb-12 z-20">
+            <div className="relative pt-24 pb-12 md:pt-[220px] z-20">
                 <div className="container mx-auto px-4 text-center">
                     <motion.span
                         initial={{ opacity: 0, y: 10 }}
@@ -57,7 +57,7 @@ export default function ServiceSelector() {
 
 
             {/* PORTAL 01 - WHITE SECTION WITH BRUSH BACKGROUND */}
-            <div className="relative bg-white pt-40 pb-64 z-20 mt-16">
+            <div className="relative bg-white pt-20 pb-40 md:pt-40 md:pb-64 z-20 mt-16">
                 {/* Huge Brush Shape Background */}
                 <div
                     className="absolute inset-0 z-0 origin-bottom scale-y-125 translate-y-[calc(5%+15px)]"
@@ -133,7 +133,7 @@ export default function ServiceSelector() {
             </div>
 
             {/* PORTAL 02 - LIGHT SECTION */}
-            <div className="relative bg-white pt-48 pb-32 z-10">
+            <div className="relative bg-white pt-24 pb-16 md:pt-48 md:pb-32 z-10">
                 {/* Decorative Glows */}
 
                 {/* Animated Subtle Rings - From maintenance page */}
@@ -166,7 +166,7 @@ export default function ServiceSelector() {
 
 
                 <div className="container mx-auto px-4 relative max-w-7xl">
-                    <div className="relative flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+                    <div className="relative flex flex-col-reverse lg:flex-row items-center gap-16 lg:gap-24">
                         {/* Text Content Left */}
                         <div className="lg:w-1/2 text-text space-y-8 text-center lg:text-left z-20">
                             <motion.div

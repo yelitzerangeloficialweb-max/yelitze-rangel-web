@@ -6,11 +6,11 @@ import { motion } from "framer-motion";
 
 export default function WelcomeSection() {
     return (
-        <section className="py-32 bg-white relative overflow-hidden">
+        <section className="py-16 md:py-32 bg-white relative overflow-hidden">
 
 
             <div className="container mx-auto px-4 relative z-10">
-                <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+                <div className="flex flex-col-reverse lg:flex-row items-center gap-16 lg:gap-24">
 
                     {/* Text Content - Left */}
                     <motion.div
@@ -21,7 +21,7 @@ export default function WelcomeSection() {
                         className="flex-1 space-y-8 text-center lg:text-left"
                     >
                         <div className="space-y-4">
-                            <h2 className="text-4xl md:text-[5rem] lg:text-[5.5rem] font-script text-[#B8835A] leading-tight drop-shadow-sm lg:whitespace-nowrap tracking-[0.03em]">
+                            <h2 className="text-5xl md:text-[7rem] lg:text-[8rem] font-script text-[#B8835A] leading-tight drop-shadow-sm tracking-[0.03em]">
                                 Bienvenida familia de Almas
                             </h2>
                         </div>

@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 export default function ArchitectureSector() {
     return (
-        <section className="relative min-h-[850px] flex items-center overflow-hidden bg-[#2D2926] pt-32 pb-32">
+        <section className="relative min-h-[850px] flex items-center overflow-hidden bg-[#2D2926] pt-16 pb-16 md:pt-32 md:pb-32">
             {/* Background Image Container with Gradient Fade */}
             <div className="absolute inset-0 top-0 z-0">
                 <div className="relative w-full h-full lg:w-[80%] lg:-left-24">
@@ -15,7 +15,7 @@ export default function ArchitectureSector() {
                         src="/images/home_redesign/Web-Yelitze12.png"
                         alt="Arquitectura de Vida"
                         fill
-                        className="object-cover object-left opacity-30 lg:opacity-100"
+                        className="object-cover object-left opacity-100"
                         priority
                     />
                     {/* Gradient Overlays for smooth blending into dark background */}
@@ -49,7 +49,7 @@ export default function ArchitectureSector() {
                             </div>
                         </div>
 
-                        <p className="text-lg md:text-xl text-white/80 font-body font-light leading-relaxed max-w-xl mx-auto lg:mx-0">
+                        <p className="text-2xl text-white/80 font-body font-light leading-relaxed max-w-xl mx-auto lg:mx-0">
                             Un viaje diseñado para quienes deciden dejar de sobrevivir y comenzar a co-crear su realidad desde el alma. Descubre si estás listo para este movimiento
                         </p>
 

@@ -25,7 +25,7 @@ export default function TestSpotlight() {
                                 Arquitectura de Vida <br />
                                 <span className="text-white/40">Intencional</span>
                             </h2>
-                            <p className="text-gray-400 text-lg md:text-xl font-light italic leading-relaxed max-w-xl mt-8">
+                            <p className="text-gray-400 text-2xl font-light italic leading-relaxed max-w-xl mt-8">
                                 Un viaje diseñado para quienes deciden dejar de sobrevivir y comenzar a co-crear su realidad desde el alma. Descubre si estás listo para este movimiento.
                             </p>
 
