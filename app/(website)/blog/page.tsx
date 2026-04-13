@@ -81,6 +81,9 @@ export default function BlogPage() {
                                     src={featuredPost.image}
                                     alt={featuredPost.title}
                                     fill
+                                    priority
+                                    unoptimized
+                                    quality={100}
                                     className="object-cover object-center group-hover:scale-105 transition-transform duration-[2000ms]"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-primary)]/40 to-transparent" />
@@ -133,6 +136,8 @@ export default function BlogPage() {
                                                 src={post.image}
                                                 alt={post.title}
                                                 fill
+                                                unoptimized
+                                                quality={100}
                                                 className="object-cover group-hover:scale-110 transition-transform duration-1000"
                                             />
                                             <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
