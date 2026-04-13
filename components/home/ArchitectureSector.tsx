@@ -7,17 +7,15 @@ import { motion } from "framer-motion";
 
 export default function ArchitectureSector() {
     return (
-        <section className="relative h-[600px] md:h-[750px] flex items-center overflow-hidden bg-[#2D2926]">
+        <section className="relative w-full h-[600px] md:h-[850px] flex items-center overflow-hidden bg-[#2D2926]">
             {/* Split Layout: Image on the left half, Dark background on the right */}
-            <div 
-                className="absolute top-0 bottom-0 left-0 w-full lg:w-1/2 z-0"
-                style={{
-                    backgroundImage: 'url(/images/home_redesign/Arquitectura_intencional.png)',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'left center',
-                    backgroundRepeat: 'no-repeat'
-                }}
-            >
+            <div className="absolute inset-y-0 left-0 w-full lg:w-1/2 z-0">
+                <img 
+                    src="/images/home_redesign/Arquitectura_intencional.png"
+                    alt="Arquitectura de Vida"
+                    className="w-full h-full object-cover object-left"
+                />
+                {/* Gradient to blend the image into the dark grey on the right side */}
                 <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-[#2D2926]" />
             </div>
 
