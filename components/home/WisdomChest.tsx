@@ -6,12 +6,12 @@ import { motion } from "framer-motion";
 export default function WisdomChest() {
     return (
         <section className="relative py-48 bg-white overflow-x-clip" style={{ zIndex: 1, position: 'relative' }}>
-            {/* Mobile Background Extension - top for continuity */}
-            <div className="absolute inset-x-0 top-0 h-[90%] bg-[#2D2926] lg:hidden z-0" />
+            {/* Mobile Background: Gray box at top for continuity */}
+            <div className="absolute inset-x-0 top-0 h-[75%] bg-[#2D2926] lg:hidden z-0" />
 
-            {/* Background Organic Shape - Corrected Position */}
+            {/* Mobile Background: Organic shape at bottom (fixed height to avoid stretching) */}
             <div 
-                className="absolute inset-0 z-0 scale-y-[2.5] lg:scale-y-150 scale-x-125 md:scale-x-115 origin-bottom"
+                className="absolute inset-x-0 bottom-0 h-[300px] bg-[#2D2926] lg:hidden z-0 translate-y-20 lg:translate-y-0"
                 style={{
                     maskImage: 'url(/images/home_redesign/SVG/curva_inferiro2.svg)',
                     WebkitMaskImage: 'url(/images/home_redesign/SVG/curva_inferiro2.svg)',
@@ -19,6 +19,21 @@ export default function WisdomChest() {
                     WebkitMaskRepeat: 'no-repeat',
                     maskPosition: 'bottom center',
                     WebkitMaskPosition: 'bottom center',
+                    maskSize: '100% 100%',
+                    WebkitMaskSize: '100% 100%',
+                }} 
+            />
+
+            {/* Desktop Background: Maintains original organic mask logic */}
+            <div 
+                className="absolute inset-0 z-0 hidden lg:block scale-y-150 scale-x-115 origin-bottom translate-y-32"
+                style={{
+                    maskImage: 'url(/images/home_redesign/SVG/curva_inferiro2.svg)',
+                    WebkitMaskImage: 'url(/images/home_redesign/SVG/curva_inferiro2.svg)',
+                    maskRepeat: 'no-repeat',
+                    WebkitMaskRepeat: 'no-repeat',
+                    maskPosition: 'center',
+                    WebkitMaskPosition: 'center',
                     maskSize: '100% 100%',
                     WebkitMaskSize: '100% 100%',
                     backgroundColor: '#2D2926'
