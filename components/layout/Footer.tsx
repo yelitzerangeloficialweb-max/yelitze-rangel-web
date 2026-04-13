@@ -19,7 +19,7 @@ export default function Footer() {
                                 />
                             </div>
                         </div>
-                        <p className="text-white/80 text-sm leading-relaxed mb-6">
+                        <p className="text-white/80 text-[18px] leading-relaxed mb-6">
                             Acompañándote a honrar tus raíces para que florezcas en tu propio destino. Terapia Sistémica y Tu Coach Ancestral.
                         </p>
                         <div className="flex gap-4">
