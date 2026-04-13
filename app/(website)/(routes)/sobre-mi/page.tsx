@@ -177,10 +177,10 @@ export default function AboutPage() {
                     </div>
                 </section>
 
-            {/* 4. Turning Point & Methodology (Dark Faded Design) */}
-            <section className="relative min-h-screen flex items-center bg-black overflow-hidden py-24">
-                {/* Background Image: Aligned Right */}
-                <div className="absolute inset-0 z-0">
+            {/* 4. Turning Point & Methodology (Dark Faded Design - Responsive optimized) */}
+            <section className="relative min-h-screen bg-black overflow-hidden py-24 flex flex-col lg:block">
+                {/* Desktop Background Image (Hidden on small screens) */}
+                <div className="absolute inset-0 z-0 hidden lg:block">
                     <Image
                         src="/images/home_redesign/Sobremi-03.jpg"
                         alt=""
@@ -188,9 +188,19 @@ export default function AboutPage() {
                         className="object-contain object-right"
                         priority
                     />
-                    {/* Deep Left Gradient Overlay (Creating the dark space for text) */}
                     <div className="absolute inset-0 bg-gradient-to-r from-black via-black via-[45%] to-transparent z-10" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10" />
+                </div>
+
+                {/* Mobile Top Image (Visible only on small screens) */}
+                <div className="w-full h-[400px] relative lg:hidden z-10 mb-12">
+                     <Image
+                        src="/images/home_redesign/Sobremi-03.jpg"
+                        alt="Yelitze Rangel"
+                        fill
+                        className="object-cover object-center"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent" />
                 </div>
 
                 <div className="container mx-auto px-8 lg:px-32 relative z-20">
