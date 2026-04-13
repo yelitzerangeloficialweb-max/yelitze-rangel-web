@@ -7,19 +7,20 @@ import { motion } from "framer-motion";
 
 export default function ArchitectureSector() {
     return (
-        <section className="relative min-h-[750px] flex items-center overflow-x-clip bg-[#2D2926] pt-16 pb-16 md:pt-32 md:pb-32">
-            {/* Background Image Container - Cover but with custom position to avoid zoom feel */}
-            <div className="absolute inset-0 z-0">
-                <Image
-                    src="/images/home_redesign/Arquitectura_intencional.png"
-                    alt="Arquitectura de Vida"
-                    fill
-                    className="object-cover object-[25%_center] opacity-100"
-                    priority
-                />
-                {/* Refined gradients to blend the subject with the dark theme and text area */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#2D2926]/20 to-[#2D2926]" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#2D2926]/40 via-transparent to-transparent" />
+        <section className="relative min-h-[700px] md:min-h-[850px] flex items-center overflow-x-clip bg-[#2D2926]">
+            {/* Direct Background Image - Ensures full coverage and correct positioning */}
+            <div 
+                className="absolute inset-0 z-0"
+                style={{
+                    backgroundImage: 'url(/images/home_redesign/Arquitectura_intencional.png)',
+                    backgroundSize: 'cover',
+                    backgroundPosition: '25% center',
+                    backgroundRepeat: 'no-repeat'
+                }}
+            >
+                {/* Refined overlays for branding and readability */}
+                <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-[#2D2926]/90" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#2D2926] via-transparent to-transparent opacity-80" />
             </div>
 
             <div className="container mx-auto px-4 relative z-10">
