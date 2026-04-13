@@ -76,18 +76,18 @@ export default function BlogPage() {
                     <FadeIn>
                         <div className="relative group rounded-[3rem] overflow-hidden bg-white shadow-2xl border border-stone-100 flex flex-col lg:flex-row mb-24">
                             {/* Image Part */}
-                            <div className="lg:w-[60%] relative aspect-video lg:aspect-auto min-h-[500px] overflow-hidden">
+                            <div className="lg:w-1/2 relative aspect-[4/5] overflow-hidden">
                                 <Image
                                     src={featuredPost.image}
                                     alt={featuredPost.title}
                                     fill
-                                    className="object-cover object-top group-hover:scale-105 transition-transform duration-[2000ms]"
+                                    className="object-cover object-center group-hover:scale-105 transition-transform duration-[2000ms]"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-primary)]/40 to-transparent" />
                             </div>
 
                             {/* content Part */}
-                            <div className="lg:w-[40%] p-10 md:p-16 flex flex-col justify-center space-y-8 relative">
+                            <div className="lg:w-1/2 p-10 md:p-16 flex flex-col justify-center space-y-8 relative">
                                 {/* Watermark subtle */}
                                 <div className="absolute -right-10 -bottom-10 w-64 h-64 opacity-[0.05] pointer-events-none">
                                     <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
