@@ -442,3 +442,67 @@ export const sendGenericTestEmail = async ({
         return { success: false, error: err };
     }
 };
+
+export const sendNewsletterSubscriptionEmail = async (email: string) => {
+    try {
+        const logoUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/assets/images/logo-yelitze-new.png`;
+
+        const { data, error } = await resend.emails.send({
+            from: 'Yelitze Rangel <info@yelitzerangeloficial.com>',
+            to: [email],
+            subject: '¡Bienvenida al Círculo del Alma! 🌿✨',
+            html: `
+                <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background-color: #FDFBFA; border-radius: 32px; overflow: hidden; border: 1px solid #B8835A20;">
+                    <div style="background-color: #2D2926; padding: 40px 20px; text-align: center;">
+                        <img src="${logoUrl}" alt="Yelitze Rangel" style="max-width: 150px; height: auto; margin-bottom: 20px;">
+                        <h1 style="color: #FDFBFA; margin: 0; font-size: 16px; letter-spacing: 2px; text-transform: uppercase;">El Círculo del Alma</h1>
+                    </div>
+                    
+                    <div style="padding: 50px 40px; color: #2D2926; line-height: 1.8;">
+                        <h2 style="color: #8C4005; font-size: 24px; margin-bottom: 30px;">¡Gracias por unirte!</h2>
+                        
+                        <p style="font-size: 16px; color: #4A4540; margin-bottom: 25px;">
+                            Has tomado el primer paso para conectar con tu esencia y honrar tus raíces. A partir de ahora, recibirás reflexiones, herramientas y noticias exclusivas directamente en tu buzón.
+                        </p>
+                        
+                        <div style="background-color: #F5EFE6; padding: 30px; border-radius: 20px; border: 1px solid #B8835A15; margin-bottom: 40px;">
+                            <p style="font-size: 16px; color: #2D2926; font-style: italic; margin: 0;">
+                                "Cuando sanamos nosotros, sanamos a siete generaciones hacia atrás y siete hacia adelante."
+                            </p>
+                        </div>
+
+                        <p style="font-size: 16px; color: #4A4540; margin-bottom: 30px;">
+                            Mantente atenta, pronto recibirás tu primera dosis de inspiración ancestral.
+                        </p>
+
+                        <div style="text-align: center;">
+                            <a href="https://yelitzerangeloficial.com" style="background-color: #C1530A; color: white; padding: 16px 32px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-block;">
+                                VISITAR MI WEB
+                            </a>
+                        </div>
+                        
+                        <p style="margin-top: 50px; text-align: center; color: #8C4005; font-weight: bold; font-style: italic;">
+                            "Primero sana el cuerpo… y luego cambia la historia."
+                        </p>
+                    </div>
+                    
+                    <div style="background-color: #EFE9E0; padding: 30px; text-align: center; color: #3C2A21; font-size: 12px;">
+                        <p style="margin: 0;"><strong>YELITZE RANGEL</strong></p>
+                        <p style="margin-top: 5px; opacity: 0.6;">Tu Coach Ancestral</p>
+                    </div>
+                </div>
+            `
+        });
+
+        if (error) {
+            console.error('[Newsletter Mail] Resend error:', error);
+            return { success: false, error };
+        }
+
+        return { success: true, data };
+    } catch (err) {
+        console.error('Newsletter subscription email error:', err);
+        return { success: false, error: err };
+    }
+};
+
