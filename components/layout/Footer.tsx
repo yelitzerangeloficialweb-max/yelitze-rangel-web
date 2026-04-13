@@ -37,7 +37,7 @@ export default function Footer() {
 
                     {/* Links 1 */}
                     <div>
-                        <h4 className="text-lg font-heading mb-6 tracking-wide text-[var(--color-accent)]">Explora</h4>
+                        <h4 className="text-2xl font-editorial mb-6 tracking-wide text-[var(--color-accent)]">Explora</h4>
                         <ul className="space-y-3 text-white/70 text-sm font-body">
                             <li><Link href="/sobre-mi" className="hover:text-white transition-colors">Sobre Mí</Link></li>
                             <li><Link href="/servicios" className="hover:text-white transition-colors">Servicios</Link></li>
@@ -48,7 +48,7 @@ export default function Footer() {
 
                     {/* Links 2 */}
                     <div>
-                        <h4 className="text-lg font-heading mb-6 tracking-wide text-[var(--color-accent)]">Legal</h4>
+                        <h4 className="text-2xl font-editorial mb-6 tracking-wide text-[var(--color-accent)]">Legal</h4>
                         <ul className="space-y-3 text-white/70 text-sm font-body">
                             <li><Link href="/privacidad" className="hover:text-white transition-colors">Política de Privacidad</Link></li>
                             <li><Link href="/terminos" className="hover:text-white transition-colors">Términos y Condiciones</Link></li>
@@ -58,7 +58,7 @@ export default function Footer() {
 
                     {/* Newsletter */}
                     <div>
-                        <h4 className="text-lg font-heading mb-6 tracking-wide text-[var(--color-accent)]">Únete a la Comunidad</h4>
+                        <h4 className="text-2xl font-editorial mb-6 tracking-wide text-[var(--color-accent)]">Únete a la Comunidad</h4>
                         <p className="text-white/80 text-sm mb-4 font-body leading-relaxed">Recibe reflexiones semanales y ejercicios sistémicos en tu correo.</p>
                         <form className="flex flex-col gap-2">
                             <input
