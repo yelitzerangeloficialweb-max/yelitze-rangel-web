@@ -70,65 +70,14 @@ export default function BlogPage() {
                 </div>
             </section>
 
-            {/* 2. FEATURED SPOTLIGHT */}
+            {/* 2. ARTICLES GRID */}
             <section id="articulos" className="py-24 px-4 relative overflow-hidden">
                 {/* Intensified Accent Blur Flare */}
                 <div className="absolute -top-10 -left-10 w-[45%] h-[45%] bg-[radial-gradient(circle_at_center,#FF6B00_0%,transparent_70%)] opacity-30 blur-[120px] pointer-events-none" />
                 
                 <div className="container mx-auto max-w-7xl">
-                    <FadeIn>
-                        <div className="relative group rounded-[3rem] overflow-hidden bg-white shadow-2xl border border-stone-100 flex flex-col lg:flex-row mb-24">
-                            {/* Image Part */}
-                            <div className="lg:w-1/2 relative aspect-[4/5] overflow-hidden">
-                                <Image
-                                    src={featuredPost.image}
-                                    alt={featuredPost.title}
-                                    fill
-                                    priority
-                                    unoptimized
-                                    quality={100}
-                                    className="object-cover object-center group-hover:scale-105 transition-transform duration-[2000ms]"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-primary)]/40 to-transparent" />
-                            </div>
-
-                            {/* content Part */}
-                            <div className="lg:w-1/2 p-10 md:p-16 flex flex-col justify-center space-y-8 relative">
-                                {/* Watermark subtle */}
-                                <div className="absolute -right-10 -bottom-10 w-64 h-64 opacity-[0.05] pointer-events-none">
-                                    <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
-                                </div>
-
-                                <div className="space-y-4">
-                                    <span className="text-[var(--color-secondary)] font-bold tracking-[0.3em] uppercase text-xs">
-                                        Artículo Destacado
-                                    </span>
-                                    <h2 className="text-3xl md:text-5xl font-heading text-[var(--color-primary)] leading-tight">
-                                        {featuredPost.title}
-                                    </h2>
-                                </div>
-                                <p className="text-[var(--color-text-light)] text-lg leading-relaxed line-clamp-3">
-                                    {featuredPost.excerpt}
-                                </p>
-                                <div className="flex items-center gap-4 text-xs text-stone-400">
-                                    <Calendar className="w-4 h-4" /> {featuredPost.date}
-                                    <span className="w-1 h-1 rounded-full bg-stone-300" />
-                                    {featuredPost.category}
-                                </div>
-                                <Link
-                                    href={`/blog/${featuredPost.slug}`}
-                                    className="btn-premium px-10 py-4 group w-fit"
-                                >
-                                    Continuar Leyendo
-                                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                                </Link>
-                            </div>
-                        </div>
-                    </FadeIn>
-
-                    {/* 3. RECENT ARTICLES GRID */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14">
-                        {recentPosts.map((post, idx) => (
+                        {BLOG_POSTS.map((post, idx) => (
                             <FadeIn key={post.id} delay={idx * 0.1}>
                                 <div className="group relative flex flex-col h-full">
                                     {/* Card Container */}
