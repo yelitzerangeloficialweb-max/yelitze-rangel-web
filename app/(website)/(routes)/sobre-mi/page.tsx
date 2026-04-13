@@ -189,7 +189,7 @@ export default function AboutPage() {
                         priority
                     />
                     {/* Deep Left Gradient Overlay (Creating the dark space for text) */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 lg:via-black/60 to-transparent z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black via-black via-[60%] to-transparent z-10" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10" />
                 </div>
 
