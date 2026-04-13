@@ -39,7 +39,7 @@ export default function CoachingAncestralPage() {
                         </div>
 
                         {/* Main Heading */}
-                        <h1 className="text-5xl lg:text-9xl font-bold text-white uppercase tracking-tight leading-none mb-8">
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white uppercase tracking-tighter leading-none mb-8">
                             Anatomía del Alma
                         </h1>
 
