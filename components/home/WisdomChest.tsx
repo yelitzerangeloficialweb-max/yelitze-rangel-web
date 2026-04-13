@@ -7,18 +7,18 @@ export default function WisdomChest() {
     return (
         <section className="relative py-48 bg-white overflow-x-clip" style={{ zIndex: 1, position: 'relative' }}>
             {/* Mobile Background Extension - top for continuity */}
-            <div className="absolute inset-x-0 top-0 h-[70%] bg-[#2D2926] lg:hidden z-0" />
+            <div className="absolute inset-x-0 top-0 h-[90%] bg-[#2D2926] lg:hidden z-0" />
 
             {/* Background Organic Shape - Corrected Position */}
             <div 
-                className="absolute inset-0 z-0 scale-y-[2.5] lg:scale-y-150 scale-x-125 md:scale-x-115 origin-bottom translate-y-32"
+                className="absolute inset-0 z-0 scale-y-[2.5] lg:scale-y-150 scale-x-125 md:scale-x-115 origin-bottom"
                 style={{
                     maskImage: 'url(/images/home_redesign/SVG/curva_inferiro2.svg)',
                     WebkitMaskImage: 'url(/images/home_redesign/SVG/curva_inferiro2.svg)',
                     maskRepeat: 'no-repeat',
                     WebkitMaskRepeat: 'no-repeat',
-                    maskPosition: 'center',
-                    WebkitMaskPosition: 'center',
+                    maskPosition: 'bottom center',
+                    WebkitMaskPosition: 'bottom center',
                     maskSize: '100% 100%',
                     WebkitMaskSize: '100% 100%',
                     backgroundColor: '#2D2926'
