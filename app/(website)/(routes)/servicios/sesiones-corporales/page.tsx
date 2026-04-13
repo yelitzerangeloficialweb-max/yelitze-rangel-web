@@ -180,7 +180,7 @@ export default function SesionesCorporalesPage() {
 
                         {/* Right: Image Content */}
                         <FadeIn delay={0.2}>
-                            <div className="relative aspect-square rounded-[5rem] md:rounded-[8rem] rounded-br-[2rem] overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.5)] group">
+                            <div className="relative aspect-square rounded-tl-[10rem] rounded-br-[10rem] rounded-tr-none rounded-bl-none overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.5)] group">
                                 <Image
                                     src="/images/home_redesign/ayurveda_ritual.png"
                                     alt="Gotas de Sabiduría"
