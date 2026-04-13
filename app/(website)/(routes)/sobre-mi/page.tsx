@@ -239,7 +239,7 @@ export default function AboutPage() {
             </section>
 
             {/* 5. Experience Section (Environmental - Redesigned) */}
-            <section className="py-24 lg:py-40 bg-white relative overflow-hidden isolate">
+            <section className="py-24 lg:py-40 bg-white relative overflow-x-clip isolate">
                 <motion.div 
                     animate={{
                         scale: [1, 1.15, 1],
@@ -253,18 +253,18 @@ export default function AboutPage() {
                     className="absolute -top-[10%] -left-[17.5%] w-[35%] h-[35%] bg-[radial-gradient(circle_at_center,#FF6B00_0%,#FF6B00_60%,transparent_100%)] blur-[80px] pointer-events-none z-[1]"
                 />
 
-                {/* Orange Flare next to the image on the right */}
+                {/* Intensified Orange Flare bleeding to the next section */}
                 <motion.div 
                     animate={{
-                        scale: [1, 1.2, 1],
-                        opacity: [0.4, 0.6, 0.4],
+                        scale: [1, 1.1, 1],
+                        opacity: [0.9, 1, 0.9],
                     }}
                     transition={{
-                        duration: 10,
+                        duration: 12,
                         repeat: Infinity,
                         ease: "easeInOut"
                     }}
-                    className="absolute top-[40%] -right-[10%] w-[40%] h-[40%] bg-[radial-gradient(circle_at_center,#FF6B00_0%,#FF6B00_60%,transparent_100%)] blur-[120px] pointer-events-none z-[0]"
+                    className="absolute top-[75%] -right-[10%] w-[25%] h-[50%] bg-[radial-gradient(circle_at_center,#FF6B00_0%,#FF5000_50%,transparent_100%)] blur-[100px] pointer-events-none z-[5] opacity-[0.95]"
                 />
                 
                 <div className="container mx-auto px-8 lg:px-32 relative z-10">
