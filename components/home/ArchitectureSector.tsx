@@ -8,19 +8,18 @@ import { motion } from "framer-motion";
 export default function ArchitectureSector() {
     return (
         <section className="relative min-h-[700px] md:min-h-[850px] flex items-center overflow-x-clip bg-[#2D2926]">
-            {/* Direct Background Image - Ensures full coverage and correct positioning */}
+            {/* Split Layout: Image on the left half, Dark background on the right */}
             <div 
-                className="absolute inset-0 z-0"
+                className="absolute inset-y-0 left-0 w-full lg:w-1/2 z-0"
                 style={{
                     backgroundImage: 'url(/images/home_redesign/Arquitectura_intencional.png)',
                     backgroundSize: 'cover',
-                    backgroundPosition: '25% center',
+                    backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat'
                 }}
             >
-                {/* Refined overlays for branding and readability */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-[#2D2926]/90" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#2D2926] via-transparent to-transparent opacity-80" />
+                {/* Gradient to blend the image into the dark grey on the right side */}
+                <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-[#2D2926]" />
             </div>
 
             <div className="container mx-auto px-4 relative z-10">
