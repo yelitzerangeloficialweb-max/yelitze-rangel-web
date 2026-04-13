@@ -4,14 +4,16 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, CheckCircle2, Loader2 } from "lucide-react";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 export default function NewNewsletter() {
     const [email, setEmail] = useState("");
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+    const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!email) return;
+        if (!email || !turnstileToken) return;
 
         setStatus("loading");
         
@@ -113,20 +115,27 @@ export default function NewNewsletter() {
                                             className="w-full bg-transparent border-b-2 border-white/30 px-4 py-4 text-xl text-white placeholder:text-white/40 focus:outline-none focus:border-[var(--color-secondary)] transition-colors font-body text-center"
                                         />
                                     </div>
-                                    <button
-                                        type="submit"
-                                        disabled={status === "loading"}
-                                        className="inline-flex items-center justify-center gap-3 px-16 py-5 bg-[var(--color-secondary)] text-white rounded-2xl font-body font-bold tracking-widest uppercase transition-all hover:scale-105 hover:bg-[#c9956d] shadow-2xl active:scale-95 disabled:opacity-50 disabled:scale-100"
-                                    >
-                                        {status === "loading" ? (
-                                            <>
-                                                <Loader2 className="w-5 h-5 animate-spin" />
-                                                Procesando...
-                                            </>
-                                        ) : (
-                                            "SUSCRIBIRME"
-                                        )}
-                                    </button>
+                                    <div className="flex justify-center flex-col items-center gap-6">
+                                        <Turnstile
+                                            siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                                            onSuccess={(token) => setTurnstileToken(token)}
+                                            options={{ theme: "light" }}
+                                        />
+                                        <button
+                                            type="submit"
+                                            disabled={status === "loading" || !turnstileToken}
+                                            className="inline-flex items-center justify-center gap-3 px-16 py-5 bg-[var(--color-secondary)] text-white rounded-2xl font-body font-bold tracking-widest uppercase transition-all hover:scale-105 hover:bg-[#c9956d] shadow-2xl active:scale-95 disabled:opacity-50 disabled:scale-100"
+                                        >
+                                            {status === "loading" ? (
+                                                <>
+                                                    <Loader2 className="w-5 h-5 animate-spin" />
+                                                    Procesando...
+                                                </>
+                                            ) : (
+                                                "SUSCRIBIRME"
+                                            )}
+                                        </button>
+                                    </div>
                                     {status === "error" && (
                                         <p className="text-red-400 text-sm mt-4">
                                             Ocurrió un error. Por favor, intenta de nuevo.

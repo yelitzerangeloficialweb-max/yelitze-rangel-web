@@ -9,9 +9,11 @@ import {
 } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 import { BLOG_POSTS } from "@/lib/blog-data";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 export default function BlogPage() {
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+    const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
     const featuredPost = BLOG_POSTS[0];
     const recentPosts = BLOG_POSTS.slice(1);
 
@@ -226,6 +228,7 @@ export default function BlogPage() {
                                     <form 
                                         onSubmit={async (e) => {
                                             e.preventDefault();
+                                            if (!turnstileToken) return;
                                             const form = e.target as HTMLFormElement;
                                             const emailInput = form.querySelector('input[type="email"]') as HTMLInputElement;
                                             const emailValue = emailInput.value;
@@ -243,7 +246,7 @@ export default function BlogPage() {
                                                 setStatus("error");
                                             }
                                         }}
-                                        className="bg-white/5 backdrop-blur-xl p-1 md:p-2 rounded-full border border-white/10 flex relative overflow-hidden"
+                                        className="bg-white/5 backdrop-blur-xl p-1 md:p-2 rounded-full border border-white/10 flex flex-col md:flex-row relative overflow-hidden gap-4 md:gap-0"
                                     >
                                         <input
                                             type="email"
@@ -251,9 +254,16 @@ export default function BlogPage() {
                                             placeholder="Tu correo electrónico..."
                                             className="bg-transparent flex-grow px-8 py-4 text-white focus:outline-none placeholder:text-gray-500 min-w-0"
                                         />
+                                        <div className="flex items-center justify-center px-4 scale-75 origin-center">
+                                            <Turnstile
+                                                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                                                onSuccess={(token) => setTurnstileToken(token)}
+                                                options={{ theme: "dark", size: "compact" }}
+                                            />
+                                        </div>
                                         <button 
                                             type="submit"
-                                            disabled={status === "loading"}
+                                            disabled={status === "loading" || !turnstileToken}
                                             className="bg-[var(--color-secondary)] text-white px-8 md:px-12 py-4 rounded-full font-bold hover:scale-105 transition-transform shadow-xl flex items-center gap-2 whitespace-nowrap disabled:opacity-50"
                                         >
                                             {status === "loading" ? "..." : (
