@@ -57,7 +57,7 @@ export default function ArchitectureSector() {
                         Intencional
                     </h3>
 
-                    <p style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.75)", fontWeight: 300, lineHeight: 1.7, marginBottom: "40px" }}>
+                    <p style={{ fontSize: "24px", color: "rgba(255,255,255,0.75)", fontWeight: 300, lineHeight: 1.7, marginBottom: "40px" }}>
                         Un viaje diseñado para quienes deciden dejar de sobrevivir y comenzar a co-crear su realidad desde el alma. Descubre si estás listo para este movimiento
                     </p>
 
