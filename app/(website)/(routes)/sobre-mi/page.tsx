@@ -19,7 +19,7 @@ export default function AboutPage() {
                         src="/images/home_redesign/Sobre-Mi_01.png"
                         alt=""
                         fill
-                        className="object-cover opacity-60 brightness-[0.80]"
+                        className="object-cover opacity-80 brightness-[0.90]"
                         priority
                     />
                 </div>
@@ -71,6 +71,7 @@ export default function AboutPage() {
                             className="object-cover object-top"
                             priority
                             quality={100}
+                            unoptimized={true}
                         />
                     </FadeIn>
 
