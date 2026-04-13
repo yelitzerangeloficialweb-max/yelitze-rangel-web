@@ -12,7 +12,7 @@ export default function WisdomChest() {
 
             {/* Mobile Background: Organic shape at bottom (fixed height) */}
             <div 
-                className="absolute inset-x-0 bottom-0 h-[300px] bg-[#2D2926] lg:hidden z-0 translate-y-20"
+                className="absolute inset-x-0 bottom-0 h-[300px] bg-[#2D2926] lg:hidden z-0 translate-y-20 scale-x-[1.5] md:scale-x-[1.2]"
                 style={{
                     maskImage: 'url(/images/home_redesign/SVG/curva_inferiro2.svg)',
                     WebkitMaskImage: 'url(/images/home_redesign/SVG/curva_inferiro2.svg)',
