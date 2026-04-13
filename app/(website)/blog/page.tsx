@@ -11,6 +11,7 @@ import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 import { BLOG_POSTS } from "@/lib/blog-data";
 
 export default function BlogPage() {
+    const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
     const featuredPost = BLOG_POSTS[0];
     const recentPosts = BLOG_POSTS.slice(1);
 
@@ -203,16 +204,67 @@ export default function BlogPage() {
                         </div>
                         <div className="lg:w-1/2 w-full">
                             <FadeIn delay={0.2}>
-                                <div className="bg-white/5 backdrop-blur-xl p-1 md:p-2 rounded-full border border-white/10 flex">
-                                    <input
-                                        type="email"
-                                        placeholder="Tu correo electrónico..."
-                                        className="bg-transparent flex-grow px-8 py-4 text-white focus:outline-none placeholder:text-gray-500"
-                                    />
-                                    <button className="bg-[var(--color-secondary)] text-white px-8 md:px-12 py-4 rounded-full font-bold hover:scale-105 transition-transform shadow-xl flex items-center gap-2 whitespace-nowrap">
-                                        Suscribirme <Sparkles className="w-4 h-4" />
-                                    </button>
-                                </div>
+                                {status === "success" ? (
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0.95 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        className="bg-white/10 backdrop-blur-xl p-12 rounded-[2.5rem] border border-white/20 text-center space-y-4"
+                                    >
+                                        <div className="w-16 h-16 bg-[var(--color-secondary)]/20 rounded-full flex items-center justify-center mx-auto border border-[var(--color-secondary)]/30">
+                                            <Sparkles className="w-8 h-8 text-[var(--color-secondary)]" />
+                                        </div>
+                                        <h3 className="text-white text-2xl font-heading">¡Ya eres parte!</h3>
+                                        <p className="text-gray-400 text-sm">Pronto recibirás la medicina en tu correo.</p>
+                                        <button 
+                                            onClick={() => setStatus("idle")}
+                                            className="text-[var(--color-secondary)] text-[10px] font-bold uppercase tracking-[0.2em] border-b border-[var(--color-secondary)]/30 pb-1"
+                                        >
+                                            Suscribir otro
+                                        </button>
+                                    </motion.div>
+                                ) : (
+                                    <form 
+                                        onSubmit={async (e) => {
+                                            e.preventDefault();
+                                            const form = e.target as HTMLFormElement;
+                                            const emailInput = form.querySelector('input[type="email"]') as HTMLInputElement;
+                                            const emailValue = emailInput.value;
+                                            
+                                            setStatus("loading");
+                                            try {
+                                                const res = await fetch('/api/newsletter', {
+                                                    method: 'POST',
+                                                    headers: { 'Content-Type': 'application/json' },
+                                                    body: JSON.stringify({ email: emailValue }),
+                                                });
+                                                if (res.ok) setStatus("success");
+                                                else setStatus("error");
+                                            } catch {
+                                                setStatus("error");
+                                            }
+                                        }}
+                                        className="bg-white/5 backdrop-blur-xl p-1 md:p-2 rounded-full border border-white/10 flex relative overflow-hidden"
+                                    >
+                                        <input
+                                            type="email"
+                                            required
+                                            placeholder="Tu correo electrónico..."
+                                            className="bg-transparent flex-grow px-8 py-4 text-white focus:outline-none placeholder:text-gray-500 min-w-0"
+                                        />
+                                        <button 
+                                            type="submit"
+                                            disabled={status === "loading"}
+                                            className="bg-[var(--color-secondary)] text-white px-8 md:px-12 py-4 rounded-full font-bold hover:scale-105 transition-transform shadow-xl flex items-center gap-2 whitespace-nowrap disabled:opacity-50"
+                                        >
+                                            {status === "loading" ? "..." : (
+                                                <>Suscribirme <Sparkles className="w-4 h-4" /></>
+                                            )}
+                                        </button>
+                                        {status === "error" && (
+                                            <div className="absolute inset-x-0 bottom-0 text-[8px] text-red-400 text-center pb-1 uppercase tracking-widest font-bold">Error, reintenta</div>
+                                        )}
+                                    </form>
+                                )}
                                 <p className="text-center text-[10px] text-gray-500 mt-6 tracking-widest uppercase">Prometo cuidar tu energía y tu privacidad.</p>
                             </FadeIn>
                         </div>

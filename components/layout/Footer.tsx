@@ -1,8 +1,39 @@
+"use client";
+
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { InstagramThinIcon, MessageLeafIcon, MailThinIcon } from '@/components/icons/CustomIcons';
+import { CheckCircle2, Loader2 } from 'lucide-react';
 
 export default function Footer() {
+    const [email, setEmail] = useState("");
+    const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!email) return;
+
+        setStatus("loading");
+        try {
+            const response = await fetch('/api/newsletter', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email }),
+            });
+
+            if (response.ok) {
+                setStatus("success");
+                setEmail("");
+            } else {
+                setStatus("error");
+            }
+        } catch (error) {
+            console.error(error);
+            setStatus("error");
+        }
+    };
+
     return (
         <footer className="bg-[var(--color-text)] text-white py-16 border-t border-white/10">
             <div className="container mx-auto px-4">
@@ -59,17 +90,57 @@ export default function Footer() {
                     {/* Newsletter */}
                     <div>
                         <h4 className="text-2xl font-editorial mb-6 tracking-wide text-[var(--color-accent)]">Únete a la Comunidad</h4>
-                        <p className="text-white/80 text-[18px] mb-4 font-body leading-relaxed">Recibe reflexiones semanales y ejercicios sistémicos en tu correo.</p>
-                        <form className="flex flex-col gap-2">
-                            <input
-                                type="email"
-                                placeholder="Tu email aquí..."
-                                className="px-4 py-2 rounded bg-white/10 border border-white/20 focus:border-[var(--color-accent)] outline-none text-white placeholder:text-white/40"
-                            />
-                            <button className="w-full bg-[var(--color-accent)] text-[var(--color-background)] hover:brightness-110 px-6 py-3 rounded-full font-bold transition-all uppercase tracking-widest text-xs shadow-lg">
-                                Suscribirme
-                            </button>
-                        </form>
+                        
+                        {status === "success" ? (
+                            <div className="bg-white/5 border border-white/10 p-6 rounded-2xl space-y-3">
+                                <div className="flex items-center gap-3 text-[var(--color-accent)]">
+                                    <CheckCircle2 className="w-5 h-5" />
+                                    <span className="font-bold text-sm tracking-widest uppercase">¡Bienvenida!</span>
+                                </div>
+                                <p className="text-white/60 text-sm leading-relaxed">
+                                    Gracias por unirte. Pronto recibirás noticias en tu buzón.
+                                </p>
+                                <button 
+                                    onClick={() => setStatus("idle")}
+                                    className="text-[var(--color-accent)] text-[10px] font-bold uppercase tracking-widest hover:underline"
+                                >
+                                    Suscribir otro
+                                </button>
+                            </div>
+                        ) : (
+                            <>
+                                <p className="text-white/80 text-[18px] mb-4 font-body leading-relaxed">Recibe reflexiones semanales y ejercicios sistémicos en tu correo.</p>
+                                <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+                                    <input
+                                        type="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        required
+                                        placeholder="Tu email aquí..."
+                                        className="px-4 py-2 rounded bg-white/10 border border-white/20 focus:border-[var(--color-accent)] outline-none text-white placeholder:text-white/40"
+                                    />
+                                    <button 
+                                        type="submit"
+                                        disabled={status === "loading"}
+                                        className="w-full bg-[var(--color-accent)] text-[var(--color-background)] hover:brightness-110 px-6 py-3 rounded-full font-bold transition-all uppercase tracking-widest text-xs shadow-lg flex items-center justify-center gap-2"
+                                    >
+                                        {status === "loading" ? (
+                                            <>
+                                                <Loader2 className="w-4 h-4 animate-spin" />
+                                                Procesando...
+                                            </>
+                                        ) : (
+                                            "Suscribirme"
+                                        )}
+                                    </button>
+                                    {status === "error" && (
+                                        <p className="text-red-400 text-[10px] mt-1 text-center font-bold tracking-widest uppercase">
+                                            Error. Reintenta.
+                                        </p>
+                                    )}
+                                </form>
+                            </>
+                        )}
                     </div>
                 </div>
 
