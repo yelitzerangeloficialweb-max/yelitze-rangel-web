@@ -29,46 +29,53 @@ export default function CoachingAncestralPage() {
                     <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/90" />
                 </div>
 
-                <div className="container mx-auto px-4 relative z-10 text-center">
+                <div className="container mx-auto px-8 lg:px-40 relative z-10 text-center">
                     <FadeIn>
-                        <div className="inline-block mb-10">
-                            <span className="px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs md:text-sm font-light tracking-[0.2em] uppercase">
+                        {/* Pill Badge */}
+                        <div className="inline-block border border-white/40 bg-black/20 backdrop-blur-sm px-8 py-3 rounded-full mb-12">
+                            <span className="text-white text-xs lg:text-sm font-bold uppercase tracking-[0.4em]">
                                 Coaching Ancestral
                             </span>
                         </div>
-                        <h1 className="text-4xl lg:text-7xl font-heading text-white mb-6 leading-tight font-bold">
-                            Anatomía del Alma:
+
+                        {/* Main Heading */}
+                        <h1 className="text-5xl lg:text-9xl font-bold text-white uppercase tracking-tight leading-none mb-8">
+                            Anatomía del Alma
                         </h1>
-                        <div className="inline-block bg-[#7b5735] px-6 py-2 mb-12 shadow-xl transform skew-x-[-2deg]">
-                            <h2 className="text-xl md:text-3xl text-white font-light italic m-0 skew-x-[2deg]">
-                                <TypewriterText
-                                    text="Donde lo invisible cobra voz y tu alma puede expresarse con verdad."
-                                    delay={0.5}
-                                />
-                            </h2>
-                        </div>
-                        <div className="max-w-2xl mx-auto">
-                            <p className="text-xl text-gray-300 mb-12 leading-relaxed">
+
+                        {/* Script Subtitle */}
+                        <p className="font-script text-4xl lg:text-7xl text-white leading-relaxed mb-16 tracking-[0.03em]">
+                            Donde lo invisible cobra voz y tu alma puede expresarse con verdad.
+                        </p>
+
+                        {/* Description */}
+                        <div className="max-w-2xl mx-auto mb-16">
+                            <p className="text-white/80 text-xl lg:text-2xl font-light italic leading-relaxed">
                                 Un sistema terapéutico único para identificar en qué parte del círculo de la vida se encuentra tu bloqueo. Rompe la ceguera involuntaria y recupera tu poder personal.
                             </p>
                         </div>
-                        <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
+
+                        {/* Premium Buttons */}
+                        <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
                             <Link
                                 href="/reservas"
-                                className="btn-premium text-lg px-10 py-4 shadow-2xl hover:shadow-[var(--color-secondary)]/20 transform hover:-translate-y-1 transition-all"
+                                className="bg-[#b8835a] text-white hover:brightness-110 transition-all px-12 py-5 rounded-xl font-bold uppercase tracking-[0.2em] text-sm shadow-2xl"
                             >
                                 Reservar Sesión
-                                <ArrowRight className="w-5 h-5 ml-2" />
                             </Link>
                             <a
                                 href="https://wa.me/17867268717"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center gap-2 px-10 py-4 rounded-full border border-white/20 text-white hover:bg-white/10 transition-all font-medium"
+                                className="bg-black/40 backdrop-blur-md border border-white/20 text-white hover:bg-white/10 transition-all px-12 py-5 rounded-xl font-bold uppercase tracking-[0.2em] text-sm font-medium flex items-center gap-2"
                             >
                                 Iniciar por WhatsApp
-                                <span className="text-xl">📲</span>
                             </a>
+                        </div>
+
+                        {/* Bottom Icon Divider */}
+                        <div className="mt-24 opacity-40">
+                            <Sparkles className="w-8 h-8 mx-auto text-white" />
                         </div>
                     </FadeIn>
                 </div>
