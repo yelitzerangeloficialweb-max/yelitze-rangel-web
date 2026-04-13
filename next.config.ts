@@ -3,15 +3,11 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: "standalone",
   images: {
-    // Force maximum quality across all images (default is 75)
-    quality: 100,
-    // Define breakpoints that match typical screen widths for better image serving
+    // Define breakpoints for better image serving on large screens
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    // Allow modern formats for better compression at similar quality
+    // Allow modern formats for better quality-to-size ratio
     formats: ["image/avif", "image/webp"],
-    // Disable minimumCacheTTL to avoid stale low-res cached versions
-    minimumCacheTTL: 60,
   },
 };
 
