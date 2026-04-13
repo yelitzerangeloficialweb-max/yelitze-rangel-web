@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Send } from "lucide-react";
+import { Send, Sparkles } from "lucide-react";
 import { FadeIn } from "@/components/ui/motion";
 
 export default function NewsletterSection() {

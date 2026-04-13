@@ -7,6 +7,7 @@ import {
     ArrowRight, Calendar, User,
     Sparkles, Star, ArrowDown
 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 import { BLOG_POSTS } from "@/lib/blog-data";
 import { Turnstile } from "@marsidev/react-turnstile";
