@@ -22,7 +22,7 @@ const CATEGORIES = [
         icon: Sparkles,
         description: 'Sesiones personalizadas, tableros de visión y el arte de la transformación individual.',
         images: [
-            { src: '/assets/images/gallery/gallery-1.jpg', alt: 'Sesión Alquimia' },
+            { src: '/assets/images/gallery/gallery-3.jpg', alt: 'Esencia Sagrada' },
             { src: '/assets/images/gallery/gallery-2.jpg', alt: 'Transformación' },
             { src: '/assets/images/gallery/gallery-12.jpg', alt: 'Visión' },
             { src: '/assets/images/gallery/gallery-13.jpg', alt: 'Claridad Solucionada' }
