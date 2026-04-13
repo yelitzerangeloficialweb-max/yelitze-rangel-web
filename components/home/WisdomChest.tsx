@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function WisdomChest() {
     return (
-        <section className="relative py-48 bg-white overflow-hidden">
+        <section className="relative py-48 bg-white" style={{ clipPath: 'inset(0 0 -300px 0)' }}>
             {/* Background Organic Shape - Corrected for no bottom cut */}
             <div 
                 className="absolute inset-0 z-0 scale-y-150 scale-x-125 md:scale-x-115 origin-top"
