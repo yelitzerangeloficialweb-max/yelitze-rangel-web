@@ -72,8 +72,8 @@ export default function BlogPage() {
 
             {/* 2. FEATURED SPOTLIGHT */}
             <section id="articulos" className="py-24 px-4 relative overflow-hidden">
-                {/* Accent Blur Flare */}
-                <div className="absolute top-0 left-0 w-[40%] h-[40%] bg-[radial-gradient(circle_at_center,#B8835A_0%,transparent_70%)] opacity-10 blur-[100px] pointer-events-none" />
+                {/* Intensified Accent Blur Flare */}
+                <div className="absolute -top-10 -left-10 w-[45%] h-[45%] bg-[radial-gradient(circle_at_center,#FF6B00_0%,transparent_70%)] opacity-30 blur-[120px] pointer-events-none" />
                 
                 <div className="container mx-auto max-w-7xl">
                     <FadeIn>
