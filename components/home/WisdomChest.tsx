@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 
 export default function WisdomChest() {
     return (
-        <section className="relative py-48 bg-white" style={{ clipPath: 'inset(0 0 -300px 0)' }}>
+        <section className="relative py-48 bg-white overflow-x-clip" style={{ zIndex: 1, position: 'relative' }}>
             {/* Background Organic Shape - Corrected for no bottom cut */}
             <div 
-                className="absolute inset-0 z-0 scale-y-150 scale-x-125 md:scale-x-115 origin-top"
+                className="absolute inset-0 z-0 scale-y-150 scale-x-125 md:scale-x-115 origin-bottom"
                 style={{
                     maskImage: 'url(/images/home_redesign/SVG/curva_inferiro2.svg)',
                     WebkitMaskImage: 'url(/images/home_redesign/SVG/curva_inferiro2.svg)',

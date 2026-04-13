@@ -13,6 +13,8 @@ export default function ArchitectureSector() {
         <div
             className="w-full"
             style={{
+                position: "relative",
+                zIndex: 2,
                 display: "flex",
                 flexDirection: "row",
                 backgroundColor: "#2D2926",
