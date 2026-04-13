@@ -8,7 +8,7 @@ export default function WisdomChest() {
         <section className="relative py-48 bg-white overflow-x-clip" style={{ zIndex: 1, position: 'relative' }}>
             {/* Background Organic Shape - Corrected for no bottom cut */}
             <div 
-                className="absolute inset-0 z-0 scale-y-150 scale-x-125 md:scale-x-115 origin-bottom translate-y-32"
+                className="absolute inset-0 z-0 scale-y-[2.5] lg:scale-y-150 scale-x-125 md:scale-x-115 origin-bottom translate-y-32"
                 style={{
                     maskImage: 'url(/images/home_redesign/SVG/curva_inferiro2.svg)',
                     WebkitMaskImage: 'url(/images/home_redesign/SVG/curva_inferiro2.svg)',
@@ -21,6 +21,9 @@ export default function WisdomChest() {
                     backgroundColor: '#2D2926'
                 }} 
             />
+
+            {/* Mobile Background Extension - Consistency for responsive */}
+            <div className="absolute inset-x-0 bottom-0 h-[50%] bg-[#2D2926] lg:hidden z-0 translate-y-32" />
             
             <div className="container mx-auto px-4 relative z-10 max-w-7xl">
                 <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
