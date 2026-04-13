@@ -76,12 +76,12 @@ export default function BlogPage() {
                     <FadeIn>
                         <div className="relative group rounded-[3rem] overflow-hidden bg-white shadow-2xl border border-stone-100 flex flex-col lg:flex-row mb-24">
                             {/* Image Part */}
-                            <div className="lg:w-[60%] relative aspect-video lg:aspect-auto min-h-[350px] overflow-hidden">
+                            <div className="lg:w-[60%] relative aspect-video lg:aspect-auto min-h-[500px] overflow-hidden">
                                 <Image
                                     src={featuredPost.image}
                                     alt={featuredPost.title}
                                     fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-[2000ms]"
+                                    className="object-cover object-top group-hover:scale-105 transition-transform duration-[2000ms]"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-primary)]/40 to-transparent" />
                             </div>
