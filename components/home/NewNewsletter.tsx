@@ -16,7 +16,7 @@ export default function NewNewsletter() {
                     fill
                     quality={100}
                     sizes="100vw"
-                    className="object-contain object-center"
+                    className="object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-black/10" />
                 <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-white to-transparent z-10" />
