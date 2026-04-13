@@ -14,6 +14,8 @@ export default function NewNewsletter() {
                     src="/images/home_redesign/Home_02.jpg"
                     alt="Newsletter Background"
                     fill
+                    quality={100}
+                    sizes="100vw"
                     className="object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-black/10" />
