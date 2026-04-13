@@ -63,6 +63,15 @@ export default function WisdomChest() {
                         <p className="text-xl md:text-2xl text-white/70 font-body font-light leading-relaxed max-w-md mx-auto lg:mx-0">
                             Libros diseñados para ser espejos de tu alma. El conocimiento que buscas ya habita en ti; estos libros solo te ayudan a recordarlo
                         </p>
+
+                        <div className="pt-8">
+                            <Link
+                                href="/libros"
+                                className="inline-block px-12 py-5 bg-[#B8835A] text-white rounded-2xl font-bold text-xs tracking-[0.2em] uppercase transition-all hover:scale-105 shadow-xl hover:shadow-[#B8835A]/20"
+                            >
+                                IR A LA BIBLIOTECA
+                            </Link>
+                        </div>
                     </motion.div>
 
                     {/* Image Content - Right (Vertical with organic rounded corner, absolute no background shapes) */}
