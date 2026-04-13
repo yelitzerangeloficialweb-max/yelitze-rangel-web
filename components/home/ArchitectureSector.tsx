@@ -11,47 +11,24 @@ export default function ArchitectureSector() {
           La columna de imagen se estira automáticamente con `align-items: stretch` (default en flex).
         */
         <div
-            className="w-full"
-            style={{
-                position: "relative",
-                zIndex: 2,
-                display: "flex",
-                flexDirection: "row",
-                backgroundColor: "#2D2926",
-                minHeight: "600px",
-            }}
+            className="w-full flex flex-col lg:flex-row relative z-[2] bg-[#2D2926] min-h-[600px]"
         >
-            {/* LEFT COLUMN: Imagen ocupa el 50% izquierdo y estira su altura al 100% del flex-row */}
+            {/* LEFT COLUMN: Image - Stacks on top in mobile */}
             <div
+                className="w-full lg:w-1/2 min-h-[400px] lg:min-h-full relative"
                 style={{
-                    flex: "0 0 50%",
                     backgroundImage: "url('/images/home_redesign/Arquitectura_intencional2.png')",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
-                    position: "relative",
                 }}
             >
-                {/* Gradient difuminado hacia la derecha */}
-                <div
-                    style={{
-                        position: "absolute",
-                        inset: 0,
-                        background: "linear-gradient(to right, transparent 60%, #2D2926 100%)",
-                    }}
-                />
+                {/* Gradient Difuminado (Desktop: right, Mobile: bottom) */}
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#2D2926] lg:bg-gradient-to-r lg:from-transparent lg:to-[#2D2926] pointer-events-none" />
             </div>
 
-            {/* RIGHT COLUMN: Contenido de texto — define la altura total de la sección */}
-            <div
-                style={{
-                    flex: "0 0 50%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "flex-start",
-                    padding: "80px 4rem 80px 3rem",
-                }}
-            >
+            {/* RIGHT COLUMN: Text Content */}
+            <div className="w-full lg:w-1/2 flex items-center justify-center lg:justify-start px-8 py-16 lg:px-20 lg:py-24">
                 <motion.div
                     initial={{ opacity: 0, x: 40 }}
                     whileInView={{ opacity: 1, x: 0 }}
