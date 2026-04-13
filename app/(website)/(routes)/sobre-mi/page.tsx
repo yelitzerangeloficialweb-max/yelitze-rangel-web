@@ -68,7 +68,7 @@ export default function AboutPage() {
                             src="/images/home_redesign/Sobremi-02.png"
                             alt="Yelitze Rangel - Herencia y Memoria"
                             fill
-                            className="object-cover"
+                            className="object-cover object-top"
                             priority
                             quality={100}
                         />
