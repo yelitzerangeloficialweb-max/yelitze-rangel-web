@@ -74,7 +74,7 @@ export default function ServicesPage() {
                         src="/images/home_redesign/Web-Yelitze-servicios-03.png"
                         alt="Sesiones Corporales - Alquimia del Tacto"
                         fill
-                        className="object-cover object-center brightness-90 transition-all duration-1000"
+                        className="object-cover object-top brightness-90 transition-all duration-1000"
                         priority
                     />
                     {/* Charcoal/Dark Grey gradient overlay for editorial look */}
