@@ -12,7 +12,7 @@ export default function AboutPage() {
         <main className="bg-black text-white selection:bg-[var(--color-secondary)] selection:text-white">
 
             {/* 1. Hero Section (White Background Redesign) */}
-            <section className="relative min-h-[90vh] flex items-center pt-24 overflow-hidden bg-white">
+            <section className="relative min-h-[90vh] flex items-center pt-40 lg:pt-48 overflow-hidden bg-white">
                 {/* Background Layer */}
                 <div className="absolute inset-0 z-0">
                     <Image
@@ -26,7 +26,7 @@ export default function AboutPage() {
                 
                 <div className="container mx-auto px-4 lg:px-20 relative z-10 grid lg:grid-cols-2 items-center gap-12 lg:gap-24">
                     {/* Left: Text Content */}
-                    <div className="order-2 lg:order-1">
+                    <div className="order-2 lg:order-1 pt-8 lg:pt-0">
                         <FadeIn>
                             <span className="text-black uppercase tracking-[0.2em] text-sm font-medium mb-6 block">
                                 Sobre Mi
@@ -44,7 +44,7 @@ export default function AboutPage() {
                     </div>
 
                     {/* Right: Yelitze Portrait */}
-                    <div className="relative h-[50vh] lg:h-[80vh] order-1 lg:order-2">
+                    <div className="relative h-[50vh] lg:h-[80vh] order-1 lg:order-2 translate-y-8 lg:translate-y-16">
                         <FadeIn className="h-full w-full">
                             <Image
                                 src="/images/home_redesign/Sobremi1.png"
