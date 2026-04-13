@@ -226,55 +226,57 @@ export default function BlogPage() {
                                         </button>
                                     </motion.div>
                                 ) : (
-                                    <form 
-                                        onSubmit={async (e) => {
-                                            e.preventDefault();
-                                            if (!turnstileToken) return;
-                                            const form = e.target as HTMLFormElement;
-                                            const emailInput = form.querySelector('input[type="email"]') as HTMLInputElement;
-                                            const emailValue = emailInput.value;
-                                            
-                                            setStatus("loading");
-                                            try {
-                                                const res = await fetch('/api/newsletter', {
-                                                    method: 'POST',
-                                                    headers: { 'Content-Type': 'application/json' },
-                                                    body: JSON.stringify({ email: emailValue }),
-                                                });
-                                                if (res.ok) setStatus("success");
-                                                else setStatus("error");
-                                            } catch {
-                                                setStatus("error");
-                                            }
-                                        }}
-                                        className="bg-white/5 backdrop-blur-xl p-1 md:p-2 rounded-full border border-white/10 flex flex-col md:flex-row relative overflow-hidden gap-4 md:gap-0"
-                                    >
-                                        <input
-                                            type="email"
-                                            required
-                                            placeholder="Tu correo electrónico..."
-                                            className="bg-transparent flex-grow px-8 py-4 text-white focus:outline-none placeholder:text-gray-500 min-w-0"
-                                        />
-                                        <div className="flex items-center justify-center px-4 scale-75 origin-center">
+                                    <div className="space-y-6">
+                                        <div className="flex justify-center scale-90 md:scale-100">
                                             <Turnstile
                                                 siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
                                                 onSuccess={(token) => setTurnstileToken(token)}
-                                                options={{ theme: "dark", size: "compact" }}
+                                                options={{ theme: "dark", size: "normal" }}
                                             />
                                         </div>
-                                        <button 
-                                            type="submit"
-                                            disabled={status === "loading" || !turnstileToken}
-                                            className="bg-[var(--color-secondary)] text-white px-8 md:px-12 py-4 rounded-full font-bold hover:scale-105 transition-transform shadow-xl flex items-center gap-2 whitespace-nowrap disabled:opacity-50"
+                                        <form 
+                                            onSubmit={async (e) => {
+                                                e.preventDefault();
+                                                if (!turnstileToken) return;
+                                                const form = e.target as HTMLFormElement;
+                                                const emailInput = form.querySelector('input[type="email"]') as HTMLInputElement;
+                                                const emailValue = emailInput.value;
+                                                
+                                                setStatus("loading");
+                                                try {
+                                                    const res = await fetch('/api/newsletter', {
+                                                        method: 'POST',
+                                                        headers: { 'Content-Type': 'application/json' },
+                                                        body: JSON.stringify({ email: emailValue }),
+                                                    });
+                                                    if (res.ok) setStatus("success");
+                                                    else setStatus("error");
+                                                } catch {
+                                                    setStatus("error");
+                                                }
+                                            }}
+                                            className="bg-white/5 backdrop-blur-xl p-1 md:p-2 rounded-full border border-white/10 flex flex-row relative overflow-hidden max-w-xl mx-auto"
                                         >
-                                            {status === "loading" ? "..." : (
-                                                <>Suscribirme <Sparkles className="w-4 h-4" /></>
-                                            )}
-                                        </button>
+                                            <input
+                                                type="email"
+                                                required
+                                                placeholder="Tu correo electrónico..."
+                                                className="bg-transparent flex-grow px-8 py-4 text-white focus:outline-none placeholder:text-gray-500 min-w-0"
+                                            />
+                                            <button 
+                                                type="submit"
+                                                disabled={status === "loading" || !turnstileToken}
+                                                className="bg-[var(--color-secondary)] text-white px-8 md:px-12 py-4 rounded-full font-bold hover:scale-105 transition-transform shadow-xl flex items-center gap-2 whitespace-nowrap disabled:opacity-50"
+                                            >
+                                                {status === "loading" ? "..." : (
+                                                    <>Suscribirme <Sparkles className="w-4 h-4" /></>
+                                                )}
+                                            </button>
+                                        </form>
                                         {status === "error" && (
-                                            <div className="absolute inset-x-0 bottom-0 text-[8px] text-red-400 text-center pb-1 uppercase tracking-widest font-bold">Error, reintenta</div>
+                                            <p className="text-red-400 text-[10px] text-center uppercase tracking-widest font-bold">Error, por favor intenta de nuevo</p>
                                         )}
-                                    </form>
+                                    </div>
                                 )}
                                 <p className="text-center text-[10px] text-gray-500 mt-6 tracking-widest uppercase">Prometo cuidar tu energía y tu privacidad.</p>
                             </FadeIn>
