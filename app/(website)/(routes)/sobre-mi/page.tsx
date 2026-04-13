@@ -239,7 +239,7 @@ export default function AboutPage() {
             </section>
 
             {/* 5. Experience Section (Environmental - Redesigned) */}
-            <section className="py-24 lg:py-40 bg-white relative overflow-x-clip isolate">
+            <section className="py-24 lg:py-40 bg-white relative overflow-x-clip isolate z-20">
                 <motion.div 
                     animate={{
                         scale: [1, 1.15, 1],
@@ -264,7 +264,7 @@ export default function AboutPage() {
                         repeat: Infinity,
                         ease: "easeInOut"
                     }}
-                    className="absolute top-[75%] -right-[10%] w-[25%] h-[50%] bg-[radial-gradient(circle_at_center,#FF6B00_0%,#FF5000_50%,transparent_100%)] blur-[100px] pointer-events-none z-[5] opacity-[0.95]"
+                    className="absolute top-[75%] -right-[10%] w-[25%] h-[50%] bg-[radial-gradient(circle_at_center,#FF6B00_0%,#FF5000_50%,transparent_100%)] blur-[100px] pointer-events-none z-[50] opacity-[0.95]"
                 />
                 
                 <div className="container mx-auto px-8 lg:px-32 relative z-10">
@@ -306,7 +306,7 @@ export default function AboutPage() {
             </section>
 
             {/* 6. Closing Principles (Breathtaking Forest Finale with Allison Font) */}
-            <section className="relative min-h-[700px] lg:min-h-[1000px] w-full overflow-hidden flex items-center justify-end bg-white">
+            <section className="relative min-h-[700px] lg:min-h-[1000px] w-full flex items-center justify-end bg-white z-10">
                 {/* Background Image: Forest */}
                 <div className="absolute inset-0 z-0 text-white">
                     <Image
