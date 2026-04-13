@@ -185,7 +185,7 @@ export default function AboutPage() {
                         src="/images/home_redesign/Sobremi-03.jpg"
                         alt=""
                         fill
-                        className="object-cover object-right lg:object-center"
+                        className="object-contain object-right"
                         priority
                     />
                     {/* Deep Left Gradient Overlay (Creating the dark space for text) */}
