@@ -75,7 +75,7 @@ export default function ServiceSelector() {
                 />
 
                 {/* Mobile Background Extension - The 'Cuadro Gris' for continuity */}
-                <div className="absolute inset-x-0 bottom-0 h-[60%] bg-[#2D2926] lg:hidden z-0" />
+                <div className="absolute inset-x-0 bottom-0 h-[85%] bg-[#2D2926] lg:hidden z-0" />
 
                 {/* Background Glows (inside the brush) */}
                 <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-l from-white/10 via-transparent to-transparent pointer-events-none z-10" />
