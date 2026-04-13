@@ -12,25 +12,6 @@ export interface BlogPost {
 
 export const BLOG_POSTS: BlogPost[] = [
     {
-        id: '8',
-        slug: 'liberate-de-tus-patrones',
-        title: 'Libérate de tus Patrones: La Ciencia de la Decisión',
-        excerpt: '¿Por qué sentimos que estamos "cableados" para el autosabotaje? Entiende cómo tu cerebro y tu sistema familiar trabajan juntos y cómo empezar a elegir diferente.',
-        date: '24 de Enero, 2026',
-        image: '/assets/images/blog/liberate-patrones.jpg',
-        category: 'Mentalidad',
-        author: 'Yelitze Rangel',
-        content: `
-            <p class="mb-6 text-lg">Nuestros patrones de comportamiento no son fallos de fábrica, son estrategias de supervivencia que un día aprendimos para pertenecer a nuestro sistema familiar. Sin embargo, lo que antes nos protegió, hoy puede ser la jaula que nos impide crecer.</p>
-            <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">El mapa mental de tu historia</h3>
-            <p class="mb-6">La neurociencia nos dice que el cerebro crea "autopistas" de pensamiento. Si siempre has reaccionado desde el miedo o la carencia, esa autopista está muy bien pavimentada. El trabajo sistémico ayuda a identificar el origen de ese cableado para poder empezar a construir nuevos caminos.</p>
-            <div class="my-12 p-10 bg-[#fafcfe] rounded-3xl border border-stone-100 italic text-xl text-[var(--color-primary)]">
-                "No estás roto, solo estás siendo leal a una historia que ya no necesitas cargar."
-            </div>
-            <p class="mb-6 text-lg leading-relaxed">Liberarse de los patrones requiere consciencia, pero sobre todo, el permiso interno para ser diferente a quienes vinieron antes. Es el acto más valiente de amor propio y respeto hacia tus ancestros: florecer allí donde ellos solo pudieron sobrevivir.</p>
-        `
-    },
-    {
         id: '9',
         slug: 'transforma-tu-miedo-en-exito',
         title: 'Transforma tu Miedo en Éxito: El Salto de la Valiente',
