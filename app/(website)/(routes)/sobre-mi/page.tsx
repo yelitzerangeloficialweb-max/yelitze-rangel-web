@@ -240,7 +240,6 @@ export default function AboutPage() {
 
             {/* 5. Experience Section (Environmental - Redesigned) */}
             <section className="py-24 lg:py-40 bg-white relative overflow-hidden isolate">
-                {/* Intense Portal Blur Flare - top-left Corner */}
                 <motion.div 
                     animate={{
                         scale: [1, 1.15, 1],
@@ -252,6 +251,20 @@ export default function AboutPage() {
                         ease: "easeInOut"
                     }}
                     className="absolute -top-[10%] -left-[17.5%] w-[35%] h-[35%] bg-[radial-gradient(circle_at_center,#FF6B00_0%,#FF6B00_60%,transparent_100%)] blur-[80px] pointer-events-none z-[1]"
+                />
+
+                {/* Orange Flare next to the image on the right */}
+                <motion.div 
+                    animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [0.4, 0.6, 0.4],
+                    }}
+                    transition={{
+                        duration: 10,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                    }}
+                    className="absolute top-[40%] -right-[10%] w-[40%] h-[40%] bg-[radial-gradient(circle_at_center,#FF6B00_0%,#FF6B00_60%,transparent_100%)] blur-[120px] pointer-events-none z-[0]"
                 />
                 
                 <div className="container mx-auto px-8 lg:px-32 relative z-10">
