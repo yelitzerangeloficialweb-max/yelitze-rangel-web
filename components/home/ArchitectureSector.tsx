@@ -8,23 +8,23 @@ import { motion } from "framer-motion";
 export default function ArchitectureSector() {
     return (
         <section className="relative w-full h-[600px] md:h-[850px] flex items-center overflow-hidden bg-[#2D2926]">
-            {/* Split Layout: Image on the left half, Dark background on the right */}
-            <div className="absolute inset-y-0 left-0 w-full lg:w-1/2 z-0">
+            {/* Split Layout: Image on the RIGHT half, Dark background on the LEFT */}
+            <div className="absolute inset-y-0 right-0 w-full lg:w-1/2 z-0">
                 <img 
-                    src="/images/home_redesign/Arquitectura_intencional.png"
+                    src="/images/home_redesign/Arquitectura_intencional2.png"
                     alt="Arquitectura de Vida"
                     className="w-full h-full object-cover object-left"
                 />
-                {/* Gradient to blend the image into the dark grey on the right side */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-[#2D2926]" />
+                {/* Gradient to blend the image into the dark grey on the left side */}
+                <div className="absolute inset-0 bg-gradient-to-l from-black/20 via-transparent to-[#2D2926]" />
             </div>
 
             <div className="container mx-auto px-4 relative z-10">
-                <div className="flex flex-col lg:flex-row items-center justify-end">
+                <div className="flex flex-col lg:flex-row items-center justify-start">
                     
-                    {/* Text Area - Aligned to the right */}
+                    {/* Text Area - Aligned to the left */}
                     <motion.div
-                        initial={{ opacity: 0, x: 50 }}
+                        initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
