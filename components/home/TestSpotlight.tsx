@@ -61,7 +61,7 @@ export default function TestSpotlight() {
                     {/* Right: Immersive Image */}
                     <div className="lg:col-span-6 order-1 lg:order-2">
                         <FadeIn delay={0.2}>
-                            <div className="relative aspect-[4/5] rounded-[4rem] overflow-hidden shadow-2xl ring-1 ring-white/10">
+                            <div className="relative aspect-[4/5] rounded-tr-[160px] rounded-bl-[160px] overflow-hidden shadow-2xl ring-1 ring-white/10">
                                 <Image
                                     src="/assets/images/circulation-vital.png"
                                     alt="Arquitectura de Vida"
