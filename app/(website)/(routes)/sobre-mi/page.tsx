@@ -178,7 +178,7 @@ export default function AboutPage() {
                 </section>
 
             {/* 4. Turning Point & Methodology (Dark Faded Design - Responsive optimized) */}
-            <section className="relative min-h-screen bg-black overflow-hidden py-24 flex flex-col lg:block">
+            <section className="relative min-h-screen bg-black overflow-hidden pt-0 lg:pt-24 pb-24 flex flex-col lg:block">
                 {/* Desktop Background Image (Hidden on small screens) */}
                 <div className="absolute inset-0 z-0 hidden lg:block">
                     <Image
