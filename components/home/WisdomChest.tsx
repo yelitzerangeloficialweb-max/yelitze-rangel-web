@@ -69,22 +69,7 @@ export default function WisdomChest() {
                 </div>
             </div>
 
-            {/* Floating curly line and logo decoration on the left */}
-            <div className="absolute bottom-12 left-8 md:left-12 lg:left-20 flex items-center gap-4 opacity-30 pointer-events-none hidden lg:flex">
-                <div className="relative w-10 h-10">
-                    <Image
-                        src="/assets/images/watermark-logo.png"
-                        alt=""
-                        fill
-                        className="object-contain"
-                    />
-                </div>
-                <div className="w-32 h-16">
-                    <svg viewBox="0 0 100 100" className="w-full h-full stroke-[#B8835A] fill-none stroke-[0.5]">
-                        <path d="M0,50 C20,20 80,80 100,50 S180,20 200,50" />
-                    </svg>
-                </div>
-            </div>
+
             {/* Bottom Corner Glows - Consistency with the rest of the landing page */}
             <div className="absolute bottom-[-10vh] left-[-12vw] w-[24vw] h-[24vw] bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.95)_0%,rgba(255,107,0,0.95)_60%,transparent_90%)] blur-[140px] pointer-events-none z-[9999]" />
             <div className="absolute bottom-[-10vh] right-[-12vw] w-[24vw] h-[24vw] bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.95)_0%,rgba(255,107,0,0.95)_60%,transparent_90%)] blur-[140px] pointer-events-none z-[9999]" />
