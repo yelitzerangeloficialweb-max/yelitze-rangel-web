@@ -232,6 +232,7 @@ export default function BlogPage() {
                                                 siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
                                                 onSuccess={(token) => setTurnstileToken(token)}
                                                 theme="dark"
+                                                appearance="interaction-only"
                                             />
                                         </div>
                                         <form 

@@ -120,6 +120,7 @@ export default function NewNewsletter() {
                                             siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
                                             onSuccess={(token) => setTurnstileToken(token)}
                                             theme="dark"
+                                            appearance="interaction-only"
                                         />
                                         <button
                                             type="submit"

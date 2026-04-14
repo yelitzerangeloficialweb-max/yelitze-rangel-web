@@ -121,11 +121,12 @@ export default function Footer() {
                                         placeholder="Tu email aquí..."
                                         className="px-4 py-2 rounded bg-white/10 border border-white/20 focus:border-[var(--color-accent)] outline-none text-white placeholder:text-white/40"
                                     />
-                                    <div className="py-2 flex justify-center">
+                                    <div className="flex justify-center">
                                         <Turnstile
                                             siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
                                             onSuccess={(token) => setTurnstileToken(token)}
                                             theme="dark"
+                                            appearance="interaction-only"
                                         />
                                     </div>
                                     <button 
