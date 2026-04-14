@@ -227,11 +227,11 @@ export default function BlogPage() {
                                     </motion.div>
                                 ) : (
                                     <div className="space-y-6">
-                                        <div className="flex justify-center scale-90 md:scale-100">
+                                        <div className="flex justify-center">
                                             <Turnstile
                                                 siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
                                                 onSuccess={(token) => setTurnstileToken(token)}
-                                                options={{ theme: "dark", size: "normal" }}
+                                                theme="dark"
                                             />
                                         </div>
                                         <form 
