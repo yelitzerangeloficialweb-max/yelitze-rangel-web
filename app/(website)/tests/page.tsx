@@ -258,7 +258,7 @@ export default function TestsHubPage() {
             </section>
 
             {/* 5. ARQUITECTURA DE VIDA - IMMERSIVE PHOTOGRAPHIC SECTION */}
-            <FadeIn delay={0.4} className="mt-60 relative min-h-[800px] flex items-center overflow-hidden bg-[#2D2926] mx-4 rounded-[5rem] shadow-3xl">
+            <FadeIn delay={0.4} className="mt-60 relative min-h-[800px] flex items-center overflow-hidden bg-[#2D2926]">
                 {/* Background Image Container with Gradient Fade */}
                 <div className="absolute inset-0 z-0">
                     <div className="relative w-full h-full lg:w-[85%] lg:-left-24">
