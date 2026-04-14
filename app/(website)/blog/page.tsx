@@ -227,13 +227,6 @@ export default function BlogPage() {
                                     </motion.div>
                                 ) : (
                                     <div className="space-y-6">
-                                        <div className="flex justify-center">
-                                            <Turnstile
-                                                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
-                                                onSuccess={(token) => setTurnstileToken(token)}
-                                                options={{ theme: "dark", appearance: "interaction-only" }}
-                                            />
-                                        </div>
                                         <form 
                                             onSubmit={async (e) => {
                                                 e.preventDefault();
@@ -273,6 +266,13 @@ export default function BlogPage() {
                                                 )}
                                             </button>
                                         </form>
+                                        <div className="flex justify-center mt-6">
+                                            <Turnstile
+                                                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                                                onSuccess={(token) => setTurnstileToken(token)}
+                                                options={{ theme: "dark", appearance: "interaction-only" }}
+                                            />
+                                        </div>
                                         {status === "error" && (
                                             <p className="text-red-400 text-[10px] text-center uppercase tracking-widest font-bold">Error, por favor intenta de nuevo</p>
                                         )}

@@ -121,13 +121,6 @@ export default function Footer() {
                                         placeholder="Tu email aquí..."
                                         className="px-4 py-2 rounded bg-white/10 border border-white/20 focus:border-[var(--color-accent)] outline-none text-white placeholder:text-white/40"
                                     />
-                                    <div className="flex justify-center">
-                                        <Turnstile
-                                            siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
-                                            onSuccess={(token) => setTurnstileToken(token)}
-                                            options={{ theme: "dark", appearance: "interaction-only" }}
-                                        />
-                                    </div>
                                     <button 
                                         type="submit"
                                         disabled={status === "loading" || !turnstileToken}
@@ -142,6 +135,13 @@ export default function Footer() {
                                             "Suscribirme"
                                         )}
                                     </button>
+                                    <div className="flex justify-center mt-4">
+                                        <Turnstile
+                                            siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                                            onSuccess={(token) => setTurnstileToken(token)}
+                                            options={{ theme: "dark", appearance: "interaction-only" }}
+                                        />
+                                    </div>
                                     {status === "error" && (
                                         <p className="text-red-400 text-[10px] mt-1 text-center font-bold tracking-widest uppercase">
                                             Error. Reintenta.

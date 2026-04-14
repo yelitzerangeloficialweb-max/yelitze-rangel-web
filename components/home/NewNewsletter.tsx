@@ -116,11 +116,6 @@ export default function NewNewsletter() {
                                         />
                                     </div>
                                     <div className="flex justify-center flex-col items-center gap-6">
-                                        <Turnstile
-                                            siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
-                                            onSuccess={(token) => setTurnstileToken(token)}
-                                            options={{ theme: "dark", appearance: "interaction-only" }}
-                                        />
                                         <button
                                             type="submit"
                                             disabled={status === "loading" || !turnstileToken}
@@ -135,6 +130,13 @@ export default function NewNewsletter() {
                                                 "SUSCRIBIRME"
                                             )}
                                         </button>
+                                        <div className="flex justify-center">
+                                            <Turnstile
+                                                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                                                onSuccess={(token) => setTurnstileToken(token)}
+                                                options={{ theme: "dark", appearance: "interaction-only" }}
+                                            />
+                                        </div>
                                     </div>
                                     {status === "error" && (
                                         <p className="text-red-400 text-sm mt-4">
