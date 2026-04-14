@@ -57,7 +57,7 @@ export default function ServiceSelector() {
 
 
             {/* PORTAL 01 - WHITE SECTION WITH BRUSH BACKGROUND */}
-            <div className="relative bg-white pt-20 pb-40 md:pt-40 md:pb-64 z-20 mt-6">
+            <div className="relative bg-white pt-20 pb-40 md:pt-40 md:pb-64 z-20">
                 {/* Huge Brush Shape Background */}
                 <div
                     className="absolute inset-0 z-0 origin-bottom scale-y-[2] md:scale-y-125 translate-y-[10%] md:translate-y-[calc(5%+15px)]"
