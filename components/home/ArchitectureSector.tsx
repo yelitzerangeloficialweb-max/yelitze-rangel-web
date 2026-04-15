@@ -62,7 +62,7 @@ export default function ArchitectureSector() {
                     </p>
 
                     <Link
-                        href="/eventos/arquitectura-vida"
+                        href="/arquitectura-de-vida-intencional"
                         style={{
                             display: "inline-block",
                             padding: "16px 40px",
