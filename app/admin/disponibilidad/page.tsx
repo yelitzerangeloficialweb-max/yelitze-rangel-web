@@ -41,8 +41,10 @@ export default function AdminAvailabilityPage() {
     const [appointments, setAppointments] = useState<Appointment[]>([]);
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState<string | null>(null);
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        setMounted(true);
         fetchData();
     }, [currentMonth]);
 
@@ -50,16 +52,23 @@ export default function AdminAvailabilityPage() {
         setLoading(true);
         try {
             const availRes = await fetch('/api/admin/availability');
-            const availData = await availRes.json();
-            setAvailability(availData);
+            if (availRes.ok) {
+                const availData = await availRes.json();
+                if (Array.isArray(availData)) {
+                    setAvailability(availData);
+                } else {
+                    console.error('Availability data is not an array:', availData);
+                }
+            }
 
-            // Fetching appointments for the current month locally for now
-            // In a real app, I'd have a specific endpoint for appointments
-            // But I'll fetch all and filter for now as per simple SQLite DB
             const appRes = await fetch('/api/admin/appointments'); 
             if (appRes.ok) {
                 const appData = await appRes.json();
-                setAppointments(appData);
+                if (Array.isArray(appData)) {
+                    setAppointments(appData);
+                } else {
+                    console.error('Appointments data is not an array:', appData);
+                }
             }
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -158,11 +167,15 @@ export default function AdminAvailabilityPage() {
             end: endDate,
         });
 
+        if (!Array.isArray(availability) || !Array.isArray(appointments)) {
+            return <div className="p-8 text-center text-red-500">Error: El formato de datos no es válido.</div>;
+        }
+
         return (
             <div className="grid grid-cols-7 bg-stone-100 gap-px border border-stone-200 rounded-3xl overflow-hidden shadow-inner">
                 {calendarDays.map((day, i) => {
-                    const dayAvailability = availability.find(a => isSameDay(new Date(a.date), day));
-                    const dayAppointments = appointments.filter(a => isSameDay(new Date(a.date), day));
+                    const dayAvailability = availability.find(a => a && a.date && isSameDay(new Date(a.date), day));
+                    const dayAppointments = appointments.filter(a => a && a.date && isSameDay(new Date(a.date), day));
                     const isMorningBooked = dayAppointments.some(a => a.slot === 'morning');
                     const isAfternoonBooked = dayAppointments.some(a => a.slot === 'afternoon');
 
@@ -239,6 +252,8 @@ export default function AdminAvailabilityPage() {
         );
     };
 
+    if (!mounted) return null;
+
     if (loading && availability.length === 0) {
         return (
             <div className="flex flex-col items-center justify-center py-32 gap-4">
@@ -265,10 +280,10 @@ export default function AdminAvailabilityPage() {
                         Próximas Citas
                     </h3>
                     <div className="space-y-4">
-                        {appointments.length === 0 ? (
+                        {!Array.isArray(appointments) || appointments.length === 0 ? (
                             <p className="text-stone-400 italic">No hay citas registradas aún.</p>
                         ) : (
-                            appointments.filter(a => new Date(a.date) >= new Date()).slice(0, 5).map(app => (
+                            appointments.filter(a => a && a.date && new Date(a.date) >= new Date()).slice(0, 5).map(app => (
                                 <div key={app.id} className="p-4 rounded-2xl bg-stone-50 border border-stone-100 flex items-center justify-between">
                                     <div>
                                         <p className="font-bold text-[var(--color-primary)]">{app.customerName}</p>

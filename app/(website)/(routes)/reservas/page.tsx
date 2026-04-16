@@ -39,6 +39,7 @@ export default function ReservationsPage() {
     const [currentMonth, setCurrentMonth] = useState(new Date());
     const [availability, setAvailability] = useState<DayAvailability[]>([]);
     const [loading, setLoading] = useState(true);
+    const [mounted, setMounted] = useState(false);
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
     const [selectedSlot, setSelectedSlot] = useState<'morning' | 'afternoon' | null>(null);
     const [step, setStep] = useState(1); // 1: Date/Slot, 2: Details, 3: Success
@@ -51,6 +52,7 @@ export default function ReservationsPage() {
     });
 
     useEffect(() => {
+        setMounted(true);
         fetchAvailability();
     }, [currentMonth]);
 
@@ -60,8 +62,14 @@ export default function ReservationsPage() {
             const month = currentMonth.getMonth() + 1;
             const year = currentMonth.getFullYear();
             const res = await fetch(`/api/availability?month=${month}&year=${year}`);
-            const data = await res.json();
-            setAvailability(data);
+            if (res.ok) {
+                const data = await res.json();
+                if (Array.isArray(data)) {
+                    setAvailability(data);
+                } else {
+                    console.error('Availability data is not an array:', data);
+                }
+            }
         } catch (error) {
             console.error('Error fetching availability:', error);
         } finally {
@@ -131,7 +139,7 @@ export default function ReservationsPage() {
 
                 <div className="grid grid-cols-7 gap-1">
                     {calendarDays.map((day, i) => {
-                        const dayData = availability.find(a => isSameDay(new Date(a.date), day));
+                        const dayData = Array.isArray(availability) ? availability.find(a => a && a.date && isSameDay(new Date(a.date), day)) : null;
                         const isAvailable = !!dayData;
                         const isPast = isBefore(day, startOfDay(new Date()));
                         const isSelected = selectedDate && isSameDay(day, selectedDate);
@@ -187,6 +195,8 @@ export default function ReservationsPage() {
         );
     }
 
+    if (!mounted) return null;
+
     return (
         <div className="min-h-screen bg-[var(--color-background)] pt-36 pb-20">
             <div className="container mx-auto px-4 text-center mb-12">
@@ -236,7 +246,7 @@ export default function ReservationsPage() {
 
                                 <div className="space-y-4">
                                     <button
-                                        disabled={!availability.find(a => isSameDay(new Date(a.date), selectedDate))?.morningFree}
+                                        disabled={!Array.isArray(availability) || !availability.find(a => a && a.date && isSameDay(new Date(a.date), selectedDate))?.morningFree}
                                         onClick={() => setSelectedSlot('morning')}
                                         className={`w-full p-6 rounded-2xl border-2 transition-all flex items-center justify-between group ${
                                             selectedSlot === 'morning' 
@@ -259,7 +269,7 @@ export default function ReservationsPage() {
                                     </button>
 
                                     <button
-                                        disabled={!availability.find(a => isSameDay(new Date(a.date), selectedDate))?.afternoonFree}
+                                        disabled={!Array.isArray(availability) || !availability.find(a => a && a.date && isSameDay(new Date(a.date), selectedDate))?.afternoonFree}
                                         onClick={() => setSelectedSlot('afternoon')}
                                         className={`w-full p-6 rounded-2xl border-2 transition-all flex items-center justify-between group ${
                                             selectedSlot === 'afternoon' 
