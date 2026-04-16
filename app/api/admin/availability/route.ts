@@ -1,0 +1,55 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { db } from '@/lib/db';
+import { requireAdminAuth } from '@/lib/admin-auth';
+
+// GET availability for admin (all configured days)
+export async function GET(request: NextRequest) {
+    const authError = await requireAdminAuth();
+    if (authError) return authError;
+
+    try {
+        const availability = await db.availability.findMany({
+            orderBy: { date: 'asc' }
+        });
+        return NextResponse.json(availability);
+    } catch (error) {
+        console.error('Error fetching availability:', error);
+        return NextResponse.json({ error: 'Error fetching availability' }, { status: 500 });
+    }
+}
+
+// POST/PUT availability (upsert)
+export async function POST(request: NextRequest) {
+    const authError = await requireAdminAuth();
+    if (authError) return authError;
+
+    try {
+        const { date, morningEnabled, afternoonEnabled } = await request.json();
+        
+        if (!date) {
+            return NextResponse.json({ error: 'Fecha requerida' }, { status: 400 });
+        }
+
+        const dateObj = new Date(date);
+        // Normalize date to start of day to avoid timezone issues with @unique
+        dateObj.setHours(0, 0, 0, 0);
+
+        const availability = await db.availability.upsert({
+            where: { date: dateObj },
+            update: {
+                morningEnabled,
+                afternoonEnabled
+            },
+            create: {
+                date: dateObj,
+                morningEnabled,
+                afternoonEnabled
+            }
+        });
+
+        return NextResponse.json(availability);
+    } catch (error) {
+        console.error('Error updating availability:', error);
+        return NextResponse.json({ error: 'Error updating availability' }, { status: 500 });
+    }
+}

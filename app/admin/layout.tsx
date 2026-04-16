@@ -28,6 +28,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                             <Link href="/admin/venezuela" className="hover:bg-white/10 bg-black/20 px-3 py-1.5 rounded-full transition-colors font-medium">
                                 Evento Vigía
                             </Link>
+                            <Link href="/admin/disponibilidad" className="hover:bg-white/10 bg-black/20 px-3 py-1.5 rounded-full transition-colors font-medium">
+                                Disponibilidad
+                            </Link>
                         </nav>
                     </div>
                     <Link

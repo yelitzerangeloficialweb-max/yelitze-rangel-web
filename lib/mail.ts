@@ -506,3 +506,80 @@ export const sendNewsletterSubscriptionEmail = async (email: string) => {
     }
 };
 
+export const sendAppointmentConfirmationEmail = async ({
+    email,
+    name,
+    date,
+    slot,
+    paymentMethod
+}: {
+    email: string;
+    name: string;
+    date: Date;
+    slot: string;
+    paymentMethod: string;
+}) => {
+    try {
+        const logoUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/assets/images/logo-yelitze-new.png`;
+        const slotLabel = slot === 'morning' ? 'Mañana (9:00 AM - 1:00 PM)' : 'Tarde (2:00 PM - 6:00 PM)';
+        const formattedDate = date.toLocaleDateString('es-ES', {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+
+        const { data, error } = await resend.emails.send({
+            from: 'Yelitze Rangel <info@yelitzerangeloficial.com>',
+            to: [email, 'info@yelitzerangeloficial.com'], // Send to user and admin
+            subject: '¡Tu Sesión ha sido Reservada! 🌿✨',
+            html: `
+                <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background-color: #FDFBFA; border-radius: 32px; overflow: hidden; border: 1px solid #B8835A20;">
+                    <div style="background-color: #2D2926; padding: 40px 20px; text-align: center;">
+                        <img src="${logoUrl}" alt="Yelitze Rangel" style="max-width: 150px; height: auto; margin-bottom: 20px;">
+                        <h1 style="color: #FDFBFA; margin: 0; font-size: 16px; letter-spacing: 2px; text-transform: uppercase;">Confirmación de Reserva</h1>
+                    </div>
+                    
+                    <div style="padding: 50px 40px; color: #2D2926; line-height: 1.8;">
+                        <h2 style="color: #8C4005; font-size: 24px; margin-bottom: 30px;">¡Hola, ${name}!</h2>
+                        
+                        <p style="font-size: 16px; color: #4A4540; margin-bottom: 25px;">
+                            Tu espacio ha sido reservado con éxito. Este es un paso valioso en tu proceso de transformación.
+                        </p>
+                        
+                        <div style="background-color: #F5EFE6; padding: 30px; border-radius: 20px; border: 1px solid #B8835A15; margin-bottom: 40px;">
+                            <h3 style="color: #8C4005; font-size: 16px; margin-top: 0; margin-bottom: 15px;">Detalles de tu cita:</h3>
+                            <p style="margin: 5px 0;"><strong>Fecha:</strong> ${formattedDate}</p>
+                            <p style="margin: 5px 0;"><strong>Bloque:</strong> ${slotLabel}</p>
+                            <p style="margin: 5px 0;"><strong>Método de Pago:</strong> ${paymentMethod.toUpperCase()}</p>
+                        </div>
+
+                        <p style="font-size: 14px; color: #4A4540; margin-bottom: 30px;">
+                            Nos pondremos en contacto contigo pronto vía WhatsApp o Email para coordinar los detalles finales y el enlace de la sesión.
+                        </p>
+
+                        <p style="margin-top: 50px; text-align: center; color: #8C4005; font-weight: bold; font-style: italic;">
+                            "Primero sana el cuerpo… y luego cambia la historia."
+                        </p>
+                    </div>
+                    
+                    <div style="background-color: #EFE9E0; padding: 30px; text-align: center; color: #3C2A21; font-size: 12px;">
+                        <p style="margin: 0;"><strong>YELITZE RANGEL</strong></p>
+                        <p style="margin-top: 5px; opacity: 0.6;">Tu Coach Ancestral</p>
+                    </div>
+                </div>
+            `
+        });
+
+        if (error) {
+            console.error('[Appointment Mail] Resend error:', error);
+            return { success: false, error };
+        }
+
+        return { success: true, data };
+    } catch (err) {
+        console.error('Appointment confirmation email error:', err);
+        return { success: false, error: err };
+    }
+};
+
