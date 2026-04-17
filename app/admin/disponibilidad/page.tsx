@@ -391,7 +391,15 @@ export default function AdminAvailabilityPage() {
                                 </div>
                                 <div>
                                     <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest block mb-1">WhatsApp</label>
-                                    <p className="text-sm font-medium text-stone-700">{selectedAppointment.customerPhone}</p>
+                                    <a 
+                                        href={`https://wa.me/${selectedAppointment.customerPhone.replace(/\D/g, '')}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-sm font-bold text-[var(--color-secondary)] hover:underline flex items-center gap-1.5"
+                                    >
+                                        {selectedAppointment.customerPhone}
+                                        <span className="text-[10px] bg-emerald-50 text-emerald-600 px-1.5 py-0.5 rounded-full">Abrir Chat</span>
+                                    </a>
                                 </div>
                             </div>
 
