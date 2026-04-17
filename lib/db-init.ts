@@ -38,6 +38,7 @@ export async function ensureAvailabilityTables() {
                     "customerName" TEXT NOT NULL,
                     "customerEmail" TEXT NOT NULL,
                     "customerPhone" TEXT NOT NULL,
+                    "meetingType" TEXT NOT NULL DEFAULT 'online',
                     "paymentMethod" TEXT NOT NULL,
                     "status" TEXT NOT NULL DEFAULT 'pending',
                     "notes" TEXT
@@ -45,6 +46,16 @@ export async function ensureAvailabilityTables() {
             `);
 
             console.log("Database tables successfully initialized via raw SQL.");
+        }
+
+        // --- MIGRATION: Add meetingType to Appointment if it doesn't exist ---
+        try {
+            await db.$executeRawUnsafe(`
+                ALTER TABLE "Appointment" ADD COLUMN "meetingType" TEXT NOT NULL DEFAULT 'online';
+            `);
+            console.log("Database migration: Added meetingType column to Appointment table.");
+        } catch (e) {
+            // Probably column already exists, which is fine
         }
     } catch (error) {
         console.error("Critical: Error initializing database tables:", error);

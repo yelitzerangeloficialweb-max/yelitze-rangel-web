@@ -48,6 +48,7 @@ export default function ReservationsPage() {
         name: '',
         email: '',
         whatsapp: '',
+        meetingType: 'online' as 'online' | 'presencial',
         paymentMethod: 'paypal'
     });
 
@@ -94,6 +95,7 @@ export default function ReservationsPage() {
                     customerName: formData.name,
                     customerEmail: formData.email,
                     customerPhone: formData.whatsapp,
+                    meetingType: formData.meetingType,
                     paymentMethod: formData.paymentMethod
                 })
             });
@@ -352,24 +354,67 @@ export default function ReservationsPage() {
                                     />
                                 </div>
 
-                                <div className="pt-4">
-                                    <label className="block text-xs font-bold text-stone-400 uppercase tracking-widest mb-4">Método de Pago</label>
+                                <div className="pt-4 mb-6">
+                                    <label className="block text-xs font-bold text-stone-400 uppercase tracking-widest mb-4">Tipo de Sesión</label>
                                     <div className="grid grid-cols-2 gap-4">
                                         <button 
                                             type="button" 
-                                            onClick={() => setFormData({...formData, paymentMethod: 'paypal'})}
-                                            className={`flex flex-col items-center justify-center p-4 rounded-2xl border-2 transition-all ${formData.paymentMethod === 'paypal' ? 'border-[#0070BA] bg-[#0070BA]/5' : 'border-stone-100'}`}
+                                            onClick={() => setFormData({...formData, meetingType: 'online'})}
+                                            className={`flex flex-col items-center justify-center p-4 rounded-2xl border-2 transition-all ${formData.meetingType === 'online' ? 'border-[var(--color-secondary)] bg-[var(--color-secondary)]/5' : 'border-stone-100'}`}
                                         >
-                                            <span className="font-bold text-[#0070BA]">PayPal</span>
-                                            <span className="text-[10px] text-stone-400">Mastercard / Visa</span>
+                                            <Video className={`w-5 h-5 mb-2 ${formData.meetingType === 'online' ? 'text-[var(--color-secondary)]' : 'text-stone-300'}`} />
+                                            <span className="font-bold text-[var(--color-primary)]">Online</span>
+                                            <span className="text-[10px] text-stone-400">Vía Zoom</span>
+                                        </button>
+                                        <button 
+                                            type="button" 
+                                            onClick={() => setFormData({...formData, meetingType: 'presencial'})}
+                                            className={`flex flex-col items-center justify-center p-4 rounded-2xl border-2 transition-all ${formData.meetingType === 'presencial' ? 'border-[var(--color-secondary)] bg-[var(--color-secondary)]/5' : 'border-stone-100'}`}
+                                        >
+                                            <User className={`w-5 h-5 mb-2 ${formData.meetingType === 'presencial' ? 'text-[var(--color-secondary)]' : 'text-stone-300'}`} />
+                                            <span className="font-bold text-[var(--color-primary)]">Presencial</span>
+                                            <span className="text-[10px] text-stone-400">En consultorio</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div className="pt-4">
+                                    <label className="block text-xs font-bold text-stone-400 uppercase tracking-widest mb-4">Método de Pago</label>
+                                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                        <button 
+                                            type="button" 
+                                            onClick={() => setFormData({...formData, paymentMethod: 'paypal'})}
+                                            className={`flex flex-col items-center justify-center p-3 rounded-2xl border-2 transition-all ${formData.paymentMethod === 'paypal' ? 'border-[#0070BA] bg-[#0070BA]/5' : 'border-stone-100 font-medium'}`}
+                                        >
+                                            <span className="text-[11px] font-bold text-[#0070BA]">PayPal</span>
                                         </button>
                                         <button 
                                             type="button" 
                                             onClick={() => setFormData({...formData, paymentMethod: 'zelle'})}
-                                            className={`flex flex-col items-center justify-center p-4 rounded-2xl border-2 transition-all ${formData.paymentMethod === 'zelle' ? 'border-[#6D28D9] bg-[#6D28D9]/5' : 'border-stone-100'}`}
+                                            className={`flex flex-col items-center justify-center p-3 rounded-2xl border-2 transition-all ${formData.paymentMethod === 'zelle' ? 'border-[#6D28D9] bg-[#6D28D9]/5' : 'border-stone-100 font-medium'}`}
                                         >
-                                            <span className="font-bold text-[#6D28D9]">Zelle</span>
-                                            <span className="text-[10px] text-stone-400">Directo</span>
+                                            <span className="text-[11px] font-bold text-[#6D28D9]">Zelle</span>
+                                        </button>
+                                        <button 
+                                            type="button" 
+                                            onClick={() => setFormData({...formData, paymentMethod: 'pago_movil'})}
+                                            className={`flex flex-col items-center justify-center p-3 rounded-2xl border-2 transition-all ${formData.paymentMethod === 'pago_movil' ? 'border-amber-500 bg-amber-500/5' : 'border-stone-100 font-medium'}`}
+                                        >
+                                            <span className="text-[11px] font-bold text-amber-600">Pago Móvil</span>
+                                        </button>
+                                        <button 
+                                            type="button" 
+                                            onClick={() => setFormData({...formData, paymentMethod: 'transferencia'})}
+                                            className={`flex flex-col items-center justify-center p-3 rounded-2xl border-2 transition-all ${formData.paymentMethod === 'transferencia' ? 'border-blue-500 bg-blue-500/5' : 'border-stone-100 font-medium'}`}
+                                        >
+                                            <span className="text-[11px] font-bold text-blue-600">Transferencia</span>
+                                        </button>
+                                        <button 
+                                            type="button" 
+                                            onClick={() => setFormData({...formData, paymentMethod: 'efectivo'})}
+                                            className={`flex flex-col items-center justify-center p-3 rounded-2xl border-2 transition-all ${formData.paymentMethod === 'efectivo' ? 'border-emerald-500 bg-emerald-500/5' : 'border-stone-100 font-medium'}`}
+                                        >
+                                            <span className="text-[11px] font-bold text-emerald-600">Efectivo</span>
                                         </button>
                                     </div>
                                 </div>

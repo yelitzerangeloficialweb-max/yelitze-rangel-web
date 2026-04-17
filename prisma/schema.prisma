@@ -99,6 +99,7 @@ model Appointment {
   customerName  String
   customerEmail String
   customerPhone String
+  meetingType   String   @default("online") // online, presencial
   paymentMethod String
   status        String   @default("pending") // pending, confirmed, cancelled
   notes         String?

@@ -15,7 +15,7 @@ import {
     eachDayOfInterval 
 } from 'date-fns';
 import { es } from 'date-fns/locale';
-import { ChevronLeft, ChevronRight, Loader2, Save, Calendar as CalendarIcon, Clock, User } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Loader2, Save, Calendar as CalendarIcon, Clock, User, Video } from 'lucide-react';
 
 interface Availability {
     id: string;
@@ -33,12 +33,15 @@ interface Appointment {
     customerPhone: string;
     paymentMethod: string;
     status: string;
+    meetingType?: string;
+    notes?: string;
 }
 
 export default function AdminAvailabilityPage() {
     const [currentMonth, setCurrentMonth] = useState(new Date());
     const [availability, setAvailability] = useState<Availability[]>([]);
     const [appointments, setAppointments] = useState<Appointment[]>([]);
+    const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState<string | null>(null);
     const [mounted, setMounted] = useState(false);
@@ -311,19 +314,32 @@ export default function AdminAvailabilityPage() {
                                 const todayUTC = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
                                 // Compare against appointment date
                                 return new Date(a.date).getTime() >= todayUTC;
-                            }).slice(0, 10).map(app => (
-                                <div key={app.id} className="p-4 rounded-2xl bg-stone-50 border border-stone-100 flex items-center justify-between">
+                            }).slice(0, 15).map(app => (
+                                <button 
+                                    key={app.id} 
+                                    onClick={() => setSelectedAppointment(app)}
+                                    className="w-full text-left p-4 rounded-2xl bg-stone-50 border border-stone-100 flex items-center justify-between hover:bg-stone-100 hover:border-stone-200 transition-all group"
+                                >
                                     <div>
-                                        <p className="font-bold text-[var(--color-primary)]">{app.customerName}</p>
+                                        <div className="flex items-center gap-2 mb-1">
+                                            <p className="font-bold text-[var(--color-primary)]">{app.customerName}</p>
+                                            <span className={`px-1.5 py-0.5 rounded text-[8px] font-bold uppercase ${
+                                                app.meetingType === 'presencial' ? 'bg-amber-100 text-amber-700' : 'bg-blue-100 text-blue-700'
+                                            }`}>
+                                                {app.meetingType === 'presencial' ? 'Presencial' : 'Online'}
+                                            </span>
+                                        </div>
                                         <p className="text-xs text-stone-500">
                                             {format(new Date(app.date), 'dd/MM/yyyy')} - {app.slot === 'morning' ? 'Mañana' : 'Tarde'}
                                         </p>
-                                        <p className="text-[10px] text-stone-400">{app.customerEmail} | {app.customerPhone}</p>
                                     </div>
-                                    <span className="px-3 py-1 bg-white border border-stone-200 rounded-full text-[10px] font-bold text-stone-400 uppercase">
-                                        {app.paymentMethod}
-                                    </span>
-                                </div>
+                                    <div className="flex flex-col items-end gap-1">
+                                        <span className="px-3 py-1 bg-white border border-stone-200 rounded-full text-[10px] font-bold text-stone-400 uppercase">
+                                            {app.paymentMethod}
+                                        </span>
+                                        <span className="text-[9px] text-[var(--color-secondary)] font-bold opacity-0 group-hover:opacity-100 transition-opacity">Ver detalle →</span>
+                                    </div>
+                                </button>
                             ))
                         )}
                     </div>
@@ -351,6 +367,93 @@ export default function AdminAvailabilityPage() {
                     </ul>
                 </div>
             </div>
+
+            {/* Appointment Detail Modal */}
+            {selectedAppointment && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-stone-900/60 backdrop-blur-sm">
+                    <div className="bg-white w-full max-w-lg rounded-[40px] shadow-2xl overflow-hidden border border-stone-100 animate-in fade-in zoom-in duration-200">
+                        <div className="bg-[var(--color-primary)] p-8 text-white relative">
+                            <button 
+                                onClick={() => setSelectedAppointment(null)}
+                                className="absolute top-6 right-6 p-2 hover:bg-white/10 rounded-full transition-colors"
+                            >
+                                <ChevronRight className="w-6 h-6 rotate-45" />
+                            </button>
+                            <span className="text-xs font-bold text-[var(--color-secondary)] uppercase tracking-widest mb-2 block">Detalle de Reserva</span>
+                            <h2 className="text-3xl font-heading font-bold">{selectedAppointment.customerName}</h2>
+                        </div>
+
+                        <div className="p-8 space-y-6">
+                            <div className="grid grid-cols-2 gap-6">
+                                <div>
+                                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest block mb-1">Email</label>
+                                    <p className="text-sm font-medium text-stone-700">{selectedAppointment.customerEmail}</p>
+                                </div>
+                                <div>
+                                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest block mb-1">WhatsApp</label>
+                                    <p className="text-sm font-medium text-stone-700">{selectedAppointment.customerPhone}</p>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-6 pt-4 border-t border-stone-50">
+                                <div>
+                                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest block mb-1">Fecha</label>
+                                    <p className="text-sm font-bold text-[var(--color-primary)]">
+                                        {format(new Date(selectedAppointment.date), 'EEEE, dd/MM/yyyy', { locale: es })}
+                                    </p>
+                                </div>
+                                <div>
+                                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest block mb-1">Horario</label>
+                                    <p className="text-sm font-bold text-[var(--color-primary)]">
+                                        {selectedAppointment.slot === 'morning' ? 'Mañana (9 AM - 1 PM)' : 'Tarde (2 PM - 6 PM)'}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-6 pt-4 border-t border-stone-50">
+                                <div>
+                                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest block mb-1">Modalidad</label>
+                                    <div className="flex items-center gap-2">
+                                        {selectedAppointment.meetingType === 'presencial' ? (
+                                            <span className="flex items-center gap-1.5 px-3 py-1 bg-amber-50 text-amber-700 rounded-full font-bold text-[10px]">
+                                                <User className="w-3 h-3" /> PRESENCIAL
+                                            </span>
+                                        ) : (
+                                            <span className="flex items-center gap-1.5 px-3 py-1 bg-blue-50 text-blue-700 rounded-full font-bold text-[10px]">
+                                                <Video className="w-3 h-3" /> ONLINE (ZOOM)
+                                            </span>
+                                        )}
+                                    </div>
+                                </div>
+                                <div>
+                                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest block mb-1">Método de Pago</label>
+                                    <span className="px-3 py-1 bg-stone-100 border border-stone-200 rounded-full text-[10px] font-bold text-stone-500 uppercase">
+                                        {selectedAppointment.paymentMethod}
+                                    </span>
+                                </div>
+                            </div>
+
+                            {selectedAppointment.notes && (
+                                <div className="pt-4 border-t border-stone-50">
+                                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest block mb-1">Notas del Cliente</label>
+                                    <p className="text-sm text-stone-600 bg-stone-50 p-4 rounded-2xl italic leading-relaxed">
+                                        "{selectedAppointment.notes}"
+                                    </p>
+                                </div>
+                            )}
+
+                            <div className="pt-6">
+                                <button 
+                                    onClick={() => setSelectedAppointment(null)}
+                                    className="w-full py-4 bg-stone-100 hover:bg-stone-200 text-stone-600 font-bold rounded-2xl transition-all"
+                                >
+                                    Cerrar Detalle
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

@@ -7,7 +7,7 @@ import { ensureAvailabilityTables } from '@/lib/db-init';
 export async function POST(request: NextRequest) {
     try {
         await ensureAvailabilityTables();
-        const { date, slot, customerName, customerEmail, customerPhone, paymentMethod, notes } = await request.json();
+        const { date, slot, customerName, customerEmail, customerPhone, meetingType, paymentMethod, notes } = await request.json();
 
         if (!date || !slot || !customerName || !customerEmail) {
             return NextResponse.json({ error: 'Faltan campos obligatorios' }, { status: 400 });
@@ -49,6 +49,7 @@ export async function POST(request: NextRequest) {
                 customerName,
                 customerEmail,
                 customerPhone,
+                meetingType: meetingType || 'online',
                 paymentMethod,
                 notes,
                 status: 'pending'
