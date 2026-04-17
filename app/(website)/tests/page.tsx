@@ -11,6 +11,7 @@ import {
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn } from '@/components/ui/motion';
 
 const TESTS = [
+    /*
     {
         id: 'diagnostico-ancestral',
         title: 'Diagnóstico Ancestral Completo',
@@ -22,6 +23,7 @@ const TESTS = [
         color: 'from-yellow-200/20',
         featured: true
     },
+    */
     {
         id: 'heridas-infancia',
         title: 'Heridas de la Infancia (Clásico)',
