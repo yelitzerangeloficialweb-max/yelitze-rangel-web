@@ -1,16 +1,18 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import OpenAI from 'openai';
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 
-// Initialize Gemini client
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API_KEY || '');
+// Initialize OpenAI client
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY || '',
+});
 
 export async function POST(req: Request) {
     let resultId = null;
     try {
-        if (!process.env.GOOGLE_GEMINI_API_KEY) {
-            console.error("Missing GOOGLE_GEMINI_API_KEY");
-            return NextResponse.json({ error: "Configuration Error: Missing Gemini API Key" }, { status: 500 });
+        if (!process.env.OPENAI_API_KEY) {
+            console.error("Missing OPENAI_API_KEY");
+            return NextResponse.json({ error: "Configuration Error: Missing OpenAI API Key" }, { status: 500 });
         }
 
         const body = await req.json();
@@ -42,12 +44,11 @@ export async function POST(req: Request) {
             // If we can't save to DB at all, we might as well fail or continue for AI only
         }
 
-        // 2. CALL GEMINI
+        // 2. CALL OPENAI
         let analysis = "No se pudo generar el análisis en este momento, pero tus respuestas han sido registradas.";
         try {
-            console.log("Starting AI Analysis...");
-            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
+            console.log("Starting AI Analysis (OpenAI)...");
+            
             const prompt = `
             Actúa como **Yelitzé Rangel**: Coach Ancestral, terapeuta sistémica y consteladora familiar.
 
@@ -79,9 +80,16 @@ export async function POST(req: Request) {
             **PROHIBIDO:** "¡Tú puedes!", frases de autoayuda vacías, diagnósticos clínicos, lenguaje motivacional genérico.
             `;
 
-            const aiResult = await model.generateContent(prompt);
-            const response = aiResult.response;
-            analysis = response.text();
+            const completion = await openai.chat.completions.create({
+                model: "gpt-4o-mini",
+                messages: [
+                    { role: "system", content: "Eres Yelitzé Rangel, terapeuta sistémica. Responde en Markdown siguiendo la estructura solicitada." },
+                    { role: "user", content: prompt }
+                ],
+                temperature: 0.7
+            });
+
+            analysis = completion.choices[0].message.content || analysis;
             console.log("AI Analysis successful");
         } catch (aiError: any) {
             console.error("AI ANALYSIS ERROR:", aiError.message);

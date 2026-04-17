@@ -1,19 +1,21 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import OpenAI from 'openai';
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API_KEY || '');
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY || '',
+});
 
 export async function POST(req: Request) {
     try {
-        if (!process.env.GOOGLE_GEMINI_API_KEY) {
-            return NextResponse.json({ error: "Missing Gemini API Key" }, { status: 500 });
+        if (!process.env.OPENAI_API_KEY) {
+            return NextResponse.json({ error: "Missing OpenAI API Key" }, { status: 500 });
         }
 
         const body = await req.json();
         const { userInfo, results } = body;
 
-        console.log(`Iniciando análisis unificado para ${userInfo?.email}`);
+        console.log(`Iniciando análisis unificado (OpenAI) para ${userInfo?.email}`);
 
         // Construct context from the 3 current tests
         const context = `
@@ -26,8 +28,6 @@ export async function POST(req: Request) {
             TEST 3: Heridas Femeninas (Identificando Heridas)
             Resultados: ${JSON.stringify(results.heridas_femeninas)}
         `;
-
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
         const prompt = `
             Actúa como **Yelitzé Rangel**: Coach Ancestral, terapeuta sistémica y consteladora familiar.
@@ -53,14 +53,17 @@ export async function POST(req: Request) {
             }
         `;
 
-        const aiResult = await model.generateContent({
-            contents: [{ role: 'user', parts: [{ text: prompt }] }],
-            generationConfig: {
-                responseMimeType: "application/json",
-            }
+        const completion = await openai.chat.completions.create({
+            model: "gpt-4o-mini",
+            messages: [
+                { role: "system", content: "Eres Yelitzé Rangel. Responde siempre en formato JSON." },
+                { role: "user", content: prompt }
+            ],
+            response_format: { type: "json_object" },
+            temperature: 0.7
         });
 
-        const responseText = aiResult.response.text();
+        const responseText = completion.choices[0].message.content || '{}';
         const parsedData = JSON.parse(responseText);
 
         // Save to DB
