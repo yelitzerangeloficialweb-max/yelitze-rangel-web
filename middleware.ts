@@ -15,8 +15,8 @@ export function middleware(request: NextRequest) {
         return NextResponse.next();
     }
 
-    // 2. FORCE maintenance mode to true (ignoring env var for absolute internal security/preview)
-    const maintenanceMode = true;
+    // 2. FORCE maintenance mode to false (allowing public access to the updated site)
+    const maintenanceMode = false;
 
     // 3. Check for the maintenance auth cookie (v2 to invalidate old sessions)
     const authCookie = request.cookies.get('yelitze_access_session_v2');
