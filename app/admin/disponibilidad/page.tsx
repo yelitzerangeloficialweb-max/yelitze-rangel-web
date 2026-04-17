@@ -114,7 +114,7 @@ export default function AdminAvailabilityPage() {
                 });
             } else {
                 const errorData = await res.json().catch(() => ({}));
-                alert(`Error al guardar: ${errorData.error || res.statusText}`);
+                alert(`Error al guardar: ${errorData.details || errorData.error || res.statusText}`);
             }
         } catch (error) {
             console.error('Error saving availability:', error);

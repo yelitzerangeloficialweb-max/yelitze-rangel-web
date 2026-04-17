@@ -50,6 +50,9 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(availability);
     } catch (error) {
         console.error('Error updating availability:', error);
-        return NextResponse.json({ error: 'Error updating availability' }, { status: 500 });
+        return NextResponse.json({ 
+            error: 'Error updating availability',
+            details: error instanceof Error ? error.message : 'Error desconocido'
+        }, { status: 500 });
     }
 }
