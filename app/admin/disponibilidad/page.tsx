@@ -82,21 +82,25 @@ export default function AdminAvailabilityPage() {
     };
 
     const toggleAvailability = async (date: Date, slot: 'morning' | 'afternoon') => {
-        const dateStr = date.toISOString();
-        const key = `${dateStr}-${slot}`;
-        setSaving(key);
-
-        const existing = availability.find(a => isSameDay(new Date(a.date), date));
+        const dateKey = format(date, 'yyyy-MM-dd');
+        setSaving(`${dateKey}-${slot}`);
         
-        const morningEnabled = slot === 'morning' ? !existing?.morningEnabled : existing?.morningEnabled ?? false;
-        const afternoonEnabled = slot === 'afternoon' ? !existing?.afternoonEnabled : existing?.afternoonEnabled ?? false;
-
         try {
+            const existing = availability.find(a => isSameDay(new Date(a.date), date));
+            const morningEnabled = slot === 'morning' ? !existing?.morningEnabled : existing?.morningEnabled ?? false;
+            const afternoonEnabled = slot === 'afternoon' ? !existing?.afternoonEnabled : existing?.afternoonEnabled ?? false;
+
+            // Normalize to UTC midnight before sending
+            const normalizedDate = new Date(date);
+            normalizedDate.setUTCHours(0, 0, 0, 0);
+
             const res = await fetch('/api/admin/availability', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 body: JSON.stringify({
-                    date: dateStr,
+                    date: normalizedDate.toISOString(),
                     morningEnabled,
                     afternoonEnabled
                 })
@@ -108,9 +112,13 @@ export default function AdminAvailabilityPage() {
                     const filtered = prev.filter(a => !isSameDay(new Date(a.date), date));
                     return [...filtered, updated];
                 });
+            } else {
+                const errorData = await res.json().catch(() => ({}));
+                alert(`Error al guardar: ${errorData.error || res.statusText}`);
             }
         } catch (error) {
             console.error('Error saving availability:', error);
+            alert('Error de conexión al intentar guardar.');
         } finally {
             setSaving(null);
         }

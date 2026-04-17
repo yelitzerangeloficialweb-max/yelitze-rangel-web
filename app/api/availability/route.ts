@@ -12,13 +12,14 @@ export async function GET(request: NextRequest) {
         let endDate: Date;
 
         if (month && year) {
-            const baseDate = new Date(parseInt(year), parseInt(month) - 1, 1);
+            const baseDate = new Date(Date.UTC(parseInt(year), parseInt(month) - 1, 1));
             startDate = startOfMonth(baseDate);
             endDate = endOfMonth(baseDate);
         } else {
             // Default to current month and next month
-            startDate = startOfMonth(new Date());
-            endDate = endOfMonth(new Date(new Date().setMonth(new Date().getMonth() + 2)));
+            const now = new Date();
+            startDate = startOfMonth(new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1)));
+            endDate = endOfMonth(new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 2, 0)));
         }
 
         // 1. Fetch office-offered availability

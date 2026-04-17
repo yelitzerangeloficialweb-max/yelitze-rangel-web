@@ -31,8 +31,8 @@ export async function POST(request: NextRequest) {
         }
 
         const dateObj = new Date(date);
-        // Normalize date to start of day to avoid timezone issues with @unique
-        dateObj.setHours(0, 0, 0, 0);
+        // Normalize date to UTC start of day to avoid timezone shifts during @unique constraint checks
+        dateObj.setUTCHours(0, 0, 0, 0);
 
         const availability = await db.availability.upsert({
             where: { date: dateObj },
