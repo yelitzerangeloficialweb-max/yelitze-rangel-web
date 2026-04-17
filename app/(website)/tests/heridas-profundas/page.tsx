@@ -24,7 +24,7 @@ export default function HeridasProfundasPage() {
                 <div className="max-w-4xl mx-auto">
                     <StandaloneDiagnosticWizard
                         title="Módulo: Heridas Profundas (Somática)"
-                        subtitle="Explora las huellas en tu mente, alma y cuerpo.\nUn paso hacia la sanación desde la consciencia corporal."
+                        subtitle="Explora las huellas en tu mente, alma y cuerpo. Un paso hacia la sanación desde la consciencia corporal."
                         testId="Heridas Profundas"
                         questions={PROFUNDAS_QUESTIONS}
                         image="/assets/images/tests/test_profundas.png"
