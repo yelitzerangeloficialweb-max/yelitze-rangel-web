@@ -52,23 +52,27 @@ export default function AdminAvailabilityPage() {
         setLoading(true);
         try {
             const availRes = await fetch('/api/admin/availability');
-            if (availRes.ok) {
-                const availData = await availRes.json();
+            if (availRes.ok && availRes.headers.get('content-type')?.includes('application/json')) {
+                const availData = await availRes.json().catch(() => null);
                 if (Array.isArray(availData)) {
                     setAvailability(availData);
                 } else {
-                    console.error('Availability data is not an array:', availData);
+                    console.error('Availability data is not an array or invalid:', availData);
                 }
+            } else {
+                console.error('Invalid response from availability API:', availRes.status, availRes.statusText);
             }
 
             const appRes = await fetch('/api/admin/appointments'); 
-            if (appRes.ok) {
-                const appData = await appRes.json();
+            if (appRes.ok && appRes.headers.get('content-type')?.includes('application/json')) {
+                const appData = await appRes.json().catch(() => null);
                 if (Array.isArray(appData)) {
                     setAppointments(appData);
                 } else {
-                    console.error('Appointments data is not an array:', appData);
+                    console.error('Appointments data is not an array or invalid:', appData);
                 }
+            } else {
+                console.error('Invalid response from appointments API:', appRes.status, appRes.statusText);
             }
         } catch (error) {
             console.error('Error fetching data:', error);

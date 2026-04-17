@@ -62,13 +62,15 @@ export default function ReservationsPage() {
             const month = currentMonth.getMonth() + 1;
             const year = currentMonth.getFullYear();
             const res = await fetch(`/api/availability?month=${month}&year=${year}`);
-            if (res.ok) {
-                const data = await res.json();
+            if (res.ok && res.headers.get('content-type')?.includes('application/json')) {
+                const data = await res.json().catch(() => null);
                 if (Array.isArray(data)) {
                     setAvailability(data);
                 } else {
-                    console.error('Availability data is not an array:', data);
+                    console.error('Availability data is not an array or invalid:', data);
                 }
+            } else {
+                console.error('Invalid response from availability API:', res.status, res.statusText);
             }
         } catch (error) {
             console.error('Error fetching availability:', error);
