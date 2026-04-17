@@ -97,7 +97,6 @@ export default function Header() {
             name: 'Herramientas',
             href: '#',
             children: [
-                { name: 'Tests de Autoconocimiento', href: '/tests' },
                 { name: 'Test Somático', href: '/test-somatico' },
                 { name: 'Arquitectura Intencional', href: '/arquitectura-de-vida-intencional' },
                 { name: 'Heridas de la Infancia', href: '/tests/heridas-infancia' },
