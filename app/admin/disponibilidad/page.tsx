@@ -304,13 +304,21 @@ export default function AdminAvailabilityPage() {
                         {!Array.isArray(appointments) || appointments.length === 0 ? (
                             <p className="text-stone-400 italic">No hay citas registradas aún.</p>
                         ) : (
-                            appointments.filter(a => a && a.date && new Date(a.date) >= new Date()).slice(0, 5).map(app => (
+                            appointments.filter(a => {
+                                if (!a?.date) return false;
+                                // Create UTC midnight for today
+                                const now = new Date();
+                                const todayUTC = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+                                // Compare against appointment date
+                                return new Date(a.date).getTime() >= todayUTC;
+                            }).slice(0, 10).map(app => (
                                 <div key={app.id} className="p-4 rounded-2xl bg-stone-50 border border-stone-100 flex items-center justify-between">
                                     <div>
                                         <p className="font-bold text-[var(--color-primary)]">{app.customerName}</p>
                                         <p className="text-xs text-stone-500">
                                             {format(new Date(app.date), 'dd/MM/yyyy')} - {app.slot === 'morning' ? 'Mañana' : 'Tarde'}
                                         </p>
+                                        <p className="text-[10px] text-stone-400">{app.customerEmail} | {app.customerPhone}</p>
                                     </div>
                                     <span className="px-3 py-1 bg-white border border-stone-200 rounded-full text-[10px] font-bold text-stone-400 uppercase">
                                         {app.paymentMethod}

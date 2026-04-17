@@ -1,6 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/lib/db';
-import { requireAdminAuth } from '@/lib/admin-auth';
+import { ensureAvailabilityTables } from '@/lib/db-init';
 
 // GET all appointments for admin
 export async function GET() {
@@ -8,6 +6,7 @@ export async function GET() {
     if (authError) return authError;
 
     try {
+        await ensureAvailabilityTables();
         const appointments = await db.appointment.findMany({
             orderBy: { date: 'desc' }
         });

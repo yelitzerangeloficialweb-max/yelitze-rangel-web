@@ -2,16 +2,20 @@ import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { sendAppointmentConfirmationEmail } from '@/lib/mail';
 
+import { ensureAvailabilityTables } from '@/lib/db-init';
+
 export async function POST(request: NextRequest) {
     try {
+        await ensureAvailabilityTables();
         const { date, slot, customerName, customerEmail, customerPhone, paymentMethod, notes } = await request.json();
 
         if (!date || !slot || !customerName || !customerEmail) {
             return NextResponse.json({ error: 'Faltan campos obligatorios' }, { status: 400 });
         }
 
-        const dateObj = new Date(date);
-        dateObj.setHours(0, 0, 0, 0);
+        // Normalize to TRUE Midnight UTC using the face-value approach
+        const rawDate = new Date(date);
+        const dateObj = new Date(Date.UTC(rawDate.getUTCFullYear(), rawDate.getUTCMonth(), rawDate.getUTCDate()));
 
         // 1. Check if the slot is already booked
         const existingAppointment = await db.appointment.findFirst({
