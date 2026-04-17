@@ -2,8 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { startOfMonth, endOfMonth } from 'date-fns';
 
+import { ensureAvailabilityTables } from '@/lib/db-init';
+
 export async function GET(request: NextRequest) {
     try {
+        await ensureAvailabilityTables();
         const { searchParams } = new URL(request.url);
         const month = searchParams.get('month'); // Expecting format YYYY-MM
         const year = searchParams.get('year');

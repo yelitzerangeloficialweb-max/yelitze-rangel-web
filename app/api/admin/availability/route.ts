@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import { requireAdminAuth } from '@/lib/admin-auth';
+import { ensureAvailabilityTables } from '@/lib/db-init';
 
 // GET availability for admin (all configured days)
 export async function GET(request: NextRequest) {
@@ -8,6 +8,7 @@ export async function GET(request: NextRequest) {
     if (authError) return authError;
 
     try {
+        await ensureAvailabilityTables();
         const availability = await db.availability.findMany({
             orderBy: { date: 'asc' }
         });
@@ -24,6 +25,7 @@ export async function POST(request: NextRequest) {
     if (authError) return authError;
 
     try {
+        await ensureAvailabilityTables();
         const { date, morningEnabled, afternoonEnabled } = await request.json();
         
         if (!date) {
