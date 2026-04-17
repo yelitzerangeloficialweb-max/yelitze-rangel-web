@@ -1,3 +1,6 @@
+import { NextResponse } from 'next/server';
+import { db } from '@/lib/db';
+import { requireAdminAuth } from '@/lib/admin-auth';
 import { ensureAvailabilityTables } from '@/lib/db-init';
 
 // GET all appointments for admin
