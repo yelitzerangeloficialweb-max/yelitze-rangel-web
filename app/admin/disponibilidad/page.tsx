@@ -107,7 +107,12 @@ export default function AdminAvailabilityPage() {
             if (res.ok) {
                 const updated = await res.json();
                 setAvailability(prev => {
-                    const filtered = prev.filter(a => !isSameDay(new Date(a.date), date));
+                    // Filter out the day using strict UTC comparison
+                    const filtered = prev.filter(a => {
+                        const d1 = new Date(a.date);
+                        const d2 = normalizedDate;
+                        return d1.getTime() !== d2.getTime();
+                    });
                     return [...filtered, updated];
                 });
             } else {
@@ -184,8 +189,11 @@ export default function AdminAvailabilityPage() {
         return (
             <div className="grid grid-cols-7 bg-stone-100 gap-px border border-stone-200 rounded-3xl overflow-hidden shadow-inner">
                 {calendarDays.map((day, i) => {
-                    const dayAvailability = availability.find(a => a && a.date && isSameDay(new Date(a.date), day));
-                    const dayAppointments = appointments.filter(a => a && a.date && isSameDay(new Date(a.date), day));
+                    // Create a comparable UTC midnight date from the calendar day's local face-value
+                    const calendarDayUTC = new Date(Date.UTC(day.getFullYear(), day.getMonth(), day.getDate()));
+                    
+                    const dayAvailability = availability.find(a => a && a.date && new Date(a.date).getTime() === calendarDayUTC.getTime());
+                    const dayAppointments = appointments.filter(a => a && a.date && new Date(a.date).getTime() === calendarDayUTC.getTime());
                     const isMorningBooked = dayAppointments.some(a => a.slot === 'morning');
                     const isAfternoonBooked = dayAppointments.some(a => a.slot === 'afternoon');
 

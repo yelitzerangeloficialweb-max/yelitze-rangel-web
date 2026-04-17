@@ -141,10 +141,11 @@ export default function ReservationsPage() {
 
                 <div className="grid grid-cols-7 gap-1">
                     {calendarDays.map((day, i) => {
-                        const dayData = Array.isArray(availability) ? availability.find(a => a && a.date && isSameDay(new Date(a.date), day)) : null;
+                        const calendarDayUTC = new Date(Date.UTC(day.getFullYear(), day.getMonth(), day.getDate()));
+                        const dayData = Array.isArray(availability) ? availability.find(a => a && a.date && new Date(a.date).getTime() === calendarDayUTC.getTime()) : null;
                         const isAvailable = !!dayData;
                         const isPast = isBefore(day, startOfDay(new Date()));
-                        const isSelected = selectedDate && isSameDay(day, selectedDate);
+                        const isSelected = selectedDate && new Date(Date.UTC(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate())).getTime() === calendarDayUTC.getTime();
 
                         return (
                             <button
@@ -248,7 +249,11 @@ export default function ReservationsPage() {
 
                                 <div className="space-y-4">
                                     <button
-                                        disabled={!Array.isArray(availability) || !availability.find(a => a && a.date && isSameDay(new Date(a.date), selectedDate))?.morningFree}
+                                        disabled={!Array.isArray(availability) || !selectedDate || !availability.find(a => {
+                                            const dbDate = new Date(a.date);
+                                            const selDateUTC = new Date(Date.UTC(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate()));
+                                            return dbDate.getTime() === selDateUTC.getTime();
+                                        })?.morningFree}
                                         onClick={() => setSelectedSlot('morning')}
                                         className={`w-full p-6 rounded-2xl border-2 transition-all flex items-center justify-between group ${
                                             selectedSlot === 'morning' 
@@ -271,7 +276,11 @@ export default function ReservationsPage() {
                                     </button>
 
                                     <button
-                                        disabled={!Array.isArray(availability) || !availability.find(a => a && a.date && isSameDay(new Date(a.date), selectedDate))?.afternoonFree}
+                                        disabled={!Array.isArray(availability) || !selectedDate || !availability.find(a => {
+                                            const dbDate = new Date(a.date);
+                                            const selDateUTC = new Date(Date.UTC(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate()));
+                                            return dbDate.getTime() === selDateUTC.getTime();
+                                        })?.afternoonFree}
                                         onClick={() => setSelectedSlot('afternoon')}
                                         className={`w-full p-6 rounded-2xl border-2 transition-all flex items-center justify-between group ${
                                             selectedSlot === 'afternoon' 
