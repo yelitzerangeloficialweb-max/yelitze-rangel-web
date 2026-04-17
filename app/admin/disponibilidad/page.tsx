@@ -85,10 +85,17 @@ export default function AdminAvailabilityPage() {
         // Create a TRUE Midnight UTC date from the face value of the local date
         const normalizedDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
         const dateKey = format(date, 'yyyy-MM-dd');
-        setSaving(`${dateKey}-${slot}`);
+        
+        // Disable the entire day while saving to prevent stale data race conditions
+        setSaving(dateKey);
         
         try {
-            const existing = availability.find(a => isSameDay(new Date(a.date), date));
+            // Re-find based on strict UTC comparison to get the absolute latest state
+            const existing = availability.find(a => {
+                if (!a || !a.date) return false;
+                return new Date(a.date).getTime() === normalizedDate.getTime();
+            });
+
             const morningEnabled = slot === 'morning' ? !existing?.morningEnabled : existing?.morningEnabled ?? false;
             const afternoonEnabled = slot === 'afternoon' ? !existing?.afternoonEnabled : existing?.afternoonEnabled ?? false;
 
@@ -107,12 +114,8 @@ export default function AdminAvailabilityPage() {
             if (res.ok) {
                 const updated = await res.json();
                 setAvailability(prev => {
-                    // Filter out the day using strict UTC comparison
-                    const filtered = prev.filter(a => {
-                        const d1 = new Date(a.date);
-                        const d2 = normalizedDate;
-                        return d1.getTime() !== d2.getTime();
-                    });
+                    // Filter out using same strict UTC logic
+                    const filtered = prev.filter(a => new Date(a.date).getTime() !== normalizedDate.getTime());
                     return [...filtered, updated];
                 });
             } else {
@@ -218,7 +221,7 @@ export default function AdminAvailabilityPage() {
                                 {/* Morning Slot */}
                                 <button
                                     onClick={() => toggleAvailability(day, 'morning')}
-                                    disabled={saving === `${day.toISOString()}-morning`}
+                                    disabled={saving === format(day, 'yyyy-MM-dd')}
                                     className={`w-full text-left p-2 rounded-xl text-[10px] font-bold transition-all flex items-center justify-between group ${
                                         dayAvailability?.morningEnabled 
                                             ? 'bg-emerald-50 text-emerald-700 border border-emerald-100 hover:bg-emerald-100' 
@@ -242,7 +245,7 @@ export default function AdminAvailabilityPage() {
                                 {/* Afternoon Slot */}
                                 <button
                                     onClick={() => toggleAvailability(day, 'afternoon')}
-                                    disabled={saving === `${day.toISOString()}-afternoon`}
+                                    disabled={saving === format(day, 'yyyy-MM-dd')}
                                     className={`w-full text-left p-2 rounded-xl text-[10px] font-bold transition-all flex items-center justify-between group ${
                                         dayAvailability?.afternoonEnabled 
                                             ? 'bg-amber-50 text-amber-700 border border-amber-100 hover:bg-amber-100' 
