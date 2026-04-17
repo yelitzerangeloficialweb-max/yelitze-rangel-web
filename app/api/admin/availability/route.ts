@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
+import { requireAdminAuth } from '@/lib/admin-auth';
 import { ensureAvailabilityTables } from '@/lib/db-init';
 
 // GET availability for admin (all configured days)
