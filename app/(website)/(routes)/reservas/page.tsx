@@ -26,8 +26,22 @@ import {
     CheckCircle, 
     Calendar as CalendarIcon,
     Video,
-    ShieldCheck
+    ShieldCheck,
+    Globe
 } from 'lucide-react';
+
+const COUNTRIES = [
+    { name: 'Venezuela', code: '+58', flag: '🇻🇪' },
+    { name: 'España', code: '+34', flag: '🇪🇸' },
+    { name: 'USA', code: '+1', flag: '🇺🇸' },
+    { name: 'Colombia', code: '+57', flag: '🇨🇴' },
+    { name: 'Panamá', code: '+507', flag: '🇵🇦' },
+    { name: 'Argentina', code: '+54', flag: '🇦🇷' },
+    { name: 'Chile', code: '+56', flag: '🇨🇱' },
+    { name: 'México', code: '+52', flag: '🇲🇽' },
+    { name: 'Perú', code: '+51', flag: '🇵🇪' },
+    { name: 'Rep. Dom.', code: '+1', flag: '🇩🇴' },
+];
 
 interface DayAvailability {
     date: string;
@@ -51,6 +65,9 @@ export default function ReservationsPage() {
         meetingType: 'online' as 'online' | 'presencial',
         paymentMethod: 'paypal'
     });
+
+    const [selectedCountry, setSelectedCountry] = useState(COUNTRIES[0]);
+    const [showCountrySelector, setShowCountrySelector] = useState(false);
 
     useEffect(() => {
         setMounted(true);
@@ -94,7 +111,7 @@ export default function ReservationsPage() {
                     slot: selectedSlot,
                     customerName: formData.name,
                     customerEmail: formData.email,
-                    customerPhone: formData.whatsapp,
+                    customerPhone: `${selectedCountry.code} ${formData.whatsapp}`,
                     meetingType: formData.meetingType,
                     paymentMethod: formData.paymentMethod
                 })
@@ -344,14 +361,46 @@ export default function ReservationsPage() {
                                 </div>
                                 <div>
                                     <label className="block text-xs font-bold text-stone-400 uppercase tracking-widest mb-2">WhatsApp</label>
-                                    <input 
-                                        required
-                                        type="tel" 
-                                        value={formData.whatsapp}
-                                        onChange={e => setFormData({...formData, whatsapp: e.target.value})}
-                                        className="w-full px-5 py-4 rounded-2xl bg-stone-50 border border-stone-100 focus:outline-none focus:border-[var(--color-secondary)] transition-colors" 
-                                        placeholder="+58..." 
-                                    />
+                                    <div className="flex gap-2">
+                                        <div className="relative">
+                                            <button 
+                                                type="button"
+                                                onClick={() => setShowCountrySelector(!showCountrySelector)}
+                                                className="h-full px-4 rounded-2xl bg-stone-50 border border-stone-100 flex items-center gap-2 hover:border-stone-200 transition-all font-medium min-w-[100px]"
+                                            >
+                                                <span>{selectedCountry.flag}</span>
+                                                <span className="text-sm">{selectedCountry.code}</span>
+                                            </button>
+                                            
+                                            {showCountrySelector && (
+                                                <div className="absolute top-full left-0 mt-2 w-48 max-h-64 overflow-y-auto bg-white rounded-2xl shadow-2xl border border-stone-100 z-50 animate-in fade-in slide-in-from-top-2">
+                                                    {COUNTRIES.map(country => (
+                                                        <button
+                                                            key={country.name}
+                                                            type="button"
+                                                            onClick={() => {
+                                                                setSelectedCountry(country);
+                                                                setShowCountrySelector(false);
+                                                            }}
+                                                            className="w-full px-4 py-3 flex items-center gap-3 hover:bg-stone-50 transition-colors text-left border-b border-stone-50 last:border-0"
+                                                        >
+                                                            <span>{country.flag}</span>
+                                                            <span className="text-sm font-medium text-stone-700">{country.name}</span>
+                                                            <span className="text-xs text-stone-400 ml-auto">{country.code}</span>
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+                                        <input 
+                                            required
+                                            type="tel" 
+                                            value={formData.whatsapp}
+                                            onChange={e => setFormData({...formData, whatsapp: e.target.value.replace(/\D/g, '')})}
+                                            className="flex-1 px-5 py-4 rounded-2xl bg-stone-50 border border-stone-100 focus:outline-none focus:border-[var(--color-secondary)] transition-colors" 
+                                            placeholder="Ej: 4121234567" 
+                                        />
+                                    </div>
                                 </div>
 
                                 <div className="pt-4 mb-6">
