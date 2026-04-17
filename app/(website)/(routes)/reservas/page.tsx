@@ -226,7 +226,7 @@ export default function ReservationsPage() {
                     Agenda tu Sesión
                 </span>
                 <h1 className="text-4xl md:text-5xl font-heading text-[var(--color-primary)] mb-6">
-                    Diseña tu Arquitectura de Vida
+                    Sesiones Individuales 1 a 1
                 </h1>
                 <p className="max-w-2xl mx-auto text-xl text-[var(--color-text-light)]">
                     Elige el momento perfecto para iniciar tu transformación profunda.
