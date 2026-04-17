@@ -82,6 +82,8 @@ export default function AdminAvailabilityPage() {
     };
 
     const toggleAvailability = async (date: Date, slot: 'morning' | 'afternoon') => {
+        // Create a TRUE Midnight UTC date from the face value of the local date
+        const normalizedDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
         const dateKey = format(date, 'yyyy-MM-dd');
         setSaving(`${dateKey}-${slot}`);
         
@@ -89,10 +91,6 @@ export default function AdminAvailabilityPage() {
             const existing = availability.find(a => isSameDay(new Date(a.date), date));
             const morningEnabled = slot === 'morning' ? !existing?.morningEnabled : existing?.morningEnabled ?? false;
             const afternoonEnabled = slot === 'afternoon' ? !existing?.afternoonEnabled : existing?.afternoonEnabled ?? false;
-
-            // Normalize to UTC midnight before sending
-            const normalizedDate = new Date(date);
-            normalizedDate.setUTCHours(0, 0, 0, 0);
 
             const res = await fetch('/api/admin/availability', {
                 method: 'POST',

@@ -33,9 +33,9 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: 'Fecha requerida' }, { status: 400 });
         }
 
-        const dateObj = new Date(date);
-        // Normalize date to UTC start of day to avoid timezone shifts during @unique constraint checks
-        dateObj.setUTCHours(0, 0, 0, 0);
+        // Create a TRUE Midnight UTC date from the face value of the raw date string/object
+        const rawDate = new Date(date);
+        const dateObj = new Date(Date.UTC(rawDate.getUTCFullYear(), rawDate.getUTCMonth(), rawDate.getUTCDate()));
 
         const availability = await db.availability.upsert({
             where: { date: dateObj },
