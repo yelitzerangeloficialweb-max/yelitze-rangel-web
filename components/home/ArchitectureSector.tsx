@@ -17,7 +17,7 @@ export default function ArchitectureSector() {
             <div
                 className="w-full lg:w-1/2 min-h-[400px] lg:min-h-full relative"
                 style={{
-                    backgroundImage: "url('/images/home_redesign/Arquitectura_intencional2.png')",
+                    backgroundImage: "url('/images/home_redesign/Arquitectura_intencional_v3.jpg')",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
