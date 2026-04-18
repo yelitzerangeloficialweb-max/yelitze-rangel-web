@@ -47,7 +47,7 @@ export default function AboutPage() {
                     <div className="relative h-[50vh] lg:h-[80vh] order-1 lg:order-2 translate-y-8 lg:translate-y-16">
                         <FadeIn className="h-full w-full">
                             <Image
-                                src="/images/home_redesign/Sobremi1.png"
+                                src="/images/home_redesign/Sobre-Mi-YelitzeRangel.jpg"
                                 alt="Yelitze Rangel - Re escribe tu historia"
                                 fill
                                 className="object-contain object-right"
