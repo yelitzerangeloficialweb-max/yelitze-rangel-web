@@ -52,6 +52,8 @@ export default function AboutPage() {
                                 fill
                                 className="object-contain object-right"
                                 priority
+                                quality={100}
+                                unoptimized
                             />
                         </FadeIn>
                     </div>
