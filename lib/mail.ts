@@ -582,4 +582,64 @@ export const sendAppointmentConfirmationEmail = async ({
         return { success: false, error: err };
     }
 };
+export const sendSanateMujerRegistrationEmail = async (email: string, name: string) => {
+    try {
+        const logoUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/assets/images/logo-yelitze-new.png`;
 
+        const { data, error } = await resend.emails.send({
+            from: 'Yelitze Rangel <info@yelitzerangeloficial.com>',
+            to: [email],
+            subject: '¡Bienvenida a la Activación Sánate Mujer! 🌸',
+            html: `
+                <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background-color: #FDFBFA; border-radius: 32px; overflow: hidden; border: 1px solid #B8835A20;">
+                    <div style="background-color: #2D2926; padding: 40px 20px; text-align: center;">
+                        <img src="${logoUrl}" alt="Yelitze Rangel" style="max-width: 150px; height: auto; margin-bottom: 20px;">
+                        <h1 style="color: #FDFBFA; margin: 0; font-size: 16px; letter-spacing: 2px; text-transform: uppercase;">Sánate Mujer: Activación</h1>
+                    </div>
+                    
+                    <div style="padding: 50px 40px; color: #2D2926; line-height: 1.8;">
+                        <h2 style="color: #8C4005; font-size: 24px; margin-bottom: 30px;">¡Bienvenida, ${name}!</h2>
+                        
+                        <p style="font-size: 16px; color: #4A4540; margin-bottom: 25px;">
+                            Tu lugar en la <strong>Activación Sánate Mujer</strong> ha sido reservado con éxito. Este es un espacio sagrado de reconexión y restauración.
+                        </p>
+                        
+                        <div style="background-color: #F5EFE6; padding: 30px; border-radius: 20px; border: 1px solid #B8835A15; margin: 30px 0; text-align: center;">
+                            <p style="margin: 0; font-weight: bold; color: #2D2926; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">FECHA DEL ENCUENTRO:</p>
+                            <p style="margin: 10px 0; font-size: 24px; color: #B8835A;">22 de Mayo, 2026</p>
+                        </div>
+
+                        <p style="font-size: 16px; color: #4A4540; margin-bottom: 30px;">
+                            Próximamente recibirás más detalles sobre la preparación y los rituales que compartiremos en este viaje de soberanía biológica.
+                        </p>
+
+                        <div style="background-color: #2D2926; padding: 30px; border-radius: 20px; color: #F9F7F2; text-align: center;">
+                            <p style="font-size: 14px; font-style: italic; margin: 0;">
+                                "Anatomía del alma donde lo invisible cobra voz."
+                            </p>
+                        </div>
+                        
+                        <p style="margin-top: 50px; text-align: center; color: #8C4005; font-weight: bold; font-style: italic;">
+                            "Primero sana el cuerpo… y luego cambia la historia."
+                        </p>
+                    </div>
+                    
+                    <div style="background-color: #EFE9E0; padding: 30px; text-align: center; color: #3C2A21; font-size: 12px;">
+                        <p style="margin: 0;"><strong>YELITZE RANGEL</strong> • Tu Coach Ancestral</p>
+                        <p style="margin-top: 5px; opacity: 0.6;">&copy; 2026 Todos los derechos reservados.</p>
+                    </div>
+                </div>
+            `
+        });
+
+        if (error) {
+            console.error('[Sanate Mujer Mail] Resend error:', error);
+            return { success: false, error };
+        }
+
+        return { success: true, data };
+    } catch (err) {
+        console.error('Sanate Mujer registration email error:', err);
+        return { success: false, error: err };
+    }
+};
