@@ -21,13 +21,80 @@ export const BLOG_POSTS: BlogPost[] = [
         category: 'Mentalidad',
         author: 'Yelitze Rangel',
         content: `
-            <p class="mb-6 text-lg">Nuestros patrones de comportamiento no son fallos de fábrica, son estrategias de supervivencia que un día aprendimos para pertenecer a nuestro sistema familiar. Sin embargo, lo que antes nos protegió, hoy puede ser la jaula que nos impide crecer.</p>
-            <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">El mapa mental de tu historia</h3>
-            <p class="mb-6">La neurociencia nos dice que el cerebro crea "autopistas" de pensamiento. Si siempre has reaccionado desde el miedo o la carencia, esa autopista está muy bien pavimentada. El trabajo sistémico ayuda a identificar el origen de ese cableado para poder empezar a construir nuevos caminos.</p>
-            <div class="my-12 p-10 bg-[#fafcfe] rounded-3xl border border-stone-100 italic text-xl text-[var(--color-primary)]">
-                "No estás roto, solo estás siendo leal a una historia que ya no necesitas cargar."
+            <div class="space-y-8 text-lg leading-relaxed text-stone-700">
+                <!-- ATENCIÓN -->
+                <p class="text-xl font-medium text-[var(--color-primary)] italic border-l-4 border-[var(--color-secondary)] pl-6 py-2">
+                    "¿Alguna vez has sentido que, sin importar cuánto te esfuerces por cambiar, terminas tropezando con la misma piedra, en el mismo lugar y con la misma intensidad?"
+                </p>
+                <p>
+                    Esa sensación de estar en un "bucle" infinito no es mala suerte, ni falta de voluntad. Es, en realidad, el resultado de un sistema operativo biológico y ancestral que se ejecuta en segundo plano. Nuestros patrones de comportamiento no son fallos de fábrica; son <strong>estrategias de supervivencia</strong> que un día aprendimos para pertenecer a nuestro sistema familiar. Sin embargo, lo que antes nos protegió del dolor o la exclusión, hoy puede ser la jaula que nos impide crecer.
+                </p>
+
+                <!-- INTERÉS: LA CIENCIA -->
+                <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">La Ciencia de la Decisión: Tus Autopistas Mentales</h3>
+                <p>
+                    La neurociencia moderna nos ha revelado una verdad liberadora: el cerebro es plástico, pero también es perezoso. Para ahorrar energía, crea lo que llamamos "autopistas neuronales". Si durante años has reaccionado desde el miedo, la carencia o la complacencia, tu cerebro ha pavimentado una autopista de seis carriles hacia esa respuesta. 
+                </p>
+                <p>
+                    Cuando te enfrentas a una decisión importante —ya sea en el amor, el dinero o el éxito— tu mente no elige el camino más sano, sino el más transitado. Es por eso que, aunque conscientemente quieras abundancia, tu sistema nervioso puede sentirse "seguro" en la escasez, simplemente porque es lo que conoce.
+                </p>
+
+                <!-- INTERÉS: LO SISTÉMICO -->
+                <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">Lealtades Invisibles: El Peso que no te Pertenece</h3>
+                <p>
+                    Desde la mirada de las <strong>Constelaciones Familiares</strong>, entendemos que no caminamos solos. Detrás de nosotros hay miles de destinos. A veces, repetimos un patrón de fracaso o de soledad no por incapacidad, sino por una lealtad inconsciente: "Yo, como tú, querido abuelo, tampoco logro prosperar, para así seguir perteneciendo a nuestro clan". 
+                </p>
+                <div class="my-12 p-10 bg-[#fafcfe] rounded-3xl border border-stone-100 italic text-xl text-[var(--color-primary)] text-center shadow-sm">
+                    "No estás roto, solo estás siendo leal a una historia que ya no necesitas cargar."
+                </div>
+
+                <!-- DESEO -->
+                <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">Del Amor Ciego al Amor Consciente</h3>
+                <p>
+                    Liberarse de los patrones requiere consciencia, pero sobre todo, requiere <strong>el permiso interno</strong> para ser diferente a quienes vinieron antes. El deseo de libertad comienza cuando comprendes que honrar a tus ancestros no significa repetir sus dolores, sino florecer allí donde ellos solo pudieron sobrevivir.
+                </p>
+                <p>
+                    Imagina por un momento cómo sería tu vida si pudieras entrar en una habitación y tomar una decisión basada en tus deseos actuales, sin el susurro del miedo heredado. Esa es la verdadera soberanía biológica. Es el estado donde el cuerpo y el alma se alinean para decir "sí" a la vida, sin condiciones.
+                </p>
+
+                <!-- ACCIÓN Y EJERCICIOS -->
+                <div class="bg-[var(--color-bg-alt)] p-12 rounded-[2rem] border border-[var(--color-primary)]/10 mt-16 space-y-8">
+                    <h2 class="text-4xl font-heading text-[var(--color-primary)] border-b border-[var(--color-primary)]/20 pb-6 text-center">Laboratorio de Transformación</h2>
+                    <p class="text-center font-medium italic">Tómate 15 minutos para realizar estos ejercicios. No leas solo con la mente, permite que tu cuerpo experimente el cambio.</p>
+
+                    <!-- EJERCICIO 1 -->
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-bold flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-full bg-[var(--color-primary)] text-white flex items-center justify-center text-sm">01</span>
+                            Mapeo de la Repetición (Journaling)
+                        </h4>
+                        <p class="pl-11">Identifica una situación que se repite constantemente en tu vida. Escríbela. Ahora, pregúntate: ¿A quién de mi familia le pasó algo similar? Identifica el rostro o la historia. Al ponerle nombre, el patrón pierde su poder oculto.</p>
+                    </div>
+
+                    <!-- EJERCICIO 2 -->
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-bold flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-full bg-[var(--color-primary)] text-white flex items-center justify-center text-sm">02</span>
+                            El Ritual de la Silla de las Lealtades
+                        </h4>
+                        <p class="pl-11">Coloca una silla frente a ti e imagina que en ella está sentado el ancestro que vivió ese patrón. Míralo con amor y dile internamente: <i>"Veo tu dolor, veo tu destino. Te honro dejándote tu carga a ti, y dándome el permiso de hacerlo diferente en tu honor"</i>. Observa qué pasa en tu respiración.</p>
+                    </div>
+
+                    <!-- EJERCICIO 3 -->
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-bold flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-full bg-[var(--color-primary)] text-white flex items-center justify-center text-sm">03</span>
+                            Anclaje Somático del Nuevo Camino
+                        </h4>
+                        <p class="pl-11 text-stone-600">Ponte de pie. Cierra los ojos y siente el peso de tus pies en la tierra. Imagina que frente a ti hay un camino nuevo, nunca antes transitado por tu linaje. Da un paso físico hacia adelante y registra la sensación de "novedad". Ese paso es tu declaración de libertad.</p>
+                    </div>
+                </div>
+
+                <p class="mt-16 text-center text-xl font-heading text-[var(--color-primary)]">
+                    Primero sana el cuerpo… y luego cambia la historia.
+                </p>
+                <p class="text-center italic pb-12">— Yelitze Rangel</p>
             </div>
-            <p class="mb-6 text-lg leading-relaxed">Liberarse de los patrones requiere consciencia, pero sobre todo, el permiso interno para ser diferente a quienes vinieron antes. Es el acto más valiente de amor propio y respeto hacia tus ancestros: florecer allí donde ellos solo pudieron sobrevivir.</p>
         `
     },
     {
