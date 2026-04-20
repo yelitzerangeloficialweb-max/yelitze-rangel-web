@@ -17,7 +17,7 @@ export default function TerminosPage() {
                         <div className="p-4 bg-[var(--color-secondary)]/10 border-l-4 border-[var(--color-secondary)] rounded-r-lg mb-6">
                             <h3 className="font-bold text-[var(--color-primary)] mb-1">Descargo de Responsabilidad Importante</h3>
                             <p className="text-sm">
-                                Los servicios ofrecidos por Yelitzé Rangel son de acompañamiento espiritual y crecimiento personal (coaching sistémico, constelaciones, tanatología). <strong>NO sustituyen el tratamiento médico, psiquiátrico o psicológico clínico.</strong> Si estás atravesando una crisis de salud mental grave, por favor acude a un profesional de la salud o servicio de emergencia.
+                                Los servicios ofrecidos por Yelitzé Rangel son de acompañamiento espiritual y crecimiento personal (coaching sistémico, sanación sistémica, tanatología). <strong>NO sustituyen el tratamiento médico, psiquiátrico o psicológico clínico.</strong> Si estás atravesando una crisis de salud mental grave, por favor acude a un profesional de la salud o servicio de emergencia.
                             </p>
                         </div>
                     </section>

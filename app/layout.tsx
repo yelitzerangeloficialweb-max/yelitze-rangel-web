@@ -30,8 +30,8 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: 'Yelitze Rangel • Constelaciones Familiares y Sanación Ancestral',
-  description: 'Honra tus raíces, transforma tu vida. Terapias de constelaciones familiares y sanación transgeneracional con Yelitze Rangel.',
+  title: 'Yelitze Rangel • Sanación Sistémica y Sabiduría Ancestral',
+  description: 'Honra tus raíces, transforma tu vida. Terapias de enfoque sistémico y sanación transgeneracional con Yelitze Rangel.',
   metadataBase: new URL('https://yelitzerangeloficial.com'),
   alternates: {
     canonical: '/',

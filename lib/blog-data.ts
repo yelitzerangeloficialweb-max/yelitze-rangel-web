@@ -42,7 +42,7 @@ export const BLOG_POSTS: BlogPost[] = [
                 <!-- INTERÉS: LO SISTÉMICO -->
                 <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">Lealtades Invisibles: El Peso que no te Pertenece</h3>
                 <p>
-                    Desde la mirada de las <strong>Constelaciones Familiares</strong>, entendemos que no caminamos solos. Detrás de nosotros hay miles de destinos. A veces, repetimos un patrón de fracaso o de soledad no por incapacidad, sino por una lealtad inconsciente: "Yo, como tú, querido abuelo, tampoco logro prosperar, para así seguir perteneciendo a nuestro clan". 
+                    Desde la mirada de la <strong>Sanación Sistémica</strong>, entendemos que no caminamos solos. Detrás de nosotros hay miles de destinos. A veces, repetimos un patrón de fracaso o de soledad no por incapacidad, sino por una lealtad inconsciente: "Yo, como tú, querido abuelo, tampoco logro prosperar, para así seguir perteneciendo a nuestro clan". 
                 </p>
                 <div class="my-12 p-10 bg-[#fafcfe] rounded-3xl border border-stone-100 italic text-xl text-[var(--color-primary)] text-center shadow-sm">
                     "No estás roto, solo estás siendo leal a una historia que ya no necesitas cargar."
@@ -415,9 +415,9 @@ export const BLOG_POSTS: BlogPost[] = [
     },
     {
         id: '2',
-        slug: 'constelaciones-familiares-amor',
+        slug: 'enfoque-sistemico-amor',
         title: 'El Amor Ciego vs. El Amor Consciente',
-        excerpt: 'Las constelaciones familiares nos enseñan que a veces sufrimos por lealtad a nuestros ancestros. ¿Cómo podemos amar con los ojos abiertos?',
+        excerpt: 'La mirada sistémica nos enseña que a veces sufrimos por lealtad a nuestros ancestros. ¿Cómo podemos amar con los ojos abiertos?',
         date: '20 de Diciembre, 2025',
         image: '/assets/images/tests/blog_blind_vs_conscious_love.png',
         category: 'Relaciones',
@@ -429,7 +429,7 @@ export const BLOG_POSTS: BlogPost[] = [
                     "El amor ciego dice: 'Yo sufro como tú para pertenecer'. El amor consciente dice: 'Te honro siendo feliz'."
                 </p>
                 <p>
-                    Las Constelaciones Familiares nos revelan una paradoja dolorosa: a menudo sufrimos por un exceso de amor. Pero es un <strong>amor ciego</strong>, una lealtad infantil que nos lleva a repetir los destinos difíciles de nuestros padres o abuelos como una forma de decir "somos iguales". Este tipo de amor no sana, solo perpetúa el dolor a través de las generaciones. El verdadero desafío es transitar hacia un amor consciente que sea capaz de mirar el pasado con respeto y, aun así, elegir un camino de plenitud.
+                    La Sanación Sistémica nos revela una paradoja dolorosa: a menudo sufrimos por un exceso de amor. Pero es un <strong>amor ciego</strong>, una lealtad infantil que nos lleva a repetir los destinos difíciles de nuestros padres o abuelos como una forma de decir "somos iguales". Este tipo de amor no sana, solo perpetúa el dolor a través de las generaciones. El verdadero desafío es transitar hacia un amor consciente que sea capaz de mirar el pasado con respeto y, aun así, elegir un camino de plenitud.
                 </p>
 
                 <!-- INTERÉS -->
@@ -488,7 +488,7 @@ export const BLOG_POSTS: BlogPost[] = [
             <div class="space-y-8 text-lg leading-relaxed text-stone-700">
                 <!-- ATENCIÓN -->
                 <p class="text-xl font-medium text-[var(--color-primary)] italic border-l-4 border-[var(--color-secondary)] pl-6 py-2">
-                    "El dinero es una energía sistémica. En las constelaciones, el dinero tiene la cara de la Madre."
+                    "El dinero es una energía sistémica. En el enfoque sistémico, el dinero tiene la cara de la Madre."
                 </p>
                 <p>
                     Nuestra cuenta bancaria y nuestra capacidad de generar abundancia son, a menudo, un reflejo directo de nuestra relación con la vida y, específicamente, con nuestra <strong>Madre</strong>. Ella fue nuestra primera fuente de alimento y sustento. Si hay rechazo, juicio o deuda emocional con ella, el dinero fluirá con dificultad en nuestra vida adulta. El dinero no es solo papel o números; es una energía viva que responde a nuestra capacidad de "tomar" lo que la vida nos ofrece.
@@ -603,7 +603,7 @@ export const BLOG_POSTS: BlogPost[] = [
         id: '5',
         slug: 'medicina-del-cacao-sistematica',
         title: 'La Medicina del Cacao: Un Viaje Sistémico del Corazón',
-        excerpt: 'Cómo los rituales ancestrales potencian el trabajo de constelaciones al abrir el espacio sagrado del sentir.',
+        excerpt: 'Cómo los rituales ancestrales potencian el trabajo sistémico al abrir el espacio sagrado del sentir.',
         date: '05 de Diciembre, 2025',
         image: '/assets/images/tablero-sesion.png',
         category: 'Rituales',
@@ -627,7 +627,7 @@ export const BLOG_POSTS: BlogPost[] = [
                 <!-- DESEO -->
                 <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">La Alquimia del Encuentro</h3>
                 <p>
-                    Participar en un círculo de cacao o integrar esta medicina en tu práctica personal es regalarte un momento de conexión pura con tu esencia. Al unir la sabiduría de las constelaciones con la calidez del cacao, la sanación deja de ser un proceso árido y se convierte en un viaje amoroso hacia tu propia profundidad. Es una invitación a dejar de luchar y empezar a ser.
+                    Participar en un círculo de cacao o integrar esta medicina en tu práctica personal es regalarte un momento de conexión pura con tu esencia. Al unir la sabiduría sistémica con la calidez del cacao, la sanación deja de ser un proceso árido y se convierte en un viaje amoroso hacia tu propia profundidad. Es una invitación a dejar de luchar y empezar a ser.
                 </p>
 
                 <!-- EJERCICIOS -->

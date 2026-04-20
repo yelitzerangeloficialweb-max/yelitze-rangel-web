@@ -75,7 +75,7 @@ export default function HeroVideo() {
                 <div className="max-w-2xl text-white">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6">
                         <Sparkles className="w-4 h-4 text-secondary" />
-                        <span className="text-white text-sm font-light tracking-wider">Sanación Ancestral & Constelaciones</span>
+                        <span className="text-white text-sm font-light tracking-wider">Sanación Ancestral & Maestría Sistémica</span>
                     </div>
 
                     <h1 className="text-5xl md:text-7xl font-bold mb-6 font-heading leading-tight drop-shadow-lg">
