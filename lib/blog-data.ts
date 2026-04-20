@@ -17,7 +17,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: 'Libérate de tus Patrones: La Ciencia de la Decisión',
         excerpt: '¿Por qué sentimos que estamos "cableados" para el autosabotaje? Entiende cómo tu cerebro y tu sistema familiar trabajan juntos y cómo empezar a elegir diferente.',
         date: '24 de Enero, 2026',
-        image: '/assets/images/blog/liberate-patrones.jpg',
+        image: '/images/home_redesign/blog/Liberate_de_tus_patrones.png',
         category: 'Mentalidad',
         author: 'Yelitze Rangel',
         content: `
