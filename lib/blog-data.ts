@@ -17,7 +17,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: 'Libérate de tus Patrones: La Ciencia de la Decisión',
         excerpt: '¿Por qué sentimos que estamos "cableados" para el autosabotaje? Entiende cómo tu cerebro y tu sistema familiar trabajan juntos y cómo empezar a elegir diferente.',
         date: '24 de Enero, 2026',
-        image: '/images/home_redesign/blog/Liberate_de_tus_patrones.png',
+        image: '/images/blog_4k/liberate_patterns.png',
         category: 'Mentalidad',
         author: 'Yelitze Rangel',
         content: `
@@ -103,7 +103,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: 'Transforma tu Miedo en Éxito: El Salto de la Valiente',
         excerpt: 'El miedo no es una señal de que debas detenerte, sino el combustible que necesitas para el siguiente nivel de tu evolución.',
         date: '24 de Enero, 2026',
-        image: '/assets/images/blog/miedo-exito.jpg',
+        image: '/images/blog_4k/fear_to_success.png',
         category: 'Empoderamiento',
         author: 'Yelitze Rangel',
         content: `
@@ -168,7 +168,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: 'Tu Energía, tu Destino: La Alquimia del Ser',
         excerpt: 'No atraes lo que quieres, atraes lo que eres. Descubre cómo tu campo vibratorio moldea las experiencias que llegan a tu vida.',
         date: '24 de Enero, 2026',
-        image: '/assets/images/blog/energia-destino.jpg',
+        image: '/images/blog_4k/energy_destiny.png',
         category: 'Espiritualidad',
         author: 'Yelitze Rangel',
         content: `
@@ -230,7 +230,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: 'La Clave del Éxito: Una Mirada Sistémica',
         excerpt: 'Desde las figuras de los ancestros hasta la toma del lugar correcto: el éxito tiene reglas que van más allá del esfuerzo personal.',
         date: '24 de Enero, 2026',
-        image: '/assets/images/blog/exito-sistemico.jpg',
+        image: '/images/blog_4k/success_systemic.png',
         category: 'Sabiduría Ancestral',
         author: 'Yelitze Rangel',
         content: `
@@ -292,7 +292,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: '¡Tu Cuerpo tiene la Clave! Escuchando lo Invisible',
         excerpt: 'El cuerpo no miente. Cada síntoma, tensión o cansancio es un mensaje del alma tratando de ser escuchado.',
         date: '24 de Enero, 2026',
-        image: '/assets/images/blog/cuerpo-clave.jpg',
+        image: '/images/blog_4k/body_clue.png',
         category: 'Consciencia Corporal',
         author: 'Yelitze Rangel',
         content: `
@@ -354,7 +354,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: '¿Por qué repetimos patrones? Sanando las Heridas de la Infancia',
         excerpt: 'Descubre cómo las experiencias no resueltas de tu niñez moldean tus relaciones actuales y aprende el primer paso para liberarte.',
         date: '28 de Diciembre, 2025',
-        image: '/assets/images/tests/blog_childhood_wounds.png',
+        image: '/images/blog_4k/childhood_wounds.png',
         category: 'Sanación Interior',
         author: 'Yelitze Rangel',
         content: `
@@ -419,7 +419,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: 'El Amor Ciego vs. El Amor Consciente',
         excerpt: 'La mirada sistémica nos enseña que a veces sufrimos por lealtad a nuestros ancestros. ¿Cómo podemos amar con los ojos abiertos?',
         date: '20 de Diciembre, 2025',
-        image: '/assets/images/tests/blog_blind_vs_conscious_love.png',
+        image: '/images/blog_4k/blind_love.png',
         category: 'Relaciones',
         author: 'Yelitze Rangel',
         content: `
@@ -481,7 +481,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: 'El Dinero es Energía: Desbloquea tu Abundancia',
         excerpt: 'Tu cuenta bancaria es un reflejo de tu energía vital. Analizamos los bloqueos sistémicos más comunes que impiden el flujo del dinero.',
         date: '15 de Diciembre, 2025',
-        image: '/assets/images/tests/blog_money_energy.png',
+        image: '/images/blog_4k/money_mother.png',
         category: 'Abundancia',
         author: 'Yelitze Rangel',
         content: `
@@ -543,7 +543,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: 'El Padre: Estructura, Orden y Vuelo',
         excerpt: 'Tomar al padre es tomar la capacidad de poner límites, tener éxito en el mundo y lanzarse a lo nuevo con seguridad.',
         date: '10 de Diciembre, 2025',
-        image: '/assets/images/coaching-ancestral-new.jpg',
+        image: '/images/blog_4k/father_structure.png',
         category: 'Ancestralidad',
         author: 'Yelitze Rangel',
         content: `
@@ -605,7 +605,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: 'La Medicina del Cacao: Un Viaje Sistémico del Corazón',
         excerpt: 'Cómo los rituales ancestrales potencian el trabajo sistémico al abrir el espacio sagrado del sentir.',
         date: '05 de Diciembre, 2025',
-        image: '/assets/images/tablero-sesion.png',
+        image: '/images/blog_4k/cacao_ritual_v2.png',
         category: 'Rituales',
         author: 'Yelitze Rangel',
         content: `
@@ -667,7 +667,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: 'Coaching Tradicional vs. Ancestral: ¿Cuál es la diferencia?',
         excerpt: 'Más allá de los objetivos y la acción, el Coaching Ancestral busca el origen sistémico de lo que te detiene.',
         date: '01 de Diciembre, 2025',
-        image: '/assets/images/corporate-vortex.png',
+        image: '/images/blog_4k/coaching_ancestral.png',
         category: 'Metodología',
         author: 'Yelitze Rangel',
         content: `
@@ -729,7 +729,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: 'Tu Propósito de Vida: Más allá del Ego',
         excerpt: '¿Sientes que lo tienes todo pero te falta algo? El propósito no es una meta, es un lugar de servicio dentro de tu sistema.',
         date: '25 de Noviembre, 2025',
-        image: '/assets/images/trauma-peace.png',
+        image: '/images/blog_4k/purpose_of_life.png',
         category: 'Evolución',
         author: 'Yelitzé Rangel',
         content: `
