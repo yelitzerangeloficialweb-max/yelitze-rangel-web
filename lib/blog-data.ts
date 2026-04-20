@@ -17,7 +17,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: 'Libérate de tus Patrones: La Ciencia de la Decisión',
         excerpt: '¿Por qué sentimos que estamos "cableados" para el autosabotaje? Entiende cómo tu cerebro y tu sistema familiar trabajan juntos y cómo empezar a elegir diferente.',
         date: '24 de Enero, 2026',
-        image: '/images/blog_4k/liberate_patterns.png',
+        image: '/images/home_redesign/blog/Liberate_de_tus_patrones.png',
         category: 'Mentalidad',
         author: 'Yelitze Rangel',
         content: `
@@ -543,7 +543,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: 'El Padre: Estructura, Orden y Vuelo',
         excerpt: 'Tomar al padre es tomar la capacidad de poner límites, tener éxito en el mundo y lanzarse a lo nuevo con seguridad.',
         date: '10 de Diciembre, 2025',
-        image: '/images/blog_4k/father_structure.png',
+        image: '/assets/images/coaching-ancestral-new.jpg',
         category: 'Ancestralidad',
         author: 'Yelitze Rangel',
         content: `
@@ -605,7 +605,7 @@ export const BLOG_POSTS: BlogPost[] = [
         title: 'La Medicina del Cacao: Un Viaje Sistémico del Corazón',
         excerpt: 'Cómo los rituales ancestrales potencian el trabajo sistémico al abrir el espacio sagrado del sentir.',
         date: '05 de Diciembre, 2025',
-        image: '/images/blog_4k/cacao_ritual_v2.png',
+        image: '/assets/images/tablero-sesion.png',
         category: 'Rituales',
         author: 'Yelitze Rangel',
         content: `
