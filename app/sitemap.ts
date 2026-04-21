@@ -3,6 +3,8 @@ import { db } from '@/lib/db';
 import { EVENTS_DATA } from '@/lib/events';
 import { TESTS_DATA } from '@/lib/tests-data';
 
+export const dynamic = 'force-dynamic';
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = 'https://yelitzerangel.com';
 
@@ -28,15 +30,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
 
     // Dynamic Blog routes
-    const posts = await db.blogPost.findMany({
-        select: { slug: true, updatedAt: true }
-    });
-    const blogRoutes = posts.map((post) => ({
-        url: `${baseUrl}/blog/${post.slug}`,
-        lastModified: post.updatedAt,
-        changeFrequency: 'weekly' as const,
-        priority: 0.7,
-    }));
+    let blogRoutes: MetadataRoute.Sitemap = [];
+    try {
+        const posts = await db.blogPost.findMany({
+            select: { slug: true, updatedAt: true }
+        });
+        blogRoutes = posts.map((post) => ({
+            url: `${baseUrl}/blog/${post.slug}`,
+            lastModified: post.updatedAt,
+            changeFrequency: 'weekly' as const,
+            priority: 0.7,
+        }));
+    } catch (error) {
+        console.error('Error generating blog sitemap:', error);
+        // Fallback: No extra blog routes if DB fails during build
+    }
 
     // Dynamic Event routes
     const eventRoutes = EVENTS_DATA.map((event) => ({
