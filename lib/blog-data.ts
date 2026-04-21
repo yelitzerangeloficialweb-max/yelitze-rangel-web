@@ -62,7 +62,7 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
             where: { slug }
         });
         
-        // If not in DB, maybe it hasn't been migrated yet (unlikely if getBlogPosts was called, but for depth:)
+        // If not in DB, fallback to static
         if (!post) {
             const staticPost = STATIC_BLOG_POSTS.find(p => p.slug === slug);
             return staticPost as unknown as BlogPost | null;
@@ -71,7 +71,9 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
         return post as unknown as BlogPost | null;
     } catch (error) {
         console.error(`Error fetching blog post with slug ${slug}:`, error);
-        return null;
+        // Robust fallback: try static even on DB error
+        const staticPost = STATIC_BLOG_POSTS.find(p => p.slug === slug);
+        return staticPost as unknown as BlogPost | null;
     }
 }
 

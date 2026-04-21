@@ -5,16 +5,18 @@ import {
     ArrowLeft, Calendar, User,
     Share2, ArrowRight, Sparkles, Star
 } from 'lucide-react';
-import { db } from '@/lib/db';
+import { getBlogPostBySlug } from '@/lib/blog-data';
 import { notFound } from 'next/navigation';
 import { FadeIn } from '@/components/ui/motion';
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
     
-    const post = await db.blogPost.findUnique({
-        where: { slug }
-    });
+    const post = await getBlogPostBySlug(slug);
+
+    if (!post) {
+        notFound();
+    }
 
     if (!post) {
         notFound();
