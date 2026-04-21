@@ -1,19 +1,24 @@
-"use client";
-
-import React, { use } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
     ArrowLeft, Calendar, User,
     Share2, ArrowRight, Sparkles, Star
 } from 'lucide-react';
-import { BLOG_POSTS } from '@/lib/blog-data';
+import { db } from '@/lib/db';
 import { notFound } from 'next/navigation';
 import { FadeIn } from '@/components/ui/motion';
 
-export default function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
-    const { slug } = use(params);
-    const post = BLOG_POSTS.find((p) => p.slug === slug);
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
+    
+    const post = await db.blogPost.findUnique({
+        where: { slug }
+    });
+
+    if (!post) {
+        notFound();
+    }
 
     if (!post) {
         notFound();

@@ -1,9 +1,9 @@
 import { MetadataRoute } from 'next';
-import { BLOG_POSTS } from '@/lib/blog-data';
+import { db } from '@/lib/db';
 import { EVENTS_DATA } from '@/lib/events';
 import { TESTS_DATA } from '@/lib/tests-data';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = 'https://yelitzerangel.com';
 
     // Static routes
@@ -28,9 +28,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
 
     // Dynamic Blog routes
-    const blogRoutes = BLOG_POSTS.map((post) => ({
+    const posts = await db.blogPost.findMany({
+        select: { slug: true, updatedAt: true }
+    });
+    const blogRoutes = posts.map((post) => ({
         url: `${baseUrl}/blog/${post.slug}`,
-        lastModified: new Date(),
+        lastModified: post.updatedAt,
         changeFrequency: 'weekly' as const,
         priority: 0.7,
     }));

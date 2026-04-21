@@ -9,17 +9,58 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion";
-import { BLOG_POSTS } from "@/lib/blog-data";
+import { BLOG_POSTS as STATIC_BLOG_POSTS, BlogPost } from "@/lib/blog-data";
 import { Turnstile } from "@marsidev/react-turnstile";
 
 export default function BlogPage() {
+    const [posts, setPosts] = useState<BlogPost[]>([]);
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+    const [loadingPosts, setLoadingPosts] = useState(true);
     const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
-    const featuredPost = BLOG_POSTS[0];
-    const recentPosts = BLOG_POSTS.slice(1);
 
-    const uniqueCategoriesCount = new Set(BLOG_POSTS.map(p => p.category)).size;
-    const articlesCount = BLOG_POSTS.length;
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const res = await fetch('/api/blog');
+                const data = await res.json();
+                if (Array.isArray(data) && data.length > 0) {
+                    setPosts(data);
+                } else {
+                    // Si falla o no hay, usamos los estáticos si quedara alguno (opcional)
+                    setPosts(STATIC_BLOG_POSTS);
+                }
+            } catch (error) {
+                console.error('Error loading blog posts:', error);
+                setPosts(STATIC_BLOG_POSTS);
+            } finally {
+                setLoadingPosts(false);
+            }
+        };
+
+        fetchPosts();
+    }, []);
+
+    const featuredPost = posts[0] || STATIC_BLOG_POSTS[0];
+    const recentPosts = posts.slice(1);
+
+    const uniqueCategoriesCount = new Set(posts.map(p => p.category)).size;
+    const articlesCount = posts.length;
+
+    if (loadingPosts) {
+        return (
+            <main className="bg-[#FAF9F6] min-h-screen flex items-center justify-center">
+                <Loader2 className="w-10 h-10 animate-spin text-[var(--color-secondary)]" />
+            </main>
+        );
+    }
+
+    if (!featuredPost) {
+       return (
+            <main className="bg-[#FAF9F6] min-h-screen flex items-center justify-center">
+                <p className="text-stone-500 font-heading text-2xl uppercase tracking-widest">Iniciando bitácora...</p>
+            </main>
+        );
+    }
 
     return (
         <main className="bg-[#FAF9F6] min-h-screen selection:bg-[var(--color-secondary)] selection:text-white">

@@ -104,3 +104,17 @@ model Appointment {
   status        String   @default("pending") // pending, confirmed, cancelled
   notes         String?
 }
+
+model BlogPost {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  slug      String   @unique
+  title     String
+  excerpt   String
+  content   String   // HTML content
+  date      String   // Formatted date string for display (e.g., '19 de Abril, 2026')
+  image     String
+  category  String
+  author    String   @default("Yelitze Rangel")
+}
