@@ -19,19 +19,21 @@ export default function BlogPage() {
     const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
     useEffect(() => {
+        // Initial sync check
+        if (posts.length === 0 && STATIC_BLOG_POSTS.length > 0) {
+            console.log("Blog: Initializing with static fallback, found:", STATIC_BLOG_POSTS.length);
+            setPosts(STATIC_BLOG_POSTS);
+        }
+
         const fetchPosts = async () => {
             try {
                 const res = await fetch('/api/blog');
                 const data = await res.json();
                 if (Array.isArray(data) && data.length > 0) {
                     setPosts(data);
-                } else {
-                    // Si falla o no hay, usamos los estáticos si quedara alguno (opcional)
-                    setPosts(STATIC_BLOG_POSTS);
                 }
             } catch (error) {
                 console.error('Error loading blog posts:', error);
-                setPosts(STATIC_BLOG_POSTS);
             } finally {
                 setLoadingPosts(false);
             }
@@ -43,8 +45,7 @@ export default function BlogPage() {
     const featuredPost = posts[0] || STATIC_BLOG_POSTS[0];
     const recentPosts = posts.slice(1);
 
-    const uniqueCategoriesCount = new Set(posts.map(p => p.category)).size;
-    const articlesCount = posts.length;
+    const articlesCount = posts.length || STATIC_BLOG_POSTS.length;
 
     if (loadingPosts) {
         return (

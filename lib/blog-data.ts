@@ -1,17 +1,8 @@
 import { db } from './db';
 import { BLOG_POSTS as STATIC_BLOG_POSTS } from './blog-data-static';
+import { BlogPost } from './blog-types';
 
-export interface BlogPost {
-    id: string;
-    slug: string;
-    title: string;
-    excerpt: string;
-    content: string; // HTML or Markdown
-    date: string;
-    image: string;
-    category: string;
-    author: string;
-}
+export { type BlogPost };
 
 // Helper to fetch all posts from the database with AUTO-HEALING
 export async function getBlogPosts(): Promise<BlogPost[]> {
