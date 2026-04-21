@@ -5,22 +5,42 @@ import {
     ArrowLeft, Calendar, User,
     Share2, ArrowRight, Sparkles, Star
 } from 'lucide-react';
-import { getBlogPostBySlug } from '@/lib/blog-data';
+import { getBlogPostBySlug, BlogPost } from '@/lib/blog-data';
 import { notFound } from 'next/navigation';
 import { FadeIn } from '@/components/ui/motion';
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
-    const { slug } = await params;
-    
+    let slug = '';
+    try {
+        const resolvedParams = await params;
+        slug = resolvedParams.slug;
+    } catch (e) {
+        console.error("Error resolving params in BlogPostPage:", e);
+        notFound();
+    }
+
+    if (!slug) notFound();
+
     const post = await getBlogPostBySlug(slug);
 
     if (!post) {
         notFound();
     }
 
-    if (!post) {
-        notFound();
-    }
+    // Double-check safety for rendering (preventing any undefined property crash)
+    const safePost: BlogPost = {
+        id: post.id || 'fallback-id',
+        slug: post.slug || slug,
+        title: post.title || 'Sin Título',
+        excerpt: post.excerpt || '',
+        content: post.content || '<p>Contenido no disponible en este momento.</p>',
+        date: post.date || 'Fecha por confirmar',
+        image: post.image || '/assets/images/placeholder.jpg',
+        category: post.category || 'General',
+        author: post.author || 'Yelitze Rangel',
+        createdAt: post.createdAt || new Date(),
+        updatedAt: post.updatedAt || new Date()
+    };
 
     if (!post) {
         notFound();
@@ -44,22 +64,22 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                             </Link>
 
                             <span className="text-[var(--color-secondary)] font-script text-3xl md:text-5xl mb-6 block tracking-[0.03em]">
-                                {post.category}
+                                {safePost.category}
                             </span>
                             
                             <h1 className="text-white text-5xl md:text-7xl lg:text-7xl font-heading leading-[1.1] italic mb-12">
-                                {post.title}
+                                {safePost.title}
                             </h1>
 
                             <div className="flex flex-col md:flex-row gap-12 items-start md:items-center">
                                 <div className="flex flex-wrap gap-12 text-sm text-white/40 uppercase tracking-[0.15em] font-medium">
                                     <div className="flex flex-col gap-2">
                                         <span className="text-[var(--color-secondary)] text-[10px] opacity-60">Publicado</span>
-                                        <span>{post.date}</span>
+                                        <span>{safePost.date}</span>
                                     </div>
                                     <div className="flex flex-col gap-2">
                                         <span className="text-[var(--color-secondary)] text-[10px] opacity-60">Escrito por</span>
-                                        <span>{post.author}</span>
+                                        <span>{safePost.author}</span>
                                     </div>
                                     <div className="flex flex-col gap-2">
                                         <span className="text-[var(--color-secondary)] text-[10px] opacity-60">Tiempo</span>
@@ -75,8 +95,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                 <div className="absolute -inset-4 border border-white/5 rounded-2xl" />
                                 <div className="absolute inset-0 rounded-xl overflow-hidden shadow-2xl ring-1 ring-white/10">
                                     <Image
-                                        src={post.image}
-                                        alt={post.title}
+                                        src={safePost.image}
+                                        alt={safePost.title}
                                         fill
                                         className="object-cover transition-transform duration-1000 group-hover:scale-110"
                                         priority
@@ -112,14 +132,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                         <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
                                     </div>
                                     <p className="text-2xl md:text-3xl text-[var(--color-primary)] font-light leading-relaxed italic relative z-10">
-                                        “{post.excerpt}”
+                                        “{safePost.excerpt}”
                                     </p>
                                 </div>
                             </FadeIn>
 
                             <article
                                 className="prose prose-lg md:prose-xl max-w-none prose-stone prose-headings:font-heading prose-headings:text-[var(--color-primary)] prose-strong:text-[var(--color-primary)] prose-p:text-stone-600 prose-p:leading-relaxed"
-                                dangerouslySetInnerHTML={{ __html: post.content }}
+                                dangerouslySetInnerHTML={{ __html: safePost.content }}
                             />
 
                             {/* Share & Feedback */}
@@ -135,7 +155,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                     </div>
                                 </div>
                                 <div className="text-stone-400 italic text-sm">
-                                    Publicado por {post.author} • Letras con propósito
+                                    Publicado por {safePost.author} • Letras con propósito
                                 </div>
                             </div>
                         </div>
