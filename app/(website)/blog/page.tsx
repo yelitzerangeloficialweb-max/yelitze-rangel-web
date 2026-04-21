@@ -13,9 +13,9 @@ import { BLOG_POSTS as STATIC_BLOG_POSTS, BlogPost } from "@/lib/blog-data";
 import { Turnstile } from "@marsidev/react-turnstile";
 
 export default function BlogPage() {
-    const [posts, setPosts] = useState<BlogPost[]>([]);
+    const [posts, setPosts] = useState<BlogPost[]>(STATIC_BLOG_POSTS);
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-    const [loadingPosts, setLoadingPosts] = useState(true);
+    const [loadingPosts, setLoadingPosts] = useState(false); // No bloqueante
     const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
     useEffect(() => {

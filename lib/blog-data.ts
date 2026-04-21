@@ -1,4 +1,5 @@
 import { db } from './db';
+import { BLOG_POSTS as STATIC_BLOG_POSTS } from './blog-data-static';
 
 export interface BlogPost {
     id: string;
@@ -12,16 +13,54 @@ export interface BlogPost {
     author: string;
 }
 
-// Helper to fetch all posts from the database
+// Helper to fetch all posts from the database with AUTO-HEALING
 export async function getBlogPosts(): Promise<BlogPost[]> {
     try {
-        const posts = await db.blogPost.findMany({
+        let posts = await db.blogPost.findMany({
             orderBy: { createdAt: 'desc' }
         });
+
+        // AUTO-HEALING: If DB is empty or missing articles, seed it from static data
+        if (posts.length < STATIC_BLOG_POSTS.length && STATIC_BLOG_POSTS.length > 0) {
+            console.log(`--- DB de Blog incompleta (${posts.length}/${STATIC_BLOG_POSTS.length}). Iniciando Sincronización ---`);
+            for (const post of STATIC_BLOG_POSTS) {
+                try {
+                    await db.blogPost.upsert({
+                        where: { slug: post.slug },
+                        update: {
+                            title: post.title,
+                            excerpt: post.excerpt,
+                            content: post.content,
+                            date: post.date,
+                            image: post.image,
+                            category: post.category,
+                            author: post.author,
+                        },
+                        create: {
+                            slug: post.slug,
+                            title: post.title,
+                            excerpt: post.excerpt,
+                            content: post.content,
+                            date: post.date,
+                            image: post.image,
+                            category: post.category,
+                            author: post.author,
+                        }
+                    });
+                } catch (e) {
+                    console.error(`Error en seeding de ${post.slug}:`, e);
+                }
+            }
+            // Fetch again after seeding
+            posts = await db.blogPost.findMany({
+                orderBy: { createdAt: 'desc' }
+            });
+        }
+
         return posts as unknown as BlogPost[];
     } catch (error) {
         console.error('Error fetching blog posts from DB:', error);
-        return []; // Fallback to empty if DB fails
+        return STATIC_BLOG_POSTS as unknown as BlogPost[]; // Final fallback to static
     }
 }
 
@@ -31,6 +70,13 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
         const post = await db.blogPost.findUnique({
             where: { slug }
         });
+        
+        // If not in DB, maybe it hasn't been migrated yet (unlikely if getBlogPosts was called, but for depth:)
+        if (!post) {
+            const staticPost = STATIC_BLOG_POSTS.find(p => p.slug === slug);
+            return staticPost as unknown as BlogPost | null;
+        }
+
         return post as unknown as BlogPost | null;
     } catch (error) {
         console.error(`Error fetching blog post with slug ${slug}:`, error);
@@ -39,8 +85,6 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
 }
 
 /**
- * DEPRECATED: Use getBlogPosts() instead.
- * This constant is kept for backward compatibility during migration.
- * It will be empty once the transition to the database is complete.
+ * BACKWARD COMPATIBILITY
  */
-export const BLOG_POSTS: BlogPost[] = [];
+export const BLOG_POSTS: BlogPost[] = STATIC_BLOG_POSTS as unknown as BlogPost[];
