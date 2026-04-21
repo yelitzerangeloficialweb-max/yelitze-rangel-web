@@ -8,6 +8,10 @@ import { FadeIn, StaggerContainer, StaggerItem } from '@/components/ui/motion';
 import { BLOG_POSTS } from '@/lib/blog-data';
 
 export default function BlogSpotlight() {
+    if (!BLOG_POSTS || BLOG_POSTS.length === 0) {
+        return null;
+    }
+
     const featuredPost = BLOG_POSTS[0];
     const recentPosts = BLOG_POSTS.slice(1, 4);
 
