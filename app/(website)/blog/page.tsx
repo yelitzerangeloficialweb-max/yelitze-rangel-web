@@ -46,6 +46,7 @@ export default function BlogPage() {
     const recentPosts = posts.slice(1);
 
     const articlesCount = posts.length || STATIC_BLOG_POSTS.length;
+    const uniqueCategoriesCount = new Set(posts.map(p => p.category)).size || new Set(STATIC_BLOG_POSTS.map(p => p.category)).size;
 
     if (loadingPosts) {
         return (
