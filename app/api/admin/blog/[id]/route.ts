@@ -5,14 +5,15 @@ import { requireAdminAuth } from '@/lib/admin-auth';
 // GET specific blog post
 export async function GET(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     const authError = await requireAdminAuth();
     if (authError) return authError;
 
     try {
+        const { id } = await params;
         const post = await db.blogPost.findUnique({
-            where: { id: params.id }
+            where: { id }
         });
 
         if (!post) {
@@ -29,16 +30,17 @@ export async function GET(
 // PUT update blog post
 export async function PUT(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     const authError = await requireAdminAuth();
     if (authError) return authError;
 
     try {
+        const { id } = await params;
         const data = await request.json();
 
         const post = await db.blogPost.update({
-            where: { id: params.id },
+            where: { id },
             data: {
                 title: data.title,
                 slug: data.slug,
@@ -61,14 +63,15 @@ export async function PUT(
 // DELETE blog post
 export async function DELETE(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     const authError = await requireAdminAuth();
     if (authError) return authError;
 
     try {
+        const { id } = await params;
         await db.blogPost.delete({
-            where: { id: params.id }
+            where: { id }
         });
 
         return NextResponse.json({ message: 'Post deleted successfully' });
