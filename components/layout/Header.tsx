@@ -58,21 +58,30 @@ export default function Header() {
         // 1. Home is always transparent
         if (path === '/') return true;
         
-        // 2. Section landings with dark heroes
-        const mainLandings = ['/blog', '/tienda', '/libros', '/galeria', '/servicios', '/eventos', '/sobre-mi', '/tests'];
-        if (mainLandings.includes(path)) return true;
+        // 2. Section landings and sub-sections with dark or immersive heroes
+        const transparentPaths = [
+            '/blog', '/tienda', '/libros', '/galeria', '/servicios', '/eventos', '/sobre-mi', '/tests', '/test-somatico'
+        ];
         
-        // 3. Specific sub-sections where dark heroes are known to continue
-        const transparentSubSections = ['/servicios/', '/eventos/', '/libros/', '/blog/'];
-        if (transparentSubSections.some(prefix => path.startsWith(prefix))) return true;
+        if (transparentPaths.some(p => path === p || path.startsWith(p + '/'))) return true;
         
-        // 4. Default to solid (for details, Sobre Mi, tests, etc.)
         return false;
     }, [pathname]);
 
     const showScrolled = isScrolled || !isTransparentPage;
-    // Pages that are transparent but need dark logo/text (light or split-panel hero)
-    const useDarkText = showScrolled || pathname.startsWith('/sobre-mi') || pathname.startsWith('/libros/');
+    const useDarkText = useMemo(() => {
+        if (showScrolled) return true;
+        
+        const lightPages = ['/sobre-mi', '/test-somatico'];
+        const path = pathname.toLowerCase();
+        
+        if (lightPages.some(p => path.startsWith(p))) return true;
+        
+        // Shop details and search page are light
+        if (path.startsWith('/tienda/') || path.startsWith('/buscar')) return true;
+        
+        return false;
+    }, [showScrolled, pathname]);
 
     const navLinks = [
         { name: 'Inicio', href: '/' },

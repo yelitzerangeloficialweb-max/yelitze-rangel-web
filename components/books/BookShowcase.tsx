@@ -30,7 +30,7 @@ export default function BookShowcase({
     features
 }: BookShowcaseProps) {
     return (
-        <section className="min-h-screen bg-[#FAF9F6] pb-20 pt-20">
+        <section className="min-h-screen bg-[#FAF9F6] pb-20">
             {/* Header: Split-Panel Aesthetic - Unified Dark Mode (Perfect Alignment) */}
             <div className="flex flex-col lg:flex-row min-h-[85vh] relative overflow-hidden bg-[#1a1a1a]">
                 {/* Atmospheric Glows (Galería style) */}
