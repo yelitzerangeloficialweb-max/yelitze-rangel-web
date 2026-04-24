@@ -132,7 +132,7 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
                 <div className="absolute -bottom-40 left-0 w-[500px] h-[500px] bg-[#B8835A]/10 rounded-full blur-[120px] pointer-events-none" />
 
                 {/* Left Panel: Breadcrumbs & Title */}
-                <div className="lg:w-[45%] p-8 md:p-16 lg:p-24 pt-32 lg:pt-48 flex flex-col justify-center relative z-10">
+                <div className="lg:w-[35%] p-8 md:p-16 lg:p-24 pt-32 lg:pt-48 flex flex-col justify-center relative z-10">
                     <FadeIn>
                         <div className="flex flex-col items-start gap-4 mb-12">
                             <Link href="/eventos" className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors uppercase text-xs tracking-widest font-bold">
@@ -175,7 +175,7 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
                 </div>
 
                 {/* Right Panel: Hero Image */}
-                <div className="lg:w-[55%] relative min-h-[450px] lg:min-h-full bg-black/20">
+                <div className="lg:w-[65%] relative min-h-[450px] lg:min-h-full bg-black/20">
                     <div className="absolute inset-y-0 left-0 w-full lg:w-48 bg-gradient-to-r from-[#1a1a1a] via-[#1a1a1a]/40 to-transparent z-10" />
                     <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#1a1a1a] to-transparent lg:hidden z-10" />
                     <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#1a1a1a] to-transparent lg:hidden z-10" />
@@ -183,7 +183,7 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
                         src={event.image}
                         alt={event.title}
                         fill
-                        className="object-contain object-center lg:object-right"
+                        className="object-contain"
                         priority
                     />
                 </div>
