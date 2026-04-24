@@ -234,15 +234,7 @@ export default function AboutPage() {
                                     <p>
                                         Así nació este método de integración profunda, con el que he acompañado a muchas personas alrededor del mundo, descongelando memorias atrapadas en el cuerpo y favoreciendo la regeneración del sistema nervioso central.
                                     </p>
-                                    <div className="pt-8">
-                                        <Link
-                                            href="/servicios/coaching-ancestral"
-                                            className="inline-flex items-center gap-4 text-white hover:text-[var(--color-secondary)] transition-colors group text-sm uppercase tracking-[0.3em] font-bold"
-                                        >
-                                            Conocer el método
-                                            <MoveRight className="group-hover:translate-x-2 transition-transform" />
-                                        </Link>
-                                    </div>
+
                                 </div>
                             </FadeIn>
                         </div>
