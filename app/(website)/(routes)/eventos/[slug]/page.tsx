@@ -126,13 +126,13 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
     return (
         <main className="bg-[#fafcfe] min-h-screen pb-20">
             {/* Split-Panel Header - Galería Style */}
-            <section className="relative min-h-[70vh] flex flex-col lg:flex-row overflow-hidden pt-20 bg-[#1a1a1a]">
+            <section className="relative min-h-[70vh] flex flex-col lg:flex-row overflow-hidden bg-[#1a1a1a]">
                 {/* Atmospheric Glows (Galería style) */}
                 <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#B8835A]/15 rounded-full blur-[140px] pointer-events-none" />
                 <div className="absolute -bottom-40 left-0 w-[500px] h-[500px] bg-[#B8835A]/10 rounded-full blur-[120px] pointer-events-none" />
 
                 {/* Left Panel: Breadcrumbs & Title */}
-                <div className="lg:w-[45%] p-8 md:p-16 lg:p-24 flex flex-col justify-center relative z-10">
+                <div className="lg:w-[45%] p-8 md:p-16 lg:p-24 pt-32 lg:pt-48 flex flex-col justify-center relative z-10">
                     <FadeIn>
                         <div className="flex flex-col items-start gap-4 mb-12">
                             <Link href="/eventos" className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors uppercase text-xs tracking-widest font-bold">
@@ -183,7 +183,7 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
                         src={event.image}
                         alt={event.title}
                         fill
-                        className="object-cover"
+                        className="object-contain object-center lg:object-right"
                         priority
                     />
                 </div>
