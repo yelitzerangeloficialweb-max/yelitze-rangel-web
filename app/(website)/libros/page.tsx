@@ -16,7 +16,7 @@ const books = [
         slug: "hilos-de-conexion",
         cover: "/assets/images/books/hilos-conexion-3d.png",
         description: "Una invitación a recordar, a sanar y a reconectar con esa memoria sagrada que habita en tu ADN. Un manual para quienes buscan su origen.",
-        amazonLink: "https://www.amazon.com/dp/B0CKW6595M",
+        amazonLink: "https://www.amazon.com/-/es/Hilos-conexi%C3%B3n-curativo-memoria-Spanish/dp/980437286X",
         type: "Libro Físico & Digital"
     },
     {

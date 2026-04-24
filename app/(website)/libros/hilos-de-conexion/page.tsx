@@ -13,8 +13,8 @@ export default function HilosDeConexionPage() {
                 ]}
                 price="$19.99"
                 coverImage="/assets/images/books/hilos-conexion-3d.png"
-                amazonLink="https://www.amazon.com/dp/B0CKW6595M" // Verify Link
-                kindleLink="https://www.amazon.com/dp/B0CKW6595M"
+                amazonLink="https://www.amazon.com/-/es/Hilos-conexi%C3%B3n-curativo-memoria-Spanish/dp/980437286X"
+                kindleLink="https://www.amazon.com/-/es/Hilos-conexi%C3%B3n-curativo-memoria-Spanish/dp/980437286X"
                 features={[
                     "Sanación Ancestral",
                     "Memoria Celular",
