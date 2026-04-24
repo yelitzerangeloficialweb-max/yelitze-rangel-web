@@ -171,14 +171,14 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
                 </div>
 
                 {/* Right Panel: Hero Image */}
-                <div className="lg:w-[55%] relative min-h-[400px] lg:min-h-full">
-                    <div className="absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-[#333333] via-[#333333]/80 to-transparent hidden lg:block z-10" />
-                    <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#333333] to-transparent lg:hidden z-10" />
+                <div className="lg:w-[55%] relative min-h-[400px] lg:min-h-full bg-[#333333]">
+                    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#333333] to-transparent hidden lg:block z-10" />
+                    <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#333333] to-transparent lg:hidden z-10" />
                     <Image
                         src={event.image}
                         alt={event.title}
                         fill
-                        className="object-cover"
+                        className="object-contain object-center lg:object-right"
                         priority
                     />
                 </div>
