@@ -115,11 +115,9 @@ export const EVENTS_DATA: EventData[] = [
             "- Toma de Medicina (ayahuasca, yopo o rapé) y Temazcal para anclar el trabajo.",
             "---",
             "**INFORMACIÓN GENERAL**",
-            "Este método llamado **Coaching Ancestral®** fue creado por Yelitze Rangel, uniendo 14 años de conocimiento en psicofisiología corporal, trauma, principios chamánicos y maestría sistémica.",
-            "**Para quién:** Formación de aprox. 95 horas en 9 días continuos. Diseñada para profesionales (psicoterapeutas, consteladores, trabajadores sociales) y personas comprometidas con su crecimiento personal que deseen ampliar sus herramientas de sanación.",
-            "**Certificación:** Al completar el entrenamiento, recibirás un certificado que te autoriza a utilizar el nombre de **Reconexión Sistémica®** (marca registrada).",
-            "**Lugar:** Maracaibo.",
-            "**Mayor Información:** 0414-6180005 (Whatsapp)"
+            "**Coaching Ancestral®:** Tablero terapéutico «La anatomía del alma», donde lo invisible cobra voz. Uniendo 30 años de conocimiento en psicofisiología corporal, trauma, principios chamánicos y maestría sistémica.",
+            "Diseñada para profesionales de la salud integral y para todo aquel que busque el crecimiento y la expansión en su abordaje profesional y personal.",
+            "**Aval:** Al culminar la certificación, podrá acceder a dos avales internacionales de universidades reconocidas."
         ]
     }
 ];
