@@ -31,29 +31,46 @@ export default function BookShowcase({
 }: BookShowcaseProps) {
     return (
         <section className="min-h-screen bg-[#FAF9F6] pb-20 pt-20">
-            {/* Header: Split-Panel Aesthetic - Unified Dark Mode */}
+            {/* Header: Split-Panel Aesthetic - Unified Dark Mode (Perfect Alignment) */}
             <div className="flex flex-col lg:flex-row min-h-[85vh] relative overflow-hidden bg-[#1a1a1a]">
-                {/* Atmospheric Glows */}
+                {/* Atmospheric Glows (Galería style) */}
                 <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#B8835A]/15 rounded-full blur-[140px] pointer-events-none" />
-                <div className="absolute -bottom-40 right-0 w-[500px] h-[500px] bg-[#B8835A]/10 rounded-full blur-[120px] pointer-events-none" />
+                <div className="absolute -bottom-40 left-0 w-[500px] h-[500px] bg-[#B8835A]/10 rounded-full blur-[120px] pointer-events-none" />
 
-                {/* Left Panel: Dark Content */}
-                <div className="lg:w-[45%] p-8 md:p-16 lg:p-24 pt-32 lg:pt-48 flex flex-col justify-center relative z-10">
+                {/* Left Panel: Breadcrumbs & Title (35% Width) */}
+                <div className="lg:w-[35%] p-8 md:p-16 lg:p-24 pt-32 lg:pt-48 flex flex-col justify-center relative z-10">
                     <FadeIn>
-                        <Link href="/libros" className="inline-flex items-center gap-2 text-white/60 hover:text-white mb-12 transition-colors uppercase text-xs tracking-widest font-bold">
-                            <ArrowLeft className="w-4 h-4" />
-                            Regresar al Cofre
-                        </Link>
+                        <div className="flex flex-col items-start gap-4 mb-12">
+                            <Link href="/libros" className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors uppercase text-xs tracking-widest font-bold">
+                                <ArrowLeft className="w-4 h-4" />
+                                Volver al Cofre
+                            </Link>
 
-                        <div className="inline-block mb-8">
-                            <span className="px-6 py-2 rounded-full border border-[var(--color-secondary)]/20 bg-[var(--color-secondary)]/[0.03] text-[var(--color-secondary)] text-[10px] font-bold tracking-[0.2em] uppercase">
-                                Obra Literaria
-                            </span>
+                            <div className="inline-block">
+                                <span className="px-6 py-2 rounded-full border border-[var(--color-secondary)]/20 bg-[var(--color-secondary)]/[0.03] text-[var(--color-secondary)] text-[10px] font-bold tracking-[0.2em] uppercase">
+                                    Obra Literaria
+                                </span>
+                            </div>
                         </div>
 
                         <h1 className="text-white text-4xl md:text-5xl lg:text-7xl font-heading mb-10 leading-tight">
-                            {title}
+                            {title.includes('®') ? (
+                                <>
+                                    {title.split('®')[0]}<span className="text-2xl lg:text-4xl align-top opacity-60 ml-1">®</span>
+                                </>
+                            ) : title}
                         </h1>
+
+                        <div className="flex flex-wrap gap-6 text-sm text-white/70 mb-10">
+                            <div className="flex items-center gap-2">
+                                <ShoppingCart className="w-5 h-5 text-[var(--color-secondary)]" />
+                                <span className="font-medium tracking-widest uppercase text-[10px]">{price}</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <Sparkles className="w-5 h-5 text-[var(--color-secondary)]" />
+                                <span className="font-medium tracking-widest uppercase text-[10px]">Disponible en Amazon</span>
+                            </div>
+                        </div>
 
                         <p className="text-xl text-white/60 font-light italic border-l-4 border-[var(--color-secondary)]/20 pl-6 leading-relaxed">
                             {subtitle}
@@ -61,10 +78,11 @@ export default function BookShowcase({
                     </FadeIn>
                 </div>
 
-                {/* Right Panel: Immersive Image with 3D Book */}
+                {/* Right Panel: Immersive Image with 3D Book (65% Width) */}
                 <div
-                    className="lg:w-[55%] relative min-h-[500px] lg:min-h-full flex items-center justify-center p-12 bg-black/20"
+                    className="lg:w-[65%] relative min-h-[500px] lg:min-h-full flex items-center justify-center p-12 bg-black/20"
                 >
+                    {/* Perfect Gradient Transition */}
                     <div className="absolute inset-y-0 left-0 w-full lg:w-48 bg-gradient-to-r from-[#1a1a1a] via-[#1a1a1a]/40 to-transparent z-10" />
                     
                     <Image
@@ -74,10 +92,10 @@ export default function BookShowcase({
                         className="object-cover opacity-10 grayscale mix-blend-overlay"
                     />
 
-                    <FadeIn className="relative z-10">
+                    <FadeIn className="relative z-20">
                         {/* 3D Book Display */}
                         <div className="relative w-64 md:w-80 h-[400px] md:h-[500px] perspective-1000 group">
-                            <div className="relative w-full h-full transform-gpu rotate-y-12 -rotate-x-6 shadow-[-40px_40px_100px_rgba(0,0,0,0.3)] rounded-lg overflow-hidden">
+                            <div className="relative w-full h-full transform-gpu rotate-y-12 -rotate-x-6 shadow-[-40px_40px_100px_rgba(0,0,0,0.3)] rounded-lg overflow-hidden transition-transform duration-700 group-hover:rotate-y-6">
                                 <Image
                                     src={coverImage}
                                     alt={title}
