@@ -31,17 +31,16 @@ export default function BookShowcase({
 }: BookShowcaseProps) {
     return (
         <section className="min-h-screen bg-[#FAF9F6] pb-20 pt-20">
-            {/* Header: Split-Panel Aesthetic */}
-            <div className="flex flex-col lg:flex-row min-h-[70vh] relative overflow-hidden">
-                {/* Left Panel: Ivory Content */}
-                <div className="lg:w-[45%] bg-white p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
-                    {/* Subtle Watermark */}
-                    <div className="absolute -left-20 -bottom-20 w-[700px] h-[700px] opacity-[0.02] pointer-events-none">
-                        <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
-                    </div>
+            {/* Header: Split-Panel Aesthetic - Unified Dark Mode */}
+            <div className="flex flex-col lg:flex-row min-h-[85vh] relative overflow-hidden bg-[#1a1a1a]">
+                {/* Atmospheric Glows */}
+                <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#B8835A]/15 rounded-full blur-[140px] pointer-events-none" />
+                <div className="absolute -bottom-40 right-0 w-[500px] h-[500px] bg-[#B8835A]/10 rounded-full blur-[120px] pointer-events-none" />
 
+                {/* Left Panel: Dark Content */}
+                <div className="lg:w-[45%] p-8 md:p-16 lg:p-24 pt-32 lg:pt-48 flex flex-col justify-center relative z-10">
                     <FadeIn>
-                        <Link href="/libros" className="inline-flex items-center gap-2 text-stone-400 hover:text-[var(--color-secondary)] mb-12 transition-colors uppercase text-xs tracking-widest font-bold">
+                        <Link href="/libros" className="inline-flex items-center gap-2 text-white/60 hover:text-white mb-12 transition-colors uppercase text-xs tracking-widest font-bold">
                             <ArrowLeft className="w-4 h-4" />
                             Regresar al Cofre
                         </Link>
@@ -52,11 +51,11 @@ export default function BookShowcase({
                             </span>
                         </div>
 
-                        <h1 className="text-[var(--color-primary)] text-4xl md:text-5xl lg:text-7xl font-heading mb-10 leading-tight">
+                        <h1 className="text-white text-4xl md:text-5xl lg:text-7xl font-heading mb-10 leading-tight">
                             {title}
                         </h1>
 
-                        <p className="text-xl text-stone-400 font-light italic border-l-4 border-[var(--color-secondary)]/20 pl-6 leading-relaxed">
+                        <p className="text-xl text-white/60 font-light italic border-l-4 border-[var(--color-secondary)]/20 pl-6 leading-relaxed">
                             {subtitle}
                         </p>
                     </FadeIn>
@@ -64,16 +63,15 @@ export default function BookShowcase({
 
                 {/* Right Panel: Immersive Image with 3D Book */}
                 <div
-                    className="lg:w-[55%] relative min-h-[500px] lg:min-h-full flex items-center justify-center p-12"
-                    style={{
-                        background: 'radial-gradient(ellipse 60% 55% at 85% 15%, rgba(184,131,90,0.55) 0%, transparent 70%), radial-gradient(ellipse 50% 45% at 15% 88%, rgba(184,131,90,0.40) 0%, transparent 65%), #333333'
-                    }}
+                    className="lg:w-[55%] relative min-h-[500px] lg:min-h-full flex items-center justify-center p-12 bg-black/20"
                 >
+                    <div className="absolute inset-y-0 left-0 w-full lg:w-48 bg-gradient-to-r from-[#1a1a1a] via-[#1a1a1a]/40 to-transparent z-10" />
+                    
                     <Image
                         src="/assets/images/about-ritual.jpg"
                         alt="Background"
                         fill
-                        className="object-cover opacity-5 grayscale"
+                        className="object-cover opacity-10 grayscale mix-blend-overlay"
                     />
 
                     <FadeIn className="relative z-10">
