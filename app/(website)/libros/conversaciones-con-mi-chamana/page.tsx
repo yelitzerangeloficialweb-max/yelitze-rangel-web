@@ -13,7 +13,7 @@ export default function ConversacionesPage() {
                 ]}
                 price="$16.99"
                 coverImage="/assets/images/books/conversaciones-chamana-3d.png"
-                amazonLink="https://www.amazon.com/dp/B0CSXW7R2J" // Verify Link
+                amazonLink="https://www.amazon.com/Conversaciones-chamana-pl%C3%A1ticas-despertar-medicina/dp/6287831324?ref_=ast_author_dp&th=1&psc=1" // Verify Link
                 features={[
                     "Sabiduría Femenina",
                     "Meditaciones Diarias",

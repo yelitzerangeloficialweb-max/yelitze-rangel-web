@@ -25,7 +25,7 @@ const books = [
         slug: "conversaciones-con-mi-chamana",
         cover: "/assets/images/books/conversaciones-chamana-3d.png",
         description: "Reflexiones, meditaciones y diálogos internos para acompañarte en tu día a día y despertar tu sabiduría interior más profunda.",
-        amazonLink: "https://www.amazon.com/dp/B0CSXW7R2J",
+        amazonLink: "https://www.amazon.com/Conversaciones-chamana-pl%C3%A1ticas-despertar-medicina/dp/6287831324?ref_=ast_author_dp&th=1&psc=1",
         type: "Libro Físico & Digital"
     }
 ];
