@@ -174,8 +174,8 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
                     </FadeIn>
                 </div>
 
-                {/* Right Panel: Hero Image (Aspect Ratio perfectly matching the image to avoid bars) */}
-                <div className="lg:w-[65%] relative aspect-square lg:aspect-[3/2] bg-black/20">
+                {/* Right Panel: Hero Image (Stretches to fill full height of the section) */}
+                <div className="lg:w-[65%] relative min-h-[50vh] lg:min-h-0 bg-[#1a1a1a]">
                     <div className="absolute inset-y-0 left-0 w-full lg:w-48 bg-gradient-to-r from-[#1a1a1a] via-[#1a1a1a]/40 to-transparent z-10" />
                     <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#1a1a1a] to-transparent lg:hidden z-10" />
                     <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#1a1a1a] to-transparent lg:hidden z-10" />
