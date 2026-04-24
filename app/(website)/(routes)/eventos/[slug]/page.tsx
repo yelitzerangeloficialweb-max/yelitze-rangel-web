@@ -126,7 +126,7 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
     return (
         <main className="bg-[#fafcfe] min-h-screen pb-20">
             {/* Split-Panel Header - Galería Style */}
-            <section className="relative min-h-[70vh] flex flex-col lg:flex-row overflow-hidden pt-20 bg-[#333333]">
+            <section className="relative min-h-[70vh] flex flex-col lg:flex-row overflow-hidden pt-20 bg-[#1a1a1a]">
                 {/* Atmospheric Glows (Galería style) */}
                 <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#B8835A]/15 rounded-full blur-[140px] pointer-events-none" />
                 <div className="absolute -bottom-40 left-0 w-[500px] h-[500px] bg-[#B8835A]/10 rounded-full blur-[120px] pointer-events-none" />
@@ -147,33 +147,38 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
                             </div>
                         </div>
 
-                        <h1 className="text-white text-4xl md:text-5xl lg:text-7xl font-heading mb-10 leading-tight">
-                            {event.title}
+                        <h1 className="text-white text-4xl md:text-5xl lg:text-8xl font-heading mb-10 leading-tight">
+                            {event.title.includes('®') ? (
+                                <>
+                                    {event.title.split('®')[0]}<span className="text-2xl lg:text-5xl align-top opacity-60 ml-1">®</span>
+                                </>
+                            ) : event.title}
                         </h1>
 
                         <div className="flex flex-wrap gap-8 text-sm text-white/70">
                             <div className="flex items-center gap-2">
                                 <Calendar className="w-5 h-5 text-[var(--color-secondary)]" />
-                                <span className="font-medium">{event.date}</span>
+                                <span className="font-medium tracking-widest uppercase text-xs">{event.date}</span>
                             </div>
                             {event.time && (
                                 <div className="flex items-center gap-2">
                                     <Clock className="w-5 h-5 text-[var(--color-secondary)]" />
-                                    <span className="font-medium">{event.time}</span>
+                                    <span className="font-medium tracking-widest uppercase text-xs">{event.time}</span>
                                 </div>
                             )}
                             <div className="flex items-center gap-2">
                                 <MapPin className="w-5 h-5 text-[var(--color-secondary)]" />
-                                <span className="font-medium">{event.location}</span>
+                                <span className="font-medium tracking-widest uppercase text-xs">{event.location}</span>
                             </div>
                         </div>
                     </FadeIn>
                 </div>
 
                 {/* Right Panel: Hero Image */}
-                <div className="lg:w-[55%] relative min-h-[400px] lg:min-h-full bg-[#333333]">
-                    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#333333] to-transparent hidden lg:block z-10" />
-                    <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#333333] to-transparent lg:hidden z-10" />
+                <div className="lg:w-[55%] relative min-h-[450px] lg:min-h-full bg-black/20">
+                    <div className="absolute inset-y-0 left-0 w-full lg:w-48 bg-gradient-to-r from-[#1a1a1a] via-[#1a1a1a]/40 to-transparent z-10" />
+                    <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#1a1a1a] to-transparent lg:hidden z-10" />
+                    <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#1a1a1a] to-transparent lg:hidden z-10" />
                     <Image
                         src={event.image}
                         alt={event.title}
