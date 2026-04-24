@@ -81,7 +81,7 @@ export const EVENTS_DATA: EventData[] = [
         location: "Maracaibo",
         image: "/images/home_redesign/diplomado-coaching.jpg",
         aida: {
-            attention: "“Los Órdenes del Chamanismo en la Terapia Sistémica”. Un viaje profundo donde el Chamanismo y la Sanación Sistémica se encuentran para sanar el alma.",
+            attention: "Los Órdenes del Chamanismo en la Terapia Sistémica. Un viaje profundo donde el Chamanismo y la Sanación Sistémica se encuentran para sanar el alma.",
             interest: "Una formación intensiva de 3 módulos para terapeutas, psicólogos y buscadores que desean integrar herramientas chamánicas y sistémicas en sus procesos de sanación propios y con clientes.",
             desire: "Aprende a trabajar con las capas del alma, rituales de paso, el campo de los ancestros y representaciones arquetípicas. Certifícate en Reconexión Sistémica® y lleva tu práctica terapéutica a un nuevo nivel de profundidad.",
             action: "Iniciar conversación"

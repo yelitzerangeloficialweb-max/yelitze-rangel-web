@@ -201,7 +201,7 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
                                         <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
                                     </div>
                                     <p className="text-2xl md:text-3xl text-[var(--color-primary)] font-light leading-relaxed italic relative z-10">
-                                        “{event.aida.attention}”
+                                        {event.aida.attention}
                                     </p>
                                 </div>
                             </FadeIn>
