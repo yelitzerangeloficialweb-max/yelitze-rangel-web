@@ -125,15 +125,14 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
 
     return (
         <main className="bg-[#fafcfe] min-h-screen pb-20">
-            {/* Split-Panel Header */}
-            <section className="relative min-h-[70vh] flex flex-col lg:flex-row overflow-hidden pt-20">
-                {/* Left Panel: Breadcrumbs & Title */}
-                <div className="lg:w-[45%] bg-[#333333] p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
-                    {/* Subtle Watermark */}
-                    <div className="absolute -left-32 -bottom-32 w-[800px] h-[800px] opacity-[0.02] pointer-events-none">
-                        <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
-                    </div>
+            {/* Split-Panel Header - Galería Style */}
+            <section className="relative min-h-[70vh] flex flex-col lg:flex-row overflow-hidden pt-20 bg-[#333333]">
+                {/* Atmospheric Glows (Galería style) */}
+                <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#B8835A]/15 rounded-full blur-[140px] pointer-events-none" />
+                <div className="absolute -bottom-40 left-0 w-[500px] h-[500px] bg-[#B8835A]/10 rounded-full blur-[120px] pointer-events-none" />
 
+                {/* Left Panel: Breadcrumbs & Title */}
+                <div className="lg:w-[45%] p-8 md:p-16 lg:p-24 flex flex-col justify-center relative z-10">
                     <FadeIn>
                         <div className="flex flex-col items-start gap-4 mb-12">
                             <Link href="/eventos" className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors uppercase text-xs tracking-widest font-bold">
@@ -173,6 +172,8 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
 
                 {/* Right Panel: Hero Image */}
                 <div className="lg:w-[55%] relative min-h-[400px] lg:min-h-full">
+                    <div className="absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-[#333333] via-[#333333]/80 to-transparent hidden lg:block z-10" />
+                    <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#333333] to-transparent lg:hidden z-10" />
                     <Image
                         src={event.image}
                         alt={event.title}
@@ -180,7 +181,6 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
                         className="object-cover"
                         priority
                     />
-                    <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent hidden lg:block" />
                 </div>
             </section>
 
