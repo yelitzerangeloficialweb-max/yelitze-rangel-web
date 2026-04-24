@@ -38,7 +38,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <h4 className="font-semibold text-lg mb-1">Email</h4>
-                                        <p className="text-white/80 font-light">contacto@yelitzerangel.com</p>
+                                        <p className="text-white/80 font-light">energyuniversal@gmail.com</p>
                                         <p className="text-sm text-white/50 mt-1">Respuesta en 24-48 horas</p>
                                     </div>
                                 </div>
@@ -49,7 +49,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <h4 className="font-semibold text-lg mb-1">WhatsApp</h4>
-                                        <p className="text-white/80 font-light">+58 (412) 123-4567</p>
+                                        <p className="text-white/80 font-light">+1 (786) 726-8717</p>
                                         <p className="text-sm text-white/50 mt-1">Lunes a Viernes, 9am - 5pm</p>
                                     </div>
                                 </div>
@@ -60,8 +60,8 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <h4 className="font-semibold text-lg mb-1">Ubicación</h4>
-                                        <p className="text-white/80 font-light">Consultas Online</p>
-                                        <p className="text-sm text-white/50 mt-1">Disponible para todo el mundo</p>
+                                        <p className="text-white/80 font-light text-sm">Centro Comercial Salto Ángel, Avenida 3Y, Maracaibo 4001, Zulia, Venezuela</p>
+                                        <p className="text-sm text-white/50 mt-1">Atención previa cita</p>
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +144,7 @@ export default function ContactPage() {
                         ></iframe>
                     </div>
                     <p className="text-center mt-4 text-[var(--color-text-light)] text-sm italic">
-                        📍 Encuéntranos en el Centro Comercial Salto Ángel, Maracaibo.
+                        📍 Centro Comercial Salto Ángel, Avenida 3Y, Maracaibo 4001, Zulia, Venezuela
                     </p>
                 </div>
             </div>
