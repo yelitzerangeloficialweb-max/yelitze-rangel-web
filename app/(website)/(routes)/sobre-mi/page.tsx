@@ -285,7 +285,7 @@ export default function AboutPage() {
                                         La Danza Lunar, la Danza del Sol en México y muchas otras experiencias fueron dando forma a grandes experiencias que hoy comparto.
                                     </p>
                                     <p className="font-medium text-gray-900">
-                                        No como una verdad única, <br className="hidden lg:block" /> sino como un camino posible
+                                        No como una verdad única, <br className="hidden lg:block" /> sino como un camino posible...
                                     </p>
                                     <p className="font-bold text-gray-900 border-l-4 border-[var(--color-secondary)] pl-6">
                                         para volver al cuerpo, a la energía, al linaje y a la coherencia interior.
