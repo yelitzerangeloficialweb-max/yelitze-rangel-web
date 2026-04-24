@@ -128,7 +128,7 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
             {/* Split-Panel Header */}
             <section className="relative min-h-[70vh] flex flex-col lg:flex-row overflow-hidden pt-20">
                 {/* Left Panel: Breadcrumbs & Title */}
-                <div className="lg:w-[45%] bg-white p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
+                <div className="lg:w-[45%] bg-[#333333] p-8 md:p-16 lg:p-24 flex flex-col justify-center relative overflow-hidden">
                     {/* Subtle Watermark */}
                     <div className="absolute -left-32 -bottom-32 w-[800px] h-[800px] opacity-[0.02] pointer-events-none">
                         <Image src="/assets/images/watermark-logo.png" alt="" fill className="object-contain" />
@@ -136,7 +136,7 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
 
                     <FadeIn>
                         <div className="flex flex-col items-start gap-4 mb-12">
-                            <Link href="/eventos" className="inline-flex items-center gap-2 text-stone-400 hover:text-[var(--color-secondary)] transition-colors uppercase text-xs tracking-widest font-bold">
+                            <Link href="/eventos" className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors uppercase text-xs tracking-widest font-bold">
                                 <ArrowLeft className="w-4 h-4" />
                                 Volver a la Agenda
                             </Link>
@@ -148,11 +148,11 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
                             </div>
                         </div>
 
-                        <h1 className="text-[var(--color-primary)] text-4xl md:text-5xl lg:text-7xl font-heading mb-10 leading-tight">
+                        <h1 className="text-white text-4xl md:text-5xl lg:text-7xl font-heading mb-10 leading-tight">
                             {event.title}
                         </h1>
 
-                        <div className="flex flex-wrap gap-8 text-sm text-stone-400">
+                        <div className="flex flex-wrap gap-8 text-sm text-white/70">
                             <div className="flex items-center gap-2">
                                 <Calendar className="w-5 h-5 text-[var(--color-secondary)]" />
                                 <span className="font-medium">{event.date}</span>

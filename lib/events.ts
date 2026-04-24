@@ -74,12 +74,12 @@ export const EVENTS_DATA: EventData[] = [
     {
         id: 3,
         slug: 'diplomado-coaching-ancestral',
-        title: "Diplomado de Coaching Ancestral",
+        title: "Diplomado de Coaching Ancestral®",
         type: "Círculo de expansión",
         date: "Por Definir",
         time: "9:00 - 16:30",
         location: "Maracaibo",
-        image: "/images/home_redesign/Web-Yelitze-11.png",
+        image: "/images/home_redesign/diplomado-coaching.png",
         aida: {
             attention: "“Los Órdenes del Chamanismo en la Terapia Sistémica”. Un viaje profundo donde el Chamanismo y la Sanación Sistémica se encuentran para sanar el alma.",
             interest: "Una formación intensiva de 3 módulos para terapeutas, psicólogos y buscadores que desean integrar herramientas chamánicas y sistémicas en sus procesos de sanación propios y con clientes.",
@@ -87,9 +87,9 @@ export const EVENTS_DATA: EventData[] = [
             action: "Iniciar conversación"
         },
         fullDescription: [
-            "**Diplomado de Coaching Ancestral: 'Los Órdenes del Chamanismo en la Terapia Sistémica'**",
-            "La madre del Coaching Ancestral es el Chamanismo, el padre es el trabajo de Sanación Sistémica al viejo estilo. El niño tiene características de ambos, pero como cualquier otro niño de dos padres, se para por sí mismo.",
-            "En el Coaching Ancestral puedes reconocer elementos del Chamanismo y de la Maestría Sistémica, pero es un método en sí mismo. Puede ser usado para dar al cliente un sentido de pertenencia, de ser una parte bienvenida dentro de una unidad mayor, atendido y apoyado en su salud y bienestar.",
+            "**Diplomado de Coaching Ancestral®: 'Los Órdenes del Chamanismo en la Terapia Sistémica'**",
+            "La madre del Coaching Ancestral® es el Chamanismo, el padre es el trabajo de Sanación Sistémica al viejo estilo. El niño tiene características de ambos, pero como cualquier otro niño de dos padres, se para por sí mismo.",
+            "En el Coaching Ancestral® puedes reconocer elementos del Chamanismo y de la Maestría Sistémica, pero es un método en sí mismo. Puede ser usado para dar al cliente un sentido de pertenencia, de ser una parte bienvenida dentro de una unidad mayor, atendido y apoyado en su salud y bienestar.",
             "De acuerdo con las Tradiciones Chamánicas, el alma tiene diferentes elementos o capas. Algunas son individuales, pero otros aspectos los compartimos con la familia u otros grupos.",
             "**Trabajamos con diferentes capas del alma como un soporte para la sanación de los enredos sistémicos**, explorando en cada constelación la relación entre el alma y el campo de los ancestros.",
             "---",
