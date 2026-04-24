@@ -37,9 +37,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         date: post.date || 'Fecha por confirmar',
         image: post.image || '/assets/images/placeholder.jpg',
         category: post.category || 'General',
-        author: post.author || 'Yelitze Rangel',
-        createdAt: post.createdAt || new Date(),
-        updatedAt: post.updatedAt || new Date()
+        author: post.author || 'Yelitze Rangel'
     };
 
     if (!post) {
