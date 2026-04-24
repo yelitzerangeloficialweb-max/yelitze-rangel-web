@@ -183,7 +183,7 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
                         src={event.image}
                         alt={event.title}
                         fill
-                        className="object-contain object-center lg:object-right"
+                        className="object-cover"
                         priority
                     />
                 </div>
