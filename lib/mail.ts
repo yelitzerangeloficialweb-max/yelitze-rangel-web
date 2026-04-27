@@ -667,7 +667,7 @@ export const sendContactEmail = async ({
         const { data, error } = await resend.emails.send({
             from: 'Yelitze Rangel <info@yelitzerangeloficial.com>',
             to: ['energyuniversal@gmail.com'], // The recipient requested by the user
-            reply_to: email, // Allow replying directly to the person who wrote
+            replyTo: email, // Allow replying directly to the person who wrote
             subject: `Nuevo mensaje de contacto: ${subject}`,
             html: `
                 <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background-color: #FDFBFA; border-radius: 32px; overflow: hidden; border: 1px solid #B8835A20;">
