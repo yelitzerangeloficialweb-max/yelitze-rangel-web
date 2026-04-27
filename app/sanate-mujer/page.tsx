@@ -6,6 +6,7 @@ import { FormEvent } from 'react';
 import { ArrowRight, CheckCircle2, ChevronDown, ChevronUp, X, Heart, Activity, ShieldAlert, Sparkles, Play, Clock } from 'lucide-react';
 import { motion, Variants, AnimatePresence } from 'framer-motion';
 import { useEffect, useState as useHookState } from 'react';
+import { SacredGeometry, FloatingStars, ThinGoldenLine, WaveDivider } from "@/components/ui/MysticalElements";
 
 const fadeUpVariant: Variants = {
     hidden: { opacity: 0, y: 30 },
@@ -40,6 +41,14 @@ export default function SanateMujerLanding() {
                 />
             </div>
 
+            {/* Venezuela Lines in the Body */}
+            <div className="fixed inset-0 z-0 pointer-events-none opacity-[0.05]">
+                <SacredGeometry className="top-[10%] right-[-10%] w-[600px] h-[600px]" />
+                <ThinGoldenLine d="M0,100 Q250,250 500,100 T1000,100" className="top-20 left-0 w-full h-64" />
+                <ThinGoldenLine d="M0,200 Q300,0 600,200 T1200,200" className="bottom-20 right-0 w-full h-96" />
+                <FloatingStars count={30} />
+            </div>
+
             {/* SECTION 0: TOP STICKY BANNER */}
             <TopStickyBanner />
 
@@ -63,9 +72,6 @@ export default function SanateMujerLanding() {
 
             {/* SECTION 5: THE OFFER */}
             <OfferSection />
-
-            {/* SECTION 6: PODCAST */}
-            <PodcastSection />
 
             {/* SECTION 7: FAQ */}
             <FaqSection />
@@ -327,12 +333,12 @@ function RegistrationForm() {
 // TRUST BAR COMPONENT
 // ---------------------------------------------------------
 function TrustBar() {
-    const logos = [
-        { name: 'Psicología Integrativa', icon: '✦' },
-        { name: 'Sabiduría Ancestral', icon: '❂' },
-        { name: 'Trauma Informed', icon: '⚕' },
-        { name: 'Tanatología', icon: '❈' },
-        { name: 'Coaching Energético', icon: '✺' }
+    const categories = [
+        'Psicología Integrativa',
+        'Sabiduría Ancestral',
+        'Trauma Informed',
+        'Tanatología',
+        'Coaching Energético'
     ];
 
     return (
@@ -342,18 +348,19 @@ function TrustBar() {
                     <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#F5EFE6] w-full text-center mb-4 md:mb-0 md:w-auto">
                         Avalado por:
                     </span>
-                    {logos.map((logo, index) => (
-                        <div key={index} className="flex items-center gap-3 grayscale contrast-125">
-                            <span className="text-[#B8835A] text-xl">{logo.icon}</span>
+                    {categories.map((name, index) => (
+                        <div key={index} className="flex items-center gap-3">
                             <span className="text-[#F5EFE6] text-xs font-bold tracking-widest uppercase whitespace-nowrap">
-                                {logo.name}
+                                {name}
                             </span>
                         </div>
                     ))}
                 </div>
             </div>
-            {/* Subtle light effect */}
-            <div className="absolute top-0 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-[#B8835A]/30 to-transparent"></div>
+            {/* Venezuela Lines Style separator */}
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#B8835A]/50 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#B8835A]/30 to-transparent"></div>
+            <ThinGoldenLine d="M0,50 Q500,150 1000,50" className="top-0 left-0 w-full h-32 opacity-10" />
         </section>
     );
 }
@@ -365,6 +372,7 @@ function TrustBar() {
 function HeroSection() {
     return (
         <section className="relative min-h-screen flex flex-col justify-center items-center py-20 px-4 overflow-hidden bg-white/40">
+            <ThinGoldenLine d="M0,100 Q250,250 500,100 T1000,100" className="top-20 left-0 w-full h-64 opacity-20" />
             <div className="container mx-auto max-w-7xl relative z-10 grid lg:grid-cols-2 gap-16 lg:gap-8 items-center mt-12 lg:mt-0">
                 {/* Left Column: Copy */}
                 <motion.div
@@ -378,10 +386,10 @@ function HeroSection() {
                             WORKSHOP GRATUITO: SÁNATE MUJER
                         </span>
                         <h1 className="text-4xl md:text-5xl lg:text-[4rem] font-heading font-medium text-[#2D2926] leading-[1.1] mb-8">
-                            Identifica las <span className="text-[#B8835A] italic">heridas del alma</span> que detienen tu vida.
+                            Libera las <span className="text-[#B8835A] italic">lealtades invisibles</span> que detienen tu vida.
                         </h1>
                         <p className="text-lg md:text-xl text-[#2D2926]/80 leading-relaxed font-light">
-                            ¿Sientes que repites los mismos patrones en tus relaciones? ¿Te cuesta recibir abundancia? En este workshop gratuito, te enseñaré a identificar las lealtades invisibles que te mantienen estancada.
+                            ¿Sientes que repites los mismos patrones en tus relaciones? ¿Te cuesta alcanzar la plenitud que mereces? En este workshop gratuito, descubrirás cómo romper las cadenas sistémicas que te mantienen estancada.
                         </p>
                     </motion.div>
 
@@ -416,8 +424,8 @@ function SocialProofSection() {
         {
             name: "Carolina R.",
             title: "Empresaria",
-            quote: "Llegué en quiebra emocional, salí duplicando mis ingresos.",
-            text: "Con el método de Yelitze, identifiqué la lealtad invisible que me mantenía en la carencia. No fue magia, fue activación somática pura. Hoy tengo paz, merecimiento real y mi negocio factura el doble."
+            quote: "Llegué en quiebra emocional, hoy mi realidad es otra.",
+            text: "Con el método de Yelitze, identifiqué el bloqueo invisible que me mantenía en la carencia. No fue magia, fue comprensión sistémica pura. Hoy tengo paz, merecimiento real y mi negocio fluye con una energía renovada."
         },
         {
             name: "Andrea M.",
@@ -428,7 +436,8 @@ function SocialProofSection() {
     ];
 
     return (
-        <section className="py-32 bg-[#F5EFE6] relative">
+        <section className="py-32 bg-[#F5EFE6] relative overflow-hidden">
+            <WaveDivider position="top" fill="#F5EFE6" className="opacity-50" />
             <div className="container mx-auto px-4 max-w-6xl relative z-10">
                 <motion.div
                     initial="hidden"
@@ -439,7 +448,7 @@ function SocialProofSection() {
                 >
                     <span className="text-[#B8835A] tracking-[0.3em] font-bold text-xs uppercase mb-4 block">Resultados Reales</span>
                     <h2 className="text-3xl md:text-5xl font-heading text-[#2D2926] leading-tight">
-                        Mujeres que sanaron su <i className="text-[#B8835A] font-normal">historia ancestral</i>.
+                        Mujeres que transformaron su <i className="text-[#B8835A] font-normal">historia personal</i>.
                     </h2>
                 </motion.div>
 
@@ -513,40 +522,40 @@ function SegmentationSection() {
 }
 
 function MechanismSection() {
-    const heridas = [
+    const patrones = [
         {
-            title: "Herida de Rechazo",
-            mask: "La Huidiza",
-            desc: "Aprendiste a desaparecer antes de que te rechazaran. Te cuesta recibir dinero, ayuda o amor.",
-            symptoms: ["¿Te cuesta recibir?", "¿Buscas aprobación?", "¿Te sientes 'rara'?"],
+            title: "Patrón de Invisibilidad",
+            mask: "La que Desaparece",
+            desc: "Sientes que no tienes lugar. Te cuesta recibir abundancia, amor o reconocimiento.",
+            symptoms: ["¿Evitas ser vista?", "¿Dificultad para cobrar?", "¿Sensación de no pertenecer?"],
             icon: <ShieldAlert className="w-6 h-6" />
         },
         {
-            title: "Herida de Abandono",
-            mask: "La Dependiente",
-            desc: "Te volviste indispensable para que no se vayan. Aguantas lo que sea con tal de no estar sola.",
-            symptoms: ["Relaciones tóxicas", "Das más de lo que recibes", "Miedo a la soledad"],
+            title: "Patrón de Carga",
+            mask: "La que Puede con Todo",
+            desc: "Te volviste indispensable para los demás. Cargas con responsabilidades que no te corresponden.",
+            symptoms: ["Fatiga crónica emocional", "Te cuesta pedir ayuda", "Miedo al abandono"],
             icon: <Heart className="w-6 h-6" />
         },
         {
-            title: "Herida de Humillación",
-            mask: "La Masoquista",
-            desc: "Aprendiste que tus necesidades eran una carga. Cuidas a todos menos a ti misma.",
-            symptoms: ["¿Te cuesta decir 'no'?", "Culpa al enfocarte en ti", "Trabajo agotador"],
+            title: "Patrón de Sacrificio",
+            mask: "La que se Posterga",
+            desc: "Tus necesidades siempre están al final. Sientes culpa cuando piensas en ti.",
+            symptoms: ["¿Dices 'sí' queriendo decir 'no'?", "Priorizas a todos", "Falta de propósito propio"],
             icon: <Activity className="w-6 h-6" />
         },
         {
-            title: "Herida de Traición",
-            mask: "La Controladora",
-            desc: "Si lo controlas todo, nadie puede hacerte daño. La confianza es un lujo prohibido.",
-            symptoms: ["Dificultad para delegar", "Necesidad de control", "Rigidez emocional"],
+            title: "Patrón de Control",
+            mask: "La que No Confía",
+            desc: "Sientes que si no lo haces tú, saldrá mal. La hipervigilancia es tu estado natural.",
+            symptoms: ["Perfeccionismo extremo", "Necesidad de predecirlo todo", "Rigidez mental"],
             icon: <Sparkles className="w-6 h-6" />
         },
         {
-            title: "Herida de Injusticia",
-            mask: "La Rígida",
-            desc: "Aprendiste a ser perfecta para ser amada. La vulnerabilidad es tu mayor miedo.",
-            symptoms: ["Autoexigencia extrema", "Dificultad para sentir", "Búsqueda de perfección"],
+            title: "Patrón de Exigencia",
+            mask: "La Implacable",
+            desc: "Nada de lo que haces es suficiente. La vulnerabilidad es vista como debilidad.",
+            symptoms: ["Autocrítica feroz", "Miedo al fracaso", "Dificultad para disfrutar"],
             icon: <Clock className="w-6 h-6" />
         }
     ];
@@ -561,15 +570,15 @@ function MechanismSection() {
                     variants={fadeUpVariant}
                     className="text-center mb-24 max-w-3xl mx-auto"
                 >
-                    <span className="text-[#B8835A] tracking-[0.3em] font-bold text-xs uppercase mb-4 block">Identifica tu Herida Raíz</span>
+                    <span className="text-[#B8835A] tracking-[0.3em] font-bold text-xs uppercase mb-4 block">Descubre tu Bloqueo Principal</span>
                     <h2 className="text-4xl md:text-5xl font-heading text-[#2D2926] leading-tight">
-                        El problema no eres tú. <br />
-                        <span className="text-[#B8835A] italic">Son las máscaras que creaste para sobrevivir.</span>
+                        El estancamiento no es casualidad. <br />
+                        <span className="text-[#B8835A] italic">Son mecanismos de defensa que hoy te limitan.</span>
                     </h2>
                 </motion.div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
-                    {heridas.map((herida, idx) => (
+                    {patrones.map((patron, idx) => (
                         <motion.div
                             key={idx}
                             initial={{ opacity: 0, y: 20 }}
@@ -579,13 +588,13 @@ function MechanismSection() {
                             className="bg-[#F5EFE6]/50 p-8 rounded-3xl border border-[#B8835A]/10 hover:border-[#B8835A]/40 transition-all flex flex-col items-center text-center"
                         >
                             <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center text-[#B8835A] mb-6 shadow-sm">
-                                {herida.icon}
+                                {patron.icon}
                             </div>
-                            <h3 className="text-xl font-bold text-[#2D2926] mb-2 uppercase tracking-wide">{herida.title}</h3>
-                            <span className="text-sm font-bold text-[#B8835A] uppercase tracking-widest mb-4">Máscara: {herida.mask}</span>
-                            <p className="text-[#2D2926]/70 text-sm leading-relaxed mb-6 italic">"{herida.desc}"</p>
+                            <h3 className="text-xl font-bold text-[#2D2926] mb-2 uppercase tracking-wide">{patron.title}</h3>
+                            <span className="text-sm font-bold text-[#B8835A] uppercase tracking-widest mb-4">Comportamiento: {patron.mask}</span>
+                            <p className="text-[#2D2926]/70 text-sm leading-relaxed mb-6 italic">"{patron.desc}"</p>
                             <ul className="space-y-2 text-left w-full">
-                                {herida.symptoms.map((s, i) => (
+                                {patron.symptoms.map((s, i) => (
                                     <li key={i} className="flex items-center gap-2 text-xs text-[#2D2926]/60">
                                         <CheckCircle2 className="w-3 h-3 text-[#B8835A]" />
                                         {s}
@@ -680,15 +689,16 @@ function StorytellingSection() {
 
 function OfferSection() {
     const benefits = [
-        "Identificación de tus 5 heridas principales.",
-        "Ritual somático de liberación ancestral (En Vivo).",
-        "Workbook digital 'Anatomía del Alma' de regalo.",
+        "Identificación de tus 5 patrones de estancamiento.",
+        "Comprensión del sistema de lealtades invisibles.",
+        "Workbook digital 'Soberanía del Ser' de regalo.",
         "Acceso a la comunidad VIP de WhatsApp.",
-        "Sesión de preguntas y respuestas con Yelitzé."
+        "Sesión estratégica de preguntas y respuestas."
     ];
 
     return (
         <section id="oferta" className="py-32 relative bg-white overflow-hidden">
+            <WaveDivider position="top" fill="white" />
             <div className="container mx-auto px-4 max-w-6xl relative z-10 text-center">
                 <motion.div
                     initial="hidden"
@@ -788,11 +798,11 @@ function FaqSection() {
     const faqs = [
         {
             q: "1. ¿Qué es exactamente el Workshop 'Sánate Mujer'?",
-            a: "Es una inmersión intensiva de una sesión en vivo donde aprenderás mi metodología para identificar las heridas del alma. Es el punto de partida para cualquier mujer que desee dejar de repetir patrones y empezar a habitar su soberanía."
+            a: "Es una inmersión estratégica de una sesión en vivo donde aprenderás mi metodología para identificar y liberar patrones sistémicos. Es el punto de partida para cualquier mujer que desee dejar de repetir historias y empezar a habitar su propia vida."
         },
         {
             q: "2. ¿Es realmente gratuito?",
-            a: "Sí. Mi misión es expandir este mensaje. El workshop no tiene costo, pero requiere de tu compromiso y presencia para que la transformación ocurra."
+            a: "Sí. Este workshop tiene como objetivo brindar herramientas de alto valor para iniciar tu proceso de cambio. No tiene costo monetario, pero requiere tu compromiso total."
         },
         {
             q: "3. ¿Cuánto tiempo dura la sesión?",
@@ -832,7 +842,7 @@ function FaqSection() {
                         Preguntas <span className="text-[#B8835A] italic">Frecuentes</span>
                     </h2>
                     <p className="text-[#2D2926]/70 leading-relaxed font-light text-lg max-w-2xl mx-auto">
-                        Todo lo que necesitas saber antes de comenzar tu viaje de 3 semanas.
+                        Todo lo que necesitas saber antes de comenzar este viaje de transformación.
                     </p>
                 </motion.div>
 
