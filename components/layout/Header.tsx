@@ -118,14 +118,20 @@ export default function Header() {
             href: '#',
             children: [
                 { name: 'Tienda Online', href: '/tienda' },
-                { name: 'Libros', href: '/libros' },
-                { name: 'Hilos de Conexión', href: '/libros/hilos-de-conexion' },
-                { name: 'Conversaciones con mi Chamana', href: '/libros/conversaciones-con-mi-chamana' }
+                {
+                    name: 'Libros',
+                    href: '/libros',
+                    children: [
+                        { name: 'Hilos de Conexión', href: '/libros/hilos-de-conexion' },
+                        { name: 'Conversaciones con mi Chamana', href: '/libros/conversaciones-con-mi-chamana' }
+                    ]
+                }
             ]
         },
     ];
 
     const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+    const [hoveredChild, setHoveredChild] = useState<string | null>(null);
 
     return (
         <header
@@ -180,21 +186,49 @@ export default function Header() {
 
                             {/* Dropdown */}
                             {link.children && hoveredLink === link.name && (
-                                <div className="absolute top-full left-0 pt-2 animate-fade-in w-64 z-[60]">
-                                    <div className="bg-white rounded-xl shadow-xl border border-primary/5 overflow-hidden">
+                                <div className="absolute top-full left-0 pt-2 animate-fade-in w-72 z-[60]">
+                                    <div className="bg-white rounded-xl shadow-xl border border-primary/5 overflow-visible">
                                         {link.children.map((child) => (
-                                            <Link
+                                            <div
                                                 key={child.href}
-                                                href={child.href}
-                                                className={cn(
-                                                    "block px-4 py-3 text-sm text-primary hover:bg-background transition-colors border-b border-primary/5 last:border-0",
-                                                    child.href === '/arquitectura-de-vida-intencional'
-                                                        ? "hover:text-[var(--color-accent-light)] font-medium"
-                                                        : "hover:text-secondary"
-                                                )}
+                                                className="relative group/child"
+                                                onMouseEnter={() => setHoveredChild(child.name)}
+                                                onMouseLeave={() => setHoveredChild(null)}
                                             >
-                                                {child.name}
-                                            </Link>
+                                                <Link
+                                                    href={child.href}
+                                                    className={cn(
+                                                        "flex items-center justify-between px-4 py-3 text-sm text-primary hover:bg-background transition-colors border-b border-primary/5 last:border-0",
+                                                        child.href === '/arquitectura-de-vida-intencional'
+                                                            ? "hover:text-[var(--color-accent-light)] font-medium"
+                                                            : "hover:text-secondary"
+                                                    )}
+                                                >
+                                                    {child.name}
+                                                    {child.children && (
+                                                        <svg className="w-3 h-3 -rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                                        </svg>
+                                                    )}
+                                                </Link>
+
+                                                {/* Sub-Submenu (Flyout) */}
+                                                {child.children && hoveredChild === child.name && (
+                                                    <div className="absolute left-full top-0 pl-2 w-72 animate-fade-in">
+                                                        <div className="bg-white rounded-xl shadow-xl border border-primary/5 overflow-hidden">
+                                                            {child.children.map((subChild) => (
+                                                                <Link
+                                                                    key={subChild.href}
+                                                                    href={subChild.href}
+                                                                    className="block px-4 py-3 text-sm text-primary hover:bg-background hover:text-secondary transition-colors border-b border-primary/5 last:border-0"
+                                                                >
+                                                                    {subChild.name}
+                                                                </Link>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </div>
                                         ))}
                                     </div>
                                 </div>
@@ -286,16 +320,32 @@ export default function Header() {
 
                             {/* Always show children in mobile for simplicity or create toggle state */}
                             {link.children && (
-                                <div className="pl-8 space-y-1 bg-gray-50/50 py-2 rounded-b-lg">
+                                <div className="pl-6 space-y-1 bg-gray-50/50 py-2 rounded-b-lg">
                                     {link.children.map(child => (
-                                        <Link
-                                            key={child.href}
-                                            href={child.href}
-                                            onClick={() => setMobileMenuOpen(false)}
-                                            className="block text-sm text-primary-light hover:text-secondary py-2 px-2"
-                                        >
-                                            • {child.name}
-                                        </Link>
+                                        <div key={child.href}>
+                                            <Link
+                                                href={child.href}
+                                                onClick={() => !child.children && setMobileMenuOpen(false)}
+                                                className="flex items-center justify-between text-sm text-primary-light hover:text-secondary py-2 px-4"
+                                            >
+                                                <span>• {child.name}</span>
+                                            </Link>
+                                            
+                                            {child.children && (
+                                                <div className="pl-6 space-y-1 bg-white/50 py-1 mb-2 rounded-lg">
+                                                    {child.children.map(subChild => (
+                                                        <Link
+                                                            key={subChild.href}
+                                                            href={subChild.href}
+                                                            onClick={() => setMobileMenuOpen(false)}
+                                                            className="block text-xs text-stone-500 hover:text-secondary py-2 px-4"
+                                                        >
+                                                            {subChild.name}
+                                                        </Link>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
                                     ))}
                                 </div>
                             )}
