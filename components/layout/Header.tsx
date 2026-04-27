@@ -186,8 +186,8 @@ export default function Header() {
 
                             {/* Dropdown */}
                             {link.children && hoveredLink === link.name && (
-                                <div className="absolute top-full left-0 pt-2 animate-fade-in w-72 z-[60]">
-                                    <div className="bg-white rounded-xl shadow-xl border border-primary/5 overflow-visible">
+                                <div className="absolute top-full left-0 pt-2 animate-fade-in w-64 z-[60]">
+                                    <div className="bg-white rounded-xl shadow-2xl border border-primary/5 py-2">
                                         {link.children.map((child) => (
                                             <div
                                                 key={child.href}
@@ -198,15 +198,16 @@ export default function Header() {
                                                 <Link
                                                     href={child.href}
                                                     className={cn(
-                                                        "flex items-center justify-between px-4 py-3 text-sm text-primary hover:bg-background transition-colors border-b border-primary/5 last:border-0",
+                                                        "flex items-center justify-between px-6 py-2.5 text-sm text-primary hover:bg-stone-50 transition-colors",
                                                         child.href === '/arquitectura-de-vida-intencional'
                                                             ? "hover:text-[var(--color-accent-light)] font-medium"
-                                                            : "hover:text-secondary"
+                                                            : "hover:text-secondary",
+                                                        hoveredChild === child.name && child.children ? "bg-stone-50 text-secondary" : ""
                                                     )}
                                                 >
                                                     {child.name}
                                                     {child.children && (
-                                                        <svg className="w-3 h-3 -rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <svg className="w-3.5 h-3.5 -rotate-90 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                                         </svg>
                                                     )}
@@ -214,13 +215,13 @@ export default function Header() {
 
                                                 {/* Sub-Submenu (Flyout) */}
                                                 {child.children && hoveredChild === child.name && (
-                                                    <div className="absolute left-full top-0 pl-2 w-72 animate-fade-in">
-                                                        <div className="bg-white rounded-xl shadow-xl border border-primary/5 overflow-hidden">
+                                                    <div className="absolute left-full top-0 pl-1 w-64 animate-fade-in">
+                                                        <div className="bg-white rounded-xl shadow-2xl border border-primary/5 py-2">
                                                             {child.children.map((subChild) => (
                                                                 <Link
                                                                     key={subChild.href}
                                                                     href={subChild.href}
-                                                                    className="block px-4 py-3 text-sm text-primary hover:bg-background hover:text-secondary transition-colors border-b border-primary/5 last:border-0"
+                                                                    className="block px-6 py-2.5 text-sm text-primary hover:bg-stone-50 hover:text-secondary transition-colors"
                                                                 >
                                                                     {subChild.name}
                                                                 </Link>
