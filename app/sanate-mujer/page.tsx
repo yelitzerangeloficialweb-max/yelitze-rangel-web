@@ -117,11 +117,16 @@ function TopStickyBanner() {
                 <div className="flex items-center gap-3">
                     <Sparkles className="w-4 h-4 text-white animate-pulse" />
                     <span className="text-[11px] font-bold tracking-[0.2em] uppercase whitespace-nowrap">
-                        El workshop inicia en:
+                        OFERTA DE LANZAMIENTO DISPONIBLE:
                     </span>
                 </div>
 
                 <div className="flex items-center gap-6">
+                    <div className="flex flex-col items-center">
+                        <span className="text-[11px] font-bold tracking-[0.2em] uppercase whitespace-nowrap mr-4">
+                            CIERRA EN:
+                        </span>
+                    </div>
                     <div className="flex flex-col items-center">
                         <span className="text-xl font-bold leading-none tabular-nums">{timeLeft.days.toString().padStart(2, '0')}</span>
                         <span className="text-[8px] uppercase tracking-widest font-bold opacity-70">Días</span>
@@ -332,14 +337,10 @@ function TrustBar() {
 // ---------------------------------------------------------
 
 function HeroSection() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
     return (
         <section className="relative min-h-screen flex flex-col justify-center items-center py-20 px-4 overflow-hidden bg-white/40">
-            {/* Header / Logo (Removido a petición) */}
-
             <div className="container mx-auto max-w-7xl relative z-10 grid lg:grid-cols-2 gap-16 lg:gap-8 items-center mt-12 lg:mt-0">
-                {/* Left Column: Copy & Image */}
+                {/* Left Column: Copy */}
                 <motion.div
                     initial="hidden"
                     animate="visible"
@@ -348,126 +349,119 @@ function HeroSection() {
                 >
                     <motion.div variants={fadeUpVariant}>
                         <span className="inline-block text-[#B8835A] font-bold tracking-[0.4em] uppercase text-xs md:text-sm mb-6 border border-[#B8835A]/30 px-4 py-1.5 rounded-full bg-white/50 backdrop-blur-sm shadow-sm">
-                            ⚡ EVENTO ÚNICO Y GRATUITO: EL DESPERTAR DE LA CONSCIENCIA FEMENINA
+                            SANANDO EL LINAJE FEMENINO: UN VIAJE DE 3 SEMANAS
                         </span>
                         <h1 className="text-4xl md:text-5xl lg:text-[4rem] font-heading font-medium text-[#2D2926] leading-[1.1] mb-8">
-                            Tu cuerpo recuerda lo que tu mente intenta olvidar.<br />
-                            <span className="text-[#B8835A] italic">Identifica la Herida Raíz.</span>
+                            Eres la <span className="text-[#B8835A] italic">arquitecta</span> de tu propia liberación.
                         </h1>
                         <p className="text-lg md:text-xl text-[#2D2926]/80 leading-relaxed font-light">
-                            Únete a la "Activación Sánate Mujer", la inmersión online gratuita diseñada para mujeres exitosas que están listas para <b>dejar de autosabotearse</b> en sus relaciones y finanzas.
-                            Descubre el Sistema de Expansión y reclama tu poder de merecimiento en un solo fin de semana, sin costo.
+                            ¡Bienvenida, Familia de Almas! Algo en ti ya sabe que necesita cambiar. Deja de ser una espectadora más y transforma tu historia hoy mismo. Identifica las heridas del alma que sabotean tus relaciones y tu abundancia.
                         </p>
                     </motion.div>
 
-                    <motion.div variants={fadeUpVariant} className="relative w-full max-w-[280px] mx-auto lg:mx-0 flex items-center justify-center">
-                        {/* Glow Effect */}
-                        <div className="absolute inset-0 bg-[#B8835A]/10 rounded-[2.5rem] blur-2xl animate-pulse"></div>
-
-                        {/* Interactive Vertical Video (Aspect 9:16) */}
-                        <div
-                            onClick={() => setIsModalOpen(true)}
-                            className="relative w-full aspect-[9/16] bg-black rounded-[2.5rem] border-[6px] border-white shadow-2xl overflow-hidden group transition-transform hover:-translate-y-2 cursor-pointer"
+                    <motion.div variants={fadeUpVariant} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <button
+                            onClick={() => document.getElementById('oferta')?.scrollIntoView({ behavior: 'smooth' })}
+                            className="bg-[#B8835A] hover:bg-[#a0724e] text-white py-5 px-10 rounded shadow-[0_10px_30px_rgba(184,131,90,0.3)] transition-all transform hover:-translate-y-1 inline-flex items-center justify-center gap-3 font-bold tracking-widest text-sm"
                         >
-                            <video
-                                src="/assets/images/landing/sanate-mujer-reel.mp4"
-                                className="w-full h-full object-cover"
-                                muted
-                                loop
-                                playsInline
-                            />
-
-                            {/* Overlay Controls */}
-                            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors flex flex-col items-center justify-center">
-                                <motion.div
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 mb-4"
-                                >
-                                    <Play className="w-8 h-8 text-white fill-white" />
-                                </motion.div>
-                                <span className="text-white text-[10px] font-bold tracking-widest uppercase px-6 py-2.5 bg-black/40 backdrop-blur-md rounded-full border border-white/20 shadow-xl">
-                                    Ver Mensaje
-                                </span>
-                            </div>
-
-                            {/* UI elements to make it look like a reel/phone */}
-                            <div className="absolute top-4 inset-x-0 flex justify-center z-10">
-                                <div className="w-16 h-1.5 bg-white/30 rounded-full"></div>
-                            </div>
-                        </div>
+                            SÍ, QUIERO SANAR MI LINAJE
+                            <ArrowRight className="w-5 h-5" />
+                        </button>
                     </motion.div>
                 </motion.div>
 
-                {/* Right Column: Registration Form */}
+                {/* Right Column: Visual Component */}
                 <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-                    className="w-full max-w-md mx-auto lg:ml-auto relative z-10"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="relative"
                 >
-                    <RegistrationForm />
+                    <div className="relative w-full aspect-[4/5] max-w-md mx-auto rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white group">
+                        <Image
+                            src="/assets/images/landing/yelitze-hero-main.png"
+                            alt="Yelitze Rangel"
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                            priority
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                        <div className="absolute bottom-8 inset-x-0 text-center">
+                            <span className="text-white font-bold tracking-widest uppercase text-xs px-6 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
+                                "Sánate Mujer"
+                            </span>
+                        </div>
+                    </div>
                 </motion.div>
             </div>
+        </section>
+    );
+}
 
-            {/* VIDEO MODAL */}
-            <AnimatePresence>
-                {isModalOpen && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 md:p-10"
-                        onClick={() => setIsModalOpen(false)}
-                    >
-                        {/* Close Button */}
-                        <button
-                            className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors z-[110]"
-                            onClick={() => setIsModalOpen(false)}
-                        >
-                            <X className="w-10 h-10" />
-                        </button>
+function SocialProofSection() {
+    const testimonials = [
+        {
+            name: "Carolina R.",
+            title: "Empresaria",
+            quote: "Llegué en quiebra emocional, salí duplicando mis ingresos.",
+            text: "Con el método de Yelitze, identifiqué la lealtad invisible que me mantenía en la carencia. No fue magia, fue activación somática pura. Hoy tengo paz, merecimiento real y mi negocio factura el doble."
+        },
+        {
+            name: "Andrea M.",
+            title: "Terapeuta",
+            quote: "Descubrí por qué siempre atraía hombres no disponibles.",
+            text: "Tras la Activación, entendí que estaba cargando con el duelo no resuelto de mi madre. Al liberar esa carga con los rituales, mi energía cambió y atraje a una pareja consciente y respetuosa."
+        }
+    ];
 
-                        {/* Video Container */}
+    return (
+        <section className="py-32 bg-[#F5EFE6] relative">
+            <div className="container mx-auto px-4 max-w-6xl relative z-10">
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={fadeUpVariant}
+                    className="text-center mb-20 max-w-3xl mx-auto"
+                >
+                    <span className="text-[#B8835A] tracking-[0.3em] font-bold text-xs uppercase mb-4 block">Resultados Reales</span>
+                    <h2 className="text-3xl md:text-5xl font-heading text-[#2D2926] leading-tight">
+                        Mujeres que sanaron su <i className="text-[#B8835A] font-normal">historia ancestral</i>.
+                    </h2>
+                </motion.div>
+
+                <div className="grid md:grid-cols-2 gap-8">
+                    {testimonials.map((t, idx) => (
                         <motion.div
-                            initial={{ scale: 0.9, opacity: 0, y: 20 }}
-                            animate={{ scale: 1, opacity: 1, y: 0 }}
-                            exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                            className="relative w-full max-w-[500px] aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl border border-white/10"
-                            onClick={(e) => e.stopPropagation()}
+                            key={idx}
+                            variants={fadeUpVariant}
+                            className="bg-white p-10 rounded-2xl shadow-lg border border-[#B8835A]/20 relative"
                         >
-                            <video
-                                src="/assets/images/landing/sanate-mujer-reel.mp4"
-                                className="w-full h-full object-cover"
-                                controls
-                                playsInline
-                            />
+                            <div className="flex items-center gap-4 mb-8">
+                                <div className="w-16 h-16 rounded-full bg-[#B8835A]/10 flex items-center justify-center text-[#B8835A] font-bold">
+                                    {t.name.split(' ')[0][0]}
+                                </div>
+                                <div>
+                                    <h4 className="font-bold text-[#2D2926]">{t.name}</h4>
+                                    <span className="text-xs tracking-widest uppercase text-[#B8835A]">{t.title}</span>
+                                </div>
+                            </div>
+                            <h3 className="text-xl font-heading text-[#2D2926] mb-4 italic">"{t.quote}"</h3>
+                            <p className="text-[#2D2926]/80 leading-relaxed font-light">{t.text}</p>
                         </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                    ))}
+                </div>
+            </div>
         </section>
     );
 }
 
 function SegmentationSection() {
     const points = [
-        {
-            icon: <Heart className="w-6 h-6 text-[#B8835A]" />,
-            text: "Tus relaciones de pareja siguen un patrón de abandono o traición que no logras romper."
-        },
-        {
-            icon: <Activity className="w-6 h-6 text-[#B8835A]" />,
-            text: "Sientes tensiones físicas o bloqueos en tu cuerpo que el médico no logra explicar (Herida Somática)."
-        },
-        {
-            icon: <ShieldAlert className="w-6 h-6 text-[#B8835A]" />,
-            text: "Te cuesta poner límites y terminas cargando con responsabilidades que no te corresponden."
-        },
-        {
-            icon: <Sparkles className="w-6 h-6 text-[#B8835A]" />,
-            text: "Sientes una desconexión profunda con tu energía femenina y tu capacidad de recibir."
-        }
+        "Tus relaciones siguen un patrón de abandono o traición.",
+        "Sientes bloqueos en tu cuerpo que no logras explicar.",
+        "Te cuesta poner límites y cargas con lo que no es tuyo.",
+        "Sientes desconexión con tu energía femenina y merecimiento."
     ];
 
     return (
@@ -485,22 +479,18 @@ function SegmentationSection() {
                     </h2>
                 </motion.div>
 
-                <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid md:grid-cols-2 gap-6">
                     {points.map((point, idx) => (
                         <motion.div
                             key={idx}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: idx * 0.1, duration: 0.5 }}
-                            className="flex items-start gap-6 p-8 rounded-2xl bg-[#F5EFE6]/30 border border-[#B8835A]/10 hover:border-[#B8835A]/30 transition-all group"
+                            transition={{ delay: idx * 0.1 }}
+                            className="flex items-center gap-4 p-6 rounded-xl bg-[#F5EFE6]/30 border border-[#B8835A]/10"
                         >
-                            <div className="shrink-0 w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
-                                {point.icon}
-                            </div>
-                            <p className="text-[#2D2926]/80 text-lg leading-relaxed font-light">
-                                {point.text}
-                            </p>
+                            <CheckCircle2 className="w-5 h-5 text-[#B8835A]" />
+                            <p className="text-[#2D2926]/80 text-lg font-light">{point}</p>
                         </motion.div>
                     ))}
                 </div>
@@ -509,166 +499,47 @@ function SegmentationSection() {
     );
 }
 
-function SocialProofSection() {
-    return (
-        <section className="py-32 bg-[#F5EFE6] relative">
-            <div className="container mx-auto px-4 max-w-6xl relative z-10">
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-100px" }}
-                    variants={fadeUpVariant}
-                    className="text-center mb-20 max-w-3xl mx-auto"
-                >
-                    <span className="text-[#B8835A] tracking-[0.3em] font-bold text-xs uppercase mb-4 block">Testimonios Reales</span>
-                    <h2 className="text-3xl md:text-5xl font-heading text-[#2D2926] leading-tight">
-                        Ellas Pasaron de la Complacencia a la <i className="text-[#B8835A] font-normal">Soberanía</i> de sus Vidas.
-                    </h2>
-                </motion.div>
-
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-100px" }}
-                    variants={staggerContainer}
-                    className="grid md:grid-cols-2 gap-8"
-                >
-                    {/* Testimonial 1 */}
-                    <motion.div variants={fadeUpVariant} className="bg-white p-10 rounded-2xl shadow-lg border border-[#B8835A]/20 relative">
-                        <div className="absolute -top-6 -right-6 text-[#B8835A] opacity-20 font-serif text-9xl leading-none">"</div>
-                        <div className="flex items-center gap-4 mb-8">
-                            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-[#B8835A] relative">
-                                <Image src="/assets/images/testimonials/carolina.png" alt="Carolina R." fill className="object-cover" />
-                            </div>
-                            <div>
-                                <h4 className="font-bold text-[#2D2926] flex items-center gap-2">
-                                    Carolina R.
-                                    <CheckCircle2 className="w-4 h-4 text-[#B8835A]" />
-                                </h4>
-                                <span className="text-xs tracking-widest uppercase text-[#B8835A]">Empresaria</span>
-                            </div>
-                        </div>
-                        <h3 className="text-xl font-heading text-[#2D2926] mb-4 italic">"Llegué en quiebra emocional, salí duplicando mis ingresos."</h3>
-                        <p className="text-[#2D2926]/80 leading-relaxed font-light">
-                            "Con el método de Yelitze, identifiqué la lealtad invisible que me mantenía en la carencia. No fue magia, fue activación somática pura. Hoy tengo paz, merecimiento real y mi negocio factura el doble."
-                        </p>
-                    </motion.div>
-
-                    {/* Testimonial 2 */}
-                    <motion.div variants={fadeUpVariant} className="bg-white p-10 rounded-2xl shadow-lg border border-[#B8835A]/20 relative">
-                        <div className="absolute -top-6 -right-6 text-[#B8835A] opacity-20 font-serif text-9xl leading-none">"</div>
-                        <div className="flex items-center gap-4 mb-8">
-                            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-[#B8835A] relative">
-                                <Image src="/assets/images/testimonials/sofia.png" alt="Andrea M." fill className="object-cover" />
-                            </div>
-                            <div>
-                                <h4 className="font-bold text-[#2D2926] flex items-center gap-2">
-                                    Andrea M.
-                                    <CheckCircle2 className="w-4 h-4 text-[#B8835A]" />
-                                </h4>
-                                <span className="text-xs tracking-widest uppercase text-[#B8835A]">Terapeuta</span>
-                            </div>
-                        </div>
-                        <h3 className="text-xl font-heading text-[#2D2926] mb-4 italic">"Descubrí por qué siempre atraía hombres no disponibles."</h3>
-                        <p className="text-[#2D2926]/80 leading-relaxed font-light">
-                            "Tras la Activación, entendí que estaba cargando con el duelo no resuelto de mi madre. Al liberar esa carga con los rituales, mi energía cambió y atraje a una pareja consciente y respetuosa."
-                        </p>
-                    </motion.div>
-
-                    {/* Testimonial 3 */}
-                    <motion.div variants={fadeUpVariant} className="bg-white p-10 rounded-2xl shadow-lg border border-[#B8835A]/20 relative">
-                        <div className="absolute -top-6 -right-6 text-[#B8835A] opacity-20 font-serif text-9xl leading-none">"</div>
-                        <div className="flex items-center gap-4 mb-8">
-                            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-[#B8835A] bg-[#F5EFE6] flex items-center justify-center text-[#B8835A] font-bold">
-                                LR
-                            </div>
-                            <div>
-                                <h4 className="font-bold text-[#2D2926] flex items-center gap-2">
-                                    Lucía R.
-                                    <CheckCircle2 className="w-4 h-4 text-[#B8835A]" />
-                                </h4>
-                                <span className="text-xs tracking-widest uppercase text-[#B8835A]">Madre y Profesional</span>
-                            </div>
-                        </div>
-                        <h3 className="text-xl font-heading text-[#2D2926] mb-4 italic">"Mis hijos recuperaron a su madre, y yo recuperé mi sonrisa."</h3>
-                        <p className="text-[#2D2926]/80 leading-relaxed font-light">
-                            "Vivía en modo supervivencia, agotada y reactiva. Yelitze me enseñó a autorregular mi sistema nervioso. Ahora mis hijos tienen una madre presente y yo por fin disfruto mi vida sin culpa."
-                        </p>
-                    </motion.div>
-
-                    {/* Testimonial 4 */}
-                    <motion.div variants={fadeUpVariant} className="bg-white p-10 rounded-2xl shadow-lg border border-[#B8835A]/20 relative">
-                        <div className="absolute -top-6 -right-6 text-[#B8835A] opacity-20 font-serif text-9xl leading-none">"</div>
-                        <div className="flex items-center gap-4 mb-8">
-                            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-[#B8835A] bg-[#F5EFE6] flex items-center justify-center text-[#B8835A] font-bold">
-                                MG
-                            </div>
-                            <div>
-                                <h4 className="font-bold text-[#2D2926] flex items-center gap-2">
-                                    Marta G.
-                                    <CheckCircle2 className="w-4 h-4 text-[#B8835A]" />
-                                </h4>
-                                <span className="text-xs tracking-widest uppercase text-[#B8835A]">Líder Corporativa</span>
-                            </div>
-                        </div>
-                        <h3 className="text-xl font-heading text-[#2D2926] mb-4 italic">"El techo de cristal no estaba afuera, estaba en mis memorias."</h3>
-                        <p className="text-[#2D2926]/80 leading-relaxed font-light">
-                            "Logré el ascenso que deseaba tras limpiar las memorias de desmerecimiento de mi linaje. Yelitze es impecable en su método; la estructura que te da es de otro nivel."
-                        </p>
-                    </motion.div>
-                </motion.div>
-
-                {/* Added CTA for Social Proof Section */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.6 }}
-                    className="mt-16 text-center"
-                >
-                    <button
-                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                        className="bg-transparent text-[#2D2926] border-2 border-[#B8835A] hover:bg-[#B8835A] hover:text-white py-4 px-10 rounded transition-all transform hover:-translate-y-1 inline-flex items-center gap-3 uppercase font-bold tracking-widest text-sm"
-                    >
-                        Quiero Vivir mi Propia Transformación
-                    </button>
-                </motion.div>
-            </div>
-        </section>
-    );
-}
-
 function MechanismSection() {
-    const hitos = [
+    const heridas = [
         {
-            icon: "/assets/images/landing/icon-compass.png",
-            title: "Hito 1: Tu Mapa de Patrones",
-            desc: "Identifica el conflicto exacto (pareja, dinero, jefa) que repites y localiza su origen en tu linaje femenino. Obtén claridad absoluta sobre por qué te autosaboteas."
+            title: "Herida de Rechazo",
+            mask: "La Huidiza",
+            desc: "Aprendiste a desaparecer antes de que te rechazaran. Te cuesta recibir dinero, ayuda o amor.",
+            symptoms: ["¿Te cuesta recibir?", "¿Buscas aprobación?", "¿Te sientes 'rara'?"],
+            icon: <ShieldAlert className="w-6 h-6" />
         },
         {
-            icon: "/assets/images/landing/golden-uterus.png",
-            title: "Hito 2: El Cuerpo Habla",
-            desc: "Localiza físicamente dónde guardas el trauma ancestral en tu sistema nervioso y útero. Siente la liberación real en tu cuerpo, no solo en tu cabeza."
+            title: "Herida de Abandono",
+            mask: "La Dependiente",
+            desc: "Te volviste indispensable para que no se vayan. Aguantas lo que sea con tal de no estar sola.",
+            symptoms: ["Relaciones tóxicas", "Das más de lo que recibes", "Miedo a la soledad"],
+            icon: <Heart className="w-6 h-6" />
         },
         {
-            icon: "/assets/images/landing/icon-candle.png",
-            title: "Hito 3: Rituales de Paso",
-            desc: "Transforma simbólicamente el dolor de tus ancestras en sabiduría y poder a través de rituales diseñados para reprogramar tu subconsciente."
+            title: "Herida de Humillación",
+            mask: "La Masoquista",
+            desc: "Aprendiste que tus necesidades eran una carga. Cuidas a todos menos a ti misma.",
+            symptoms: ["¿Te cuesta decir 'no'?", "Culpa al enfocarte en ti", "Trabajo agotador"],
+            icon: <Activity className="w-6 h-6" />
         },
         {
-            icon: "/assets/images/landing/icon-sun.png",
-            title: "Hito 4: Activación del Merecimiento",
-            desc: "Crea un plan de acción concreto para aplicar tu nueva vibración de merecimiento en tus relaciones y finanzas hoy mismo. Aprende a sostener la abundancia."
+            title: "Herida de Traición",
+            mask: "La Controladora",
+            desc: "Si lo controlas todo, nadie puede hacerte daño. La confianza es un lujo prohibido.",
+            symptoms: ["Dificultad para delegar", "Necesidad de control", "Rigidez emocional"],
+            icon: <Sparkles className="w-6 h-6" />
+        },
+        {
+            title: "Herida de Injusticia",
+            mask: "La Rígida",
+            desc: "Aprendiste a ser perfecta para ser amada. La vulnerabilidad es tu mayor miedo.",
+            symptoms: ["Autoexigencia extrema", "Dificultad para sentir", "Búsqueda de perfección"],
+            icon: <Clock className="w-6 h-6" />
         }
     ];
 
     return (
         <section className="py-32 relative bg-white overflow-hidden">
-            {/* Local Marble bg strictly for this section */}
-            <div className="absolute inset-0 opacity-40">
-                <Image src="/assets/images/landing/marble-bg.png" alt="" fill className="object-cover" />
-            </div>
-
             <div className="container mx-auto px-4 max-w-7xl relative z-10">
                 <motion.div
                     initial="hidden"
@@ -677,42 +548,50 @@ function MechanismSection() {
                     variants={fadeUpVariant}
                     className="text-center mb-24 max-w-3xl mx-auto"
                 >
-                    <span className="text-[#B8835A] tracking-[0.3em] font-bold text-xs uppercase mb-4 block">El Sistema</span>
+                    <span className="text-[#B8835A] tracking-[0.3em] font-bold text-xs uppercase mb-4 block">Identifica tu Herida Raíz</span>
                     <h2 className="text-4xl md:text-5xl font-heading text-[#2D2926] leading-tight">
-                        Tu Victoria Rápida: De la Confusión a la <i className="text-[#B8835A] font-normal">Claridad Absoluta</i>
+                        El problema no eres tú. <br />
+                        <span className="text-[#B8835A] italic">Son las máscaras que creaste para sobrevivir.</span>
                     </h2>
                 </motion.div>
 
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-100px" }}
-                    variants={staggerContainer}
-                    className="grid md:grid-cols-2 lg:grid-cols-4 gap-12"
-                >
-                    {hitos.map((hito, idx) => (
-                        <motion.div variants={fadeUpVariant} key={idx} className="flex flex-col items-center text-center space-y-6 group">
-                            <div className="w-32 h-32 relative flex items-center justify-center">
-                                {/* Subtle glow behind icon */}
-                                <div className="absolute inset-4 bg-[#B8835A]/10 rounded-full blur-xl group-hover:bg-[#B8835A]/30 transition-colors"></div>
-                                {/* Circular Container with Gold Border */}
-                                <div className="w-full h-full relative z-10 rounded-full border-[3px] border-[#B8835A] bg-white shadow-xl flex items-center justify-center overflow-hidden p-3 transition-transform duration-300 group-hover:scale-105">
-                                    <Image
-                                        src={hito.icon}
-                                        alt={hito.title}
-                                        fill
-                                        className="object-contain p-2"
-                                    />
-                                </div>
+                <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+                    {heridas.map((herida, idx) => (
+                        <motion.div
+                            key={idx}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: idx * 0.1 }}
+                            className="bg-[#F5EFE6]/50 p-8 rounded-3xl border border-[#B8835A]/10 hover:border-[#B8835A]/40 transition-all flex flex-col items-center text-center"
+                        >
+                            <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center text-[#B8835A] mb-6 shadow-sm">
+                                {herida.icon}
                             </div>
-                            <div>    <h3 className="text-xl font-bold text-[#2D2926] mb-4 uppercase tracking-widest text-sm">{hito.title}</h3>
-                                <p className="text-[#2D2926]/70 leading-relaxed font-light text-sm">
-                                    {hito.desc}
-                                </p>
-                            </div>
+                            <h3 className="text-xl font-bold text-[#2D2926] mb-2 uppercase tracking-wide">{herida.title}</h3>
+                            <span className="text-sm font-bold text-[#B8835A] uppercase tracking-widest mb-4">Máscara: {herida.mask}</span>
+                            <p className="text-[#2D2926]/70 text-sm leading-relaxed mb-6 italic">"{herida.desc}"</p>
+                            <ul className="space-y-2 text-left w-full">
+                                {herida.symptoms.map((s, i) => (
+                                    <li key={i} className="flex items-center gap-2 text-xs text-[#2D2926]/60">
+                                        <CheckCircle2 className="w-3 h-3 text-[#B8835A]" />
+                                        {s}
+                                    </li>
+                                ))}
+                            </ul>
                         </motion.div>
                     ))}
-                </motion.div>
+                </div>
+
+                <div className="mt-16 bg-[#2D2926] text-white p-12 rounded-[3rem] text-center relative overflow-hidden">
+                    <div className="absolute top-0 right-0 p-8 opacity-10">
+                        <Sparkles className="w-24 h-24" />
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-heading mb-6">Mantra de la Activación: <span className="text-[#B8835A] italic">SÁNATE MUJER</span></h3>
+                    <p className="text-white/70 max-w-2xl mx-auto font-light italic">
+                        "Cada vez que algo te mueva, repite: sánate mujer. Es nuestro recordatorio de que podemos volver a sentir y reclamar lo que nos pertenece."
+                    </p>
+                </div>
             </div>
         </section>
     );
@@ -721,98 +600,65 @@ function MechanismSection() {
 function StorytellingSection() {
     return (
         <section className="py-32 bg-[#F5EFE6] relative">
-            {/* Subtle linen texture simulation via CSS pattern or low opacity image. Will use bg color for now to keep it clean */}
             <div className="container mx-auto px-4 max-w-6xl relative z-10">
                 <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }}
+                        viewport={{ once: true }}
                         variants={staggerContainer}
                         className="space-y-8 order-2 lg:order-1"
                     >
                         <motion.div variants={fadeUpVariant}>
+                            <span className="text-[#B8835A] tracking-[0.3em] font-bold text-xs uppercase block mb-2">Mi Nombre es Yelitzé Rangel</span>
                             <h2 className="text-4xl md:text-5xl font-heading text-[#2D2926] leading-tight mb-4">
-                                De la Jaula de Oro al <i className="text-[#B8835A] font-normal">Trono de mi Propia Vida</i>
+                                No te hablo como experta, sino como <i className="text-[#B8835A] font-normal">una mujer que ha caminado</i> donde tú estás.
                             </h2>
                         </motion.div>
 
                         <div className="space-y-6 text-lg text-[#2D2926] font-light leading-relaxed">
-                            <motion.div variants={fadeUpVariant}>
-                                <p>
-                                    Yelitze Rangel vivió un éxito aparente que escondía un vacío profundo. Tras repetir patrones de su linaje (divorcio y quiebra) y enfrentar la pérdida de dos bebés, experimentó una rabia sorda y un agotamiento que la psicología tradicional no lograba sanar.
-                                </p>
-                            </motion.div>
-
-                            <motion.div variants={fadeUpVariant}>
-                                <p>
-                                    Su búsqueda la llevó a la India, donde entendió que la sanación real exige la unión de mente, cuerpo y alma. Descubrió que el verdadero cambio surge del descongelamiento del trauma y la reconexión ancestral.
-                                </p>
-                            </motion.div>
-
-                            <motion.div variants={fadeUpVariant}>
-                                <h3 className="text-xl font-heading font-medium text-[#B8835A] mb-4">Su metodología integra estructura y sabiduría profunda para regenerar el sistema nervioso:</h3>
-                                <ul className="space-y-4">
-                                    <li className="flex gap-4 items-start">
-                                        <div className="shrink-0 w-6 h-6 rounded-full bg-[#B8835A]/10 flex items-center justify-center mt-1">
-                                            <div className="w-2 h-2 rounded-full bg-[#B8835A]"></div>
-                                        </div>
-                                        <span><b>Orden:</b> Administradora de Empresas.</span>
-                                    </li>
-                                    <li className="flex gap-4 items-start">
-                                        <div className="shrink-0 w-6 h-6 rounded-full bg-[#B8835A]/10 flex items-center justify-center mt-1">
-                                            <div className="w-2 h-2 rounded-full bg-[#B8835A]"></div>
-                                        </div>
-                                        <span><b>Mente y Duelo:</b> Psicóloga y Tanatóloga.</span>
-                                    </li>
-                                    <li className="flex gap-4 items-start">
-                                        <div className="shrink-0 w-6 h-6 rounded-full bg-[#B8835A]/10 flex items-center justify-center mt-1">
-                                            <div className="w-2 h-2 rounded-full bg-[#B8835A]"></div>
-                                        </div>
-                                        <span><b>Cuerpo y Raíz:</b> Sanadora Ancestral y Facilitadora de Trauma.</span>
-                                    </li>
-                                </ul>
-                            </motion.div>
-
-                            <motion.div variants={fadeUpVariant}>
-                                <p>
-                                    Con más de 8,000 personas guiadas en su método como Tu coach ancestral, ha creado la "Activación Sánate Mujer". No es motivación, es un entrenamiento energético para que reclames tu soberanía interior y vuelvas a tu coherencia.
-                                </p>
-                            </motion.div>
-
-                            {/* CTA Button Added Here */}
-                            <motion.div variants={fadeUpVariant} className="pt-6">
-                                <button
-                                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                                    className="bg-[#B8835A] hover:bg-[#a0724e] text-white py-4 px-8 rounded shadow-[0_10px_30px_rgba(184,131,90,0.3)] transition-all transform hover:-translate-y-1 inline-flex items-center gap-3 uppercase font-bold tracking-widest text-sm"
-                                >
-                                    Reclamar mi Cupo Gratuito
-                                    <ArrowRight className="w-5 h-5" />
-                                </button>
-                            </motion.div>
+                            <p>
+                                Después de la pérdida de dos bebés y de un divorcio que me rompió, mi vida quedó en pausa. Mi camino me llevó a la India, donde comprendí que la sanación real ocurre solo cuando integramos mente, cuerpo y alma.
+                            </p>
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="bg-white/50 p-4 rounded-xl">
+                                    <span className="block font-bold text-[#B8835A] text-sm uppercase mb-1">Administradora</span>
+                                    <span className="text-xs text-[#2D2926]/70">Estructura y Orden</span>
+                                </div>
+                                <div className="bg-white/50 p-4 rounded-xl">
+                                    <span className="block font-bold text-[#B8835A] text-sm uppercase mb-1">Psicóloga</span>
+                                    <span className="text-xs text-[#2D2926]/70">Comprensión de la Mente</span>
+                                </div>
+                                <div className="bg-white/50 p-4 rounded-xl">
+                                    <span className="block font-bold text-[#B8835A] text-sm uppercase mb-1">Tanatóloga</span>
+                                    <span className="text-xs text-[#2D2926]/70">Duelo y Transición</span>
+                                </div>
+                                <div className="bg-white/50 p-4 rounded-xl">
+                                    <span className="block font-bold text-[#B8835A] text-sm uppercase mb-1">Sanadora</span>
+                                    <span className="text-xs text-[#2D2926]/70">Ancestral y Linaje</span>
+                                </div>
+                            </div>
+                            <p className="italic text-[#B8835A] font-medium border-l-4 border-[#B8835A] pl-6">
+                                "El cuerpo almacena historias que la mente intenta olvidar. Pero cuando el cuerpo es escuchado con verdad... SANA."
+                            </p>
                         </div>
                     </motion.div>
 
                     <motion.div
                         initial={{ opacity: 0, x: 50 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        viewport={{ once: true }}
                         className="order-1 lg:order-2"
                     >
-                        <div className="relative aspect-[3/4] rounded-t-full overflow-hidden shadow-2xl border-b-4 border-[#B8835A]">
+                        <div className="relative aspect-[3/4] rounded-t-full overflow-hidden shadow-2xl border-b-8 border-[#B8835A]">
                             <Image
-                                src="/assets/images/landing/yelitze-story-portrait.png"
-                                alt="Yelitze Rangel"
+                                src="/assets/images/landing/yelitze-portrait-ritual.png"
+                                alt="Yelitze Rangel Sanadora"
                                 fill
                                 className="object-cover"
                             />
-                            {/* Inner gradient */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#2D2926]/40 to-transparent mix-blend-multiply"></div>
                         </div>
                     </motion.div>
-
                 </div>
             </div>
         </section>
@@ -820,88 +666,73 @@ function StorytellingSection() {
 }
 
 function OfferSection() {
-    return (
-        <section className="py-32 relative bg-white overflow-hidden">
-            {/* Local Marble bg strictly for this section */}
-            <div className="absolute inset-0 opacity-50 mix-blend-multiply">
-                <Image src="/assets/images/landing/marble-bg.png" alt="" fill className="object-cover" />
-            </div>
+    const benefits = [
+        "Semanas 1: Nuevo vínculo con mamá y la herida primaria.",
+        "Semanas 2: Detectives del clan: liberar lealtades invisibles.",
+        "Semanas 3: Reconexión con el tesoro perdido de tu linaje.",
+        "Bonos: Workbook maestro + 10 Audioworkbooks + Oráculo.",
+        "Especial: Sesión privada vía Zoom (solo primeros 10 inscritos)."
+    ];
 
+    return (
+        <section id="oferta" className="py-32 relative bg-white overflow-hidden">
             <div className="container mx-auto px-4 max-w-6xl relative z-10 text-center">
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, margin: "-100px" }}
+                    viewport={{ once: true }}
                     variants={fadeUpVariant}
                 >
-                    <span className="text-[#B8835A] tracking-[0.3em] font-bold text-xs uppercase mb-4 block">Tu Regalo Exclusivo</span>
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading text-[#2D2926] leading-tight mb-16">
-                        Este Es Tu Kit de Activación Gratuito <br />
-                        <span className="text-[#2D2926]/40 text-3xl italic">(Valorado en $297)</span>
+                    <span className="text-[#B8835A] tracking-[0.3em] font-bold text-xs uppercase mb-4 block">Oferta de Lanzamiento</span>
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading text-[#2D2926] leading-tight mb-8">
+                        Programa <span className="text-[#B8835A]">Sanando el Linaje Femenino</span>
                     </h2>
+                    <p className="text-[#2D2926]/60 text-lg max-w-2xl mx-auto mb-16 font-light">
+                        Un proceso de 3 semanas para transformar tu energía desde adentro, soltar el dolor heredado y habitar tu propia vida con soberanía.
+                    </p>
                 </motion.div>
 
-                <div className="grid lg:grid-cols-2 gap-16 items-center text-left">
-                    <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="relative aspect-video lg:aspect-square"
-                    >
-                        <Image
-                            src="/assets/images/landing/tablet-mosaic.png"
-                            alt="Kit de Activación"
-                            fill
-                            className="object-contain drop-shadow-2xl"
-                        />
-                    </motion.div>
+                <div className="max-w-4xl mx-auto bg-[#FDFBFA] rounded-[3rem] shadow-2xl border border-[#B8835A]/20 overflow-hidden">
+                    <div className="grid md:grid-cols-2">
+                        <div className="p-10 md:p-16 text-left space-y-8 bg-white">
+                            <h3 className="text-2xl font-bold text-[#2D2926]">Lo que recibes hoy:</h3>
+                            <ul className="space-y-4">
+                                {benefits.map((b, i) => (
+                                    <li key={i} className="flex items-start gap-3">
+                                        <CheckCircle2 className="w-5 h-5 text-[#B8835A] shrink-0 mt-1" />
+                                        <span className="text-[#2D2926]/80 text-sm leading-relaxed">{b}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                            <div className="pt-4 opacity-50 text-[10px] uppercase tracking-widest font-bold">
+                                Valor real estimado: $500+
+                            </div>
+                        </div>
 
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }}
-                        variants={staggerContainer}
-                        className="space-y-12"
-                    >
-                        <ul className="space-y-8">
-                            <motion.li variants={fadeUpVariant} className="flex items-start gap-4">
-                                <CheckCircle2 className="w-8 h-8 text-[#B8835A] shrink-0 mt-1" />
-                                <div>
-                                    <h4 className="text-xl font-bold text-[#2D2926] mb-1">Acceso Completo a la Inmersión Online</h4>
-                                    <p className="text-[#2D2926]/70 leading-relaxed">Evento en Vivo de Fin de Semana (Valor $147).</p>
-                                </div>
-                            </motion.li>
-                            <motion.li variants={fadeUpVariant} className="flex items-start gap-4">
-                                <CheckCircle2 className="w-8 h-8 text-[#B8835A] shrink-0 mt-1" />
-                                <div>
-                                    <h4 className="text-xl font-bold text-[#2D2926] mb-1">Workbook Maestro Premium</h4>
-                                    <p className="text-[#2D2926]/70 leading-relaxed">"De la Herida a la Libertad Emocional" (Valor $97).</p>
-                                </div>
-                            </motion.li>
-                            <motion.li variants={fadeUpVariant} className="flex items-start gap-4">
-                                <CheckCircle2 className="w-8 h-8 text-[#B8835A] shrink-0 mt-1" />
-                                <div>
-                                    <h4 className="text-xl font-bold text-[#2D2926] mb-1">3 Audioelixires de Preparación</h4>
-                                    <p className="text-[#2D2926]/70 leading-relaxed">Meditaciones guiadas para: Soberanía, Alquimia y Abundancia (Valor $53).</p>
-                                </div>
-                            </motion.li>
-                        </ul>
-
-                        <motion.div variants={fadeUpVariant} className="bg-[#F5EFE6] p-8 rounded-2xl border border-[#B8835A]/30 text-center shadow-inner">
-                            <div className="text-sm font-bold tracking-widest uppercase text-[#B8835A] mb-2">Inversión Total Requerida</div>
-                            <div className="text-7xl font-bold text-[#B8835A] mb-6 drop-shadow-sm">$0</div>
-
-                            <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="w-full bg-[#B8835A] hover:bg-[#a0724e] text-white py-5 rounded shadow-[0_10px_30px_rgba(184,131,90,0.3)] border border-[#B8835A] transition-all transform hover:-translate-y-1 group flex items-center justify-center gap-3 relative overflow-hidden">
-                                <span className="relative z-10 font-bold tracking-wide uppercase text-sm">SÍ, QUIERO MI CUPO GRATUITO EN LA ACTIVACIÓN</span>
-                                <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
-                            </button>
-
-                            <p className="text-xs text-[#2D2926] mt-6 font-medium">
-                                * Este evento gratuito es para mujeres comprometidas. Si te registras, por favor asiste.
+                        <div className="p-10 md:p-16 bg-[#B8835A] text-white flex flex-col justify-center items-center text-center">
+                            <span className="text-sm uppercase tracking-widest font-bold mb-2 opacity-80 underline underline-offset-8">Precio Especial de Lanzamiento</span>
+                            <div className="text-8xl font-bold mb-4 drop-shadow-xl">
+                                <span className="text-2xl align-top mr-1 font-heading">$</span>37
+                                <span className="text-xl font-heading">USD</span>
+                            </div>
+                            <p className="text-white/80 text-xs mb-8 font-medium">Pago único • Acceso Inmediato</p>
+                            
+                            <a 
+                                href="https://wa.me/..." // Should be updated with real link or checkout
+                                className="w-full bg-[#2D2926] text-white py-5 rounded-full font-bold tracking-widest uppercase text-sm hover:scale-105 transition-transform shadow-xl mb-6"
+                            >
+                                INSCRIBIRME AHORA
+                            </a>
+                            
+                            <p className="text-[10px] text-white/60 font-bold tracking-widest uppercase">
+                                Primeras 10 personas reciben sesión privada de 30min
                             </p>
-                        </motion.div>
-                    </motion.div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="mt-16 text-[#2D2926]/50 text-sm font-medium">
+                    ¿Tienes dudas? <a href="https://wa.me/..." className="text-[#B8835A] underline underline-offset-4 hover:text-[#a0724e] transition-colors">Contáctanos por WhatsApp</a>
                 </div>
             </div>
         </section>
@@ -910,69 +741,43 @@ function OfferSection() {
 
 function PodcastSection() {
     return (
-        <section className="py-32 bg-white relative overflow-hidden">
-            <div className="absolute inset-0 opacity-[0.15] pointer-events-none mix-blend-multiply">
-                <Image src="/assets/images/landing/marble-bg.png" alt="" fill className="object-cover" />
-            </div>
-
+        <section className="py-32 bg-[#F5EFE6] relative overflow-hidden">
             <div className="container mx-auto px-4 max-w-6xl relative z-10">
-                <div className="grid lg:grid-cols-2 gap-16 items-center">
-
-                    {/* Left Column - Podcast Graphics */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.8 }}
-                        className="relative"
-                    >
-                        <div className="absolute inset-0 bg-[#B8835A]/10 blur-3xl rounded-full translate-x-12 translate-y-12"></div>
-
-                        <div className="relative aspect-[4/5] w-full max-w-md mx-auto rounded-3xl overflow-hidden shadow-2xl border border-[#B8835A]/20 group">
-                            <Image
-                                src="/assets/images/landing/mujer-escuchando-podcast.png"
-                                alt="Escuchando el podcast"
-                                fill
-                                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                            />
-                            {/* Floating Podcast Cover */}
-                            <div className="absolute -bottom-8 -right-8 w-48 h-64 md:w-56 md:h-80 rounded-xl overflow-hidden shadow-2xl border-4 border-white rotate-6 transition-transform duration-500 hover:rotate-0 hover:scale-105 z-20">
-                                <Image
-                                    src="/assets/images/landing/podcast-yelitze.png"
-                                    alt="Podcast Sánate Mujer"
-                                    fill
-                                    className="object-cover"
-                                />
+                <div className="bg-white rounded-[4rem] p-8 md:p-20 shadow-xl border border-[#B8835A]/10 grid lg:grid-cols-2 gap-16 items-center">
+                    <div className="space-y-8">
+                        <h2 className="text-4xl font-heading leading-tight">
+                            Ritual de <span className="text-[#B8835A] italic">Devolución Simbólica</span>
+                        </h2>
+                        <p className="text-[#2D2926]/70 text-lg font-light leading-relaxed">
+                            "Madre, abuelas, les devuelvo con amor el dolor que cargué por ustedes. Honro su historia. Honro su linaje. Hoy elijo vivir mi propia vida."
+                        </p>
+                        <div className="flex items-center gap-6 p-6 bg-[#FDFBFA] rounded-3xl border border-[#B8835A]/10">
+                            <div className="w-16 h-16 bg-[#B8835A]/10 rounded-full flex items-center justify-center">
+                                <Sparkles className="w-8 h-8 text-[#B8835A]" />
                             </div>
+                            <p className="text-sm text-[#2D2926]/60 italic font-medium">
+                                En el programa profundizaremos en este ritual sistémico para una liberación total de memorias congeladas.
+                            </p>
                         </div>
-                    </motion.div>
-
-                    {/* Right Column - Text */}
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }}
-                        variants={staggerContainer}
-                        className="space-y-8 text-center lg:text-left"
-                    >
-                        <motion.div variants={fadeUpVariant}>
-                            <span className="text-[#B8835A] tracking-[0.3em] font-bold text-xs uppercase block">Sigue la Inmersión</span>
-                            <h2 className="text-4xl md:text-5xl font-heading text-[#2D2926] leading-tight">
-                                Prepárate para la Activación con el <i className="text-[#B8835A] font-normal">Podcast Sánate Mujer</i>.
-                            </h2>
-                        </motion.div>
-                        <motion.p variants={fadeUpVariant} className="text-[#2D2926]/70 leading-relaxed font-light text-lg">
-                            El camino hacia tu soberanía comienza en tus oídos. Escucha historias reales, herramientas con Tu coach ancestral y reflexiones profundas para ir calentando motores antes de nuestro evento en vivo.
-                        </motion.p>
-                        <motion.div variants={fadeUpVariant} className="pt-4 flex justify-center lg:justify-start">
-                            <button
-                                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                                className="bg-[#B8835A] hover:bg-[#a0724e] text-white py-4 px-8 rounded shadow-[0_10px_30px_rgba(184,131,90,0.3)] transition-all transform hover:-translate-y-1 inline-flex justify-center items-center gap-3 uppercase font-bold tracking-widest text-sm"
-                            >
-                                Registrarme a la Inmersión
-                                <ArrowRight className="w-5 h-5" />
-                            </button>
-                        </motion.div>
+                    </div>
+                    <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl bg-black">
+                        <div className="absolute inset-0 flex items-center justify-center">
+                             {/* Placeholder for Video/Image of the ritual */}
+                             <Play className="w-20 h-20 text-white/30" />
+                        </div>
+                        <Image 
+                            src="/assets/images/landing/ritual-preview.png" 
+                            alt="Ritual de Devolución" 
+                            fill 
+                            className="object-cover opacity-60"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+     </motion.div>
                     </motion.div>
 
                 </div>
@@ -984,28 +789,24 @@ function PodcastSection() {
 function FaqSection() {
     const faqs = [
         {
-            q: "1. ¿Por qué este evento es gratuito si el contenido es de tan alto valor?",
-            a: "Mi misión como el puente entre la ciencia y el espíritu es llegar a la mayor cantidad de mujeres posible para iniciar este cambio de consciencia. Tu Activación de Poder es el primer paso: una victoria rápida para que experimentes mi método de integración somática. Al finalizar, si sientes que estás lista para la transmutación total, te invitaré a mi formación avanzada \"Sanando el Linaje\", pero esta apertura inicial es mi regalo para tu historia."
+            q: "1. ¿Por qué el precio es de solo $37 USD si el valor es tan alto?",
+            a: "Mi misión es que ninguna mujer se quede fuera por motivos económicos en este lanzamiento. Quiero que experimentes la potencia de mi método de integración somática y ancestral. Es un precio simbólico de compromiso con tu propia historia."
         },
         {
-            q: "2. ¿Sirve si no conozco la historia de mi familia o no tengo contacto con ellos?",
-            a: "Absolutamente. Como Psicóloga y Sanadora Ancestral, te digo: no necesitas un árbol genealógico de papel. Tu cuerpo es el mapa más preciso. Tus patrones de pareja, tus bloqueos con el dinero y tus síntomas físicos son la voz de tu linaje. En la sesión aprenderás a leer esa información que ya vive en tus células, aunque no tengas los datos históricos."
+            q: "2. ¿Qué pasa si no puedo estar en las sesiones en vivo?",
+            a: "No te preocupes. Todas las sesiones quedan grabadas y tendrás acceso de por vida a la plataforma. Además, los Audioworkbooks están diseñados para que los escuches a tu ritmo, integrando la sanación en tu día a día."
         },
         {
-            q: "3. He probado terapia tradicional y sigo repitiendo los mismos errores. ¿Qué cambia aquí?",
-            a: "La terapia tradicional suele quedarse en la comprensión mental. Pero el trauma y las lealtades invisibles se \"congelan\" en el sistema nervioso. Mi método une la psicología y tanatología con rituales de paso y energía. No solo vamos a hablar del problema; vamos a usar el Workbook Maestro y los Audio Elixires para \"descongelar\" esa memoria y devolverle la soberanía a tu cuerpo."
+            q: "3. ¿Es efectivo si no conocí a mis ancestras o no tengo relación con mi madre?",
+            a: "Totalmente. No trabajamos con la persona física, sino con la huella energética y somática que vive en tus células. Tu cuerpo tiene toda la información necesaria para liberar las lealtades invisibles, sin importar el contacto externo."
         },
         {
-            q: "4. Tengo miedo de lo que pueda descubrir o de que sea demasiado doloroso.",
-            a: "El miedo es la resistencia del sistema a la libertad. He diseñado un contenedor seguro y profesional. No vamos a revolcarnos en el dolor; vamos a darle una mirada circular para transmutarlo en fuerza. Estarás acompañada por una estructura clara y una presencia amorosa que respeta profundamente tu proceso."
+            q: "4. ¿En qué se diferencia este programa de una terapia tradicional?",
+            a: "La terapia tradicional trabaja desde la mente. Aquí trabajamos desde el sistema nervioso (Trauma Informed) y el linaje (Ancestral). Descongelamos el dolor que la mente no puede explicar pero que el cuerpo padece."
         },
         {
-            q: "5. ¿Es necesario ser experta en temas espirituales o energía?",
-            a: "Para nada. Este es un Entrenamiento Energético para mujeres reales, profesionales y estructuradas que sienten que \"falta algo\". Mi trabajo es traducir lo invisible a un lenguaje que tu mente comprenda y tu cuerpo sienta. Solo necesitas tu Workbook, tus Audio Elixires y la disposición de dejar de ser espectadora para reclamar tu trono."
-        },
-        {
-            q: "6. ¿Qué pasa si no puedo estar en la clase en vivo por Google Meet?",
-            a: "La potencia de Tu Activación de Poder reside en la energía grupal y la presencia. Sin embargo, al registrarte tendrás acceso al Grupo de WhatsApp Exclusivo. Allí compartiremos herramientas de soporte y avisaremos sobre la disponibilidad de grabaciones temporales. Pero recuerda: la soberanía interior requiere compromiso. Separa ese espacio para ti."
+            q: "5. ¿Recibiré acompañamiento durante las 3 semanas?",
+            a: "Sí, tendrás acceso al grupo exclusivo de alumnas donde yo misma y mi equipo estaremos resolviendo dudas y sosteniendo el contenedor energético durante todo el proceso de transformación."
         }
     ];
 
@@ -1016,7 +817,7 @@ function FaqSection() {
             {/* Decorative Background Element */}
             <div className="absolute top-0 right-0 p-8 flex justify-center z-0 opacity-10 blur-sm pointer-events-none transform translate-x-1/4 -translate-y-1/4">
                 <div className="w-96 h-96 relative mix-blend-multiply">
-                    <Image src="/assets/images/landing/golden-uterus.png" alt="Sánate Mujer Activación" fill className="object-contain" priority />
+                    <Image src="/assets/images/landing/golden-uterus.png" alt="Sanando el Linaje" fill className="object-contain" priority />
                 </div>
             </div>
 
@@ -1028,12 +829,12 @@ function FaqSection() {
                     variants={fadeUpVariant}
                     className="text-center mb-16"
                 >
-                    <span className="text-[#B8835A] tracking-[0.3em] font-bold text-xs uppercase mb-4 block">Resolviendo dudas</span>
+                    <span className="text-[#B8835A] tracking-[0.3em] font-bold text-xs uppercase mb-4 block">Claridad para tu proceso</span>
                     <h2 className="text-4xl md:text-5xl font-heading text-[#2D2926] leading-tight mb-4">
-                        FAQ: Claridad para <span className="text-[#B8835A] italic">Tu Activación de Poder.</span>
+                        Preguntas <span className="text-[#B8835A] italic">Frecuentes</span>
                     </h2>
                     <p className="text-[#2D2926]/70 leading-relaxed font-light text-lg max-w-2xl mx-auto">
-                        Es normal tener dudas antes de dar un gran paso. Aquí he reunido las respuestas a las inquietudes más comunes.
+                        Todo lo que necesitas saber antes de comenzar tu viaje de 3 semanas.
                     </p>
                 </motion.div>
 
@@ -1056,7 +857,7 @@ function FaqSection() {
                                         <span className="font-heading font-medium text-lg">{idx + 1}</span>
                                     </div>
                                     <span className={`font-medium text-lg sm:text-xl transition-colors duration-300 ${openIndex === idx ? 'text-[#B8835A]' : 'text-[#2D2926] group-hover:text-[#B8835A]'}`}>
-                                        {faq.q.substring(3)} {/* Remove the "1. " from the title as we styled the number */}
+                                        {faq.q.substring(3)}
                                     </span>
                                 </div>
                                 <div className={`shrink-0 transition-transform duration-300 self-end sm:self-center ${openIndex === idx ? 'rotate-180 text-[#B8835A]' : 'text-[#B8835A]/50'}`}>
@@ -1067,9 +868,7 @@ function FaqSection() {
                                 className={`px-6 sm:px-8 overflow-hidden transition-all duration-300 ease-in-out relative
                                 ${openIndex === idx ? 'max-h-96 pb-6 sm:pb-8 opacity-100' : 'max-h-0 opacity-0'}`}
                             >
-                                {/* Small decorative line */}
                                 <div className="absolute top-0 left-8 sm:left-[4.5rem] w-12 h-[2px] bg-[#B8835A]/20"></div>
-
                                 <p className="text-[#2D2926]/80 leading-relaxed font-light mt-4 sm:ml-14">
                                     {faq.a}
                                 </p>
@@ -1078,7 +877,6 @@ function FaqSection() {
                     ))}
                 </motion.div>
 
-                {/* Bottom CTA for FAQ Section */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -1087,13 +885,12 @@ function FaqSection() {
                     className="mt-16 text-center"
                 >
                     <button
-                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                        onClick={() => document.getElementById('oferta')?.scrollIntoView({ behavior: 'smooth' })}
                         className="bg-[#B8835A] hover:bg-[#a0724e] text-white py-4 px-10 rounded shadow-[0_10px_30px_rgba(184,131,90,0.3)] transition-all transform hover:-translate-y-1 inline-flex items-center gap-3 uppercase font-bold tracking-widest text-sm"
                     >
-                        Sí, Estoy Lista para la Activación
+                        Sí, Estoy Lista para Sanar
                         <ArrowRight className="w-5 h-5" />
                     </button>
-                    <p className="text-[#2D2926]/60 text-xs mt-4 font-medium uppercase tracking-widest">Inmersión Online Gratuita</p>
                 </motion.div>
             </div>
         </section>
