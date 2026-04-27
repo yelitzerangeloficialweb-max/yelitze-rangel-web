@@ -342,25 +342,25 @@ function TrustBar() {
     ];
 
     return (
-        <section className="py-10 bg-[#2D2926] relative overflow-hidden">
-            <div className="container mx-auto px-4 relative z-10">
-                <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 hover:opacity-80 transition-opacity">
-                    <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#F5EFE6] w-full text-center mb-4 md:mb-0 md:w-auto">
+        <section className="py-8 bg-transparent relative overflow-hidden">
+            <div className="container mx-auto px-4 relative z-10 border-y border-[#B8835A]/20 py-6">
+                <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 opacity-60">
+                    <span className="text-[9px] font-bold tracking-[0.4em] uppercase text-[#B8835A] w-full text-center mb-2 md:mb-0 md:w-auto">
                         Avalado por:
                     </span>
                     {categories.map((name, index) => (
                         <div key={index} className="flex items-center gap-3">
-                            <span className="text-[#F5EFE6] text-xs font-bold tracking-widest uppercase whitespace-nowrap">
+                            <span className="text-[#2D2926] text-[10px] font-bold tracking-widest uppercase whitespace-nowrap">
                                 {name}
                             </span>
+                            {index < categories.length - 1 && (
+                                <div className="hidden md:block w-1 h-1 rounded-full bg-[#B8835A]/30"></div>
+                            )}
                         </div>
                     ))}
                 </div>
             </div>
-            {/* Venezuela Lines Style separator */}
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#B8835A]/50 to-transparent"></div>
-            <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#B8835A]/30 to-transparent"></div>
-            <ThinGoldenLine d="M0,50 Q500,150 1000,50" className="top-0 left-0 w-full h-32 opacity-10" />
+            <ThinGoldenLine d="M0,50 Q500,150 1000,50" className="top-0 left-0 w-full h-32 opacity-5" />
         </section>
     );
 }
