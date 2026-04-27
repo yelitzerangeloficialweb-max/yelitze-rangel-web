@@ -186,10 +186,6 @@ function RegistrationForm() {
 
             if (response.ok) {
                 setIsSuccess(true);
-                // Reset form optionally, but redirecting is better
-                setTimeout(() => {
-                    window.location.href = '#registered';
-                }, 2000);
             } else {
                 const data = await response.json();
                 setError(data.error || 'Algo salió mal. Por favor intenta de nuevo.');
@@ -203,39 +199,61 @@ function RegistrationForm() {
 
     if (isSuccess) {
         return (
-            <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="w-full bg-white/95 backdrop-blur-md p-12 rounded-2xl shadow-2xl border border-[#B8835A]/30 text-center"
-            >
-                <div className="w-20 h-20 bg-[#F5EFE6] rounded-full flex items-center justify-center mx-auto mb-6">
-                    <CheckCircle2 className="w-10 h-10 text-[#B8835A]" />
-                </div>
-                <h3 className="text-2xl font-bold text-[#2D2926] mb-4">¡Inscripción Exitosa!</h3>
-                <p className="text-[#2D2926]/70 leading-relaxed">
-                    Gracias por unirte a esta activación. Hemos enviado un correo de confirmación con los detalles del workshop.
-                </p>
-                <p className="mt-4 font-bold text-[#B8835A] uppercase tracking-widest text-sm">Nos vemos el 22 de Mayo</p>
-            </motion.div>
+            <AnimatePresence>
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="w-full bg-white/95 backdrop-blur-md p-8 md:p-12 rounded-[2rem] shadow-2xl border border-[#B8835A]/30 text-center relative overflow-hidden"
+                >
+                    <div className="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-[#B8835A] to-[#D4A373]"></div>
+                    
+                    <div className="w-20 h-20 bg-[#F5EFE6] rounded-full flex items-center justify-center mx-auto mb-6">
+                        <CheckCircle2 className="w-10 h-10 text-[#B8835A]" />
+                    </div>
+                    
+                    <h3 className="text-2xl md:text-3xl font-heading font-medium text-[#2D2926] mb-4">¡Tu cupo está reservado!</h3>
+                    
+                    <p className="text-[#2D2926]/70 leading-relaxed mb-8">
+                        Felicidades por dar este paso. Te hemos enviado los detalles a tu correo. <br />
+                        <span className="font-bold text-[#2D2926]">¡Pero espera! Falta el paso más importante:</span>
+                    </p>
+
+                    <div className="bg-[#B8835A]/5 rounded-2xl p-6 border border-[#B8835A]/20 space-y-6">
+                        <p className="text-sm font-medium text-[#B8835A] uppercase tracking-widest">
+                            Únete al Grupo de WhatsApp VIP
+                        </p>
+                        <p className="text-xs text-[#2D2926]/60">
+                            Por este medio enviaremos los recordatorios, el Workbook exclusivo y el enlace para la sesión en vivo.
+                        </p>
+                        
+                        <a 
+                            href="https://chat.whatsapp.com/TU_GRUPO_AQUÍ" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white py-4 rounded-xl shadow-lg transition-all transform hover:-translate-y-1 inline-flex items-center justify-center gap-3 font-bold uppercase tracking-wider text-sm"
+                        >
+                            UNIRME AL GRUPO DE WHATSAPP
+                            <Play className="w-4 h-4 fill-current" />
+                        </a>
+                    </div>
+
+                    <p className="mt-8 text-[10px] text-[#2D2926]/40 uppercase tracking-widest font-bold">
+                        Nos vemos pronto en el workshop
+                    </p>
+                </motion.div>
+            </AnimatePresence>
         );
     }
 
     return (
         <div className="flex flex-col items-center w-full">
-            {/* Logo encima del formulario */}
-            <div className="w-80 md:w-[28rem] h-32 md:h-40 mb-8 relative drop-shadow-md">
-                <Image
-                    src="/assets/images/landing/logo-sanate-mujer.png"
-                    alt="Sánate Mujer Activación"
-                    fill
-                    className="object-contain"
-                    priority
-                />
-            </div>
-
-            <form onSubmit={handleSubmit} className="w-full bg-white/95 backdrop-blur-md p-8 md:p-10 rounded-2xl shadow-2xl border border-[#B8835A]/30 relative overflow-hidden">
-                {/* Subtle glow effect top edge */}
+            <form onSubmit={handleSubmit} className="w-full bg-white/95 backdrop-blur-md p-8 md:p-10 rounded-[2rem] shadow-2xl border border-[#B8835A]/30 relative overflow-hidden">
                 <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-[#B8835A] to-transparent opacity-50"></div>
+
+                <div className="mb-8 text-center">
+                    <h3 className="text-2xl font-heading text-[#2D2926] mb-2">Reserva tu Cupo</h3>
+                    <p className="text-xs text-[#2D2926]/60 uppercase tracking-widest font-bold">Inmersión Online Gratuita</p>
+                </div>
 
                 <div className="space-y-6">
                     {error && (
@@ -246,32 +264,32 @@ function RegistrationForm() {
                     )}
 
                     <div>
-                        <label htmlFor="name" className="block text-xs font-semibold uppercase tracking-widest text-[#2D2926] mb-2">Nombre Completo</label>
+                        <label htmlFor="name" className="block text-[10px] font-bold uppercase tracking-[0.2em] text-[#2D2926]/60 mb-2">Nombre Completo</label>
                         <input
                             type="text"
                             id="name"
                             required
-                            className="w-full bg-[#F5EFE6]/50 border-b border-[#B8835A]/40 px-4 py-3 text-[#2D2926] placeholder-[#2D2926]/40 focus:outline-none focus:border-[#B8835A] transition-colors font-medium"
+                            className="w-full bg-[#F5EFE6]/30 border border-[#B8835A]/20 rounded-xl px-5 py-4 text-[#2D2926] placeholder-[#2D2926]/30 focus:outline-none focus:ring-2 focus:ring-[#B8835A]/30 transition-all font-medium"
                             placeholder="Tu nombre aquí..."
                         />
                     </div>
                     <div>
-                        <label htmlFor="email" className="block text-xs font-semibold uppercase tracking-widest text-[#2D2926] mb-2">Correo Estratégico</label>
+                        <label htmlFor="email" className="block text-[10px] font-bold uppercase tracking-[0.2em] text-[#2D2926]/60 mb-2">Correo Electrónico</label>
                         <input
                             type="email"
                             id="email"
                             required
-                            className="w-full bg-[#F5EFE6]/50 border-b border-[#B8835A]/40 px-4 py-3 text-[#2D2926] placeholder-[#2D2926]/40 focus:outline-none focus:border-[#B8835A] transition-colors font-medium"
+                            className="w-full bg-[#F5EFE6]/30 border border-[#B8835A]/20 rounded-xl px-5 py-4 text-[#2D2926] placeholder-[#2D2926]/30 focus:outline-none focus:ring-2 focus:ring-[#B8835A]/30 transition-all font-medium"
                             placeholder="tu@correo.com"
                         />
                     </div>
                     <div>
-                        <label htmlFor="whatsapp" className="block text-xs font-semibold uppercase tracking-widest text-[#2D2926] mb-2">WhatsApp (Para rituales)</label>
+                        <label htmlFor="whatsapp" className="block text-[10px] font-bold uppercase tracking-[0.2em] text-[#2D2926]/60 mb-2">WhatsApp</label>
                         <input
                             type="tel"
                             id="whatsapp"
                             required
-                            className="w-full bg-[#F5EFE6]/50 border-b border-[#B8835A]/40 px-4 py-3 text-[#2D2926] placeholder-[#2D2926]/40 focus:outline-none focus:border-[#B8835A] transition-colors font-medium"
+                            className="w-full bg-[#F5EFE6]/30 border border-[#B8835A]/20 rounded-xl px-5 py-4 text-[#2D2926] placeholder-[#2D2926]/30 focus:outline-none focus:ring-2 focus:ring-[#B8835A]/30 transition-all font-medium"
                             placeholder="+1 234 567 8900"
                         />
                     </div>
@@ -279,18 +297,26 @@ function RegistrationForm() {
                     <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-[#B8835A] hover:bg-[#a0724e] text-white py-5 rounded shadow-[0_10px_30px_rgba(184,131,90,0.3)] border border-[#B8835A] transition-all transform hover:-translate-y-1 mt-4 group flex items-center justify-center gap-3 relative overflow-hidden"
+                        className="w-full bg-[#B8835A] hover:bg-[#a0724e] text-white py-5 rounded-xl shadow-[0_10px_30px_rgba(184,131,90,0.2)] transition-all transform hover:-translate-y-1 mt-4 group flex items-center justify-center gap-3 relative overflow-hidden"
                     >
-                        <span className="relative z-10 font-bold tracking-wide uppercase text-sm">
-                            {isSubmitting ? 'Procesando...' : 'SÍ, QUIERO MI CUPO GRATUITO'}
+                        <span className="relative z-10 font-bold tracking-[0.1em] uppercase text-sm">
+                            {isSubmitting ? 'Procesando...' : 'QUIERO MI CUPO GRATUITO'}
                         </span>
                         {!isSubmitting && <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />}
-                        <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out z-0"></div>
                     </button>
 
-                    <p className="text-center text-[11px] text-[#2D2926]/70 mt-4 px-4 font-medium">
-                        Cupos limitados para garantizar la interacción y contención profesional.
-                    </p>
+                    <div className="flex items-center justify-center gap-4 pt-4 border-t border-[#B8835A]/10">
+                        <div className="flex -space-x-2">
+                             {[1,2,3].map(i => (
+                                 <div key={i} className="w-6 h-6 rounded-full bg-[#F5EFE6] border border-white flex items-center justify-center text-[8px] font-bold text-[#B8835A]">
+                                     {i}
+                                 </div>
+                             ))}
+                        </div>
+                        <p className="text-[10px] text-[#2D2926]/50 font-bold uppercase tracking-widest">
+                            Cupos limitados esta semana
+                        </p>
+                    </div>
                 </div>
             </form>
         </div>
@@ -349,49 +375,36 @@ function HeroSection() {
                 >
                     <motion.div variants={fadeUpVariant}>
                         <span className="inline-block text-[#B8835A] font-bold tracking-[0.4em] uppercase text-xs md:text-sm mb-6 border border-[#B8835A]/30 px-4 py-1.5 rounded-full bg-white/50 backdrop-blur-sm shadow-sm">
-                            SANANDO EL LINAJE FEMENINO: UN VIAJE DE 3 SEMANAS
+                            WORKSHOP GRATUITO: SÁNATE MUJER
                         </span>
                         <h1 className="text-4xl md:text-5xl lg:text-[4rem] font-heading font-medium text-[#2D2926] leading-[1.1] mb-8">
-                            Eres la <span className="text-[#B8835A] italic">arquitecta</span> de tu propia liberación.
+                            Identifica las <span className="text-[#B8835A] italic">heridas del alma</span> que detienen tu vida.
                         </h1>
                         <p className="text-lg md:text-xl text-[#2D2926]/80 leading-relaxed font-light">
-                            ¡Bienvenida, Familia de Almas! Algo en ti ya sabe que necesita cambiar. Deja de ser una espectadora más y transforma tu historia hoy mismo. Identifica las heridas del alma que sabotean tus relaciones y tu abundancia.
+                            ¿Sientes que repites los mismos patrones en tus relaciones? ¿Te cuesta recibir abundancia? En este workshop gratuito, te enseñaré a identificar las lealtades invisibles que te mantienen estancada.
                         </p>
                     </motion.div>
 
-                    <motion.div variants={fadeUpVariant} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <button
-                            onClick={() => document.getElementById('oferta')?.scrollIntoView({ behavior: 'smooth' })}
-                            className="bg-[#B8835A] hover:bg-[#a0724e] text-white py-5 px-10 rounded shadow-[0_10px_30px_rgba(184,131,90,0.3)] transition-all transform hover:-translate-y-1 inline-flex items-center justify-center gap-3 font-bold tracking-widest text-sm"
-                        >
-                            SÍ, QUIERO SANAR MI LINAJE
-                            <ArrowRight className="w-5 h-5" />
-                        </button>
+                    <motion.div variants={fadeUpVariant} className="hidden lg:block">
+                         <div className="flex items-center gap-6 p-6 bg-white/40 backdrop-blur-sm rounded-3xl border border-[#B8835A]/20">
+                            <div className="w-12 h-12 bg-[#B8835A] rounded-full flex items-center justify-center text-white">
+                                <Activity className="w-6 h-6" />
+                            </div>
+                            <p className="text-sm text-[#2D2926]/70 font-medium">
+                                Más de 500 mujeres han transformado su historia con este método.
+                            </p>
+                         </div>
                     </motion.div>
                 </motion.div>
 
-                {/* Right Column: Visual Component */}
+                {/* Right Column: Registration Form */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
-                    className="relative"
+                    className="relative w-full max-w-xl mx-auto"
                 >
-                    <div className="relative w-full aspect-[4/5] max-w-md mx-auto rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white group">
-                        <Image
-                            src="/assets/images/landing/yelitze-hero-main.png"
-                            alt="Yelitze Rangel"
-                            fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-105"
-                            priority
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                        <div className="absolute bottom-8 inset-x-0 text-center">
-                            <span className="text-white font-bold tracking-widest uppercase text-xs px-6 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
-                                "Sánate Mujer"
-                            </span>
-                        </div>
-                    </div>
+                    <RegistrationForm />
                 </motion.div>
             </div>
         </section>
@@ -667,11 +680,11 @@ function StorytellingSection() {
 
 function OfferSection() {
     const benefits = [
-        "Semanas 1: Nuevo vínculo con mamá y la herida primaria.",
-        "Semanas 2: Detectives del clan: liberar lealtades invisibles.",
-        "Semanas 3: Reconexión con el tesoro perdido de tu linaje.",
-        "Bonos: Workbook maestro + 10 Audioworkbooks + Oráculo.",
-        "Especial: Sesión privada vía Zoom (solo primeros 10 inscritos)."
+        "Identificación de tus 5 heridas principales.",
+        "Ritual somático de liberación ancestral (En Vivo).",
+        "Workbook digital 'Anatomía del Alma' de regalo.",
+        "Acceso a la comunidad VIP de WhatsApp.",
+        "Sesión de preguntas y respuestas con Yelitzé."
     ];
 
     return (
@@ -683,19 +696,19 @@ function OfferSection() {
                     viewport={{ once: true }}
                     variants={fadeUpVariant}
                 >
-                    <span className="text-[#B8835A] tracking-[0.3em] font-bold text-xs uppercase mb-4 block">Oferta de Lanzamiento</span>
+                    <span className="text-[#B8835A] tracking-[0.3em] font-bold text-xs uppercase mb-4 block">Cupo Gratuito Limitado</span>
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading text-[#2D2926] leading-tight mb-8">
-                        Programa <span className="text-[#B8835A]">Sanando el Linaje Femenino</span>
+                        Únete al Workshop <span className="text-[#B8835A]">Sánate Mujer</span>
                     </h2>
                     <p className="text-[#2D2926]/60 text-lg max-w-2xl mx-auto mb-16 font-light">
-                        Un proceso de 3 semanas para transformar tu energía desde adentro, soltar el dolor heredado y habitar tu propia vida con soberanía.
+                        Un espacio seguro y profundo para dar el primer paso hacia tu soberanía emocional. Sin costo, pero con un valor incalculable para tu alma.
                     </p>
                 </motion.div>
 
                 <div className="max-w-4xl mx-auto bg-[#FDFBFA] rounded-[3rem] shadow-2xl border border-[#B8835A]/20 overflow-hidden">
                     <div className="grid md:grid-cols-2">
                         <div className="p-10 md:p-16 text-left space-y-8 bg-white">
-                            <h3 className="text-2xl font-bold text-[#2D2926]">Lo que recibes hoy:</h3>
+                            <h3 className="text-2xl font-bold text-[#2D2926]">Lo que vivirás:</h3>
                             <ul className="space-y-4">
                                 {benefits.map((b, i) => (
                                     <li key={i} className="flex items-start gap-3">
@@ -704,35 +717,28 @@ function OfferSection() {
                                     </li>
                                 ))}
                             </ul>
-                            <div className="pt-4 opacity-50 text-[10px] uppercase tracking-widest font-bold">
-                                Valor real estimado: $500+
-                            </div>
                         </div>
 
                         <div className="p-10 md:p-16 bg-[#B8835A] text-white flex flex-col justify-center items-center text-center">
-                            <span className="text-sm uppercase tracking-widest font-bold mb-2 opacity-80 underline underline-offset-8">Precio Especial de Lanzamiento</span>
-                            <div className="text-8xl font-bold mb-4 drop-shadow-xl">
-                                <span className="text-2xl align-top mr-1 font-heading">$</span>37
-                                <span className="text-xl font-heading">USD</span>
+                            <span className="text-sm uppercase tracking-widest font-bold mb-4 opacity-80 underline underline-offset-8">Inversión</span>
+                            <div className="text-6xl font-bold mb-6 drop-shadow-xl">
+                                GRATIS
                             </div>
-                            <p className="text-white/80 text-xs mb-8 font-medium">Pago único • Acceso Inmediato</p>
+                            <p className="text-white/80 text-xs mb-8 font-medium italic">"El conocimiento que libera debe ser compartido."</p>
                             
-                            <a 
-                                href="https://wa.me/..." // Should be updated with real link or checkout
-                                className="w-full bg-[#2D2926] text-white py-5 rounded-full font-bold tracking-widest uppercase text-sm hover:scale-105 transition-transform shadow-xl mb-6"
+                            <button 
+                                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                                className="w-full bg-[#2D2926] text-white py-5 rounded-full font-bold tracking-widest uppercase text-sm hover:scale-105 transition-transform shadow-xl mb-6 flex items-center justify-center gap-3"
                             >
-                                INSCRIBIRME AHORA
-                            </a>
+                                RESERVAR MI LUGAR
+                                <ArrowRight className="w-5 h-5" />
+                            </button>
                             
                             <p className="text-[10px] text-white/60 font-bold tracking-widest uppercase">
-                                Primeras 10 personas reciben sesión privada de 30min
+                                Workshop Online via Google Meet / Zoom
                             </p>
                         </div>
                     </div>
-                </div>
-
-                <div className="mt-16 text-[#2D2926]/50 text-sm font-medium">
-                    ¿Tienes dudas? <a href="https://wa.me/..." className="text-[#B8835A] underline underline-offset-4 hover:text-[#a0724e] transition-colors">Contáctanos por WhatsApp</a>
                 </div>
             </div>
         </section>
@@ -756,7 +762,7 @@ function PodcastSection() {
                                 <Sparkles className="w-8 h-8 text-[#B8835A]" />
                             </div>
                             <p className="text-sm text-[#2D2926]/60 italic font-medium">
-                                En el programa profundizaremos en este ritual sistémico para una liberación total de memorias congeladas.
+                                En el workshop experimentaremos este ritual sistémico para iniciar la liberación de memorias congeladas.
                             </p>
                         </div>
                     </div>
@@ -781,24 +787,24 @@ function PodcastSection() {
 function FaqSection() {
     const faqs = [
         {
-            q: "1. ¿Por qué el precio es de solo $37 USD si el valor es tan alto?",
-            a: "Mi misión es que ninguna mujer se quede fuera por motivos económicos en este lanzamiento. Quiero que experimentes la potencia de mi método de integración somática y ancestral. Es un precio simbólico de compromiso con tu propia historia."
+            q: "1. ¿Qué es exactamente el Workshop 'Sánate Mujer'?",
+            a: "Es una inmersión intensiva de una sesión en vivo donde aprenderás mi metodología para identificar las heridas del alma. Es el punto de partida para cualquier mujer que desee dejar de repetir patrones y empezar a habitar su soberanía."
         },
         {
-            q: "2. ¿Qué pasa si no puedo estar en las sesiones en vivo?",
-            a: "No te preocupes. Todas las sesiones quedan grabadas y tendrás acceso de por vida a la plataforma. Además, los Audioworkbooks están diseñados para que los escuches a tu ritmo, integrando la sanación en tu día a día."
+            q: "2. ¿Es realmente gratuito?",
+            a: "Sí. Mi misión es expandir este mensaje. El workshop no tiene costo, pero requiere de tu compromiso y presencia para que la transformación ocurra."
         },
         {
-            q: "3. ¿Es efectivo si no conocí a mis ancestras o no tengo relación con mi madre?",
-            a: "Totalmente. No trabajamos con la persona física, sino con la huella energética y somática que vive en tus células. Tu cuerpo tiene toda la información necesaria para liberar las lealtades invisibles, sin importar el contacto externo."
+            q: "3. ¿Cuánto tiempo dura la sesión?",
+            a: "La sesión suele durar entre 90 y 120 minutos. Es un espacio profundo donde no solo recibes teoría, sino que realizamos un ejercicio vivencial de liberación."
         },
         {
-            q: "4. ¿En qué se diferencia este programa de una terapia tradicional?",
-            a: "La terapia tradicional trabaja desde la mente. Aquí trabajamos desde el sistema nervioso (Trauma Informed) y el linaje (Ancestral). Descongelamos el dolor que la mente no puede explicar pero que el cuerpo padece."
+            q: "4. ¿Qué pasa si no puedo estar en vivo?",
+            a: "La potencia de este trabajo reside en la energía del grupo en vivo. Sin embargo, al registrarte tendrás acceso a la grabación por tiempo limitado. Te recomiendo encarecidamente separar el espacio para ti."
         },
         {
-            q: "5. ¿Recibiré acompañamiento durante las 3 semanas?",
-            a: "Sí, tendrás acceso al grupo exclusivo de alumnas donde yo misma y mi equipo estaremos resolviendo dudas y sosteniendo el contenedor energético durante todo el proceso de transformación."
+            q: "5. ¿Para qué sirve el grupo de WhatsApp?",
+            a: "Es nuestro canal de comunicación oficial. Allí enviamos el Workbook maestro, los recordatorios y materiales exclusivos de soporte que no compartimos por correo."
         }
     ];
 
