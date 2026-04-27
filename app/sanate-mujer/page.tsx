@@ -777,14 +777,6 @@ function PodcastSection() {
         </section>
     );
 }
-     </motion.div>
-                    </motion.div>
-
-                </div>
-            </div>
-        </section>
-    );
-}
 
 function FaqSection() {
     const faqs = [
