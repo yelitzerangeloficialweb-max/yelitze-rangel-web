@@ -21,7 +21,12 @@ export const sendVenezuelaRegistrationEmail = async ({
     name,
     city,
     registrationId
-}: SendRegistrationEmailProps) => {
+}: {
+    email: string;
+    name: string;
+    city: string;
+    registrationId: string;
+}) => {
     try {
         const ticketUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/venezuela-en-el-cuerpo/success?id=${registrationId}&name=${encodeURIComponent(name)}&city=${encodeURIComponent(city)}`;
 
@@ -582,6 +587,7 @@ export const sendAppointmentConfirmationEmail = async ({
         return { success: false, error: err };
     }
 };
+
 export const sendSanateMujerRegistrationEmail = async (email: string, name: string) => {
     try {
         const logoUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/assets/images/logo-yelitze-new.png`;
@@ -640,6 +646,64 @@ export const sendSanateMujerRegistrationEmail = async (email: string, name: stri
         return { success: true, data };
     } catch (err) {
         console.error('Sanate Mujer registration email error:', err);
+        return { success: false, error: err };
+    }
+};
+
+export const sendContactEmail = async ({
+    name,
+    email,
+    subject,
+    message
+}: {
+    name: string;
+    email: string;
+    subject: string;
+    message: string;
+}) => {
+    try {
+        const logoUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/assets/images/logo-yelitze-new.png`;
+
+        const { data, error } = await resend.emails.send({
+            from: 'Yelitze Rangel <info@yelitzerangeloficial.com>',
+            to: ['energyuniversal@gmail.com'], // The recipient requested by the user
+            reply_to: email, // Allow replying directly to the person who wrote
+            subject: `Nuevo mensaje de contacto: ${subject}`,
+            html: `
+                <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background-color: #FDFBFA; border-radius: 32px; overflow: hidden; border: 1px solid #B8835A20;">
+                    <div style="background-color: #2D2926; padding: 40px 20px; text-align: center;">
+                        <img src="${logoUrl}" alt="Yelitze Rangel" style="max-width: 150px; height: auto; margin-bottom: 20px;">
+                        <h1 style="color: #FDFBFA; margin: 0; font-size: 16px; letter-spacing: 2px; text-transform: uppercase;">Nuevo Mensaje de Contacto</h1>
+                    </div>
+                    
+                    <div style="padding: 50px 40px; color: #2D2926; line-height: 1.8;">
+                        <div style="background-color: #F5EFE6; padding: 30px; border-radius: 20px; border: 1px solid #B8835A15; margin-bottom: 40px;">
+                            <p style="margin: 5px 0;"><strong>Nombre:</strong> ${name}</p>
+                            <p style="margin: 5px 0;"><strong>Email:</strong> ${email}</p>
+                            <p style="margin: 5px 0;"><strong>Asunto:</strong> ${subject}</p>
+                        </div>
+
+                        <div style="margin-bottom: 40px;">
+                            <h3 style="color: #8C4005; font-size: 16px; margin-top: 0;">Mensaje:</h3>
+                            <p style="font-size: 16px; color: #4A4540; white-space: pre-wrap;">${message}</p>
+                        </div>
+                    </div>
+                    
+                    <div style="background-color: #EFE9E0; padding: 30px; text-align: center; color: #3C2A21; font-size: 12px;">
+                        <p style="margin: 0;">Este mensaje fue enviado desde el formulario de contacto de yelitzerangeloficial.com</p>
+                    </div>
+                </div>
+            `
+        });
+
+        if (error) {
+            console.error('[Contact Mail] Resend error:', error);
+            return { success: false, error };
+        }
+
+        return { success: true, data };
+    } catch (err) {
+        console.error('Contact email error:', err);
         return { success: false, error: err };
     }
 };

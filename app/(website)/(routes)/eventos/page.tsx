@@ -306,8 +306,7 @@ export default function EventsPage() {
                             </p>
                             <div className="flex justify-center pt-8">
                                 <Link
-                                    href="https://wa.me/17867268717"
-                                    target="_blank"
+                                    href="/reservas"
                                     className="inline-flex items-center justify-center bg-[var(--color-secondary)] text-white hover:scale-105 hover:brightness-110 transition-all px-16 py-7 rounded-full font-bold uppercase tracking-[0.3em] text-sm lg:text-lg shadow-[0_20px_50px_rgba(184,131,90,0.3)] group"
                                 >
                                     Agendar Sesión de Claridad »
