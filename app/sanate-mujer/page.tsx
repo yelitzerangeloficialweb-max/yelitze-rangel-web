@@ -526,31 +526,26 @@ function MechanismSection() {
         {
             title: "Patrón de Invisibilidad",
             mask: "La que Desaparece",
-            symptoms: ["¿Evitas ser vista?", "¿Dificultad para cobrar?", "¿Sensación de no pertenecer?"],
             icon: <ShieldAlert className="w-6 h-6" />
         },
         {
             title: "Patrón de Carga",
             mask: "La que Puede con Todo",
-            symptoms: ["Fatiga crónica emocional", "Te cuesta pedir ayuda", "Miedo al abandono"],
             icon: <Heart className="w-6 h-6" />
         },
         {
             title: "Patrón de Sacrificio",
             mask: "La que se Posterga",
-            symptoms: ["¿Dices 'sí' queriendo decir 'no'?", "Priorizas a todos", "Falta de propósito propio"],
             icon: <Activity className="w-6 h-6" />
         },
         {
             title: "Patrón de Control",
             mask: "La que No Confía",
-            symptoms: ["Perfeccionismo extremo", "Necesidad de predecirlo todo", "Rigidez mental"],
             icon: <Sparkles className="w-6 h-6" />
         },
         {
             title: "Patrón de Exigencia",
             mask: "La Implacable",
-            symptoms: ["Autocrítica feroz", "Miedo al fracaso", "Dificultad para disfrutar"],
             icon: <Clock className="w-6 h-6" />
         }
     ];
@@ -586,15 +581,7 @@ function MechanismSection() {
                                 {patron.icon}
                             </div>
                             <h3 className="text-xl font-bold text-[#2D2926] mb-2 uppercase tracking-wide">{patron.title}</h3>
-                            <span className="text-sm font-bold text-[#B8835A] uppercase tracking-widest mb-6">Comportamiento: {patron.mask}</span>
-                            <ul className="space-y-2 text-left w-full">
-                                {patron.symptoms.map((s, i) => (
-                                    <li key={i} className="flex items-center gap-2 text-xs text-[#2D2926]/60">
-                                        <CheckCircle2 className="w-3 h-3 text-[#B8835A]" />
-                                        {s}
-                                    </li>
-                                ))}
-                            </ul>
+                            <span className="text-sm font-bold text-[#B8835A] uppercase tracking-widest">Comportamiento: {patron.mask}</span>
                         </motion.div>
                     ))}
                 </div>
