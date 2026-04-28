@@ -58,7 +58,14 @@ export async function POST(req: Request) {
 
         if (error.code === 'P2021') {
             return NextResponse.json({
-                error: 'Base de datos desactualizada. Por favor, realiza el despliegue de nuevo.',
+                error: 'Base de datos desactualizada (Tabla no encontrada). Por favor, ejecuta npx prisma db push.',
+                details: error.message
+            }, { status: 500 });
+        }
+
+        if (error.code === 'P2022') {
+            return NextResponse.json({
+                error: 'Base de datos desactualizada (Columna no encontrada). Por favor, ejecuta npx prisma db push.',
                 details: error.message
             }, { status: 500 });
         }
