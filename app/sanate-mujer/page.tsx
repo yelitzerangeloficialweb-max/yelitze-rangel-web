@@ -171,6 +171,8 @@ function RegistrationForm() {
     const [isSuccess, setIsSuccess] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
+    const isClosed = new Date() > new Date('2026-05-23T00:00:00');
+
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
@@ -203,6 +205,28 @@ function RegistrationForm() {
             setIsSubmitting(false);
         }
     };
+
+    if (isClosed) {
+        return (
+            <div className="w-full bg-white/95 backdrop-blur-md p-8 md:p-12 rounded-[2rem] shadow-2xl border border-[#B8835A]/30 text-center relative overflow-hidden">
+                <div className="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-[#B8835A] to-[#D4A373]"></div>
+                <div className="w-20 h-20 bg-[#F5EFE6] rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Calendar className="w-10 h-10 text-[#B8835A] opacity-40" />
+                </div>
+                <h3 className="text-2xl md:text-3xl font-heading font-medium text-[#2D2926] mb-4">Inscripciones Finalizadas</h3>
+                <p className="text-[#2D2926]/70 leading-relaxed mb-8">
+                    Gracias por tu interés. Las inscripciones para la activación del 22 de mayo han cerrado.
+                    Mantente atenta a nuestras redes para próximos encuentros.
+                </p>
+                <button 
+                    onClick={() => window.location.href = '/'}
+                    className="w-full bg-[#2D2926] text-white py-4 rounded-xl font-bold tracking-widest uppercase text-xs hover:scale-105 transition-transform"
+                >
+                    Volver al Inicio
+                </button>
+            </div>
+        );
+    }
 
     if (isSuccess) {
         return (
@@ -745,6 +769,8 @@ function OfferSection() {
 }
 
 function PodcastSection() {
+    const isClosed = new Date() > new Date('2026-05-23T00:00:00');
+
     return (
         <section className="py-32 bg-[#F5EFE6] relative overflow-hidden">
             <div className="container mx-auto px-4 max-w-6xl relative z-10">
@@ -756,13 +782,34 @@ function PodcastSection() {
                         <p className="text-[#2D2926]/70 text-lg font-light leading-relaxed">
                             "Madre, abuelas, les devuelvo con amor el dolor que cargué por ustedes. Honro su historia. Honro su linaje. Hoy elijo vivir mi propia vida."
                         </p>
-                        <div className="flex items-center gap-6 p-6 bg-[#FDFBFA] rounded-3xl border border-[#B8835A]/10">
-                            <div className="w-16 h-16 bg-[#B8835A]/10 rounded-full flex items-center justify-center">
-                                <Sparkles className="w-8 h-8 text-[#B8835A]" />
-                            </div>
-                            <p className="text-sm text-[#2D2926]/60 italic font-medium">
-                                En el workshop experimentaremos este ritual sistémico para iniciar la liberación de memorias congeladas.
-                            </p>
+                        <div className="bg-white rounded-[2.5rem] shadow-2xl shadow-[#B8835A]/20 overflow-hidden border border-[#B8835A]/10">
+                            {isClosed ? (
+                                <div className="p-10 md:p-16 text-center">
+                                    <div className="w-20 h-20 bg-[#B8835A]/10 rounded-full flex items-center justify-center mx-auto mb-6 text-[#B8835A]">
+                                        <Calendar className="w-10 h-10 opacity-40" />
+                                    </div>
+                                    <h2 className="text-3xl font-heading text-[#2D2926] mb-4">Inscripciones Finalizadas</h2>
+                                    <p className="text-[#2D2926]/70 leading-relaxed mb-8">
+                                        Gracias por tu interés. Las inscripciones para la activación del 22 de mayo han cerrado.
+                                        Mantente atenta a nuestras redes para próximos encuentros.
+                                    </p>
+                                    <button 
+                                        onClick={() => window.location.href = '/'}
+                                        className="inline-block bg-[#2D2926] text-white px-8 py-4 rounded-full font-bold tracking-widest uppercase text-xs hover:scale-105 transition-transform"
+                                    >
+                                        Volver al Inicio
+                                    </button>
+                                </div>
+                            ) : (
+                                <div className="flex items-center gap-6 p-6 bg-[#FDFBFA] rounded-3xl border border-[#B8835A]/10">
+                                    <div className="w-16 h-16 bg-[#B8835A]/10 rounded-full flex items-center justify-center">
+                                        <Sparkles className="w-8 h-8 text-[#B8835A]" />
+                                    </div>
+                                    <p className="text-sm text-[#2D2926]/60 italic font-medium">
+                                        En el workshop experimentaremos este ritual sistémico para iniciar la liberación de memorias congeladas.
+                                    </p>
+                                </div>
+                            )}
                         </div>
                     </div>
                     <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl bg-black">

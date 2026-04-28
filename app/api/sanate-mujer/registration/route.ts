@@ -4,6 +4,14 @@ import { sendSanateMujerRegistrationEmail } from '@/lib/mail';
 
 export async function POST(req: Request) {
     try {
+        // Bloquear inscripciones después del 22 de mayo de 2026
+        const deadline = new Date('2026-05-23T00:00:00');
+        if (new Date() > deadline) {
+            return NextResponse.json({ 
+                error: 'Las inscripciones para este encuentro han finalizado.' 
+            }, { status: 400 });
+        }
+
         const body = await req.json();
         const { name, email, whatsapp, city } = body;
 
