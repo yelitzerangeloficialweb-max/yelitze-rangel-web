@@ -588,7 +588,7 @@ export const sendAppointmentConfirmationEmail = async ({
     }
 };
 
-export const sendSanateMujerRegistrationEmail = async (email: string, name: string) => {
+export const sendSanateMujerRegistrationEmail = async (email: string, name: string, city: string) => {
     try {
         const logoUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/assets/images/logo-yelitze-new.png`;
 
@@ -607,23 +607,24 @@ export const sendSanateMujerRegistrationEmail = async (email: string, name: stri
                         <h2 style="color: #8C4005; font-size: 24px; margin-bottom: 30px;">¡Bienvenida, ${name}!</h2>
                         
                         <p style="font-size: 16px; color: #4A4540; margin-bottom: 25px;">
-                            Tu lugar en la <strong>Activación Sánate Mujer</strong> ha sido reservado con éxito. Este es un espacio sagrado de reconexión y restauración.
+                            Tu lugar en la <strong>Activación Sánate Mujer</strong> ha sido reservado con éxito para <strong>${city}</strong>. Este es un espacio sagrado de reconexión y restauración.
                         </p>
                         
                         <div style="background-color: #F5EFE6; padding: 30px; border-radius: 20px; border: 1px solid #B8835A15; margin: 30px 0; text-align: center;">
-                            <p style="margin: 0; font-weight: bold; color: #2D2926; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">FECHA DEL ENCUENTRO:</p>
-                            <p style="margin: 10px 0; font-size: 24px; color: #B8835A;">22 de Mayo, 2026</p>
+                            <p style="margin: 0; font-weight: bold; color: #2D2926; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">FECHA Y PLATAFORMA:</p>
+                            <p style="margin: 10px 0; font-size: 22px; color: #B8835A; font-weight: bold;">22 de Mayo, 2026</p>
+                            <p style="margin: 5px 0; font-size: 16px; color: #2D2926;">Vía YouTube (En Vivo)</p>
                         </div>
 
-                        <p style="font-size: 16px; color: #4A4540; margin-bottom: 30px;">
-                            Próximamente recibirás más detalles sobre la preparación y los rituales que compartiremos en este viaje de soberanía biológica.
-                        </p>
-
-                        <div style="background-color: #2D2926; padding: 30px; border-radius: 20px; color: #F9F7F2; text-align: center;">
+                        <div style="background-color: #2D2926; padding: 30px; border-radius: 20px; color: #F9F7F2; text-align: center; margin-bottom: 30px;">
                             <p style="font-size: 14px; font-style: italic; margin: 0;">
                                 "Anatomía del alma donde lo invisible cobra voz."
                             </p>
                         </div>
+
+                        <p style="font-size: 16px; color: #4A4540; margin-bottom: 30px;">
+                            Te enviaremos el enlace de acceso y los materiales de preparación (Workbook) a través de nuestro grupo VIP de WhatsApp y por este mismo correo unos días antes del evento.
+                        </p>
                         
                         <p style="margin-top: 50px; text-align: center; color: #8C4005; font-weight: bold; font-style: italic;">
                             "Primero sana el cuerpo… y luego cambia la historia."

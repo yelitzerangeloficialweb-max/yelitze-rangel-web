@@ -24,7 +24,7 @@ export async function POST(req: Request) {
         });
 
         // 2. Enviar correo de confirmación usando el servicio centralizado
-        const emailResult = await sendSanateMujerRegistrationEmail(email, name);
+        const emailResult = await sendSanateMujerRegistrationEmail(email, name, city);
         
         if (emailResult.success) {
             console.log(`Correo de confirmación enviado exitosamente a ${email}`);
