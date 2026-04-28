@@ -197,7 +197,10 @@ function RegistrationForm() {
                 setIsSuccess(true);
             } else {
                 const data = await response.json();
-                setError(data.error || 'Algo salió mal. Por favor intenta de nuevo.');
+                const errorMessage = data.details 
+                    ? `${data.error} (${data.details})` 
+                    : data.error || 'Algo salió mal. Por favor intenta de nuevo.';
+                setError(errorMessage);
             }
         } catch (err) {
             setError('Error de conexión. Por favor intenta de nuevo.');
