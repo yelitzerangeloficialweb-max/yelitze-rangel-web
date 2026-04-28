@@ -31,6 +31,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                             <Link href="/admin/blog" className="hover:bg-white/10 bg-black/20 px-3 py-1.5 rounded-full transition-colors font-medium">
                                 Blog
                             </Link>
+                            <Link href="/admin/workshop" className="hover:bg-white/10 bg-[#B8835A] px-3 py-1.5 rounded-full transition-colors font-bold shadow-sm">
+                                Workshop
+                            </Link>
                         </nav>
                     </div>
                     <Link
