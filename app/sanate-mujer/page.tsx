@@ -734,7 +734,7 @@ function OfferSection() {
                             </button>
                             
                             <p className="text-[10px] text-white/60 font-bold tracking-widest uppercase">
-                                Workshop Online via Google Meet / Zoom
+                                Workshop Online via YouTube (En Vivo)
                             </p>
                         </div>
                     </div>
