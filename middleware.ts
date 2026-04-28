@@ -6,17 +6,14 @@ export function middleware(request: NextRequest) {
     // 1. Skip middleware for static files, API routes, and specific public pages
     const isAsset = pathname.includes('.') || pathname.startsWith('/_next') || pathname.startsWith('/api/auth/maintenance') || pathname.startsWith('/cdn-cgi');
     const isMaintenancePage = pathname === '/maintenance';
-    const isQREntryInfo = pathname.includes('/admin/venezuela/entry/');
-    const isVenezuelaLanding = pathname.startsWith('/venezuela-en-el-cuerpo');
-    const isSomaticTest = pathname.startsWith('/test-somatico');
-    const isExperienciaGuiada = pathname.startsWith('/arquitectura-de-vida-intencional');
+    const isSanateMujer = pathname.startsWith('/sanate-mujer');
 
-    if (isAsset || isQREntryInfo || isVenezuelaLanding || isExperienciaGuiada || isSomaticTest) {
+    if (isAsset || isSanateMujer) {
         return NextResponse.next();
     }
 
-    // 2. FORCE maintenance mode to false (allowing public access to the updated site)
-    const maintenanceMode = false;
+    // 2. FORCE maintenance mode to true
+    const maintenanceMode = true;
 
     // 3. Check for the maintenance auth cookie (v2 to invalidate old sessions)
     const authCookie = request.cookies.get('yelitze_access_session_v2');

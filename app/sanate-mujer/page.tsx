@@ -345,9 +345,6 @@ function TrustBar() {
         <section className="py-8 bg-transparent relative overflow-hidden">
             <div className="container mx-auto px-4 relative z-10 border-y border-[#B8835A]/20 py-6">
                 <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 opacity-60">
-                    <span className="text-[9px] font-bold tracking-[0.4em] uppercase text-[#B8835A] w-full text-center mb-2 md:mb-0 md:w-auto">
-                        Avalado por:
-                    </span>
                     {categories.map((name, index) => (
                         <div key={index} className="flex items-center gap-3">
                             <span className="text-[#2D2926] text-[10px] font-bold tracking-widest uppercase whitespace-nowrap">
@@ -655,7 +652,7 @@ function StorytellingSection() {
                     >
                         <div className="relative aspect-[3/4] rounded-t-full overflow-hidden shadow-2xl border-b-8 border-[#B8835A]">
                             <Image
-                                src="/assets/images/landing/yelitze-portrait-ritual.png"
+                                src="/assets/images/landing/yelitze-story-portrait.png"
                                 alt="Yelitze Rangel Sanadora"
                                 fill
                                 className="object-cover"
@@ -763,7 +760,7 @@ function PodcastSection() {
                              <Play className="w-20 h-20 text-white/30" />
                         </div>
                         <Image 
-                            src="/assets/images/landing/ritual-preview.png" 
+                            src="/assets/images/landing/mujer-escuchando-podcast.png" 
                             alt="Ritual de Devolución" 
                             fill 
                             className="object-cover opacity-60"
