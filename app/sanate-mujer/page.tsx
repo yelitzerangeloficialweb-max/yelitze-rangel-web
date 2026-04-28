@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { FormEvent } from 'react';
-import { ArrowRight, CheckCircle2, ChevronDown, ChevronUp, X, Heart, Activity, ShieldAlert, Sparkles, Play, Clock } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronDown, ChevronUp, X, Heart, Activity, ShieldAlert, Sparkles, Play, Clock, Calendar } from 'lucide-react';
 import { motion, Variants, AnimatePresence } from 'framer-motion';
 import { useEffect, useState as useHookState } from 'react';
 import { SacredGeometry, FloatingStars, ThinGoldenLine, WaveDivider } from "@/components/ui/MysticalElements";
