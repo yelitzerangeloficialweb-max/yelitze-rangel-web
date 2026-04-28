@@ -59,5 +59,5 @@ ENV HOSTNAME="0.0.0.0"
 # Ensure Prisma uses the correct database path
 ENV DATABASE_URL="file:/app/prisma/dev.db"
 
-# Run db push to ensure schema is always up to date and then start the server
-CMD ["sh", "-c", "npx prisma db push --accept-data-loss && node server.js"]
+# Run migrations and then start the server
+CMD ["sh", "-c", "npx prisma migrate deploy && node server.js"]
