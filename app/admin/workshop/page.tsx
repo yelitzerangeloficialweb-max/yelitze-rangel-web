@@ -11,6 +11,7 @@ interface Registration {
     name: string;
     email: string;
     whatsapp: string;
+    city: string;
 }
 
 export default function AdminWorkshopPage() {
@@ -27,7 +28,8 @@ export default function AdminWorkshopPage() {
         const filtered = registrations.filter(reg => 
             reg.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
             reg.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            reg.whatsapp.toLowerCase().includes(searchTerm.toLowerCase())
+            reg.whatsapp.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            reg.city.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setFilteredRegistrations(filtered);
     }, [searchTerm, registrations]);
@@ -48,13 +50,14 @@ export default function AdminWorkshopPage() {
     };
 
     const downloadCSV = () => {
-        const headers = ['ID', 'Fecha', 'Nombre', 'Email', 'WhatsApp'];
+        const headers = ['ID', 'Fecha', 'Nombre', 'Email', 'WhatsApp', 'Ciudad/País'];
         const rows = registrations.map(reg => [
             reg.id,
             new Date(reg.createdAt).toLocaleString(),
             reg.name,
             reg.email,
-            reg.whatsapp
+            reg.whatsapp,
+            reg.city
         ]);
 
         const csvContent = [
@@ -130,6 +133,7 @@ export default function AdminWorkshopPage() {
                                 <tr>
                                     <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-wider">Nombre</th>
                                     <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-wider">Contacto</th>
+                                    <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-wider">Ciudad/País</th>
                                     <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-wider">Fecha Registro</th>
                                 </tr>
                             </thead>
@@ -155,6 +159,9 @@ export default function AdminWorkshopPage() {
                                                     <span className="text-sm font-medium">{reg.whatsapp}</span>
                                                 </div>
                                             </div>
+                                        </td>
+                                        <td className="px-6 py-5">
+                                            <span className="text-stone-700 font-medium">{reg.city}</span>
                                         </td>
                                         <td className="px-6 py-5 text-sm text-stone-500">
                                             <div className="flex items-center gap-2">

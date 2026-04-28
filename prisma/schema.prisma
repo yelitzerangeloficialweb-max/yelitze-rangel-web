@@ -67,6 +67,7 @@ model SanateMujerRegistration {
   name      String
   email     String
   whatsapp  String
+  city      String   @default("No especificada")
 }
 
 model VenezuelaEnElCuerpoRegistration {

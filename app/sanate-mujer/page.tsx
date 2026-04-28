@@ -181,6 +181,7 @@ function RegistrationForm() {
             name: (form.elements.namedItem('name') as HTMLInputElement).value,
             email: (form.elements.namedItem('email') as HTMLInputElement).value,
             whatsapp: (form.elements.namedItem('whatsapp') as HTMLInputElement).value,
+            city: (form.elements.namedItem('city') as HTMLInputElement).value,
         };
 
         try {
@@ -297,6 +298,16 @@ function RegistrationForm() {
                             required
                             className="w-full bg-[#F5EFE6]/30 border border-[#B8835A]/20 rounded-xl px-5 py-4 text-[#2D2926] placeholder-[#2D2926]/30 focus:outline-none focus:ring-2 focus:ring-[#B8835A]/30 transition-all font-medium"
                             placeholder="+1 234 567 8900"
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="city" className="block text-[10px] font-bold uppercase tracking-[0.2em] text-[#2D2926]/60 mb-2">País o Ciudad</label>
+                        <input
+                            type="text"
+                            id="city"
+                            required
+                            className="w-full bg-[#F5EFE6]/30 border border-[#B8835A]/20 rounded-xl px-5 py-4 text-[#2D2926] placeholder-[#2D2926]/30 focus:outline-none focus:ring-2 focus:ring-[#B8835A]/30 transition-all font-medium"
+                            placeholder="Ej. Madrid, España / Caracas, Venezuela"
                         />
                     </div>
 

@@ -5,11 +5,11 @@ import { sendSanateMujerRegistrationEmail } from '@/lib/mail';
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { name, email, whatsapp } = body;
+        const { name, email, whatsapp, city } = body;
 
-        console.log(`Nueva inscripción recibida: ${name} (${email})`);
+        console.log(`Nueva inscripción recibida: ${name} (${email}) - ${city}`);
 
-        if (!name || !email || !whatsapp) {
+        if (!name || !email || !whatsapp || !city) {
             return NextResponse.json({ error: 'Faltan campos obligatorios' }, { status: 400 });
         }
 
@@ -19,6 +19,7 @@ export async function POST(req: Request) {
                 name,
                 email,
                 whatsapp,
+                city,
             },
         });
 
