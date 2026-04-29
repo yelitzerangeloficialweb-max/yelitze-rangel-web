@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Download, Loader2, Users, MapPin, Calendar, Phone, QrCode, X, CheckCircle2, XCircle, Camera, Pencil, Trash2, AlertCircle, Repeat, Search, Filter, MoreVertical, ExternalLink, Check } from 'lucide-react';
+import { Download, Loader2, Users, MapPin, Calendar, Phone, QrCode, X, CheckCircle2, XCircle, Camera, Pencil, Trash2, AlertCircle, Repeat, Search, Filter, MoreVertical, ExternalLink, Check, Mail } from 'lucide-react';
 import { format, isValid } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { TicketQR } from '@/components/ui/TicketQR';
