@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Download, Loader2, Users, MapPin, Calendar, Phone, QrCode, X, CheckCircle2, XCircle, Camera, Pencil, Trash2, AlertCircle, Repeat } from 'lucide-react';
+import { Download, Loader2, Users, MapPin, Calendar, Phone, QrCode, X, CheckCircle2, XCircle, Camera, Pencil, Trash2, AlertCircle, Repeat, Search, Filter, MoreVertical, ExternalLink, Check } from 'lucide-react';
 import { format, isValid } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { TicketQR } from '@/components/ui/TicketQR';
@@ -39,7 +39,6 @@ export default function AdminVenezuelaPage() {
     const [cityFilter, setCityFilter] = useState('all');
     const [statusFilter, setStatusFilter] = useState('all');
     const [editingRegistration, setEditingRegistration] = useState<Registration | null>(null);
-    const [deletingId, setDeletingId] = useState<string | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const router = useRouter();
 
@@ -58,8 +57,6 @@ export default function AdminVenezuelaPage() {
             );
 
             scanner.render((decodedText) => {
-                // The QR contains a URL like: https://target.com/admin/venezuela/entry/ID
-                // Or sometimes just the path. We extract the ID or the path.
                 if (decodedText.includes('/admin/venezuela/entry/')) {
                     const url = new URL(decodedText);
                     router.push(url.pathname);
@@ -69,7 +66,7 @@ export default function AdminVenezuelaPage() {
                     setIsScanning(false);
                 }
             }, (error) => {
-                // console.warn(error);
+                // Ignore scanner errors
             });
         }
 
@@ -86,13 +83,9 @@ export default function AdminVenezuelaPage() {
             const data = await res.json();
             if (Array.isArray(data)) {
                 setRegistrations(data);
-            } else {
-                console.error('API did not return an array:', data);
-                setRegistrations([]);
             }
         } catch (error) {
             console.error('Error fetching registrations:', error);
-            setRegistrations([]);
         } finally {
             setLoading(false);
         }
@@ -126,7 +119,7 @@ export default function AdminVenezuelaPage() {
     };
 
     const handleDelete = async (id: string) => {
-        if (!confirm('¿Estás seguro de que deseas eliminar este registro?')) return;
+        if (!confirm('¿Estás seguro de que deseas eliminar este registro? Esta acción no se puede deshacer.')) return;
 
         try {
             const res = await fetch(`/api/admin/venezuela/registrations/${id}`, {
@@ -135,12 +128,9 @@ export default function AdminVenezuelaPage() {
 
             if (res.ok) {
                 setRegistrations(prev => prev.filter(r => r.id !== id));
-            } else {
-                alert('Error al eliminar el registro');
             }
         } catch (error) {
             console.error('Error deleting registration:', error);
-            alert('Error de conexión');
         }
     };
 
@@ -167,12 +157,9 @@ export default function AdminVenezuelaPage() {
                 const updated = await res.json();
                 setRegistrations(prev => prev.map(r => r.id === updated.id ? updated : r));
                 setEditingRegistration(null);
-            } else {
-                alert('Error al actualizar el registro');
             }
         } catch (error) {
             console.error('Error updating registration:', error);
-            alert('Error de conexión');
         } finally {
             setIsSubmitting(false);
         }
@@ -180,7 +167,7 @@ export default function AdminVenezuelaPage() {
 
     const handleResetQR = async () => {
         if (!editingRegistration) return;
-        if (!confirm('¿Estás seguro de que deseas reiniciar el estado del QR a pendiente?')) return;
+        if (!confirm('¿Deseas reiniciar el estado del QR a pendiente?')) return;
 
         try {
             setIsSubmitting(true);
@@ -197,408 +184,316 @@ export default function AdminVenezuelaPage() {
                 const updated = await res.json();
                 setRegistrations(prev => prev.map(r => r.id === updated.id ? updated : r));
                 setEditingRegistration(null);
-            } else {
-                alert('Error al reiniciar el QR');
             }
         } catch (error) {
             console.error('Error resetting QR:', error);
-            alert('Error de conexión');
         } finally {
             setIsSubmitting(false);
         }
     };
 
+    const handleDeduplicate = async () => {
+        if (!confirm('¿Estás segura de eliminar registros duplicados? Esta acción es permanente.')) return;
+        try {
+            setLoading(true);
+            const res = await fetch('/api/admin/venezuela/registrations/deduplicate', { method: 'POST' });
+            await fetchRegistrations();
+        } catch (e) {
+            console.error('Error cleaning duplicates:', e);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const filteredRegistrations = registrations.filter(r => {
+        const matchesSearch = r.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                             r.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                             r.whatsapp.includes(searchTerm);
+        const matchesCity = cityFilter === 'all' || r.city === cityFilter;
+        const matchesStatus = statusFilter === 'all' || (statusFilter === 'scanned' ? r.scanned : !r.scanned);
+        return matchesSearch && matchesCity && matchesStatus;
+    });
+
     if (loading) {
         return (
-            <div className="flex items-center justify-center py-20">
-                <Loader2 className="w-8 h-8 animate-spin text-[var(--color-primary)]" />
+            <div className="flex items-center justify-center py-40">
+                <Loader2 className="w-10 h-10 animate-spin text-[var(--color-primary)]" />
             </div>
         );
     }
 
     return (
-        <div className="space-y-8">
-            <div className="flex items-center justify-between">
+        <div className="space-y-8 pb-20 animate-fade-in">
+            {/* Header Area */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div>
-                    <h1 className="text-3xl font-heading text-[var(--color-primary)] font-bold mb-2">
+                    <h1 className="text-4xl font-heading font-bold text-[var(--color-primary)] mb-2">
                         Venezuela en el Cuerpo
                     </h1>
-                    <p className="text-stone-500">
-                        {registrations.length} personas inscritas en total
+                    <p className="text-stone-500 font-medium italic">
+                        Gestión de accesos y participantes para el evento nacional.
                     </p>
                 </div>
-                <div className="flex gap-4">
+                <div className="flex flex-wrap gap-4">
                     <button
                         onClick={() => setIsScanning(true)}
-                        className="flex items-center gap-2 px-6 py-3 bg-[#C1530A] text-white font-bold rounded-xl hover:bg-[#A84A2F] transition-colors"
+                        className="flex items-center justify-center gap-2 px-6 py-3 bg-[var(--color-primary)] text-white font-bold rounded-2xl hover:bg-[var(--color-primary-light)] transition-all shadow-lg shadow-primary/20"
                     >
-                        <Camera className="w-5 h-5" />
-                        Escanear QR
+                        <Camera size={20} />
+                        Escáner QR
                     </button>
                     <button
-                        onClick={async () => {
-                            if (!confirm('¿Estás seguro de que deseas eliminar registros con correos o números duplicados? Esta acción es permanente.')) return;
-                            try {
-                                setLoading(true);
-                                const res = await fetch('/api/admin/venezuela/registrations/deduplicate', { method: 'POST' });
-                                const data = await res.json();
-                                alert(data.message || data.error);
-                                fetchRegistrations();
-                            } catch (e) {
-                                alert('Error al procesar la limpieza');
-                            } finally {
-                                setLoading(false);
-                            }
-                        }}
-                        className="flex items-center gap-2 px-6 py-3 bg-amber-600 text-white font-bold rounded-xl hover:bg-amber-700 transition-colors"
+                        onClick={handleDeduplicate}
+                        className="flex items-center justify-center gap-2 px-6 py-3 bg-white text-stone-600 font-bold rounded-2xl border border-stone-200 hover:bg-stone-50 transition-all"
                     >
-                        <Repeat className="w-5 h-5" />
-                        Limpiar Duplicados
+                        <Repeat size={18} />
+                        Limpiar Base
                     </button>
                     <button
                         onClick={exportToCSV}
-                        disabled={registrations.length === 0}
-                        className="flex items-center gap-2 px-6 py-3 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition-colors disabled:opacity-50"
+                        className="flex items-center justify-center gap-2 px-6 py-3 bg-emerald-500 text-white font-bold rounded-2xl hover:bg-emerald-600 transition-all shadow-lg shadow-emerald-500/10"
                     >
-                        <Download className="w-5 h-5" />
-                        Exportar CSV
+                        <Download size={18} />
+                        CSV
                     </button>
                 </div>
             </div>
 
-            {/* Quick Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-white p-6 rounded-3xl shadow-sm border border-stone-100 flex items-center gap-6">
-                    <div className="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center">
-                        <Users className="w-7 h-7 text-blue-600" />
+            {/* Quick Stats Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                {[
+                    { label: 'Total Inscritos', value: registrations.length, icon: Users, color: 'bg-blue-50 text-blue-600' },
+                    { label: 'Ciudades', value: new Set(registrations.map(r => r.city)).size, icon: MapPin, color: 'bg-orange-50 text-orange-600' },
+                    { label: 'Escaneados', value: registrations.filter(r => r.scanned).length, icon: CheckCircle2, color: 'bg-emerald-50 text-emerald-600' },
+                    { label: 'Últimas 24h', value: registrations.filter(r => new Date(r.createdAt) > new Date(Date.now() - 86400000)).length, icon: Calendar, color: 'bg-purple-50 text-purple-600' }
+                ].map((stat, idx) => (
+                    <div key={idx} className="bg-white p-6 rounded-[2rem] border border-stone-100 shadow-sm flex items-center gap-5">
+                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${stat.color}`}>
+                            <stat.icon size={24} />
+                        </div>
+                        <div>
+                            <p className="text-[10px] font-bold text-stone-400 uppercase tracking-widest">{stat.label}</p>
+                            <p className="text-2xl font-heading font-bold text-stone-900">{stat.value}</p>
+                        </div>
                     </div>
-                    <div>
-                        <p className="text-sm text-stone-500 font-medium">Total Inscritos</p>
-                        <p className="text-2xl font-bold text-[var(--color-primary)]">{registrations.length}</p>
-                    </div>
-                </div>
-                <div className="bg-white p-6 rounded-3xl shadow-sm border border-stone-100 flex items-center gap-6">
-                    <div className="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center">
-                        <MapPin className="w-7 h-7 text-orange-600" />
-                    </div>
-                    <div>
-                        <p className="text-sm text-stone-500 font-medium">Ciudades Impactadas</p>
-                        <p className="text-2xl font-bold text-[var(--color-primary)]">
-                            {new Set(registrations.map(r => r.city)).size}
-                        </p>
-                    </div>
-                </div>
-                <div className="bg-white p-6 rounded-3xl shadow-sm border border-stone-100 flex items-center gap-6">
-                    <div className="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center">
-                        <Phone className="w-7 h-7 text-purple-600" />
-                    </div>
-                    <div>
-                        <p className="text-sm text-stone-500 font-medium">Últimas 24h</p>
-                        <p className="text-2xl font-bold text-[var(--color-primary)]">
-                            {registrations.filter((r: Registration) => new Date(r.createdAt) > new Date(Date.now() - 86400000)).length}
-                        </p>
-                    </div>
-                </div>
+                ))}
             </div>
 
-            {/* Filters & Search */}
-            <div className="flex flex-col md:flex-row gap-4 bg-white p-6 rounded-3xl shadow-sm border border-stone-100">
-                <div className="flex-grow">
-                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-2 block">Buscador</label>
-                    <input
+            {/* Filters Bar */}
+            <div className="flex flex-col md:flex-row gap-4 bg-white p-4 rounded-[2rem] border border-stone-100 shadow-sm">
+                <div className="relative flex-grow">
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-300 w-5 h-5" />
+                    <input 
                         type="text"
                         placeholder="Buscar por nombre, email o WhatsApp..."
-                        className="w-full px-5 py-3 rounded-2xl border border-stone-100 bg-stone-50 text-stone-700 focus:ring-2 focus:ring-[#C1530A]/20 focus:border-[#C1530A] transition-all outline-none"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
+                        className="w-full pl-12 pr-4 py-3 rounded-xl border border-transparent bg-stone-50 focus:bg-white focus:border-[var(--color-primary)] transition-all outline-none text-stone-600"
                     />
                 </div>
-                <div className="md:w-48">
-                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-2 block">Ciudad</label>
+                <div className="flex gap-4">
                     <select
-                        className="w-full px-5 py-3 rounded-2xl border border-stone-100 bg-stone-50 text-stone-700 outline-none"
                         value={cityFilter}
                         onChange={(e) => setCityFilter(e.target.value)}
+                        className="px-6 py-3 rounded-xl border border-transparent bg-stone-50 focus:bg-white focus:border-[var(--color-primary)] transition-all outline-none text-stone-600 font-medium cursor-pointer"
                     >
-                        <option value="all">Todas las ciudades</option>
-                        {Array.from(new Set(registrations.map((r: Registration) => r.city))).sort().map((city: string) => (
+                        <option value="all">Todas las Ciudades</option>
+                        {Array.from(new Set(registrations.map(r => r.city))).sort().map(city => (
                             <option key={city} value={city}>{city}</option>
                         ))}
                     </select>
-                </div>
-                <div className="md:w-48">
-                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-2 block">Estado</label>
                     <select
-                        className="w-full px-5 py-3 rounded-2xl border border-stone-100 bg-stone-50 text-stone-700 outline-none"
                         value={statusFilter}
                         onChange={(e) => setStatusFilter(e.target.value)}
+                        className="px-6 py-3 rounded-xl border border-transparent bg-stone-50 focus:bg-white focus:border-[var(--color-primary)] transition-all outline-none text-stone-600 font-medium cursor-pointer"
                     >
-                        <option value="all">Cualquier estado</option>
+                        <option value="all">Estado QR</option>
                         <option value="scanned">Escaneados</option>
                         <option value="pending">Pendientes</option>
                     </select>
                 </div>
             </div>
 
-            {/* Registrations Table */}
-            <div className="bg-white rounded-3xl overflow-hidden shadow-sm border border-stone-100">
+            {/* Content Table */}
+            <div className="bg-white rounded-[2.5rem] overflow-hidden border border-stone-100 shadow-sm">
                 <div className="overflow-x-auto">
-                    <table className="w-full">
-                        <thead className="bg-stone-50 border-b border-stone-100">
-                            <tr>
-                                <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Nombre</th>
-                                <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">WhatsApp</th>
-                                <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Instagram</th>
-                                <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Ciudad</th>
-                                <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Email</th>
-                                <th className="text-left px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Fecha y Hora</th>
-                                <th className="text-center px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Estado</th>
-                                <th className="text-center px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-widest">Acciones</th>
+                    <table className="w-full text-left border-collapse">
+                        <thead>
+                            <tr className="border-b border-stone-100 bg-stone-50/50">
+                                <th className="px-8 py-5 text-xs font-bold text-stone-400 uppercase tracking-[0.2em]">Participante</th>
+                                <th className="px-8 py-5 text-xs font-bold text-stone-400 uppercase tracking-[0.2em]">Contacto</th>
+                                <th className="px-8 py-5 text-xs font-bold text-stone-400 uppercase tracking-[0.2em]">Ciudad</th>
+                                <th className="px-8 py-5 text-xs font-bold text-stone-400 uppercase tracking-[0.2em]">Registro</th>
+                                <th className="px-8 py-5 text-xs font-bold text-stone-400 uppercase tracking-[0.2em] text-center">Estado</th>
+                                <th className="px-8 py-5 text-xs font-bold text-stone-400 uppercase tracking-[0.2em] text-right">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-stone-100">
-                            {(() => {
-                                const filtered = registrations.filter((r: Registration) => {
-                                    const matchesSearch =
-                                        r.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                        r.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                        r.whatsapp.includes(searchTerm);
-
-                                    const matchesCity = cityFilter === 'all' || r.city === cityFilter;
-                                    const matchesStatus = statusFilter === 'all' ||
-                                        (statusFilter === 'scanned' ? r.scanned : !r.scanned);
-
-                                    return matchesSearch && matchesCity && matchesStatus;
-                                });
-
-                                if (filtered.length === 0) {
-                                    return (
-                                        <tr>
-                                            <td colSpan={7} className="px-6 py-20 text-center text-stone-400">
-                                                No se encontraron resultados que coincidan con los filtros.
-                                            </td>
-                                        </tr>
-                                    );
-                                }
-
-                                return filtered.map((r: Registration) => (
-                                    <tr key={r.id} className="hover:bg-stone-50 transition-colors">
-                                        <td className="px-6 py-4 font-bold text-[var(--color-primary)]">{r.name}</td>
-                                        <td className="px-6 py-4 text-stone-600">{r.whatsapp}</td>
-                                        <td className="px-6 py-4 text-stone-500 text-sm">{r.instagram || '-'}</td>
-                                        <td className="px-6 py-4">
-                                            <span className="px-3 py-1 bg-stone-100 rounded-full text-xs font-bold text-stone-600 uppercase tracking-wider line-clamp-1 max-w-[150px]">
+                        <tbody className="divide-y divide-stone-50">
+                            {filteredRegistrations.length === 0 ? (
+                                <tr>
+                                    <td colSpan={6} className="px-8 py-32 text-center text-stone-400 italic">No se encontraron inscripciones con estos criterios.</td>
+                                </tr>
+                            ) : (
+                                filteredRegistrations.map((r) => (
+                                    <tr key={r.id} className="group hover:bg-[#F9F8F6] transition-colors">
+                                        <td className="px-8 py-6">
+                                            <div className="flex items-center gap-4">
+                                                <div className={`w-11 h-11 rounded-2xl flex items-center justify-center font-bold text-lg transition-colors ${r.scanned ? 'bg-emerald-50 text-emerald-600' : 'bg-stone-100 text-stone-400'}`}>
+                                                    {r.name.charAt(0).toUpperCase()}
+                                                </div>
+                                                <div>
+                                                    <p className="font-bold text-stone-900">{r.name}</p>
+                                                    <p className="text-[10px] text-stone-400 font-bold uppercase tracking-widest">{r.id.slice(-6).toUpperCase()}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td className="px-8 py-6">
+                                            <div className="space-y-1">
+                                                <p className="text-sm font-medium text-stone-600 flex items-center gap-2"><Mail size={12} className="text-stone-300" /> {r.email}</p>
+                                                <p className="text-sm font-medium text-stone-600 flex items-center gap-2"><Phone size={12} className="text-stone-300" /> {r.whatsapp}</p>
+                                            </div>
+                                        </td>
+                                        <td className="px-8 py-6">
+                                            <span className="px-3 py-1 bg-white border border-stone-100 rounded-lg text-xs font-bold text-stone-600 uppercase tracking-widest">
                                                 {r.city}
                                             </span>
                                         </td>
-                                        <td className="px-6 py-4 text-stone-500 text-sm whitespace-nowrap">{r.email}</td>
-                                        <td className="px-6 py-4 text-stone-500 text-sm whitespace-nowrap">
-                                            {safeFormatDate(r.createdAt, "d MMM, yyyy - HH:mm", { locale: es })}
+                                        <td className="px-8 py-6">
+                                            <div className="text-xs text-stone-400 font-medium">
+                                                {safeFormatDate(r.createdAt, "d 'de' MMM, yyyy", { locale: es })}<br/>
+                                                {safeFormatDate(r.createdAt, "HH:mm 'hrs'", { locale: es })}
+                                            </div>
                                         </td>
-                                        <td className="px-6 py-4 text-center">
+                                        <td className="px-8 py-6 text-center">
                                             {r.scanned ? (
-                                                <div className="flex flex-col items-center gap-1 group relative">
-                                                    <CheckCircle2 className="w-6 h-6 text-green-500" />
-                                                    <span className="text-[10px] text-green-600 font-bold uppercase">Escaneado</span>
+                                                <div className="inline-flex flex-col items-center gap-1">
+                                                    <CheckCircle2 size={20} className="text-emerald-500" />
+                                                    <span className="text-[10px] font-bold text-emerald-600 uppercase">Validado</span>
                                                 </div>
                                             ) : (
-                                                <div className="flex flex-col items-center gap-1">
-                                                    <XCircle className="w-6 h-6 text-red-400 opacity-40" />
-                                                    <span className="text-[10px] text-stone-400 font-bold uppercase">Pendiente</span>
+                                                <div className="inline-flex flex-col items-center gap-1">
+                                                    <XCircle size={20} className="text-stone-300" />
+                                                    <span className="text-[10px] font-bold text-stone-400 uppercase">Pendiente</span>
                                                 </div>
                                             )}
                                         </td>
-                                        <td className="px-6 py-4">
-                                            <div className="flex items-center justify-center gap-2">
+                                        <td className="px-8 py-6 text-right">
+                                            <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                                 <button
                                                     onClick={() => setSelectedRegistration(r)}
-                                                    className="p-2 bg-stone-100 text-stone-600 rounded-lg hover:bg-stone-200 transition-colors"
-                                                    title="Ver Pase QR"
+                                                    className="p-2.5 text-stone-400 hover:text-[var(--color-primary)] hover:bg-white rounded-xl transition-all shadow-sm border border-transparent hover:border-stone-100"
+                                                    title="Ver Pase"
                                                 >
-                                                    <QrCode className="w-5 h-5" />
+                                                    <QrCode size={18} />
                                                 </button>
                                                 <button
                                                     onClick={() => setEditingRegistration(r)}
-                                                    className="p-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors"
+                                                    className="p-2.5 text-stone-400 hover:text-blue-500 hover:bg-white rounded-xl transition-all shadow-sm border border-transparent hover:border-blue-50"
                                                     title="Editar"
                                                 >
-                                                    <Pencil className="w-4 h-4" />
+                                                    <Pencil size={18} />
                                                 </button>
                                                 <button
                                                     onClick={() => handleDelete(r.id)}
-                                                    className="p-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors"
+                                                    className="p-2.5 text-stone-400 hover:text-rose-500 hover:bg-white rounded-xl transition-all shadow-sm border border-transparent hover:border-rose-50"
                                                     title="Eliminar"
                                                 >
-                                                    <Trash2 className="w-4 h-4" />
+                                                    <Trash2 size={18} />
                                                 </button>
                                             </div>
                                         </td>
                                     </tr>
-                                ));
-                            })()}
+                                ))
+                            )}
                         </tbody>
                     </table>
                 </div>
             </div>
 
             {/* Ticket Preview Modal */}
-            {
-                selectedRegistration && (
-                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-                        <div
-                            className="absolute inset-0 bg-[#2D2926]/80 backdrop-blur-sm"
-                            onClick={() => setSelectedRegistration(null)}
-                        />
-                        <div className="relative w-full max-w-lg bg-transparent animate-in zoom-in-95 duration-200">
-                            <button
-                                onClick={() => setSelectedRegistration(null)}
-                                className="absolute -top-12 right-0 p-2 text-white hover:text-[#B8835A] transition-colors"
-                            >
-                                <X className="w-8 h-8" />
-                            </button>
-                            <div className="scale-90 md:scale-100">
-                                <TicketQR
-                                    id={selectedRegistration.id}
-                                    name={selectedRegistration.name}
-                                    city={selectedRegistration.city}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                )
-            }
-            {/* QR Scanner Modal */}
-            {isScanning && (
-                <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
-                    <div
-                        className="absolute inset-0 bg-black/90 backdrop-blur-md"
-                        onClick={() => setIsScanning(false)}
-                    />
-                    <div className="relative w-full max-w-md bg-white rounded-[3rem] p-8 shadow-2xl">
-                        <button
-                            onClick={() => setIsScanning(false)}
-                            className="absolute top-6 right-6 p-2 text-stone-400 hover:text-stone-900 transition-colors"
-                        >
-                            <X className="w-6 h-6" />
+            {selectedRegistration && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                    <div className="absolute inset-0 bg-black/60 backdrop-blur-md" onClick={() => setSelectedRegistration(null)} />
+                    <div className="relative w-full max-w-lg bg-transparent animate-in zoom-in-95 duration-300">
+                        <button onClick={() => setSelectedRegistration(null)} className="absolute -top-14 right-0 p-3 text-white/50 hover:text-white">
+                            <X size={32} />
                         </button>
-
-                        <div className="text-center mb-8">
-                            <div className="w-16 h-16 bg-[#C1530A]/10 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-[#C1530A]/20">
-                                <Camera className="w-8 h-8 text-[#C1530A]" />
-                            </div>
-                            <h3 className="text-xl font-bold font-heading text-stone-900">Escanear Pase</h3>
-                            <p className="text-sm text-stone-500 mt-1">Coloca el código QR frente a la cámara</p>
-                        </div>
-
-                        <div id="qr-reader" className="overflow-hidden rounded-2xl border-2 border-dashed border-stone-200"></div>
-
-                        <p className="text-[10px] text-center mt-6 text-stone-400 font-bold uppercase tracking-widest">
-                            Control de Acceso • Venezuela en el Cuerpo
-                        </p>
+                        <TicketQR id={selectedRegistration.id} name={selectedRegistration.name} city={selectedRegistration.city} />
                     </div>
                 </div>
             )}
 
-            {/* Edit Registration Modal */}
+            {/* Scanner Modal */}
+            {isScanning && (
+                <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+                    <div className="absolute inset-0 bg-black/95 backdrop-blur-xl" onClick={() => setIsScanning(false)} />
+                    <div className="relative w-full max-w-md bg-white rounded-[3rem] p-10 shadow-2xl">
+                        <button onClick={() => setIsScanning(false)} className="absolute top-8 right-8 text-stone-400 hover:text-stone-900">
+                            <X size={24} />
+                        </button>
+                        <div className="text-center mb-10">
+                            <div className="w-20 h-20 bg-[var(--color-primary)] text-white rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-xl shadow-primary/20">
+                                <Camera size={32} />
+                            </div>
+                            <h3 className="text-2xl font-heading font-bold text-stone-900">Validación de Pases</h3>
+                            <p className="text-stone-500 mt-2">Apunta al código QR para registrar la entrada</p>
+                        </div>
+                        <div id="qr-reader" className="overflow-hidden rounded-[2rem] border-2 border-stone-100 shadow-inner"></div>
+                        <p className="text-[10px] text-center mt-10 text-stone-300 font-bold uppercase tracking-[0.3em]">Sistema de Control • VEC 2024</p>
+                    </div>
+                </div>
+            )}
+
+            {/* Edit Modal */}
             {editingRegistration && (
                 <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
-                    <div
-                        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-                        onClick={() => setEditingRegistration(null)}
-                    />
-                    <div className="relative w-full max-w-md bg-white rounded-[2rem] p-8 shadow-2xl animate-in zoom-in-95 duration-200">
-                        <button
-                            onClick={() => setEditingRegistration(null)}
-                            className="absolute top-6 right-6 p-2 text-stone-400 hover:text-stone-900 transition-colors"
-                        >
-                            <X className="w-6 h-6" />
+                    <div className="absolute inset-0 bg-black/60 backdrop-blur-md" onClick={() => setEditingRegistration(null)} />
+                    <div className="relative w-full max-w-lg bg-[#FAF9F6] rounded-[2.5rem] p-10 shadow-2xl border border-white">
+                        <button onClick={() => setEditingRegistration(null)} className="absolute top-8 right-8 text-stone-400 hover:text-stone-900">
+                            <X size={24} />
                         </button>
 
-                        <div className="text-center mb-8">
-                            <h3 className="text-xl font-bold font-heading text-stone-900">Editar Registro</h3>
-                            <p className="text-sm text-stone-500 mt-1">Actualiza la información del participante</p>
+                        <div className="mb-10">
+                            <h3 className="text-2xl font-heading font-bold text-[var(--color-primary)]">Refinar Participante</h3>
+                            <p className="text-stone-500 mt-1">Ajusta los detalles de la inscripción.</p>
                         </div>
 
-                        <form onSubmit={handleUpdate} className="space-y-4">
-                            <div>
-                                <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-1 block">Nombre Completo</label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    defaultValue={editingRegistration.name}
-                                    className="w-full px-5 py-3 rounded-2xl border border-stone-100 bg-stone-50 text-stone-700 outline-none"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-1 block">Correo Electrónico</label>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    defaultValue={editingRegistration.email}
-                                    className="w-full px-5 py-3 rounded-2xl border border-stone-100 bg-stone-50 text-stone-700 outline-none"
-                                    required
-                                />
-                            </div>
-                            <div className="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-1 block">WhatsApp</label>
-                                    <input
-                                        type="text"
-                                        name="whatsapp"
-                                        defaultValue={editingRegistration.whatsapp}
-                                        className="w-full px-5 py-3 rounded-2xl border border-stone-100 bg-stone-50 text-stone-700 outline-none"
-                                        required
-                                    />
+                        <form onSubmit={handleUpdate} className="space-y-6">
+                            <div className="grid md:grid-cols-2 gap-6">
+                                <div className="space-y-1">
+                                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest px-1">Nombre</label>
+                                    <input type="text" name="name" defaultValue={editingRegistration.name} className="w-full px-6 py-4 rounded-2xl border border-stone-200 bg-white font-bold outline-none focus:border-[var(--color-primary)] transition-all" required />
                                 </div>
-                                <div>
-                                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-1 block">Ciudad</label>
-                                    <input
-                                        type="text"
-                                        name="city"
-                                        defaultValue={editingRegistration.city}
-                                        className="w-full px-5 py-3 rounded-2xl border border-stone-100 bg-stone-50 text-stone-700 outline-none"
-                                        required
-                                    />
+                                <div className="space-y-1">
+                                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest px-1">Ciudad</label>
+                                    <input type="text" name="city" defaultValue={editingRegistration.city} className="w-full px-6 py-4 rounded-2xl border border-stone-200 bg-white font-bold outline-none focus:border-[var(--color-primary)] transition-all" required />
                                 </div>
                             </div>
-                            <div>
-                                <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-1 block">Instagram</label>
-                                <input
-                                    type="text"
-                                    name="instagram"
-                                    defaultValue={editingRegistration.instagram}
-                                    className="w-full px-5 py-3 rounded-2xl border border-stone-100 bg-stone-50 text-stone-700 outline-none"
-                                    placeholder="@usuario"
-                                />
+                            <div className="space-y-1">
+                                <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest px-1">Email</label>
+                                <input type="email" name="email" defaultValue={editingRegistration.email} className="w-full px-6 py-4 rounded-2xl border border-stone-200 bg-white font-medium outline-none focus:border-[var(--color-primary)] transition-all" required />
                             </div>
-                            <div className="pt-4 flex flex-col gap-3">
-                                <button
-                                    type="button"
-                                    onClick={handleResetQR}
-                                    disabled={isSubmitting}
-                                    className={`w-full py-3 font-bold rounded-xl transition-colors flex items-center justify-center gap-2 border ${editingRegistration.scanned
-                                            ? "bg-orange-50 text-orange-600 border-orange-100 hover:bg-orange-100"
-                                            : "bg-stone-50 text-stone-400 border-stone-100 cursor-not-allowed opacity-60"
-                                        }`}
-                                >
-                                    <Repeat className="w-4 h-4" />
-                                    {editingRegistration.scanned ? "Reiniciar QR (Volver a pendiente)" : "QR ya está en pendiente"}
-                                </button>
-                                <div className="flex gap-3">
-                                    <button
-                                        type="button"
-                                        onClick={() => setEditingRegistration(null)}
-                                        className="flex-1 py-3 bg-stone-100 text-stone-600 font-bold rounded-xl hover:bg-stone-200 transition-colors"
-                                    >
-                                        Cancelar
+                            <div className="grid md:grid-cols-2 gap-6">
+                                <div className="space-y-1">
+                                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest px-1">WhatsApp</label>
+                                    <input type="text" name="whatsapp" defaultValue={editingRegistration.whatsapp} className="w-full px-6 py-4 rounded-2xl border border-stone-200 bg-white font-medium outline-none focus:border-[var(--color-primary)] transition-all" required />
+                                </div>
+                                <div className="space-y-1">
+                                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest px-1">Instagram</label>
+                                    <input type="text" name="instagram" defaultValue={editingRegistration.instagram} className="w-full px-6 py-4 rounded-2xl border border-stone-200 bg-white font-medium outline-none focus:border-[var(--color-primary)] transition-all" />
+                                </div>
+                            </div>
+
+                            <div className="pt-6 flex flex-col gap-4">
+                                {editingRegistration.scanned && (
+                                    <button type="button" onClick={handleResetQR} className="w-full py-4 bg-orange-50 text-orange-600 font-bold rounded-2xl border border-orange-100 hover:bg-orange-100 transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-widest">
+                                        <Repeat size={16} /> Reiniciar Estado QR
                                     </button>
-                                    <button
-                                        type="submit"
-                                        disabled={isSubmitting}
-                                        className="flex-1 py-3 bg-[#C1530A] text-white font-bold rounded-xl hover:bg-[#A84A2F] transition-colors disabled:opacity-50 flex items-center justify-center"
-                                    >
-                                        {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Guardar Cambios'}
+                                )}
+                                <div className="flex gap-4">
+                                    <button type="button" onClick={() => setEditingRegistration(null)} className="flex-1 py-4 bg-white text-stone-500 font-bold rounded-2xl border border-stone-200 hover:bg-stone-50 transition-all text-xs uppercase tracking-widest">Descartar</button>
+                                    <button type="submit" disabled={isSubmitting} className="flex-1 py-4 bg-[var(--color-primary)] text-white font-bold rounded-2xl shadow-xl shadow-primary/20 hover:bg-[var(--color-primary-light)] transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-widest">
+                                        {isSubmitting ? <Loader2 size={16} className="animate-spin" /> : <Check size={16} />} Sincronizar
                                     </button>
                                 </div>
                             </div>

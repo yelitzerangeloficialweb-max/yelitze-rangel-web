@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Plus, Pencil, Trash2, FileText, Loader2, ExternalLink, Image as ImageIcon } from 'lucide-react';
+import { Plus, Pencil, Trash2, FileText, Loader2, ExternalLink, Image as ImageIcon, Search, Layout, Tag, Calendar, User, MoreVertical, X, Check } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -24,6 +24,7 @@ export default function AdminBlogPage() {
     const [showForm, setShowForm] = useState(false);
     const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
     const [saving, setSaving] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
     
     const [formData, setFormData] = useState({
         title: '',
@@ -124,276 +125,277 @@ export default function AdminBlogPage() {
         });
     };
 
+    const filteredPosts = posts.filter(post => 
+        post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        post.category.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     if (loading) {
         return (
-            <div className="flex items-center justify-center py-20">
-                <Loader2 className="w-8 h-8 animate-spin text-[var(--color-secondary)]" />
+            <div className="flex items-center justify-center py-40">
+                <Loader2 className="w-10 h-10 animate-spin text-[var(--color-primary)]" />
             </div>
         );
     }
 
     return (
-        <div className="space-y-8 pb-20">
-            {/* Header */}
-            <div className="flex items-center justify-between">
+        <div className="space-y-8 pb-20 animate-fade-in">
+            {/* Header Area */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div>
-                    <h1 className="text-3xl font-heading text-[var(--color-primary)] font-bold">
-                        Gestión del Blog
+                    <h1 className="text-4xl font-heading font-bold text-[var(--color-primary)] mb-2">
+                        Escritos y Crónicas
                     </h1>
-                    <p className="text-stone-500">{posts.length} artículos publicados en total</p>
+                    <p className="text-stone-500 font-medium italic">
+                        Plataforma de narrativa editorial para conectar con tu audiencia.
+                    </p>
                 </div>
                 <button
                     onClick={() => setShowForm(true)}
-                    className="flex items-center gap-2 px-6 py-3 bg-[var(--color-primary)] text-white font-bold rounded-xl hover:bg-[var(--color-primary-light)] transition-colors shadow-lg"
+                    className="flex items-center justify-center gap-2 px-8 py-4 bg-[var(--color-primary)] text-white font-bold rounded-2xl hover:bg-[var(--color-primary-light)] transition-all shadow-lg shadow-primary/20 hover:-translate-y-0.5"
                 >
                     <Plus className="w-5 h-5" />
-                    Nuevo Artículo
+                    Publicar Crónica
                 </button>
             </div>
 
-            {/* Articles Table */}
-            {posts.length === 0 ? (
-                <div className="bg-white rounded-3xl p-16 text-center shadow-sm">
-                    <FileText className="w-16 h-16 text-stone-200 mx-auto mb-4" />
-                    <h2 className="text-xl font-heading text-[var(--color-primary)] mb-2">No hay artículos</h2>
-                    <p className="text-stone-500 mb-6">Empieza a escribir tu primera crónica del alma</p>
-                    <button
-                        onClick={() => setShowForm(true)}
-                        className="px-6 py-3 bg-[var(--color-primary)] text-white font-bold rounded-xl hover:bg-[var(--color-primary-light)] transition-colors"
-                    >
-                        Crear Artículo
+            {/* Content Stats & Search */}
+            <div className="flex flex-col md:flex-row gap-4 items-center bg-white p-4 rounded-[2.5rem] border border-stone-100 shadow-sm">
+                <div className="relative flex-grow w-full">
+                    <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-stone-300 w-5 h-5" />
+                    <input 
+                        type="text"
+                        placeholder="Buscar por título, categoría o concepto..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="w-full pl-14 pr-6 py-4 rounded-[1.5rem] border border-transparent bg-stone-50 focus:bg-white focus:border-[var(--color-primary)] transition-all outline-none text-stone-600 font-medium"
+                    />
+                </div>
+                <div className="flex items-center gap-2 px-6 py-4 bg-stone-50 rounded-[1.5rem] border border-stone-100 min-w-[200px] justify-center">
+                    <Layout className="w-4 h-4 text-stone-400" />
+                    <span className="text-xs font-bold text-stone-500 uppercase tracking-widest">{posts.length} Artículos</span>
+                </div>
+            </div>
+
+            {/* Articles List */}
+            {filteredPosts.length === 0 ? (
+                <div className="bg-white rounded-[3rem] py-40 text-center border border-stone-100 shadow-sm">
+                    <div className="w-24 h-24 bg-stone-50 rounded-full flex items-center justify-center mx-auto mb-8">
+                        <FileText className="w-10 h-10 text-stone-200" />
+                    </div>
+                    <h2 className="text-3xl font-heading text-stone-300 font-bold mb-4">No se encontraron artículos</h2>
+                    <p className="text-stone-400 max-w-md mx-auto italic mb-8">
+                        Tu biblioteca editorial está lista para recibir nuevas historias. Empieza a escribir hoy mismo.
+                    </p>
+                    <button onClick={() => setShowForm(true)} className="px-8 py-4 bg-stone-100 text-stone-600 font-bold rounded-2xl hover:bg-stone-200 transition-all text-xs uppercase tracking-[0.2em]">
+                        Comenzar Escritura
                     </button>
                 </div>
             ) : (
-                <div className="bg-white rounded-3xl overflow-hidden shadow-sm border border-stone-100">
-                    <div className="overflow-x-auto">
-                        <table className="w-full">
-                            <thead className="bg-stone-50 border-b border-stone-100 text-left">
-                                <tr>
-                                    <th className="px-6 py-4 text-sm font-medium text-stone-500 font-bold uppercase tracking-wider">Artículo</th>
-                                    <th className="px-6 py-4 text-sm font-medium text-stone-500 font-bold uppercase tracking-wider">Categoría</th>
-                                    <th className="px-6 py-4 text-sm font-medium text-stone-500 font-bold uppercase tracking-wider">Fecha</th>
-                                    <th className="px-6 py-4 text-sm font-medium text-stone-500 font-bold uppercase tracking-wider text-right">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-stone-100">
-                                {posts.map(post => (
-                                    <tr key={post.id} className="hover:bg-stone-50 transition-colors">
-                                        <td className="px-6 py-4">
-                                            <div className="flex items-center gap-4">
-                                                <div className="relative w-16 h-16 rounded-xl overflow-hidden bg-stone-100 flex-shrink-0 border border-stone-200 shadow-sm">
-                                                    {post.image && (
-                                                        <Image
-                                                            src={post.image}
-                                                            alt={post.title}
-                                                            fill
-                                                            className="object-cover"
-                                                            unoptimized
-                                                        />
-                                                    )}
-                                                </div>
-                                                <div className="max-w-md">
-                                                    <p className="font-bold text-[var(--color-primary)] line-clamp-1">{post.title}</p>
-                                                    <p className="text-xs text-stone-400 font-mono">/{post.slug}</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            <span className="px-3 py-1 rounded-full bg-stone-100 text-[10px] font-bold uppercase tracking-widest text-stone-600">
-                                                {post.category}
-                                            </span>
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            <div className="text-sm text-stone-500">
-                                                {post.date}
-                                            </div>
-                                        </td>
-                                        <td className="px-6 py-4 text-right">
-                                            <div className="flex items-center justify-end gap-2">
-                                                <Link 
-                                                    href={`/blog/${post.slug}`} 
-                                                    target="_blank"
-                                                    className="p-2 text-stone-400 hover:text-[var(--color-secondary)] hover:bg-stone-100 rounded-lg transition-colors"
-                                                    title="Ver en el sitio"
-                                                >
-                                                    <ExternalLink className="w-4 h-4" />
-                                                </Link>
-                                                <button
-                                                    onClick={() => handleEdit(post)}
-                                                    className="p-2 text-stone-400 hover:text-[var(--color-secondary)] hover:bg-stone-100 rounded-lg transition-colors"
-                                                    title="Editar"
-                                                >
-                                                    <Pencil className="w-4 h-4" />
-                                                </button>
-                                                <button
-                                                    onClick={() => handleDelete(post.id)}
-                                                    className="p-2 text-stone-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
-                                                    title="Eliminar"
-                                                >
-                                                    <Trash2 className="w-4 h-4" />
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+                <div className="grid grid-cols-1 gap-4">
+                    {filteredPosts.map(post => (
+                        <div key={post.id} className="group bg-white rounded-[2rem] p-4 border border-stone-100 hover:border-[var(--color-primary)] transition-all hover:shadow-xl hover:shadow-primary/5">
+                            <div className="flex flex-col md:flex-row items-center gap-6">
+                                {/* Thumbnail */}
+                                <div className="relative w-full md:w-48 h-48 md:h-32 rounded-[1.5rem] overflow-hidden bg-stone-100 flex-shrink-0">
+                                    {post.image ? (
+                                        <Image src={post.image} alt={post.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" unoptimized />
+                                    ) : (
+                                        <div className="w-full h-full flex items-center justify-center text-stone-300">
+                                            <ImageIcon size={32} />
+                                        </div>
+                                    )}
+                                    <div className="absolute top-3 left-3 px-3 py-1 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-bold text-[var(--color-primary)] uppercase tracking-widest shadow-sm">
+                                        {post.category}
+                                    </div>
+                                </div>
+
+                                {/* Info */}
+                                <div className="flex-grow space-y-2 text-center md:text-left">
+                                    <h3 className="text-xl font-heading font-bold text-stone-900 line-clamp-1 group-hover:text-[var(--color-primary)] transition-colors">
+                                        {post.title}
+                                    </h3>
+                                    <p className="text-stone-400 text-sm line-clamp-2 italic font-medium leading-relaxed max-w-2xl">
+                                        {post.excerpt}
+                                    </p>
+                                    <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-2">
+                                        <div className="flex items-center gap-1.5 text-[10px] font-bold text-stone-400 uppercase tracking-widest">
+                                            <Calendar size={12} className="text-stone-300" />
+                                            {post.date}
+                                        </div>
+                                        <div className="flex items-center gap-1.5 text-[10px] font-bold text-stone-400 uppercase tracking-widest">
+                                            <User size={12} className="text-stone-300" />
+                                            {post.author}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Actions */}
+                                <div className="flex md:flex-col gap-2 pt-4 md:pt-0 border-t md:border-t-0 md:border-l border-stone-100 pl-0 md:pl-6 w-full md:w-auto justify-center">
+                                    <Link href={`/blog/${post.slug}`} target="_blank" className="p-3 text-stone-400 hover:text-[var(--color-primary)] hover:bg-stone-50 rounded-xl transition-all" title="Ver en Web">
+                                        <ExternalLink size={18} />
+                                    </Link>
+                                    <button onClick={() => handleEdit(post)} className="p-3 text-stone-400 hover:text-blue-500 hover:bg-blue-50 rounded-xl transition-all" title="Editar">
+                                        <Pencil size={18} />
+                                    </button>
+                                    <button onClick={() => handleDelete(post.id)} className="p-3 text-stone-400 hover:text-rose-500 hover:bg-rose-50 rounded-xl transition-all" title="Eliminar">
+                                        <Trash2 size={18} />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             )}
 
             {/* Form Modal */}
             {showForm && (
-                <div className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-4">
-                    <div className="bg-[#FAF9F6] rounded-[2.5rem] max-w-5xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl border border-white/20">
-                        {/* Modal Header */}
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-300">
+                    <div className="relative w-full max-w-6xl bg-[#FAF9F6] rounded-[3rem] overflow-hidden shadow-2xl flex flex-col max-h-[90vh] animate-in zoom-in-95 duration-300">
+                        {/* Header */}
                         <div className="p-8 border-b border-stone-200 bg-white flex items-center justify-between">
-                            <div>
-                                <h2 className="text-3xl font-heading text-[var(--color-primary)] font-bold">
-                                    {editingPost ? 'Refinar Crónica' : 'Nueva Crónica del Alma'}
-                                </h2>
-                                <p className="text-stone-500 text-sm">Define la narrativa y la esencia visual de tu contenido.</p>
+                            <div className="flex items-center gap-6">
+                                <div className="w-14 h-14 bg-[var(--color-primary)] text-white rounded-2xl flex items-center justify-center shadow-lg shadow-primary/20">
+                                    <FileText size={28} />
+                                </div>
+                                <div>
+                                    <h2 className="text-3xl font-heading font-bold text-[var(--color-primary)]">
+                                        {editingPost ? 'Refinar Narrativa' : 'Nueva Crónica'}
+                                    </h2>
+                                    <p className="text-stone-500 font-medium italic">Define la esencia visual y narrativa de tu próximo escrito.</p>
+                                </div>
                             </div>
-                            <button onClick={resetForm} className="text-stone-400 hover:text-stone-600">
-                                <Plus className="w-8 h-8 rotate-45" />
+                            <button onClick={resetForm} className="p-4 text-stone-400 hover:text-stone-900 transition-colors">
+                                <X size={32} />
                             </button>
                         </div>
-                        
-                        {/* Modal Body */}
-                        <form onSubmit={handleSubmit} className="flex-grow overflow-y-auto p-8 space-y-8">
-                            <div className="grid lg:grid-cols-2 gap-8">
-                                {/* Left Side: Basics */}
-                                <div className="space-y-6">
-                                    <div>
-                                        <label className="block text-xs font-bold text-stone-700 uppercase tracking-widest mb-2">Título del Artículo</label>
-                                        <input
-                                            type="text"
-                                            required
-                                            value={formData.title}
-                                            onChange={e => {
-                                                const title = e.target.value;
-                                                const slug = title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-                                                setFormData({ ...formData, title, slug: editingPost ? formData.slug : slug });
-                                            }}
-                                            className="w-full px-6 py-4 rounded-2xl border border-stone-200 focus:outline-none focus:border-[var(--color-secondary)] bg-white text-lg font-heading"
-                                            placeholder="Título inspirador..."
-                                        />
-                                    </div>
 
-                                    <div>
-                                        <label className="block text-xs font-bold text-stone-700 uppercase tracking-widest mb-2">Slug (URL)</label>
-                                        <div className="flex items-center gap-2">
-                                            <span className="text-stone-400 text-sm">/blog/</span>
-                                            <input
-                                                type="text"
-                                                required
-                                                value={formData.slug}
-                                                onChange={e => setFormData({ ...formData, slug: e.target.value })}
-                                                className="flex-grow px-4 py-2 rounded-xl border border-stone-200 focus:outline-none focus:border-[var(--color-secondary)] bg-white text-sm font-mono"
+                        {/* Body */}
+                        <form onSubmit={handleSubmit} id="blog-form" className="flex-grow overflow-y-auto p-10">
+                            <div className="grid lg:grid-cols-3 gap-10">
+                                {/* Left: Metadata */}
+                                <div className="lg:col-span-1 space-y-8">
+                                    <div className="space-y-6 bg-white p-8 rounded-[2rem] border border-stone-200 shadow-sm">
+                                        <div className="space-y-1">
+                                            <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest px-1">Título Editorial</label>
+                                            <input 
+                                                type="text" 
+                                                required 
+                                                value={formData.title}
+                                                onChange={e => {
+                                                    const title = e.target.value;
+                                                    const slug = title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                                                    setFormData({ ...formData, title, slug: editingPost ? formData.slug : slug });
+                                                }}
+                                                className="w-full px-6 py-4 rounded-2xl border border-stone-200 bg-stone-50 focus:bg-white focus:border-[var(--color-primary)] transition-all font-bold text-stone-900 outline-none"
+                                                placeholder="Ej. El Despertar del Alma"
                                             />
+                                        </div>
+                                        <div className="space-y-1">
+                                            <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest px-1">Slug (Identificador URL)</label>
+                                            <div className="flex items-center gap-2 px-4 py-3 bg-stone-100 rounded-xl border border-stone-200">
+                                                <span className="text-stone-400 text-xs font-mono">/blog/</span>
+                                                <input 
+                                                    type="text" 
+                                                    required 
+                                                    value={formData.slug}
+                                                    onChange={e => setFormData({ ...formData, slug: e.target.value })}
+                                                    className="flex-grow bg-transparent text-xs font-mono font-bold text-[var(--color-primary)] outline-none"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <div className="space-y-1">
+                                                <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest px-1">Categoría</label>
+                                                <input 
+                                                    type="text" 
+                                                    required 
+                                                    value={formData.category}
+                                                    onChange={e => setFormData({ ...formData, category: e.target.value })}
+                                                    className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-stone-50 outline-none focus:border-[var(--color-primary)] text-sm font-bold"
+                                                    placeholder="Bienestar"
+                                                />
+                                            </div>
+                                            <div className="space-y-1">
+                                                <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest px-1">Fecha de Publicación</label>
+                                                <input 
+                                                    type="text" 
+                                                    required 
+                                                    value={formData.date}
+                                                    onChange={e => setFormData({ ...formData, date: e.target.value })}
+                                                    className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-stone-50 outline-none focus:border-[var(--color-primary)] text-sm font-bold"
+                                                    placeholder="20 Abr, 2026"
+                                                />
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <label className="block text-xs font-bold text-stone-700 uppercase tracking-widest mb-2">Categoría</label>
-                                            <input
-                                                type="text"
-                                                required
-                                                value={formData.category}
-                                                onChange={e => setFormData({ ...formData, category: e.target.value })}
-                                                className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:outline-none focus:border-[var(--color-secondary)] bg-white"
-                                                placeholder="Ej. Bienestar, Ritual..."
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="block text-xs font-bold text-stone-700 uppercase tracking-widest mb-2">Fecha Display</label>
-                                            <input
-                                                type="text"
-                                                required
-                                                value={formData.date}
-                                                onChange={e => setFormData({ ...formData, date: e.target.value })}
-                                                className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:outline-none focus:border-[var(--color-secondary)] bg-white"
-                                                placeholder="Ej. 19 de Abril, 2026"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label className="block text-xs font-bold text-stone-700 uppercase tracking-widest mb-2">Resumen (Excerpt)</label>
-                                        <textarea
-                                            required
-                                            rows={3}
-                                            value={formData.excerpt}
-                                            onChange={e => setFormData({ ...formData, excerpt: e.target.value })}
-                                            className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:outline-none focus:border-[var(--color-secondary)] bg-white italic"
-                                            placeholder="Breve introducción que atrapa al lector..."
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <label className="block text-xs font-bold text-stone-700 uppercase tracking-widest mb-2">Ruta de Imagen (4K)</label>
-                                        <div className="flex gap-2 mb-2">
-                                            <input
-                                                type="text"
-                                                required
+                                    <div className="space-y-6 bg-white p-8 rounded-[2rem] border border-stone-200 shadow-sm">
+                                        <div className="space-y-1">
+                                            <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest px-1">Imagen de Portada (URL)</label>
+                                            <input 
+                                                type="text" 
+                                                required 
                                                 value={formData.image}
                                                 onChange={e => setFormData({ ...formData, image: e.target.value })}
-                                                className="flex-grow px-4 py-3 rounded-xl border border-stone-200 focus:outline-none focus:border-[var(--color-secondary)] bg-white font-mono text-sm"
-                                                placeholder="/images/blog_portraits/nombre-imagen.jpg"
+                                                className="w-full px-6 py-4 rounded-2xl border border-stone-200 bg-stone-50 outline-none focus:border-[var(--color-primary)] text-xs font-mono"
+                                                placeholder="/images/blog/portada.jpg"
                                             />
                                         </div>
-                                        <div className="p-4 bg-stone-100 rounded-2xl flex items-center gap-4">
-                                            <div className="w-20 h-20 relative rounded-xl overflow-hidden bg-stone-200 border border-stone-300">
-                                                {formData.image && (
-                                                    <Image src={formData.image} alt="Preview" fill className="object-cover" unoptimized />
-                                                )}
-                                                {!formData.image && <ImageIcon className="w-8 h-8 text-stone-400 absolute inset-0 m-auto" />}
-                                            </div>
-                                            <div className="text-[10px] text-stone-500 uppercase tracking-widest">
-                                                <p className="font-bold text-stone-700 mb-1">Vista Previa de Portada</p>
-                                                <p>Usa imágenes optimizadas en 4K para mantener el estándar premium.</p>
-                                            </div>
+                                        <div className="relative w-full h-40 rounded-2xl overflow-hidden bg-stone-100 border border-stone-200 flex items-center justify-center">
+                                            {formData.image ? (
+                                                <Image src={formData.image} alt="Preview" fill className="object-cover" unoptimized />
+                                            ) : (
+                                                <ImageIcon size={32} className="text-stone-300" />
+                                            )}
                                         </div>
                                     </div>
                                 </div>
 
-                                {/* Right Side: Content Area */}
-                                <div className="flex flex-col h-full space-y-4">
-                                    <label className="block text-xs font-bold text-stone-700 uppercase tracking-widest">Contenido del Artículo (HTML)</label>
-                                    <div className="flex-grow min-h-[400px] flex flex-col">
-                                        <textarea
-                                            required
-                                            value={formData.content}
-                                            onChange={e => setFormData({ ...formData, content: e.target.value })}
-                                            className="w-full flex-grow p-6 rounded-2xl border border-stone-200 focus:outline-none focus:border-[var(--color-secondary)] bg-white font-mono text-sm leading-relaxed"
-                                            placeholder="Introduce el cuerpo del artículo con etiquetas HTML para dar formato..."
-                                        />
-                                    </div>
-                                    <div className="p-4 bg-amber-50 rounded-xl border border-amber-100 italic text-[10px] text-amber-700">
-                                        🌟 Tip: Puedes usar <code className="bg-amber-100 px-1 rounded">&lt;h3&gt;</code> para subtítulos y 
-                                        <code className="bg-amber-100 px-1 rounded">class="text-[var(--color-primary)] font-heading"</code> para estilo premium.
+                                {/* Right: Content */}
+                                <div className="lg:col-span-2 space-y-8">
+                                    <div className="space-y-6 bg-white p-8 rounded-[2rem] border border-stone-200 shadow-sm h-full flex flex-col">
+                                        <div className="space-y-1">
+                                            <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest px-1">Resumen Cautivador (Excerpt)</label>
+                                            <textarea 
+                                                rows={2}
+                                                required
+                                                value={formData.excerpt}
+                                                onChange={e => setFormData({ ...formData, excerpt: e.target.value })}
+                                                className="w-full px-6 py-4 rounded-2xl border border-stone-200 bg-stone-50 focus:bg-white outline-none focus:border-[var(--color-primary)] italic font-medium text-stone-600"
+                                                placeholder="Una breve introducción que invite a seguir leyendo..."
+                                            />
+                                        </div>
+                                        <div className="space-y-1 flex-grow flex flex-col">
+                                            <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest px-1">Cuerpo del Artículo (HTML Soportado)</label>
+                                            <textarea 
+                                                required
+                                                value={formData.content}
+                                                onChange={e => setFormData({ ...formData, content: e.target.value })}
+                                                className="w-full flex-grow px-6 py-6 rounded-2xl border border-stone-200 bg-stone-50 focus:bg-white outline-none focus:border-[var(--color-primary)] font-mono text-sm leading-relaxed"
+                                                placeholder="Escribe aquí tu historia..."
+                                            />
+                                        </div>
+                                        <div className="p-4 bg-amber-50 rounded-xl border border-amber-100 text-[10px] text-amber-700 font-bold uppercase tracking-widest flex items-center gap-2">
+                                            <Layout size={14} /> Puedes usar etiquetas HTML para dar formato premium a tus textos.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </form>
 
-                        {/* Modal Footer */}
-                        <div className="p-8 border-t border-stone-200 bg-white flex gap-4">
-                            <button
-                                type="button"
-                                onClick={resetForm}
-                                className="px-8 py-4 border-2 border-stone-200 text-stone-600 font-bold rounded-2xl hover:bg-stone-50 transition-colors uppercase tracking-widest text-xs"
-                            >
-                                Descartar Cambios
+                        {/* Footer */}
+                        <div className="p-8 border-t border-stone-200 bg-white flex gap-6">
+                            <button onClick={resetForm} className="px-10 py-5 bg-white text-stone-500 font-bold rounded-2xl border border-stone-200 hover:bg-stone-50 transition-all text-xs uppercase tracking-widest">
+                                Descartar
                             </button>
-                            <button
+                            <button 
                                 onClick={handleSubmit}
                                 disabled={saving}
-                                className="flex-1 py-4 bg-[var(--color-primary)] text-white font-bold rounded-2xl hover:bg-[var(--color-secondary)] transition-all disabled:opacity-50 flex items-center justify-center gap-3 uppercase tracking-[0.2em] text-xs shadow-xl"
+                                className="flex-1 py-5 bg-[var(--color-primary)] text-white font-bold rounded-2xl shadow-2xl shadow-primary/30 hover:bg-[var(--color-primary-light)] transition-all flex items-center justify-center gap-3 text-xs uppercase tracking-[0.3em]"
                             >
-                                {saving && <Loader2 className="w-5 h-5 animate-spin" />}
-                                {editingPost ? 'Sincronizar Crónica' : 'Publicar Crónica'}
+                                {saving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Check size={18} />}
+                                {editingPost ? 'Sincronizar Cambios' : 'Publicar Crónica'}
                             </button>
                         </div>
                     </div>

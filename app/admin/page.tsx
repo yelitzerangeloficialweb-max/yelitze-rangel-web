@@ -1,377 +1,212 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Plus, Pencil, Trash2, Package, Loader2 } from 'lucide-react';
-import Image from 'next/image';
+import { 
+    Users, 
+    ShoppingBag, 
+    Package, 
+    FileText, 
+    TrendingUp, 
+    Clock, 
+    ArrowRight,
+    Loader2,
+    Calendar,
+    ClipboardList
+} from 'lucide-react';
+import Link from 'next/link';
 
-interface Product {
-    id: string;
-    name: string;
-    subtitle?: string;
-    description: string;
-    price: number;
-    image: string;
-    category: string;
-    stock: number;
-    featured: boolean;
-    active: boolean;
+interface Stats {
+    counts: {
+        products: number;
+        orders: number;
+        workshop: number;
+        venezuela: number;
+        blog: number;
+        tests: number;
+    };
+    recent: {
+        workshop: { name: string; createdAt: string }[];
+        orders: { customerName: string; total: number; createdAt: string }[];
+    };
 }
 
-const CATEGORY_LABELS: Record<string, string> = {
-    libro: 'Libro',
-    oraculo: 'Oráculo',
-    accesorio: 'Accesorio'
-};
-
-export default function AdminProductsPage() {
-    const [products, setProducts] = useState<Product[]>([]);
+export default function AdminDashboard() {
+    const [stats, setStats] = useState<Stats | null>(null);
     const [loading, setLoading] = useState(true);
-    const [showForm, setShowForm] = useState(false);
-    const [editingProduct, setEditingProduct] = useState<Product | null>(null);
-    const [formData, setFormData] = useState({
-        name: '',
-        subtitle: '',
-        description: '',
-        price: '',
-        image: '',
-        category: 'libro',
-        stock: '10',
-        featured: false,
-        active: true
-    });
-    const [saving, setSaving] = useState(false);
 
     useEffect(() => {
-        fetchProducts();
-    }, []);
-
-    const fetchProducts = async () => {
-        try {
-            const res = await fetch('/api/admin/products');
-            const data = await res.json();
-            setProducts(data);
-        } catch (error) {
-            console.error('Error fetching products:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setSaving(true);
-
-        try {
-            const url = editingProduct
-                ? `/api/admin/products/${editingProduct.id}`
-                : '/api/admin/products';
-            const method = editingProduct ? 'PUT' : 'POST';
-
-            const res = await fetch(url, {
-                method,
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
-            });
-
-            if (res.ok) {
-                await fetchProducts();
-                resetForm();
+        const fetchStats = async () => {
+            try {
+                const res = await fetch('/api/admin/stats');
+                const data = await res.json();
+                setStats(data);
+            } catch (error) {
+                console.error('Error fetching stats:', error);
+            } finally {
+                setLoading(false);
             }
-        } catch (error) {
-            console.error('Error saving product:', error);
-        } finally {
-            setSaving(false);
-        }
-    };
-
-    const handleEdit = (product: Product) => {
-        setEditingProduct(product);
-        setFormData({
-            name: product.name,
-            subtitle: product.subtitle || '',
-            description: product.description,
-            price: product.price.toString(),
-            image: product.image,
-            category: product.category,
-            stock: product.stock.toString(),
-            featured: product.featured,
-            active: product.active
-        });
-        setShowForm(true);
-    };
-
-    const handleDelete = async (id: string) => {
-        if (!confirm('¿Estás segura de eliminar este producto?')) return;
-
-        try {
-            await fetch(`/api/admin/products/${id}`, { method: 'DELETE' });
-            await fetchProducts();
-        } catch (error) {
-            console.error('Error deleting product:', error);
-        }
-    };
-
-    const resetForm = () => {
-        setShowForm(false);
-        setEditingProduct(null);
-        setFormData({
-            name: '',
-            subtitle: '',
-            description: '',
-            price: '',
-            image: '',
-            category: 'libro',
-            stock: '10',
-            featured: false,
-            active: true
-        });
-    };
+        };
+        fetchStats();
+    }, []);
 
     if (loading) {
         return (
-            <div className="flex items-center justify-center py-20">
-                <Loader2 className="w-8 h-8 animate-spin text-[var(--color-secondary)]" />
+            <div className="flex items-center justify-center min-h-[60vh]">
+                <Loader2 className="w-10 h-10 animate-spin text-[var(--color-primary)]" />
             </div>
         );
     }
 
+    const cards = [
+        { 
+            label: 'Ventas Totales', 
+            value: stats?.counts.orders || 0, 
+            icon: ShoppingBag, 
+            color: 'bg-blue-50 text-blue-600',
+            href: '/admin/orders'
+        },
+        { 
+            label: 'Inscritos Workshop', 
+            value: stats?.counts.workshop || 0, 
+            icon: Users, 
+            color: 'bg-orange-50 text-orange-600',
+            href: '/admin/workshop'
+        },
+        { 
+            label: 'Inscritos Evento', 
+            value: stats?.counts.venezuela || 0, 
+            icon: Calendar, 
+            color: 'bg-purple-50 text-purple-600',
+            href: '/admin/venezuela'
+        },
+        { 
+            label: 'Productos Activos', 
+            value: stats?.counts.products || 0, 
+            icon: Package, 
+            color: 'bg-green-50 text-green-600',
+            href: '/admin/products'
+        },
+        { 
+            label: 'Artículos Blog', 
+            value: stats?.counts.blog || 0, 
+            icon: FileText, 
+            color: 'bg-amber-50 text-amber-600',
+            href: '/admin/blog'
+        },
+        { 
+            label: 'Tests Completados', 
+            value: stats?.counts.tests || 0, 
+            icon: ClipboardList, 
+            color: 'bg-rose-50 text-rose-600',
+            href: '/admin/tests'
+        },
+    ];
+
     return (
-        <div>
-            <div className="flex items-center justify-between mb-8">
-                <div>
-                    <h1 className="text-3xl font-heading text-[var(--color-primary)] font-bold">
-                        Productos
-                    </h1>
-                    <p className="text-stone-500">{products.length} productos en total</p>
-                </div>
-                <button
-                    onClick={() => setShowForm(true)}
-                    className="flex items-center gap-2 px-6 py-3 bg-[var(--color-primary)] text-white font-bold rounded-xl hover:bg-[var(--color-primary-light)] transition-colors"
-                >
-                    <Plus className="w-5 h-5" />
-                    Nuevo Producto
-                </button>
+        <div className="space-y-10 animate-fade-in">
+            {/* Header */}
+            <div>
+                <h1 className="text-4xl font-heading font-bold text-[var(--color-primary)] mb-2">
+                    Panel de Control
+                </h1>
+                <p className="text-stone-500 font-medium italic">
+                    Bienvenida, Yelitze. Aquí tienes el resumen de tu universo digital.
+                </p>
             </div>
 
-            {/* Product Form Modal */}
-            {showForm && (
-                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                    <div className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-                        <div className="p-6 border-b border-stone-100">
-                            <h2 className="text-2xl font-heading text-[var(--color-primary)] font-bold">
-                                {editingProduct ? 'Editar Producto' : 'Nuevo Producto'}
-                            </h2>
+            {/* Stats Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {cards.map((card, i) => (
+                    <Link 
+                        key={i} 
+                        href={card.href}
+                        className="group bg-white p-8 rounded-[2rem] border border-stone-100 shadow-sm hover:shadow-xl hover:shadow-stone-200/50 transition-all duration-300 flex items-center justify-between"
+                    >
+                        <div className="flex items-center gap-6">
+                            <div className={`w-16 h-16 ${card.color} rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110`}>
+                                <card.icon size={32} />
+                            </div>
+                            <div>
+                                <p className="text-sm font-bold text-stone-400 uppercase tracking-widest mb-1">{card.label}</p>
+                                <p className="text-3xl font-heading font-bold text-stone-900">{card.value}</p>
+                            </div>
                         </div>
-                        <form onSubmit={handleSubmit} className="p-6 space-y-4">
-                            <div className="grid md:grid-cols-2 gap-4">
-                                <div>
-                                    <label className="block text-sm font-medium text-stone-700 mb-1">Nombre *</label>
-                                    <input
-                                        type="text"
-                                        required
-                                        value={formData.name}
-                                        onChange={e => setFormData({ ...formData, name: e.target.value })}
-                                        className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:outline-none focus:border-[var(--color-secondary)]"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-stone-700 mb-1">Subtítulo</label>
-                                    <input
-                                        type="text"
-                                        value={formData.subtitle}
-                                        onChange={e => setFormData({ ...formData, subtitle: e.target.value })}
-                                        className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:outline-none focus:border-[var(--color-secondary)]"
-                                    />
-                                </div>
-                            </div>
+                        <ArrowRight className="text-stone-200 group-hover:text-[var(--color-primary)] group-hover:translate-x-1 transition-all" />
+                    </Link>
+                ))}
+            </div>
 
-                            <div>
-                                <label className="block text-sm font-medium text-stone-700 mb-1">Descripción *</label>
-                                <textarea
-                                    required
-                                    rows={3}
-                                    value={formData.description}
-                                    onChange={e => setFormData({ ...formData, description: e.target.value })}
-                                    className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:outline-none focus:border-[var(--color-secondary)]"
-                                />
+            {/* Bottom Section */}
+            <div className="grid lg:grid-cols-2 gap-8">
+                {/* Recent Activity */}
+                <div className="bg-white p-8 rounded-[2.5rem] border border-stone-100 shadow-sm">
+                    <div className="flex items-center justify-between mb-8">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center">
+                                <Clock size={20} className="text-orange-600" />
                             </div>
+                            <h2 className="text-xl font-heading font-bold text-stone-900">Actividad Reciente</h2>
+                        </div>
+                        <Link href="/admin/workshop" className="text-xs font-bold text-[var(--color-primary)] uppercase tracking-wider hover:underline">
+                            Ver todo
+                        </Link>
+                    </div>
 
-                            <div className="grid md:grid-cols-3 gap-4">
-                                <div>
-                                    <label className="block text-sm font-medium text-stone-700 mb-1">Precio (USD) *</label>
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        required
-                                        value={formData.price}
-                                        onChange={e => setFormData({ ...formData, price: e.target.value })}
-                                        className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:outline-none focus:border-[var(--color-secondary)]"
-                                    />
+                    <div className="space-y-6">
+                        {stats?.recent.workshop.length === 0 && (
+                            <p className="text-stone-400 italic text-center py-10">No hay actividad reciente.</p>
+                        )}
+                        {stats?.recent.workshop.map((item, i) => (
+                            <div key={i} className="flex items-center justify-between p-4 rounded-2xl hover:bg-stone-50 transition-colors border border-transparent hover:border-stone-100">
+                                <div className="flex items-center gap-4">
+                                    <div className="w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center font-bold text-[var(--color-primary)]">
+                                        {item.name.charAt(0)}
+                                    </div>
+                                    <div>
+                                        <p className="font-bold text-stone-900">{item.name}</p>
+                                        <p className="text-xs text-stone-500">Inscripción al Workshop Sánate Mujer</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-stone-700 mb-1">Categoría *</label>
-                                    <select
-                                        value={formData.category}
-                                        onChange={e => setFormData({ ...formData, category: e.target.value })}
-                                        className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:outline-none focus:border-[var(--color-secondary)]"
-                                    >
-                                        <option value="libro">Libro</option>
-                                        <option value="oraculo">Oráculo</option>
-                                        <option value="accesorio">Accesorio</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-stone-700 mb-1">Stock</label>
-                                    <input
-                                        type="number"
-                                        value={formData.stock}
-                                        onChange={e => setFormData({ ...formData, stock: e.target.value })}
-                                        className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:outline-none focus:border-[var(--color-secondary)]"
-                                    />
-                                </div>
+                                <p className="text-xs text-stone-400 font-medium">
+                                    {new Date(item.createdAt).toLocaleDateString()}
+                                </p>
                             </div>
-
-                            <div>
-                                <label className="block text-sm font-medium text-stone-700 mb-1">URL de Imagen</label>
-                                <input
-                                    type="text"
-                                    placeholder="/assets/images/shop/producto.jpg"
-                                    value={formData.image}
-                                    onChange={e => setFormData({ ...formData, image: e.target.value })}
-                                    className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:outline-none focus:border-[var(--color-secondary)]"
-                                />
-                            </div>
-
-                            <div className="flex gap-6">
-                                <label className="flex items-center gap-2 cursor-pointer">
-                                    <input
-                                        type="checkbox"
-                                        checked={formData.featured}
-                                        onChange={e => setFormData({ ...formData, featured: e.target.checked })}
-                                        className="w-5 h-5 rounded"
-                                    />
-                                    <span className="text-sm text-stone-700">Destacado</span>
-                                </label>
-                                <label className="flex items-center gap-2 cursor-pointer">
-                                    <input
-                                        type="checkbox"
-                                        checked={formData.active}
-                                        onChange={e => setFormData({ ...formData, active: e.target.checked })}
-                                        className="w-5 h-5 rounded"
-                                    />
-                                    <span className="text-sm text-stone-700">Activo (visible en tienda)</span>
-                                </label>
-                            </div>
-
-                            <div className="flex gap-4 pt-4 border-t border-stone-100">
-                                <button
-                                    type="button"
-                                    onClick={resetForm}
-                                    className="flex-1 py-3 border-2 border-stone-200 text-stone-600 font-bold rounded-xl hover:bg-stone-50 transition-colors"
-                                >
-                                    Cancelar
-                                </button>
-                                <button
-                                    type="submit"
-                                    disabled={saving}
-                                    className="flex-1 py-3 bg-[var(--color-primary)] text-white font-bold rounded-xl hover:bg-[var(--color-primary-light)] transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
-                                >
-                                    {saving && <Loader2 className="w-4 h-4 animate-spin" />}
-                                    {editingProduct ? 'Guardar Cambios' : 'Crear Producto'}
-                                </button>
-                            </div>
-                        </form>
+                        ))}
                     </div>
                 </div>
-            )}
 
-            {/* Products Table */}
-            {products.length === 0 ? (
-                <div className="bg-white rounded-3xl p-16 text-center">
-                    <Package className="w-16 h-16 text-stone-200 mx-auto mb-4" />
-                    <h2 className="text-xl font-heading text-[var(--color-primary)] mb-2">No hay productos</h2>
-                    <p className="text-stone-500 mb-6">Añade tu primer producto para empezar a vender</p>
-                    <button
-                        onClick={() => setShowForm(true)}
-                        className="px-6 py-3 bg-[var(--color-primary)] text-white font-bold rounded-xl hover:bg-[var(--color-primary-light)] transition-colors"
-                    >
-                        Añadir Producto
-                    </button>
+                {/* Quick Actions / Integration Status */}
+                <div className="bg-[var(--color-primary)] p-8 rounded-[2.5rem] shadow-xl relative overflow-hidden text-white">
+                    <div className="relative z-10">
+                        <h2 className="text-2xl font-heading font-bold mb-4 text-[#B8835A]">Accesos Directos</h2>
+                        <p className="text-white/70 text-sm mb-8 leading-relaxed">
+                            Gestiona las áreas clave de tu plataforma con un solo clic. 
+                            Todas las actualizaciones se sincronizan automáticamente con el sitio público.
+                        </p>
+
+                        <div className="grid grid-cols-2 gap-4">
+                            <Link href="/admin/products" className="bg-white/10 hover:bg-white/20 p-4 rounded-2xl transition-all border border-white/10 flex flex-col gap-2 group">
+                                <Package size={20} className="text-[#B8835A]" />
+                                <span className="font-bold text-sm">Gestionar Inventario</span>
+                            </Link>
+                            <Link href="/admin/blog" className="bg-white/10 hover:bg-white/20 p-4 rounded-2xl transition-all border border-white/10 flex flex-col gap-2 group">
+                                <FileText size={20} className="text-[#B8835A]" />
+                                <span className="font-bold text-sm">Escribir Crónica</span>
+                            </Link>
+                            <Link href="/admin/tests" className="bg-white/10 hover:bg-white/20 p-4 rounded-2xl transition-all border border-white/10 flex flex-col gap-2 group">
+                                <ClipboardList size={20} className="text-[#B8835A]" />
+                                <span className="font-bold text-sm">Análisis de Tests</span>
+                            </Link>
+                            <Link href="/admin/workshop" className="bg-white/10 hover:bg-white/20 p-4 rounded-2xl transition-all border border-white/10 flex flex-col gap-2 group">
+                                <Users size={20} className="text-[#B8835A]" />
+                                <span className="font-bold text-sm">Lista Workshop</span>
+                            </Link>
+                        </div>
+                    </div>
+                    {/* Decorative element */}
+                    <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white/5 rounded-full blur-3xl" />
                 </div>
-            ) : (
-                <div className="bg-white rounded-3xl overflow-hidden shadow-sm">
-                    <table className="w-full">
-                        <thead className="bg-stone-50 border-b border-stone-100">
-                            <tr>
-                                <th className="text-left px-6 py-4 text-sm font-medium text-stone-500">Producto</th>
-                                <th className="text-left px-6 py-4 text-sm font-medium text-stone-500">Categoría</th>
-                                <th className="text-left px-6 py-4 text-sm font-medium text-stone-500">Precio</th>
-                                <th className="text-left px-6 py-4 text-sm font-medium text-stone-500">Stock</th>
-                                <th className="text-left px-6 py-4 text-sm font-medium text-stone-500">Estado</th>
-                                <th className="text-right px-6 py-4 text-sm font-medium text-stone-500">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-stone-100">
-                            {products.map(product => (
-                                <tr key={product.id} className="hover:bg-stone-50 transition-colors">
-                                    <td className="px-6 py-4">
-                                        <div className="flex items-center gap-4">
-                                            <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-stone-100 flex-shrink-0">
-                                                {product.image && (
-                                                    <Image
-                                                        src={product.image}
-                                                        alt={product.name}
-                                                        fill
-                                                        className="object-cover"
-                                                    />
-                                                )}
-                                            </div>
-                                            <div>
-                                                <p className="font-medium text-[var(--color-primary)]">{product.name}</p>
-                                                {product.subtitle && (
-                                                    <p className="text-sm text-stone-500">{product.subtitle}</p>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        <span className="px-3 py-1 rounded-full bg-stone-100 text-xs font-medium text-stone-600">
-                                            {CATEGORY_LABELS[product.category] || product.category}
-                                        </span>
-                                    </td>
-                                    <td className="px-6 py-4 font-bold text-[var(--color-secondary)]">
-                                        ${product.price.toFixed(2)}
-                                    </td>
-                                    <td className="px-6 py-4 text-stone-600">
-                                        {product.stock}
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${product.active ? 'bg-green-100 text-green-700' : 'bg-stone-100 text-stone-500'}`}>
-                                            {product.active ? 'Activo' : 'Inactivo'}
-                                        </span>
-                                    </td>
-                                    <td className="px-6 py-4 text-right">
-                                        <div className="flex items-center justify-end gap-2">
-                                            <button
-                                                onClick={() => handleEdit(product)}
-                                                className="p-2 text-stone-400 hover:text-[var(--color-secondary)] hover:bg-stone-100 rounded-lg transition-colors"
-                                            >
-                                                <Pencil className="w-4 h-4" />
-                                            </button>
-                                            <button
-                                                onClick={() => handleDelete(product.id)}
-                                                className="p-2 text-stone-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
-                                            >
-                                                <Trash2 className="w-4 h-4" />
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            )}
+            </div>
         </div>
     );
 }
