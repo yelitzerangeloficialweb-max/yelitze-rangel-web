@@ -13,15 +13,35 @@ export async function POST(req: Request) {
         }
 
         const body = await req.json();
-        const { name, email, whatsapp, city } = body;
+        let { name, email, whatsapp, city } = body;
+
+        // 1. Limpieza y Saneamiento (Seguridad contra XSS e Inyecciones)
+        const sanitize = (str: string) => str?.replace(/<[^>]*>?/gm, '').trim(); // Elimina etiquetas HTML
+        
+        name = sanitize(name);
+        email = sanitize(email?.toLowerCase());
+        whatsapp = sanitize(whatsapp);
+        city = sanitize(city);
 
         console.log(`Nueva inscripción recibida: ${name} (${email}) - ${city}`);
 
+        // 2. Validaciones de Seguridad y Formato
         if (!name || !email || !whatsapp || !city) {
             return NextResponse.json({ error: 'Faltan campos obligatorios' }, { status: 400 });
         }
 
-        // 1. Validar que el registro sea único (por email)
+        // Validar formato de email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return NextResponse.json({ error: 'Formato de correo electrónico inválido' }, { status: 400 });
+        }
+
+        // Limitar longitud para prevenir abusos
+        if (name.length > 100 || email.length > 100 || whatsapp.length > 50 || city.length > 100) {
+            return NextResponse.json({ error: 'Los datos exceden la longitud permitida' }, { status: 400 });
+        }
+
+        // 3. Validar que el registro sea único (por email)
         const existingRegistration = await db.sanateMujerRegistration.findFirst({
             where: { email: email.toLowerCase().trim() }
         });
@@ -32,7 +52,7 @@ export async function POST(req: Request) {
             }, { status: 400 });
         }
 
-        // 2. Guardar en la base de datos
+        // 4. Guardar en la base de datos
         const registration = await db.sanateMujerRegistration.create({
             data: {
                 name,
@@ -42,7 +62,7 @@ export async function POST(req: Request) {
             },
         });
 
-        // 3. Enviar correo de confirmación usando el servicio centralizado
+        // 5. Enviar correo de confirmación usando el servicio centralizado
         const emailResult = await sendSanateMujerRegistrationEmail(email, name, city);
         
         if (emailResult.success) {
