@@ -21,7 +21,18 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: 'Faltan campos obligatorios' }, { status: 400 });
         }
 
-        // 1. Guardar en la base de datos
+        // 1. Validar que el registro sea único (por email)
+        const existingRegistration = await db.sanateMujerRegistration.findFirst({
+            where: { email: email.toLowerCase().trim() }
+        });
+
+        if (existingRegistration) {
+            return NextResponse.json({ 
+                error: 'Ya existe una suscripción activa con este correo electrónico.' 
+            }, { status: 400 });
+        }
+
+        // 2. Guardar en la base de datos
         const registration = await db.sanateMujerRegistration.create({
             data: {
                 name,
@@ -31,7 +42,7 @@ export async function POST(req: Request) {
             },
         });
 
-        // 2. Enviar correo de confirmación usando el servicio centralizado
+        // 3. Enviar correo de confirmación usando el servicio centralizado
         const emailResult = await sendSanateMujerRegistrationEmail(email, name, city);
         
         if (emailResult.success) {
