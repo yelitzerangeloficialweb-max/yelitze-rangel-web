@@ -15,7 +15,7 @@ import {
     eachDayOfInterval 
 } from 'date-fns';
 import { es } from 'date-fns/locale';
-import { ChevronLeft, ChevronRight, Loader2, Save, Calendar as CalendarIcon, Clock, User, Video, Info, Check, Phone, Mail, ExternalLink, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Loader2, Save, Calendar as CalendarIcon, Clock, User, Video, Info, Check, Phone, Mail, ExternalLink, X, FileText } from 'lucide-react';
 import React from 'react';
 
 interface Availability {
