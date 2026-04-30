@@ -589,68 +589,7 @@ export const BLOG_POSTS: BlogPost[] = [
             </div>
         `
     },
-    {
-        id: '5',
-        slug: 'medicina-del-cacao-sistematica',
-        title: 'La Medicina del Cacao: Un Viaje Sistémico del Corazón',
-        excerpt: 'Cómo los rituales ancestrales potencian el trabajo sistémico al abrir el espacio sagrado del sentir.',
-        date: '05 de Diciembre, 2025',
-        image: '/assets/images/tablero-sesion.png',
-        category: 'Rituales',
-        author: 'Yelitze Rangel',
-        content: `
-            <div class="space-y-8 text-lg leading-relaxed text-stone-700">
-                <!-- ATENCIÓN -->
-                <p class="text-xl font-medium text-[var(--color-primary)] italic border-l-4 border-[var(--color-secondary)] pl-6 py-2">
-                    "El Cacao no es solo chocolate; es una planta maestra que actúa como puente directo entre el ruido de la mente y la verdad del corazón."
-                </p>
-                <p>
-                    En el mundo de la sanación sistémica, a menudo nos enfrentamos a barreras mentales muy fuertes: el ego, el juicio y la necesidad de entenderlo todo. Aquí es donde la <strong>Medicina del Cacao</strong> entra en juego. Al ser una planta que expande el flujo sanguíneo y relaja el sistema nervioso, el cacao suavemente "suaviza" nuestras defensas, permitiéndonos sentir lo que antes solo podíamos pensar. Es una medicina de apertura que nos invita a habitar el presente con una vulnerabilidad valiente.
-                </p>
 
-                <!-- INTERÉS -->
-                <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">Sentir para Sanar: El Espacio Sagrado</h3>
-                <p>
-                    A diferencia de las terapias puramente intelectuales, el ritual del cacao nos sumerge en la experiencia somática. Cuando el corazón se expande bajo el efecto nutritivo del cacao puro, los secretos sistémicos y los nudos emocionales se revelan con mayor fluidez. Es en ese espacio de silencio compartido —ya sea en círculo o en solitario— donde las frases sanadoras cobran una potencia real, porque no se dicen solo con la voz, sino con cada fibra de nuestro ser.
-                </p>
-
-                <!-- DESEO -->
-                <h3 class="text-3xl font-heading text-[var(--color-primary)] mt-12 mb-6">La Alquimia del Encuentro</h3>
-                <p>
-                    Participar en un círculo de cacao o integrar esta medicina en tu práctica personal es regalarte un momento de conexión pura con tu esencia. Al unir la sabiduría sistémica con la calidez del cacao, la sanación deja de ser un proceso árido y se convierte en un viaje amoroso hacia tu propia profundidad. Es una invitación a dejar de luchar y empezar a ser.
-                </p>
-
-                <!-- EJERCICIOS -->
-                <div class="bg-[var(--color-bg-alt)] p-12 rounded-[2rem] border border-[var(--color-primary)]/10 mt-16 space-y-8">
-                    <h2 class="text-4xl font-heading text-[var(--color-primary)] border-b border-[var(--color-primary)]/20 pb-6 text-center">Ritual de Apertura del Corazón</h2>
-                    
-                    <div class="space-y-4">
-                        <h4 class="text-xl font-bold flex items-center gap-3">
-                            <span class="w-8 h-8 rounded-full bg-[var(--color-primary)] text-white flex items-center justify-center text-sm">01</span>
-                            La Preparación de la Intención
-                        </h4>
-                        <p class="pl-11">Si tienes cacao puro, prepáralo con consciencia. Mientras lo bates, pon una intención: <i>"Que este cacao abra mi corazón a lo que necesito ver hoy"</i>. Siente el aroma y cómo ya empieza a cambiar tu estado.</p>
-                    </div>
-
-                    <div class="space-y-4">
-                        <h4 class="text-xl font-bold flex items-center gap-3">
-                            <span class="w-8 h-8 rounded-full bg-[var(--color-primary)] text-white flex items-center justify-center text-sm">02</span>
-                            La Escucha del Latido
-                        </h4>
-                        <p class="pl-11">Toma un sorbo de cacao (o respira profundamente si no lo tienes). Pon tu mano en el pecho. Cierra los ojos y siente tu latido. Pregúntale a tu corazón: <i>"¿Qué estás sosteniendo que ya es tiempo de soltar?"</i>. Escucha sin juzgar.</p>
-                    </div>
-
-                    <div class="space-y-4">
-                        <h4 class="text-xl font-bold flex items-center gap-3">
-                            <span class="w-8 h-8 rounded-full bg-[var(--color-primary)] text-white flex items-center justify-center text-sm">03</span>
-                            Gratitud Circular
-                        </h4>
-                        <p class="pl-11">Imagínate sentada en un círculo con todas las mujeres de tu familia. Pásales simbólicamente esta medicina de amor. Di: <i>"Tomo el amor que viene de ustedes y lo multiplico"</i>. Siente la calidez expandirse por todo tu cuerpo.</p>
-                    </div>
-                </div>
-            </div>
-        `
-    },
     {
         id: '6',
         slug: 'coaching-tradicional-vs-ancestral',
