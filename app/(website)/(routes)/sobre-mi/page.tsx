@@ -243,7 +243,7 @@ export default function AboutPage() {
             </section>
 
             {/* 5. Experience Section (Environmental - Redesigned) */}
-            <section className="pt-24 lg:pt-40 pb-0 bg-white relative overflow-x-clip isolate z-20">
+            <section className="pt-24 lg:pt-40 pb-12 lg:pb-20 bg-white relative overflow-x-clip isolate z-20">
                 <motion.div 
                     animate={{
                         scale: [1, 1.15, 1],
@@ -272,7 +272,7 @@ export default function AboutPage() {
                 />
                 
                 <div className="container mx-auto px-8 lg:px-32 relative z-10">
-                    <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-end">
+                    <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                         {/* Text Content: Left Column */}
                         <div className="space-y-10 order-2 lg:order-1">
                             <FadeIn>
@@ -321,8 +321,8 @@ export default function AboutPage() {
                         priority
                     />
                     {/* Top Fade to blend with previous section */}
-                    {/* Top Fade removed to eliminate separation */}
-
+                    {/* Top Fade to blend with previous section */}
+                    <div className="absolute top-0 left-0 w-full h-80 bg-gradient-to-b from-white via-white/80 to-transparent z-10" />
                     
                     {/* Dark overlay for text readability if needed (the mockup doesn't have it, but I'll add a subtle one on the right) */}
                     <div className="absolute inset-0 bg-black/10 z-0" />
@@ -340,7 +340,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="container mx-auto px-8 lg:px-32 relative z-30">
-                    <div className="max-w-3xl ml-auto text-center space-y-16 lg:space-y-24 lg:translate-x-24">
+                    <div className="max-w-3xl ml-auto text-center space-y-16 lg:space-y-24 lg:translate-x-24 lg:translate-y-40">
                         <FadeIn>
                             <h2 className="text-4xl lg:text-7xl font-script text-white leading-[0.8] drop-shadow-md tracking-[0.03em]">
                                 Cuando el cuerpo <br className="hidden lg:block" /> recuerda, <br />
