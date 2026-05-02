@@ -608,12 +608,13 @@ export const sendSanateMujerRegistrationEmail = async (email: string, name: stri
                         <h2 style="color: #8C4005; font-size: 24px; margin-bottom: 30px;">¡Bienvenida, ${name}!</h2>
                         
                         <p style="font-size: 16px; color: #4A4540; margin-bottom: 25px;">
-                            Tu lugar en la <strong>Activación Sánate Mujer</strong> ha sido reservado con éxito para <strong>${city}</strong>. Este es un espacio sagrado de reconexión y restauración.
+                            Tu lugar en la <strong>Activación Sánate Mujer</strong> ha sido reservado con éxito. Este es un espacio sagrado de reconexión y restauración, abierto para mujeres de todo el mundo.
                         </p>
                         
                         <div style="background-color: #F5EFE6; padding: 30px; border-radius: 20px; border: 1px solid #B8835A15; margin: 30px 0; text-align: center;">
                             <p style="margin: 0; font-weight: bold; color: #2D2926; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">FECHA Y PLATAFORMA:</p>
                             <p style="margin: 10px 0; font-size: 22px; color: #B8835A; font-weight: bold;">22 de Mayo, 2026</p>
+                            <p style="margin: 5px 0; font-size: 18px; color: #2D2926; font-weight: bold;">7:00 PM (Hora Venezuela)</p>
                             <p style="margin: 5px 0; font-size: 16px; color: #2D2926;">Vía YouTube (En Vivo)</p>
                         </div>
 

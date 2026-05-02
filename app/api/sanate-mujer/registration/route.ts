@@ -48,7 +48,7 @@ export async function POST(req: Request) {
 
         if (existingRegistration) {
             return NextResponse.json({ 
-                error: 'Ya existe una suscripción activa con este correo electrónico.' 
+                error: 'Este correo electrónico ya se encuentra registrado en el workshop.' 
             }, { status: 400 });
         }
 

@@ -760,6 +760,9 @@ function OfferSection() {
                                 <ArrowRight className="w-5 h-5" />
                             </button>
                             
+                            <p className="text-[10px] text-white/60 font-bold tracking-widest uppercase mb-1">
+                                22 de Mayo, 2026 • 7:00 PM (Hora Venezuela)
+                            </p>
                             <p className="text-[10px] text-white/60 font-bold tracking-widest uppercase">
                                 Workshop Online via YouTube (En Vivo)
                             </p>
