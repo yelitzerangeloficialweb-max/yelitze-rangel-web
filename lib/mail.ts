@@ -6,7 +6,8 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 if (!process.env.RESEND_API_KEY) {
     console.warn('[MAIL SERVICE] WARNING: RESEND_API_KEY is not defined in environment variables.');
 } else {
-    console.log('[MAIL SERVICE] Resend API Key is configured correctly.');
+    const key = process.env.RESEND_API_KEY;
+    console.log(`[MAIL SERVICE] Resend API Key is configured. Length: ${key.length}, Starts with: ${key.substring(0, 7)}...`);
 }
 
 interface SendRegistrationEmailProps {
