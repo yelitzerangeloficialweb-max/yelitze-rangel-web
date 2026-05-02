@@ -384,10 +384,10 @@ export const sendGenericTestEmail = async ({
     try {
         const logoUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/assets/images/logo-yelitze-new.png`;
 
-        console.log(`[Generic Test Mail] Sending ${testTitle} to: ${email}`);
+        const cleanTitle = testTitle.replace(/[^a-zA-Z0-9]/g, '_').replace(/_+/g, '_');
         const attachments = pdfBuffer ? [
             {
-                filename: `Resultado_${testTitle.replace(/\s+/g, '_')}.pdf`,
+                filename: `Resultado_${cleanTitle}.pdf`,
                 content: pdfBuffer,
             }
         ] : [];
