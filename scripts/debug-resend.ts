@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv';
-import { sendGenericTestEmail } from './lib/mail';
+import { sendGenericTestEmail } from '../lib/mail';
 
 dotenv.config({ path: '.env' });
 dotenv.config({ path: '.env.local', override: true });

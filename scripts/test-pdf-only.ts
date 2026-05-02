@@ -1,4 +1,4 @@
-import { generateSomaticPDF } from './lib/pdf-generator';
+import { generateSomaticPDF } from '../lib/pdf-generator';
 import * as fs from 'fs';
 import * as path from 'path';
 
