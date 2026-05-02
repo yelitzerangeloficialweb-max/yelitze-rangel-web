@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { Download, RefreshCw, FileText, Sparkles } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { useRef, useState } from 'react';
@@ -122,10 +123,25 @@ export default function StepResult({ resultData, userName, onFinalize }: StepRes
                 </div>
             </div>
 
-            <div className="text-center">
-                <button onClick={onFinalize} className="text-sm text-[#B8835A]/60 underline hover:text-[#8C4005] transition-colors font-guide">
-                    Finalizar experiencia
-                </button>
+            <div className="text-center space-y-8 py-10">
+                <div className="max-w-2xl mx-auto bg-[#B8835A10] p-8 rounded-3xl border border-[#B8835A20]">
+                    <p className="text-[#8C4005] font-editorial text-xl italic mb-2">
+                        "El orden precede a la abundancia."
+                    </p>
+                    <p className="text-[#2D2926] text-sm font-guide uppercase tracking-widest font-bold">
+                        Tu diagnóstico detallado en PDF ya ha sido enviado a tu correo electrónico.
+                    </p>
+                    <p className="text-[#2D2926]/60 text-[10px] mt-2 uppercase tracking-widest">
+                        Revisa tu bandeja de entrada y spam.
+                    </p>
+                </div>
+
+                <Link 
+                    href="/" 
+                    className="inline-flex items-center gap-2 text-sm text-[#B8835A] hover:text-[#8C4005] transition-colors font-bold uppercase tracking-widest"
+                >
+                    Volver al Inicio
+                </Link>
             </div>
 
             {/* HIDDEN PDF TEMPLATE */}
