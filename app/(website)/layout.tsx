@@ -6,6 +6,7 @@ import PageGlows from '@/components/layout/PageGlows';
 import { CartProvider } from '@/context/CartContext';
 import CartDrawer from '@/components/shop/CartDrawer';
 import { usePathname } from 'next/navigation';
+import FloatingCTA from '@/components/layout/FloatingCTA';
 
 export default function WebsiteLayout({
     children,
@@ -27,6 +28,7 @@ export default function WebsiteLayout({
                 </main>
                 {!hideLayout && <Footer />}
                 <CartDrawer />
+                <FloatingCTA />
             </div>
         </CartProvider>
     );

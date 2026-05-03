@@ -58,12 +58,20 @@ export default function NewHero() {
                         transition={{ delay: 1.2, duration: 1 }}
                         className="pt-0 flex justify-center -translate-y-8 md:-translate-y-12"
                     >
-                        <Link
-                            href="/tests"
-                            className="inline-block px-16 py-6 text-sm md:text-base font-body font-bold tracking-[0.25em] uppercase border border-[#b7835a] text-white rounded-full hover:bg-[#b7835a] hover:text-white transition-all bg-transparent backdrop-blur-md shadow-2xl group"
-                        >
-                            INICIA MI EXPLORACIÓN
-                        </Link>
+                        <div className="flex flex-col md:flex-row gap-4 items-center">
+                            <Link
+                                href="/sanate-mujer"
+                                className="inline-block px-12 py-6 text-sm md:text-base font-body font-bold tracking-[0.25em] uppercase bg-[#B8835A] text-white rounded-full hover:bg-[#a0724e] transition-all shadow-2xl group animate-pulse-subtle"
+                            >
+                                SÁNATE MUJER (Inscripción Gratis)
+                            </Link>
+                            <Link
+                                href="/tests"
+                                className="inline-block px-12 py-6 text-sm md:text-base font-body font-bold tracking-[0.25em] uppercase border border-[#b7835a] text-white rounded-full hover:bg-[#b7835a] hover:text-white transition-all bg-transparent backdrop-blur-md shadow-2xl group"
+                            >
+                                INICIA MI EXPLORACIÓN
+                            </Link>
+                        </div>
                     </motion.div>
                 </motion.div>
             </div>

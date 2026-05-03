@@ -284,6 +284,12 @@ export default function Header() {
                     </div>
                     <CartButton iconColor={useDarkText ? 'text-primary' : 'text-white/90'} />
                     <Link
+                        href="/sanate-mujer"
+                        className="hidden lg:flex btn-premium px-6 py-2 text-sm font-heading bg-[#B8835A] text-white hover:bg-[#a0724e] shadow-[0_4px_15px_rgba(184,131,90,0.3)] animate-pulse-subtle"
+                    >
+                        Sánate Mujer
+                    </Link>
+                    <Link
                         href="/reservas"
                         className="btn-premium px-6 py-2 text-sm font-heading bg-[var(--color-accent)] text-[var(--color-background)] hover:brightness-110"
                     >
@@ -369,6 +375,13 @@ export default function Header() {
                             </button>
                         </div>
                     </form>
+                    <Link
+                        href="/sanate-mujer"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="btn-premium w-full justify-center mt-4 bg-[#B8835A] text-white hover:bg-[#a0724e]"
+                    >
+                        Inscribirme en Sánate Mujer
+                    </Link>
                     <Link
                         href="/reservas"
                         onClick={() => setMobileMenuOpen(false)}
