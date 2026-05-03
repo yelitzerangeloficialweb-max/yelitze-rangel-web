@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { HieroglyphicBackground } from "@/components/ui/MysticalElements";
 
 export default function NewHero() {
     return (
@@ -23,7 +22,6 @@ export default function NewHero() {
                 
                 {/* Bottom Seam Overlay */}
                 <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60" />
-                <HieroglyphicBackground count={15} />
             </div>
 
             {/* Atmosphere moved to WelcomeSection for visibility */}
@@ -60,20 +58,12 @@ export default function NewHero() {
                         transition={{ delay: 1.2, duration: 1 }}
                         className="pt-0 flex justify-center -translate-y-8 md:-translate-y-12"
                     >
-                        <div className="flex flex-col md:flex-row gap-4 items-center">
-                            <Link
-                                href="/sanate-mujer"
-                                className="inline-block px-12 py-6 text-sm md:text-base font-body font-bold tracking-[0.25em] uppercase bg-[#B8835A] text-white rounded-full hover:bg-[#a0724e] transition-all shadow-2xl group animate-pulse-subtle"
-                            >
-                                SÁNATE MUJER (Inscripción Gratis)
-                            </Link>
-                            <Link
-                                href="/tests"
-                                className="inline-block px-12 py-6 text-sm md:text-base font-body font-bold tracking-[0.25em] uppercase border border-[#b7835a] text-white rounded-full hover:bg-[#b7835a] hover:text-white transition-all bg-transparent backdrop-blur-md shadow-2xl group"
-                            >
-                                INICIA MI EXPLORACIÓN
-                            </Link>
-                        </div>
+                        <Link
+                            href="/tests"
+                            className="inline-block px-16 py-6 text-sm md:text-base font-body font-bold tracking-[0.25em] uppercase border border-[#b7835a] text-white rounded-full hover:bg-[#b7835a] hover:text-white transition-all bg-transparent backdrop-blur-md shadow-2xl group"
+                        >
+                            INICIA MI EXPLORACIÓN
+                        </Link>
                     </motion.div>
                 </motion.div>
             </div>

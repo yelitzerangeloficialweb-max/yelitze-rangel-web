@@ -153,20 +153,6 @@ export default function Footer() {
                     </div>
                 </div>
 
-                {/* Sánate Mujer CTA in Footer */}
-                <div className="mb-12 py-10 px-6 md:px-12 rounded-[2.5rem] bg-[#B8835A]/10 border border-[#B8835A]/20 flex flex-col md:flex-row items-center justify-between gap-8">
-                    <div className="text-center md:text-left">
-                        <h4 className="text-2xl md:text-3xl font-heading mb-2">Workshop Sánate Mujer</h4>
-                        <p className="text-white/60 font-light">Libera las lealtades invisibles que detienen tu vida. 22 de Mayo.</p>
-                    </div>
-                    <Link
-                        href="/sanate-mujer"
-                        className="bg-[#B8835A] text-white px-10 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-[#a0724e] transition-all shadow-xl whitespace-nowrap"
-                    >
-                        Inscribirme Gratis
-                    </Link>
-                </div>
-
                 <div className="pt-8 border-t border-white/10 text-center text-white/40 text-xs">
                     <p>© {new Date().getFullYear()} Yelitze Rangel. Todos los derechos reservados. | Desarrollado por <a href="https://kickoffdevelopment.com/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors underline decoration-white/20 underline-offset-4">Kick-Off Development</a> | Diseñado por Digital Marketing DMK</p>
                 </div>
