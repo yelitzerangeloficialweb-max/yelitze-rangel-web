@@ -14,16 +14,18 @@ export default function WebsiteLayout({
 }) {
     const pathname = usePathname();
     const isSomaticTest = pathname.startsWith('/test-somatico');
+    const isOracle = pathname.startsWith('/oraculo');
+    const hideLayout = isSomaticTest || isOracle;
 
     return (
         <CartProvider>
             <div className="flex flex-col min-h-screen relative overflow-x-hidden">
                 <PageGlows />
-                {!isSomaticTest && <Header />}
+                {!hideLayout && <Header />}
                 <main className="flex-grow relative z-10">
                     {children}
                 </main>
-                {!isSomaticTest && <Footer />}
+                {!hideLayout && <Footer />}
                 <CartDrawer />
             </div>
         </CartProvider>

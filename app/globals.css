@@ -151,4 +151,13 @@ html {
     color: var(--color-background) !important;
     box-shadow: 0 4px 15px rgba(184, 131, 90, 0.2);
   }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
 }
