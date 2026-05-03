@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { HieroglyphicBackground } from "@/components/ui/MysticalElements";
 
 export default function NewHero() {
     return (
@@ -22,6 +23,7 @@ export default function NewHero() {
                 
                 {/* Bottom Seam Overlay */}
                 <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60" />
+                <HieroglyphicBackground count={15} />
             </div>
 
             {/* Atmosphere moved to WelcomeSection for visibility */}

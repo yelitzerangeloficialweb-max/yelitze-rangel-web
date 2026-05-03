@@ -6,7 +6,7 @@ import { FormEvent } from 'react';
 import { ArrowRight, CheckCircle2, ChevronDown, ChevronUp, X, Heart, Activity, ShieldAlert, Sparkles, Play, Clock, Calendar } from 'lucide-react';
 import { motion, Variants, AnimatePresence } from 'framer-motion';
 import { useEffect, useState as useHookState } from 'react';
-import { SacredGeometry, FloatingStars, ThinGoldenLine, WaveDivider } from "@/components/ui/MysticalElements";
+import { SacredGeometry, FloatingStars, ThinGoldenLine, WaveDivider, HieroglyphicBackground, ModernReveal } from "@/components/ui/MysticalElements";
 
 const fadeUpVariant: Variants = {
     hidden: { opacity: 0, y: 30 },
@@ -47,6 +47,7 @@ export default function SanateMujerLanding() {
                 <ThinGoldenLine d="M0,100 Q250,250 500,100 T1000,100" className="top-20 left-0 w-full h-64" />
                 <ThinGoldenLine d="M0,200 Q300,0 600,200 T1200,200" className="bottom-20 right-0 w-full h-96" />
                 <FloatingStars count={30} />
+                <HieroglyphicBackground count={20} />
             </div>
 
             {/* SECTION 0: TOP STICKY BANNER */}
@@ -420,9 +421,11 @@ function HeroSection() {
                         <span className="inline-block text-[#B8835A] font-bold tracking-[0.4em] uppercase text-xs md:text-sm mb-6 border border-[#B8835A]/30 px-4 py-1.5 rounded-full bg-white/50 backdrop-blur-sm shadow-sm">
                             WORKSHOP GRATUITO: SÁNATE MUJER
                         </span>
-                        <h1 className="text-4xl md:text-5xl lg:text-[4rem] font-heading font-medium text-[#2D2926] leading-[1.1] mb-8">
-                            Libera las <span className="text-[#B8835A] italic">lealtades invisibles</span> que detienen tu vida.
-                        </h1>
+                        <ModernReveal>
+                            <h1 className="text-4xl md:text-5xl lg:text-[4rem] font-heading font-medium text-[#2D2926] leading-[1.1] mb-8">
+                                Libera las <span className="text-[#B8835A] italic">lealtades invisibles</span> que detienen tu vida.
+                            </h1>
+                        </ModernReveal>
                         <p className="text-lg md:text-xl text-[#2D2926]/80 leading-relaxed font-light">
                             ¿Sientes que repites los mismos patrones en tus relaciones? ¿Te cuesta alcanzar la plenitud que mereces? En este workshop gratuito, descubrirás cómo romper las cadenas sistémicas que te mantienen estancada.
                         </p>

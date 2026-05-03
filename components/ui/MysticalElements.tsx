@@ -136,3 +136,74 @@ export const WaveDivider = ({
         </svg>
     </div>
 );
+export const HieroglyphicBackground = ({ count = 12, className = "" }: { count?: number, className?: string }) => {
+    const [glyphs, setGlyphs] = useState<any[]>([]);
+
+    const glyphPaths = [
+        "M100,50 C120,50 140,70 140,100 C140,130 120,150 100,150 C80,150 60,130 60,100 C60,70 80,50 100,50 M100,80 C110,80 120,90 120,100 C120,110 110,120 100,120 C90,120 80,110 80,100 C80,90 90,80 100,80", // Eye-like
+        "M100,20 L120,60 L170,60 L130,90 L150,140 L100,110 L50,140 L70,90 L30,60 L80,60 Z", // Star-like
+        "M100,30 C60,30 30,60 30,100 C30,140 60,170 100,170 C140,170 170,140 170,100 C170,60 140,30 100,30 M100,50 L100,150 M50,100 L150,100", // Compass-like
+        "M50,100 A50,50 0 1,1 150,100 A50,50 0 1,1 50,100 M75,100 A25,25 0 1,0 125,100 A25,25 0 1,0 75,100", // Concentric
+        "M100,20 Q150,50 100,80 Q50,110 100,140 Q150,170 100,195", // Wave/Snake
+        "M40,60 Q100,20 160,60 Q100,100 40,60 M40,140 Q100,100 160,140 Q100,180 40,140" // Double Eye/Leaf
+    ];
+
+    useEffect(() => {
+        const newGlyphs = [...Array(count)].map((_, i) => ({
+            id: i,
+            path: glyphPaths[Math.floor(Math.random() * glyphPaths.length)],
+            size: Math.random() * 40 + 20 + "px",
+            left: Math.random() * 100 + "%",
+            top: Math.random() * 100 + "%",
+            duration: Math.random() * 20 + 20,
+            delay: Math.random() * -20,
+            rotation: Math.random() * 360,
+        }));
+        setGlyphs(newGlyphs);
+    }, [count]);
+
+    if (glyphs.length === 0) return null;
+
+    return (
+        <div className={`absolute inset-0 pointer-events-none overflow-hidden z-0 ${className}`}>
+            {glyphs.map((glyph: any) => (
+                <motion.div
+                    key={glyph.id}
+                    className="absolute text-[#B8835A] opacity-[0.07]"
+                    style={{
+                        width: glyph.size,
+                        height: glyph.size,
+                        left: glyph.left,
+                        top: glyph.top,
+                    }}
+                    animate={{
+                        y: [0, -50, 0],
+                        x: [0, 30, 0],
+                        rotate: [glyph.rotation, glyph.rotation + 360],
+                    }}
+                    transition={{
+                        duration: glyph.duration,
+                        repeat: Infinity,
+                        ease: "linear",
+                        delay: glyph.delay,
+                    }}
+                >
+                    <svg viewBox="0 0 200 200" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d={glyph.path} strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </motion.div>
+            ))}
+        </div>
+    );
+};
+
+export const ModernReveal = ({ children, delay = 0 }: { children: React.ReactNode, delay?: number }) => (
+    <motion.div
+        initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.2, delay, ease: [0.22, 1, 0.36, 1] }}
+    >
+        {children}
+    </motion.div>
+);
