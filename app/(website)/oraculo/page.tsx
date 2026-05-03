@@ -207,7 +207,10 @@ export default function OraclePage() {
                                     </p>
                                     <div className="pt-8 border-t border-[#B8835A]/20 w-full flex flex-col items-center gap-4">
                                         <p className="text-sm font-guide uppercase tracking-widest font-bold text-[#B8835A]">Con amor y certeza sistémica,</p>
-                                        <p className="text-3xl font-editorial italic">Yelitze Rangel</p>
+                                        <div className="text-center">
+                                            <p className="text-3xl font-editorial italic">Yelitze Rangel</p>
+                                            <p className="text-[#B8835A] text-sm italic mt-1 font-editorial">Tu Coach Ancestral</p>
+                                        </div>
                                     </div>
                                 </div>
                             </motion.div>
