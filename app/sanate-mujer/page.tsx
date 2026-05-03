@@ -977,6 +977,12 @@ function FooterSection() {
                         </p>
                     </div>
                 </div>
+
+                <div className="mt-12 max-w-3xl border-t border-white/5 pt-8">
+                    <p className="text-[10px] leading-relaxed text-white/30 font-light">
+                        Este sitio no es parte del sitio web de Facebook ni de Facebook Inc. Además, este sitio NO está respaldado por Facebook de ninguna manera. FACEBOOK es una marca comercial de FACEBOOK, Inc. Los resultados mostrados no son típicos y pueden variar según el esfuerzo, experiencia y situación de cada persona.
+                    </p>
+                </div>
             </div>
         </footer>
     );
