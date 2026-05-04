@@ -99,7 +99,7 @@ export default function OraclePage() {
                     >
                         <div className="space-y-4">
                             <span className="text-[#B8835A] font-guide text-xs uppercase tracking-[0.4em] font-bold block">Sanando el Linaje Femenino</span>
-                            <h2 className="text-4xl md:text-5xl font-editorial leading-tight text-[#B8835A]">Inicia tu<br/><span className="italic text-white">Consulta Alquímica</span></h2>
+                            <h2 className="text-3xl md:text-5xl font-editorial leading-tight text-[#B8835A]">Inicia tu <span className="italic text-white">Consulta Alquímica</span></h2>
                         </div>
                         
                         <form onSubmit={handleStart} className="space-y-8">
