@@ -17,9 +17,8 @@ interface OracleCardProps {
 }
 
 const CARD_COVERS = [
-    'Tarjetas-Circulo-Ancestral-3_01.jpg',
-    'Tarjetas-Circulo-Ancestral-3_02.jpg',
     'Tarjetas-Circulo-Ancestral-3_03.jpg',
+    'Tarjetas-Circulo-Ancestral-3_04.jpg',
     'Tarjetas-Circulo-Ancestral-3_05.jpg',
     'Tarjetas-Circulo-Ancestral-3_06.jpg',
     'Tarjetas-Circulo-Ancestral-3_07.jpg',
@@ -28,7 +27,8 @@ const CARD_COVERS = [
     'Tarjetas-Circulo-Ancestral-3_12.jpg',
     'Tarjetas-Circulo-Ancestral-3_13.jpg',
     'Tarjetas-Circulo-Ancestral-3_18.jpg',
-    'Tarjetas-Circulo-Ancestral-3_19.jpg'
+    'Tarjetas-Circulo-Ancestral-3_19.jpg',
+    'Tarjetas-Circulo-Ancestral-3_20.jpg'
 ];
 
 export default function OracleCard({ index, isSelected, isRevealed, onClick, content }: OracleCardProps) {
