@@ -7,9 +7,41 @@ import { Play, Sparkles, MessageCircle, Calendar, ArrowLeft } from 'lucide-react
 import Link from 'next/link';
 import { HieroglyphicBackground, SacredGeometry, FloatingStars } from "@/components/ui/MysticalElements";
 
+import { useState, useEffect } from 'react';
+
 export default function SanateMujerClase() {
-    // This is a placeholder YouTube ID. The user should provide the actual ID later.
+    const [isActive, setIsActive] = useState(false);
+    const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+    const [mounted, setMounted] = useState(false);
+
+    // Target: May 22, 2026, 7:00 PM (19:00) Venezuela Time (UTC-4)
+    const classStartTime = new Date('2026-05-22T19:00:00-04:00');
+    // Activation: 2 hours before start (17:00)
+    const activationTime = new Date('2026-05-22T17:00:00-04:00');
     const youtubeVideoId = "dQw4w9WgXcQ"; 
+
+    useEffect(() => {
+        setMounted(true);
+        const timer = setInterval(() => {
+            const now = new Date();
+            const difference = classStartTime.getTime() - now.getTime();
+            
+            if (now >= activationTime) {
+                setIsActive(true);
+                clearInterval(timer);
+            } else {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((difference / 1000 / 60) % 60);
+                const seconds = Math.floor((difference / 1000) % 60);
+                setTimeLeft({ days, hours, minutes, seconds });
+            }
+        }, 1000);
+
+        return () => clearInterval(timer);
+    }, []);
+
+    if (!mounted) return null;
 
     return (
         <main className="w-full min-h-screen relative bg-[#FDFBFA] selection:bg-[#B8835A]/30 overflow-hidden">
@@ -28,8 +60,10 @@ export default function SanateMujerClase() {
                         <span className="text-xs font-bold uppercase tracking-widest">Volver</span>
                     </Link>
                     <div className="flex items-center gap-2 px-4 py-1.5 bg-[#B8835A]/10 rounded-full border border-[#B8835A]/20">
-                        <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-                        <span className="text-[10px] font-bold text-[#B8835A] uppercase tracking-[0.2em]">En Vivo via YouTube</span>
+                        <div className={`w-2 h-2 ${isActive ? 'bg-red-500 animate-pulse' : 'bg-gray-400'}`} />
+                        <span className="text-[10px] font-bold text-[#B8835A] uppercase tracking-[0.2em]">
+                            {isActive ? 'En Vivo via YouTube' : 'Próximamente'}
+                        </span>
                     </div>
                 </div>
 
@@ -43,28 +77,68 @@ export default function SanateMujerClase() {
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-medium text-[#2D2926] leading-tight mb-8">
                         Tu Camino de <span className="text-[#B8835A] italic">Sanación Sistémica</span>
                     </h1>
-                    <p className="text-lg md:text-xl text-[#2D2926]/70 leading-relaxed font-light max-w-3xl mx-auto">
-                        Estás en el lugar correcto. Disfruta de la sesión, toma nota de tus revelaciones y permítete sentir cada palabra.
-                    </p>
+                    {!isActive && (
+                        <p className="text-lg md:text-xl text-[#2D2926]/70 leading-relaxed font-light max-w-3xl mx-auto mb-12">
+                            La sala de transmisión se activará <span className="font-bold text-[#B8835A]">2 horas antes</span> de iniciar la clase. ¡Prepárate para este viaje profundo!
+                        </p>
+                    )}
                 </motion.div>
 
-                {/* Video Player Section */}
+                {/* Video Player or Countdown */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="relative aspect-video w-full rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white bg-black mb-16"
+                    className="relative w-full rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white bg-black mb-16 min-h-[300px] md:min-h-[500px] flex items-center justify-center"
                 >
-                    <iframe
-                        width="100%"
-                        height="100%"
-                        src={`https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&rel=0`}
-                        title="Workshop Sánate Mujer - Clase en Vivo"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                        className="absolute inset-0"
-                    ></iframe>
+                    {isActive ? (
+                        <iframe
+                            width="100%"
+                            height="100%"
+                            src={`https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&rel=0`}
+                            title="Workshop Sánate Mujer - Clase en Vivo"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                            className="absolute inset-0"
+                        ></iframe>
+                    ) : (
+                        <div className="absolute inset-0 bg-[#2D2926] flex flex-col items-center justify-center p-8 text-center">
+                            <div className="absolute inset-0 opacity-20 pointer-events-none">
+                                <Image 
+                                    src="/assets/images/watermark-logo.png" 
+                                    alt="" 
+                                    fill 
+                                    className="object-contain p-20 grayscale brightness-0 invert"
+                                />
+                            </div>
+                            <h2 className="text-white/40 text-xs font-bold uppercase tracking-[0.5em] mb-12">Faltan</h2>
+                            <div className="flex gap-4 md:gap-12 text-white">
+                                <div className="flex flex-col">
+                                    <span className="text-4xl md:text-7xl font-heading">{timeLeft.days}</span>
+                                    <span className="text-[10px] uppercase tracking-widest opacity-40">Días</span>
+                                </div>
+                                <div className="flex flex-col">
+                                    <span className="text-4xl md:text-7xl font-heading">{String(timeLeft.hours).padStart(2, '0')}</span>
+                                    <span className="text-[10px] uppercase tracking-widest opacity-40">Horas</span>
+                                </div>
+                                <div className="flex flex-col">
+                                    <span className="text-4xl md:text-7xl font-heading">{String(timeLeft.minutes).padStart(2, '0')}</span>
+                                    <span className="text-[10px] uppercase tracking-widest opacity-40">Min</span>
+                                </div>
+                                <div className="flex flex-col">
+                                    <span className="text-4xl md:text-7xl font-heading">{String(timeLeft.seconds).padStart(2, '0')}</span>
+                                    <span className="text-[10px] uppercase tracking-widest opacity-40">Seg</span>
+                                </div>
+                            </div>
+                            <div className="mt-16 flex flex-col items-center gap-4">
+                                <p className="text-white/60 text-sm italic font-light">"El orden precede al amor."</p>
+                                <div className="px-6 py-2 border border-white/10 rounded-full text-[10px] uppercase tracking-widest text-white/40">
+                                    Inicio: 22 de Mayo, 7:00 PM (Venezuela)
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </motion.div>
 
                 {/* Interactive/Support Section */}

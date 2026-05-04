@@ -269,6 +269,16 @@ function RegistrationForm() {
                             </Link>
 
                             <a 
+                                href="https://www.google.com/calendar/render?action=TEMPLATE&text=Workshop+Sánate+Mujer+-+Yelitze+Rangel&dates=20260522T230000Z/20260523T010000Z&details=Workshop+gratuito+con+Yelitze+Rangel.+Libera+las+lealtades+invisibles+que+detienen+tu+vida.+Accede+aquí:+https://yelitzerangel.com/sanate-mujer/clase&location=Online+vía+YouTube" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="w-full bg-white border border-[#B8835A]/30 text-[#2D2926] py-3 rounded-xl shadow-sm transition-all transform hover:-translate-y-1 inline-flex items-center justify-center gap-3 font-bold uppercase tracking-wider text-[10px]"
+                            >
+                                <Calendar className="w-4 h-4 text-[#B8835A]" />
+                                AGENDAR RECORDATORIO (CALENDAR)
+                            </a>
+
+                            <a 
                                 href="https://chat.whatsapp.com/TU_GRUPO_AQUÍ" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
