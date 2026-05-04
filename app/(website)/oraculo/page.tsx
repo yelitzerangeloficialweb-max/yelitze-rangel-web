@@ -7,18 +7,54 @@ import Link from 'next/link';
 import OracleCard from '@/components/oracle/OracleCard';
 
 const MESSAGES = [
-    { title: "La Madre", message: "La vida te llegó a través de ella, con sus luces y sus sombras. Honrarla es aceptar tu propia existencia." },
-    { title: "La Abuela", message: "Las memorias de fuerza y resiliencia que ella guardó son hoy las raíces de tu propia fortaleza." },
-    { title: "Lealtades", message: "Devuelvo con amor a mi linaje los dolores y destinos que no me pertenecen. Elijo mi propia vida." },
-    { title: "El Vientre", message: "Tu útero es un centro sagrado de creación y soberanía. Limpia sus memorias para florecer." },
-    { title: "Mujer Medicina", message: "La sanadora que buscas afuera habita en tu ADN. Activa la sabiduría de las mujeres de tu sangre." },
-    { title: "El Perdón", message: "Perdonar no es justificar, es liberar tu corazón del peso de esperar un pasado diferente." },
-    { title: "Fuerza Femenina", message: "Tu linaje femenino es una fuente de poder, no una limitación. Bebe de su sabiduría ancestral." },
-    { title: "Memorias", message: "Lo que tus ancestras callaron por miedo, tú hoy puedes darle voz y sanarlo a través de tu verdad." },
-    { title: "Renacer", message: "Cada ciclo que cierras con consciencia es el nacimiento de una nueva versión de ti misma, más libre." },
-    { title: "El Legado", message: "Eres el sueño más audaz de tus ancestras hecho realidad. Camina con la dignidad de quien es amada." },
-    { title: "Sacralidad", message: "Tu cuerpo es el templo vivo de todas las mujeres que te precedieron. Trátalo con reverencia y amor." },
-    { title: "Unión Sagrada", message: "El hilo rojo que te une a ellas es de puro amor. Transforma el dolor heredado en sabiduría de vida." }
+    { 
+        title: "Decisiones para renacer", 
+        message: "No puedes renacer si sigues eligiendo lo que te apaga. Cada decisión que postergas también es una forma de elegir quedarte donde ya no eres. Hoy no necesitas más claridad, necesitas coraje. Elige distinto. Aunque tiemble tu voz. Aunque duela soltar. Porque cuando te eliges… tu alma vuelve a la vida." 
+    },
+    { 
+        title: "Espiral de los cambios", 
+        message: "Nada en ti retrocede… todo se transforma. La espiral no te lleva al mismo lugar, te guía más profundo hacia tu verdad. Honra cada giro, cada cierre, cada renacer. Aunque no lo veas, estás regresando a ti." 
+    },
+    { 
+        title: "La magia de la Maga", 
+        message: "La magia que buscas no está afuera… vive en la mujer que decides ser. No es un don lejano, es una memoria que despierta cuando te eliges. Tu palabra crea. Tu intención abre caminos. Tu presencia transforma. Recuerda… la maga no pide permiso. Confía, y actúa." 
+    },
+    { 
+        title: "La araña que teje", 
+        message: "Eres the tejedora de tu destino. Hilo a hilo, decisión a decisión, vas creando la historia que habitas. No todo lo que tejiste fue consciente, pero hoy… sí lo es. La mujer ancestral en ti recuerda: puedes soltar viejas tramas y comenzar de nuevo. Teje con intención. Teje con verdad. Porque la red que creas… también te sostiene." 
+    },
+    { 
+        title: "El poder de la serpiente", 
+        message: "Te enseñaron a temerle… pero la serpiente no es sombra, es medicina. Ella no destruye, se transforma. Muda la piel sin culpa, sin apego, sin mirar atrás. La mujer que despierta en ti sabe: no viniste a quedarte en la misma versión de ti misma. Viniste a soltar, a renovar, a renacer cuantas veces sea necesario. Tu poder no es oscuro… es profundo. Y en esa profundidad, habita tu sanación." 
+    },
+    { 
+        title: "El colibrí te habla", 
+        message: "Grandiosa mujer, recuerda. El colibrí no carga el peso del mundo, pero conoce el néctar de la vida. Va ligero, pero preciso. Sabe dónde sí… y dónde no quedarse. La sabiduría ancestral susurra en su vuelo: no todo es lucha, también es dulzura. Detente. Respira. Vuelve a lo que te da vida. Porque la mujer que honra su alegría… también está sanando su linaje." 
+    },
+    { 
+        title: "El conejo te habla", 
+        message: "Mujer… siente. El conejo no duda de su instinto, escucha la tierra y se mueve en el momento justo. Es ternura… pero también es alerta. Es vida que se multiplica, es fertilidad de ideas, de caminos, de nuevos comienzos. La sabiduría antigua te susurra: no ignores lo que tu cuerpo percibe antes que tu mente entienda. Confía en tu intuición. Protege tu energía. Elige dónde sembrarte. Porque la mujer que honra su instinto… siempre encuentra el camino de regreso a sí misma." 
+    },
+    { 
+        title: "El poder de la leona", 
+        message: "Mujer… recuerda quién eres. La leona no pide permiso para ocupar su lugar. Camina con certeza, protege lo que ama y no traiciona su instinto. No ruge por todo… pero cuando lo hace, la verdad se escucha. En ti habita esa fuerza: la que sostiene, la que cuida, la que también sabe poner límites. La sabiduría ancestral te llama: no confundas amor con silencio. Tu poder no está en resistirlo todo… está en elegir dónde te quedas y dónde te retiras. Porque la mujer que se honra… se vuelve territorio sagrado." 
+    },
+    { 
+        title: "El equilibrio y el éxito", 
+        message: "Mujer… recuerda. El verdadero éxito no nace del sacrificio constante, sino del equilibrio que honra tu alma. No estás aquí para agotarte demostrando tu valor, sino para sostener una vida que también te sostenga a ti. La sabiduría antigua lo susurra: todo lo que crece en desbalance… termina por romperse. Aprende a dar, pero también a recibir. Avanzar, pero también a detenerte. Porque cuando te alineas contigo, el éxito deja de ser lucha… y se convierte en expansión." 
+    },
+    { 
+        title: "La Tortuga", 
+        message: "Vístete despacio que vas de prisa. Mujer… detente. La prisa dispersa, pero la presencia ordena. No es haciendo más como llegas más lejos, es enfocando tu energía en lo que realmente importa. La sabiduría antigua lo sabía: quien camina con conciencia, no se pierde. Respira. Elige. Concéntrate. Porque cuando tu atención se alinea, tu energía deja de fragmentarse… y tu camino se abre con claridad." 
+    },
+    { 
+        title: "La libélula te habla", 
+        message: "Mujer… escucha el agua de tu interior. La libélula no vive en la prisa del mundo, vive entre cambios de luz, entre lo que fue… y lo que está por revelarse. Vuela ligera porque no se aferra a ninguna versión de sí misma. Se transforma sin pedir permiso. La sabiduría ancestral te susurra en sus alas: no eres la misma de ayer… y eso es sagrado. Deja de exigirte permanencia. Honra tu cambio. Confía en tu evolución. Porque cuando dejas de resistirte a tu transformación… tu vida se vuelve más clara, más liviana, más verdadera." 
+    },
+    { 
+        title: "El poder de ser mujer", 
+        message: "Cuando la mujer honra su lugar interno, no desde la sumisión, sino desde la presencia, algo en su vida se ordena. La energía femenina no es pasividad… es raíz, es intuición, es sabiduría que sostiene sin perderse. Y desde ese centro, las relaciones dejan de ser lucha. No porque el otro “deba hacer más”, sino porque ya no hay vacío que llenar a costa propia. Cada quien ocupa su responsabilidad, sin rescates, sin cargas invisibles. Sanar la relación con los padres —esa primera raíz— es volver a ti sin miedo, sin lealtades que te alejen de tu propio centro. No es perder poder… es recuperarlo. Es recordar que tu energía creadora no se entrega afuera para sobrevivir, se habita para vivir con verdad. Porque la mujer que se reconoce… no se busca en otros, se encuentra en sí misma." 
+    }
 ];
 
 const REFLECTIONS = [
