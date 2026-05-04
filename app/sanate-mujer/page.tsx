@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { FormEvent } from 'react';
-import { ArrowRight, CheckCircle2, ChevronDown, ChevronUp, X, Heart, Activity, ShieldAlert, Sparkles, Play, Clock, Calendar } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronDown, ChevronUp, X, Heart, Activity, ShieldAlert, Sparkles, Play, Clock, Calendar, MessageCircle } from 'lucide-react';
+import Link from 'next/link';
 import { motion, Variants, AnimatePresence } from 'framer-motion';
 import { useEffect, useState as useHookState } from 'react';
 import { SacredGeometry, FloatingStars, ThinGoldenLine, WaveDivider, HieroglyphicBackground, ModernReveal } from "@/components/ui/MysticalElements";
@@ -253,23 +254,34 @@ function RegistrationForm() {
                         <span className="font-bold text-[#2D2926]">¡Pero espera! Falta el paso más importante:</span>
                     </p>
 
-                    <div className="bg-[#B8835A]/5 rounded-2xl p-6 border border-[#B8835A]/20 space-y-6">
+                    <div className="bg-[#B8835A]/5 rounded-2xl p-6 border border-[#B8835A]/20 space-y-4">
                         <p className="text-sm font-medium text-[#B8835A] uppercase tracking-widest">
-                            Únete al Grupo de WhatsApp VIP
-                        </p>
-                        <p className="text-xs text-[#2D2926]/60">
-                            Por este medio enviaremos los recordatorios, el Workbook exclusivo y el enlace para la sesión en vivo.
+                            ¡Accede a la Clase ahora!
                         </p>
                         
-                        <a 
-                            href="https://chat.whatsapp.com/TU_GRUPO_AQUÍ" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white py-4 rounded-xl shadow-lg transition-all transform hover:-translate-y-1 inline-flex items-center justify-center gap-3 font-bold uppercase tracking-wider text-sm"
-                        >
-                            UNIRME AL GRUPO DE WHATSAPP
-                            <Play className="w-4 h-4 fill-current" />
-                        </a>
+                        <div className="grid gap-3">
+                            <Link 
+                                href="/sanate-mujer/clase" 
+                                className="w-full bg-[#B8835A] hover:bg-[#a0724e] text-white py-4 rounded-xl shadow-lg transition-all transform hover:-translate-y-1 inline-flex items-center justify-center gap-3 font-bold uppercase tracking-wider text-sm"
+                            >
+                                <Play className="w-4 h-4 fill-current" />
+                                ENTRAR A LA CLASE EN VIVO
+                            </Link>
+
+                            <a 
+                                href="https://chat.whatsapp.com/TU_GRUPO_AQUÍ" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white py-4 rounded-xl shadow-sm transition-all transform hover:-translate-y-1 inline-flex items-center justify-center gap-3 font-bold uppercase tracking-wider text-[10px]"
+                            >
+                                <MessageCircle className="w-4 h-4 fill-current" />
+                                UNIRME AL GRUPO DE WHATSAPP (VIP)
+                            </a>
+                        </div>
+                        
+                        <p className="text-[10px] text-[#2D2926]/60 leading-tight">
+                            Por WhatsApp enviaremos el **Workbook exclusivo** para los ejercicios de hoy.
+                        </p>
                     </div>
 
                     <p className="mt-8 text-[10px] text-[#2D2926]/40 uppercase tracking-widest font-bold">
