@@ -89,8 +89,20 @@ export default function SanateMujerClase() {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="relative w-full rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white bg-black mb-16 min-h-[300px] md:min-h-[500px] flex items-center justify-center"
+                    className="relative w-full rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white bg-[#2D2926] mb-16 min-h-[400px] md:min-h-[550px] flex items-center justify-center"
                 >
+                    {!isActive && (
+                        <div className="absolute inset-0 z-0">
+                            <Image 
+                                src="/assets/images/sanate-mujer/clase-bg.png" 
+                                alt="Fondo Clase Sánate Mujer" 
+                                fill 
+                                className="object-cover opacity-60"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#2D2926] via-[#2D2926]/40 to-transparent" />
+                        </div>
+                    )}
+
                     {isActive ? (
                         <iframe
                             width="100%"
@@ -100,41 +112,33 @@ export default function SanateMujerClase() {
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowFullScreen
-                            className="absolute inset-0"
+                            className="absolute inset-0 z-10"
                         ></iframe>
                     ) : (
-                        <div className="absolute inset-0 bg-[#2D2926] flex flex-col items-center justify-center p-8 text-center">
-                            <div className="absolute inset-0 opacity-20 pointer-events-none">
-                                <Image 
-                                    src="/assets/images/watermark-logo.png" 
-                                    alt="" 
-                                    fill 
-                                    className="object-contain p-20 grayscale brightness-0 invert"
-                                />
-                            </div>
-                            <h2 className="text-white/40 text-xs font-bold uppercase tracking-[0.5em] mb-12">Faltan</h2>
-                            <div className="flex gap-4 md:gap-12 text-white">
+                        <div className="relative z-10 w-full h-full flex flex-col items-center justify-center p-8 text-center">
+                            <h2 className="text-white/80 text-xs font-bold uppercase tracking-[0.5em] mb-12 drop-shadow-lg">El encuentro comienza en:</h2>
+                            <div className="flex gap-4 md:gap-12 text-white drop-shadow-2xl">
                                 <div className="flex flex-col">
-                                    <span className="text-4xl md:text-7xl font-heading">{timeLeft.days}</span>
-                                    <span className="text-[10px] uppercase tracking-widest opacity-40">Días</span>
+                                    <span className="text-5xl md:text-8xl font-heading">{timeLeft.days}</span>
+                                    <span className="text-[10px] uppercase tracking-widest opacity-60">Días</span>
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="text-4xl md:text-7xl font-heading">{String(timeLeft.hours).padStart(2, '0')}</span>
-                                    <span className="text-[10px] uppercase tracking-widest opacity-40">Horas</span>
+                                    <span className="text-5xl md:text-8xl font-heading">{String(timeLeft.hours).padStart(2, '0')}</span>
+                                    <span className="text-[10px] uppercase tracking-widest opacity-60">Horas</span>
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="text-4xl md:text-7xl font-heading">{String(timeLeft.minutes).padStart(2, '0')}</span>
-                                    <span className="text-[10px] uppercase tracking-widest opacity-40">Min</span>
+                                    <span className="text-5xl md:text-8xl font-heading">{String(timeLeft.minutes).padStart(2, '0')}</span>
+                                    <span className="text-[10px] uppercase tracking-widest opacity-60">Min</span>
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="text-4xl md:text-7xl font-heading">{String(timeLeft.seconds).padStart(2, '0')}</span>
-                                    <span className="text-[10px] uppercase tracking-widest opacity-40">Seg</span>
+                                    <span className="text-5xl md:text-8xl font-heading">{String(timeLeft.seconds).padStart(2, '0')}</span>
+                                    <span className="text-[10px] uppercase tracking-widest opacity-60">Seg</span>
                                 </div>
                             </div>
                             <div className="mt-16 flex flex-col items-center gap-4">
-                                <p className="text-white/60 text-sm italic font-light">"El orden precede al amor."</p>
-                                <div className="px-6 py-2 border border-white/10 rounded-full text-[10px] uppercase tracking-widest text-white/40">
-                                    Inicio: 22 de Mayo, 7:00 PM (Venezuela)
+                                <p className="text-white text-sm md:text-base italic font-light drop-shadow-md">"El orden precede al amor."</p>
+                                <div className="px-8 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-[10px] md:text-xs uppercase tracking-widest text-white font-bold">
+                                    22 de Mayo, 7:00 PM (Hora Venezuela)
                                 </div>
                             </div>
                         </div>
