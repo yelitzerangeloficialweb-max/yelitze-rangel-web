@@ -33,6 +33,7 @@ export default function OraclePage() {
     const [step, setStep] = useState<'NAME' | 'ORACLE' | 'RESULT'>('NAME');
     const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
     const [shuffledMessages, setShuffledMessages] = useState(MESSAGES);
+    const [selectedMessage, setSelectedMessage] = useState<{title: string, message: string} | null>(null);
     const [yelitzeReflection, setYelitzeReflection] = useState('');
 
     useEffect(() => {
@@ -48,7 +49,10 @@ export default function OraclePage() {
     };
 
     const handleCardClick = (index: number) => {
-        if (step === 'RESULT') return;
+        if (step === 'RESULT') {
+            setSelectedMessage(shuffledMessages[index]);
+            return;
+        }
         
         if (selectedIndices.includes(index)) {
             setSelectedIndices(selectedIndices.filter(i => i !== index));
@@ -56,6 +60,8 @@ export default function OraclePage() {
             setSelectedIndices([...selectedIndices, index]);
         }
     };
+
+    const closeMessageModal = () => setSelectedMessage(null);
 
     const handleReveal = () => {
         if (selectedIndices.length === 3) {
@@ -212,9 +218,10 @@ export default function OraclePage() {
                                             <p className="text-[#B8835A] text-sm italic mt-1 font-editorial">Tu Coach Ancestral</p>
                                         </div>
 
+                                        {/* Store CTA */}
                                         <div className="bg-[#B8835A]/5 rounded-3xl p-8 border border-[#B8835A]/20 w-full">
-                                            <p className="text-lg font-editorial italic mb-6 leading-relaxed">
-                                                ¿Te gustaría llevar esta sabiduría contigo? Adquiere el <span className="text-white font-bold not-italic">Oráculo Ancestral completo</span> en formato PDF para imprimirlo y realizar tus propias consultas sagradas siempre que lo necesites.
+                                            <p className="text-base font-editorial italic mb-6">
+                                                Si quieres profundizar en este mensaje y tener el oráculo completo, puedes adquirirlo en formato PDF en mi tienda.
                                             </p>
                                             <Link 
                                                 href="/tienda" 
@@ -277,6 +284,62 @@ export default function OraclePage() {
                     -webkit-backface-visibility: hidden;
                 }
             `}</style>
+            
+            {/* MESSAGE MODAL */}
+            <AnimatePresence>
+                {selectedMessage && (
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[100] flex items-center justify-center p-6 md:p-12"
+                    >
+                        <motion.div 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={closeMessageModal}
+                            className="absolute inset-0 bg-black/60 backdrop-blur-md" 
+                        />
+                        <motion.div 
+                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                            className="relative w-full max-w-2xl bg-[#F9F7F2] rounded-[3rem] p-10 md:p-16 text-[#2D2926] shadow-4xl overflow-hidden"
+                        >
+                            <div className="absolute top-8 right-8">
+                                <button 
+                                    onClick={closeMessageModal}
+                                    className="w-10 h-10 rounded-full bg-[#B8835A]/10 flex items-center justify-center text-[#B8835A] hover:bg-[#B8835A] hover:text-white transition-colors"
+                                >
+                                    ✕
+                                </button>
+                            </div>
+
+                            <div className="space-y-8">
+                                <div className="flex flex-col items-center text-center space-y-4">
+                                    <span className="text-[#B8835A] font-guide text-xs uppercase tracking-[0.4em] font-bold block">Mensaje Ancestral</span>
+                                    <h3 className="text-3xl md:text-5xl font-editorial italic leading-tight text-[#8C4005]">
+                                        {selectedMessage.title}
+                                    </h3>
+                                </div>
+
+                                <div className="h-[1px] w-full bg-[#B8835A]/20" />
+
+                                <p className="text-lg md:text-2xl font-editorial font-light leading-relaxed text-[#2D2926]/90 text-center italic">
+                                    "{selectedMessage.message}"
+                                </p>
+
+                                <div className="pt-4 flex justify-center">
+                                    <div className="w-12 h-12 bg-[#B8835A]/5 rounded-full flex items-center justify-center text-[#B8835A]">
+                                        <Sparkles className="w-6 h-6 animate-pulse" />
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }

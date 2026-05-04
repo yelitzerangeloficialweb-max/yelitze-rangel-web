@@ -90,7 +90,7 @@ export default function OracleCard({ index, isSelected, isRevealed, onClick, con
                 <h3 className="text-[#8C4005] text-xl md:text-2xl font-editorial leading-tight mb-2">
                     {content.title}
                 </h3>
-                <p className="text-[#2D2926]/70 text-xs md:text-sm font-light leading-relaxed">
+                <p className="text-[#2D2926]/70 text-xs md:text-sm font-light leading-relaxed line-clamp-3">
                     {content.message}
                 </p>
                 
