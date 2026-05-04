@@ -16,7 +16,23 @@ interface OracleCardProps {
     };
 }
 
+const CARD_COVERS = [
+    'Tarjetas-Circulo-Ancestral-3_01.jpg',
+    'Tarjetas-Circulo-Ancestral-3_02.jpg',
+    'Tarjetas-Circulo-Ancestral-3_03.jpg',
+    'Tarjetas-Circulo-Ancestral-3_05.jpg',
+    'Tarjetas-Circulo-Ancestral-3_06.jpg',
+    'Tarjetas-Circulo-Ancestral-3_07.jpg',
+    'Tarjetas-Circulo-Ancestral-3_08.jpg',
+    'Tarjetas-Circulo-Ancestral-3_11.jpg',
+    'Tarjetas-Circulo-Ancestral-3_12.jpg',
+    'Tarjetas-Circulo-Ancestral-3_13.jpg',
+    'Tarjetas-Circulo-Ancestral-3_18.jpg',
+    'Tarjetas-Circulo-Ancestral-3_19.jpg'
+];
+
 export default function OracleCard({ index, isSelected, isRevealed, onClick, content }: OracleCardProps) {
+    const coverImage = CARD_COVERS[index % CARD_COVERS.length];
     return (
         <motion.div
             layout
@@ -39,7 +55,7 @@ export default function OracleCard({ index, isSelected, isRevealed, onClick, con
                 {/* Animal Cover Image */}
                 <div className="absolute inset-0 w-full h-full">
                     <Image 
-                        src={`/images/oraculo/cover-${(index % 4) + 1}.jpg`}
+                        src={`/images/oraculo/${coverImage}`}
                         alt={`Carta ${index + 1}`}
                         fill
                         className="object-cover opacity-90 group-hover:opacity-100 transition-opacity"
