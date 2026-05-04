@@ -212,10 +212,9 @@ export default function OraclePage() {
                                             <p className="text-[#B8835A] text-sm italic mt-1 font-editorial">Tu Coach Ancestral</p>
                                         </div>
 
-                                        {/* Store CTA */}
                                         <div className="bg-[#B8835A]/5 rounded-3xl p-8 border border-[#B8835A]/20 w-full">
-                                            <p className="text-base font-editorial italic mb-6">
-                                                Si quieres profundizar en este mensaje y tener el oráculo completo, puedes adquirirlo en formato PDF en mi tienda.
+                                            <p className="text-lg font-editorial italic mb-6 leading-relaxed">
+                                                ¿Te gustaría llevar esta sabiduría contigo? Adquiere el <span className="text-white font-bold not-italic">Oráculo Ancestral completo</span> en formato PDF para imprimirlo y realizar tus propias consultas sagradas siempre que lo necesites.
                                             </p>
                                             <Link 
                                                 href="/tienda" 
