@@ -45,7 +45,7 @@ export default function OracleCard({ index, isSelected, isRevealed, onClick, con
             }}
             whileHover={!isRevealed && !isSelected ? { scale: 1.05, y: -5 } : {}}
             transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
-            className={`relative w-64 h-64 md:w-80 md:h-80 cursor-pointer preserve-3d group`}
+            className={`relative w-64 h-64 md:w-72 md:h-72 cursor-pointer preserve-3d group`}
             onClick={onClick}
         >
             {/* FRONT OF THE CARD (BACK IN REALITY) */}
