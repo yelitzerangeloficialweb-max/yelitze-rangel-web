@@ -197,7 +197,7 @@ export default function OraclePage() {
                         </header>
 
                         <div className="relative z-10 w-full max-w-7xl">
-                            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 md:gap-10 justify-items-center items-center py-8">
+                            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-12 md:gap-20 justify-items-center items-center py-16">
                                 <AnimatePresence mode="popLayout">
                                     {shuffledMessages.map((msg, idx) => {
                                         const isSelected = selectedIndices.includes(idx);
