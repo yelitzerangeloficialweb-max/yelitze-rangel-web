@@ -95,16 +95,16 @@ export default function OraclePage() {
     const handleCardClick = (index: number) => {
         if (step === 'RESULT') {
             setSelectedMessage(shuffledMessages[index]);
-            playSound('https://assets.mixkit.co/active_storage/sfx/2017/2017-preview.mp3');
+            playSound('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3'); // Magic spell sound for modal
             return;
         }
         
         if (selectedIndices.includes(index)) {
             setSelectedIndices(prev => prev.filter(i => i !== index));
-            playSound('https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3');
+            playSound('https://assets.mixkit.co/active_storage/sfx/2573/2573-preview.mp3'); // Soft bell for deselect
         } else if (selectedIndices.length < 3) {
             setSelectedIndices(prev => [...prev, index]);
-            playSound('https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3');
+            playSound('https://assets.mixkit.co/active_storage/sfx/2573/2573-preview.mp3'); // Soft bell for select
         }
     };
 
@@ -114,7 +114,7 @@ export default function OraclePage() {
         if (selectedIndices.length === 3) {
             setYelitzeReflection(REFLECTIONS[Math.floor(Math.random() * REFLECTIONS.length)]);
             setStep('RESULT');
-            playSound('https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3');
+            playSound('https://assets.mixkit.co/active_storage/sfx/1118/1118-preview.mp3'); // Wind chimes for reveal
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     };
