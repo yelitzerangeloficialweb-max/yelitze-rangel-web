@@ -171,7 +171,7 @@ export default function OraclePage() {
 
                 {(step === 'ORACLE' || step === 'RESULT') && (
                     <div className="w-full flex flex-col items-center">
-                        <header className="relative z-10 text-center mb-12 space-y-4">
+                        <header className="relative z-10 text-center mb-12 space-y-4 mt-16 md:mt-24">
                             <motion.div
                                 initial={{ opacity: 0, y: -20 }}
                                 animate={{ opacity: 1, y: 0 }}
