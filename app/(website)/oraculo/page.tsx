@@ -76,6 +76,14 @@ export default function OraclePage() {
         setShuffledMessages([...MESSAGES].sort(() => Math.random() - 0.5));
     }, []);
 
+    const playSound = (url: string) => {
+        if (typeof window !== 'undefined') {
+            const audio = new Audio(url);
+            audio.volume = 0.4;
+            audio.play().catch(() => {});
+        }
+    };
+
     const handleStart = (e: React.FormEvent) => {
         e.preventDefault();
         if (userName.trim()) {
@@ -87,13 +95,16 @@ export default function OraclePage() {
     const handleCardClick = (index: number) => {
         if (step === 'RESULT') {
             setSelectedMessage(shuffledMessages[index]);
+            playSound('https://assets.mixkit.co/active_storage/sfx/2017/2017-preview.mp3');
             return;
         }
         
         if (selectedIndices.includes(index)) {
-            setSelectedIndices(selectedIndices.filter(i => i !== index));
+            setSelectedIndices(prev => prev.filter(i => i !== index));
+            playSound('https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3');
         } else if (selectedIndices.length < 3) {
-            setSelectedIndices([...selectedIndices, index]);
+            setSelectedIndices(prev => [...prev, index]);
+            playSound('https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3');
         }
     };
 
@@ -103,6 +114,7 @@ export default function OraclePage() {
         if (selectedIndices.length === 3) {
             setYelitzeReflection(REFLECTIONS[Math.floor(Math.random() * REFLECTIONS.length)]);
             setStep('RESULT');
+            playSound('https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     };
