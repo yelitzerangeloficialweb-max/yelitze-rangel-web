@@ -39,7 +39,7 @@ export default function OracleCard({ index, isSelected, isRevealed, onClick, con
                 {/* Animal Cover Image */}
                 <div className="absolute inset-0 w-full h-full">
                     <Image 
-                        src={`/assets/images/oraculo/cover-${(index % 4) + 1}.jpg`}
+                        src={`/images/oraculo/cover-${(index % 4) + 1}.jpg`}
                         alt={`Carta ${index + 1}`}
                         fill
                         className="object-cover opacity-90 group-hover:opacity-100 transition-opacity"
