@@ -196,7 +196,7 @@ export default function OraclePage() {
                             )}
                         </header>
 
-                        <div className="relative z-10 w-full max-w-7xl">
+                        <div className="relative z-10 w-full max-w-7xl mt-12 md:mt-20">
                             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-12 md:gap-20 justify-items-center items-center py-16">
                                 <AnimatePresence mode="popLayout">
                                     {shuffledMessages.map((msg, idx) => {
