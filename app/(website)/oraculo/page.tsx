@@ -256,13 +256,16 @@ export default function OraclePage() {
 
                                         {/* Store CTA */}
                                         <div className="bg-[#B8835A]/5 rounded-3xl p-8 border border-[#B8835A]/20 w-full">
-                                            <p className="text-base font-editorial italic mb-6">
-                                                Si quieres profundizar en este mensaje y tener el oráculo completo, puedes adquirirlo en formato PDF en mi tienda.
+                                            <p className="text-base md:text-xl font-editorial italic mb-6 leading-relaxed">
+                                                ¿Te gustaría llevar esta sabiduría contigo? Adquiere el <strong className="text-[#8C4005] not-italic">Oráculo Ancestral completo</strong> en formato PDF para imprimirlo y realizar tus propias consultas sagradas siempre que lo necesites.
                                             </p>
                                             <Link 
                                                 href="/tienda" 
                                                 className="inline-flex items-center gap-3 bg-[#B8835A] text-[#2D2926] px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-[10px] hover:scale-105 transition-all shadow-lg"
                                             >
+                                                Visitar la Tienda
+                                            </Link>
+                                        </div>
                                                 Visitar la Tienda
                                             </Link>
                                         </div>
