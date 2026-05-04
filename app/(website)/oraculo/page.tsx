@@ -213,8 +213,23 @@ export default function OraclePage() {
                                                 animate={{ opacity: 1, scale: 1 }}
                                                 exit={{ opacity: 0, scale: 0.5, y: 20 }}
                                                 transition={{ duration: 0.6, type: "spring" }}
-                                                className={`${step === 'RESULT' ? 'col-span-2 md:col-span-2 lg:col-span-2' : ''}`}
+                                                className={`${step === 'RESULT' ? 'col-span-2 md:col-span-2 lg:col-span-2 flex flex-col items-center gap-6' : ''}`}
                                             >
+                                                {step === 'RESULT' && (
+                                                    <motion.div 
+                                                        initial={{ opacity: 0, y: -10 }}
+                                                        animate={{ opacity: 1, y: 0 }}
+                                                        transition={{ delay: 0.5 }}
+                                                        className="text-center"
+                                                    >
+                                                        <span className="text-[#B8835A] font-guide text-[10px] uppercase tracking-[0.4em] font-bold block mb-1">Posición Sagrada</span>
+                                                        <h4 className="text-white font-editorial italic text-xl">
+                                                            {selectedIndices.indexOf(idx) === 0 && "La Raíz"}
+                                                            {selectedIndices.indexOf(idx) === 1 && "El Corazón"}
+                                                            {selectedIndices.indexOf(idx) === 2 && "El Propósito"}
+                                                        </h4>
+                                                    </motion.div>
+                                                )}
                                                 <OracleCard 
                                                     index={idx}
                                                     isSelected={isSelected}
