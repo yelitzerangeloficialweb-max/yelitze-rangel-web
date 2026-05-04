@@ -15,7 +15,8 @@ export default function WebsiteLayout({
     const pathname = usePathname();
     const isSomaticTest = pathname.startsWith('/test-somatico');
     const isOracle = pathname.startsWith('/oraculo');
-    const hideLayout = isSomaticTest || isOracle;
+    const isSanateMujer = pathname.startsWith('/sanate-mujer');
+    const hideLayout = isSomaticTest || isOracle || isSanateMujer;
 
     return (
         <CartProvider>
