@@ -205,11 +205,24 @@ export default function OraclePage() {
                                     <p className="text-xl md:text-2xl font-editorial font-light leading-relaxed opacity-90 max-w-2xl">
                                         "{yelitzeReflection}"
                                     </p>
-                                    <div className="pt-8 border-t border-[#B8835A]/20 w-full flex flex-col items-center gap-4">
+                                    <div className="pt-8 border-t border-[#B8835A]/20 w-full flex flex-col items-center gap-6">
                                         <p className="text-sm font-guide uppercase tracking-widest font-bold text-[#B8835A]">Con amor y certeza sistémica,</p>
-                                        <div className="text-center">
+                                        <div className="text-center mb-8">
                                             <p className="text-3xl font-editorial italic">Yelitze Rangel</p>
                                             <p className="text-[#B8835A] text-sm italic mt-1 font-editorial">Tu Coach Ancestral</p>
+                                        </div>
+
+                                        {/* Store CTA */}
+                                        <div className="bg-[#B8835A]/5 rounded-3xl p-8 border border-[#B8835A]/20 w-full">
+                                            <p className="text-base font-editorial italic mb-6">
+                                                Si quieres profundizar en este mensaje y tener el oráculo completo, puedes adquirirlo en formato PDF en mi tienda.
+                                            </p>
+                                            <Link 
+                                                href="/tienda" 
+                                                className="inline-flex items-center gap-3 bg-[#B8835A] text-[#2D2926] px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-[10px] hover:scale-105 transition-all shadow-lg"
+                                            >
+                                                Visitar la Tienda
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
