@@ -85,7 +85,14 @@ export default function OracleCard({ index, isSelected, isRevealed, onClick, con
                 style={{ transform: 'rotateY(180deg)' }}
             >
                 <span className="text-[#B8835A] font-guide text-[10px] uppercase tracking-[0.3em] font-bold mb-2">
-                    Mensaje de Luz
+                    {[
+                        "Sabiduría Ancestral",
+                        "Guía del Linaje",
+                        "Mensaje de Luz",
+                        "Voz de las Almas",
+                        "Claridad Sagrada",
+                        "Eco del Corazón"
+                    ][index % 6]}
                 </span>
                 <h3 className="text-[#8C4005] text-xl md:text-2xl font-editorial leading-tight mb-2">
                     {content.title}
