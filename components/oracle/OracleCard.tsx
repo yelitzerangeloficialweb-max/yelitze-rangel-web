@@ -34,18 +34,33 @@ export default function OracleCard({ index, isSelected, isRevealed, onClick, con
         >
             {/* FRONT OF THE CARD (BACK IN REALITY) */}
             <div 
-                className={`absolute inset-0 w-full h-full rounded-full border-4 border-[#B8835A]/30 bg-[#2D2926] flex items-center justify-center backface-hidden shadow-2xl transition-all duration-500 group-hover:border-[#B8835A]`}
+                className={`absolute inset-0 w-full h-full rounded-full border-4 border-[#B8835A]/50 bg-[#2D2926] overflow-hidden backface-hidden shadow-2xl transition-all duration-500 group-hover:border-[#B8835A] group-hover:scale-105`}
             >
-                <div className="relative w-3/4 h-3/4 opacity-20 group-hover:opacity-40 transition-opacity">
+                {/* Animal Cover Image */}
+                <div className="absolute inset-0 w-full h-full">
                     <Image 
-                        src="/assets/images/watermark-logo.png" 
-                        alt="Místico" 
-                        fill 
-                        className="object-contain brightness-0 invert" 
+                        src={`/assets/images/oraculo/cover-${(index % 4) + 1}.jpg`}
+                        alt={`Carta ${index + 1}`}
+                        fill
+                        className="object-cover opacity-90 group-hover:opacity-100 transition-opacity"
                     />
                 </div>
-                {/* Golden Glow */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#B8835A]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+
+                {/* Flower Watermark Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-30 group-hover:opacity-50 transition-opacity">
+                    <div className="w-1/2 h-1/2">
+                        <Image 
+                            src="/assets/images/watermark-logo.png" 
+                            alt="Místico" 
+                            fill 
+                            className="object-contain brightness-0 invert" 
+                        />
+                    </div>
+                </div>
+
+                {/* Golden Glow & Vignette */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#B8835A]/20 via-transparent to-black/40" />
+                <div className="absolute inset-0 rounded-full border-inner border-[#B8835A]/10 shadow-[inset_0_0_40px_rgba(0,0,0,0.5)]" />
             </div>
 
             {/* BACK OF THE CARD (FRONT REVEALED) */}
