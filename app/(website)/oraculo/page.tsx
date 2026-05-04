@@ -265,10 +265,7 @@ export default function OraclePage() {
                                             >
                                                 Visitar la Tienda
                                             </Link>
-                                        </div>
-                                                Visitar la Tienda
-                                            </Link>
-                                        </div>
+                                    </div>
                                     </div>
                                 </div>
                             </motion.div>
