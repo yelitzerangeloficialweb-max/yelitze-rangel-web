@@ -412,9 +412,9 @@ function TrustBar() {
     const categories = [
         'Psicología Integrativa',
         'Sabiduría Ancestral',
-        'Trauma Informed',
+        'Trauma Corporal',
         'Tanatología',
-        'Coaching Energético'
+        'Coaching Ancestral'
     ];
 
     return (
@@ -499,12 +499,14 @@ function SocialProofSection() {
         {
             name: "Carolina R.",
             title: "Empresaria",
+            image: "/assets/images/testimonials/carolina.png",
             quote: "Llegué en quiebra emocional, hoy mi realidad es otra.",
             text: "Con el método de Yelitze, identifiqué el bloqueo invisible que me mantenía en la carencia. No fue magia, fue comprensión sistémica pura. Hoy tengo paz, merecimiento real y mi negocio fluye con una energía renovada."
         },
         {
             name: "Andrea M.",
             title: "Terapeuta",
+            image: "/assets/images/testimonials/andrea.png",
             quote: "Descubrí por qué siempre atraía hombres no disponibles.",
             text: "Tras la Activación, entendí que estaba cargando con el duelo no resuelto de mi madre. Al liberar esa carga con los rituales, mi energía cambió y atraje a una pareja consciente y respetuosa."
         }
@@ -535,8 +537,13 @@ function SocialProofSection() {
                             className="bg-white p-10 rounded-2xl shadow-lg border border-[#B8835A]/20 relative"
                         >
                             <div className="flex items-center gap-4 mb-8">
-                                <div className="w-16 h-16 rounded-full bg-[#B8835A]/10 flex items-center justify-center text-[#B8835A] font-bold">
-                                    {t.name.split(' ')[0][0]}
+                                <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-[#B8835A]/20 shadow-md relative">
+                                    <Image 
+                                        src={t.image}
+                                        alt={t.name}
+                                        fill
+                                        className="object-cover"
+                                    />
                                 </div>
                                 <div>
                                     <h4 className="font-bold text-[#2D2926]">{t.name}</h4>
