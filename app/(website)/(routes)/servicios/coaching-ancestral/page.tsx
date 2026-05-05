@@ -98,11 +98,7 @@ export default function CoachingAncestralPage() {
                                             className="object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
                                         />
                                     </div>
-                                    <div className="absolute bottom-6 left-0 right-0 text-center">
-                                        <span className="font-handwriting text-2xl text-gray-600 opacity-80 transform -rotate-2 inline-block">
-                                            Anatomía del Alma
-                                        </span>
-                                    </div>
+                                    {/* Text removed as requested */}
                                 </div>
                                 <div className="absolute -bottom-6 -right-6 bg-black/90 backdrop-blur-md p-6 rounded-xl border border-white/10 shadow-xl max-w-xs hidden md:block z-20">
                                     <p className="text-sm italic text-gray-300 m-0">
