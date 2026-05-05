@@ -16,9 +16,9 @@ export default function SanateMujerClase() {
 
     // Target: May 22, 2026, 7:00 PM (19:00) Venezuela Time (UTC-4)
     const classStartTime = new Date('2026-05-22T19:00:00-04:00');
-    // Activation: 2 hours before start (17:00)
-    const activationTime = new Date('2026-05-22T17:00:00-04:00');
-    const youtubeVideoId = "dQw4w9WgXcQ"; 
+    // Activation: Exactly at start (19:00)
+    const activationTime = new Date('2026-05-22T19:00:00-04:00');
+    const youtubeVideoId = "LruL2viB9mc"; 
 
     useEffect(() => {
         setMounted(true);
@@ -163,10 +163,10 @@ export default function SanateMujerClase() {
                             </p>
                         </div>
                         <a 
-                            href="https://chat.whatsapp.com/TU_GRUPO_AQUÍ" 
+                            href="https://chat.whatsapp.com/JXwqkFFyySKKuUMvy5mbFz?mlu=0&s=sw&p=i" 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white py-4 rounded-2xl shadow-lg transition-all transform hover:-translate-y-1 inline-flex items-center justify-center gap-3 font-bold uppercase tracking-wider text-sm"
+                            className="w-full bg-[#128C7E] hover:bg-[#0e6b5e] text-white py-4 rounded-2xl shadow-lg transition-all transform hover:-translate-y-1 inline-flex items-center justify-center gap-3 font-bold uppercase tracking-wider text-sm"
                         >
                             <MessageCircle className="w-5 h-5" />
                             UNIRME AL GRUPO VIP

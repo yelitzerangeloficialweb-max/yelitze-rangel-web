@@ -172,6 +172,15 @@ function RegistrationForm() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [canAccessClass, setCanAccessClass] = useState(false);
+
+    useEffect(() => {
+        const activationTime = new Date('2026-05-22T19:00:00-04:00');
+        const checkTime = () => setCanAccessClass(new Date() >= activationTime);
+        checkTime();
+        const interval = setInterval(checkTime, 60000);
+        return () => clearInterval(interval);
+    }, []);
 
     const isClosed = new Date() > new Date('2026-05-23T00:00:00');
 
@@ -254,20 +263,26 @@ function RegistrationForm() {
                         <span className="font-bold text-[#2D2926]">¡Pero espera! Falta el paso más importante:</span>
                     </p>
 
-                    <div className="bg-[#B8835A]/5 rounded-2xl p-6 border border-[#B8835A]/20 space-y-4">
-                        <p className="text-sm font-medium text-[#B8835A] uppercase tracking-widest">
-                            ¡Accede a la Clase ahora!
-                        </p>
-                        
-                        <div className="grid gap-3">
-                            <Link 
-                                href="/sanate-mujer/clase" 
-                                className="w-full bg-[#B8835A] hover:bg-[#a0724e] text-white py-4 rounded-xl shadow-lg transition-all transform hover:-translate-y-1 inline-flex items-center justify-center gap-3 font-bold uppercase tracking-wider text-sm"
-                            >
-                                <Play className="w-4 h-4 fill-current" />
-                                ENTRAR A LA CLASE EN VIVO
-                            </Link>
+                    {canAccessClass && (
+                        <div className="bg-[#B8835A]/5 rounded-2xl p-6 border border-[#B8835A]/20 space-y-4 mb-4">
+                            <p className="text-sm font-medium text-[#B8835A] uppercase tracking-widest">
+                                ¡Accede a la Clase ahora!
+                            </p>
+                            
+                            <div className="grid gap-3">
+                                <Link 
+                                    href="/sanate-mujer/clase" 
+                                    className="w-full bg-[#B8835A] hover:bg-[#a0724e] text-white py-4 rounded-xl shadow-lg transition-all transform hover:-translate-y-1 inline-flex items-center justify-center gap-3 font-bold uppercase tracking-wider text-sm"
+                                >
+                                    <Play className="w-4 h-4 fill-current" />
+                                    ENTRAR A LA CLASE EN VIVO
+                                </Link>
+                            </div>
+                        </div>
+                    )}
 
+                    <div className="bg-[#B8835A]/5 rounded-2xl p-6 border border-[#B8835A]/20 space-y-4">
+                        <div className="grid gap-3">
                             <a 
                                 href="https://www.google.com/calendar/render?action=TEMPLATE&text=Workshop+Sánate+Mujer+-+Yelitze+Rangel&dates=20260522T230000Z/20260523T010000Z&details=Workshop+gratuito+con+Yelitze+Rangel.+Libera+las+lealtades+invisibles+que+detienen+tu+vida.+Accede+aquí:+https://yelitzerangel.com/sanate-mujer/clase&location=Online+vía+YouTube" 
                                 target="_blank" 
@@ -279,10 +294,10 @@ function RegistrationForm() {
                             </a>
 
                             <a 
-                                href="https://chat.whatsapp.com/TU_GRUPO_AQUÍ" 
+                                href="https://chat.whatsapp.com/JXwqkFFyySKKuUMvy5mbFz?mlu=0&s=sw&p=i" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
-                                className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white py-4 rounded-xl shadow-sm transition-all transform hover:-translate-y-1 inline-flex items-center justify-center gap-3 font-bold uppercase tracking-wider text-[10px]"
+                                className="w-full bg-[#128C7E] hover:bg-[#0e6b5e] text-white py-4 rounded-xl shadow-sm transition-all transform hover:-translate-y-1 inline-flex items-center justify-center gap-3 font-bold uppercase tracking-wider text-[11px]"
                             >
                                 <MessageCircle className="w-4 h-4 fill-current" />
                                 UNIRME AL GRUPO DE WHATSAPP (VIP)
