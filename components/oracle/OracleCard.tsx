@@ -81,10 +81,10 @@ export default function OracleCard({ index, isSelected, isRevealed, onClick, con
 
             {/* BACK OF THE CARD (FRONT REVEALED) */}
             <div 
-                className="absolute inset-0 w-full h-full rounded-full border-4 border-[#B8835A] bg-[#F9F7F2] flex flex-col items-center justify-center p-6 text-center backface-hidden shadow-2xl"
+                className="absolute inset-0 w-full h-full rounded-full border-4 border-[#B8835A] bg-[#F9F7F2] flex flex-col items-center justify-center p-6 pt-10 text-center backface-hidden shadow-2xl"
                 style={{ transform: 'rotateY(180deg)' }}
             >
-                <span className="text-[#B8835A] font-guide text-xs uppercase tracking-[0.3em] font-bold mb-3">
+                <span className="text-[#B8835A] font-guide text-[9px] uppercase tracking-[0.3em] font-bold mb-3">
                     {[
                         "Sabiduría Ancestral",
                         "Guía del Linaje",
