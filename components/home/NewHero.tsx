@@ -39,7 +39,7 @@ const slides = [
         title: "SABIDURÍA EN TUS MANOS",
         subtitle: "guías para tu evolución espiritual",
         button: "IR A LA TIENDA",
-        link: "/tienda",
+        link: "/libros",
         image: "/assets/images/hero/hero-books-bg.png"
     }
 ];
