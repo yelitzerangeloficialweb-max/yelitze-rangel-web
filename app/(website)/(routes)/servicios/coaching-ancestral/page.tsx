@@ -309,7 +309,7 @@ export default function CoachingAncestralPage() {
                                         Una inmersión presencial de 4 horas, profunda y confidencial, donde eliges detenerte, mirarte y ordenar tu vida desde la raíz.
                                     </p>
                                     <p className="text-white font-medium mt-4">
-                                        A través de 4 gotas esenciales, recorremos cuerpo, alma, energía y linaje.
+                                        A través del tablero, recorremos cuerpo, alma, energía y linaje.
                                     </p>
                                 </div>
 
