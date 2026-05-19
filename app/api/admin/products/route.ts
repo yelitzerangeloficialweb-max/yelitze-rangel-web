@@ -42,6 +42,7 @@ export async function POST(request: NextRequest) {
                 description: data.description,
                 price: parseFloat(data.price),
                 image: data.image || '/assets/images/shop/placeholder.jpg',
+                images: JSON.stringify(data.images || []),
                 category: data.category,
                 stock: parseInt(data.stock) || 0,
                 featured: data.featured || false,

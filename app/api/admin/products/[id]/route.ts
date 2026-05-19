@@ -45,6 +45,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
                 description: data.description,
                 price: parseFloat(data.price),
                 image: data.image,
+                images: data.images ? JSON.stringify(data.images) : undefined,
                 category: data.category,
                 stock: parseInt(data.stock) || 0,
                 featured: data.featured || false,

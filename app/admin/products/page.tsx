@@ -11,6 +11,7 @@ interface Product {
     description: string;
     price: number;
     image: string;
+    images?: string;
     category: string;
     stock: number;
     featured: boolean;
@@ -36,6 +37,7 @@ export default function AdminProductsPage() {
         description: '',
         price: '',
         image: '',
+        images: ['', '', '', ''],
         category: 'libro',
         stock: '10',
         featured: false,
@@ -88,12 +90,24 @@ export default function AdminProductsPage() {
 
     const handleEdit = (product: Product) => {
         setEditingProduct(product);
+        
+        let parsedImages = ['', '', '', ''];
+        try {
+            if (product.images) {
+                const arr = JSON.parse(product.images);
+                if (Array.isArray(arr)) {
+                    parsedImages = [...arr, '', '', '', ''].slice(0, 4);
+                }
+            }
+        } catch (e) {}
+
         setFormData({
             name: product.name,
             subtitle: product.subtitle || '',
             description: product.description,
             price: product.price.toString(),
             image: product.image,
+            images: parsedImages,
             category: product.category,
             stock: product.stock.toString(),
             featured: product.featured,
@@ -122,6 +136,7 @@ export default function AdminProductsPage() {
             description: '',
             price: '',
             image: '',
+            images: ['', '', '', ''],
             category: 'libro',
             stock: '10',
             featured: false,
@@ -398,25 +413,59 @@ export default function AdminProductsPage() {
                             </div>
 
                             {/* Image */}
-                            <div className="space-y-2">
-                                <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest px-1">Visual del Producto (URL)</label>
-                                <input
-                                    type="text"
-                                    placeholder="/assets/images/shop/nombre-producto.jpg"
-                                    value={formData.image}
-                                    onChange={e => setFormData({ ...formData, image: e.target.value })}
-                                    className="w-full px-6 py-4 rounded-2xl border border-stone-200 bg-white focus:border-[var(--color-primary)] outline-none font-mono text-xs"
-                                />
-                                {formData.image && (
-                                    <div className="mt-4 p-4 bg-white rounded-2xl border border-stone-100 flex items-center gap-4">
-                                        <div className="w-20 h-20 relative rounded-xl overflow-hidden border border-stone-100">
-                                            <Image src={formData.image} alt="Preview" fill className="object-cover" unoptimized />
+                            <div className="space-y-6 bg-stone-50 p-6 rounded-2xl border border-stone-100">
+                                <div className="space-y-2">
+                                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest px-1">Visual Principal (URL) *</label>
+                                    <input
+                                        type="text"
+                                        required
+                                        placeholder="/assets/images/shop/nombre-producto.jpg"
+                                        value={formData.image}
+                                        onChange={e => setFormData({ ...formData, image: e.target.value })}
+                                        className="w-full px-6 py-4 rounded-2xl border border-stone-200 bg-white focus:border-[var(--color-primary)] outline-none font-mono text-xs"
+                                    />
+                                    {formData.image && (
+                                        <div className="mt-4 p-4 bg-white rounded-2xl border border-stone-100 flex items-center gap-4">
+                                            <div className="w-20 h-20 relative rounded-xl overflow-hidden border border-stone-100">
+                                                <Image src={formData.image} alt="Preview" fill className="object-cover" unoptimized />
+                                            </div>
+                                            <div className="text-[10px] text-stone-400 uppercase tracking-widest font-bold">
+                                                Vista Previa Principal
+                                            </div>
                                         </div>
-                                        <div className="text-[10px] text-stone-400 uppercase tracking-widest font-bold">
-                                            Vista Previa del Activo Visual
-                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="space-y-4 pt-4 border-t border-stone-200">
+                                    <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest px-1">Imágenes Adicionales (Opcional, hasta 4)</label>
+                                    <div className="grid md:grid-cols-2 gap-4">
+                                        {[0, 1, 2, 3].map((index) => (
+                                            <div key={index} className="space-y-2">
+                                                <input
+                                                    type="text"
+                                                    placeholder={`Imagen adicional ${index + 1} (URL)`}
+                                                    value={formData.images[index] || ''}
+                                                    onChange={e => {
+                                                        const newImages = [...formData.images];
+                                                        newImages[index] = e.target.value;
+                                                        setFormData({ ...formData, images: newImages });
+                                                    }}
+                                                    className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:border-[var(--color-primary)] outline-none font-mono text-xs"
+                                                />
+                                                {formData.images[index] && (
+                                                    <div className="mt-2 p-2 bg-white rounded-xl border border-stone-100 flex items-center gap-3">
+                                                        <div className="w-12 h-12 relative rounded-lg overflow-hidden border border-stone-100 bg-stone-50">
+                                                            <Image src={formData.images[index]} alt="Preview" fill className="object-cover" unoptimized />
+                                                        </div>
+                                                        <div className="text-[9px] text-stone-400 uppercase tracking-widest font-bold">
+                                                            Previa {index + 1}
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        ))}
                                     </div>
-                                )}
+                                </div>
                             </div>
 
                             {/* Toggles */}
