@@ -40,7 +40,7 @@ const slides = [
         subtitle: "guías para tu evolución espiritual",
         button: "IR A LA TIENDA",
         link: "/libros",
-        image: "/assets/images/hero/hero-books-bg.png"
+        image: "/assets/images/hero/hero-books-bg.jpg"
     }
 ];
 
