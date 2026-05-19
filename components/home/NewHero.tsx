@@ -13,7 +13,8 @@ const slides = [
         subtitle: "los patrones que guía tu vida",
         button: "INICIA MI EXPLORACIÓN",
         link: "/tests",
-        image: "/assets/images/hero/hero-new-bg.jpg"
+        image: "/assets/images/hero/hero-new-bg.jpg",
+        position: "center"
     },
     {
         id: "board",
@@ -22,7 +23,8 @@ const slides = [
         subtitle: "arquitectura de vida sistémica",
         button: "CONOCE EL TABLERO",
         link: "/servicios/coaching-ancestral",
-        image: "/assets/images/hero/hero-fusion-group.jpg"
+        image: "/assets/images/hero/hero-fusion-group.jpg",
+        position: "center"
     },
     {
         id: "services",
@@ -31,7 +33,8 @@ const slides = [
         subtitle: "sesiones que transforman tu realidad",
         button: "VER SERVICIOS",
         link: "/servicios",
-        image: "/assets/images/hero/hero-services-bg.jpg"
+        image: "/assets/images/hero/hero-services-bg.jpg",
+        position: "center 30%"
     },
     {
         id: "books",
@@ -40,7 +43,8 @@ const slides = [
         subtitle: "guías para tu evolución espiritual",
         button: "IR A LA TIENDA",
         link: "/libros",
-        image: "/assets/images/hero/hero-books-bg.jpg"
+        image: "/assets/images/hero/hero-books-bg.jpg",
+        position: "center"
     }
 ];
 
@@ -71,7 +75,8 @@ export default function NewHero() {
                             src={slides[current].image}
                             alt={slides[current].title}
                             fill
-                            className="object-cover scale-105"
+                            className="object-cover"
+                            style={{ objectPosition: slides[current].position || 'center' }}
                             priority
                         />
                         {/* Global Overlays - Softer for more visibility */}
