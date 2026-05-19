@@ -55,6 +55,7 @@ COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 COPY --from=builder /app/node_modules/prisma ./node_modules/prisma
 
 # Ensure the nextjs user has permissions
+RUN mkdir -p ./public/uploads && chown -R nextjs:nodejs ./public
 RUN chown -R nextjs:nodejs ./prisma
 RUN chown -R nextjs:nodejs ./prisma-fresh
 RUN chown -R nextjs:nodejs ./node_modules/.prisma
