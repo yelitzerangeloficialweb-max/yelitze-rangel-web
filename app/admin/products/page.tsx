@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Plus, Pencil, Trash2, Package, Loader2, Search, Filter, MoreVertical, ExternalLink } from 'lucide-react';
+import { Plus, Pencil, Trash2, Package, Loader2, Search, Filter, MoreVertical, ExternalLink, Upload, ImagePlus } from 'lucide-react';
 import Image from 'next/image';
 
 interface Product {
@@ -44,6 +44,7 @@ export default function AdminProductsPage() {
         active: true
     });
     const [saving, setSaving] = useState(false);
+    const [uploadingImage, setUploadingImage] = useState<string | null>(null);
 
     useEffect(() => {
         fetchProducts();
@@ -85,6 +86,39 @@ export default function AdminProductsPage() {
             console.error('Error saving product:', error);
         } finally {
             setSaving(false);
+        }
+    };
+
+    const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>, fieldName: string, index?: number) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        setUploadingImage(fieldName);
+        const data = new FormData();
+        data.append('file', file);
+
+        try {
+            const res = await fetch('/api/upload', {
+                method: 'POST',
+                body: data
+            });
+            const json = await res.json();
+            if (json.url) {
+                if (fieldName === 'main') {
+                    setFormData(prev => ({ ...prev, image: json.url }));
+                } else if (index !== undefined) {
+                    const newImages = [...formData.images];
+                    newImages[index] = json.url;
+                    setFormData(prev => ({ ...prev, images: newImages }));
+                }
+            }
+        } catch (error) {
+            console.error('Error uploading file:', error);
+            alert('Error al subir la imagen');
+        } finally {
+            setUploadingImage(null);
+            // Reset input value to allow uploading the same file again if needed
+            e.target.value = '';
         }
     };
 
@@ -416,14 +450,33 @@ export default function AdminProductsPage() {
                             <div className="space-y-6 bg-stone-50 p-6 rounded-2xl border border-stone-100">
                                 <div className="space-y-2">
                                     <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest px-1">Visual Principal (URL) *</label>
-                                    <input
-                                        type="text"
-                                        required
-                                        placeholder="/assets/images/shop/nombre-producto.jpg"
-                                        value={formData.image}
-                                        onChange={e => setFormData({ ...formData, image: e.target.value })}
-                                        className="w-full px-6 py-4 rounded-2xl border border-stone-200 bg-white focus:border-[var(--color-primary)] outline-none font-mono text-xs"
-                                    />
+                                    <div className="flex gap-2">
+                                        <input
+                                            type="text"
+                                            required
+                                            placeholder="/assets/images/shop/nombre-producto.jpg"
+                                            value={formData.image}
+                                            onChange={e => setFormData({ ...formData, image: e.target.value })}
+                                            className="flex-1 px-6 py-4 rounded-2xl border border-stone-200 bg-white focus:border-[var(--color-primary)] outline-none font-mono text-xs"
+                                        />
+                                        <div className="relative">
+                                            <input 
+                                                type="file" 
+                                                accept="image/*"
+                                                onChange={(e) => handleFileUpload(e, 'main')}
+                                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                                disabled={uploadingImage === 'main'}
+                                            />
+                                            <button 
+                                                type="button"
+                                                disabled={uploadingImage === 'main'}
+                                                className="h-full px-6 bg-stone-100 text-stone-600 rounded-2xl border border-stone-200 hover:bg-stone-200 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+                                            >
+                                                {uploadingImage === 'main' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
+                                                <span className="text-xs font-bold uppercase tracking-widest hidden md:inline">Adjuntar</span>
+                                            </button>
+                                        </div>
+                                    </div>
                                     {formData.image && (
                                         <div className="mt-4 p-4 bg-white rounded-2xl border border-stone-100 flex items-center gap-4">
                                             <div className="w-20 h-20 relative rounded-xl overflow-hidden border border-stone-100">
@@ -441,17 +494,35 @@ export default function AdminProductsPage() {
                                     <div className="grid md:grid-cols-2 gap-4">
                                         {[0, 1, 2, 3].map((index) => (
                                             <div key={index} className="space-y-2">
-                                                <input
-                                                    type="text"
-                                                    placeholder={`Imagen adicional ${index + 1} (URL)`}
-                                                    value={formData.images[index] || ''}
-                                                    onChange={e => {
-                                                        const newImages = [...formData.images];
-                                                        newImages[index] = e.target.value;
-                                                        setFormData({ ...formData, images: newImages });
-                                                    }}
-                                                    className="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:border-[var(--color-primary)] outline-none font-mono text-xs"
-                                                />
+                                                <div className="flex gap-2">
+                                                    <input
+                                                        type="text"
+                                                        placeholder={`Imagen adicional ${index + 1} (URL)`}
+                                                        value={formData.images[index] || ''}
+                                                        onChange={e => {
+                                                            const newImages = [...formData.images];
+                                                            newImages[index] = e.target.value;
+                                                            setFormData({ ...formData, images: newImages });
+                                                        }}
+                                                        className="flex-1 px-4 py-3 rounded-xl border border-stone-200 bg-white focus:border-[var(--color-primary)] outline-none font-mono text-xs"
+                                                    />
+                                                    <div className="relative">
+                                                        <input 
+                                                            type="file" 
+                                                            accept="image/*"
+                                                            onChange={(e) => handleFileUpload(e, `additional_${index}`, index)}
+                                                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                                            disabled={uploadingImage === `additional_${index}`}
+                                                        />
+                                                        <button 
+                                                            type="button"
+                                                            disabled={uploadingImage === `additional_${index}`}
+                                                            className="h-full px-4 bg-stone-100 text-stone-600 rounded-xl border border-stone-200 hover:bg-stone-200 transition-colors flex items-center justify-center disabled:opacity-50"
+                                                        >
+                                                            {uploadingImage === `additional_${index}` ? <Loader2 className="w-4 h-4 animate-spin" /> : <ImagePlus className="w-4 h-4" />}
+                                                        </button>
+                                                    </div>
+                                                </div>
                                                 {formData.images[index] && (
                                                     <div className="mt-2 p-2 bg-white rounded-xl border border-stone-100 flex items-center gap-3">
                                                         <div className="w-12 h-12 relative rounded-lg overflow-hidden border border-stone-100 bg-stone-50">
