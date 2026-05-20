@@ -33,7 +33,7 @@ const slides = [
         subtitle: "sesiones que transforman tu realidad",
         button: "VER SERVICIOS",
         link: "/servicios",
-        image: "/assets/images/hero/hero-services-bg.jpg",
+        image: "/assets/images/hero/hero-services-new-bg.jpg",
         position: "center 30%"
     },
     {
