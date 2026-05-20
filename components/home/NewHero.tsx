@@ -54,7 +54,7 @@ export default function NewHero() {
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrent((prev) => (prev + 1) % slides.length);
-        }, 6000);
+        }, 8000);
         return () => clearInterval(timer);
     }, []);
 
