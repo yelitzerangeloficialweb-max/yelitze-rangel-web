@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useCart } from '@/context/CartContext';
 import { FadeIn } from '@/components/ui/motion';
-import { ArrowLeft, ShoppingBag, CreditCard, MessageCircle, CheckCircle } from 'lucide-react';
+import { ArrowLeft, ShoppingBag, CreditCard, MessageCircle, CheckCircle, Loader2 } from 'lucide-react';
 
 type PaymentMethod = 'paypal' | 'zelle' | 'whatsapp';
 
@@ -21,6 +21,9 @@ export default function CheckoutPage() {
         country: 'USA'
     });
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [orderId, setOrderId] = useState<string | null>(null);
+    const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setFormData(prev => ({
@@ -29,24 +32,72 @@ export default function CheckoutPage() {
         }));
     };
 
-    const generateWhatsAppMessage = () => {
+    const generateWhatsAppMessage = (idToUse?: string) => {
+        const activeId = idToUse || orderId || '';
         const itemsList = items.map(item =>
             `• ${item.product.name} x${item.quantity} - $${(item.product.price * item.quantity).toFixed(2)}`
         ).join('%0A');
 
-        const message = `¡Hola! Quiero realizar un pedido:%0A%0A${itemsList}%0A%0A*Total: $${getTotal().toFixed(2)} USD*%0A%0A*Datos de envío:*%0ANombre: ${formData.name}%0AEmail: ${formData.email}%0ATeléfono: ${formData.phone}%0ADirección: ${formData.address}, ${formData.city}, ${formData.country}`;
+        const orderInfo = activeId ? `*Pedido ID:* #${activeId.substring(0, 8)}...%0A%0A` : '';
+
+        const message = `¡Hola! Quiero realizar un pedido:%0A%0A${orderInfo}${itemsList}%0A%0A*Total: $${getTotal().toFixed(2)} USD*%0A%0A*Datos de envío:*%0ANombre: ${formData.name}%0AEmail: ${formData.email}%0ATeléfono: ${formData.phone}%0ADirección: ${formData.address}, ${formData.city}, ${formData.country}`;
 
         return `https://wa.me/17867268717?text=${message}`;
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (!paymentMethod) return;
 
-        if (paymentMethod === 'whatsapp') {
-            window.open(generateWhatsAppMessage(), '_blank');
+        setIsSubmitting(true);
+        setErrorMsg(null);
+
+        try {
+            const orderItems = items.map(item => ({
+                productId: item.product.id,
+                name: item.product.name,
+                price: item.product.price,
+                quantity: item.quantity
+            }));
+
+            const response = await fetch('/api/orders', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    customerName: formData.name,
+                    customerEmail: formData.email,
+                    customerPhone: formData.phone,
+                    address: formData.address,
+                    city: formData.city,
+                    country: formData.country,
+                    paymentMethod,
+                    total: getTotal(),
+                    items: orderItems
+                })
+            });
+
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.error || 'Error al procesar el pedido');
+            }
+
+            const createdOrder = await response.json();
+            setOrderId(createdOrder.id);
+            setIsSubmitted(true);
+
+            // Intentar abrir WhatsApp inmediatamente si es el método elegido
+            if (paymentMethod === 'whatsapp') {
+                const whatsappUrl = generateWhatsAppMessage(createdOrder.id);
+                window.open(whatsappUrl, '_blank');
+            }
+        } catch (error: any) {
+            console.error('Checkout error:', error);
+            setErrorMsg(error.message || 'Ocurrió un error inesperado al procesar tu pedido. Por favor, inténtalo de nuevo.');
+        } finally {
+            setIsSubmitting(false);
         }
-
-        setIsSubmitted(true);
     };
 
     if (items.length === 0 && !isSubmitted) {
@@ -84,11 +135,18 @@ export default function CheckoutPage() {
                         </h1>
                         <p className="text-lg text-stone-600 mb-8">
                             {paymentMethod === 'whatsapp'
-                                ? 'Te hemos redirigido a WhatsApp. Confirma tu pedido y te responderemos pronto.'
+                                ? 'Tu pedido ha sido registrado en nuestro sistema y te hemos redirigido a WhatsApp para confirmar los detalles.'
                                 : paymentMethod === 'paypal'
-                                    ? 'Procede con el pago en PayPal y envíanos el comprobante por WhatsApp.'
-                                    : 'Realiza tu transferencia por Zelle y envíanos el comprobante por WhatsApp.'}
+                                    ? 'Tu pedido ha sido registrado en nuestro sistema. Procede con el pago en PayPal y envíanos el comprobante por WhatsApp.'
+                                    : 'Tu pedido ha sido registrado en nuestro sistema. Realiza tu transferencia por Zelle y envíanos el comprobante por WhatsApp.'}
                         </p>
+
+                        <div className="bg-white p-6 rounded-2xl border border-stone-200 mb-6 text-left space-y-2 text-stone-600">
+                            <h3 className="font-bold text-[var(--color-primary)] mb-1">Resumen del registro:</h3>
+                            <p><strong>Pedido ID:</strong> #{orderId?.substring(0, 8) || ''}</p>
+                            <p><strong>Total a pagar:</strong> ${getTotal().toFixed(2)} USD</p>
+                            <p><strong>Método seleccionado:</strong> {paymentMethod === 'whatsapp' ? 'WhatsApp' : paymentMethod === 'paypal' ? 'PayPal' : 'Zelle'}</p>
+                        </div>
 
                         {paymentMethod === 'paypal' && (
                             <a
@@ -106,7 +164,8 @@ export default function CheckoutPage() {
                                 <h3 className="font-bold text-[var(--color-primary)] mb-3">Datos para Zelle:</h3>
                                 <p className="text-stone-600">
                                     <strong>Email:</strong> pagos@yelitzerangel.com<br />
-                                    <strong>Monto:</strong> ${getTotal().toFixed(2)} USD
+                                    <strong>Monto:</strong> ${getTotal().toFixed(2)} USD<br />
+                                    <strong>Referencia/Memo:</strong> Pedido #{orderId?.substring(0, 8) || ''}
                                 </p>
                             </div>
                         )}
@@ -117,7 +176,7 @@ export default function CheckoutPage() {
                             rel="noopener noreferrer"
                             className="block w-full py-4 bg-green-500 text-white font-bold rounded-xl mb-4 hover:bg-green-600 transition-colors"
                         >
-                            📲 Enviar comprobante por WhatsApp
+                            {paymentMethod === 'whatsapp' ? '📲 Enviar pedido por WhatsApp' : '📲 Enviar comprobante por WhatsApp'}
                         </a>
 
                         <button
@@ -339,13 +398,28 @@ export default function CheckoutPage() {
                                 </div>
                             </div>
 
+                            {errorMsg && (
+                                <div className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl text-sm">
+                                    {errorMsg}
+                                </div>
+                            )}
+
                             <button
                                 type="submit"
-                                disabled={!paymentMethod}
+                                disabled={!paymentMethod || isSubmitting}
                                 className="w-full py-5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-light)] disabled:bg-stone-300 disabled:cursor-not-allowed text-white font-bold text-lg rounded-xl transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-3"
                             >
-                                <CheckCircle className="w-5 h-5" />
-                                Confirmar Pedido
+                                {isSubmitting ? (
+                                    <>
+                                        <Loader2 className="w-5 h-5 animate-spin" />
+                                        Registrando pedido...
+                                    </>
+                                ) : (
+                                    <>
+                                        <CheckCircle className="w-5 h-5" />
+                                        Confirmar Pedido
+                                    </>
+                                )}
                             </button>
                         </form>
                     </FadeIn>
