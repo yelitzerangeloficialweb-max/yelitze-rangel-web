@@ -18,6 +18,7 @@ export default function ProductPage({ params }: ProductPageProps) {
     const { addToCart } = useCart();
     
     const [product, setProduct] = useState<Product | null>(null);
+    const [activeImage, setActiveImage] = useState<string>('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [quantity, setQuantity] = useState(1);
@@ -29,6 +30,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                 if (res.ok) {
                     const data = await res.json();
                     setProduct(data);
+                    setActiveImage(data.image || '');
                 } else {
                     setError(true);
                 }
@@ -61,6 +63,8 @@ export default function ProductPage({ params }: ProductPageProps) {
         addToCart(product, quantity);
     };
 
+    const allImages = product ? [product.image, ...(product.images || [])].filter(Boolean) : [];
+
     return (
         <main className="bg-[#FAF9F6] min-h-screen pt-28 pb-20">
             <div className="container mx-auto px-4">
@@ -76,20 +80,48 @@ export default function ProductPage({ params }: ProductPageProps) {
                 </FadeIn>
 
                 <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
-                    {/* Product Image */}
+                    {/* Product Image Gallery */}
                     <FadeIn>
-                        <div className="relative aspect-square rounded-[3rem] overflow-hidden bg-white shadow-xl border border-stone-100">
-                            <Image
-                                src={product.image}
-                                alt={product.name}
-                                fill
-                                className="object-cover"
-                                priority
-                            />
-                            <div className="absolute top-6 left-6">
-                                <span className="px-4 py-2 rounded-full bg-white/90 backdrop-blur-md text-xs font-bold tracking-widest uppercase text-stone-600 border border-white/50 shadow-sm">
-                                    {CATEGORY_LABELS[product.category]}
-                                </span>
+                        <div className="flex flex-col-reverse md:flex-row gap-6 items-start">
+                            {/* Thumbnails Sidebar / Row */}
+                            {allImages.length > 1 && (
+                                <div className="flex md:flex-col gap-3 w-full md:w-24 overflow-x-auto md:overflow-y-auto pb-2 md:pb-0 scrollbar-none justify-start">
+                                    {allImages.map((img, idx) => (
+                                        <button
+                                            key={idx}
+                                            onClick={() => setActiveImage(img)}
+                                            onMouseEnter={() => setActiveImage(img)}
+                                            className={`relative aspect-square w-16 md:w-full rounded-2xl overflow-hidden border-2 bg-white flex-shrink-0 transition-all duration-300 ${
+                                                activeImage === img
+                                                    ? 'border-[var(--color-secondary)] shadow-md scale-105'
+                                                    : 'border-stone-200 hover:border-stone-400'
+                                            }`}
+                                        >
+                                            <Image
+                                                src={img}
+                                                alt={`${product.name} - Vista ${idx + 1}`}
+                                                fill
+                                                className="object-cover"
+                                            />
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+
+                            {/* Main Image Container */}
+                            <div className="relative aspect-square flex-1 w-full rounded-[3rem] overflow-hidden bg-white shadow-xl border border-stone-100">
+                                <Image
+                                    src={activeImage || product.image}
+                                    alt={product.name}
+                                    fill
+                                    className="object-cover transition-all duration-500"
+                                    priority
+                                />
+                                <div className="absolute top-6 left-6">
+                                    <span className="px-4 py-2 rounded-full bg-white/90 backdrop-blur-md text-xs font-bold tracking-widest uppercase text-stone-600 border border-white/50 shadow-sm">
+                                        {CATEGORY_LABELS[product.category]}
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </FadeIn>
