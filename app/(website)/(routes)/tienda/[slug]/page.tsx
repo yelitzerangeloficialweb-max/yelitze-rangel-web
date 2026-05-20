@@ -1,14 +1,13 @@
 'use client';
 
-import { use } from 'react';
+import { use, useState, useEffect } from 'react';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getProductBySlug, CATEGORY_LABELS } from '@/lib/products-data';
+import { CATEGORY_LABELS, ProductCategory, Product } from '@/lib/products-data';
 import { useCart } from '@/context/CartContext';
 import { FadeIn } from '@/components/ui/motion';
-import { ShoppingCart, ArrowLeft, CheckCircle, Truck, Shield } from 'lucide-react';
-import { useState } from 'react';
+import { ShoppingCart, ArrowLeft, CheckCircle, Truck, Shield, Loader2 } from 'lucide-react';
 
 interface ProductPageProps {
     params: Promise<{ slug: string }>;
@@ -16,11 +15,45 @@ interface ProductPageProps {
 
 export default function ProductPage({ params }: ProductPageProps) {
     const { slug } = use(params);
-    const product = getProductBySlug(slug);
     const { addToCart } = useCart();
+    
+    const [product, setProduct] = useState<Product | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
     const [quantity, setQuantity] = useState(1);
 
-    if (!product) {
+    useEffect(() => {
+        async function fetchProduct() {
+            try {
+                const res = await fetch(`/api/products/${slug}`);
+                if (res.ok) {
+                    const data = await res.json();
+                    setProduct(data);
+                } else {
+                    setError(true);
+                }
+            } catch (err) {
+                console.error('Error fetching product:', err);
+                setError(true);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchProduct();
+    }, [slug]);
+
+    if (loading) {
+        return (
+            <main className="bg-[#FAF9F6] min-h-screen flex items-center justify-center">
+                <div className="flex flex-col items-center gap-4">
+                    <Loader2 className="w-10 h-10 animate-spin text-[var(--color-primary)]" />
+                    <p className="text-stone-400 font-medium text-sm">Cargando la magia del producto...</p>
+                </div>
+            </main>
+        );
+    }
+
+    if (error || !product) {
         notFound();
     }
 
