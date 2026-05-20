@@ -18,9 +18,9 @@ const slides = [
     },
     {
         id: "board",
-        badge: "El Método",
-        title: "ORDENA TU DESTINO",
-        subtitle: "arquitectura de vida sistémica",
+        badge: "Método",
+        title: "Coaching Ancestral",
+        subtitle: "La anatomía del alma",
         button: "CONOCE EL TABLERO",
         link: "/servicios/coaching-ancestral",
         image: "/assets/images/hero/hero-fusion-group.jpg",
