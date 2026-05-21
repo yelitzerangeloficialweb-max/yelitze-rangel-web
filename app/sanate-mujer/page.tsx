@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { motion, Variants, AnimatePresence } from 'framer-motion';
 import { useEffect, useState as useHookState } from 'react';
 import { SacredGeometry, FloatingStars, ThinGoldenLine, WaveDivider, HieroglyphicBackground, ModernReveal } from "@/components/ui/MysticalElements";
+import { Turnstile } from '@marsidev/react-turnstile';
 
 const fadeUpVariant: Variants = {
     hidden: { opacity: 0, y: 30 },
@@ -173,6 +174,7 @@ function RegistrationForm() {
     const [isSuccess, setIsSuccess] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [canAccessClass, setCanAccessClass] = useState(false);
+    const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
     useEffect(() => {
         const activationTime = new Date('2026-05-22T19:00:00-04:00');
@@ -195,6 +197,7 @@ function RegistrationForm() {
             email: (form.elements.namedItem('email') as HTMLInputElement).value,
             whatsapp: (form.elements.namedItem('whatsapp') as HTMLInputElement).value,
             city: (form.elements.namedItem('city') as HTMLInputElement).value,
+            turnstileToken,
         };
 
         try {
@@ -376,10 +379,18 @@ function RegistrationForm() {
                         />
                     </div>
 
+                    <div className="flex justify-center my-4">
+                        <Turnstile
+                            siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                            onSuccess={(token) => setTurnstileToken(token)}
+                            options={{ theme: "light", appearance: "interaction-only" }}
+                        />
+                    </div>
+
                     <button
                         type="submit"
-                        disabled={isSubmitting}
-                        className="w-full bg-[#B8835A] hover:bg-[#a0724e] text-white py-5 rounded-xl shadow-[0_10px_30px_rgba(184,131,90,0.2)] transition-all transform hover:-translate-y-1 mt-4 group flex items-center justify-center gap-3 relative overflow-hidden"
+                        disabled={isSubmitting || !turnstileToken}
+                        className="w-full bg-[#B8835A] hover:bg-[#a0724e] text-white py-5 rounded-xl shadow-[0_10px_30px_rgba(184,131,90,0.2)] transition-all transform hover:-translate-y-1 mt-4 group flex items-center justify-center gap-3 relative overflow-hidden disabled:opacity-50"
                     >
                         <span className="relative z-10 font-bold tracking-[0.1em] uppercase text-sm">
                             {isSubmitting ? 'Procesando...' : 'QUIERO MI CUPO GRATUITO'}

@@ -31,16 +31,32 @@ export default function BookShowcase({
 }: BookShowcaseProps) {
     return (
         <section className="min-h-screen bg-[#FAF9F6] pb-20">
-            {/* Header: Split-Panel Aesthetic - Unified Dark Mode (Perfect Alignment) */}
-            <div className="flex flex-col lg:flex-row min-h-[85vh] relative overflow-hidden bg-[#1a1a1a]">
-                {/* Atmospheric Glows (Galería style) */}
-                <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#B8835A]/15 rounded-full blur-[140px] pointer-events-none" />
-                <div className="absolute -bottom-40 left-0 w-[500px] h-[500px] bg-[#B8835A]/10 rounded-full blur-[120px] pointer-events-none" />
+            {/* Header: Immersive Full-Screen Aesthetic - Premium Unified Design */}
+            <div className="flex flex-col lg:flex-row min-h-[85vh] relative overflow-hidden bg-[#131211]">
+                {/* Unified Background Image covering 100% of the banner */}
+                <div className="absolute inset-0 z-0 opacity-10 grayscale mix-blend-overlay pointer-events-none">
+                    <Image
+                        src="/assets/images/about-ritual.jpg"
+                        alt="Background Texture"
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+                </div>
 
-                {/* Left Panel: Breadcrumbs & Title (35% Width) */}
-                <div className="lg:w-[35%] p-8 md:p-16 lg:p-24 pt-32 lg:pt-48 flex flex-col justify-center relative z-10">
+                {/* Subtle Gradient Overlays for High Legibility */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#131211] via-[#131211]/85 to-transparent z-0 pointer-events-none lg:block hidden" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#131211] via-transparent to-transparent z-0 pointer-events-none lg:hidden block" />
+
+                {/* Atmospheric Glows (Ambient Art-Gallery style) */}
+                <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#B8835A]/25 rounded-full blur-[140px] pointer-events-none z-0" />
+                <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[500px] h-[500px] bg-[#B8835A]/10 rounded-full blur-[120px] pointer-events-none z-0" />
+                <div className="absolute -bottom-40 right-0 w-[600px] h-[600px] bg-[#B8835A]/15 rounded-full blur-[140px] pointer-events-none z-0" />
+
+                {/* Left Panel: Breadcrumbs & Title (Expanded to 50% for layout balance & no word-breaking) */}
+                <div className="lg:w-[50%] p-8 md:p-16 lg:p-20 lg:pl-24 pt-32 lg:pt-40 flex flex-col justify-center relative z-10">
                     <FadeIn>
-                        <div className="flex flex-col items-start gap-4 mb-12">
+                        <div className="flex flex-col items-start gap-4 mb-10">
                             <Link href="/libros" className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors uppercase text-xs tracking-widest font-bold">
                                 <ArrowLeft className="w-4 h-4" />
                                 Volver al Cofre
@@ -53,7 +69,7 @@ export default function BookShowcase({
                             </div>
                         </div>
 
-                        <h1 className="text-white text-4xl md:text-5xl lg:text-7xl font-heading mb-10 leading-tight">
+                        <h1 className="text-white text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading mb-10 leading-tight">
                             {title.includes('®') ? (
                                 <>
                                     {title.split('®')[0]}<span className="text-2xl lg:text-4xl align-top opacity-60 ml-1">®</span>
@@ -78,24 +94,14 @@ export default function BookShowcase({
                     </FadeIn>
                 </div>
 
-                {/* Right Panel: Immersive Image with 3D Book (65% Width) */}
+                {/* Right Panel: Immersive 3D Book Container (50% Width) */}
                 <div
-                    className="lg:w-[65%] relative min-h-[500px] lg:min-h-full flex items-center justify-center p-12 bg-black/20"
+                    className="lg:w-[50%] relative min-h-[500px] lg:min-h-full flex items-center justify-center p-12 relative z-10"
                 >
-                    {/* Perfect Gradient Transition */}
-                    <div className="absolute inset-y-0 left-0 w-full lg:w-48 bg-gradient-to-r from-[#1a1a1a] via-[#1a1a1a]/40 to-transparent z-10" />
-                    
-                    <Image
-                        src="/assets/images/about-ritual.jpg"
-                        alt="Background"
-                        fill
-                        className="object-cover opacity-10 grayscale mix-blend-overlay"
-                    />
-
                     <FadeIn className="relative z-20">
                         {/* 3D Book Display */}
                         <div className="relative w-64 md:w-80 h-[400px] md:h-[500px] perspective-1000 group">
-                            <div className="relative w-full h-full transform-gpu rotate-y-12 -rotate-x-6 shadow-[-40px_40px_100px_rgba(0,0,0,0.3)] rounded-lg overflow-hidden transition-transform duration-700 group-hover:rotate-y-6">
+                            <div className="relative w-full h-full transform-gpu rotate-y-12 -rotate-x-6 shadow-[-40px_40px_100px_rgba(0,0,0,0.35)] rounded-lg overflow-hidden transition-transform duration-700 group-hover:rotate-y-6">
                                 <Image
                                     src={coverImage}
                                     alt={title}
@@ -166,7 +172,7 @@ export default function BookShowcase({
                                         </a>
 
                                         <a
-                                            href="https://wa.me/17867268717"
+                                            href="https://wa.me/584142353431"
                                             target="_blank"
                                             className="w-full py-5 rounded-full border border-white/10 flex items-center justify-center gap-3 hover:bg-white/5 transition-all text-sm tracking-widest uppercase font-bold text-white/80"
                                         >

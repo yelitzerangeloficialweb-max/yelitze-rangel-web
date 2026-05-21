@@ -155,7 +155,7 @@ export default function BooksPage() {
                                     </a>
 
                                     <a
-                                        href="https://wa.me/17867268717"
+                                        href="https://wa.me/584142353431"
                                         target="_blank"
                                         className="flex items-center justify-center gap-4 px-12 py-6 rounded-full border border-stone-200 text-stone-600 hover:bg-stone-50 transition-all font-bold tracking-[0.2em] uppercase text-[10px]"
                                     >

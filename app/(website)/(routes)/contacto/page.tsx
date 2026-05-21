@@ -108,7 +108,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <h3 className="font-bold text-lg mb-1">WhatsApp / Teléfono</h3>
-                                        <p className="text-white/80 font-light">+1 (786) 726-8717</p>
+                                        <p className="text-white/80 font-light">+58 414 235 3431</p>
                                     </div>
                                 </div>
 

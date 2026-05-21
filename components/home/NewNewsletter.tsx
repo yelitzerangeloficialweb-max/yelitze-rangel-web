@@ -21,7 +21,7 @@ export default function NewNewsletter() {
             const response = await fetch('/api/newsletter', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email }),
+                body: JSON.stringify({ email, turnstileToken }),
             });
 
             if (response.ok) {

@@ -15,6 +15,28 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: 'No se subió ningún archivo' }, { status: 400 });
         }
 
+        // Limit size to 5MB
+        const MAX_SIZE = 5 * 1024 * 1024;
+        if (file.size > MAX_SIZE) {
+            return NextResponse.json({ error: 'El archivo excede el tamaño máximo de 5MB' }, { status: 400 });
+        }
+
+        // Validate MIME type
+        const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+        if (!allowedMimeTypes.includes(file.type)) {
+            return NextResponse.json({ error: 'Tipo de archivo no permitido. Solo se permiten imágenes (JPG, PNG, WEBP, GIF).' }, { status: 400 });
+        }
+
+        // Validate and clean extension
+        const rawExt = file.name.split('.').pop()?.toLowerCase();
+        const allowedExtensions = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+        if (!rawExt || !allowedExtensions.includes(rawExt)) {
+            return NextResponse.json({ error: 'Extensión de archivo no permitida' }, { status: 400 });
+        }
+
+        // Normalize extension (e.g. jpeg -> jpg)
+        const ext = rawExt === 'jpeg' ? 'jpg' : rawExt;
+
         const bytes = await file.arrayBuffer();
         const buffer = Buffer.from(bytes);
 
@@ -29,7 +51,6 @@ export async function POST(request: NextRequest) {
         }
 
         const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
-        const ext = file.name.split('.').pop();
         const filename = `${uniqueSuffix}.${ext}`;
         const path = join(uploadDir, filename);
 

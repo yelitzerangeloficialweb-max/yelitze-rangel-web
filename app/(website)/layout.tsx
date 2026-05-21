@@ -5,6 +5,7 @@ import Footer from '@/components/layout/Footer';
 import PageGlows from '@/components/layout/PageGlows';
 import { CartProvider } from '@/context/CartContext';
 import CartDrawer from '@/components/shop/CartDrawer';
+import FloatingWhatsApp from '@/components/layout/FloatingWhatsApp';
 import { usePathname } from 'next/navigation';
 
 export default function WebsiteLayout({
@@ -28,7 +29,9 @@ export default function WebsiteLayout({
                 </main>
                 {!hideLayout && <Footer />}
                 <CartDrawer />
+                {!hideLayout && <FloatingWhatsApp />}
             </div>
         </CartProvider>
     );
 }
+

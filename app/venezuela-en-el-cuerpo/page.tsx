@@ -14,12 +14,14 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn } from "@/components/ui/motion";
 import { SacredGeometry, FloatingStars, ThinGoldenLine, WaveDivider } from "@/components/ui/MysticalElements";
+import { Turnstile } from '@marsidev/react-turnstile';
 
 export default function VenezuelaEnElCuerpoPage() {
     const router = useRouter();
     const [submitted, setSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [openFaq, setOpenFaq] = useState<number | null>(null);
+    const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
     const toggleFaq = (index: number) => {
         setOpenFaq(openFaq === index ? null : index);
@@ -65,7 +67,7 @@ export default function VenezuelaEnElCuerpoPage() {
             const res = await fetch('/api/venezuela-en-el-cuerpo/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, email, whatsapp, city, instagram }),
+                body: JSON.stringify({ name, email, whatsapp, city, instagram, turnstileToken }),
             });
 
             if (res.ok) {
@@ -689,9 +691,16 @@ export default function VenezuelaEnElCuerpoPage() {
                                         required
                                     />
                                 </div>
+                                <div className="flex justify-center my-4">
+                                    <Turnstile
+                                        siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                                        onSuccess={(token) => setTurnstileToken(token)}
+                                        options={{ theme: "light", appearance: "interaction-only" }}
+                                    />
+                                </div>
                                 <button
                                     type="submit"
-                                    disabled={isSubmitting}
+                                    disabled={isSubmitting || !turnstileToken}
                                     className="w-full bg-[#C1530A] text-[#F5EFE6] py-6 rounded-3xl font-bold md:text-lg shadow-[0_15px_30px_-5px_rgba(193,83,10,0.4)] hover:bg-[#A84A2F] hover:shadow-[0_20px_40px_-5px_rgba(193,83,10,0.5)] transition-all transform hover:-translate-y-1 mt-6 flex items-center justify-center gap-4 group disabled:opacity-70 disabled:cursor-not-allowed"
                                 >
                                     {isSubmitting ? (

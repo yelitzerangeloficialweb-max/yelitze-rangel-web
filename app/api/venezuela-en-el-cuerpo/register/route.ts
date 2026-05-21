@@ -1,19 +1,38 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { sendVenezuelaRegistrationEmail, sendVenezuelaPostEventEmail } from '@/lib/mail';
+import { verifyTurnstileToken } from '@/lib/turnstile';
 
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { name, email, whatsapp, city, instagram } = body;
+        const { name, email, whatsapp, city, instagram, turnstileToken } = body;
 
         if (!name || !email || !whatsapp || !city) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
         }
 
+        // Verify Turnstile Token
+        const isTokenValid = await verifyTurnstileToken(turnstileToken);
+        if (!isTokenValid) {
+            return NextResponse.json({ error: 'Verificación de seguridad fallida' }, { status: 400 });
+        }
+
+        // Sanitize and trim inputs against XSS and restrict length
+        const cleanName = name.replace(/<[^>]*>/g, '').trim().substring(0, 100);
+        const cleanEmail = email.replace(/<[^>]*>/g, '').trim().toLowerCase().substring(0, 100);
+        const cleanWhatsapp = whatsapp.replace(/<[^>]*>/g, '').trim().substring(0, 50);
+        const cleanCity = city.replace(/<[^>]*>/g, '').trim().substring(0, 100);
+        const cleanInstagram = instagram ? instagram.replace(/<[^>]*>/g, '').trim().substring(0, 100) : undefined;
+
+        // Formato de email
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)) {
+            return NextResponse.json({ error: 'Email con formato inválido' }, { status: 400 });
+        }
+
         // 1. Check if email already exists
         const existingEmail = await db.venezuelaEnElCuerpoRegistration.findFirst({
-            where: { email: email.trim().toLowerCase() }
+            where: { email: cleanEmail }
         });
 
         if (existingEmail) {
@@ -25,7 +44,7 @@ export async function POST(req: Request) {
 
         // 2. Check if WhatsApp already exists
         const existingPhone = await db.venezuelaEnElCuerpoRegistration.findFirst({
-            where: { whatsapp: whatsapp.trim() }
+            where: { whatsapp: cleanWhatsapp }
         });
 
         if (existingPhone) {
@@ -37,11 +56,11 @@ export async function POST(req: Request) {
 
         const registration = await db.venezuelaEnElCuerpoRegistration.create({
             data: {
-                name: name.trim(),
-                email: email.trim().toLowerCase(),
-                whatsapp: whatsapp.trim(),
-                city: city.trim(),
-                instagram: instagram?.trim(),
+                name: cleanName,
+                email: cleanEmail,
+                whatsapp: cleanWhatsapp,
+                city: cleanCity,
+                instagram: cleanInstagram,
             },
         });
 

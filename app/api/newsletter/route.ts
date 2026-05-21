@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { sendNewsletterSubscriptionEmail } from "@/lib/mail";
 import { z } from "zod";
+import { verifyTurnstileToken } from "@/lib/turnstile";
 
 // Schema de validación robusto
 const EmailSchema = z.object({
@@ -9,7 +10,8 @@ const EmailSchema = z.object({
         .min(5, "Demasiado corto")
         .max(100, "Demasiado largo")
         .trim()
-        .toLowerCase()
+        .toLowerCase(),
+    turnstileToken: z.string().min(1, "Verificación de seguridad requerida")
 });
 
 export async function POST(req: Request) {
@@ -21,11 +23,17 @@ export async function POST(req: Request) {
 
         if (!validation.success) {
             return NextResponse.json({ 
-                error: "El formato del email no es válido o es sospechoso." 
+                error: "El formato del email no es válido o falta verificación de seguridad." 
             }, { status: 400 });
         }
 
-        const { email } = validation.data;
+        const { email, turnstileToken } = validation.data;
+
+        // Verificar Turnstile Token
+        const isTokenValid = await verifyTurnstileToken(turnstileToken);
+        if (!isTokenValid) {
+            return NextResponse.json({ error: "Verificación de seguridad fallida" }, { status: 400 });
+        }
 
         // Protección adicional: evitar caracteres de control o inyección común
         if (/[<>{}$%()]/.test(email)) {

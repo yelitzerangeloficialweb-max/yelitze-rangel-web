@@ -240,7 +240,7 @@ export default function EventsPage() {
 
                                     <div className="pt-8">
                                         <Link
-                                            href="https://wa.me/17867268717"
+                                            href="https://wa.me/584142353431"
                                             className="inline-flex items-center justify-center bg-[#b17a46] text-white hover:brightness-110 transition-all px-10 py-5 rounded-2xl font-bold uppercase tracking-[0.1em] text-sm shadow-xl group"
                                         >
                                             Diseña tu propia experiencia »

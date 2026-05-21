@@ -64,7 +64,7 @@ export default function CoachingAncestralPage() {
                                 Reservar Sesión
                             </Link>
                             <a
-                                href="https://wa.me/17867268717"
+                                href="https://wa.me/584142353431"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="bg-black/40 backdrop-blur-md border border-white/20 text-white hover:bg-white/10 transition-all px-12 py-5 rounded-xl font-bold uppercase tracking-[0.2em] text-sm font-medium flex items-center gap-2"
@@ -280,7 +280,7 @@ export default function CoachingAncestralPage() {
                                         "No es una sesión más, es el inicio de tu nueva narrativa."
                                     </p>
                                     <a
-                                        href="https://wa.me/17867268717"
+                                        href="https://wa.me/584142353431"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="inline-flex items-center gap-2 text-[var(--color-secondary)] hover:text-white transition-colors font-medium group/btn"
@@ -332,7 +332,7 @@ export default function CoachingAncestralPage() {
                                         <span>👉</span> Si sientes el llamado, inicia tu viaje ahora.
                                     </p>
                                     <a
-                                        href="https://wa.me/17867268717"
+                                        href="https://wa.me/584142353431"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="inline-flex items-center gap-2 text-[var(--color-secondary)] hover:text-white transition-colors font-medium group/btn text-sm"
@@ -369,7 +369,7 @@ export default function CoachingAncestralPage() {
                                 <ArrowRight className="w-5 h-5 ml-2" />
                             </Link>
                             <a
-                                href="https://wa.me/17867268717"
+                                href="https://wa.me/584142353431"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 text-white hover:text-[var(--color-secondary)] transition-colors text-lg italic"

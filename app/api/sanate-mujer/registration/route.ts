@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { sendSanateMujerRegistrationEmail } from '@/lib/mail';
+import { verifyTurnstileToken } from '@/lib/turnstile';
 
 export async function POST(req: Request) {
     try {
@@ -13,7 +14,7 @@ export async function POST(req: Request) {
         }
 
         const body = await req.json();
-        let { name, email, whatsapp, city } = body;
+        let { name, email, whatsapp, city, turnstileToken } = body;
 
         // 1. Limpieza y Saneamiento (Seguridad contra XSS e Inyecciones)
         const sanitize = (str: string) => str?.replace(/<[^>]*>?/gm, '').trim(); // Elimina etiquetas HTML
@@ -22,6 +23,12 @@ export async function POST(req: Request) {
         email = sanitize(email?.toLowerCase());
         whatsapp = sanitize(whatsapp);
         city = sanitize(city);
+
+        // Verify Turnstile Token
+        const isTokenValid = await verifyTurnstileToken(turnstileToken);
+        if (!isTokenValid) {
+            return NextResponse.json({ error: "Verificación de seguridad fallida" }, { status: 400 });
+        }
 
         console.log(`Nueva inscripción recibida: ${name} (${email}) - ${city}`);
 

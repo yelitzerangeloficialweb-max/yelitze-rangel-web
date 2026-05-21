@@ -283,7 +283,7 @@ export default function BlogPage() {
                                                     const res = await fetch('/api/newsletter', {
                                                         method: 'POST',
                                                         headers: { 'Content-Type': 'application/json' },
-                                                        body: JSON.stringify({ email: emailValue }),
+                                                        body: JSON.stringify({ email: emailValue, turnstileToken }),
                                                     });
                                                     if (res.ok) setStatus("success");
                                                     else setStatus("error");

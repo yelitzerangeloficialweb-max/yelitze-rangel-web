@@ -1,16 +1,45 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { sendAppointmentConfirmationEmail } from '@/lib/mail';
-
 import { ensureAvailabilityTables } from '@/lib/db-init';
+import { verifyTurnstileToken } from '@/lib/turnstile';
 
 export async function POST(request: NextRequest) {
     try {
         await ensureAvailabilityTables();
-        const { date, slot, customerName, customerEmail, customerPhone, meetingType, paymentMethod, notes } = await request.json();
+        const body = await request.json();
+        const { date, slot, customerName, customerEmail, customerPhone, meetingType, paymentMethod, notes, turnstileToken } = body;
 
-        if (!date || !slot || !customerName || !customerEmail) {
+        // Basic presence validation
+        if (!date || !slot || !customerName || !customerEmail || !customerPhone || !paymentMethod) {
             return NextResponse.json({ error: 'Faltan campos obligatorios' }, { status: 400 });
+        }
+
+        // Verify Turnstile Token
+        const isTokenValid = await verifyTurnstileToken(turnstileToken);
+        if (!isTokenValid) {
+            return NextResponse.json({ error: 'Verificación de seguridad fallida' }, { status: 400 });
+        }
+
+        // Sanitize and validate inputs
+        const cleanName = customerName.replace(/<[^>]*>/g, '').trim().substring(0, 100);
+        const cleanEmail = customerEmail.replace(/<[^>]*>/g, '').trim().toLowerCase().substring(0, 100);
+        const cleanPhone = customerPhone.replace(/<[^>]*>/g, '').trim().substring(0, 30);
+        const cleanNotes = notes ? notes.replace(/<[^>]*>/g, '').trim().substring(0, 500) : '';
+
+        // Validate formats
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)) {
+            return NextResponse.json({ error: 'Email con formato inválido' }, { status: 400 });
+        }
+
+        const validSlots = ['morning', 'afternoon'];
+        if (!validSlots.includes(slot)) {
+            return NextResponse.json({ error: 'Horario inválido' }, { status: 400 });
+        }
+
+        const validMeetingTypes = ['online', 'presencial'];
+        if (meetingType && !validMeetingTypes.includes(meetingType)) {
+            return NextResponse.json({ error: 'Tipo de reunión inválido' }, { status: 400 });
         }
 
         // Normalize to TRUE Midnight UTC using the face-value approach
@@ -46,20 +75,20 @@ export async function POST(request: NextRequest) {
             data: {
                 date: dateObj,
                 slot,
-                customerName,
-                customerEmail,
-                customerPhone,
+                customerName: cleanName,
+                customerEmail: cleanEmail,
+                customerPhone: cleanPhone,
                 meetingType: meetingType || 'online',
                 paymentMethod,
-                notes,
+                notes: cleanNotes,
                 status: 'pending'
             }
         });
 
         // 4. Send confirmation email
         await sendAppointmentConfirmationEmail({
-            email: customerEmail,
-            name: customerName,
+            email: cleanEmail,
+            name: cleanName,
             date: dateObj,
             slot,
             paymentMethod

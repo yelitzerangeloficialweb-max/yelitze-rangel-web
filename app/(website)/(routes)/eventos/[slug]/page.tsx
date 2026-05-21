@@ -242,7 +242,7 @@ export default function EventPage({ params }: { params: Promise<{ slug: string }
                                     </div>
 
                                     <a
-                                        href="https://wa.me/17867268717"
+                                        href="https://wa.me/584142353431"
                                         target="_blank"
                                         className="btn-premium w-full bg-white !text-stone-950 hover:!bg-stone-200 shadow-xl py-5 group"
                                     >

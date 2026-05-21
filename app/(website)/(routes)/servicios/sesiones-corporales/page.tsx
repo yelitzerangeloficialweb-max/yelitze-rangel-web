@@ -46,7 +46,7 @@ export default function SesionesCorporalesPage() {
                                 Reserva Tu Experiencia
                             </Link>
                             <a
-                                href="https://wa.me/17867268717"
+                                href="https://wa.me/584142353431"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="bg-white/10 backdrop-blur-md border border-white/30 text-white hover:bg-white/20 transition-all text-xs font-guide tracking-[0.25em] uppercase px-10 py-4 rounded-full"
@@ -462,7 +462,7 @@ export default function SesionesCorporalesPage() {
 
                                     <div className="pt-8">
                                         <Link
-                                            href="https://wa.me/17867268717"
+                                            href="https://wa.me/584142353431"
                                             target="_blank"
                                             className="inline-flex items-center justify-center bg-[#B8835A] text-white hover:brightness-110 transition-all px-12 py-5 rounded-2xl font-bold uppercase tracking-[0.2em] text-xs lg:text-sm shadow-2xl group"
                                         >
@@ -505,7 +505,7 @@ export default function SesionesCorporalesPage() {
                         </Link>
                         <p className="mt-8">
                             <a
-                                href="https://wa.me/17867268717"
+                                href="https://wa.me/584142353431"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-white/35 hover:text-[#B8835A] transition-colors text-sm italic"

@@ -21,7 +21,7 @@ export default function Footer() {
             const response = await fetch('/api/newsletter', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email }),
+                body: JSON.stringify({ email, turnstileToken }),
             });
 
             if (response.ok) {
@@ -59,7 +59,7 @@ export default function Footer() {
                             <a href="https://www.instagram.com/yelitzerangeloficial/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 rounded-full hover:bg-white hover:text-[var(--color-accent)] transition-colors text-white">
                                 <InstagramThinIcon size={20} />
                             </a>
-                            <a href="https://wa.me/17867268717" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 rounded-full hover:bg-white hover:text-[var(--color-accent)] transition-colors text-white">
+                            <a href="https://wa.me/584142353431" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 rounded-full hover:bg-white hover:text-[var(--color-accent)] transition-colors text-white">
                                 <MessageLeafIcon size={20} />
                             </a>
                             <a href="mailto:energyuniversal@gmail.com" className="p-2 bg-white/10 rounded-full hover:bg-white hover:text-[var(--color-accent)] transition-colors text-white">

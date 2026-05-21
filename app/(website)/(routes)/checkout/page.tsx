@@ -42,7 +42,7 @@ export default function CheckoutPage() {
 
         const message = `¡Hola! Quiero realizar un pedido:%0A%0A${orderInfo}${itemsList}%0A%0A*Total: $${getTotal().toFixed(2)} USD*%0A%0A*Datos de envío:*%0ANombre: ${formData.name}%0AEmail: ${formData.email}%0ATeléfono: ${formData.phone}%0ADirección: ${formData.address}, ${formData.city}, ${formData.country}`;
 
-        return `https://wa.me/17867268717?text=${message}`;
+        return `https://wa.me/584142353431?text=${message}`;
     };
 
     const handleSubmit = async (e: React.FormEvent) => {

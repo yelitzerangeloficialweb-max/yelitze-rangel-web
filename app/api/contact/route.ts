@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { sendContactEmail } from "@/lib/mail";
+import { verifyTurnstileToken } from "@/lib/turnstile";
 
 export async function POST(req: Request) {
     try {
@@ -11,8 +12,9 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "Faltan campos obligatorios" }, { status: 400 });
         }
 
-        // Verify Turnstile Token (Optional but recommended)
-        if (!turnstileToken) {
+        // Verify Turnstile Token
+        const isTokenValid = await verifyTurnstileToken(turnstileToken);
+        if (!isTokenValid) {
             return NextResponse.json({ error: "Verificación de seguridad fallida" }, { status: 400 });
         }
 

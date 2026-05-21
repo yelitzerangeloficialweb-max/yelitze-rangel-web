@@ -29,6 +29,7 @@ import {
     ShieldCheck,
     Globe
 } from 'lucide-react';
+import { Turnstile } from '@marsidev/react-turnstile';
 
 const COUNTRIES = [
     { name: 'Venezuela', code: '+58', flag: '🇻🇪' },
@@ -68,6 +69,7 @@ export default function ReservationsPage() {
 
     const [selectedCountry, setSelectedCountry] = useState(COUNTRIES[0]);
     const [showCountrySelector, setShowCountrySelector] = useState(false);
+    const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
     useEffect(() => {
         setMounted(true);
@@ -113,7 +115,8 @@ export default function ReservationsPage() {
                     customerEmail: formData.email,
                     customerPhone: `${selectedCountry.code} ${formData.whatsapp}`,
                     meetingType: formData.meetingType,
-                    paymentMethod: formData.paymentMethod
+                    paymentMethod: formData.paymentMethod,
+                    turnstileToken
                 })
             });
 
@@ -468,8 +471,16 @@ export default function ReservationsPage() {
                                     </div>
                                 </div>
 
+                                <div className="flex justify-center my-4">
+                                    <Turnstile
+                                        siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                                        onSuccess={(token) => setTurnstileToken(token)}
+                                        options={{ theme: "light", appearance: "interaction-only" }}
+                                    />
+                                </div>
+
                                 <button 
-                                    disabled={submitting || !selectedSlot}
+                                    disabled={submitting || !selectedSlot || !turnstileToken}
                                     type="submit" 
                                     className="w-full py-5 mt-6 bg-[var(--color-primary)] hover:bg-[var(--color-primary-light)] text-white rounded-[2rem] font-bold transition-all shadow-xl shadow-[var(--color-primary)]/20 disabled:opacity-50 flex items-center justify-center gap-3 group"
                                 >

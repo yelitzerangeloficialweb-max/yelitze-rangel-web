@@ -20,7 +20,7 @@ const links = [
         title: "Agenda tu sesión individual",
         subtitle: "Acompañamiento personal presencial u online",
         icon: Calendar,
-        href: "https://wa.me/17867268717",
+        href: "https://wa.me/584142353431",
         primary: true
     },
     {
@@ -57,7 +57,7 @@ const links = [
 
 const socialLinks = [
     { icon: Instagram, href: "https://www.instagram.com/yelitzerrangel/", label: "Instagram" },
-    { icon: MessageCircle, href: "https://wa.me/17867268717", label: "WhatsApp" },
+    { icon: MessageCircle, href: "https://wa.me/584142353431", label: "WhatsApp" },
     {
         icon: () => (
             <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
