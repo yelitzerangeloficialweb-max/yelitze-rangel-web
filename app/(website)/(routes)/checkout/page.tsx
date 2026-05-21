@@ -36,13 +36,13 @@ export default function CheckoutPage() {
         const activeId = idToUse || orderId || '';
         const itemsList = items.map(item =>
             `• ${item.product.name} x${item.quantity} - $${(item.product.price * item.quantity).toFixed(2)}`
-        ).join('%0A');
+        ).join('\n');
 
-        const orderInfo = activeId ? `*Pedido ID:* #${activeId.substring(0, 8)}...%0A%0A` : '';
+        const orderInfo = activeId ? `*Pedido ID:* #${activeId.substring(0, 8)}...\n\n` : '';
 
-        const message = `¡Hola! Quiero realizar un pedido:%0A%0A${orderInfo}${itemsList}%0A%0A*Total: $${getTotal().toFixed(2)} USD*%0A%0A*Datos de envío:*%0ANombre: ${formData.name}%0AEmail: ${formData.email}%0ATeléfono: ${formData.phone}%0ADirección: ${formData.address}, ${formData.city}, ${formData.country}`;
+        const messageText = `¡Hola! Quiero realizar un pedido:\n\n${orderInfo}${itemsList}\n\n*Total: $${getTotal().toFixed(2)} USD*\n\n*Datos de envío:*\nNombre: ${formData.name}\nEmail: ${formData.email}\nTeléfono: ${formData.phone}\nDirección: ${formData.address}, ${formData.city}, ${formData.country}`;
 
-        return `https://wa.me/584142353431?text=${message}`;
+        return `https://wa.me/584142353431?text=${encodeURIComponent(messageText)}`;
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
