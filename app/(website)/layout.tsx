@@ -6,6 +6,7 @@ import PageGlows from '@/components/layout/PageGlows';
 import { CartProvider } from '@/context/CartContext';
 import CartDrawer from '@/components/shop/CartDrawer';
 import FloatingWhatsApp from '@/components/layout/FloatingWhatsApp';
+import WelcomeModal from '@/components/home/WelcomeModal';
 import { usePathname } from 'next/navigation';
 
 export default function WebsiteLayout({
@@ -30,6 +31,7 @@ export default function WebsiteLayout({
                 {!hideLayout && <Footer />}
                 <CartDrawer />
                 {!hideLayout && <FloatingWhatsApp />}
+                {!hideLayout && <WelcomeModal />}
             </div>
         </CartProvider>
     );
