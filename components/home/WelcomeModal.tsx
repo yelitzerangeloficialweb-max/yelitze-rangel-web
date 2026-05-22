@@ -48,7 +48,7 @@ export default function WelcomeModal() {
                     >
                         {/* The Welcome Banner Image */}
                         <Image
-                            src="/assets/images/welcome-banner.png"
+                            src="/assets/images/welcome-banner.jpg"
                             alt="Yelitze Rangel Bienvenida - Estás en el lugar que tu alma estaba buscando"
                             fill
                             sizes="(max-width: 768px) 100vw, 85vw"
