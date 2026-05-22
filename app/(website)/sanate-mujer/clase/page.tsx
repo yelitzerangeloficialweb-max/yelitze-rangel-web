@@ -14,10 +14,10 @@ export default function SanateMujerClase() {
     const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
     const [mounted, setMounted] = useState(false);
 
-    // Target: May 22, 2026, 7:00 PM (19:00) Venezuela Time (UTC-4)
-    const classStartTime = new Date('2026-05-22T19:00:00-04:00');
+    // Target: July 10, 2026, 7:00 PM (19:00) Venezuela Time (UTC-4)
+    const classStartTime = new Date('2026-07-10T19:00:00-04:00');
     // Activation: Exactly at start (19:00)
-    const activationTime = new Date('2026-05-22T19:00:00-04:00');
+    const activationTime = new Date('2026-07-10T19:00:00-04:00');
     const youtubeVideoId = "LruL2viB9mc"; 
 
     useEffect(() => {
@@ -138,7 +138,7 @@ export default function SanateMujerClase() {
                             <div className="mt-16 flex flex-col items-center gap-4">
                                 <p className="text-white text-sm md:text-base italic font-light drop-shadow-md">"El orden precede al amor."</p>
                                 <div className="px-8 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-[10px] md:text-xs uppercase tracking-widest text-white font-bold">
-                                    22 de Mayo, 7:00 PM (Hora Venezuela)
+                                    10 de Julio, 7:00 PM (Hora Venezuela)
                                 </div>
                             </div>
                         </div>

@@ -89,7 +89,7 @@ export default function SanateMujerLanding() {
 // TOP STICKY BANNER COMPONENT
 // ---------------------------------------------------------
 function TopStickyBanner() {
-    const targetDate = new Date('2026-05-22T00:00:00').getTime();
+    const targetDate = new Date('2026-07-10T00:00:00').getTime();
     const [timeLeft, setTimeLeft] = useHookState({
         days: 0, hours: 0, minutes: 0, seconds: 0, isExpired: false
     });
@@ -177,14 +177,14 @@ function RegistrationForm() {
     const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
     useEffect(() => {
-        const activationTime = new Date('2026-05-22T19:00:00-04:00');
+        const activationTime = new Date('2026-07-10T19:00:00-04:00');
         const checkTime = () => setCanAccessClass(new Date() >= activationTime);
         checkTime();
         const interval = setInterval(checkTime, 60000);
         return () => clearInterval(interval);
     }, []);
 
-    const isClosed = new Date() > new Date('2026-05-23T00:00:00');
+    const isClosed = new Date() > new Date('2026-07-11T00:00:00-04:00');
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
@@ -232,7 +232,7 @@ function RegistrationForm() {
                 </div>
                 <h3 className="text-2xl md:text-3xl font-heading font-medium text-[#2D2926] mb-4">Inscripciones Finalizadas</h3>
                 <p className="text-[#2D2926]/70 leading-relaxed mb-8">
-                    Gracias por tu interés. Las inscripciones para la activación del 22 de mayo han cerrado.
+                    Gracias por tu interés. Las inscripciones para la activación del 10 de julio han cerrado.
                     Mantente atenta a nuestras redes para próximos encuentros.
                 </p>
                 <button 
@@ -287,7 +287,7 @@ function RegistrationForm() {
                     <div className="bg-[#B8835A]/5 rounded-2xl p-6 border border-[#B8835A]/20 space-y-4">
                         <div className="grid gap-3">
                             <a 
-                                href="https://www.google.com/calendar/render?action=TEMPLATE&text=Workshop+Sánate+Mujer+-+Yelitze+Rangel&dates=20260522T230000Z/20260523T010000Z&details=Workshop+gratuito+con+Yelitze+Rangel.+Libera+las+lealtades+invisibles+que+detienen+tu+vida.+Accede+aquí:+https://yelitzerangel.com/sanate-mujer/clase&location=Online+vía+YouTube" 
+                                href="https://www.google.com/calendar/render?action=TEMPLATE&text=Workshop+Sánate+Mujer+-+Yelitze+Rangel&dates=20260710T230000Z/20260711T010000Z&details=Workshop+gratuito+con+Yelitze+Rangel.+Libera+las+lealtades+invisibles+que+detienen+tu+vida.+Accede+aquí:+https://yelitzerangel.com/sanate-mujer/clase&location=Online+vía+YouTube" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
                                 className="w-full bg-white border border-[#B8835A]/30 text-[#2D2926] py-3 rounded-xl shadow-sm transition-all transform hover:-translate-y-1 inline-flex items-center justify-center gap-3 font-bold uppercase tracking-wider text-[10px]"
@@ -819,7 +819,7 @@ function OfferSection() {
                             </button>
                             
                             <p className="text-[10px] text-white/60 font-bold tracking-widest uppercase mb-1">
-                                22 de Mayo, 2026 • 7:00 PM (Hora Venezuela)
+                                10 de Julio, 2026 • 7:00 PM (Hora Venezuela)
                             </p>
                             <p className="text-[10px] text-white/60 font-bold tracking-widest uppercase">
                                 Workshop Online via YouTube (En Vivo)
@@ -833,7 +833,7 @@ function OfferSection() {
 }
 
 function PodcastSection() {
-    const isClosed = new Date() > new Date('2026-05-23T00:00:00');
+    const isClosed = new Date() > new Date('2026-07-11T00:00:00-04:00');
 
     return (
         <section className="py-32 bg-[#F5EFE6] relative overflow-hidden">
@@ -854,7 +854,7 @@ function PodcastSection() {
                                     </div>
                                     <h2 className="text-3xl font-heading text-[#2D2926] mb-4">Inscripciones Finalizadas</h2>
                                     <p className="text-[#2D2926]/70 leading-relaxed mb-8">
-                                        Gracias por tu interés. Las inscripciones para la activación del 22 de mayo han cerrado.
+                                        Gracias por tu interés. Las inscripciones para la activación del 10 de julio han cerrado.
                                         Mantente atenta a nuestras redes para próximos encuentros.
                                     </p>
                                     <button 

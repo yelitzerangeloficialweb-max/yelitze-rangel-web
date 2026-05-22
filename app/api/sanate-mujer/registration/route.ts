@@ -5,8 +5,8 @@ import { verifyTurnstileToken } from '@/lib/turnstile';
 
 export async function POST(req: Request) {
     try {
-        // Bloquear inscripciones después del 22 de mayo de 2026
-        const deadline = new Date('2026-05-23T00:00:00');
+        // Bloquear inscripciones después del 10 de julio de 2026
+        const deadline = new Date('2026-07-11T00:00:00-04:00');
         if (new Date() > deadline) {
             return NextResponse.json({ 
                 error: 'Las inscripciones para este encuentro han finalizado.' 

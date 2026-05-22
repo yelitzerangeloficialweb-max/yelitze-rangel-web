@@ -613,7 +613,7 @@ export const sendSanateMujerRegistrationEmail = async (email: string, name: stri
                         
                         <div style="background-color: #F5EFE6; padding: 30px; border-radius: 20px; border: 1px solid #B8835A15; margin: 30px 0; text-align: center;">
                             <p style="margin: 0; font-weight: bold; color: #2D2926; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">FECHA Y PLATAFORMA:</p>
-                            <p style="margin: 10px 0; font-size: 22px; color: #B8835A; font-weight: bold;">22 de Mayo, 2026</p>
+                            <p style="margin: 10px 0; font-size: 22px; color: #B8835A; font-weight: bold;">10 de Julio, 2026</p>
                             <p style="margin: 5px 0; font-size: 18px; color: #2D2926; font-weight: bold;">7:00 PM (Hora Venezuela)</p>
                             <p style="margin: 5px 0; font-size: 16px; color: #2D2926;">Vía YouTube (En Vivo)</p>
                         </div>
