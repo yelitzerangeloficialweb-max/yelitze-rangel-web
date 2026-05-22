@@ -9,19 +9,15 @@ export default function WelcomeModal() {
     const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
-        // Show after 1.5 seconds only if not shown before in the current session
-        const hasBeenShown = localStorage.getItem("yelitze_welcome_banner_2026_shown");
-        if (!hasBeenShown) {
-            const timer = setTimeout(() => {
-                setIsOpen(true);
-            }, 1500);
-            return () => clearTimeout(timer);
-        }
+        // Show after 1.5 seconds every time the page is loaded
+        const timer = setTimeout(() => {
+            setIsOpen(true);
+        }, 1500);
+        return () => clearTimeout(timer);
     }, []);
 
     const handleClose = () => {
         setIsOpen(false);
-        localStorage.setItem("yelitze_welcome_banner_2026_shown", "true");
     };
 
     return (
