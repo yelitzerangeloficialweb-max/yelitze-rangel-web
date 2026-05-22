@@ -7,6 +7,16 @@ import { useState, useEffect } from "react";
 
 const slides = [
     {
+        id: "sanate-mujer",
+        badge: "Workshop Gratuito",
+        title: "SÁNATE MUJER",
+        subtitle: "libera tus lealtades invisibles",
+        button: "RESERVAR MI CUPO",
+        link: "/sanate-mujer",
+        image: "/assets/images/img-sanate.jpg",
+        position: "center"
+    },
+    {
         id: "test",
         badge: "Test Gratuito",
         title: "DESCUBRE TU HISTORIA",
