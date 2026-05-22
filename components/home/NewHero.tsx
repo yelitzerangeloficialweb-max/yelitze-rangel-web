@@ -13,7 +13,7 @@ const slides = [
         subtitle: "libera tus lealtades invisibles",
         button: "RESERVAR MI CUPO",
         link: "/sanate-mujer",
-        image: "/assets/images/landing/yelitze-sanate-hero.jpg",
+        image: "/assets/images/landing/yelitze-sanate-hero-4k.jpg",
         position: "center"
     },
     {
@@ -80,17 +80,38 @@ export default function NewHero() {
                     className="absolute inset-0"
                 >
                     {/* Background Image */}
-                    <div className="absolute inset-0 z-0">
-                        <Image
-                            src={slides[current].image}
-                            alt={slides[current].title}
-                            fill
-                            className="object-cover"
-                            style={{ objectPosition: slides[current].position || 'center' }}
-                            priority
-                        />
-                        {/* Global Overlays - Softer for more visibility */}
-                        <div className="absolute inset-0 bg-black/20" />
+                    <div className="absolute inset-0 z-0 bg-[#16130F]">
+                        {slides[current].id === "sanate-mujer" ? (
+                            <div className="absolute inset-0 w-full h-full">
+                                {/* Desktop/Tablet Layout: Image on the right, faded out on the left */}
+                                <div className="absolute inset-y-0 right-0 w-full md:w-[65%] h-full">
+                                    <Image
+                                        src={slides[current].image}
+                                        alt={slides[current].title}
+                                        fill
+                                        className="object-cover md:object-contain object-right"
+                                        priority
+                                    />
+                                    {/* Gradient overlay to blend the image seamlessly into the solid background on the left */}
+                                    <div className="absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-[#16130F] to-transparent hidden md:block" />
+                                    <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#16130F] to-transparent md:hidden" />
+                                </div>
+                                {/* Soft overlay overall */}
+                                <div className="absolute inset-0 bg-black/15" />
+                            </div>
+                        ) : (
+                            <>
+                                <Image
+                                    src={slides[current].image}
+                                    alt={slides[current].title}
+                                    fill
+                                    className="object-cover"
+                                    style={{ objectPosition: slides[current].position || 'center' }}
+                                    priority
+                                />
+                                <div className="absolute inset-0 bg-black/20" />
+                            </>
+                        )}
                         
                         {/* Bottom Seam Overlay */}
                         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
