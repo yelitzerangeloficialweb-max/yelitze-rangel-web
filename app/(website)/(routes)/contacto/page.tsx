@@ -204,7 +204,7 @@ export default function ContactPage() {
 
                             <div className="flex justify-center min-h-[65px]">
                                 <Turnstile
-                                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "0x4AAAAAAC20WYl_5FLowYWz"}
                                     onSuccess={handleTurnstileSuccess}
                                     options={{ theme: "light" }}
                                 />

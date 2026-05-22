@@ -50,13 +50,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const gaId = process.env.NEXT_PUBLIC_GA_ID || 'G-S8WSF2Q7ZQ';
+
   return (
     <html lang="es" className={`${allison.variable} ${playfair.variable} ${inter.variable} ${montserrat.variable}`}>
       <head>
-        {process.env.NEXT_PUBLIC_GA_ID && (
+        {gaId && (
           <>
             <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
               strategy="afterInteractive"
             />
             <Script id="google-analytics" strategy="afterInteractive">
@@ -64,7 +66,7 @@ export default function RootLayout({
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+                gtag('config', '${gaId}');
               `}
             </Script>
           </>

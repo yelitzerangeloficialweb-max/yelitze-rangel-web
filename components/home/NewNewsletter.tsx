@@ -132,7 +132,7 @@ export default function NewNewsletter() {
                                         </button>
                                         <div className="flex justify-center">
                                             <Turnstile
-                                                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                                                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "0x4AAAAAAC20WYl_5FLowYWz"}
                                                 onSuccess={(token) => setTurnstileToken(token)}
                                                 options={{ theme: "dark", appearance: "interaction-only" }}
                                             />

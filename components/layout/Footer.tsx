@@ -137,7 +137,7 @@ export default function Footer() {
                                     </button>
                                     <div className="flex justify-center mt-4">
                                         <Turnstile
-                                            siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                                            siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "0x4AAAAAAC20WYl_5FLowYWz"}
                                             onSuccess={(token) => setTurnstileToken(token)}
                                             options={{ theme: "dark", appearance: "interaction-only" }}
                                         />
