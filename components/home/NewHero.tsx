@@ -13,7 +13,7 @@ const slides = [
         subtitle: "libera tus lealtades invisibles",
         button: "RESERVAR MI CUPO",
         link: "/sanate-mujer",
-        image: "/assets/images/img-sanate.jpg",
+        image: "/assets/images/landing/yelitze-sanate-hero.jpg",
         position: "center"
     },
     {
