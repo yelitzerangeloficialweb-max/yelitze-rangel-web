@@ -37,8 +37,11 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   }
 };
 
@@ -50,6 +53,22 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${allison.variable} ${playfair.variable} ${inter.variable} ${montserrat.variable}`}>
       <head>
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+              `}
+            </Script>
+          </>
+        )}
         <Script id="fb-pixel" strategy="afterInteractive">
           {`
             !function(f,b,e,v,n,t,s)
@@ -64,6 +83,46 @@ export default function RootLayout({
             fbq('track', 'PageView');
           `}
         </Script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Person",
+                  "@id": "https://yelitzerangeloficial.com/#person",
+                  "name": "Yelitze Rangel",
+                  "url": "https://yelitzerangeloficial.com",
+                  "sameAs": [
+                    "https://www.instagram.com/yelitzerangeloficial/",
+                    "https://www.youtube.com/@yelitzerangeloficial"
+                  ],
+                  "jobTitle": "Terapeuta Sistémica y Psicóloga Somática",
+                  "description": "Terapeuta experta en sanación transgeneracional, sistémica y sabiduría ancestral.",
+                  "image": "https://yelitzerangeloficial.com/assets/images/logo-yelitze-new.png"
+                },
+                {
+                  "@type": "ProfessionalService",
+                  "@id": "https://yelitzerangeloficial.com/#service",
+                  "name": "Yelitze Rangel • Sanación Sistémica y Sabiduría Ancestral",
+                  "url": "https://yelitzerangeloficial.com",
+                  "logo": "https://yelitzerangeloficial.com/assets/images/logo-yelitze-new.png",
+                  "image": "https://yelitzerangeloficial.com/images/home_redesign/Sobre-Mi_01.png",
+                  "description": "Terapias de enfoque sistémico, constelaciones familiares y sanación transgeneracional con Yelitze Rangel.",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "addressCountry": "VE"
+                  },
+                  "priceRange": "$$",
+                  "founder": {
+                    "@id": "https://yelitzerangeloficial.com/#person"
+                  }
+                }
+              ]
+            })
+          }}
+        />
       </head>
       <body>
         <noscript>

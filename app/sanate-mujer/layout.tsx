@@ -9,8 +9,8 @@ export const metadata: Metadata = {
         canonical: 'https://yelitzerangeloficial.com/sanate-mujer',
     },
     robots: {
-        index: false,
-        follow: false,
+        index: true,
+        follow: true,
     }
 };
 

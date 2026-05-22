@@ -1,4 +1,14 @@
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Arquitectura de Vida Intencional | Yelitze Rangel',
+    description: 'Diseña tu Vision Board, programa tu mente subconsciente y enfoca tu energía hacia tus propósitos vitales con esta herramienta interactiva.',
+    alternates: {
+        canonical: 'https://yelitzerangeloficial.com/arquitectura-de-vida-intencional',
+    }
+};
+
 export default function FocusLayout({
     children,
 }: {
