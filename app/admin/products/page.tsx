@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Plus, Pencil, Trash2, Package, Loader2, Search, Filter, MoreVertical, ExternalLink, Upload, ImagePlus } from 'lucide-react';
 import Image from 'next/image';
 
@@ -45,6 +45,16 @@ export default function AdminProductsPage() {
     });
     const [saving, setSaving] = useState(false);
     const [uploadingImage, setUploadingImage] = useState<string | null>(null);
+
+    const fileInputRef = useRef<HTMLInputElement>(null);
+    const [uploadTarget, setUploadTarget] = useState<{ field: string; index?: number } | null>(null);
+
+    const triggerFileUpload = (field: string, index?: number) => {
+        setUploadTarget({ field, index });
+        if (fileInputRef.current) {
+            fileInputRef.current.click();
+        }
+    };
 
     useEffect(() => {
         fetchProducts();
@@ -459,23 +469,15 @@ export default function AdminProductsPage() {
                                             onChange={e => setFormData({ ...formData, image: e.target.value })}
                                             className="flex-1 px-6 py-4 rounded-2xl border border-stone-200 bg-white focus:border-[var(--color-primary)] outline-none font-mono text-xs"
                                         />
-                                        <div className="relative">
-                                            <button 
-                                                type="button"
-                                                disabled={uploadingImage === 'main'}
-                                                className="h-full px-6 bg-stone-100 text-stone-600 rounded-2xl border border-stone-200 hover:bg-stone-200 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 pointer-events-none"
-                                            >
-                                                {uploadingImage === 'main' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
-                                                <span className="text-xs font-bold uppercase tracking-widest hidden md:inline">Adjuntar</span>
-                                            </button>
-                                            <input 
-                                                type="file" 
-                                                accept="image/*"
-                                                onChange={(e) => handleFileUpload(e, 'main')}
-                                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                                                disabled={uploadingImage === 'main'}
-                                            />
-                                        </div>
+                                        <button 
+                                            type="button"
+                                            onClick={() => triggerFileUpload('main')}
+                                            disabled={uploadingImage === 'main'}
+                                            className="px-6 bg-stone-100 text-stone-600 rounded-2xl border border-stone-200 hover:bg-stone-200 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+                                        >
+                                            {uploadingImage === 'main' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
+                                            <span className="text-xs font-bold uppercase tracking-widest hidden md:inline">Adjuntar</span>
+                                        </button>
                                     </div>
                                     {formData.image && (
                                         <div className="mt-4 p-4 bg-white rounded-2xl border border-stone-100 flex items-center justify-between gap-4">
@@ -516,22 +518,14 @@ export default function AdminProductsPage() {
                                                         }}
                                                         className="flex-1 px-4 py-3 rounded-xl border border-stone-200 bg-white focus:border-[var(--color-primary)] outline-none font-mono text-xs"
                                                     />
-                                                    <div className="relative">
-                                                        <button 
-                                                            type="button"
-                                                            disabled={uploadingImage === `additional_${index}`}
-                                                            className="h-full px-4 bg-stone-100 text-stone-600 rounded-xl border border-stone-200 hover:bg-stone-200 transition-colors flex items-center justify-center disabled:opacity-50 pointer-events-none"
-                                                        >
-                                                            {uploadingImage === `additional_${index}` ? <Loader2 className="w-4 h-4 animate-spin" /> : <ImagePlus className="w-4 h-4" />}
-                                                        </button>
-                                                        <input 
-                                                            type="file" 
-                                                            accept="image/*"
-                                                            onChange={(e) => handleFileUpload(e, `additional_${index}`, index)}
-                                                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                                                            disabled={uploadingImage === `additional_${index}`}
-                                                        />
-                                                    </div>
+                                                    <button 
+                                                        type="button"
+                                                        onClick={() => triggerFileUpload(`additional_${index}`, index)}
+                                                        disabled={uploadingImage === `additional_${index}`}
+                                                        className="px-4 bg-stone-100 text-stone-600 rounded-xl border border-stone-200 hover:bg-stone-200 transition-colors flex items-center justify-center disabled:opacity-50"
+                                                    >
+                                                        {uploadingImage === `additional_${index}` ? <Loader2 className="w-4 h-4 animate-spin" /> : <ImagePlus className="w-4 h-4" />}
+                                                    </button>
                                                 </div>
                                                 {formData.images[index] && (
                                                     <div className="mt-2 p-2 bg-white rounded-xl border border-stone-100 flex items-center justify-between gap-3">
@@ -612,6 +606,18 @@ export default function AdminProductsPage() {
                     </div>
                 </div>
             )}
+            {/* Hidden File Input for programmatical uploads */}
+            <input 
+                type="file" 
+                ref={fileInputRef}
+                accept="image/*"
+                onChange={(e) => {
+                    if (uploadTarget) {
+                        handleFileUpload(e, uploadTarget.field, uploadTarget.index);
+                    }
+                }}
+                className="hidden"
+            />
         </div>
     );
 }
