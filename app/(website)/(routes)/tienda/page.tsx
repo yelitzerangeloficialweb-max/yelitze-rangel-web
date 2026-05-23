@@ -33,14 +33,33 @@ export default function TiendaPage() {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
 
+    // Fallback map: when DB products have broken /uploads/ paths, use static assets
+    const STATIC_IMAGE_FALLBACK: Record<string, string> = {
+        'hilos-de-conexion': '/assets/images/books/hilos-conexion-3d.png',
+        'conversaciones-con-mi-chamana': '/assets/images/books/conversaciones-chamana-3d.png',
+        'cartas-corazon-chamanico': '/assets/images/shop/oraculo-chamana.png',
+        'oraculo-ancestral': '/assets/images/shop/oraculo-ancestral.png',
+        'oraculo-de-la-chamana': '/assets/images/shop/oraculo-chamana.png',
+    };
+
     useEffect(() => {
         async function fetchProducts() {
             try {
                 const res = await fetch('/api/products');
                 if (res.ok) {
                     const dbProducts = await res.json();
-                    // Use DB products if available, otherwise fall back to static
-                    setProducts(dbProducts.length > 0 ? dbProducts : STATIC_PRODUCTS);
+                    if (dbProducts.length > 0) {
+                        // Fix any broken /uploads/ image paths with static fallbacks
+                        const fixedProducts = dbProducts.map((p: Product) => ({
+                            ...p,
+                            image: p.image.startsWith('/uploads/')
+                                ? (STATIC_IMAGE_FALLBACK[p.slug] || p.image)
+                                : p.image,
+                        }));
+                        setProducts(fixedProducts);
+                    } else {
+                        setProducts(STATIC_PRODUCTS);
+                    }
                 } else {
                     setProducts(STATIC_PRODUCTS);
                 }

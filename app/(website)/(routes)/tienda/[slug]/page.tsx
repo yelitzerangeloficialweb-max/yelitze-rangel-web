@@ -23,12 +23,33 @@ export default function ProductPage({ params }: ProductPageProps) {
     const [error, setError] = useState(false);
     const [quantity, setQuantity] = useState(1);
 
+    // Fallback map: when DB products have broken /uploads/ paths, use static assets
+    const STATIC_IMAGE_FALLBACK: Record<string, string> = {
+        'hilos-de-conexion': '/assets/images/books/hilos-conexion-3d.png',
+        'conversaciones-con-mi-chamana': '/assets/images/books/conversaciones-chamana-3d.png',
+        'cartas-corazon-chamanico': '/assets/images/shop/oraculo-chamana.png',
+        'oraculo-ancestral': '/assets/images/shop/oraculo-ancestral.png',
+        'oraculo-de-la-chamana': '/assets/images/shop/oraculo-chamana.png',
+    };
+
     useEffect(() => {
         async function fetchProduct() {
             try {
                 const res = await fetch(`/api/products/${slug}`);
                 if (res.ok) {
                     const data = await res.json();
+                    // Fix broken /uploads/ image path
+                    if (data.image && data.image.startsWith('/uploads/')) {
+                        data.image = STATIC_IMAGE_FALLBACK[data.slug] || data.image;
+                    }
+                    // Fix broken /uploads/ in additional images
+                    if (Array.isArray(data.images)) {
+                        data.images = data.images.map((img: string) =>
+                            img && img.startsWith('/uploads/')
+                                ? (STATIC_IMAGE_FALLBACK[data.slug] || img)
+                                : img
+                        ).filter(Boolean);
+                    }
                     setProduct(data);
                     setActiveImage(data.image || '');
                 } else {
