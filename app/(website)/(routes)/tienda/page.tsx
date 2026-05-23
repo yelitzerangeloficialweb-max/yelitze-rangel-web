@@ -37,7 +37,7 @@ export default function TiendaPage() {
     const STATIC_IMAGE_FALLBACK: Record<string, string> = {
         'hilos-de-conexion': '/assets/images/books/hilos-conexion-3d.png',
         'conversaciones-con-mi-chamana': '/assets/images/books/conversaciones-chamana-3d.png',
-        'cartas-corazon-chamanico': '/assets/images/oraculo/cartas-chamanico-1.jpg',
+        'cartas-corazon-chamanico': '/assets/images/oraculo/oraculo-real-1.jpg',
         'oraculo-ancestral': '/assets/images/shop/oraculo-ancestral.png',
         'oraculo-de-la-chamana': '/assets/images/shop/oraculo-chamana.png',
     };

@@ -27,7 +27,7 @@ export default function ProductPage({ params }: ProductPageProps) {
     const STATIC_IMAGE_FALLBACK: Record<string, string> = {
         'hilos-de-conexion': '/assets/images/books/hilos-conexion-3d.png',
         'conversaciones-con-mi-chamana': '/assets/images/books/conversaciones-chamana-3d.png',
-        'cartas-corazon-chamanico': '/assets/images/oraculo/cartas-chamanico-1.jpg',
+        'cartas-corazon-chamanico': '/assets/images/oraculo/oraculo-real-1.jpg',
         'oraculo-ancestral': '/assets/images/shop/oraculo-ancestral.png',
         'oraculo-de-la-chamana': '/assets/images/shop/oraculo-chamana.png',
     };
@@ -40,9 +40,9 @@ export default function ProductPage({ params }: ProductPageProps) {
                     const data = await res.json();
                     
                     const oldToNewMap: Record<string, string> = {
-                        '/uploads/1779315877803-247618694.jpg': '/assets/images/oraculo/cartas-chamanico-1.jpg',
-                        '/uploads/1779315882780-503008958.jpg': '/assets/images/oraculo/cartas-chamanico-2.jpg',
-                        '/uploads/1779315902423-912018526.jpg': '/assets/images/oraculo/cartas-chamanico-3.jpg',
+                        '/uploads/1779315877803-247618694.jpg': '/assets/images/oraculo/oraculo-real-1.jpg',
+                        '/uploads/1779315882780-503008958.jpg': '/assets/images/oraculo/oraculo-real-2.jpg',
+                        '/uploads/1779315902423-912018526.jpg': '/assets/images/oraculo/oraculo-real-3.jpg',
                     };
 
                     // Fix broken /uploads/ or empty image path
@@ -57,8 +57,8 @@ export default function ProductPage({ params }: ProductPageProps) {
                     if (!data.images || data.images.length === 0 || (data.images.length === 1 && data.images[0] === '')) {
                         if (data.slug === 'cartas-corazon-chamanico') {
                             data.images = [
-                                '/assets/images/oraculo/cartas-chamanico-2.jpg',
-                                '/assets/images/oraculo/cartas-chamanico-3.jpg'
+                                '/assets/images/oraculo/oraculo-real-2.jpg',
+                                '/assets/images/oraculo/oraculo-real-3.jpg'
                             ];
                         }
                     } else if (Array.isArray(data.images)) {
