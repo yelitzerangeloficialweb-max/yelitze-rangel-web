@@ -12,8 +12,8 @@ export function middleware(request: NextRequest) {
         return NextResponse.next();
     }
 
-    // 2. FORCE maintenance mode to false
-    const maintenanceMode = false;
+    // 2. FORCE maintenance mode to true
+    const maintenanceMode = true;
 
     // 3. Check for the maintenance auth cookie (v2 to invalidate old sessions)
     const authCookie = request.cookies.get('yelitze_access_session_v2');
