@@ -39,8 +39,8 @@ export async function GET() {
                     continue;
                 }
 
-                // Only fix if the current image is broken (points to /uploads/)
-                const needsFix = product.image.startsWith('/uploads/');
+                // Only fix if the current image is different from the correct static image path
+                const needsFix = product.image !== fix.image;
                 if (!needsFix) {
                     results.push(`OK: Product "${slug}" already uses static image: ${product.image}`);
                     continue;
