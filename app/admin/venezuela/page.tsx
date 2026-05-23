@@ -378,7 +378,7 @@ export default function AdminVenezuelaPage() {
                                             )}
                                         </td>
                                         <td className="px-8 py-6 text-right">
-                                            <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <div className="flex items-center justify-end gap-2">
                                                 <button
                                                     onClick={() => setSelectedRegistration(r)}
                                                     className="p-2.5 text-stone-400 hover:text-[var(--color-primary)] hover:bg-white rounded-xl transition-all shadow-sm border border-transparent hover:border-stone-100"
