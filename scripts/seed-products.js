@@ -12,11 +12,11 @@ async function main() {
             subtitle: 'Oráculo de 53 cartas',
             description: 'El oráculo Corazón Chamánico es mucho más que un mazo de 53 cartas; es un portal hacia tu sabiduría interior. Creado por la Sanadora Ancestral Yelitze Rangel, esta herramienta de crecimiento personal está diseñada para despertar los poderes femeninos y antiguos que residen en ti. Al igual que la tierra, tu energía está lista para germinar. Úsalo como una guía para escucharte, descubrirte, honrar tu linaje y transformar tu camino. Un homenaje a la maga, a la sabia y a la mujer que llevas dentro.',
             price: 35.00,
-            image: '/uploads/1779315877803-247618694.jpg', // Uses the verified local image!
+            image: '/assets/images/oraculo/cartas-chamanico-1.jpg', // Uses the stable static asset!
             images: JSON.stringify([
-                '/uploads/1779315877803-247618694.jpg',
-                '/uploads/1779315882780-503008958.jpg',
-                '/uploads/1779315902423-912018526.jpg'
+                '/assets/images/oraculo/cartas-chamanico-1.jpg',
+                '/assets/images/oraculo/cartas-chamanico-2.jpg',
+                '/assets/images/oraculo/cartas-chamanico-3.jpg'
             ]),
             category: 'oraculo',
             stock: 10,

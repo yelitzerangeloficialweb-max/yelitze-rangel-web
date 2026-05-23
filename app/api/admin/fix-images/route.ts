@@ -22,9 +22,10 @@ export async function GET() {
             images: JSON.stringify([]),
         },
         'cartas-corazon-chamanico': {
-            image: '/assets/images/shop/oraculo-chamana.png',
+            image: '/assets/images/oraculo/cartas-chamanico-1.jpg',
             images: JSON.stringify([
-                '/assets/images/shop/oraculo-ancestral.png',
+                '/assets/images/oraculo/cartas-chamanico-2.jpg',
+                '/assets/images/oraculo/cartas-chamanico-3.jpg'
             ]),
         },
     };
