@@ -45,16 +45,23 @@ export default function ProductPage({ params }: ProductPageProps) {
                         '/uploads/1779315902423-912018526.jpg': '/assets/images/oraculo/cartas-chamanico-3.jpg',
                     };
 
-                    // Fix broken /uploads/ image path
-                    if (data.image && data.image.startsWith('/uploads/')) {
-                        if (oldToNewMap[data.image]) {
+                    // Fix broken /uploads/ or empty image path
+                    if (!data.image || data.image.startsWith('/uploads/')) {
+                        if (data.image && oldToNewMap[data.image]) {
                             data.image = oldToNewMap[data.image];
                         } else {
-                            data.image = STATIC_IMAGE_FALLBACK[data.slug] || data.image;
+                            data.image = STATIC_IMAGE_FALLBACK[data.slug] || '';
                         }
                     }
-                    // Fix broken /uploads/ in additional images
-                    if (Array.isArray(data.images)) {
+                    // Fix broken /uploads/ or empty in additional images
+                    if (!data.images || data.images.length === 0 || (data.images.length === 1 && data.images[0] === '')) {
+                        if (data.slug === 'cartas-corazon-chamanico') {
+                            data.images = [
+                                '/assets/images/oraculo/cartas-chamanico-2.jpg',
+                                '/assets/images/oraculo/cartas-chamanico-3.jpg'
+                            ];
+                        }
+                    } else if (Array.isArray(data.images)) {
                         data.images = data.images.map((img: string) => {
                             if (img && img.startsWith('/uploads/')) {
                                 if (oldToNewMap[img]) {

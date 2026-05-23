@@ -49,10 +49,10 @@ export default function TiendaPage() {
                 if (res.ok) {
                     const dbProducts = await res.json();
                     if (dbProducts.length > 0) {
-                        // Fix any broken /uploads/ image paths with static fallbacks
+                        // Fix any broken /uploads/ or empty image paths with static fallbacks
                         const fixedProducts = dbProducts.map((p: Product) => ({
                             ...p,
-                            image: p.image.startsWith('/uploads/')
+                            image: (!p.image || p.image.startsWith('/uploads/'))
                                 ? (STATIC_IMAGE_FALLBACK[p.slug] || p.image)
                                 : p.image,
                         }));
