@@ -6,12 +6,13 @@ export async function verifyTurnstileToken(token: string | null | undefined): Pr
     if (!token) {
         console.error('Turnstile verification failed: token is missing or empty.');
         return false;
-    }
-
     const secretKey = process.env.TURNSTILE_SECRET_KEY;
-    if (!secretKey || secretKey.startsWith('0x4AA')) {
-        console.warn('Usando claves de prueba de Turnstile o clave no configurada. Saltando verificación para permitir registros en producción temporalmente.');
-        return true;
+    if (!secretKey) {
+        console.warn('TURNSTILE_SECRET_KEY no está configurada en las variables de entorno.');
+        if (process.env.NODE_ENV === 'development') {
+            return true;
+        }
+        return false;
     }
 
     try {
