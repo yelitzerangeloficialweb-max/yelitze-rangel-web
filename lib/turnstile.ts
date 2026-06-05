@@ -4,6 +4,7 @@
  */
 export async function verifyTurnstileToken(token: string | null | undefined): Promise<boolean> {
     if (!token) {
+        console.error('Turnstile verification failed: token is missing or empty.');
         return false;
     }
 
@@ -29,6 +30,11 @@ export async function verifyTurnstileToken(token: string | null | undefined): Pr
         });
 
         const data = await res.json();
+        
+        if (!data.success) {
+            console.error('Turnstile verification failed with data:', data);
+        }
+        
         return !!data.success;
     } catch (error) {
         console.error('Error al verificar el token de Turnstile:', error);

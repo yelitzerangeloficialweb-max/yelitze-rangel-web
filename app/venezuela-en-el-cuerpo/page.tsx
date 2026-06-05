@@ -81,8 +81,8 @@ export default function VenezuelaEnElCuerpoPage() {
                 if (errorData.error === 'duplicate') {
                     alert(errorData.message);
                 } else {
-                    console.error('Registration failed');
-                    alert("Hubo un error al registrarte. Por favor intenta de nuevo.");
+                    console.error('Registration failed:', errorData);
+                    alert(errorData.error || errorData.message || "Hubo un error al registrarte. Por favor intenta de nuevo.");
                 }
             }
         } catch (error) {
