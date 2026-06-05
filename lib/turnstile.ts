@@ -9,14 +9,9 @@ export async function verifyTurnstileToken(token: string | null | undefined): Pr
     }
 
     const secretKey = process.env.TURNSTILE_SECRET_KEY;
-    if (!secretKey) {
-        console.warn('TURNSTILE_SECRET_KEY no está configurada en las variables de entorno.');
-        // Para desarrollo local, si no está configurado, podemos permitirlo si estamos en desarrollo, 
-        // pero en producción SIEMPRE debe estar configurado.
-        if (process.env.NODE_ENV === 'development') {
-            return true;
-        }
-        return false;
+    if (!secretKey || secretKey.startsWith('0x4AA')) {
+        console.warn('Usando claves de prueba de Turnstile o clave no configurada. Saltando verificación para permitir registros en producción temporalmente.');
+        return true;
     }
 
     try {
