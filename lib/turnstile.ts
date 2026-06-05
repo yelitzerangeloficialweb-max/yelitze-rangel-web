@@ -6,6 +6,7 @@ export async function verifyTurnstileToken(token: string | null | undefined): Pr
     if (!token) {
         console.error('Turnstile verification failed: token is missing or empty.');
         return false;
+    }
     const secretKey = process.env.TURNSTILE_SECRET_KEY;
     if (!secretKey) {
         console.warn('TURNSTILE_SECRET_KEY no está configurada en las variables de entorno.');
