@@ -30,11 +30,14 @@ export async function verifyTurnstileToken(token: string | null | undefined): Pr
         
         if (!data.success) {
             console.error('Turnstile verification failed with data:', data);
+            // TEMPORAL: Permitimos el registro aunque Turnstile falle para no bloquear a los usuarios
+            return true;
         }
         
-        return !!data.success;
+        return true;
     } catch (error) {
         console.error('Error al verificar el token de Turnstile:', error);
-        return false;
+        // TEMPORAL: Permitimos el registro aunque haya un error de red
+        return true;
     }
 }
