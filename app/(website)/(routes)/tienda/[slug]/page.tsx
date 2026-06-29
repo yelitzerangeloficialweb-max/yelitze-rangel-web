@@ -109,7 +109,7 @@ export default function ProductPage({ params }: ProductPageProps) {
     const allImages = product ? [product.image, ...(product.images || [])].filter(Boolean) : [];
 
     return (
-        <main className="bg-[#FAF9F6] min-h-screen pt-28 pb-20">
+        <main className="bg-[#FAF9F6] min-h-screen pt-40 md:pt-44 lg:pt-48 pb-20">
             <div className="container mx-auto px-4">
                 {/* Breadcrumb */}
                 <FadeIn>

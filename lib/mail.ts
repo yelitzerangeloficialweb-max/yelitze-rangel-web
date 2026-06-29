@@ -29,21 +29,26 @@ export const sendVenezuelaRegistrationEmail = async ({
     registrationId: string;
 }) => {
     try {
-        const ticketUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/venezuela-en-el-cuerpo/success?id=${registrationId}&name=${encodeURIComponent(name)}&city=${encodeURIComponent(city)}`;
+        const isCaracas = city.toLowerCase() === 'caracas';
+        const ticketUrl = isCaracas 
+            ? `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/venezuela-en-el-cuerpo-caracas/success?name=${encodeURIComponent(name)}`
+            : `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/venezuela-en-el-cuerpo/success?id=${registrationId}&name=${encodeURIComponent(name)}&city=${encodeURIComponent(city)}`;
 
         const logoUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/assets/images/logo-yelitze-new.png`;
 
         const { data, error } = await resend.emails.send({
             from: 'Yelitze Rangel <info@yelitzerangeloficial.com>',
             to: [email],
-            subject: '¡Tu registro al Tour Venezuela en el Cuerpo es Exitoso! 🇻🇪',
-            text: `¡Hola, ${name}! Tu registro al Tour Nacional Venezuela en el Cuerpo ha sido reservado con éxito para ${city}. Puedes ver tu ticket en la web oficial.`,
+            subject: isCaracas ? '¡Tu acceso a Venezuela en el Cuerpo está listo! 🌿' : '¡Tu registro al Tour Venezuela en el Cuerpo es Exitoso! 🇻🇪',
+            text: isCaracas 
+                ? `¡Hola, ${name}! Aquí tienes tu acceso a la guía somática y herramientas de regulación.`
+                : `¡Hola, ${name}! Tu registro al Tour Nacional Venezuela en el Cuerpo ha sido reservado con éxito para ${city}. Puedes ver tu ticket en la web oficial.`,
             html: `
                 <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background-color: #F5EFE6; border-radius: 24px; overflow: hidden; border: 1px solid #B8835A30;">
                     <div style="background-color: #8C4005; padding: 30px 20px; text-align: center;">
                         <img src="${logoUrl}" alt="Yelitze Rangel" style="max-width: 180px; height: auto; margin-bottom: 20px;">
                         <h1 style="color: #F5EFE6; margin: 0; font-size: 24px; letter-spacing: 2px; text-transform: uppercase;">Venezuela en el Cuerpo</h1>
-                        <p style="color: #F5EFE6; opacity: 0.8; margin-top: 10px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Confirmación de Registro</p>
+                        <p style="color: #F5EFE6; opacity: 0.8; margin-top: 10px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Confirmación de Acceso</p>
                     </div>
                     
                     <div style="padding: 40px 30px; color: #2D2926; line-height: 1.6;">
@@ -53,10 +58,17 @@ export const sendVenezuelaRegistrationEmail = async ({
                             "Primero sana el cuerpo… y luego cambia la historia."
                         </p>
 
+                        ${isCaracas ? `
+                        <p style="font-size: 16px;">
+                            Tu acceso a las herramientas de regulación somática y al Ebook <strong>Venezuela en el Cuerpo</strong> ya está disponible.
+                        </p>
+                        <p style="font-size: 16px; margin-top: 20px;">
+                            Recuerda: No tienes que hacerlo todo ahora. Solo empieza por un paso.
+                        </p>
+                        ` : `
                         <p style="font-size: 16px;">
                             Tu lugar en el <strong>Tour Nacional Venezuela en el Cuerpo</strong> ha sido reservado con éxito para la ciudad de <strong>${city === 'el-vigia' ? 'El Vigía' : city}</strong>.
                         </p>
-                        
                         ${city === 'el-vigia' ? `
                         <div style="background-color: #FDFBFA; border: 1px solid #B8835A30; padding: 25px; border-radius: 20px; margin: 30px 0;">
                             <h3 style="color: #8C4005; margin-top: 0; font-size: 18px;">📍 Coordenadas de tu Encuentro:</h3>
@@ -70,13 +82,15 @@ export const sendVenezuelaRegistrationEmail = async ({
                             Este es un paso fundamental en tu camino hacia la <strong>Arquitectura Intencional de Vida</strong>. Estamos muy emocionados de tenerte con nosotros.
                         </p>
                         `}
+                        `}
                         
                         <div style="margin: 40px 0; text-align: center;">
-                            <a href="${ticketUrl}" style="background-color: #C1530A; color: white; padding: 16px 32px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-block; box-shadow: 0 4px 15px rgba(193, 83, 10, 0.3);">
-                                VER MI TICKET DIGITAL
+                            <a href="${ticketUrl}" style="background-color: #1C1C1C; color: #F5EFE6; padding: 18px 36px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-block; box-shadow: 0 4px 15px rgba(28, 28, 28, 0.3);">
+                                ${isCaracas ? 'ACCEDER A MIS HERRAMIENTAS' : 'VER MI TICKET DIGITAL'}
                             </a>
                         </div>
                         
+                        ${!isCaracas ? `
                         <div style="background-color: #B8835A10; border: 1px solid #B8835A20; padding: 25px; border-radius: 20px; margin-top: 30px;">
                             <h3 style="color: #B8835A; margin-top: 0; font-size: 16px;">Pasos Siguientes:</h3>
                             <ul style="padding-left: 20px; margin-bottom: 0;">
@@ -85,7 +99,8 @@ export const sendVenezuelaRegistrationEmail = async ({
                                 <li style="margin-bottom: 0;">El día del evento, llega 15 minutos antes con tu código QR listo.</li>
                             </ul>
                         </div>
-                    </div>
+                        ` : ''}
+                    </div>                 </div>
                     
                     <div style="background-color: #2D2926; padding: 30px; text-align: center; color: #F5EFE680; font-size: 12px; letter-spacing: 1px;">
                         <p style="margin: 0; text-transform: uppercase;">YELITZE RANGEL • Tu Coach Ancestral</p>
