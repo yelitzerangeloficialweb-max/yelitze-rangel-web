@@ -17,6 +17,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn } from "@/components/ui/motion";
+import { Turnstile } from '@marsidev/react-turnstile';
 
 export default function VenezuelaEnElCuerpoCaracasPage() {
     const router = useRouter();
@@ -128,6 +129,16 @@ export default function VenezuelaEnElCuerpoCaracasPage() {
                                         className="w-full bg-[#F5EFE6]/50 border border-stone-200 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-[#C8A45D]/50 focus:border-[#C8A45D] transition-all outline-none text-[#1C1C1C]"
                                         placeholder="tu@correo.com"
                                         required
+                                    />
+                                </div>
+
+                                <div className="flex justify-center mt-6">
+                                    <Turnstile
+                                        siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ''}
+                                        onSuccess={(token) => setTurnstileToken(token)}
+                                        options={{
+                                            theme: 'light'
+                                        }}
                                     />
                                 </div>
                                 
