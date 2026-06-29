@@ -52,25 +52,25 @@ function SuccessContent() {
     if (!mounted) return null;
 
     return (
-        <main className="min-h-screen bg-[#2D2926] text-[#F5EFE6] relative overflow-hidden flex flex-col items-center py-20 px-4">
+        <main className="min-h-screen bg-[#3C3935] text-[#F9F6F0] relative overflow-hidden flex flex-col items-center py-20 px-4">
             {/* Background elements to match the landing */}
             <FloatingStars count={40} className="fixed inset-0 pointer-events-none opacity-40" />
-            <SacredGeometry className="fixed top-[-10%] left-[-10%] w-[800px] h-[800px] text-[#B8835A]/5 pointer-events-none" />
+            <SacredGeometry className="fixed top-[-10%] left-[-10%] w-[800px] h-[800px] text-[#C67C6A]/5 pointer-events-none" />
 
             <div className="container mx-auto max-w-4xl relative z-10 flex flex-col items-center">
 
                 {/* Header Success Message */}
                 <FadeIn className="text-center mb-12">
-                    <div className="inline-flex items-center justify-center w-20 h-20 bg-[#8C4005]/20 rounded-full mb-6 border border-[#8C4005]/30">
-                        <CheckCircle2 className="w-10 h-10 text-[#B8835A]" />
+                    <div className="inline-flex items-center justify-center w-20 h-20 bg-[#C67C6A]/20 rounded-full mb-6 border border-[#C67C6A]/30">
+                        <CheckCircle2 className="w-10 h-10 text-[#C67C6A]" />
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-heading font-bold text-[#8C4005] mb-4">
+                    <h1 className="text-4xl md:text-6xl font-heading font-bold text-[#C67C6A] mb-4">
                         ¡Registro Exitoso!
                     </h1>
-                    <p className="text-xl font-light text-[#F5EFE6]/80 max-w-xl mx-auto leading-relaxed mb-4">
-                        Tu lugar en el <span className="text-[#B8835A] font-bold italic">Tour Nacional Venezuela en el Cuerpo</span> ha sido reservado. Aquí tienes tu pase oficial.
+                    <p className="text-xl font-light text-[#F9F6F0]/80 max-w-xl mx-auto leading-relaxed mb-4">
+                        Tu lugar en el <span className="text-[#C67C6A] font-bold italic">Tour Nacional Venezuela en el Cuerpo</span> ha sido reservado. Aquí tienes tu pase oficial.
                     </p>
-                    <p className="text-lg font-script text-[#B8835A] italic opacity-90">
+                    <p className="text-lg font-script text-[#C67C6A] italic opacity-90">
                         "Primero sana el cuerpo… y luego cambia la historia."
                     </p>
                 </FadeIn>
@@ -82,8 +82,8 @@ function SuccessContent() {
 
                 {/* Information & Actions */}
                 <div className="grid md:grid-cols-2 gap-8 w-full max-w-2xl">
-                    <FadeIn delay={0.2} className="bg-[#B8835A]/10 border border-[#B8835A]/20 p-8 rounded-3xl backdrop-blur-sm">
-                        <h3 className="text-[#B8835A] font-bold text-lg mb-4 flex items-center gap-2">
+                    <FadeIn delay={0.2} className="bg-[#C67C6A]/10 border border-[#C67C6A]/20 p-8 rounded-3xl backdrop-blur-sm">
+                        <h3 className="text-[#C67C6A] font-bold text-lg mb-4 flex items-center gap-2">
                             <MessageCircle className="w-5 h-5" />
                             Paso Importante
                         </h3>
@@ -98,8 +98,8 @@ function SuccessContent() {
                         </a>
                     </FadeIn>
 
-                    <FadeIn delay={0.4} className="bg-[#F5EFE6]/5 border border-[#F5EFE6]/10 p-8 rounded-3xl backdrop-blur-sm">
-                        <h3 className="text-[#F5EFE6] font-bold text-lg mb-4 flex items-center gap-2">
+                    <FadeIn delay={0.4} className="bg-[#F9F6F0]/5 border border-[#F9F6F0]/10 p-8 rounded-3xl backdrop-blur-sm">
+                        <h3 className="text-[#F9F6F0] font-bold text-lg mb-4 flex items-center gap-2">
                             <Download className="w-5 h-5" />
                             Guarda tu Ticket
                         </h3>
@@ -109,11 +109,11 @@ function SuccessContent() {
                         <button
                             onClick={handleDownload}
                             disabled={isDownloading}
-                            className="w-full flex items-center justify-center gap-2 border border-[#F5EFE6]/30 px-6 py-4 rounded-full font-bold hover:bg-[#F5EFE6]/10 transition-colors disabled:opacity-50"
+                            className="w-full flex items-center justify-center gap-2 border border-[#F9F6F0]/30 px-6 py-4 rounded-full font-bold hover:bg-[#F9F6F0]/10 transition-colors disabled:opacity-50"
                         >
                             {isDownloading ? (
                                 <>
-                                    <div className="w-4 h-4 border-2 border-[#F5EFE6] border-t-transparent animate-spin rounded-full" />
+                                    <div className="w-4 h-4 border-2 border-[#F9F6F0] border-t-transparent animate-spin rounded-full" />
                                     Generando...
                                 </>
                             ) : (
@@ -129,7 +129,7 @@ function SuccessContent() {
                 {/* Back to Home */}
                 <Link
                     href="/venezuela-en-el-cuerpo"
-                    className="mt-16 inline-flex items-center gap-2 text-[#F5EFE6]/50 hover:text-[#B8835A] transition-colors"
+                    className="mt-16 inline-flex items-center gap-2 text-[#F9F6F0]/50 hover:text-[#C67C6A] transition-colors"
                 >
                     <ArrowLeft className="w-4 h-4" />
                     Volver a la página principal
@@ -137,8 +137,8 @@ function SuccessContent() {
             </div>
 
             {/* Bottom Credits */}
-            <footer className="mt-20 pt-10 border-t border-[#F5EFE6]/10 w-full text-center">
-                <p className="text-[#F5EFE6]/30 text-xs font-mono uppercase tracking-widest">
+            <footer className="mt-20 pt-10 border-t border-[#F9F6F0]/10 w-full text-center">
+                <p className="text-[#F9F6F0]/30 text-xs font-mono uppercase tracking-widest">
                     Yelitze Rangel • Arquitectura Intencional de Vida
                 </p>
             </footer>
@@ -149,8 +149,8 @@ function SuccessContent() {
 export default function SuccessPage() {
     return (
         <Suspense fallback={
-            <div className="min-h-screen bg-[#2D2926] flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#B8835A]" />
+            <div className="min-h-screen bg-[#3C3935] flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#C67C6A]" />
             </div>
         }>
             <SuccessContent />
