@@ -82,9 +82,9 @@ function PostRegistroHub() {
                             <p className="text-white/70 mb-8 font-light flex-grow">
                                 Evalúa tu nivel actual de activación del sistema nervioso.
                             </p>
-                            <a href="#test" className="w-full bg-[#FCFBFA] text-[#3C3935] py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-[#C67C6A] hover:text-white transition-colors">
+                            <Link href="/venezuela-en-el-cuerpo-caracas/test" className="w-full bg-[#FCFBFA] text-[#3C3935] py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-[#C67C6A] hover:text-white transition-colors">
                                 Iniciar Test <ArrowRight className="w-5 h-5" />
-                            </a>
+                            </Link>
                         </StaggerItem>
 
                         {/* CARD 3 — HERRAMIENTAS */}
