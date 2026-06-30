@@ -82,8 +82,23 @@ export default function VenezuelaEnElCuerpoCaracasPage() {
             '--color-cream': '#FFFFFF', // Blanco crema
         } as React.CSSProperties}>
 
+            {/* BANNER PRINCIPAL */}
+            <section className="relative w-full bg-[#F9F6F0]">
+                <a href="#registro" onClick={scrollToForm} className="block cursor-pointer">
+                    <div className="relative w-full aspect-[4/3] md:aspect-[16/9] lg:aspect-[2/1] xl:aspect-[2.5/1]">
+                        <Image 
+                            src="/images/venezuela/banner-landing-principal.jpg"
+                            alt="Venezuela en el Cuerpo - Caracas"
+                            fill
+                            className="object-contain md:object-cover object-top"
+                            priority
+                        />
+                    </div>
+                </a>
+            </section>
+
             {/* 1. HERO SECTION */}
-            <section className="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden bg-[#F9F6F0]">
+            <section className="relative flex items-center pt-12 pb-12 overflow-hidden bg-[#F9F6F0]">
                 <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
                     <FadeIn>
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading text-[#3C3935] mb-6 leading-[1.1] font-bold">
