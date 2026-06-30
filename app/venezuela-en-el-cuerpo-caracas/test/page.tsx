@@ -83,12 +83,13 @@ export default function SomaticTestPage() {
                         className="min-h-screen flex flex-col items-center justify-center p-6 text-center"
                     >
                         <div className="max-w-4xl mx-auto space-y-8 w-full">
-                            <div className="relative w-full aspect-[16/9] md:aspect-[2/1] rounded-[2rem] overflow-hidden shadow-2xl mb-8">
+                            <div className="relative w-full rounded-[2rem] overflow-hidden shadow-2xl mb-8 bg-[#F9F6F0]">
                                 <Image 
                                     src="/images/venezuela/banner-test-somatico.jpg"
                                     alt="Test Somático: Venezuela en el Cuerpo"
-                                    fill
-                                    className="object-cover"
+                                    width={1920}
+                                    height={1080}
+                                    className="w-full h-auto object-contain block"
                                     priority
                                 />
                             </div>
