@@ -86,12 +86,13 @@ export default function VenezuelaEnElCuerpoCaracasPage() {
             {/* BANNER PRINCIPAL */}
             <section className="relative w-full bg-[#F9F6F0]">
                 <a href="#registro" onClick={scrollToForm} className="block cursor-pointer">
-                    <div className="relative w-full aspect-[4/3] md:aspect-[16/9] lg:aspect-[2/1] xl:aspect-[2.5/1]">
+                    <div className="w-full max-w-[1920px] mx-auto">
                         <Image 
-                            src="/images/venezuela/banner-landing-principal.jpg"
+                            src="/images/venezuela/banner-landing-principal.png"
                             alt="Venezuela en el Cuerpo - Caracas"
-                            fill
-                            className="object-contain md:object-cover object-top"
+                            width={1920}
+                            height={1080}
+                            className="w-full h-auto object-contain"
                             priority
                         />
                     </div>
