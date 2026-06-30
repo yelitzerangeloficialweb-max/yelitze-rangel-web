@@ -216,14 +216,41 @@ function PostRegistroHub() {
                             <span className="font-bold">Es el sistema más antiguo de protección que tienes.</span>"
                         </h2>
 
-                        <div className="bg-[#FCFBFA] p-10 md:p-14 rounded-[3rem] shadow-xl border border-[#C67C6A]/20">
-                            <h3 className="text-2xl md:text-3xl font-bold font-heading mb-8">
-                                Si esto te ayudó, continúa el proceso
-                            </h3>
-                            <a href="#" className="inline-flex items-center justify-center gap-3 bg-[#3C3935] text-white px-10 py-5 rounded-2xl font-bold hover:bg-[#C67C6A] transition-colors shadow-lg group text-lg w-full sm:w-auto">
-                                Ir al Test Somático
-                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                            </a>
+                        <div className="grid md:grid-cols-2 gap-8 text-left">
+                            <div className="bg-[#FCFBFA] p-8 md:p-10 rounded-[3rem] shadow-xl border border-stone-100 flex flex-col justify-between hover:-translate-y-1 transition-transform">
+                                <div>
+                                    <h3 className="text-2xl font-bold font-heading mb-4 text-[#3C3935]">
+                                        Continúa con el Test
+                                    </h3>
+                                    <p className="text-[#3C3935]/70 font-light mb-8">
+                                        Descubre tu nivel de activación actual y los siguientes pasos para tu proceso de regulación de forma guiada.
+                                    </p>
+                                </div>
+                                <a href="#" className="inline-flex items-center justify-center gap-3 bg-[#3C3935] text-white px-8 py-4 rounded-2xl font-bold hover:bg-[#C67C6A] transition-colors shadow-lg group w-full">
+                                    Ir al Test Somático
+                                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                </a>
+                            </div>
+
+                            <div className="bg-[#3C3935] text-white p-8 md:p-10 rounded-[3rem] shadow-xl flex flex-col justify-between hover:-translate-y-1 transition-transform">
+                                <div>
+                                    <h3 className="text-2xl font-bold font-heading mb-4 text-[#C67C6A]">
+                                        Terapia 1 a 1
+                                    </h3>
+                                    <p className="text-white/70 font-light mb-8">
+                                        ¿Sientes que necesitas más contención? Habla directamente con un especialista para recibir acompañamiento personalizado.
+                                    </p>
+                                </div>
+                                <a 
+                                    href="https://wa.me/17867268717?text=Hola%20Yelitze,%20vengo%20de%20la%20p%C3%A1gina%20de%20Venezuela%20en%20el%20Cuerpo%20y%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20la%20terapia%201%20a%201." 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    className="inline-flex items-center justify-center gap-3 bg-[#C67C6A] text-white px-8 py-4 rounded-2xl font-bold hover:bg-[#FCFBFA] hover:text-[#3C3935] transition-colors shadow-lg group w-full"
+                                >
+                                    Escribir por WhatsApp
+                                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                </a>
+                            </div>
                         </div>
                     </FadeIn>
                 </div>
