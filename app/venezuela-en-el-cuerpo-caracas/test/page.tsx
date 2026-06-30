@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Brain, Activity, Wind, Eye, HeartPulse, ChevronLeft } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -81,15 +82,18 @@ export default function SomaticTestPage() {
                         exit={{ opacity: 0 }}
                         className="min-h-screen flex flex-col items-center justify-center p-6 text-center"
                     >
-                        <div className="max-w-2xl mx-auto space-y-8">
-                            <Brain className="w-16 h-16 mx-auto text-[#7C8B6A] opacity-80" strokeWidth={1} />
-                            <h1 className="text-4xl md:text-5xl font-heading font-bold text-[#1C1C1C]">
-                                Tu cuerpo después del sismo
-                            </h1>
-                            <div className="space-y-4 text-lg md:text-xl text-[#1C1C1C]/70 font-light leading-relaxed">
-                                <p>
-                                    Después de los recientes eventos en Caracas, muchas personas están sintiendo cambios en su cuerpo, su mente y sus emociones.
-                                </p>
+                        <div className="max-w-4xl mx-auto space-y-8 w-full">
+                            <div className="relative w-full aspect-[16/9] md:aspect-[2/1] rounded-[2rem] overflow-hidden shadow-2xl mb-8">
+                                <Image 
+                                    src="/images/venezuela/banner-test-somatico.jpg"
+                                    alt="Test Somático: Venezuela en el Cuerpo"
+                                    fill
+                                    className="object-cover"
+                                    priority
+                                />
+                            </div>
+                            
+                            <div className="space-y-4 text-lg md:text-xl text-[#1C1C1C]/70 font-light leading-relaxed max-w-2xl mx-auto">
                                 <p>
                                     Este test no busca diagnosticarte.<br/>
                                     <span className="font-medium text-[#1C1C1C]">Busca ayudarte a entender cómo está respondiendo tu sistema nervioso en este momento.</span>
