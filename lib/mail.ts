@@ -725,3 +725,101 @@ export const sendContactEmail = async ({
         return { success: false, error: err };
     }
 };
+
+export const sendCaracasSomaticEmail = async ({
+    email,
+    name,
+    profile,
+}: {
+    email: string;
+    name: string;
+    profile: string; // 'activacion' | 'congelamiento' | 'regulacion'
+}) => {
+    try {
+        const logoUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/assets/images/logo-yelitze-new.png`;
+        const ebookUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/Ebook-Venezuela%20en%20el%20cuerpo.pdf`;
+        const waUrl = 'https://wa.me/17867268717?text=Hola%20Yelitze,%20acabo%20de%20terminar%20mi%20Test%20Som%C3%A1tico%20de%20Caracas%20y%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20la%20terapia%201%20a%201.';
+
+        let profileTitle = '';
+        let profileDesc = '';
+        let profileColor = '';
+
+        if (profile === 'activacion') {
+            profileTitle = 'Alta Activación';
+            profileDesc = 'Tu sistema nervioso se encuentra en estado de alerta sostenida. Tu cuerpo todavía está intentando asegurarse de que estás a salvo. Puede sentirse como tensión constante, ansiedad frecuente, hipervigilancia o dificultad para descansar.';
+            profileColor = '#C97C5D';
+        } else if (profile === 'congelamiento') {
+            profileTitle = 'Bloqueo / Congelamiento';
+            profileDesc = 'Tu sistema nervioso está reduciendo energía para protegerte. Tu cuerpo está tratando de estabilizarse después del impacto. Puede sentirse como desconexión, cansancio emocional, falta de motivación o sensación de apagamiento.';
+            profileColor = '#C8A45D';
+        } else {
+            profileTitle = 'Regulación Parcial';
+            profileDesc = 'Tu sistema nervioso está recuperando estabilidad progresivamente. Tu sistema está empezando a regularse. Puede sentirse como momentos de calma, mejor respiración y mayor presencia.';
+            profileColor = '#7C8B6A';
+        }
+
+        const { data, error } = await resend.emails.send({
+            from: 'Yelitze Rangel <info@yelitzerangeloficial.com>',
+            to: [email],
+            subject: 'Tus Resultados: Test Somático Caracas 🌿',
+            html: `
+                <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background-color: #F9F6F0; border-radius: 32px; overflow: hidden; border: 1px solid #B8835A20;">
+                    <div style="background-color: #1C1C1C; padding: 40px 20px; text-align: center;">
+                        <img src="${logoUrl}" alt="Yelitze Rangel" style="max-width: 150px; height: auto; margin-bottom: 20px;">
+                        <h1 style="color: #F9F6F0; margin: 0; font-size: 16px; letter-spacing: 2px; text-transform: uppercase;">Resultados de tu Test Somático</h1>
+                    </div>
+                    
+                    <div style="padding: 50px 40px; color: #1C1C1C; line-height: 1.8;">
+                        <h2 style="color: ${profileColor}; font-size: 24px; margin-bottom: 30px;">¡Hola, ${name}!</h2>
+                        
+                        <p style="font-size: 16px; margin-bottom: 25px;">
+                            Gracias por completar el test. Este es un paso valioso para generar autoconciencia corporal y entender cómo está respondiendo tu sistema nervioso en este momento.
+                        </p>
+                        
+                        <div style="background-color: white; padding: 30px; border-radius: 20px; border-top: 8px solid ${profileColor}; margin-bottom: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+                            <p style="margin: 0; font-weight: bold; color: ${profileColor}; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Tu Perfil Actual:</p>
+                            <p style="margin: 10px 0 15px 0; font-size: 22px; color: #1C1C1C; font-weight: bold;">${profileTitle}</p>
+                            <p style="margin: 0; font-size: 16px; color: #1C1C1C; line-height: 1.6;">${profileDesc}</p>
+                        </div>
+
+                        <p style="font-size: 16px; margin-bottom: 30px;">
+                            Recuerda que no tienes que hacerlo todo ahora. Solo empieza por un paso. Te compartimos los recursos para acompañarte en este proceso:
+                        </p>
+
+                        <div style="text-align: center; margin-bottom: 20px;">
+                            <a href="${ebookUrl}" style="background-color: #3C3935; color: white; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-weight: bold; display: inline-block; width: 80%; max-width: 300px;">
+                                Descargar Ebook
+                            </a>
+                        </div>
+                        
+                        <div style="text-align: center;">
+                            <a href="${waUrl}" style="background-color: #C67C6A; color: white; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-weight: bold; display: inline-block; width: 80%; max-width: 300px;">
+                                Solicitar Terapia 1 a 1
+                            </a>
+                        </div>
+                        
+                        <p style="margin-top: 50px; text-align: center; color: #1C1C1C; font-weight: bold; font-style: italic;">
+                            "Primero sana el cuerpo… y luego cambia la historia."
+                        </p>
+                    </div>
+                    
+                    <div style="background-color: #EFE9E0; padding: 30px; text-align: center; color: #3C2A21; font-size: 12px;">
+                        <p style="margin: 0;"><strong>YELITZE RANGEL</strong> • Tu Coach Ancestral</p>
+                        <p style="margin-top: 5px; opacity: 0.6;">&copy; 2026 Todos los derechos reservados.</p>
+                    </div>
+                </div>
+            `
+        });
+
+        if (error) {
+            console.error('[Caracas Somatic Mail] Resend error:', error);
+            return { success: false, error };
+        }
+
+        return { success: true, data };
+    } catch (err) {
+        console.error('Caracas Somatic Mail service error:', err);
+        return { success: false, error: err };
+    }
+};
+

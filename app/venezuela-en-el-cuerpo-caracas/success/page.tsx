@@ -21,6 +21,7 @@ import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 function PostRegistroHub() {
     const searchParams = useSearchParams();
     const name = searchParams.get("name") || "";
+    const id = searchParams.get("id") || "";
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -29,6 +30,8 @@ function PostRegistroHub() {
     }, []);
 
     if (!mounted) return null;
+
+    const testLink = id ? `/venezuela-en-el-cuerpo-caracas/test?id=${encodeURIComponent(id)}&name=${encodeURIComponent(name)}` : `/venezuela-en-el-cuerpo-caracas/test`;
 
     return (
         <main className="min-h-screen bg-[#F9F6F0] text-[#3C3935] font-body">
@@ -55,34 +58,40 @@ function PostRegistroHub() {
                 </div>
             </header>
 
-            {/* BLOQUE DE RECURSOS (CARDS) */}
-            <section className="py-20 px-4">
+            {/* MAIN CONTENT - THE 3 CARDS */}
+            <section className="py-24 px-4">
                 <div className="container mx-auto max-w-5xl">
                     <StaggerContainer className="grid md:grid-cols-3 gap-8">
-                        {/* CARD 1 — EBOOK */}
-                        <StaggerItem className="bg-[#FCFBFA] rounded-3xl p-8 shadow-xl border border-stone-100 flex flex-col hover:-translate-y-2 transition-transform duration-300">
-                            <div className="w-16 h-16 bg-[#C67C6A]/10 rounded-2xl flex items-center justify-center mb-6">
-                                <BookOpen className="w-8 h-8 text-[#C67C6A]" />
+                        
+                        {/* CARD 1: EBOOK */}
+                        <StaggerItem className="bg-white p-10 rounded-[3rem] shadow-xl border border-stone-100 flex flex-col justify-between hover:-translate-y-1 transition-transform">
+                            <div>
+                                <div className="w-16 h-16 bg-[#C67C6A]/10 rounded-2xl flex items-center justify-center mb-8">
+                                    <BookOpen className="w-8 h-8 text-[#C67C6A]" />
+                                </div>
+                                <h3 className="text-2xl font-bold font-heading mb-3">Venezuela en el Cuerpo</h3>
+                                <p className="text-[#3C3935]/70 mb-8 font-light flex-grow">
+                                    Guía somática para regulación del sistema nervioso después de eventos de alta activación.
+                                </p>
                             </div>
-                            <h3 className="text-2xl font-bold font-heading mb-3">Venezuela en el Cuerpo</h3>
-                            <p className="text-[#3C3935]/70 mb-8 font-light flex-grow">
-                                Guía somática para regulación del sistema nervioso después de eventos de alta activación.
-                            </p>
                             <a href="/Ebook-Venezuela%20en%20el%20cuerpo.pdf" target="_blank" rel="noopener noreferrer" className="w-full bg-[#3C3935] text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-[#C67C6A] transition-colors">
                                 Descargar Ebook <ArrowRight className="w-5 h-5" />
                             </a>
                         </StaggerItem>
 
-                        {/* CARD 2 — TEST SOMÁTICO */}
-                        <StaggerItem className="bg-[#3C3935] text-white rounded-3xl p-8 shadow-xl flex flex-col hover:-translate-y-2 transition-transform duration-300">
-                            <div className="w-16 h-16 bg-[#FCFBFA]/10 rounded-2xl flex items-center justify-center mb-6">
-                                <Activity className="w-8 h-8 text-[#C67C6A]" />
+                        {/* CARD 2: TEST SOMÁTICO */}
+                        <StaggerItem className="bg-[#3C3935] text-white p-10 rounded-[3rem] shadow-xl flex flex-col justify-between hover:-translate-y-1 transition-transform relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-500" />
+                            <div className="relative z-10">
+                                <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-8">
+                                    <Activity className="w-8 h-8 text-[#C67C6A]" />
+                                </div>
+                                <h3 className="text-2xl font-bold font-heading mb-3 text-[#C67C6A]">Test Somático de Regulación</h3>
+                                <p className="text-white/70 mb-8 font-light flex-grow">
+                                    Evalúa tu nivel actual de activación del sistema nervioso.
+                                </p>
                             </div>
-                            <h3 className="text-2xl font-bold font-heading mb-3 text-[#C67C6A]">Test Somático de Regulación</h3>
-                            <p className="text-white/70 mb-8 font-light flex-grow">
-                                Evalúa tu nivel actual de activación del sistema nervioso.
-                            </p>
-                            <Link href="/venezuela-en-el-cuerpo-caracas/test" className="w-full bg-[#FCFBFA] text-[#3C3935] py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-[#C67C6A] hover:text-white transition-colors">
+                            <Link href={testLink} className="relative z-10 w-full bg-[#FCFBFA] text-[#3C3935] py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-[#C67C6A] hover:text-white transition-colors">
                                 Iniciar Test <ArrowRight className="w-5 h-5" />
                             </Link>
                         </StaggerItem>

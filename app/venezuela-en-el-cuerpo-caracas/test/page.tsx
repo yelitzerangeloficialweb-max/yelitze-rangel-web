@@ -25,30 +25,28 @@ const options = [
     { label: "Frecuentemente", value: 2 }
 ];
 
-export default function SomaticTestPage() {
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+
+function SomaticTestContent() {
+    const searchParams = useSearchParams();
+    const registrationId = searchParams.get("id");
+    const name = searchParams.get("name") || "";
+    
     const [step, setStep] = useState(0); // 0 = Intro, 1 = Instructions, 2-11 = Questions, 12 = Results
     const [answers, setAnswers] = useState<number[]>(Array(10).fill(-1));
     const [mounted, setMounted] = useState(false);
+    const [isSendingEmail, setIsSendingEmail] = useState(false);
+    const [emailSent, setEmailSent] = useState(false);
 
     useEffect(() => {
         setMounted(true);
     }, []);
 
-    const handleAnswer = (val: number) => {
-        const newAnswers = [...answers];
-        newAnswers[step - 2] = val;
-        setAnswers(newAnswers);
-        
-        // Short delay for smooth visual feedback before advancing
-        setTimeout(() => {
-            setStep(prev => prev + 1);
-        }, 300);
-    };
-
-    const getProfile = () => {
-        const actScore = answers.slice(0, 4).reduce((a, b) => a + b, 0);
-        const conScore = answers.slice(4, 8).reduce((a, b) => a + b, 0);
-        const regScore = answers.slice(8, 10).reduce((a, b) => a + b, 0);
+    const calculateProfile = (currentAnswers: number[]) => {
+        const actScore = currentAnswers.slice(0, 4).reduce((a, b) => a + b, 0);
+        const conScore = currentAnswers.slice(4, 8).reduce((a, b) => a + b, 0);
+        const regScore = currentAnswers.slice(8, 10).reduce((a, b) => a + b, 0);
 
         const actPct = actScore / 8;
         const conPct = conScore / 8;
@@ -57,6 +55,54 @@ export default function SomaticTestPage() {
         if (regPct > actPct && regPct > conPct) return "regulacion";
         if (conPct > actPct) return "congelamiento";
         return "activacion"; // Defaults to activation if tied or highest
+    };
+
+    const sendEmailResult = async (profileResult: string) => {
+        if (!registrationId || emailSent) return;
+        
+        setIsSendingEmail(true);
+        try {
+            const res = await fetch('/api/venezuela-en-el-cuerpo-caracas/send-result', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    registrationId,
+                    name,
+                    result: profileResult
+                })
+            });
+            
+            if (res.ok) {
+                setEmailSent(true);
+            }
+        } catch (error) {
+            console.error('Error sending result email:', error);
+        } finally {
+            setIsSendingEmail(false);
+        }
+    };
+
+    const handleAnswer = (val: number) => {
+        const newAnswers = [...answers];
+        newAnswers[step - 2] = val;
+        setAnswers(newAnswers);
+        
+        // Short delay for smooth visual feedback before advancing
+        setTimeout(() => {
+            setStep(prev => {
+                const nextStep = prev + 1;
+                // Trigger email sending right when they hit the results step
+                if (nextStep === 12) {
+                    const profile = calculateProfile(newAnswers);
+                    sendEmailResult(profile);
+                }
+                return nextStep;
+            });
+        }, 300);
+    };
+
+    const getProfile = () => {
+        return calculateProfile(answers);
     };
 
     if (!mounted) return null;
@@ -302,13 +348,30 @@ export default function SomaticTestPage() {
                                     </div>
                                 )}
                             </div>
+                            
+                            {/* EMAIL STATUS */}
+                            {registrationId && (
+                                <div className="mb-12 text-center flex flex-col items-center justify-center">
+                                    {isSendingEmail ? (
+                                        <div className="flex items-center gap-3 text-[#1C1C1C]/70 bg-white px-6 py-3 rounded-full shadow-sm">
+                                            <div className="w-4 h-4 rounded-full border-2 border-[#C97C5D] border-t-transparent animate-spin" />
+                                            <span className="font-medium text-sm">Enviando resultados a tu correo...</span>
+                                        </div>
+                                    ) : emailSent ? (
+                                        <div className="flex items-center gap-3 text-[#7C8B6A] bg-white px-6 py-3 rounded-full shadow-sm">
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                                            <span className="font-medium text-sm">¡Resultados enviados a tu correo!</span>
+                                        </div>
+                                    ) : null}
+                                </div>
+                            )}
 
                             <div className="bg-[#1C1C1C] p-10 rounded-[3rem] shadow-2xl text-center text-white">
                                 <h3 className="text-2xl font-heading font-bold mb-6">
                                     Si quieres, podemos acompañarte en este proceso
                                 </h3>
                                 <Link 
-                                    href="/venezuela-en-el-cuerpo-caracas/success"
+                                    href={`/venezuela-en-el-cuerpo-caracas/success${registrationId ? `?id=${encodeURIComponent(registrationId)}&name=${encodeURIComponent(name)}` : ''}`}
                                     className="inline-flex w-full sm:w-auto bg-[#7C8B6A] text-[#F5EFE6] px-8 py-5 rounded-2xl font-bold hover:bg-[#F5EFE6] hover:text-[#1C1C1C] transition-colors shadow-lg items-center justify-center gap-3 group"
                                 >
                                     Acceder a la guía completa de regulación
@@ -320,5 +383,17 @@ export default function SomaticTestPage() {
                 })()}
             </AnimatePresence>
         </main>
+    );
+}
+
+export default function SomaticTestPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen bg-[#F5EFE6] flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full border-4 border-[#7C8B6A] border-t-transparent animate-spin" />
+            </div>
+        }>
+            <SomaticTestContent />
+        </Suspense>
     );
 }
