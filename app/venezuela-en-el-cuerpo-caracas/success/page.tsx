@@ -68,7 +68,7 @@ function PostRegistroHub() {
                             <p className="text-[#3C3935]/70 mb-8 font-light flex-grow">
                                 Guía somática para regulación del sistema nervioso después de eventos de alta activación.
                             </p>
-                            <a href="#" className="w-full bg-[#3C3935] text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-[#C67C6A] transition-colors">
+                            <a href="/Ebook-Venezuela%20en%20el%20cuerpo.pdf" target="_blank" rel="noopener noreferrer" className="w-full bg-[#3C3935] text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-[#C67C6A] transition-colors">
                                 Descargar Ebook <ArrowRight className="w-5 h-5" />
                             </a>
                         </StaggerItem>
