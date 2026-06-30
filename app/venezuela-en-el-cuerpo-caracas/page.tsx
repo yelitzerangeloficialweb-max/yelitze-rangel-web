@@ -20,6 +20,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn } from "@/components/ui/motion";
+import { WaveDivider } from "@/components/ui/MysticalElements";
 import { Turnstile } from '@marsidev/react-turnstile';
 
 export default function VenezuelaEnElCuerpoCaracasPage() {
@@ -236,6 +237,7 @@ export default function VenezuelaEnElCuerpoCaracasPage() {
 
             {/* 3. BLOQUE 3 — EXPLICACIÓN SIMPLE */}
             <section className="py-24 bg-[#3C3935] relative overflow-hidden text-white">
+                <WaveDivider position="top" fill="#FCFBFA" />
                 <div className="container mx-auto px-4 max-w-4xl text-center">
                     <FadeIn>
                         <Brain className="w-16 h-16 text-[#C67C6A] mx-auto mb-8 opacity-80" strokeWidth={1.5} />
@@ -263,6 +265,7 @@ export default function VenezuelaEnElCuerpoCaracasPage() {
 
             {/* 4. BLOQUE 4 — PROPÓSITO DEL ESPACIO */}
             <section className="py-24 bg-[#F9F6F0] relative overflow-hidden">
+                <WaveDivider position="top" fill="#3C3935" />
                 <div className="container mx-auto px-4 max-w-5xl">
                     <div className="grid md:grid-cols-2 gap-16 items-center">
                         <FadeIn>
@@ -403,6 +406,7 @@ export default function VenezuelaEnElCuerpoCaracasPage() {
 
             {/* 7. BLOQUE 7 — VALIDACIÓN PROFUNDA & CTA */}
             <section className="py-32 bg-[#3C3935] text-[#F9F6F0] relative text-center">
+                <WaveDivider position="top" fill="#FCFBFA" />
                 <div className="container mx-auto px-4 max-w-3xl">
                     <FadeIn>
                         <h2 className="text-3xl md:text-4xl font-heading font-light mb-10 leading-relaxed italic">
