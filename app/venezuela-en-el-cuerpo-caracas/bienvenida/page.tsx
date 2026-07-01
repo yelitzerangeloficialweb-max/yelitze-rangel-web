@@ -59,7 +59,7 @@ function BienvenidaContent() {
                             
                             <div className="flex flex-col gap-4 relative z-10">
                                 <a 
-                                    href={`https://wa.me/17867268717?text=${encodeURIComponent(`Hola Yelitze, vengo de la página de Venezuela en el Cuerpo${name ? ` (soy ${name})` : ''} y me gustaría saber más sobre la terapia 1 a 1.`)}`} 
+                                    href={`https://wa.me/17867268717?text=${encodeURIComponent(`Hola Yelitze, vengo de la página de Venezuela en el Cuerpo${name ? ` (soy ${name})` : ''} y quiero tener acceso a las herramientas.`)}`} 
                                     target="_blank" 
                                     rel="noopener noreferrer" 
                                     className="w-full bg-[#C67C6A] text-white py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-[#FCFBFA] hover:text-[#3C3935] transition-colors text-lg shadow-lg"
