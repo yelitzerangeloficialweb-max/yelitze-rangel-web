@@ -2,18 +2,15 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import Link from "next/link";
 import { 
     MessageCircle,
-    ArrowRight,
     ShieldCheck
 } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 
-function Paso1Content() {
+function BienvenidaContent() {
     const searchParams = useSearchParams();
     const name = searchParams.get("name") || "";
-    const id = searchParams.get("id") || "";
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -22,8 +19,6 @@ function Paso1Content() {
     }, []);
 
     if (!mounted) return null;
-
-    const nextLink = `/venezuela-en-el-cuerpo-caracas/paso-2${id ? `?id=${encodeURIComponent(id)}&name=${encodeURIComponent(name)}` : ''}`;
 
     return (
         <main className="min-h-screen bg-[#F9F6F0] text-[#3C3935] font-body">
@@ -36,7 +31,7 @@ function Paso1Content() {
                     <FadeIn>
                         <ShieldCheck className="w-12 h-12 mx-auto text-[#C67C6A] mb-6" />
                         <h1 className="text-4xl md:text-5xl font-heading font-bold text-[#3C3935] mb-4">
-                            Paso 1: Únete al WhatsApp{name ? `, ${name}` : ''}
+                            Únete al WhatsApp{name ? `, ${name}` : ''}
                         </h1>
                         <p className="text-xl md:text-2xl text-[#3C3935]/70 font-light mb-8 max-w-2xl mx-auto">
                             Antes de continuar a tus herramientas, por favor únete a la comunidad de WhatsApp o escríbenos directamente.
@@ -87,7 +82,7 @@ export default function Paso1Page() {
                 <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#C67C6A]" />
             </div>
         }>
-            <Paso1Content />
+            <BienvenidaContent />
         </Suspense>
     );
 }

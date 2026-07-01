@@ -2,15 +2,13 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import Link from "next/link";
 import { 
     BookOpen,
-    ArrowRight,
     ShieldCheck
 } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 
-function Paso3Content() {
+function EbookContent() {
     const searchParams = useSearchParams();
     const name = searchParams.get("name") || "";
     const id = searchParams.get("id") || "";
@@ -22,8 +20,6 @@ function Paso3Content() {
     }, []);
 
     if (!mounted) return null;
-
-    const nextLink = `/venezuela-en-el-cuerpo-caracas/paso-4${id ? `?id=${encodeURIComponent(id)}&name=${encodeURIComponent(name)}` : ''}`;
 
     return (
         <main className="min-h-screen bg-[#F9F6F0] text-[#3C3935] font-body">
@@ -73,14 +69,14 @@ function Paso3Content() {
     );
 }
 
-export default function Paso3Page() {
+export default function EbookPage() {
     return (
         <Suspense fallback={
             <div className="min-h-screen bg-[#F9F6F0] flex items-center justify-center">
                 <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#C67C6A]" />
             </div>
         }>
-            <Paso3Content />
+            <EbookContent />
         </Suspense>
     );
 }

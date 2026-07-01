@@ -2,7 +2,6 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import Link from "next/link";
 import { 
     HeartPulse, 
     Wind, 
@@ -11,12 +10,11 @@ import {
     BrainCircuit,
     Moon,
     Volume2,
-    ArrowRight,
     ShieldCheck
 } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 
-function Paso4Content() {
+function HerramientasContent() {
     const searchParams = useSearchParams();
     const name = searchParams.get("name") || "";
     const id = searchParams.get("id") || "";
@@ -29,8 +27,6 @@ function Paso4Content() {
 
     if (!mounted) return null;
 
-    const nextLink = `/venezuela-en-el-cuerpo-caracas/paso-5${id ? `?id=${encodeURIComponent(id)}&name=${encodeURIComponent(name)}` : ''}`;
-
     return (
         <main className="min-h-screen bg-[#F9F6F0] text-[#3C3935] font-body">
             {/* HEADER */}
@@ -41,7 +37,7 @@ function Paso4Content() {
                     <FadeIn>
                         <ShieldCheck className="w-12 h-12 mx-auto text-[#C67C6A] mb-6" />
                         <h1 className="text-4xl md:text-5xl font-heading font-bold text-[#3C3935] mb-4">
-                            Herramientas de Regulaci�n
+                            Herramientas de Regulación
                         </h1>
                         <p className="text-xl md:text-2xl text-[#3C3935]/70 font-light mb-8 max-w-2xl mx-auto">
                             Técnicas de respiración y regulación rápida para cuando sientas ansiedad o bloqueo.
@@ -149,21 +145,20 @@ function Paso4Content() {
                             </StaggerItem>
                         ))}
                     </StaggerContainer>
-
                 </div>
             </section>
         </main>
     );
 }
 
-export default function Paso4Page() {
+export default function HerramientasPage() {
     return (
         <Suspense fallback={
             <div className="min-h-screen bg-[#F9F6F0] flex items-center justify-center">
                 <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#C67C6A]" />
             </div>
         }>
-            <Paso4Content />
+            <HerramientasContent />
         </Suspense>
     );
 }
