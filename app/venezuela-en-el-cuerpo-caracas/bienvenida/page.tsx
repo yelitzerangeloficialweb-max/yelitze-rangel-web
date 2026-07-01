@@ -71,13 +71,6 @@ function Paso1Content() {
                                 >
                                     Escribir a WhatsApp <MessageCircle className="w-6 h-6" />
                                 </a>
-                                
-                                <div className="flex flex-col items-center mt-6">
-                                    <p className="text-white/50 text-sm mb-4">Cuando hayas enviado el mensaje, continúa al siguiente paso:</p>
-                                    <Link href={nextLink} className="w-full bg-[#FCFBFA]/10 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-[#FCFBFA]/20 transition-colors">
-                                        Continuar al Paso 2 (Test Somático) <ArrowRight className="w-5 h-5" />
-                                    </Link>
-                                </div>
                             </div>
                         </StaggerItem>
                     </StaggerContainer>

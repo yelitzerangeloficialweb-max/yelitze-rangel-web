@@ -36,7 +36,7 @@ function Paso3Content() {
                     <FadeIn>
                         <ShieldCheck className="w-12 h-12 mx-auto text-[#C67C6A] mb-6" />
                         <h1 className="text-4xl md:text-5xl font-heading font-bold text-[#3C3935] mb-4">
-                            Paso 3: Descarga tu Ebook
+                            Descarga tu Ebook
                         </h1>
                         <p className="text-xl md:text-2xl text-[#3C3935]/70 font-light mb-8 max-w-2xl mx-auto">
                             Aquí tienes tu guía somática para regulación del sistema nervioso después de eventos de alta activación.
@@ -64,10 +64,6 @@ function Paso3Content() {
                                 <a href="/Ebook-VenezuelaeneLCuerpo(1).pdf" target="_blank" rel="noopener noreferrer" className="w-full bg-[#3C3935] text-white py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-[#C67C6A] transition-colors text-lg shadow-lg">
                                     Descargar Ebook PDF
                                 </a>
-                                
-                                <Link href={nextLink} className="w-full bg-[#F9F6F0] text-[#3C3935] py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-stone-200 transition-colors mt-4 text-lg border border-stone-200">
-                                    Continuar al siguiente paso <ArrowRight className="w-5 h-5" />
-                                </Link>
                             </div>
                         </StaggerItem>
                     </StaggerContainer>

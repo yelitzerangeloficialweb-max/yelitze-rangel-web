@@ -52,7 +52,7 @@ export default function VenezuelaEnElCuerpoCaracasPage() {
                 const data = await res.json();
                 const registrationId = data.id;
                 // Redirect to a success page or handle locally
-                router.push(`/venezuela-en-el-cuerpo-caracas/paso-1?id=${encodeURIComponent(registrationId)}&name=${encodeURIComponent(name)}`);
+                router.push(`/venezuela-en-el-cuerpo-caracas/bienvenida?id=${encodeURIComponent(registrationId)}&name=${encodeURIComponent(name)}`);
             } else {
                 const errorData = await res.json();
                 if (errorData.error === 'duplicate') {

@@ -41,7 +41,7 @@ function Paso4Content() {
                     <FadeIn>
                         <ShieldCheck className="w-12 h-12 mx-auto text-[#C67C6A] mb-6" />
                         <h1 className="text-4xl md:text-5xl font-heading font-bold text-[#3C3935] mb-4">
-                            Paso 4: Herramientas
+                            Herramientas de Regulaci�n
                         </h1>
                         <p className="text-xl md:text-2xl text-[#3C3935]/70 font-light mb-8 max-w-2xl mx-auto">
                             Técnicas de respiración y regulación rápida para cuando sientas ansiedad o bloqueo.
@@ -150,11 +150,6 @@ function Paso4Content() {
                         ))}
                     </StaggerContainer>
 
-                    <FadeIn className="text-center">
-                        <Link href={nextLink} className="inline-flex w-full sm:w-auto bg-[#3C3935] text-white px-10 py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-[#C67C6A] transition-colors text-lg shadow-lg group">
-                            Continuar al paso final <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-                        </Link>
-                    </FadeIn>
                 </div>
             </section>
         </main>
