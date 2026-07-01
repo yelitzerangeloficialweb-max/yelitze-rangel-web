@@ -737,7 +737,7 @@ export const sendCaracasSomaticEmail = async ({
 }) => {
     try {
         const logoUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/assets/images/logo-yelitze-new.png`;
-        const ebookUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/Ebook-Venezuela%20en%20el%20cuerpo.pdf`;
+        const ebookUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/Ebook-VenezuelaeneLCuerpo(1).pdf`;
         const waUrl = 'https://wa.me/17867268717?text=Hola%20Yelitze,%20acabo%20de%20terminar%20mi%20Test%20Som%C3%A1tico%20de%20Caracas%20y%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20la%20terapia%201%20a%201.';
 
         let profileTitle = '';
