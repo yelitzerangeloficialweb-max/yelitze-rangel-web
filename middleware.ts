@@ -7,8 +7,9 @@ export function middleware(request: NextRequest) {
     const isAsset = pathname.includes('.') || pathname.startsWith('/_next') || pathname.startsWith('/api/auth/maintenance') || pathname.startsWith('/cdn-cgi');
     const isMaintenancePage = pathname === '/maintenance';
     const isSanateMujer = pathname.startsWith('/sanate-mujer');
+    const isVenezuelaCaracas = pathname.startsWith('/venezuela-en-el-cuerpo-caracas');
 
-    if (isAsset || isSanateMujer) {
+    if (isAsset || isSanateMujer || isVenezuelaCaracas) {
         return NextResponse.next();
     }
 
