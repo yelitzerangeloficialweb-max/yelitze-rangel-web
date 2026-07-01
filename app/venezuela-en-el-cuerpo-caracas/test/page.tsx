@@ -371,10 +371,10 @@ function SomaticTestContent() {
                                     Si quieres, podemos acompañarte en este proceso
                                 </h3>
                                 <Link 
-                                    href={`/venezuela-en-el-cuerpo-caracas/success${registrationId ? `?id=${encodeURIComponent(registrationId)}&name=${encodeURIComponent(name)}` : ''}`}
+                                    href={`/venezuela-en-el-cuerpo-caracas/paso-2${registrationId ? `?id=${encodeURIComponent(registrationId)}&name=${encodeURIComponent(name)}` : ''}`}
                                     className="inline-flex w-full sm:w-auto bg-[#7C8B6A] text-[#F5EFE6] px-8 py-5 rounded-2xl font-bold hover:bg-[#F5EFE6] hover:text-[#1C1C1C] transition-colors shadow-lg items-center justify-center gap-3 group"
                                 >
-                                    Acceder a la guía completa de regulación
+                                    Continuar al siguiente paso
                                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                                 </Link>
                             </div>
