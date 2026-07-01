@@ -237,7 +237,7 @@ export default function VenezuelaEnElCuerpoCaracasPage() {
             </section>
 
             {/* 3. BLOQUE 3 — EXPLICACIÓN SIMPLE */}
-            <section className="py-24 bg-[#3C3935] relative overflow-hidden text-white">
+            <section className="pt-32 md:pt-48 pb-24 bg-[#3C3935] relative overflow-hidden text-white">
                 <WaveDivider position="top" fill="#FCFBFA" />
                 <div className="container mx-auto px-4 max-w-4xl text-center">
                     <FadeIn>
@@ -265,7 +265,7 @@ export default function VenezuelaEnElCuerpoCaracasPage() {
             </section>
 
             {/* 4. BLOQUE 4 — PROPÓSITO DEL ESPACIO */}
-            <section className="py-24 bg-[#F9F6F0] relative overflow-hidden">
+            <section className="pt-32 md:pt-48 pb-24 bg-[#F9F6F0] relative overflow-hidden">
                 <WaveDivider position="top" fill="#3C3935" />
                 <div className="container mx-auto px-4 max-w-5xl">
                     <div className="grid md:grid-cols-2 gap-16 items-center">
@@ -406,7 +406,7 @@ export default function VenezuelaEnElCuerpoCaracasPage() {
             </section>
 
             {/* 7. BLOQUE 7 — VALIDACIÓN PROFUNDA & CTA */}
-            <section className="py-32 bg-[#3C3935] text-[#F9F6F0] relative text-center">
+            <section className="pt-32 md:pt-48 pb-32 bg-[#3C3935] text-[#F9F6F0] relative text-center">
                 <WaveDivider position="top" fill="#FCFBFA" />
                 <div className="container mx-auto px-4 max-w-3xl">
                     <FadeIn>
