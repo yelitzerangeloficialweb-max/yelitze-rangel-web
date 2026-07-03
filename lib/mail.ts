@@ -738,7 +738,7 @@ export const sendCaracasSomaticEmail = async ({
     try {
         const logoUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/assets/images/logo-yelitze-new.png`;
         const ebookUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/Ebook-VenezuelaeneLCuerpo(1).pdf`;
-        const waUrl = 'https://wa.me/17867268717?text=Hola%20Yelitze,%20acabo%20de%20terminar%20mi%20Test%20Som%C3%A1tico%20de%20Caracas%20y%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20la%20terapia%201%20a%201.';
+        const waUrl = `https://wa.me/17867268717?text=Hola%20Yelitze%2C%20vengo%20de%20la%20p%C3%A1gina%20de%20Venezuela%20en%20el%20Cuerpo%20%28soy%20${encodeURIComponent(name)}%29%20y%20quiero%20tener%20acceso%20a%20las%20herramientas.`;
 
         let profileTitle = '';
         let profileDesc = '';
@@ -788,8 +788,8 @@ export const sendCaracasSomaticEmail = async ({
 
 
                         <div style="text-align: center;">
-                            <a href="${waUrl}" style="background-color: #C67C6A; color: white; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-weight: bold; display: inline-block; width: 80%; max-width: 300px;">
-                                Solicitar Terapia 1 a 1
+                            <a href="${waUrl}" style="background-color: #25D366; color: white; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-weight: bold; display: inline-block; width: 80%; max-width: 300px;">
+                                Hablar con alguien por WhatsApp
                             </a>
                         </div>
                         
