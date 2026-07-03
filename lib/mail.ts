@@ -31,9 +31,9 @@ export const sendVenezuelaRegistrationEmail = async ({
     try {
         const isCaracas = city.toLowerCase() === 'caracas';
         const ticketUrl = isCaracas 
-            ? `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/venezuela-en-el-cuerpo-caracas/success?name=${encodeURIComponent(name)}`
+            ? `https://wa.me/17867268717?text=Hola%20Yelitze%2C%20vengo%20de%20la%20p%C3%A1gina%20de%20Venezuela%20en%20el%20Cuerpo%20%28soy%20${encodeURIComponent(name)}%29%20y%20quiero%20tener%20acceso%20a%20las%20herramientas.`
             : `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/venezuela-en-el-cuerpo/success?id=${registrationId}&name=${encodeURIComponent(name)}&city=${encodeURIComponent(city)}`;
-
+        
         const logoUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/assets/images/logo-yelitze-new.png`;
 
         const { data, error } = await resend.emails.send({
