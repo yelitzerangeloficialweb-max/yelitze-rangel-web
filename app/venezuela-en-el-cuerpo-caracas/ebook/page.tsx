@@ -57,7 +57,7 @@ function EbookContent() {
                                 </p>
                             </div>
                             <div className="flex flex-col gap-4">
-                                <a href="/Ebook-VenezuelaeneLCuerpo(1).pdf" target="_blank" rel="noopener noreferrer" className="w-full bg-[#3C3935] text-white py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-[#C67C6A] transition-colors text-lg shadow-lg">
+                                <a href="/Ebook-VenezuelaeneLCuerpo-v2-2.pdf" target="_blank" rel="noopener noreferrer" className="w-full bg-[#3C3935] text-white py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-[#C67C6A] transition-colors text-lg shadow-lg">
                                     Descargar Ebook PDF
                                 </a>
                             </div>

@@ -223,9 +223,10 @@ export default function AdminVenezuelaPage() {
     }
 
     return (
-        <div className="space-y-8 pb-20 animate-fade-in">
-            {/* Header Area */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <>
+            <div className="space-y-8 pb-20 animate-fade-in">
+                {/* Header Area */}
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div>
                     <h1 className="text-4xl font-heading font-bold text-[var(--color-primary)] mb-2">
                         Venezuela en el Cuerpo
@@ -409,6 +410,7 @@ export default function AdminVenezuelaPage() {
                     </table>
                 </div>
             </div>
+            </div>
 
             {/* Ticket Preview Modal */}
             {selectedRegistration && (
@@ -501,6 +503,6 @@ export default function AdminVenezuelaPage() {
                     </div>
                 </div>
             )}
-        </div>
+        </>
     );
 }
