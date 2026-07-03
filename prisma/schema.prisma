@@ -83,6 +83,7 @@ model VenezuelaEnElCuerpoRegistration {
   instagram String?
   testCompleted Boolean @default(false)
   testResult    String?
+  ebookDownloaded Boolean @default(false)
 }
 
 model Availability {

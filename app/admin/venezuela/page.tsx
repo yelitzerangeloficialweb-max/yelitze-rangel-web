@@ -20,6 +20,7 @@ interface Registration {
     scannedAt: string | null;
     testCompleted: boolean;
     testResult: string | null;
+    ebookDownloaded: boolean;
 }
 
 const safeFormatDate = (dateStr: string, formatStr: string, options?: any) => {
@@ -328,6 +329,7 @@ export default function AdminVenezuelaPage() {
                                 <th className="px-8 py-5 text-xs font-bold text-stone-400 uppercase tracking-[0.2em]">Ciudad</th>
                                 <th className="px-8 py-5 text-xs font-bold text-stone-400 uppercase tracking-[0.2em]">Registro</th>
                                 <th className="px-8 py-5 text-xs font-bold text-stone-400 uppercase tracking-[0.2em] text-center">Test</th>
+                                <th className="px-8 py-5 text-xs font-bold text-stone-400 uppercase tracking-[0.2em] text-center">Ebook</th>
                                 <th className="px-8 py-5 text-xs font-bold text-stone-400 uppercase tracking-[0.2em] text-center">Estado</th>
                                 <th className="px-8 py-5 text-xs font-bold text-stone-400 uppercase tracking-[0.2em] text-right">Acciones</th>
                             </tr>
@@ -335,7 +337,7 @@ export default function AdminVenezuelaPage() {
                         <tbody className="divide-y divide-stone-50">
                             {filteredRegistrations.length === 0 ? (
                                 <tr>
-                                    <td colSpan={7} className="px-8 py-32 text-center text-stone-400 italic">No se encontraron inscripciones con estos criterios.</td>
+                                    <td colSpan={8} className="px-8 py-32 text-center text-stone-400 italic">No se encontraron inscripciones con estos criterios.</td>
                                 </tr>
                             ) : (
                                 filteredRegistrations.map((r) => (
@@ -373,6 +375,19 @@ export default function AdminVenezuelaPage() {
                                                 <div className="inline-flex flex-col items-center gap-1">
                                                     <CheckCircle2 size={20} className="text-blue-500" />
                                                     <span className="text-[10px] font-bold text-blue-600 uppercase">{r.testResult || 'Sí'}</span>
+                                                </div>
+                                            ) : (
+                                                <div className="inline-flex flex-col items-center gap-1">
+                                                    <XCircle size={20} className="text-stone-300" />
+                                                    <span className="text-[10px] font-bold text-stone-400 uppercase">No</span>
+                                                </div>
+                                            )}
+                                        </td>
+                                        <td className="px-8 py-6 text-center">
+                                            {r.ebookDownloaded ? (
+                                                <div className="inline-flex flex-col items-center gap-1">
+                                                    <CheckCircle2 size={20} className="text-purple-500" />
+                                                    <span className="text-[10px] font-bold text-purple-600 uppercase">Sí</span>
                                                 </div>
                                             ) : (
                                                 <div className="inline-flex flex-col items-center gap-1">

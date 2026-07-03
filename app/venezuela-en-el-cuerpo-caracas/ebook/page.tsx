@@ -57,9 +57,57 @@ function EbookContent() {
                                 </p>
                             </div>
                             <div className="flex flex-col gap-4">
-                                <a href="/Ebook-VenezuelaeneLCuerpo-v3.pdf" target="_blank" rel="noopener noreferrer" className="w-full bg-[#3C3935] text-white py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-[#C67C6A] transition-colors text-lg shadow-lg">
-                                    Descargar Ebook PDF
-                                </a>
+                                {id ? (
+                                    <button 
+                                        onClick={async () => {
+                                            try {
+                                                await fetch('/api/venezuela-en-el-cuerpo-caracas/ebook-download', {
+                                                    method: 'POST',
+                                                    headers: { 'Content-Type': 'application/json' },
+                                                    body: JSON.stringify({ registrationId: id })
+                                                });
+                                            } catch (e) {
+                                                console.error(e);
+                                            }
+                                            window.open("/Ebook-VenezuelaeneLCuerpo-v3.pdf", "_blank");
+                                        }}
+                                        className="w-full bg-[#3C3935] text-white py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-[#C67C6A] transition-colors text-lg shadow-lg"
+                                    >
+                                        Descargar Ebook PDF
+                                    </button>
+                                ) : (
+                                    <form onSubmit={async (e) => {
+                                        e.preventDefault();
+                                        const formData = new FormData(e.currentTarget);
+                                        const email = formData.get('email') as string;
+                                        if (email) {
+                                            try {
+                                                await fetch('/api/venezuela-en-el-cuerpo-caracas/ebook-download', {
+                                                    method: 'POST',
+                                                    headers: { 'Content-Type': 'application/json' },
+                                                    body: JSON.stringify({ email })
+                                                });
+                                            } catch (e) {
+                                                console.error(e);
+                                            }
+                                            window.open("/Ebook-VenezuelaeneLCuerpo-v3.pdf", "_blank");
+                                        }
+                                    }} className="w-full space-y-4 text-left">
+                                        <div>
+                                            <label className="text-xs font-bold text-[#3C3935]/70 uppercase tracking-widest mb-2 block ml-2">Confirma tu correo para descargar</label>
+                                            <input
+                                                type="email"
+                                                name="email"
+                                                className="w-full bg-white border border-[#3C3935]/20 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-[#C67C6A]/50 focus:border-[#C67C6A] transition-all outline-none text-[#3C3935] placeholder:text-[#3C3935]/40"
+                                                placeholder="tu@correo.com"
+                                                required
+                                            />
+                                        </div>
+                                        <button type="submit" className="w-full bg-[#3C3935] text-white py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-[#C67C6A] transition-colors text-lg shadow-lg">
+                                            Descargar Ebook PDF
+                                        </button>
+                                    </form>
+                                )}
                             </div>
                         </StaggerItem>
                     </StaggerContainer>
