@@ -786,12 +786,7 @@ export const sendCaracasSomaticEmail = async ({
                             Recuerda que no tienes que hacerlo todo ahora. Solo empieza por un paso. Te compartimos los recursos para acompañarte en este proceso:
                         </p>
 
-                        <div style="text-align: center; margin-bottom: 20px;">
-                            <a href="${ebookUrl}" style="background-color: #3C3935; color: white; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-weight: bold; display: inline-block; width: 80%; max-width: 300px;">
-                                Descargar Ebook
-                            </a>
-                        </div>
-                        
+
                         <div style="text-align: center;">
                             <a href="${waUrl}" style="background-color: #C67C6A; color: white; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-weight: bold; display: inline-block; width: 80%; max-width: 300px;">
                                 Solicitar Terapia 1 a 1
