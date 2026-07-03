@@ -737,7 +737,7 @@ export const sendCaracasSomaticEmail = async ({
 }) => {
     try {
         const logoUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/assets/images/logo-yelitze-new.png`;
-        const ebookUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/Ebook-VenezuelaeneLCuerpo(1).pdf`;
+        const ebookUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://yelitzerangeloficial.com'}/Ebook-VenezuelaeneLCuerpo-v3.pdf`;
         const waUrl = `https://wa.me/17867268717?text=Hola%20Yelitze%2C%20vengo%20de%20la%20p%C3%A1gina%20de%20Venezuela%20en%20el%20Cuerpo%20%28soy%20${encodeURIComponent(name)}%29%20y%20quiero%20tener%20acceso%20a%20las%20herramientas.`;
 
         let profileTitle = '';
