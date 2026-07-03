@@ -32,6 +32,7 @@ function SomaticTestContent() {
     const searchParams = useSearchParams();
     const registrationId = searchParams.get("id");
     const name = searchParams.get("name") || "";
+    const email = searchParams.get("email") || "";
     
     const [step, setStep] = useState(0); // 0 = Intro, 1 = Instructions, 2-11 = Questions, 12 = Results
     const [answers, setAnswers] = useState<number[]>(Array(10).fill(-1));
@@ -58,7 +59,7 @@ function SomaticTestContent() {
     };
 
     const sendEmailResult = async (profileResult: string) => {
-        if (!registrationId || emailSent) return;
+        if ((!registrationId && !email) || emailSent) return;
         
         setIsSendingEmail(true);
         try {
@@ -67,6 +68,7 @@ function SomaticTestContent() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     registrationId,
+                    email,
                     name,
                     result: profileResult
                 })

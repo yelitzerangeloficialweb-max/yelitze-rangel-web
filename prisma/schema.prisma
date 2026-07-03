@@ -81,6 +81,8 @@ model VenezuelaEnElCuerpoRegistration {
   scanned   Boolean   @default(false)
   scannedAt DateTime?
   instagram String?
+  testCompleted Boolean @default(false)
+  testResult    String?
 }
 
 model Availability {

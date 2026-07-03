@@ -61,9 +61,34 @@ function TestInicioContent() {
                                     Un test corto que te ayuda a entender tu nivel de activación y qué tipo de regulación puedes necesitar ahora.
                                 </p>
                             </div>
-                            <Link href={testLink} className="relative z-10 w-full bg-[#FCFBFA] text-[#3C3935] py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-[#C67C6A] hover:text-white transition-colors text-lg shadow-lg">
-                                Iniciar Test <ArrowRight className="w-6 h-6" />
-                            </Link>
+                            {id ? (
+                                <Link href={testLink} className="relative z-10 w-full bg-[#FCFBFA] text-[#3C3935] py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-[#C67C6A] hover:text-white transition-colors text-lg shadow-lg mt-6">
+                                    Iniciar Test <ArrowRight className="w-6 h-6" />
+                                </Link>
+                            ) : (
+                                <form onSubmit={(e) => {
+                                    e.preventDefault();
+                                    const formData = new FormData(e.currentTarget);
+                                    const email = formData.get('email') as string;
+                                    if (email) {
+                                        window.location.href = `/venezuela-en-el-cuerpo-caracas/test?email=${encodeURIComponent(email)}`;
+                                    }
+                                }} className="relative z-10 w-full mt-6 space-y-4">
+                                    <div>
+                                        <label className="text-xs font-bold text-white/70 uppercase tracking-widest mb-2 block ml-2 text-left">Confirma tu correo para iniciar</label>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            className="w-full bg-[#F9F6F0]/10 border border-white/20 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-[#C67C6A]/50 focus:border-[#C67C6A] transition-all outline-none text-white placeholder:text-white/40"
+                                            placeholder="tu@correo.com"
+                                            required
+                                        />
+                                    </div>
+                                    <button type="submit" className="w-full bg-[#FCFBFA] text-[#3C3935] py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-[#C67C6A] hover:text-white transition-colors text-lg shadow-lg">
+                                        Iniciar Test <ArrowRight className="w-6 h-6" />
+                                    </button>
+                                </form>
+                            )}
                         </StaggerItem>
                     </StaggerContainer>
                 </div>

@@ -5,20 +5,39 @@ import { sendCaracasSomaticEmail } from '@/lib/mail';
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { registrationId, result, name } = body;
+        const { registrationId, email: requestEmail, result, name } = body;
 
-        if (!registrationId || !result) {
-            return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+        if ((!registrationId && !requestEmail) || !result) {
+            return NextResponse.json({ error: 'Faltan campos obligatorios' }, { status: 400 });
         }
 
-        // Find the user's email by their registration ID
-        const registration = await db.venezuelaEnElCuerpoRegistration.findUnique({
-            where: { id: registrationId }
-        });
+        // Find the user's email by their registration ID or direct email
+        let registration;
+        
+        if (registrationId) {
+            registration = await db.venezuelaEnElCuerpoRegistration.findUnique({
+                where: { id: registrationId }
+            });
+        } else if (requestEmail) {
+            // Find the most recent registration for this email
+            registration = await db.venezuelaEnElCuerpoRegistration.findFirst({
+                where: { email: requestEmail },
+                orderBy: { createdAt: 'desc' }
+            });
+        }
 
         if (!registration) {
-            return NextResponse.json({ error: 'Registration not found' }, { status: 404 });
+            return NextResponse.json({ error: 'Registro no encontrado. Verifica que usaste el correo con el que te registraste.' }, { status: 404 });
         }
+
+        // Update the registration to mark the test as completed
+        await db.venezuelaEnElCuerpoRegistration.update({
+            where: { id: registration.id },
+            data: {
+                testCompleted: true,
+                testResult: result
+            }
+        });
 
         const email = registration.email;
         const userName = name || registration.name;
