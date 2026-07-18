@@ -69,7 +69,7 @@ function EbookContent() {
                                             } catch (e) {
                                                 console.error(e);
                                             }
-                                            window.open("/Ebook-VC-parte2.pdf", "_blank");
+                                            window.open("/Ebook-VCparte2.pdf", "_blank");
                                         }}
                                         className="w-full bg-[#3C3935] text-white py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-[#C67C6A] transition-colors text-lg shadow-lg"
                                     >
@@ -90,7 +90,7 @@ function EbookContent() {
                                             } catch (e) {
                                                 console.error(e);
                                             }
-                                            window.open("/Ebook-VC-parte2.pdf", "_blank");
+                                            window.open("/Ebook-VCparte2.pdf", "_blank");
                                         }
                                     }} className="w-full space-y-4 text-left">
                                         <div>
