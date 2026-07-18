@@ -8,8 +8,9 @@ export function middleware(request: NextRequest) {
     const isMaintenancePage = pathname === '/maintenance';
     const isSanateMujer = pathname.startsWith('/sanate-mujer');
     const isVenezuelaCaracas = pathname.startsWith('/venezuela-en-el-cuerpo-caracas');
+    const isArquitectura = pathname.startsWith('/arquitectura-de-vida-intencional');
 
-    if (isAsset || isSanateMujer || isVenezuelaCaracas) {
+    if (isAsset || isSanateMujer || isVenezuelaCaracas || isArquitectura) {
         return NextResponse.next();
     }
 
