@@ -56,6 +56,10 @@ export default function AdminAvailabilityPage() {
         setLoading(true);
         try {
             const availRes = await fetch('/api/admin/availability');
+            if (availRes.status === 401) {
+                window.location.href = '/admin/login?redirect=/admin/disponibilidad';
+                return;
+            }
             if (availRes.ok && availRes.headers.get('content-type')?.includes('application/json')) {
                 const availData = await availRes.json().catch(() => null);
                 if (Array.isArray(availData)) {
@@ -64,6 +68,10 @@ export default function AdminAvailabilityPage() {
             }
 
             const appRes = await fetch('/api/admin/appointments'); 
+            if (appRes.status === 401) {
+                window.location.href = '/admin/login?redirect=/admin/disponibilidad';
+                return;
+            }
             if (appRes.ok && appRes.headers.get('content-type')?.includes('application/json')) {
                 const appData = await appRes.json().catch(() => null);
                 if (Array.isArray(appData)) {

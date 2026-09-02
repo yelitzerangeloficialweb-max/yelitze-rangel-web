@@ -30,6 +30,11 @@ export default function AdminTestsPage() {
     const fetchResults = async () => {
         try {
             const res = await fetch('/api/admin/tests', { cache: 'no-store' });
+            if (res.status === 401) {
+                window.location.href = '/admin/login?redirect=/admin/tests';
+                return;
+            }
+            if (!res.ok) throw new Error('Error al cargar resultados');
             const data = await res.json();
             if (Array.isArray(data)) {
                 setResults(data);

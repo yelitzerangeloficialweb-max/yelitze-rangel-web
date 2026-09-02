@@ -63,8 +63,15 @@ export default function AdminProductsPage() {
     const fetchProducts = async () => {
         try {
             const res = await fetch('/api/admin/products');
+            if (res.status === 401) {
+                window.location.href = '/admin/login?redirect=/admin/products';
+                return;
+            }
+            if (!res.ok) throw new Error('Error al cargar productos');
             const data = await res.json();
-            setProducts(data);
+            if (Array.isArray(data)) {
+                setProducts(data);
+            }
         } catch (error) {
             console.error('Error fetching products:', error);
         } finally {

@@ -38,8 +38,17 @@ export default function AdminDashboard() {
         const fetchStats = async () => {
             try {
                 const res = await fetch('/api/admin/stats');
+                if (res.status === 401) {
+                    window.location.href = '/admin/login?redirect=/admin';
+                    return;
+                }
+                if (!res.ok) {
+                    throw new Error('Error al cargar estadísticas');
+                }
                 const data = await res.json();
-                setStats(data);
+                if (data && data.counts) {
+                    setStats(data);
+                }
             } catch (error) {
                 console.error('Error fetching stats:', error);
             } finally {
@@ -153,10 +162,10 @@ export default function AdminDashboard() {
                     </div>
 
                     <div className="space-y-6">
-                        {stats?.recent.workshop.length === 0 && (
+                        {(!stats?.recent?.workshop || stats.recent.workshop.length === 0) && (
                             <p className="text-stone-400 italic text-center py-10">No hay actividad reciente.</p>
                         )}
-                        {stats?.recent.workshop.map((item, i) => (
+                        {stats?.recent?.workshop?.map((item, i) => (
                             <div key={i} className="flex items-center justify-between p-4 rounded-2xl hover:bg-stone-50 transition-colors border border-transparent hover:border-stone-100">
                                 <div className="flex items-center gap-4">
                                     <div className="w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center font-bold text-[var(--color-primary)]">

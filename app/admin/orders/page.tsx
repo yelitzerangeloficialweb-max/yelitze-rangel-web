@@ -41,6 +41,11 @@ export default function AdminOrdersPage() {
     const fetchOrders = async () => {
         try {
             const res = await fetch('/api/admin/orders');
+            if (res.status === 401) {
+                window.location.href = '/admin/login?redirect=/admin/orders';
+                return;
+            }
+            if (!res.ok) throw new Error('Error al cargar pedidos');
             const data = await res.json();
             if (Array.isArray(data)) {
                 setOrders(data);

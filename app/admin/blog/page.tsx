@@ -44,6 +44,11 @@ export default function AdminBlogPage() {
     const fetchPosts = async () => {
         try {
             const res = await fetch('/api/admin/blog');
+            if (res.status === 401) {
+                window.location.href = '/admin/login?redirect=/admin/blog';
+                return;
+            }
+            if (!res.ok) throw new Error('Error al cargar posts');
             const data = await res.json();
             if (Array.isArray(data)) {
                 setPosts(data);

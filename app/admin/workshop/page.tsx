@@ -43,6 +43,11 @@ export default function AdminWorkshopPage() {
     const fetchRegistrations = async () => {
         try {
             const res = await fetch('/api/admin/workshop', { cache: 'no-store' });
+            if (res.status === 401) {
+                window.location.href = '/admin/login?redirect=/admin/workshop';
+                return;
+            }
+            if (!res.ok) throw new Error('Error al cargar inscripciones');
             const data = await res.json();
             if (Array.isArray(data)) {
                 setRegistrations(data);

@@ -83,6 +83,11 @@ export default function AdminVenezuelaPage() {
     const fetchRegistrations = async () => {
         try {
             const res = await fetch('/api/admin/venezuela/registrations');
+            if (res.status === 401) {
+                window.location.href = '/admin/login?redirect=/admin/venezuela';
+                return;
+            }
+            if (!res.ok) throw new Error('Error al cargar registros');
             const data = await res.json();
             if (Array.isArray(data)) {
                 setRegistrations(data);

@@ -28,11 +28,20 @@ export default function ParticipantEntryPage() {
     useEffect(() => {
         const fetchAndScan = async () => {
             try {
-                // First get the data to check if already scanned (no cache to ensure real-time status)
                 const response = await fetch(`/api/admin/venezuela/registrations`, {
                     cache: 'no-store'
                 });
+                if (response.status === 401) {
+                    window.location.href = `/admin/login?redirect=${encodeURIComponent(window.location.pathname)}`;
+                    return;
+                }
+                if (!response.ok) {
+                    throw new Error('Error al consultar registros');
+                }
                 const data = await response.json();
+                if (!Array.isArray(data)) {
+                    throw new Error('Formato de datos no válido');
+                }
                 const id = params.id as string;
                 const found = data.find((r: Registration) => r.id === id);
 

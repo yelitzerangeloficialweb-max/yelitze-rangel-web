@@ -117,6 +117,21 @@ export function AdminSidebar() {
                             <ExternalLink size={18} />
                             Ver sitio web
                         </Link>
+
+                        <button 
+                            onClick={async () => {
+                                try {
+                                    await fetch('/api/auth/logout', { method: 'POST' });
+                                } catch (e) {
+                                    console.error('Logout error', e);
+                                }
+                                window.location.href = '/admin/login';
+                            }}
+                            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-red-500 hover:bg-red-50 hover:text-red-700 transition-all cursor-pointer"
+                        >
+                            <LogOut size={18} />
+                            Cerrar sesión
+                        </button>
                     </div>
                 </div>
             </aside>
